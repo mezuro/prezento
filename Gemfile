@@ -22,9 +22,18 @@ end
 
 gem 'jquery-rails'
 
+group :test do
+  gem "shoulda-matchers"
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
+
+group :cucumber do 
+  gem 'cucumber-rails' 
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password
