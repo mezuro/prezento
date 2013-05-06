@@ -1,0 +1,22 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Rafael Reggiani Manzo - Base app maintaneir - rr.manzo at gmail.com
+
+# THANKSs
+
+# TECHNOLOGY COLOPHON
+
+    Ruby On Rails 4
+      RSpec
+      FactoryGirl
+      Capybara
+      Cucumber
+      ShouldaMatchers
+      Simplecov
+
+    HTML5, CSS3
+
+    Normalize.css, jQuery, Modernizr

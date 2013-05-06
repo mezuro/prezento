@@ -78,6 +78,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
+    modernizr-rails (2.6.2.1)
     multi_json (1.7.3)
     nokogiri (1.5.9)
     polyglot (0.3.3)
@@ -159,6 +160,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   jquery-rails
+  modernizr-rails
   rails (= 3.2.13)
   rspec-rails
   sass-rails (~> 3.2.3)
