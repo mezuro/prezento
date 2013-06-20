@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--> 
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]--> 
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--> 
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--> 
-  <head> 
-    <meta charset="utf-8" /> 
-    <%= csrf_meta_tags %> 
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>Portal Empresa</title>
+    <title>Base Rails App</title>
 
-    <link type="text/plain" rel="author" href="humans.txt" /> 
-    <%= stylesheet_link_tag "application", :media => "all" %> 
-    <%= javascript_include_tag :modernizr %> 
-  </head> 
+    <link type="text/plain" rel="author" href="humans.txt" />
+    <%= javascript_include_tag :modernizr %>
+
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true  %>
+
+    <%= csrf_meta_tags %>
+  </head>
 
   <body>
-    <p class="notice"><%= notice %></p> 
-    <p class="alert"><%= alert %></p> 
 
     <%= yield %>
 
-    <%= javascript_include_tag "application" %> 
   </body>
 </html>
