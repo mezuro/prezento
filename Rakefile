@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BaseRailsApp::Application.load_tasks
+Mezuro::Application.load_tasks

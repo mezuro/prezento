@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-BaseRailsApp::Application.config.session_store :cookie_store, key: '_base_rails_app_session'
+Mezuro::Application.config.session_store :cookie_store, key: '_mezuro_session'
