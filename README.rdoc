@@ -1,11 +1,13 @@
-== README
+== README - Mezuro
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Mezuro is a source code tracking platform based on Noosfero social networking
+platform with Mezuro Plugin actived to access Kalibro Web Service.
 
-Things you may want to cover:
+* Install
 
 * Ruby version
+
+  Ruby 2.0.0-p195 running through RVM (rvm.io)
 
 * System dependencies
 
@@ -13,16 +15,54 @@ Things you may want to cover:
 
 * Database creation
 
+  <tt>rake db:create</tt>
+
 * Database initialization
 
+  <tt>
+    rake db:setup
+    rake dg:migrate
+  </tt>
+
 * How to run the test suite
+
+  <tt>
+    rake db:test:prepare
+    rake spec
+  </tt>
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
-* ...
+* License
 
+Copyright (c) 2013 The Author developers.
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+* Authors
+
+Please see the humans.txt file with the authors
+
+* Acknowledgments
+
+The authors have been supported by organizations:
+
+University of São Paulo (USP)
+FLOSS Competence Center
+http://ccsl.ime.usp.br
+
+Brazilian National Research Council (CNPQ)
+http://www.cnpq.br/
