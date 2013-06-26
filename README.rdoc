@@ -1,5 +1,7 @@
 == README - Mezuro
 
+{<img src="https://codeclimate.com/github/mezuro/mezuro-standalone.png" />}[https://codeclimate.com/github/mezuro/mezuro-standalone] {<img src="https://travis-ci.org/mezuro/mezuro-standalone.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/mezuro-standalone]
+
 Mezuro is a source code tracking platform based on Noosfero social networking
 platform with Mezuro Plugin actived to access Kalibro Web Service.
 
