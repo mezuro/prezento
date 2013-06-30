@@ -55,6 +55,10 @@ group :development, :test do
 
   # Fixtures made easy
   gem 'factory_girl_rails'
+
+  # Deployment
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 # Acceptance tests
