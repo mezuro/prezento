@@ -34,7 +34,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 #For user authentication and everything else
-gem 'devise', '~> 3.0.0.rc'
+gem 'devise', '~> 3.0.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
