@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0-p195
+  - 2.0.0-p247
 
 before_script:
   - "rake db:migrate RAILS_ENV=test"
