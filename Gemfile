@@ -33,8 +33,11 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-#For user authentication and everything else
+# For user authentication and everything else
 gem 'devise', '~> 3.0.0'
+
+# Kalibro integration
+gem 'kalibro_entities', git: 'https://github.com/mezuro/kalibro_entities.git' #When the first version of KalibroEntities come out, do not keep using the git repository
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
