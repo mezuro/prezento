@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_entities.git
-  revision: 903dd684d9f3f515aae9703a6fbae036b55b4422
+  revision: ec35266cc3a79465edde66079cd269d494a06768
   specs:
     kalibro_entities (0.0.1)
       savon (~> 2.3.0)
@@ -103,8 +103,11 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.1)
     mime-types (1.23)
     minitest (4.7.5)
+    mocha (0.14.0)
+      metaclass (~> 0.0.1)
     modernizr-rails (2.6.2.3)
     multi_json (1.7.7)
     net-scp (1.1.2)
@@ -222,6 +225,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   kalibro_entities!
+  mocha
   modernizr-rails
   rails (= 4.0.0)
   rspec-rails
