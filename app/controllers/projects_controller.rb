@@ -5,6 +5,12 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  # GET /projects
+  # GET /projects.json
+  def index
+    @projects = Project.all
+  end
+
   # POST /projects
   # POST /projects.json
   def create
@@ -12,13 +18,19 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /project/1
+  # GET /project/1.json
+  def show
+    set_project
   end
 
   private

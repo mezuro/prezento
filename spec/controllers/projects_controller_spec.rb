@@ -16,11 +16,12 @@ describe ProjectsController do
     context 'with a valid fields' do
       before :each do
         @subject = FactoryGirl.build(:project)
-        
-        Project.expects(:new).at_least_once.with(@subject.to_hash).returns(@subject)
+        @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+        Project.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         Project.any_instance.expects(:save).returns(true)
 
-        post :create, :project => @subject.to_hash
+        post :create, :project => @subject_params
       end
       
       it 'should redirect to the show view' do
@@ -35,14 +36,35 @@ describe ProjectsController do
     context 'with an invalid field' do
       before :each do
         @subject = FactoryGirl.build(:project)
+        @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
         
-        Project.expects(:new).at_least_once.with(@subject.to_hash).returns(@subject)
+        Project.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         Project.any_instance.expects(:save).returns(false)
 
-        post :create, :project => @subject.to_hash
+        post :create, :project => @subject_params
       end
 
       it { should render_template(:new) }
     end
+  end
+
+  describe 'show' do
+    before :each do
+      @subject = FactoryGirl.build(:project)
+      Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+      get :show, :id => @subject.id
+    end
+
+    it { should render_template(:show) }
+  end
+
+  describe 'index' do
+    before :each do
+      @subject = FactoryGirl.build(:project)
+      Project.expects(:all).returns([@subject])
+      get :index
+    end
+
+    it { should render_template(:index) }
   end
 end
