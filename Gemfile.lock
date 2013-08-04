@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_entities.git
-  revision: ec35266cc3a79465edde66079cd269d494a06768
+  revision: c16eb3fdebcdd95ba6bc4c12c89b5039b490ed41
   specs:
     kalibro_entities (0.0.1)
       savon (~> 2.3.0)
