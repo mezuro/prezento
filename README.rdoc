@@ -7,35 +7,52 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
 * Install
 
+  Coming soon...
+
+  We are not thinking about installation right now :)
+
 * Ruby version
 
-  Ruby 2.0.0-p195 running through RVM (rvm.io)
+  2.0.0-p247
+
+  You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
 * System dependencies
 
+  * build-essential
+
+  * curl
+
+  * libxml32
+
+  * libxml32-dev
+
+  * libxslt-dev
+
 * Configuration
+
+    bundle install
 
 * Database creation
 
-  <tt>rake db:create</tt>
+    rake db:create
 
 * Database initialization
 
-  <tt>
     rake db:setup
-    rake dg:migrate
-  </tt>
 
 * How to run the test suite
 
-  <tt>
-    rake db:test:prepare
-    rake spec
-  </tt>
+    rake
 
 * Services (job queues, cache servers, search engines, etc.)
 
+  Kalibro Web Service 1.0 r6
+  You can find an script to install it on Ubuntu at https://gist.github.com/rafamanzo/6179925
+
 * Deployment instructions
+
+  Coming soon... Capistrano instructions.
 
 * License
 
