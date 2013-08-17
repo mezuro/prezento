@@ -18,3 +18,4 @@
 coverage
 
 database.yml
+kalibro_cucumber_helpers.yml

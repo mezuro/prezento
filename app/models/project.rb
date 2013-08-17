@@ -7,4 +7,8 @@ class Project < KalibroEntities::Entities::Project
   def persisted?
     false
   end
+
+  def self.latest(count = 1)
+    all.sort { |a,b| b.id <=> a.id }.first(count)
+  end
 end

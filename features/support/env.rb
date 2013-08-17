@@ -62,5 +62,11 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+# Kalibro hooks
+require 'kalibro_entities/kalibro_cucumber_helpers/hooks'
+
+# Configuring the right hooks
+KalibroEntities::KalibroCucumberHelpers.configure_from_yml("#{__dir__}/kalibro_cucumber_helpers.yml")
+
 # Warden test helpers so the user authentication can be as fast as possible
 include Warden::Test::Helpers

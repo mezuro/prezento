@@ -1,0 +1,10 @@
+kalibro_cucumber_helpers:
+  database: "kalibro_test"
+  user: "kalibro"
+  password: "kalibro"
+  psql_file_path: "/tmp/PostgreSQL.sql"
+  query_file_path: "/tmp/query"
+  kalibro_home: "/usr/share/tomcat6/.kalibro"
+  tomcat_user: "tomcat6"
+  tomcat_group: "tomcat6"
+  tomcat_restart_command: "sudo\\ service\\ tomcat6\\ restart"

@@ -6,4 +6,10 @@ FactoryGirl.define do
     name "QT Calculator"
     description "A simple calculator for us."
   end
+
+  factory :another_project, class: Project do
+    id 2
+    name "Kalibro"
+    description "Code Metrics"
+  end
 end

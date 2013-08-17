@@ -7,6 +7,8 @@ Feature: Homepage
     Given I am at the homepage
     Then I should see Login
     And I should see Sign Up
+    And I should see Latest Projects
+    And I should see All Projects
 
   Scenario: Signed in
     Given I am a regular user
@@ -14,3 +16,5 @@ Feature: Homepage
     And I am at the homepage
     Then I should see Edit
     And I should see Logout
+    And I should see Latest Projects
+    And I should see All Projects

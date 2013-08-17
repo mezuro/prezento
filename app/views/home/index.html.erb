@@ -6,3 +6,11 @@
   <%= link_to('Login', new_user_session_path) %>
   <%= link_to('Sign Up', new_user_registration_path) %>
 <% end %>
+
+<p><h2>Latest Projects</h2></p>
+<ul>
+  <% @latest_projects.each do |project| %>
+    <li><%= link_to(project.name, project_path(project.id)) %></li>
+  <% end %>
+</ul>
+<p><%= link_to('All Projects', projects_path) %></p>
