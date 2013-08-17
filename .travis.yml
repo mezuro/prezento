@@ -3,6 +3,7 @@ rvm:
   - 2.0.0-p247
 
 before_script:
+  - "cp config/database.yml.sample config/database.yml"
   - "rake db:migrate RAILS_ENV=test"
 
 notifications:
