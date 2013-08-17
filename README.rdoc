@@ -23,11 +23,13 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   * curl
 
-  * libxml32
+  * libxml2
 
-  * libxml32-dev
+  * libxml2-dev
 
-  * libxslt-dev
+  * libxslt1-dev
+
+  **NOTE:** If you are using the gnome-shell, or any derivate like terminator, you have to mark on your profile the option to use a "login bash".
 
 * Configuration
 
