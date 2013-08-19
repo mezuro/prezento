@@ -7,9 +7,10 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
 * Install
 
-  Coming soon...
-
-  We are not thinking about installation right now :)
+  1. Make sure that the deployment file <tt>config/deploy.rb</tt> is correctly configured to the installation server;
+  2. Also, make sure that the installation server already has rvm installed;
+  3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
+  4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
 
 * Ruby version
 
@@ -29,7 +30,9 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   * libxslt1-dev
 
-  **NOTE:** If you are using the gnome-shell, or any derivate like terminator, you have to mark on your profile the option to use a "login bash".
+  * postgresql-server-dev-9.1
+
+  *NOTE:* If you are using the gnome-shell, or any derivate like terminator, you have to mark on your profile the option to use a "login bash".
 
 * Configuration
 
@@ -50,11 +53,17 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 * Services (job queues, cache servers, search engines, etc.)
 
   Kalibro Web Service 1.0 r6
-  You can find an script to install it on Ubuntu at https://gist.github.com/rafamanzo/6179925
+  You can find a script to install it on Ubuntu at https://gist.github.com/rafamanzo/6179925
 
 * Deployment instructions
 
-  Coming soon... Capistrano instructions.
+  Deployment is made through Capistano (https://github.com/capistrano/capistrano)
+
+    cap deploy:migrations
+
+  In order to do this, you must have the password.
+
+  Otherwise, you can also modify the deployment file at <tt>config/deploy.rb</tt>.
 
 * License
 
