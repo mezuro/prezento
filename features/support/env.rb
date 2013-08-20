@@ -19,6 +19,9 @@ end
 # files.
 
 require 'cucumber/rails'
+require 'capybara/poltergeist'
+#Capybara.default_driver = :poltergeist
+Capybara.javascript_driver = :poltergeist
 
 #require 'kalibro_entities/kalibro_cucumber_helpers/hooks'
 

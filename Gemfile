@@ -76,6 +76,7 @@ group :cucumber do
   #Fixed the cumcumber version since the version 1.3.4 causes tests failure
   gem 'cucumber', '1.3.2'
   gem 'database_cleaner'
+  gem 'poltergeist', '~> 1.3.0'
 end
 
 # Use ActiveModel has_secure_password

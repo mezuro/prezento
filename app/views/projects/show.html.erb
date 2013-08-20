@@ -8,4 +8,8 @@
   <%= @project.description %>
 </p>
 
-<%= link_to 'Back', root_path %>
+<p>
+  <%= link_to 'Destroy', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>
+
+<%= link_to 'Back', projects_path %>

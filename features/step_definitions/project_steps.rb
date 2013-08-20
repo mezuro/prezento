@@ -1,3 +1,5 @@
+require 'kalibro_entities/errors'
+
 Given(/^I am at the All Projects page$/) do
   visit projects_path
 end
@@ -33,6 +35,10 @@ end
 
 Then(/^I should be in the Edit Project page$/) do
   page.should have_content("Edit Project")
+end
+
+Then(/^the sample project should not be there$/) do
+  expect { Project.find(@project.id) }.to raise_error 
 end
 
 Then(/^The field "(.*?)" should be filled with the sample project "(.*?)"$/) do |field, value|

@@ -48,7 +48,7 @@ Feature: Project
     And the sample project should be there
 
   @wip @kalibro_restart
-  Scenario: Should back to the All Projects page from show project view
+  Scenario: Should go back to the All Projects page from show project view
     Given I am a regular user
     And I am signed in
     And I have a sample project
@@ -64,7 +64,17 @@ Feature: Project
     And I am at the All Projects page
     When I click the Edit link
     Then I should be in the Edit Project page
-
+    
+  @kalibro_restart
+  Scenario: Should delete a project
+    Given I am a regular user
+    And I am signed in
+    And I have a sample project
+    And I am at the Sample Project page
+    When I click the Destroy link
+    Then I should be in the All Projects page
+    And the sample project should not be there
+    
   @kalibro_restart
   Scenario: Should have the content filled in form
     Given I am a regular user

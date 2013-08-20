@@ -68,6 +68,21 @@ describe ProjectsController do
     it { should render_template(:show) }
   end
 
+  describe 'delete' do
+    before :each do
+      @subject = FactoryGirl.build(:project)
+      @subject.expects(:destroy)
+      Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+      delete :destroy, :id => @subject.id
+    end
+
+    it 'should redirect to the projects page' do
+      response.should redirect_to project_url
+    end
+
+    it { should respond_with(:redirect) }
+  end
+
   describe 'index' do
     before :each do
       @subject = FactoryGirl.build(:project)
