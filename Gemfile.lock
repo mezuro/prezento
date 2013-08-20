@@ -1,8 +1,9 @@
 GIT
   remote: https://github.com/mezuro/kalibro_entities.git
-  revision: de2d51db42ddb77f3842eec2223c00b68a48222f
+  revision: c28d55fc1b02efc29eb5299b30da5d56f7d8c63f
   specs:
     kalibro_entities (0.0.1)
+      activesupport (~> 4.0.0)
       savon (~> 2.3.0)
 
 GEM
