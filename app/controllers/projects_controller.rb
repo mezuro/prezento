@@ -32,6 +32,21 @@ class ProjectsController < ApplicationController
   def show
     set_project
   end
+  
+  # GET /projects/1/edit
+  # GET /projects/1/edit.json
+  def edit
+    set_project
+  end 
+
+  def update
+    set_project
+    if @project.update(params[:project])
+      redirect_to(project_path(@project.id))
+    else
+      render "edit"
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

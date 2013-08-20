@@ -5,7 +5,12 @@ class Project < KalibroEntities::Entities::Project
   delegate :url_helpers, to: 'Rails.application.routes' 
 
   def persisted?
-    false
+    Project.exists?(self.id) unless self.id.nil? 
+  end
+
+  def update(attributes = {})
+    attributes.each { |field, value| send("#{field}=", value) if self.class.is_valid?(field) }
+    self.save
   end
 
   def self.latest(count = 1)
