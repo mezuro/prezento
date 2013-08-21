@@ -10,7 +10,7 @@ describe ProjectsController do
     it { should respond_with(:success) }
     it { should render_template(:new) }
   end
-
+  
   describe 'create' do
 
     context 'with a valid fields' do
@@ -20,17 +20,27 @@ describe ProjectsController do
 
         Project.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         Project.any_instance.expects(:save).returns(true)
-
-        post :create, :project => @subject_params
       end
-      
-      it 'should redirect to the show view' do
-        pending("Probably incompatibility between Rails 4 and RSpec. It isn't expecting an slash at the end." ) do
+
+      context 'rendering the show' do
+        before :each do 
+          Project.expects(:exists?).returns(true)
+
+          post :create, :project => @subject_params
+        end
+
+        it 'should redirect to the show view' do
           response.should redirect_to project_path(@subject)
         end
       end
 
-      it { should respond_with(:redirect) }
+      context 'without rendering the show view' do
+        before :each do
+          post :create, :project => @subject_params
+        end
+  
+        it { should respond_with(:redirect) }
+      end
     end
 
     context 'with an invalid field' do
