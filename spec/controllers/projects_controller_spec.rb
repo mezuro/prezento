@@ -13,7 +13,7 @@ describe ProjectsController do
   
   describe 'create' do
 
-    context 'with a valid fields' do
+    context 'with valid fields' do
       before :each do
         @subject = FactoryGirl.build(:project)
         @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
@@ -89,6 +89,53 @@ describe ProjectsController do
 
     it 'should assign to @project the @subject' do
       assigns(:project).should eq(@subject)
+    end
+  end
+
+  describe 'update' do
+  
+    context 'with valid fields' do
+      before :each do
+        @subject = FactoryGirl.build(:project)
+        @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+        Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+        Project.any_instance.expects(:update).with(@subject_params).returns(true)
+      end
+
+      context 'rendering the show' do
+        before :each do 
+          Project.expects(:exists?).returns(true)
+
+          post :update, :id => @subject.id, :project => @subject_params
+        end
+
+        it 'should redirect to the show view' do
+          response.should redirect_to project_path(@subject)
+        end
+      end
+
+      context 'without rendering the show view' do
+        before :each do
+          post :update, :id => @subject.id, :project => @subject_params
+        end
+  
+        it { should respond_with(:redirect) }
+      end
+    end
+
+    context 'with an invalid field' do
+      before :each do
+        @subject = FactoryGirl.build(:project)
+        @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+        
+        Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+        Project.any_instance.expects(:update).with(@subject_params).returns(false)
+
+        post :update, :id => @subject.id, :project => @subject_params
+      end
+
+      it { should render_template(:edit) }
     end
   end
 

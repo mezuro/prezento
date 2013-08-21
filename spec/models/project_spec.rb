@@ -31,5 +31,32 @@ describe Project do
         end
       end
     end
+
+    describe 'update' do
+      before :each do
+        @qt = FactoryGirl.build(:project)
+        @qt_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+      end
+
+      context 'with valid attributes' do
+        before :each do
+          @qt.expects(:save).returns(true)
+        end
+
+        it 'should return true' do
+          @qt.update(@qt_params).should eq(true)
+        end
+      end
+
+      context 'with invalid attributes' do
+        before :each do
+          @qt.expects(:save).returns(false)
+        end
+
+        it 'should return false' do
+          @qt.update(@qt_params).should eq(false)
+        end
+      end
+    end
   end
 end
