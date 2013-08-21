@@ -12,12 +12,6 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
   4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
 
-* Ruby version
-
-  2.0.0-p247
-
-  You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
-
 * System dependencies
 
   * build-essential
@@ -32,7 +26,16 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   * postgresql-server-dev-9.1
 
+  * PhantomJS 1.9.1 (http://phantomjs.org/)
+  
+* Ruby version
+
+  2.0.0-p247
+
+  You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
+
   *NOTE:* If you are using the gnome-shell, or any derivate like terminator, you have to mark on your profile the option to use a "login bash".
+
 
 * Configuration
 
