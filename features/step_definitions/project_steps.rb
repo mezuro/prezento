@@ -7,7 +7,11 @@ Given(/^I have a sample project$/) do
 end
 
 Given(/^I am at the Sample Project page$/) do
-  visit  "#{projects_path}/#{@project.id}"
+  visit project_path(@project.id)
+end
+
+Given(/^I am at the sample project edit page$/) do
+  visit edit_project_path(@project.id)
 end
 
 Then(/^I should not see (.+)$/) do |text|
