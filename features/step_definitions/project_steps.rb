@@ -3,7 +3,7 @@ Given(/^I am at the All Projects page$/) do
 end
 
 Given(/^I have a sample project$/) do
-  @project = FactoryGirl.create(:project)
+  @project = FactoryGirl.create(:project, {id: nil})
 end
 
 Given(/^I am at the Sample Project page$/) do
@@ -21,4 +21,12 @@ end
 
 Then(/^I should be in the All Projects page$/) do
   page.should have_content("Listing Projects")
+end
+
+Then(/^I should be in the Edit Project page$/) do
+  page.should have_content("Edit Project")
+end
+
+Then(/^The field "(.*?)" should be filled with the sample project "(.*?)"$/) do |field, value|
+  page.find_field(field).value.should eq(@project.send(value))
 end
