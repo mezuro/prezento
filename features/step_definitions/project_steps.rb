@@ -14,6 +14,10 @@ Given(/^I am at the sample project edit page$/) do
   visit edit_project_path(@project.id)
 end
 
+Given(/^I am at the New Project page$/) do
+  visit new_project_path
+end
+
 Then(/^I should not see (.+)$/) do |text|
   page.should_not have_content(text)
 end
