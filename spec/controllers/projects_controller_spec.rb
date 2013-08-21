@@ -77,7 +77,7 @@ describe ProjectsController do
     end
 
     it 'should redirect to the projects page' do
-      response.should redirect_to project_url
+      response.should redirect_to projects_url
     end
 
     it { should respond_with(:redirect) }
