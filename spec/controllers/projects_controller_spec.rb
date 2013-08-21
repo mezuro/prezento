@@ -77,4 +77,19 @@ describe ProjectsController do
 
     it { should render_template(:index) }
   end
+
+  describe 'edit' do
+    before :each do
+      @subject = FactoryGirl.build(:project)
+      Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+      get :edit, :id => @subject.id
+    end
+
+    it { should render_template(:edit) }
+
+    it 'should assign to @project the @subject' do
+      assigns(:project).should eq(@subject)
+    end
+  end
+
 end
