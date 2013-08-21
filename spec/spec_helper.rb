@@ -1,7 +1,17 @@
 #Starts Simplecov
 require 'simplecov'
-SimpleCov.start
-SimpleCov.coverage_dir 'coverage/rspec'
+SimpleCov.start do
+  coverage_dir 'coverage/rspec'
+
+  add_group "Models", "app/models"
+  add_group "Controllers", "app/controllers"
+  add_group "Helpers", "app/helpers"
+  add_group "Mailers", "app/mailers"
+
+  add_filter "/spec/"
+  add_filter "/features/"
+  add_filter "/config/"
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
