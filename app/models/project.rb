@@ -23,8 +23,8 @@ class Project < KalibroEntities::Entities::Project
   end
 
   def save
-    if (self.valid? and self.kalibro_errors.nil?) 
-      super.save
+    if self.valid? and self.kalibro_errors.empty?
+      super
     else
       false
     end
