@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_entities.git
-  revision: c28d55fc1b02efc29eb5299b30da5d56f7d8c63f
+  revision: eb8a2306ab730020d0637fcea6b4ff2afcfca363
   specs:
     kalibro_entities (0.0.1)
       activesupport (~> 4.0.0)
@@ -97,7 +97,7 @@ GEM
       rack
       rubyntlm (~> 0.3.2)
     i18n (0.6.5)
-    jbuilder (1.5.0)
+    jbuilder (1.5.1)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
@@ -166,7 +166,7 @@ GEM
     rvm-capistrano (1.4.4)
       capistrano (>= 2.15.4)
     sass (3.2.10)
-    sass-rails (4.0.0)
+    sass-rails (4.0.0.rc2)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
