@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_entities.git
-  revision: eb8a2306ab730020d0637fcea6b4ff2afcfca363
+  revision: 3741a582f1404aa8e5d9402736f4b81f68f9c78e
   specs:
     kalibro_entities (0.0.1)
       activesupport (~> 4.0.0)
@@ -38,7 +38,7 @@ GEM
       nokogiri (>= 1.4.0)
     arel (4.0.0)
     atomic (1.1.13)
-    bcrypt-ruby (3.1.1)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     capistrano (2.15.5)
       highline
