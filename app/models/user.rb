@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true
 
+  has_many :project_ownerships
   # Alert: when adding new parameters to this model, they should also be added to registrations_controller
 end
