@@ -166,7 +166,7 @@ GEM
     rvm-capistrano (1.4.4)
       capistrano (>= 2.15.4)
     sass (3.2.10)
-    sass-rails (4.0.0.rc2)
+    sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
