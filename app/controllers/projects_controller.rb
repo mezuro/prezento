@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!,
+    except: [:index, :show]
 
   # GET /projects/new
   def new
@@ -15,9 +17,10 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
     respond_to do |format|
       if @project.save
+        current_user.project_ownerships.create project_id: @project.id
+
         format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
         format.json { render action: 'show', status: :created, location: @project }
       else
@@ -32,7 +35,7 @@ class ProjectsController < ApplicationController
   def show
     set_project
   end
-  
+
   # GET /projects/1/edit
   # GET /projects/1/edit.json
   def edit
@@ -52,6 +55,7 @@ class ProjectsController < ApplicationController
   # DELETE /project/1.json
   def destroy
     set_project
+    current_user.project_ownerships.find_by_project_id(@project.id).destroy
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
