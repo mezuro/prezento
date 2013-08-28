@@ -4,6 +4,7 @@ describe ProjectsController do
 
   describe 'new' do
     before :each do
+      sign_in FactoryGirl.create(:user)
       get :new
     end
 
@@ -12,6 +13,9 @@ describe ProjectsController do
   end
   
   describe 'create' do
+    before do
+      sign_in FactoryGirl.create(:user)
+    end
 
     context 'with valid fields' do
       before :each do
@@ -70,8 +74,17 @@ describe ProjectsController do
 
   describe 'delete' do
     before :each do
+      sign_in FactoryGirl.create(:user)
+
       @subject = FactoryGirl.build(:project)
       @subject.expects(:destroy)
+
+      @ownership = FactoryGirl.build(:project_ownership)
+      @ownership.expects(:destroy)
+      @ownerships = []
+      @ownerships.expects(:find_by_project_id).with(@subject.id).returns(@ownership)
+      User.any_instance.expects(:project_ownerships).returns(@ownerships)
+      
       Project.expects(:find).with(@subject.id.to_s).returns(@subject)
       delete :destroy, :id => @subject.id
     end
@@ -95,6 +108,7 @@ describe ProjectsController do
 
   describe 'edit' do
     before :each do
+      sign_in FactoryGirl.create(:user)
       @subject = FactoryGirl.build(:project)
       Project.expects(:find).with(@subject.id.to_s).returns(@subject)
       get :edit, :id => @subject.id
@@ -108,7 +122,10 @@ describe ProjectsController do
   end
 
   describe 'update' do
-  
+    before do
+      sign_in FactoryGirl.create(:user)
+    end
+
     context 'with valid fields' do
       before :each do
         @subject = FactoryGirl.build(:project)
