@@ -8,6 +8,10 @@ Given(/^I have a sample project$/) do
   @project = FactoryGirl.create(:project, {id: nil})
 end
 
+Given(/^I have a project named "(.*?)"$/) do |name|
+  @project = FactoryGirl.create(:project, {id: nil, name: name})
+end
+
 Given(/^I am at the Sample Project page$/) do
   visit project_path(@project.id)
 end

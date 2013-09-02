@@ -6,7 +6,7 @@ When(/^I press the (.+) button$/) do |text|
   click_button text
 end
 
-When(/^I fill the (.+) field with (.+)$/) do |field, text|
+When(/^I fill the (.+) field with "(.+)"$/) do |field, text|
   fill_in field, :with => text
 end
 
