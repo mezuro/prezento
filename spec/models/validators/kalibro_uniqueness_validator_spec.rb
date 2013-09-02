@@ -16,10 +16,10 @@ describe KalibroUniquenessValidator do
         end
       end
 
-      context 'with name already taken' do
+      context 'with name already taken by another project' do
         before :each do
           @subject = FactoryGirl.build(:project)
-          Project.expects(:all).returns([@subject])
+          Project.expects(:all).returns([FactoryGirl.build(:project, id: @subject.id + 1)])
         end
 
         it 'should contain errors' do

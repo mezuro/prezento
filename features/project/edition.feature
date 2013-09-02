@@ -45,7 +45,7 @@ Feature: Project
     When I press the Update button
     Then I should see There's already
 
-  @kalibro_restart @wip
+  @kalibro_restart
   Scenario: Editing just the description
     Given I am a regular user
     And I am signed in
@@ -53,7 +53,6 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Update button
-    Then I should see Kalibro
     And I should see Web Service to collect metrics
 
   @kalibro_restart
