@@ -46,6 +46,10 @@ Then(/^I should be in the Edit Project page$/) do
   page.should have_content("Edit Project")
 end
 
+Then(/^I should be in the Login page$/) do
+  page.should have_content("Sign in")
+end
+
 Then(/^the sample project should not be there$/) do
   expect { Project.find(@project.id) }.to raise_error 
 end

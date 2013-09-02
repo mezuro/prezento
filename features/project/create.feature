@@ -3,11 +3,12 @@ Feature: Project Creation
   As a regular user
   I should be able to create projects
 
-  # This will fail until do the authentication to project.
-  @wip
+  @kalibro_restart
   Scenario: Should not create project without login
     Given I am at the All Projects page
-    Then I should not see New Project
+    When I click the New Project link
+    Then I should be in the Login page
+    And I should see You need to sign in or sign up before continuing.
 
   @kalibro_restart
   Scenario: project creation
