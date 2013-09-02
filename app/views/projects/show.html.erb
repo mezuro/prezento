@@ -9,7 +9,9 @@
 </p>
 
 <p>
-  <%= link_to 'Destroy', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if project_owner? @project.id %>
+    <%= link_to 'Destroy', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </p>
 
 <%= link_to 'Back', projects_path %>
