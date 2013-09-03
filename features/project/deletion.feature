@@ -9,19 +9,16 @@ Feature: Project Deletion
     When I am at the Sample Project page
     Then I should not see Destroy
 
-  @wip
   @kalibro_restart
   Scenario: Should not delete a project that doesn't belongs to user
     Given I am a regular user
     And I am signed in
-    And I own a sample project
-    And I am at the Sample Project page
-    When I click the Destroy link
-    Then I should be in the All Projects page
-    And the sample project should not be there
+    And I have a sample project
+    When I am at the Sample Project page
+    Then I should not see Destroy
 
   @kalibro_restart
-  Scenario: Should delete a project
+  Scenario: Should delete a project that I own
     Given I am a regular user
     And I am signed in
     And I own a sample project
