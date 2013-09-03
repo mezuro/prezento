@@ -17,11 +17,20 @@ Given(/^I own a sample project$/) do
   FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @project.id})
 end
 
+Given(/^I own a project named "(.*?)"$/) do |name|
+  @project = FactoryGirl.create(:project, {id: nil, name: name})
+  FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @project.id})
+end
+
 Given(/^I am at the Sample Project page$/) do
   visit project_path(@project.id)
 end
 
 Given(/^I am at the sample project edit page$/) do
+  visit edit_project_path(@project.id)
+end
+
+Given(/^I visit the sample project edit page$/) do
   visit edit_project_path(@project.id)
 end
 

@@ -21,6 +21,15 @@ Feature: Project
     Then I should not see Edit
     
   @kalibro_restart
+  Scenario: Should not render the edit page if the project doesn't belongs to the current user
+    Given I am a regular user
+    And I am signed in
+    And I have a sample project
+    And I am at the All Projects page
+    When I visit the sample project edit page
+    Then I should see You shall not edit
+
+  @kalibro_restart
   Scenario: Filling up the form
     Given I am a regular user
     And I am signed in
@@ -34,7 +43,7 @@ Feature: Project
   Scenario: With valid attributes
     Given I am a regular user
     And I am signed in
-    And I have a sample project
+    And I own a sample project
     And I am at the sample project edit page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
@@ -47,7 +56,7 @@ Feature: Project
     Given I am a regular user
     And I am signed in
     And I have a project named "Qt-Calculator"
-    And I have a project named "Kalibro"
+    And I own a project named "Kalibro"
     And I am at the sample project edit page
     And I fill the Name field with "Qt-Calculator"
     When I press the Update button
@@ -57,7 +66,7 @@ Feature: Project
   Scenario: Editing just the description
     Given I am a regular user
     And I am signed in
-    And I have a sample project
+    And I own a sample project
     And I am at the sample project edit page
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Update button
@@ -67,7 +76,7 @@ Feature: Project
   Scenario: With blank project name
     Given I am a regular user
     And I am signed in
-    And I have a sample project
+    And I own a sample project
     And I am at the sample project edit page
     And I fill the Name field with " "
     When I press the Update button

@@ -39,6 +39,12 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   # GET /projects/1/edit.json
   def edit
+    if current_user.project_ownerships.find_by_project_id(params[:id]).nil?
+      respond_to do |format|
+        format.html { redirect_to projects_url, notice: "You shall not edit projects that aren't yours." }
+        format.json { head :no_content }
+      end
+    end
     set_project
   end 
 
