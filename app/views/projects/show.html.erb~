@@ -10,7 +10,7 @@
 
 <h2>Repositories</h2>
 
-<%= link_to 'New Repository', new_project_repository_path(@project)%>
+<%= link_to 'New Repository', new_project_repository_path(@project_id)%>
 
 <table border="1" width="30%">
   <thead>
@@ -31,7 +31,7 @@
 </table>
 
 <p>
-  <% if project_owner? @project.id %>
-    <%= link_to 'Destroy', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-  <% end %>
+  <%= link_to 'Destroy', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
+
+<%= link_to 'Back', projects_path %>

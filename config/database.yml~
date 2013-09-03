@@ -1,0 +1,41 @@
+ development:
+   adapter: sqlite3
+   database: db/development.sqlite3
+   pool: 5
+   timeout: 5000
+
+#development:
+#  adapter: postgresql
+#  host: localhost
+#  encoding: utf8
+#  database: mezuro
+#  username: mezuro
+#  password: mezuro
+
+ test:
+   adapter: sqlite3
+   database: db/test.sqlite3
+   pool: 5
+   timeout: 5000
+
+# test:
+#   adapter: postgresql
+#   host: localhost
+#   encoding: utf8
+#   database: mezuro
+#   username: mezuro
+#   password: mezuro
+
+production:
+   adapter: sqlite3
+   database: db/production.sqlite3
+   pool: 5
+   timeout: 5000
+
+#production:
+#  adapter: postgresql
+#  host: localhost
+#  encoding: utf8
+#  database: mezuro
+#  username: mezuro
+#  password: mezuro
