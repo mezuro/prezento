@@ -4,19 +4,27 @@ Feature: Project
   I should be able to edit my projects
 
   @kalibro_restart
-  Scenario: Going to the edit page
+  Scenario: Should go to the edit page from a project that I own
+    Given I am a regular user
+    And I am signed in
+    And I own a sample project
+    And I am at the All Projects page
+    When I click the Edit link
+    Then I should be in the Edit Project page
+
+  @kalibro_restart
+  Scenario: Should not show edit links from projects that doesn't belongs to me
     Given I am a regular user
     And I am signed in
     And I have a sample project
     And I am at the All Projects page
-    When I click the Edit link
-    Then I should be in the Edit Project page
+    Then I should not see Edit
     
   @kalibro_restart
   Scenario: Filling up the form
     Given I am a regular user
     And I am signed in
-    And I have a sample project
+    And I own a sample project
     And I am at the All Projects page
     When I click the Edit link
     Then The field "project[name]" should be filled with the sample project "name"

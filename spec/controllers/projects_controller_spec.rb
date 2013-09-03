@@ -108,8 +108,12 @@ describe ProjectsController do
 
   describe 'edit' do
     before :each do
-      sign_in FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user)
       @subject = FactoryGirl.build(:project)
+      FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @subject.id})
+     
+      sign_in @user
+
       Project.expects(:find).with(@subject.id.to_s).returns(@subject)
       get :edit, :id => @subject.id
     end
