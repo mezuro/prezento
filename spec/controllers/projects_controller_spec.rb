@@ -72,7 +72,7 @@ describe ProjectsController do
     it { should render_template(:show) }
   end
 
-  describe 'delete' do
+  describe 'destroy' do
     before :each do
       sign_in FactoryGirl.create(:user)
 
@@ -82,8 +82,12 @@ describe ProjectsController do
       @ownership = FactoryGirl.build(:project_ownership)
       @ownership.expects(:destroy)
       @ownerships = []
+
+      #Those two mocks looks the same but they are necessary since params[:id] is a String and @project.id is an Integer :(
+      @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
       @ownerships.expects(:find_by_project_id).with(@subject.id).returns(@ownership)
-      User.any_instance.expects(:project_ownerships).returns(@ownerships)
+
+      User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
 
       Project.expects(:find).with(@subject.id.to_s).returns(@subject)
       delete :destroy, :id => @subject.id
@@ -136,7 +140,7 @@ describe ProjectsController do
       end
 
       it { should redirect_to(projects_path)  }
-      
+
       it 'should set the flash' do
         pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
           should set_the_flash[:notice].to("You shall not edit projects that aren't yours.")
@@ -147,13 +151,16 @@ describe ProjectsController do
 
   describe 'update' do
     before do
-      sign_in FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user)
+      sign_in @user
     end
 
     context 'with valid fields' do
       before :each do
         @subject = FactoryGirl.build(:project)
         @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+        FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @subject.id})
 
         Project.expects(:find).with(@subject.id.to_s).returns(@subject)
         Project.any_instance.expects(:update).with(@subject_params).returns(true)
@@ -184,6 +191,8 @@ describe ProjectsController do
       before :each do
         @subject = FactoryGirl.build(:project)
         @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+        FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @subject.id})
 
         Project.expects(:find).with(@subject.id.to_s).returns(@subject)
         Project.any_instance.expects(:update).with(@subject_params).returns(false)

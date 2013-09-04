@@ -27,7 +27,7 @@ Feature: Project
     And I have a sample project
     And I am at the All Projects page
     When I visit the sample project edit page
-    Then I should see You shall not edit
+    Then I should see You're not allowed to do this operation
 
   @kalibro_restart
   Scenario: Filling up the form

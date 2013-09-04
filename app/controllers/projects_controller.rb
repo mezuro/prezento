@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!,
     except: [:index, :show]
+  before_action :check_ownership, only: [:edit, :update, :destroy]
 
   # GET /projects/new
   def new
@@ -39,14 +40,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   # GET /projects/1/edit.json
   def edit
-    if current_user.project_ownerships.find_by_project_id(params[:id]).nil?
-      respond_to do |format|
-        format.html { redirect_to projects_url, notice: "You shall not edit projects that aren't yours." }
-        format.json { head :no_content }
-      end
-    else
-      set_project
-    end
+    set_project
   end 
 
   def update
@@ -79,6 +73,15 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params[:project]
+    end
+
+    def check_ownership
+      if current_user.project_ownerships.find_by_project_id(params[:id]).nil?
+        respond_to do |format|
+          format.html { redirect_to projects_url, notice: "You're not allowed to do this operation" }
+          format.json { head :no_content }
+        end
+      end
     end
 
 end
