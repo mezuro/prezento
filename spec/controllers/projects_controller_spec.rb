@@ -107,21 +107,41 @@ describe ProjectsController do
   end
 
   describe 'edit' do
-    before :each do
+    before do
       @user = FactoryGirl.create(:user)
       @subject = FactoryGirl.build(:project)
       FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @subject.id})
      
       sign_in @user
-
-      Project.expects(:find).with(@subject.id.to_s).returns(@subject)
-      get :edit, :id => @subject.id
     end
 
-    it { should render_template(:edit) }
+    context 'when the user owns the project' do
+      before :each do
+        Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+        get :edit, :id => @subject.id
+      end
 
-    it 'should assign to @project the @subject' do
-      assigns(:project).should eq(@subject)
+      it { should render_template(:edit) }
+
+      it 'should assign to @project the @subject' do
+        assigns(:project).should eq(@subject)
+      end
+    end
+
+    context 'when the user does not own the project' do
+      before do
+        @subject = FactoryGirl.build(:another_project)
+
+        get :edit, :id => @subject.id
+      end
+
+      it { should redirect_to(projects_path)  }
+      
+      it 'should set the flash' do
+        pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
+          should set_the_flash[:notice].to("You shall not edit projects that aren't yours.")
+        end
+      end
     end
   end
 

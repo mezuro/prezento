@@ -44,8 +44,9 @@ class ProjectsController < ApplicationController
         format.html { redirect_to projects_url, notice: "You shall not edit projects that aren't yours." }
         format.json { head :no_content }
       end
+    else
+      set_project
     end
-    set_project
   end 
 
   def update
