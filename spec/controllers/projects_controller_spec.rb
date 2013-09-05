@@ -73,31 +73,59 @@ describe ProjectsController do
   end
 
   describe 'destroy' do
-    before :each do
-      sign_in FactoryGirl.create(:user)
-
+    before do
       @subject = FactoryGirl.build(:project)
-      @subject.expects(:destroy)
-
-      @ownership = FactoryGirl.build(:project_ownership)
-      @ownership.expects(:destroy)
-      @ownerships = []
-
-      #Those two mocks looks the same but they are necessary since params[:id] is a String and @project.id is an Integer :(
-      @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-      @ownerships.expects(:find_by_project_id).with(@subject.id).returns(@ownership)
-
-      User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
-
-      Project.expects(:find).with(@subject.id.to_s).returns(@subject)
-      delete :destroy, :id => @subject.id
     end
 
-    it 'should redirect to the projects page' do
-      response.should redirect_to projects_url
+    context 'with an User logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+        @ownership = FactoryGirl.build(:project_ownership)
+        @ownerships = []
+        
+      end
+
+      context 'when the user owns the project' do
+        before :each do
+          @ownership.expects(:destroy)
+          @subject.expects(:destroy)
+
+          #Those two mocks looks the same but they are necessary since params[:id] is a String and @project.id is an Integer :(
+          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
+          @ownerships.expects(:find_by_project_id).with(@subject.id).returns(@ownership)
+
+          User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
+
+          Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+          delete :destroy, :id => @subject.id
+        end
+
+        it 'should redirect to the projects page' do
+          response.should redirect_to projects_url
+        end
+
+        it { should respond_with(:redirect) }
+      end
+
+      context "when the user doesn't own the project" do
+        before :each do
+          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
+          User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
+          
+          delete :destroy, :id => @subject.id
+        end
+
+         it { should redirect_to(projects_path)  }
+      end
     end
 
-    it { should respond_with(:redirect) }
+    context 'with no User logged in' do
+      before :each do
+        delete :destroy, :id => @subject.id
+      end
+
+      it { should redirect_to new_user_session_path }
+    end
   end
 
   describe 'index' do
@@ -112,46 +140,59 @@ describe ProjectsController do
 
   describe 'edit' do
     before do
-      @user = FactoryGirl.create(:user)
       @subject = FactoryGirl.build(:project)
-      @ownership = FactoryGirl.build(:project_ownership)
-      @ownerships = []
-
-      User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
-     
-      sign_in @user
     end
 
-    context 'when the user owns the project' do
-      before :each do
-        Project.expects(:find).with(@subject.id.to_s).returns(@subject)
-        @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-        
-        get :edit, :id => @subject.id
-      end
-
-      it { should render_template(:edit) }
-
-      it 'should assign to @project the @subject' do
-        assigns(:project).should eq(@subject)
-      end
-    end
-
-    context 'when the user does not own the project' do
+    context 'with an User logged in' do
       before do
-        @subject = FactoryGirl.build(:another_project)
-        @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
+        @user = FactoryGirl.create(:user)
+        @ownership = FactoryGirl.build(:project_ownership)
+        @ownerships = []
 
-        get :edit, :id => @subject.id
+        User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
+       
+        sign_in @user
       end
 
-      it { should redirect_to(projects_path)  }
+      context 'when the user owns the project' do
+        before :each do
+          Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
+          
+          get :edit, :id => @subject.id
+        end
 
-      it 'should set the flash' do
-        pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
-          should set_the_flash[:notice].to("You shall not edit projects that aren't yours.")
+        it { should render_template(:edit) }
+
+        it 'should assign to @project the @subject' do
+          assigns(:project).should eq(@subject)
         end
       end
+
+      context 'when the user does not own the project' do
+        before do
+          @subject = FactoryGirl.build(:another_project)
+          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
+
+          get :edit, :id => @subject.id
+        end
+
+        it { should redirect_to(projects_path)  }
+
+        it 'should set the flash' do
+          pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
+            should set_the_flash[:notice].to("You shall not edit projects that aren't yours.")
+          end
+        end
+      end
+    end
+
+    context 'with no user logged in' do
+      before :each do
+        get :edit, :id => @subject.id
+      end
+
+      it { should redirect_to new_user_session_path }
     end
   end
 
@@ -231,5 +272,4 @@ describe ProjectsController do
       it { should redirect_to new_user_session_path }
     end
   end
-
 end
