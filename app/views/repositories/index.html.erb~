@@ -14,7 +14,7 @@
     <% @repositories.each do |repository| %>
       <tr>
         <td><%= repository.name %></td>
-        <td><%= link_to 'Show', repository %></td>
+        <td><%= link_to 'Show', project_repository_path(@project, repository) %></td>
         <td><%= link_to 'Edit', edit_repository_path(repository) %></td>
         <td><%= link_to 'Destroy', repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Repository', new_repository_path %>
+<%= link_to 'New Repository', new_project_repository_path(@project) %>

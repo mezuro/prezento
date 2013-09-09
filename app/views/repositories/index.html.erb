@@ -1,22 +1,20 @@
-<h1>Listing repositories</h1>
+<h1>Listing Repositories</h1>
 
-<table>
+<table border="1" width="30%">
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Options</th>
     </tr>
   </thead>
 
   <tbody>
     <% @repositories.each do |repository| %>
       <tr>
-        <td><%= repository.name %></td>
-        <td><%= link_to 'Show', repository %></td>
-        <td><%= link_to 'Edit', edit_repository_path(repository) %></td>
-        <td><%= link_to 'Destroy', repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td align="center"><%= repository.name %></td>
+        <td align="center"><%= link_to 'Show', project_repository_path(@project, repository) %><br/>
+        <%= link_to 'Edit', edit_repository_path(repository) %><br/>
+        <%= link_to 'Destroy', repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

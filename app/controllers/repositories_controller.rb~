@@ -5,18 +5,20 @@ class RepositoriesController < ApplicationController
   # GET /repositories.json
   def index
     @project = Project.find(params[:project_id])
+    set_repository
     @repositories = Repository.repositories_of(params[:project_id])
   end
 
   # GET /repositories/1
   # GET /repositories/1.json
   def show
+     @project = Project.find(params[:project_id])
   end
 
-  # GET /repositories/new
+  # GET projects/1/repositories/new
   def new
+     @project = Project.find(params[:project_id])
      @repository = Repository.new
-     @project = Project.find(params[:id])
   end
 
   # GET /repositories/1/edit
@@ -26,17 +28,19 @@ class RepositoriesController < ApplicationController
   # POST /repositories
   # POST /repositories.json
   def create
-    @repository = Repository.new(repository_params)
+    @project = Project.find(params[:project_id])
+    @repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
+    redirect_to @project
 
-    respond_to do |format|
-      if @repository.save
-        format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @repository }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @repository.errors, status: :unprocessable_entity }
-      end
-    end
+    #respond_to do |format|
+     # if @repository.save
+      #  format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
+       # format.json { render action: 'show', status: :created, location: @repository }
+      #else
+       # format.html { render action: 'new' }
+        #format.json { render json: @repository.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   # PATCH/PUT /repositories/1

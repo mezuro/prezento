@@ -11,32 +11,36 @@ class RepositoriesController < ApplicationController
   # GET /repositories/1
   # GET /repositories/1.json
   def show
+     @project = Project.find(params[:project_id])
   end
 
-  # GET /repositories/new
+  # GET projects/1/repositories/new
   def new
-     @repository = Repository.new
      @project = Project.find(params[:project_id])
+     @repository = Repository.new
   end
 
   # GET /repositories/1/edit
   def edit
+    @project = Project.find(params[:project_id])
   end
 
   # POST /repositories
   # POST /repositories.json
   def create
-    @repository = Repository.new(repository_params)
+    @project = Project.find(params[:project_id])
+    @repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
+    redirect_to @project
 
-    respond_to do |format|
-      if @repository.save
-        format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @repository }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @repository.errors, status: :unprocessable_entity }
-      end
-    end
+    #respond_to do |format|
+     # if @repository.save
+      #  format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
+       # format.json { render action: 'show', status: :created, location: @repository }
+      #else
+       # format.html { render action: 'new' }
+        #format.json { render json: @repository.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   # PATCH/PUT /repositories/1

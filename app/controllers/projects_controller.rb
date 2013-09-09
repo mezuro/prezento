@@ -35,7 +35,6 @@ class ProjectsController < ApplicationController
   # GET /project/1.json
   def show
     @project_repositories = Repository.repositories_of(params[:id])
-    @project = Project.find(params[:id])
     set_project
   end
 

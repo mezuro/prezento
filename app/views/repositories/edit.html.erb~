@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @repository %> |
-<%= link_to 'Back', project_repositories_path(@project) %>
+<%= link_to 'Back', repositories_path %>

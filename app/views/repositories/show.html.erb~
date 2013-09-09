@@ -5,5 +5,5 @@
   <%= @repository.name %>
 </p>
 
-<%= link_to 'Edit', edit_project_repository_path(@repository) %> |
+<%= link_to 'Edit', edit_repository_path(@repository) %> |
 <%= link_to 'Back',  project_repositories_path(@project) %>
