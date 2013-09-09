@@ -6,9 +6,6 @@ class Project < KalibroEntities::Entities::Project
   attr_accessor :name
   validates :name, presence: true, kalibro_uniqueness: true
 
-  def repositories
-    KalibroEntities::Entities::Repository.repositories_of(self.id)
-  end
 
   def self.latest(count = 1)
     all.sort { |a,b| b.id <=> a.id }.first(count)

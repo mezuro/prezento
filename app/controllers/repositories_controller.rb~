@@ -5,7 +5,6 @@ class RepositoriesController < ApplicationController
   # GET /repositories.json
   def index
     @project = Project.find(params[:project_id])
-    set_repository
     @repositories = Repository.repositories_of(params[:project_id])
   end
 
@@ -23,13 +22,19 @@ class RepositoriesController < ApplicationController
 
   # GET /repositories/1/edit
   def edit
+    @project = Project.find(params[:project_id])
   end
 
   # POST /repositories
   # POST /repositories.json
   def create
     @project = Project.find(params[:project_id])
-    @repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
+    #@repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
+
+    @repository = Repository.new
+
+    @repository.project_id = @project.id
+
     redirect_to @project
 
     #respond_to do |format|

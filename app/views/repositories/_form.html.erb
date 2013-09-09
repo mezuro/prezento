@@ -1,4 +1,7 @@
-<%= form_for(@repository) do |f| %>
+<%= form_for(@repository, :url => project_repositories_url(@project.id)) do |f| %>
+
+ <%= render :partial => 'shared/form_errors', :locals => {:object => @repository} %>
+
   <% if @repository.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@repository.errors.count, "error") %> prohibited this repository from being saved:</h2>

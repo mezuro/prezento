@@ -29,18 +29,22 @@ class RepositoriesController < ApplicationController
   # POST /repositories.json
   def create
     @project = Project.find(params[:project_id])
-    @repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
-    redirect_to @project
+    #@repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
 
-    #respond_to do |format|
-     # if @repository.save
-      #  format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
-       # format.json { render action: 'show', status: :created, location: @repository }
-      #else
-       # format.html { render action: 'new' }
-        #format.json { render json: @repository.errors, status: :unprocessable_entity }
-      #end
-    #end
+    @repository = Repository.new
+
+    @repository.project_id = @project.id
+
+   
+    respond_to do |format|
+      if @repository.save
+        format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
+       format.json { render action: 'show', status: :created, location: @repository }
+      else
+       format.html { render action: 'new' }
+      format.json { render json: @repository.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /repositories/1

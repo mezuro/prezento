@@ -1,4 +1,5 @@
-<%= form_for(@repository) do |f| %>
+<%= form_for(@repository, :url => project_repositories_url(@project.id)) do |f| %>
+
   <% if @repository.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@repository.errors.count, "error") %> prohibited this repository from being saved:</h2>
@@ -28,7 +29,7 @@
 
   <div class="field">
     <%= f.label :configuration %><br>
-    <%= f.text_field :configuration %>
+    <%= f.text_field :configuration_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
