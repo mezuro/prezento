@@ -18,4 +18,6 @@
 coverage
 
 database.yml
+database.yml~
+database.yml.sample
 kalibro_cucumber_helpers.yml
