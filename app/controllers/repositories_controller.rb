@@ -18,7 +18,6 @@ class RepositoriesController < ApplicationController
   def new
      @project = Project.find(params[:project_id])
      @repository = Repository.new
-
   end
 
   # GET /repositories/1/edit
