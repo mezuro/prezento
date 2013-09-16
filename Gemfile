@@ -68,6 +68,9 @@ group :development, :test do
   # Deployment
   gem 'capistrano'
   gem 'rvm-capistrano'
+
+  # JavaScript unit tests
+  gem "konacha", "~> 3.0.0"
 end
 
 # Acceptance tests
