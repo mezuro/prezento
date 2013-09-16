@@ -18,7 +18,7 @@ class RepositoriesController < ApplicationController
   def new
      @project = Project.find(params[:project_id])
      @repository = Repository.new
-     
+
   end
 
   # GET /repositories/1/edit
@@ -32,18 +32,17 @@ class RepositoriesController < ApplicationController
     @project = Project.find(params[:project_id])
     #@repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
 
-    @repository = Repository.new
+    @repository = Repository.new(repository_params)
 
     @repository.project_id = @project.id
 
-   
     respond_to do |format|
       if @repository.save
-        format.html { redirect_to @repository, notice: 'Repository was successfully created.' }
-       format.json { render action: 'show', status: :created, location: @repository }
+        format.html { redirect_to project_path(@project), notice: 'Repository was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @repository }
       else
-       format.html { render action: 'new' }
-      format.json { render json: @repository.errors, status: :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json { render json: @repository.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -80,6 +79,6 @@ class RepositoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repository_params
-      params.require(:repository).permit(:name)
+      params.require(:repository).permit(:name, :configuration_id, :address, :type)
     end
 end
