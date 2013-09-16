@@ -40,7 +40,7 @@ gem 'devise', '~> 3.0.0'
 gem 'kalibro_entities', git: 'https://github.com/mezuro/kalibro_entities.git' #When the first version of KalibroEntities come out, do not keep using the git repository
 
 #PostgreSQL integration
-gem "pg", "~> 0.16.0"
+gem "pg", "~> 0.17.0"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
