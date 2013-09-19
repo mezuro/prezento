@@ -71,6 +71,9 @@ group :development, :test do
 
   # JavaScript unit tests
   gem "konacha", "~> 3.0.0"
+
+  # Test coverage history
+  gem 'coveralls', require: false
 end
 
 # Acceptance tests
