@@ -1,6 +1,6 @@
 == README - Mezuro
 
-{<img src="https://codeclimate.com/github/mezuro/mezuro-standalone.png" />}[https://codeclimate.com/github/mezuro/mezuro-standalone] {<img src="https://travis-ci.org/mezuro/mezuro-standalone.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/mezuro-standalone]
+{<img src="https://codeclimate.com/github/mezuro/mezuro-standalone.png" />}[https://codeclimate.com/github/mezuro/mezuro-standalone] {<img src="https://travis-ci.org/mezuro/mezuro-standalone.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/mezuro-standalone] {<img src="https://coveralls.io/repos/mezuro/mezuro-standalone/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/mezuro/mezuro-standalone?branch=master]
 
 Mezuro is a source code tracking platform based on Noosfero social networking
 platform with Mezuro Plugin actived to access Kalibro Web Service.
@@ -27,7 +27,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   * postgresql-server-dev-9.1
 
   * PhantomJS 1.9.1 (http://phantomjs.org/)
-  
+
 * Ruby version
 
   2.0.0-p247
