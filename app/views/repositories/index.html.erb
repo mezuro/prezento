@@ -13,8 +13,8 @@
       <tr>
         <td align="center"><%= repository.name %></td>
         <td align="center"><%= link_to 'Show', project_repository_path(@project, repository) %><br/>
-        <%= link_to 'Edit', edit_repository_path(repository) %><br/>
-        <%= link_to 'Destroy', repository, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'Edit', edit_project_repository_path(@project, repository) %><br/>
+        
       </tr>
     <% end %>
   </tbody>

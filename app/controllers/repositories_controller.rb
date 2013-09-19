@@ -16,8 +16,10 @@ class RepositoriesController < ApplicationController
 
   # GET projects/1/repositories/new
   def new
+
      @project = Project.find(params[:project_id])
      @repository = Repository.new
+     @repository_types = KalibroEntities::Entities::Repository.repository_types
   end
 
   # GET /repositories/1/edit

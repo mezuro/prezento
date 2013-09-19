@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label :type %><br>
-    <%= f.text_field :type %>
+    <%= f.select( :type, @repository_types ) %>
   </div>
 
   <div class="field">
@@ -33,6 +33,7 @@
     <% configuration_list = KalibroEntities::Entities::Configuration.all.map { |conf| [conf.name, conf.id] } %>
     <%= f.select( :configuration_id, configuration_list ) %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
