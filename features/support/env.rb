@@ -1,11 +1,6 @@
 require 'simplecov'
-require 'coveralls'
 
 SimpleCov.start do
-  formatter SimpleCov::Formatter::MultiFormatter[
-                Coveralls::SimpleCov::Formatter,
-                SimpleCov::Formatter::HTMLFormatter
-              ]
   coverage_dir 'coverage/cucumber'
 
   add_group "Models", "app/models"
