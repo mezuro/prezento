@@ -65,9 +65,10 @@ class RepositoriesController < ApplicationController
   # DELETE /repositories/1
   # DELETE /repositories/1.json
   def destroy
+    @project = Project.find(params[:project_id])
     @repository.destroy
     respond_to do |format|
-      format.html { redirect_to repositories_url }
+      format.html { redirect_to project_repositories_path(@project) }
       format.json { head :no_content }
     end
   end

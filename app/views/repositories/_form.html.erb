@@ -30,6 +30,7 @@
   </div>
 
   <div class="field">
+     <%= f.label :configuration %><br/>
     <% configuration_list = KalibroEntities::Entities::Configuration.all.map { |conf| [conf.name, conf.id] } %>
     <%= f.select( :configuration_id, configuration_list ) %>
   </div>
