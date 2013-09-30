@@ -25,6 +25,8 @@ class RepositoriesController < ApplicationController
   # GET /repositories/1/edit
   def edit
     @project = Project.find(params[:project_id])
+    set_repository
+    @repository_types = KalibroEntities::Entities::Repository.repository_types
   end
 
   # POST /repositories
@@ -68,7 +70,7 @@ class RepositoriesController < ApplicationController
     @project = Project.find(params[:project_id])
     @repository.destroy
     respond_to do |format|
-      format.html { redirect_to project_repositories_path(@project) }
+      format.html { redirect_to project_path(@project) }
       format.json { head :no_content }
     end
   end
@@ -76,7 +78,7 @@ class RepositoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_repository
-      @repository = Repository.find(params[:id])
+      @repository = Repository.find(params[:id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
