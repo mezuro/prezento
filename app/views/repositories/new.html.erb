@@ -1,5 +1,9 @@
 <h1>New Repository</h1>
 
-<%= render 'form' %>
+<%= form_for(@repository, :url => project_repositories_url(@project.id)) do |f| %>
+	<%= render partial: 'form', locals: {f: f} %>
+<% end %>
 
 <%= link_to 'Back',  project_path(@project)%>
+
+

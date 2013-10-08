@@ -1,6 +1,9 @@
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy]
 
+
+  $project_id = 0
+  
   # GET /repositories
   # GET /repositories.json
   def index
@@ -24,6 +27,7 @@ class RepositoriesController < ApplicationController
 
   # GET /repositories/1/edit
   def edit
+    $project_id = params[:project_id]
     @project = Project.find(params[:project_id])
     set_repository
     @repository_types = KalibroEntities::Entities::Repository.repository_types
@@ -53,9 +57,10 @@ class RepositoriesController < ApplicationController
   # PATCH/PUT /repositories/1
   # PATCH/PUT /repositories/1.json
   def update
+    @project = $project_id
     respond_to do |format|
       if @repository.update(repository_params)
-        format.html { redirect_to @repository, notice: 'Repository was successfully updated.' }
+        format.html { redirect_to(project_repository_path(@project, @repository.id), notice: 'Repository was successfully updated.') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
