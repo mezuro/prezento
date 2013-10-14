@@ -66,7 +66,7 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   # Deployment
-  gem 'capistrano'
+  gem 'capistrano', "~>2.15.5"
   gem 'rvm-capistrano'
 
   # JavaScript unit tests
