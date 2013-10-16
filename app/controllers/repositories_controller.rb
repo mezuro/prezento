@@ -1,51 +1,36 @@
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy]
 
-
-  $project_id = 0
-  
-  # GET /repositories
-  # GET /repositories.json
-  def index
-    @project = Project.find(params[:project_id])
-    @repositories = Repository.repositories_of(params[:project_id])
-  end
-
-  # GET /repositories/1
-  # GET /repositories/1.json
+  # GET /projects/1/repositories/1
+  # GET /projects/1/repositories/1.json
   def show
-     @project = Project.find(params[:project_id])
+     @project_id = params[:project_id]
+     set_repository
   end
 
   # GET projects/1/repositories/new
   def new
-
-     @project = Project.find(params[:project_id])
+     @project_id = params[:project_id]
      @repository = Repository.new
-     @repository_types = KalibroEntities::Entities::Repository.repository_types
+     @repository_types = Repository.repository_types
   end
 
   # GET /repositories/1/edit
   def edit
-    $project_id = params[:project_id]
-    @project = Project.find(params[:project_id])
+    @project_id = params[:project_id]
     set_repository
-    @repository_types = KalibroEntities::Entities::Repository.repository_types
+    @repository_types = Repository.repository_types
   end
 
-  # POST /repositories
-  # POST /repositories.json
+  # POST /projects/1/repositories
+  # POST /projects/1/repositories.json
   def create
-    @project = Project.find(params[:project_id])
-    #@repository = @project.repositories.create(params[:repository].permit(:name, :type, :address, :configuration_id))
-
     @repository = Repository.new(repository_params)
-
-    @repository.project_id = @project.id
+    @repository.project_id = params[:project_id]
 
     respond_to do |format|
       if @repository.save
-        format.html { redirect_to project_path(@project), notice: 'Repository was successfully created.' }
+        format.html { redirect_to project_path(params[:project_id]), notice: 'Repository was successfully created.' }
         format.json { render action: 'show', status: :created, location: @repository }
       else
         format.html { render action: 'new' }
@@ -54,13 +39,13 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /repositories/1
-  # PATCH/PUT /repositories/1.json
+  # PUT /projects/1/repositories/1
+  # PUT /projects/1/repositories/1.json
   def update
-    @project = $project_id
+  	set_repository
     respond_to do |format|
       if @repository.update(repository_params)
-        format.html { redirect_to(project_repository_path(@project, @repository.id), notice: 'Repository was successfully updated.') }
+        format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: 'Repository was successfully updated.') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,13 +54,13 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # DELETE /repositories/1
-  # DELETE /repositories/1.json
+  # DELETE /projects/1/repositories/1
+  # DELETE /projects/1/repositories/1.json
   def destroy
-    @project = Project.find(params[:project_id])
+    set_repository
     @repository.destroy
     respond_to do |format|
-      format.html { redirect_to project_path(@project) }
+      format.html { redirect_to project_path(params[:project_id]) }
       format.json { head :no_content }
     end
   end
@@ -88,6 +73,6 @@ class RepositoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repository_params
-      params.require(:repository).permit(:name, :configuration_id, :address, :type)
+      params[:repository]
     end
 end

@@ -1,7 +1,7 @@
 <h1>Editing repository</h1>
-<%= form_for(@repository, :url => project_repository_update_url(@project, @repository.id), method: :put) do |f| %>
+<%= form_for(@repository, :url => project_repository_update_url(@project_id, @repository.id), method: :put) do |f| %>
 	<%= render partial: 'form', locals: {f: f} %>
 <% end %>
 
-<%= link_to 'Show', project_repository_path(@project, @repository) %> |
-<%= link_to 'Back', project_repositories_path(@project) %>
+<%= link_to 'Show', project_repository_path(@project_id, @repository) %> |
+<%= link_to 'Back', project_repository(@project_id) %>
