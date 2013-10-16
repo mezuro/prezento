@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise', '~> 3.1.0'
 
 # Kalibro integration
-gem 'kalibro_entities', git: 'https://github.com/mezuro/kalibro_entities.git' #When the first version of KalibroEntities come out, do not keep using the git repository
+gem 'kalibro_entities', "~> 0.0.1.rc1"
 
 #PostgreSQL integration
 gem "pg", "~> 0.17.0"
