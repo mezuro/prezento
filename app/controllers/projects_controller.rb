@@ -34,8 +34,8 @@ class ProjectsController < ApplicationController
   # GET /project/1
   # GET /project/1.json
   def show
-    @project_repositories = Repository.repositories_of(params[:id])
     set_project
+    @project_repositories = @project.repositories
   end
 
   # GET /projects/1/edit
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
 
   def update
     set_project
-    if @project.update(params[:project])
+    if @project.update(project_params)
       redirect_to(project_path(@project.id))
     else
       render "edit"
