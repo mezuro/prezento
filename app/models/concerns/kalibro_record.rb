@@ -7,7 +7,7 @@ module KalibroRecord
   delegate :url_helpers, to: 'Rails.application.routes'
 
   def persisted?
-    Project.exists?(self.id) unless self.id.nil? 
+    self.class.exists?(self.id) unless self.id.nil? 
   end
 
   def update(attributes = {})
