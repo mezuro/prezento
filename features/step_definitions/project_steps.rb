@@ -42,6 +42,10 @@ Then(/^I should not see (.+)$/) do |text|
   page.should_not have_content(text)
 end
 
+Then(/^I should not see "(.+)"" within "(.+)"$/) do |text, selector|
+  page.find(selector).should_not have_content(text)
+end
+
 Then(/^the sample project should be there$/) do
   page.should have_content(@project.name)
   page.should have_content(@project.description)

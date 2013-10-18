@@ -17,7 +17,7 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
-    When I press the Create Project button
+    When I press the Save button
     Then I should see Kalibro
     And I should see Web Service to collect metrics
 
@@ -29,7 +29,7 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
-    When I press the Create Project button
+    When I press the Save button
     Then I should see There's already
 
   @kalibro_restart
@@ -39,5 +39,5 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with " "
     And I fill the Description field with "Web Service to collect metrics"
-    When I press the Create Project button
+    When I press the Save button
     Then I should see Name can't be blank

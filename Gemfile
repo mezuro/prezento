@@ -39,8 +39,11 @@ gem 'devise', '~> 3.1.0'
 # Kalibro integration
 gem 'kalibro_entities', "~> 0.0.1.rc2"
 
-#PostgreSQL integration
+# PostgreSQL integration
 gem "pg", "~> 0.17.0"
+
+# Twitter Bootstrap for layout
+gem "twitter-bootstrap-rails", "~> 2.2.8"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -18,8 +18,8 @@ Feature: Project
     And I am signed in
     And I have a sample project
     And I am at the All Projects page
-    Then I should not see Edit
-    
+    Then I should not see "Edit" within "table tr td"
+
   @kalibro_restart
   Scenario: Should not render the edit page if the project doesn't belongs to the current user
     Given I am a regular user
@@ -47,7 +47,7 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
-    When I press the Update button
+    When I press the Save button
     Then I should see Kalibro
     And I should see Web Service to collect metrics
 
@@ -59,7 +59,7 @@ Feature: Project
     And I own a project named "Kalibro"
     And I am at the sample project edit page
     And I fill the Name field with "Qt-Calculator"
-    When I press the Update button
+    When I press the Save button
     Then I should see There's already
 
   @kalibro_restart
@@ -69,7 +69,7 @@ Feature: Project
     And I own a sample project
     And I am at the sample project edit page
     And I fill the Description field with "Web Service to collect metrics"
-    When I press the Update button
+    When I press the Save button
     And I should see Web Service to collect metrics
 
   @kalibro_restart
@@ -79,5 +79,5 @@ Feature: Project
     And I own a sample project
     And I am at the sample project edit page
     And I fill the Name field with " "
-    When I press the Update button
+    When I press the Save button
     Then I should see Name can't be blank
