@@ -1,5 +1,8 @@
+include OwnershipAuthentication
+
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy]
+  before_action :check_repository_ownership, except: [:show]
   after_action :process_respository, only: :create
 
   # GET /projects/1/repositories/1

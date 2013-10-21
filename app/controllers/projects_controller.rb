@@ -1,7 +1,9 @@
+include OwnershipAuthentication
+
 class ProjectsController < ApplicationController
   before_action :authenticate_user!,
     except: [:index, :show]
-  before_action :check_ownership, only: [:edit, :update, :destroy]
+  before_action :check_project_ownership, only: [:edit, :update, :destroy]
 
   # GET /projects/new
   def new
@@ -75,14 +77,4 @@ class ProjectsController < ApplicationController
     def project_params
       params[:project]
     end
-
-    def check_ownership
-      if current_user.project_ownerships.find_by_project_id(params[:id]).nil?
-        respond_to do |format|
-          format.html { redirect_to projects_url, notice: "You're not allowed to do this operation" }
-          format.json { head :no_content }
-        end
-      end
-    end
-
 end

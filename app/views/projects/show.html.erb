@@ -10,7 +10,7 @@
 
 <h2>Repositories</h2>
 
-<%= link_to 'New Repository', new_project_repository_path(@project)%>
+<% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project)%><% end %>
 
 <table border="1" width="30%">
   <thead>
@@ -18,7 +18,7 @@
       <th>Name</th>
       <th>Type</th>
       <th>Address</th>
-      <th>Options</th>
+      <% if project_owner? @project.id %><th>Options</th><% end %>
     </tr>
   </thead>
 
@@ -28,10 +28,12 @@
         <td align="center"><%= repository.name %></td>
         <td align="center"><%= repository.type %></td>
         <td align="center"><%= repository.address %></td>
-        <td align="center">
-          <%= link_to 'Edit', edit_project_repository_path(@project, repository.id) %>
-          <%= link_to 'Destroy', project_repository_path(@project, repository.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </td>
+        <% if project_owner? @project.id %>
+          <td align="center">
+            <%= link_to 'Edit', edit_project_repository_path(@project, repository.id) %>
+            <%= link_to 'Destroy', project_repository_path(@project, repository.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
