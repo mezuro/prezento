@@ -1,5 +1,6 @@
 class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy]
+  after_action :process_respository, only: :create
 
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
@@ -65,14 +66,19 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_repository
-      @repository = Repository.find(params[:id].to_i)
-    end
+private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_repository
+    @repository = Repository.find(params[:id].to_i)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def repository_params
-      params[:repository]
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def repository_params
+    params[:repository]
+  end
+
+  # Start to process a repository
+  def process_respository
+    @repository.process if @repository.persisted?
+  end
 end
