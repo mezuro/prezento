@@ -27,7 +27,7 @@ Feature: Project
     And I have a sample project
     And I am at the All Projects page
     When I visit the sample project edit page
-    Then I should see You're not allowed to do this operation
+    Then I should see "You're not allowed to do this operation"
 
   @kalibro_restart
   Scenario: Filling up the form
@@ -48,8 +48,8 @@ Feature: Project
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Save button
-    Then I should see Kalibro
-    And I should see Web Service to collect metrics
+    Then I should see "Kalibro"
+    And I should see "Web Service to collect metrics"
 
   @kalibro_restart
   Scenario: With project name already taken
@@ -60,7 +60,7 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
-    Then I should see There's already
+    Then I should see "There's already"
 
   @kalibro_restart
   Scenario: Editing just the description
@@ -70,7 +70,7 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Save button
-    And I should see Web Service to collect metrics
+    And I should see "Web Service to collect metrics"
 
   @kalibro_restart
   Scenario: With blank project name
@@ -80,4 +80,4 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Name field with " "
     When I press the Save button
-    Then I should see Name can't be blank
+    Then I should see "Name can't be blank"

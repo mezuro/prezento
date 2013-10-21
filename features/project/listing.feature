@@ -6,9 +6,9 @@ Feature: Project listing
   Scenario: Listing projects
     Given I am at the homepage
     When I click the Project link
-    Then I should see Listing Projects
-    And I should see Name
-    And I should see Description
+    Then I should see "Listing Projects"
+    And I should see "Name"
+    And I should see "Description"
 
   @kalibro_restart
   Scenario: Should list the existing projects
@@ -25,6 +25,6 @@ Feature: Project listing
     And I have a sample project
     And I am at the All Projects page
     When I click the Show link
-    Then I should see Name
-    And I should see Description
+    Then I should see "Name"
+    And I should see "Description"
     And the sample project should be there

@@ -10,6 +10,6 @@ Given(/^I am a regular user$/) do
   @user = FactoryGirl.create(:user)
 end
 
-Then(/^I should see (.+)$/) do |text|
+Then(/^I should see "(.+)"$/) do |text|
   page.should have_content(text)
 end

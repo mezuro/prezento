@@ -5,14 +5,14 @@ FactoryGirl.define do
     description "A simple calculator"
     license "GPLv3"
     process_period 1
-    type "SVN"
+    type "SUBVERSION"
     address "svn://svn.code.sf.net/p/qt-calculator/code/trunk"
     configuration_id 1
     project_id 1
     send_email "test@test.com"
   end
 
-  factory :another_repository, class: KalibroEntities::Entities::Repository, parent: :repository do
+  factory :another_repository, class: Repository, parent: :repository do
     id 2
   end
 end
