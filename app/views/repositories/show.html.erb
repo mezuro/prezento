@@ -5,5 +5,40 @@
   <%= @repository.name %>
 </p>
 
-<% if project_owner? @project_id %><%= link_to 'Edit', edit_project_repository_path(@repository.project_id, @repository.id) %> |<% end %>
+<p>
+  <strong>Description:</strong>
+  <%= @repository.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @repository.address %>
+</p>
+
+<p>
+  <strong>Configuration:</strong>
+  <%= @configuration.name %>
+</p>
+
+<h2>Processing information</h2>
+
+<p>
+  <strong>State:</strong>
+  <%= @processing.state %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @processing.date %>
+</p>
+
+<% unless @processing.process_times.nil? %>
+  <% @processing.process_times.each do |process_time| %>
+    <p>
+      <strong><%= process_time.state %> time:</strong>
+      <%= process_time.time %>
+    </p>
+  <% end %>
+<% end %>
+
 <%= link_to 'Back',  project_path(@project_id) %>
