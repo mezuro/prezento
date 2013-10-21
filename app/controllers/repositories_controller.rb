@@ -21,8 +21,8 @@ class RepositoriesController < ApplicationController
 
   # GET /repositories/1/edit
   def edit
-    @project_id = params[:project_id]
-    set_repository
+    sproject_id = params[:project_id]
+    set_repository #fix me please
     @repository_types = Repository.repository_types
   end
 
