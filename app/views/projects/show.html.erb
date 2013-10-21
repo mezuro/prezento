@@ -24,6 +24,12 @@
   </thead>
 
   <tbody>
+    <% if @project_repositories.size == 0 %>
+      <tr> 
+        <% col_number = project_owner?(@project.id) ? 4 : 3 %>
+        <td colspan="<%= col_number %>">There are no repositories yet!</td>
+      </tr>
+    <% end %> 
     <% @project_repositories.each do |repository| %>
       <tr>
         <td><%= repository.name %></td>
