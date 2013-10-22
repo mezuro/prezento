@@ -27,6 +27,14 @@ Given(/^I wait up for a ready processing$/) do
   end
 end
 
+Given(/^I am at the New Repository page$/) do
+  visit new_project_repository_path(@project.id)
+end
+
+When(/^I set the select (.+) as "(.+)"$/) do |field, text|
+  find_by_id("repository_#{field}").select(text)
+end
+
 When(/^I visit the repository show page$/) do
   visit project_repository_path(@project.id, @repository.id)
 end
