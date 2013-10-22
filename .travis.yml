@@ -11,6 +11,13 @@ before_script:
   - ./install.sh
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
 
+script:
+  - sudo service tomcat6 stop
+  - rake spec
+  - rake konacha:run
+  - sudo service tomcat6 start
+  - rake cucumber
+
 notifications:
   email:
     recipients:
