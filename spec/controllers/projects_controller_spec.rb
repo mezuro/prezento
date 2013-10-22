@@ -18,11 +18,10 @@ describe ProjectsController do
     end
 
     context 'with valid fields' do
-      before :each do
-        @subject = FactoryGirl.build(:project)
-        @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
-
-        Project.expects(:new).at_least_once.with(@subject_params).returns(@subject)
+	    let(:project) { FactoryGirl.build(:project) }
+	    let(:subject_params) { Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    
+     	before :each do
         Project.any_instance.expects(:save).returns(true)
       end
 
@@ -30,17 +29,17 @@ describe ProjectsController do
         before :each do
           Project.expects(:exists?).returns(true)
 
-          post :create, :project => @subject_params
+          post :create, :project => subject_params
         end
 
         it 'should redirect to the show view' do
-          response.should redirect_to project_path(@subject)
+          response.should redirect_to project_path(project)
         end
       end
 
       context 'without rendering the show view' do
         before :each do
-          post :create, :project => @subject_params
+          post :create, :project => subject_params
         end
 
         it { should respond_with(:redirect) }
@@ -62,16 +61,16 @@ describe ProjectsController do
     end
   end
 
-  pending 'It is not correctly mocked and still calls Kalibro' do
   describe 'show' do
+  	subject { FactoryGirl.build(:project) }
+  	let(:repository) { FactoryGirl.build(:repository) }
     before :each do
-      @subject = FactoryGirl.build(:project)
-      Project.expects(:find).with(@subject.id.to_s).returns(@subject)
-      get :show, :id => @subject.id
+      Project.expects(:find).with(subject.id.to_s).returns(subject)
+      subject.expects(:repositories).returns(repository)
+      get :show, :id => subject.id
     end
 
     it { should render_template(:show) }
-  end
   end
 
   describe 'destroy' do
