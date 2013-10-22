@@ -1,9 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @repository.name %>
-</p>
+<h1><%= @repository.name %></h1>
 
 <p>
   <strong>Description:</strong>
@@ -41,4 +36,7 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Back',  project_path(@project_id) %>
+<%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
+<% if project_owner? @repository.project_id %>
+  <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+<% end %>

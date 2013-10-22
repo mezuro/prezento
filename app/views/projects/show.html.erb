@@ -10,28 +10,31 @@
 
 <h2>Repositories</h2>
 
-<% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project)%><% end %>
+<% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
 
-<table border="1" width="30%">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
       <th>Type</th>
       <th>Address</th>
-      <% if project_owner? @project.id %><th>Options</th><% end %>
+      <th colspan="2">Options</th>
     </tr>
   </thead>
 
   <tbody>
     <% @project_repositories.each do |repository| %>
       <tr>
-        <td align="center"><%= repository.name %></td>
-        <td align="center"><%= repository.type %></td>
-        <td align="center"><%= repository.address %></td>
-        <% if project_owner? @project.id %>
-          <td align="center">
+        <td><%= repository.name %></td>
+        <td><%= repository.type %></td>
+        <td><%= repository.address %></td>
+        <td>
+          <% if project_owner? @project.id %>
             <%= link_to 'Edit', edit_project_repository_path(@project, repository.id) %>
-            <%= link_to 'Destroy', project_repository_path(@project, repository.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
           </td>
         <% end %>
       </tr>
