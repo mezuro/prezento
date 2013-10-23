@@ -3,16 +3,30 @@ require 'spec_helper'
 describe RepositoriesController do
   let(:project) { FactoryGirl.build(:project) }
 
-  pending 'It is not correctly mocked and still calls Kalibro' do
   describe 'new' do
     before :each do
       sign_in FactoryGirl.create(:user)
-      get :new, project_id: project.id.to_s
     end
 
-    it { should respond_with(:success) }
-    it { should render_template(:new) }
-  end
+    context 'when the current user owns the project' do
+      before :each do
+        Repository.expects(:repository_types).returns([])
+        subject.expects(:check_repository_ownership).returns true
+
+        get :new, project_id: project.id.to_s
+      end
+
+      it { should respond_with(:success) }
+      it { should render_template(:new) }
+    end
+
+    context "when the current user doesn't owns the project" do
+      before :each do
+        get :new, project_id: project.id.to_s
+      end
+
+      it { should respond_with(:redirect) }
+    end
   end
 
   describe 'create' do
