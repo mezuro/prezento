@@ -25,6 +25,7 @@ describe RepositoriesController do
         get :new, project_id: project.id.to_s
       end
 
+      it { should redirect_to(projects_url) }
       it { should respond_with(:redirect) }
     end
   end
@@ -54,18 +55,26 @@ describe RepositoriesController do
         it { should respond_with(:redirect) }
       end
 
-      pending "It still fails :(" do
       context 'with an invalid field' do
         before :each do
           Repository.expects(:new).at_least_once.with(@subject_params).returns(@subject)
           Repository.any_instance.expects(:save).returns(false)
+          Repository.any_instance.expects(:persisted?).at_least_once.returns(false)
 
           post :create, project_id: project.id.to_s, repository: @subject_params
         end
 
         it { should render_template(:new) }
       end
+    end
+
+    context "when the current user doesn't owns the project " do
+      before :each do
+        post :create, project_id: project.id, repository: @subject_params
       end
+
+      it { should redirect_to(projects_url) }
+      it { should respond_with(:redirect) }
     end
   end
 
