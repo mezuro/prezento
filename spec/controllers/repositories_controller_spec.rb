@@ -31,10 +31,11 @@ describe RepositoriesController do
   end
 
   describe 'create' do
+    let (:repository) { FactoryGirl.build(:repository, project_id: project.id) }
+    let(:repository_params) { Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
+
     before do
       sign_in FactoryGirl.create(:user)
-      @subject = FactoryGirl.build(:repository, project_id: project.id)
-      @subject_params = Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
     end
 
     context 'when the current user owns the project' do
@@ -48,20 +49,19 @@ describe RepositoriesController do
           Repository.any_instance.expects(:process)
           Repository.any_instance.expects(:persisted?).at_least_once.returns(true)
 
-          post :create, project_id: project.id, repository: @subject_params
+          post :create, project_id: project.id, repository: repository_params
         end
 
-        it { should redirect_to(project_path(@subject.project_id)) }
+        it { should redirect_to(project_path(repository.project_id)) }
         it { should respond_with(:redirect) }
       end
 
       context 'with an invalid field' do
         before :each do
-          Repository.expects(:new).at_least_once.with(@subject_params).returns(@subject)
           Repository.any_instance.expects(:save).returns(false)
           Repository.any_instance.expects(:persisted?).at_least_once.returns(false)
 
-          post :create, project_id: project.id.to_s, repository: @subject_params
+          post :create, project_id: project.id.to_s, repository: repository_params
         end
 
         it { should render_template(:new) }
@@ -70,7 +70,7 @@ describe RepositoriesController do
 
     context "when the current user doesn't owns the project " do
       before :each do
-        post :create, project_id: project.id, repository: @subject_params
+        post :create, project_id: project.id, repository: repository_params
       end
 
       it { should redirect_to(projects_url) }
