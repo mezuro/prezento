@@ -91,60 +91,46 @@ describe RepositoriesController do
     it { should render_template(:show) }
   end
 
-  pending "Work in progress" do
   describe 'destroy' do
-    before do
-      @subject = FactoryGirl.build(:repository)
-    end
+    let(:repository) { FactoryGirl.build(:repository) }
 
     context 'with an User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
-        @ownership = FactoryGirl.build(:project_ownership)
-        @ownerships = []
       end
 
-      context 'when the user owns the repository' do
+      context 'when the user owns the project' do
         before :each do
-          @ownership.expects(:destroy)
-          @subject.expects(:destroy)
+          subject.expects(:check_repository_ownership).returns true
+          repository.expects(:destroy)
+          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-          #Those two mocks looks the same but they are necessary since params[:id] is a String and @repository.id is an Integer :(
-          @ownerships.expects(:find_by_repository_id).with("#{@subject.id}").returns(@ownership)
-          @ownerships.expects(:find_by_repository_id).with(@subject.id).returns(@ownership)
-
-          User.any_instance.expects(:repository_ownerships).at_least_once.returns(@ownerships)
-
-          Repository.expects(:find).with(@subject.id.to_s).returns(@subject)
-          delete :destroy, id: @subject.id, project_id: project.id.to_s
+          delete :destroy, id: repository.id, project_id: project.id.to_s
         end
 
-        it 'should redirect to the repositories page' do
-          response.should redirect_to repositories_url
-        end
-
+        it { should redirect_to(project_path(repository.project_id)) }
         it { should respond_with(:redirect) }
       end
 
-      context "when the user doesn't own the repository" do
+      context "when the user doesn't own the project" do
         before :each do
-          @ownerships.expects(:find_by_repository_id).with("#{@subject.id}").returns(nil)
-          User.any_instance.expects(:repository_ownerships).at_least_once.returns(@ownerships)
+          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-          delete :destroy, :id => @subject.id
+          delete :destroy, :id => repository.id, project_id: project.id.to_s
         end
 
-         it { should redirect_to(repositories_path)  }
+         it { should redirect_to(projects_url) }
+         it { should respond_with(:redirect) }
       end
     end
+
     context 'with no User logged in' do
       before :each do
-        delete :destroy, :id => @subject.id
+        delete :destroy, :id => repository.id, project_id: project.id.to_s
       end
 
       it { should redirect_to new_user_session_path }
     end
-  end
   end
 
   pending "Work in progress" do
