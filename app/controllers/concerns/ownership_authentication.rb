@@ -17,5 +17,4 @@ module OwnershipAuthentication
       end
     end
   end
-
 end

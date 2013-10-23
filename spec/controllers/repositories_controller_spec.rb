@@ -18,45 +18,50 @@ describe RepositoriesController do
   describe 'create' do
     before do
       sign_in FactoryGirl.create(:user)
-      @subject = FactoryGirl.build(:repository)
+      @subject = FactoryGirl.build(:repository, project_id: project.id)
       @subject_params = Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
     end
 
-    context 'with valid fields' do
+    context 'when the current user owns the project' do
       before :each do
-        Repository.expects(:new).at_least_once.with(@subject_params).returns(@subject)
-        Repository.any_instance.expects(:save).returns(true)
-        Repository.any_instance.expects(:process)
-        Repository.any_instance.expects(:persisted?).returns(true).at_least_once
-        post :create, project_id: project.id.to_s, repository: @subject_params
+        subject.expects(:check_repository_ownership).returns true
       end
 
-      it 'should redirect to the show view' do
-        response.should redirect_to project_path(@subject)
-      end
-      it 'should respond a redirect' do
-        should respond_with(:redirect)
-      end
-    end
+      context 'with valid fields' do
+        before :each do
+          Repository.any_instance.expects(:save).returns(true)
+          Repository.any_instance.expects(:process)
+          Repository.any_instance.expects(:persisted?).at_least_once.returns(true)
 
-    pending "It still fails :(" do
-    context 'with an invalid field' do
-      before :each do
-        Repository.expects(:new).at_least_once.with(@subject_params).returns(@subject)
-        Repository.any_instance.expects(:save).returns(false)
+          post :create, project_id: project.id, repository: @subject_params
+        end
 
-        post :create, project_id: project.id.to_s, repository: @subject_params
+        it { should redirect_to(project_path(@subject.project_id)) }
+        it { should respond_with(:redirect) }
       end
 
-      it { should render_template(:new) }
-    end
+      pending "It still fails :(" do
+      context 'with an invalid field' do
+        before :each do
+          Repository.expects(:new).at_least_once.with(@subject_params).returns(@subject)
+          Repository.any_instance.expects(:save).returns(false)
+
+          post :create, project_id: project.id.to_s, repository: @subject_params
+        end
+
+        it { should render_template(:new) }
+      end
+      end
     end
   end
 
   describe 'show' do
     before :each do
       @subject = FactoryGirl.build(:repository)
+      @subject.expects(:last_processing).returns(FactoryGirl.build(:processing))
+      KalibroEntities::Entities::Configuration.expects(:find).with(@subject.id).returns(FactoryGirl.build(:configuration))
       Repository.expects(:find).with(@subject.id).returns(@subject)
+
       get :show, id: @subject.id.to_s, project_id: project.id.to_s
     end
 
