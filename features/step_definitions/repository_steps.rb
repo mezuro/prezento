@@ -31,8 +31,12 @@ Given(/^I am at the New Repository page$/) do
   visit new_project_repository_path(@project.id)
 end
 
-When(/^I set the select (.+) as "(.+)"$/) do |field, text|
-  find_by_id("repository_#{field}").select(text)
+When(/^I set the select field (.+) as "(.+)"$/) do |field, text|
+  find('option', text: text).click()
+end
+
+When(/^I set the select field Configuration as the sample configuration$/) do
+  find('option', text: @configuration.name).click()
 end
 
 When(/^I visit the repository show page$/) do

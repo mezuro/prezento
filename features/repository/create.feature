@@ -20,15 +20,16 @@ Scenario: Should not show the create repository link to a nom project owner
 	When I am at the Sample Project page
 	Then I should not see New Repository
 
-@kalibro_restart @wip
+@kalibro_restart
 Scenario: repository creation
 	Given I am a regular user
 	And I am signed in
 	And I own a sample project
+	And I have a sample configuration with native metrics
 	And I am at the New Repository page
 	And I fill the Name field with "Kalibro"
-	And I set the select type as "GIT"
+	And I set the select field Type as "GIT"
 	And I fill the Address field with "https://github.com/mezuro/kalibro_entities.git"
-	And I set the select configuration_id as "1"
+	And I set the select field Configuration as the sample configuration
 	When I press the Create Repository button
 	Then I should see a the created repository
