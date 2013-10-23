@@ -1,6 +1,7 @@
 include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
+  before_action :authenticate_user!, except: :show
   before_action :set_repository, only: [:show, :edit, :update, :destroy]
   before_action :check_repository_ownership, except: [:show]
   after_action :process_respository, only: :create
@@ -63,7 +64,6 @@ class RepositoriesController < ApplicationController
   # DELETE /projects/1/repositories/1
   # DELETE /projects/1/repositories/1.json
   def destroy
-    set_repository
     @repository.destroy
     respond_to do |format|
       format.html { redirect_to project_path(params[:project_id]) }
