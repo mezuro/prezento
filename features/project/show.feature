@@ -7,11 +7,13 @@ Feature: Show Project
 Scenario: Considering the project has no repositories
   Given I have a sample project
   When I am at the Sample Project page
-  Then I should see There are no repositories yet!
+  Then I should see "There are no repositories yet!"
 
-@kalibro_restart @wip
+@kalibro_restart
 Scenario: Considering the project has repositories
   Given I have a sample project
+  And I have a sample configuration with native metrics
+  And I have a sample repository within the sample project
   When I am at the Sample Project page
   Then I should not see There are no repositories yet!
 

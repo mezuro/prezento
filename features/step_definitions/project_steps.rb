@@ -59,6 +59,11 @@ Then(/^I should be in the Edit Project page$/) do
   page.should have_content("Edit Project")
 end
 
+Then(/^I should be in the Sample Project page$/) do
+  page.should have_content(@project.name)
+  page.should have_content(@project.description)
+end
+
 Then(/^I should be in the Login page$/) do
   page.should have_content("Sign in")
 end

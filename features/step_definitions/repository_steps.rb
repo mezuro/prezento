@@ -7,7 +7,7 @@ Given(/^I have a sample configuration with native metrics$/) do
                                              configuration_id: @configuration.id})
 end
 
-Given(/^I have a sample repository wihin the sample project$/) do
+Given(/^I have a sample repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id, configuration_id: @configuration.id, id: nil})
 end
 

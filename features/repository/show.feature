@@ -9,7 +9,7 @@ Feature: Show Repository
     And I am signed in
     And I have a sample project
     And I have a sample configuration with native metrics
-    And I have a sample repository wihin the sample project
+    And I have a sample repository within the sample project
     And I start to process that repository
     And I wait up for a ready processing
     When I visit the repository show page
@@ -29,7 +29,7 @@ Feature: Show Repository
     And I am signed in
     And I have a sample project
     And I have a sample configuration with native metrics
-    And I have a sample repository wihin the sample project
+    And I have a sample repository within the sample project
     And I start to process that repository
     When I visit the repository show page
     Then I should see the sample repository name
