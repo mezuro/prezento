@@ -134,18 +134,6 @@ describe RepositoriesController do
   end
 
   pending "Work in progress" do
-  describe 'index' do
-    before :each do
-      @subject = FactoryGirl.build(:repository)
-      Repository.expects(:all).returns([@subject])
-      get :index
-    end
-
-    it { should render_template(:index) }
-  end
-  end
-
-  pending "Work in progress" do
   describe 'edit' do
     before do
       @subject = FactoryGirl.build(:repository)
