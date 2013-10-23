@@ -22,7 +22,7 @@ class RepositoriesController < ApplicationController
 
   # GET /repositories/1/edit
   def edit
-    sproject_id = params[:project_id]
+    @project_id = params[:project_id]
     set_repository #FIXME: this method has been already called on before_action
     @repository_types = Repository.repository_types
   end

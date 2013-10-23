@@ -116,7 +116,7 @@ describe RepositoriesController do
         before :each do
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-          delete :destroy, :id => repository.id, project_id: project.id.to_s
+          delete :destroy, id: repository.id, project_id: project.id.to_s
         end
 
          it { should redirect_to(projects_url) }
@@ -126,54 +126,41 @@ describe RepositoriesController do
 
     context 'with no User logged in' do
       before :each do
-        delete :destroy, :id => repository.id, project_id: project.id.to_s
+        delete :destroy, id: repository.id, project_id: project.id.to_s
       end
 
       it { should redirect_to new_user_session_path }
     end
   end
 
-  pending "Work in progress" do
   describe 'edit' do
-    before do
-      @subject = FactoryGirl.build(:repository)
-    end
+    let(:repository) { FactoryGirl.build(:repository) }
 
     context 'with an User logged in' do
       before do
-        @user = FactoryGirl.create(:user)
-        @ownership = FactoryGirl.build(:repository_ownership)
-        @ownerships = []
-
-        User.any_instance.expects(:repository_ownerships).at_least_once.returns(@ownerships)
-
-        sign_in @user
+        sign_in FactoryGirl.create(:user)
       end
 
       context 'when the user owns the repository' do
         before :each do
-          Repository.expects(:find).with(@subject.id.to_s).returns(@subject)
-          @ownerships.expects(:find_by_repository_id).with("#{@subject.id}").returns(@ownership)
-
-          get :edit, :id => @subject.id
+          subject.expects(:check_repository_ownership).returns true
+          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+          Repository.expects(:repository_types).returns(["SUBVERSION"])
+          get :edit, id: repository.id, project_id: project.id.to_s
         end
 
         it { should render_template(:edit) }
-
-        it 'should assign to @repository the @subject' do
-          assigns(:repository).should eq(@subject)
-        end
       end
 
       context 'when the user does not own the repository' do
         before do
-          @subject = FactoryGirl.build(:another_repository)
-          @ownerships.expects(:find_by_repository_id).with("#{@subject.id}").returns(nil)
+          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-          get :edit, :id => @subject.id
+          get :edit, id: repository.id, project_id: project.id.to_s
         end
 
-        it { should redirect_to(repositories_path)  }
+         it { should redirect_to(projects_url) }
+         it { should respond_with(:redirect) }
 
         it 'should set the flash' do
           pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
@@ -185,12 +172,11 @@ describe RepositoriesController do
 
     context 'with no user logged in' do
       before :each do
-        get :edit, :id => @subject.id
+        get :edit, id: repository.id, project_id: project.id.to_s
       end
 
       it { should redirect_to new_user_session_path }
     end
-  end
   end
 
   pending "Work in progress" do
