@@ -7,7 +7,7 @@ class Project < KalibroEntities::Entities::Project
   validates :name, presence: true, kalibro_uniqueness: true
 
   def repositories
-    KalibroEntities::Entities::Repository.repositories_of(self.id)
+    Repository.repositories_of(self.id)
   end
 
   def self.latest(count = 1)

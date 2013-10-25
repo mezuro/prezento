@@ -58,6 +58,17 @@ describe Project do
         end
       end
     end
+
+    describe 'repositories' do
+      subject { FactoryGirl.build(:project) }
+      let(:repository) { FactoryGirl.build(:repository) }
+
+      it 'should call repositories_of on the Repository model' do
+        Repository.expects(:repositories_of).with(subject.id).returns([repository])
+
+        subject.repositories.should include(repository)
+      end
+    end
   end
 
   describe 'validations' do
