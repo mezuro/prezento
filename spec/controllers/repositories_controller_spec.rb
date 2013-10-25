@@ -179,60 +179,38 @@ describe RepositoriesController do
     end
   end
 
-  pending "Work in progress" do
   describe 'update' do
-    before do
-      @subject = FactoryGirl.build(:repository)
-      @subject_params = Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
-    end
-
+    let(:repository) { FactoryGirl.build(:repository) }
+    let(:repository_params) { Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    
     context 'when the user is logged in' do
       before do
         sign_in FactoryGirl.create(:user)
       end
 
       context 'when user owns the repository' do
-        before do
-          @ownership = FactoryGirl.build(:repository_ownership)
-          @ownerships = []
-
-          @ownerships.expects(:find_by_repository_id).with("#{@subject.id}").returns(@ownership)
-          User.any_instance.expects(:repository_ownerships).at_least_once.returns(@ownerships)
+        before :each do
+          subject.expects(:check_repository_ownership).returns true
         end
 
         context 'with valid fields' do
           before :each do
-            Repository.expects(:find).with(@subject.id.to_s).returns(@subject)
-            Repository.any_instance.expects(:update).with(@subject_params).returns(true)
+            Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+            Repository.any_instance.expects(:update).with(repository_params).returns(true)
+
+            post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
           end
 
-          context 'rendering the show' do
-            before :each do
-              Repository.expects(:exists?).returns(true)
-
-              post :update, :id => @subject.id, :repository => @subject_params
-            end
-
-            it 'should redirect to the show view' do
-              response.should redirect_to repository_path(@subject)
-            end
-          end
-
-          context 'without rendering the show view' do
-            before :each do
-              post :update, :id => @subject.id, :repository => @subject_params
-            end
-
-            it { should respond_with(:redirect) }
-          end
+          it { should redirect_to(project_repository_path(repository.project_id, repository.id)) }
+          it { should respond_with(:redirect) }
         end
 
         context 'with an invalid field' do
           before :each do
-            Repository.expects(:find).with(@subject.id.to_s).returns(@subject)
-            Repository.any_instance.expects(:update).with(@subject_params).returns(false)
+            Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+            Repository.any_instance.expects(:update).with(repository_params).returns(false)
 
-            post :update, :id => @subject.id, :repository => @subject_params
+            post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
           end
 
           it { should render_template(:edit) }
@@ -241,20 +219,21 @@ describe RepositoriesController do
 
       context 'when the user does not own the repository' do
         before :each do
-          post :update, :id => @subject.id, :repository => @subject_params
+          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+
+          post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
         end
 
-        it { should redirect_to repositories_path }
+        it { should redirect_to projects_path }
       end
     end
 
     context 'with no user logged in' do
       before :each do
-        post :update, :id => @subject.id, :repository => @subject_params
+        post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
       end
 
       it { should redirect_to new_user_session_path }
     end
-  end
   end
 end
