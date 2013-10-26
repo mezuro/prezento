@@ -52,7 +52,7 @@ Then(/^the sample project should be there$/) do
 end
 
 Then(/^I should be in the All Projects page$/) do
-  page.should have_content("Listing Projects")
+  page.should have_content("Projects")
 end
 
 Then(/^I should be in the Edit Project page$/) do

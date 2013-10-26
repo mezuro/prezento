@@ -1,4 +1,6 @@
-<h1><%= @repository.name %></h1>
+<div class="page-header">
+  <h1><%= @repository.name %></h1>
+</div>
 
 <p>
   <strong>Description:</strong>
@@ -14,6 +16,8 @@
   <strong>Configuration:</strong>
   <%= @configuration.name %>
 </p>
+
+<hr/>
 
 <h2>Processing information</h2>
 
@@ -35,6 +39,8 @@
     </p>
   <% end %>
 <% end %>
+
+<hr/>
 
 <%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>

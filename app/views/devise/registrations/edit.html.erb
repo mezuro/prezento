@@ -1,4 +1,6 @@
-<h1>Edit <%= resource_name.to_s.humanize %></h1>
+<div class="page-header">
+  <h1>Edit <%= resource_name.to_s.humanize %></h1>
+</div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -24,6 +26,8 @@
 
   <div><%= f.submit "Update", class: 'btn btn-primary' %></div>
 <% end %>
+
+<hr />
 
 <h2>Cancel my account</h2>
 

@@ -1,12 +1,13 @@
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<div class="page-header">
+  <h1><%= @project.name %></h1>
+</div>
 
 <p>
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
+
+<hr />
 
 <h2>Repositories</h2>
 
@@ -18,7 +19,7 @@
       <th>Name</th>
       <th>Type</th>
       <th>Address</th>
-      <th colspan="2">Options</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -30,7 +31,7 @@
         <td><%= repository.address %></td>
         <td>
           <% if project_owner? @project.id %>
-            <%= link_to 'Edit', edit_project_repository_path(@project, repository.id) %>
+            <%= link_to 'Edit', edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
           <% end %>
         </td>
         <td>
@@ -41,8 +42,10 @@
   </tbody>
 </table>
 
+<hr />
+
 <p>
   <% if project_owner? @project.id %>
-    <%= link_to 'Destroy', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <%= link_to 'Destroy project', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
   <% end %>
 </p>
