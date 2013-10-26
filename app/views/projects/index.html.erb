@@ -2,7 +2,7 @@
   <h1>Projects</h1>
 </div>
 
-<p><%= link_to 'New Project', new_project_path, class: 'btn  btn-primary' %></p>
+<p><% if user_signed_in? %><%= link_to 'New Project', new_project_path, class: 'btn  btn-primary' %><% end %></p>
 
 <table class="table table-hover">
   <thead>

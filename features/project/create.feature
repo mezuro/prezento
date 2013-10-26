@@ -6,9 +6,7 @@ Feature: Project Creation
   @kalibro_restart
   Scenario: Should not create project without login
     Given I am at the All Projects page
-    When I click the New Project link
-    Then I should be in the Login page
-    And I should see "You need to sign in or sign up before continuing."
+    Then I should not see New Project
 
   @kalibro_restart
   Scenario: project creation
