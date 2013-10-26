@@ -4,23 +4,6 @@ Feature: Repository Creation
 	I should be able to create repositories
 
 @kalibro_restart
-Scenario: should exist the repository create page
-	Given I am a regular user
-	And I am signed in
-	And I own a sample project
-	And I am at the Sample Project page
-	When I click the New Repository link
-	Then I should see "New Repository"
-
-@kalibro_restart
-Scenario: Should not show the create repository link to a nom project owner
-	Given I am a regular user
-	And I am signed in
-	And I have a sample project
-	When I am at the Sample Project page
-	Then I should not see New Repository
-
-@kalibro_restart
 Scenario: repository creation
 	Given I am a regular user
 	And I am signed in

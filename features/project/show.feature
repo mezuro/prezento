@@ -4,6 +4,26 @@ Feature: Show Project
   I should be able to see each of them
 
 @kalibro_restart
+Scenario: Should not show the create repository link to user that doesn't own the projetct
+  Given I am a regular user
+  And I have a sample project
+  And I have a sample configuration with native metrics
+  And I have a sample repository within the sample project
+  When I am at the Sample Project page
+  Then I should not see New Repository
+  And I should not see Destroy project
+  And I should not see Edit
+
+@kalibro_restart
+Scenario: Should show the create repository link the project owner
+  Given I am a regular user
+  And I am signed in
+  And I own a sample project
+  When I am at the Sample Project page
+  Then I should see "New Repository"
+
+
+@kalibro_restart
 Scenario: Considering the project has no repositories
   Given I have a sample project
   When I am at the Sample Project page
