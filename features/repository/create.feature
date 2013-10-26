@@ -11,9 +11,9 @@ Scenario: repository creation
   And I have a sample configuration with native metrics
   And I am at the New Repository page
   And I fill the Name field with "Kalibro"
-  And I set the select field Type as "GIT"
+  And I set the select field "Type" as "GIT"
   And I fill the Address field with "https://github.com/mezuro/kalibro_entities.git"
-  And I set the select field Configuration as the sample configuration
+  And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
   Then I should be in the Sample Project page
   And I should not see There are no repositories yet!
@@ -28,8 +28,8 @@ Scenario: repository creation blank validations
   And I own a sample project
   And I have a sample configuration with native metrics
   And I am at the New Repository page
-  And I set the select field Type as "GIT"
-  And I set the select field Configuration as the sample configuration
+  And I set the select field "Type" as "GIT"
+  And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
   Then I should see "Name can't be blank"
   And I should see "Address can't be blank"
@@ -43,8 +43,8 @@ Scenario: repository creation with name already taken
   And I have a sample repository within the sample project named "KalibroEntities"
   And I am at the New Repository page
   And I fill the Name field with "KalibroEntities"
-  And I set the select field Type as "GIT"
+  And I set the select field "Type" as "GIT"
   And I fill the Address field with "https://github.com/mezuro/kalibro_entities.git"
-  And I set the select field Configuration as the sample configuration
+  And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
   Then I should see "There's already"
