@@ -31,7 +31,7 @@ Scenario: repository creation
 	And I set the select field Type as "GIT"
 	And I fill the Address field with "https://github.com/mezuro/kalibro_entities.git"
 	And I set the select field Configuration as the sample configuration
-	When I press the Create Repository button
+	When I press the Save button
 	Then I should be in the Sample Project page
 	And I should not see There are no repositories yet!
 	And I should see "Kalibro"
