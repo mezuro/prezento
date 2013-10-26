@@ -60,6 +60,7 @@ describe RepositoriesController do
         before :each do
           Repository.any_instance.expects(:save).returns(false)
           Repository.any_instance.expects(:persisted?).at_least_once.returns(false)
+          Repository.expects(:repository_types).returns([])
 
           post :create, project_id: project.id.to_s, repository: repository_params
         end

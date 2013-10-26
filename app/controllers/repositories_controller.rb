@@ -40,6 +40,9 @@ class RepositoriesController < ApplicationController
         format.html { redirect_to project_path(params[:project_id]), notice: 'Repository was successfully created.' }
         format.json { render action: 'show', status: :created, location: @repository }
       else
+        @project_id = params[:project_id]
+        @repository_types = Repository.repository_types
+
         format.html { render action: 'new' }
         format.json { render json: @repository.errors, status: :unprocessable_entity }
       end

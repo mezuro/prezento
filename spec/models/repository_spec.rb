@@ -34,4 +34,28 @@ describe Repository do
       end
     end
   end
+
+  describe 'validations' do
+    subject {FactoryGirl.build(:repository)}
+    
+    context 'active model validations' do  
+      before :each do
+        Repository.expects(:all).at_least_once.returns([])
+      end
+
+      it { should validate_presence_of(:name) }
+      it { should validate_presence_of(:address) }
+    end
+
+    context 'kalibro validations' do
+      before :each do
+        Repository.expects(:request).returns(42)
+      end
+
+      it 'should validate uniqueness' do
+        KalibroUniquenessValidator.any_instance.expects(:validate_each).with(subject, :name, subject.name)
+        subject.save
+      end
+    end
+  end
 end
