@@ -1,24 +1,24 @@
 <%= render :partial => 'shared/form_errors', :locals => {:object => @repository} %>
 
-<div class="field">
-  <%= f.label :name %><br>
-  <%= f.text_field :name %>
+<div class="form-group">
+  <%= f.label :name, class: 'control-label' %><br>
+  <%= f.text_field :name, class: 'form-control' %>
 </div>
 
-<div class="field">
-  <%= f.label :type %><br>
-  <%= f.select( :type, @repository_types ) %>
+<div class="form-group">
+  <%= f.label :type, class: 'control-label' %><br>
+  <%= f.select( :type, @repository_types, {class: 'form-control'} ) %>
 </div>
 
-<div class="field">
-  <%= f.label :address %><br>
-  <%= f.text_field :address %>
+<div class="form-group">
+  <%= f.label :address, class: 'control-label' %><br>
+  <%= f.text_field :address, class: 'form-control' %>
 </div>
 
-<div class="field">
-   <%= f.label :configuration %><br/>
+<div class="form-group">
+   <%= f.label :configuration, class: 'control-label' %><br/>
   <% configuration_list = KalibroEntities::Entities::Configuration.all.map { |conf| [conf.name, conf.id] } %>
-  <%= f.select( :configuration_id, configuration_list ) %>
+  <%= f.select( :configuration_id, configuration_list, {class: 'form-control'} ) %>
 </div>
 
 <div class="actions">
