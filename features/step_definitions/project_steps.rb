@@ -42,6 +42,7 @@ Then(/^I should not see (.+)$/) do |text|
   page.should_not have_content(text)
 end
 
+#FIXME: this is step is not matched
 Then(/^I should not see "(.+)"" within "(.+)"$/) do |text, selector|
   page.find(selector).should_not have_content(text)
 end

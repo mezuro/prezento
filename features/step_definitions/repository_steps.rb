@@ -11,6 +11,10 @@ Given(/^I have a sample repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id, configuration_id: @configuration.id, id: nil})
 end
 
+Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
+  @repository = FactoryGirl.create(:repository, {project_id: @project.id, configuration_id: @configuration.id, id: nil, name: name})
+end
+
 Given(/^I start to process that repository$/) do
   @repository.process
 end
