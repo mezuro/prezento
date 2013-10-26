@@ -210,6 +210,7 @@ describe RepositoriesController do
           before :each do
             Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
             Repository.any_instance.expects(:update).with(repository_params).returns(false)
+            Repository.expects(:repository_types).returns([])
 
             post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
           end

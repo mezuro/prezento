@@ -58,6 +58,9 @@ class RepositoriesController < ApplicationController
         format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: 'Repository was successfully updated.') }
         format.json { head :no_content }
       else
+        @project_id = params[:project_id]
+        @repository_types = Repository.repository_types
+        
         format.html { render action: 'edit' }
         format.json { render json: @repository.errors, status: :unprocessable_entity }
       end

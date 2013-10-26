@@ -35,6 +35,10 @@ Given(/^I am at the New Repository page$/) do
   visit new_project_repository_path(@project.id)
 end
 
+Given(/^I am at repository edit page$/) do
+  visit edit_project_repository_path(@repository.project_id, @repository.id)
+end
+
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
   select text, from: field
 end
@@ -45,4 +49,8 @@ end
 
 Then(/^I should see the sample repository name$/) do
   page.should have_content(@repository.name)
+end
+
+Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
+  page.find_field(field).value.should eq(value)
 end
