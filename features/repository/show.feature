@@ -14,7 +14,6 @@ Feature: Show Repository
     And I wait up for a ready processing
     When I visit the repository show page
     Then I should see the sample repository name
-    And I should see "Description"
     And I should see "Address"
     And I should see "Configuration"
     And I should see "State"
@@ -33,7 +32,6 @@ Feature: Show Repository
     And I start to process that repository
     When I visit the repository show page
     Then I should see the sample repository name
-    And I should see "Description"
     And I should see "Address"
     And I should see "Configuration"
     And I should see "State"
