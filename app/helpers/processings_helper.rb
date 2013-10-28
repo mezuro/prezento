@@ -2,4 +2,16 @@ module ProcessingsHelper
   def humanize_eplased_time duration_in_milliseconds
     distance_of_time_in_words(Time.now, (duration_in_milliseconds/1000.0).seconds.from_now)
   end
+
+  def format_grade(grade)
+    sprintf("%.2f", grade.to_f)
+  end
+
+  def find_range_snapshot(metric_result)
+    range_snapshots = metric_result.metric_configuration_snapshot.range_snapshot
+
+    range_snapshots.each do |range_snapshot|
+      return range_snapshot if (range_snapshot.beginning <= metric_result.value && range_snapshot.end >= metric_result.value)
+    end
+  end
 end

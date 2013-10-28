@@ -21,6 +21,10 @@ Feature: Show Repository
     And I should see "LOADING time"
     And I should see "COLLECTING time"
     And I should see "ANALYZING time"
+    And I should see "Metric"
+    And I should see "Value"
+    And I should see "Weight"
+    And I should see "Threshold"
 
   @kalibro_restart
   Scenario: Just after start to process
@@ -36,3 +40,7 @@ Feature: Show Repository
     And I should see "Configuration"
     And I should see "State"
     And I should see "Creation date"
+    And I should not see Metric
+    And I should not see Value
+    And I should not see Weight
+    And I should not see Threshold

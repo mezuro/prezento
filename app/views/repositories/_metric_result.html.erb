@@ -1,0 +1,10 @@
+<% metric_configuration_snapshot = metric_result.metric_configuration_snapshot %>
+<% unless metric_configuration_snapshot.range_snapshot.nil? %>
+  <% range_snapshot = find_range_snapshot(metric_result) %>
+  <tr>
+    <td><%= metric_configuration_snapshot.metric.name %></td>
+    <td><%= format_grade(metric_result.value) %></td>
+    <td><%= metric_configuration_snapshot.weight %></td>
+    <td><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span></td>
+  </tr>
+<% end %>

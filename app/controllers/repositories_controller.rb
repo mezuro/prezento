@@ -9,15 +9,16 @@ class RepositoriesController < ApplicationController
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
   def show
-     @configuration = KalibroEntities::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
-     @processing = @repository.last_processing
+    @configuration = KalibroEntities::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
+    @processing = @repository.last_processing
+    @metric_results = @processing.metric_results if @processing.ready?
   end
 
   # GET projects/1/repositories/new
   def new
-     @project_id = params[:project_id]
-     @repository = Repository.new
-     @repository_types = Repository.repository_types
+    @project_id = params[:project_id]
+    @repository = Repository.new
+    @repository_types = Repository.repository_types
   end
 
   # GET /repositories/1/edit

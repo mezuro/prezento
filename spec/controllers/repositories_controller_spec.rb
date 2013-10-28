@@ -80,9 +80,13 @@ describe RepositoriesController do
   end
 
   describe 'show' do
-    let(:repository) { FactoryGirl.build(:repository)}
+    let(:repository) { FactoryGirl.build(:repository) }
+
     before :each do
-      repository.expects(:last_processing).returns(FactoryGirl.build(:processing))
+      processing = FactoryGirl.build(:processing)
+
+      processing.expects(:metric_results).returns(nil)
+      repository.expects(:last_processing).returns(processing)
       KalibroEntities::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
       Repository.expects(:find).with(repository.id).returns(repository)
 
