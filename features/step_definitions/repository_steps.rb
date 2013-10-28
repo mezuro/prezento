@@ -39,6 +39,14 @@ Given(/^I am at repository edit page$/) do
   visit edit_project_repository_path(@repository.project_id, @repository.id)
 end
 
+Given(/^I ask for the last ready processing of the given repository$/) do
+  @processing = Processing.last_ready_processing_of @repository.id
+end
+
+Given(/^I ask for the module result of the given processing$/) do
+  @module_result = ModuleResult.find @processing.results_root_id
+end
+
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
   select text, from: field
 end
@@ -53,4 +61,8 @@ end
 
 Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
   page.find_field(field).value.should eq(value)
+end
+
+Then(/^I should see the given module result$/) do
+  page.should have_content(@module_result.module.name)
 end

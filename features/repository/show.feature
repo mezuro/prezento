@@ -44,3 +44,43 @@ Feature: Show Repository
     And I should not see Value
     And I should not see Weight
     And I should not see Threshold
+
+    @kalibro_restart
+    Scenario: Should show modules title
+      Given I am a regular user 
+      And I am signed in
+      And I have a sample project
+      And I have a sample configuration with native metrics
+      And I have a sample repository within the sample project
+      And I start to process that repository
+      And I wait up for a ready processing
+      When I visit the repository show page
+      Then I should see "Source Tree"
+
+    @kalibro_restart
+    Scenario: Should show modules directories root when the process has been finished
+      Given I am a regular user
+      And I am signed in
+      And I have a sample project
+      And I have a sample configuration with native metrics
+      And I have a sample repository within the sample project
+      And I start to process that repository
+      And I wait up for a ready processing
+      And I ask for the last ready processing of the given repository
+      And I ask for the module result of the given processing
+      When I visit the repository show page
+      Then I should see the given module result
+
+  @kalibro_restart
+  Scenario: Should show childrens of root when the process has been finished
+      Given I am a regular user
+      And I am signed in
+      And I have a sample project
+      And I have a sample configuration with native metrics
+      And I have a sample repository within the sample project
+      And I start to process that repository
+      And I wait up for a ready processing
+      And I ask for the last ready processing of the given repository
+      And I ask for the module result of the given processing
+      When I visit the repository show page
+      Then I should see the given module result

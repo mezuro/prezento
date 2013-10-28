@@ -34,8 +34,13 @@
     </p>
   <% end %>
 <% end %>
-
 <hr/>
+<h2>Source Tree</h2>
+<% if @processing.ready? %>
+  <h3><%= @module_result.module.name %></h3>
+  <li>
+  </li>
+<% end %>
 
 <% if @processing.ready? %>
   <table class="table table-hover">
