@@ -86,6 +86,7 @@ describe RepositoriesController do
       processing = FactoryGirl.build(:processing)
 
       processing.expects(:metric_results).returns(nil)
+      processing.expects(:root_module_result).returns(FactoryGirl.build(:module_result))
       repository.expects(:last_processing).returns(processing)
       KalibroEntities::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
       Repository.expects(:find).with(repository.id).returns(repository)
