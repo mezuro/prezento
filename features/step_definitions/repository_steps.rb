@@ -66,3 +66,7 @@ end
 Then(/^I should see the given module result$/) do
   page.should have_content(@module_result.module.name)
 end
+
+Then(/^I should see a sample child's name$/) do
+  page.should have_content(@module_result.children.first.module.name)
+end
