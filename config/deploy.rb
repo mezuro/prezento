@@ -6,21 +6,23 @@ set :rails_env, "production"
 
 set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
-set :rvm_type, :system
+set :rvm_type, :user
 
 set :application, "mezuro"
 set :deploy_to, "/home/mezuro/app"
-set :repository,  "https://github.com/mezuro/mezuro-standalone.git"
+set :repository,  "https://github.com/mezuro/mezuro.git"
 
 set :user, 'mezuro'
 set :use_sudo, false
+set :rvm_install_with_sudo, true
+default_run_options[:pty] = true
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "ec2-184-72-147-209.compute-1.amazonaws.com"                          # Your HTTP server, Apache/etc
-role :app, "ec2-184-72-147-209.compute-1.amazonaws.com"                          # This may be the same as your `Web` server
-role :db,  "ec2-184-72-147-209.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
+role :web, "mezuro.org"                          # Your HTTP server, Apache/etc
+role :app, "mezuro.org"                          # This may be the same as your `Web` server
+role :db,  "mezuro.org", :primary => true # This is where Rails migrations will run
 
 # before 'deploy:setup',          'rvm:install_rvm'        # install RVM
 before 'deploy:setup',          'rvm:install_ruby'       # install Ruby and create gemset, OR:
@@ -30,13 +32,13 @@ after  'deploy:restart',        "deploy:cleanup"
 
 namespace :deploy do
   task :start do ; end
-  
+
   task :stop do ; end
-  
+
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
-   
+
   task :config_symlinks do
     run "ln -s #{File.join(deploy_to, 'shared', 'config/database.yml')} #{File.join(release_path, 'config/database.yml')}"
   end
