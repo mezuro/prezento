@@ -20,7 +20,7 @@ describe ProjectsController do
     context 'with valid fields' do
 	    let(:project) { FactoryGirl.build(:project) }
 	    let(:subject_params) { Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
-    
+
      	before :each do
         Project.any_instance.expects(:save).returns(true)
       end
@@ -83,7 +83,7 @@ describe ProjectsController do
         sign_in FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:project_ownership)
         @ownerships = []
-        
+
       end
 
       context 'when the user owns the project' do
@@ -112,7 +112,7 @@ describe ProjectsController do
         before :each do
           @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
           User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
-          
+
           delete :destroy, :id => @subject.id
         end
 
@@ -151,7 +151,7 @@ describe ProjectsController do
         @ownerships = []
 
         User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
-       
+
         sign_in @user
       end
 
@@ -159,7 +159,7 @@ describe ProjectsController do
         before :each do
           Project.expects(:find).with(@subject.id.to_s).returns(@subject)
           @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-          
+
           get :edit, :id => @subject.id
         end
 
@@ -179,12 +179,7 @@ describe ProjectsController do
         end
 
         it { should redirect_to(projects_path)  }
-
-        it 'should set the flash' do
-          pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
-            should set_the_flash[:notice].to("You shall not edit projects that aren't yours.")
-          end
-        end
+        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 

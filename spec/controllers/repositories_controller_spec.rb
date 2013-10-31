@@ -164,14 +164,9 @@ describe RepositoriesController do
           get :edit, id: repository.id, project_id: project.id.to_s
         end
 
-         it { should redirect_to(projects_url) }
-         it { should respond_with(:redirect) }
-
-        it 'should set the flash' do
-          pending("This ShouldaMatcher test is not compatible yet with Rails 4") do
-            should set_the_flash[:notice].to("You shall not edit repositories that aren't yours.")
-          end
-        end
+        it { should redirect_to(projects_url) }
+        it { should respond_with(:redirect) }
+        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -187,7 +182,7 @@ describe RepositoriesController do
   describe 'update' do
     let(:repository) { FactoryGirl.build(:repository) }
     let(:repository_params) { Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
-    
+
     context 'when the user is logged in' do
       before do
         sign_in FactoryGirl.create(:user)
