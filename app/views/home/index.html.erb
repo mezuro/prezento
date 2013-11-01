@@ -1,13 +1,15 @@
 <div class="hero-unit">
-<p><h1>Hello world!</h1></p>
+  <p><h1>Understanding Code Metrics</h1></p>
 
-<p>This is Mezuro! A <strong>free</strong> (with the same meaning as freedom) web platform for <strong>collaborative</strong> source code <strong>evalution</strong>.</p>
+  <p>This is Mezuro! A <strong>free</strong> (with the same meaning as freedom) web platform for <strong>collaborative</strong> source code <strong>evaluation</strong>.</p>
 
-<p>Here you can evaluate your source code with most of the SCM, just by giving it's URL. For now you can evaluate <strong>Java</strong>, <strong>C/C++</strong> and <strong>Python</strong> source-code, but soon we hope to support more languages!</p>
+  <p>Here you can evaluate your source code with most of the SCM (Git, Baazar, Mercurial, and SVN), just by giving it's URL. For now you can evaluate <strong>C</strong>, <strong>C++</strong>,<strong>Java</strong> source code, but soon we hope to support more languages!</p>
 
+  <p> Mezuro is under development. Try it and give us your <%= link_to 'feedback', 'https://github.com/mezuro/mezuro/issues', target: '_blank' %>.</p>
 </div>
 
 <h2>Latest projects</h2>
+
 <ul>
   <% @latest_projects.each do |project| %>
     <li><%= link_to(project.name, project_path(project.id)) %></li>
