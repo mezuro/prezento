@@ -34,27 +34,29 @@
     </p>
   <% end %>
 <% end %>
+
 <hr/>
-<% if @processing.ready? %>
-  <h2>Source Tree</h2>
-  <h3><%= @module_results.module.name  %></h3>
-  <h3><%= @module_results.grade %> </h3>
-  <% children = @module_results.children %>
-  <% unless children.empty? %>
-   <table class="table table-hover">
-    <thead>
-     <th>Name</th>
-     <th>Granularity</th>
-     <th>Grade</th>
-  </thead>
-    <tbody>
-      <%= render partial: 'module_result', collection: children %> 
-    </tbody>
-  </table>
-  <% end %>
-<% end %>
 
 <% if @processing.ready? %>
+  <h2>Modules Tree</h2>
+  <h3><%= @root_module_result.module.name  %></h3>
+  <h3><%= format_grade(@root_module_result.grade) %> </h3>
+  <% children = @root_module_result.children %>
+  <% unless children.empty? %>
+    <table class="table table-hover">
+      <thead>
+        <th>Name</th>
+        <th>Granularity</th>
+        <th>Grade</th>
+      </thead>
+      <tbody>
+        <%= render partial: 'module_result', collection: children %> 
+      </tbody>
+    </table>
+  <% end %>
+
+  <hr/>
+
   <table class="table table-hover">
     <thead>
       <th>Metric</th>

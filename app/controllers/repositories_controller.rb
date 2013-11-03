@@ -13,7 +13,7 @@ class RepositoriesController < ApplicationController
     @processing = @repository.last_processing
     if @processing.ready?
       @metric_results = @processing.metric_results
-      @module_results = @processing.root_module_result
+      @root_module_result = @processing.root_module_result
     end
   end
 
