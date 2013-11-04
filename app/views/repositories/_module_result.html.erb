@@ -1,5 +1,13 @@
 <tr>
-	<td><%= module_result.module.name %></td>
+	<td>
+    <% if(module_result.children.empty?) then
+          icon = "file.png" 
+        else 
+          icon = "folder.png"
+        end %>
+    <%= image_tag(icon, :size => "20x16") %>
+    <%= module_result.module.name %>
+  </td>
 	<td><%= module_result.module.granularity %></td>
 	<td><%= format_grade(module_result.grade) %></td>
 </tr>

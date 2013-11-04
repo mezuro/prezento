@@ -39,8 +39,18 @@
 
 <% if @processing.ready? %>
   <h2>Modules Tree</h2>
-  <h3><%= @root_module_result.module.name  %></h3>
-  <h3><%= format_grade(@root_module_result.grade) %> </h3>
+  <p>
+    <strong>Name:</strong>
+    <%= @root_module_result.module.name  %>
+  </p>
+  <p>
+    <strong>Granularity:</strong>
+    <%= @root_module_result.module.granularity %>
+  </p>
+  <p>
+    <strong>Grade:</strong>
+    <%= format_grade(@root_module_result.grade) %>
+  </p>
   <% children = @root_module_result.children %>
   <% unless children.empty? %>
     <table class="table table-hover">
