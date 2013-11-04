@@ -22,7 +22,7 @@ describe Processing do
 
     describe 'root_module_result' do
       it 'should call the root_module_result method' do
-        KalibroEntities::Entities::ModuleResult.expects(:find).with(subject.results_root_id).returns(FactoryGirl.build(:module_result))
+        ModuleResult.expects(:find).with(subject.results_root_id).returns(FactoryGirl.build(:module_result))
 
         subject.root_module_result
       end

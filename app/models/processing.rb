@@ -6,6 +6,6 @@ class Processing < KalibroEntities::Entities::Processing
   end
 
   def root_module_result
-    KalibroEntities::Entities::ModuleResult.find(@results_root_id)
+    ModuleResult.find(@results_root_id)
   end
 end

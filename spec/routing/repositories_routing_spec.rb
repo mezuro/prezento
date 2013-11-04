@@ -11,7 +11,7 @@ describe RepositoriesController do
     it { should route(:get, '/projects/1/repositories/1').
                   to(controller: :repositories, action: :show, project_id: 1, id: 1) }
     it { should route(:get, '/projects/1/repositories/1/modules/1').
-                  to(controller: :repositories, action: :show, project_id: 1, module_id: 1, id: 1) }
+                  to(controller: :repositories, action: :show, project_id: 1, module_result_id: 1, id: 1) }
     it { should route(:delete, '/projects/1/repositories/1').
                   to(controller: :repositories, action: :destroy, project_id: 1, id: 1) }
     it { should route(:put, '/projects/1/repositories/1').

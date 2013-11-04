@@ -60,7 +60,7 @@
         <th>Grade</th>
       </thead>
       <tbody>
-        <%= render partial: 'module_result', collection: children %>
+        <%= render partial: 'module_result', collection: children, locals: {repository: @repository} %>
       </tbody>
     </table>
   <% end %>

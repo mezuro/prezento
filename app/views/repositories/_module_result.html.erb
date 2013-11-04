@@ -6,7 +6,7 @@
           icon = "folder.png"
         end %>
     <%= image_tag(icon, :size => "20x16") %>
-    <%= module_result.module.name %>
+    <%= link_to module_result.module.name, project_repository_module_path(repository.project_id, repository.id, module_result.id) %>
   </td>
 	<td><%= module_result.module.granularity %></td>
 	<td><%= format_grade(module_result.grade) %></td>

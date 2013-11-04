@@ -8,7 +8,7 @@ Mezuro::Application.routes.draw do
 
   resources :projects do
     resources :repositories, except: [:update, :index]
-    get '/repositories/:id/modules/:module_id' => 'repositories#show', as: :repository_module
+    get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
     put '/repositories/:id' => 'repositories#update', as: :repository_update
   end
   # The priority is based upon order of creation: first created -> highest priority.

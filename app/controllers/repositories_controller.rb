@@ -14,7 +14,11 @@ class RepositoriesController < ApplicationController
     @configuration = KalibroEntities::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
     @processing = @repository.last_processing
     if @processing.ready?
-      @root_module_result = @processing.root_module_result
+      if params[:module_result_id].nil?
+        @root_module_result = @processing.root_module_result
+      else
+        @root_module_result = ModuleResult.find(params[:module_result_id].to_i)
+      end
     end
   end
 

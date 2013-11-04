@@ -55,6 +55,10 @@ When(/^I visit the repository show page$/) do
   visit project_repository_path(@project.id, @repository.id)
 end
 
+When(/^I click on the sample child's name$/) do
+  click_link @module_result.children.first.module.name
+end
+
 Then(/^I should see the sample repository name$/) do
   page.should have_content(@repository.name)
 end
