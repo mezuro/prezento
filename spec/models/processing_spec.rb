@@ -20,14 +20,6 @@ describe Processing do
       end
     end
 
-    describe 'metric_results' do
-      it 'should call the metric_results_of method' do
-        KalibroEntities::Entities::MetricResult.expects(:metric_results_of).with(subject.results_root_id).returns(nil)
-
-        subject.metric_results
-      end
-    end
-
     describe 'root_module_result' do
       it 'should call the root_module_result method' do
         KalibroEntities::Entities::ModuleResult.expects(:find).with(subject.results_root_id).returns(FactoryGirl.build(:module_result))

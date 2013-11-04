@@ -8,11 +8,12 @@ class RepositoriesController < ApplicationController
 
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
+  # GET /projects/1/repositories/1/modules/1
+  # GET /projects/1/repositories/1/modules/1.json
   def show
     @configuration = KalibroEntities::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
     @processing = @repository.last_processing
     if @processing.ready?
-      @metric_results = @processing.metric_results
       @root_module_result = @processing.root_module_result
     end
   end

@@ -5,10 +5,6 @@ class Processing < KalibroEntities::Entities::Processing
     @state == "READY"
   end
 
-  def metric_results
-    KalibroEntities::Entities::MetricResult.metric_results_of(@results_root_id)
-  end
-
   def root_module_result
     KalibroEntities::Entities::ModuleResult.find(@results_root_id)
   end

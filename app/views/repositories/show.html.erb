@@ -60,7 +60,7 @@
         <th>Grade</th>
       </thead>
       <tbody>
-        <%= render partial: 'module_result', collection: children %> 
+        <%= render partial: 'module_result', collection: children %>
       </tbody>
     </table>
   <% end %>
@@ -77,7 +77,7 @@
     </thead>
 
     <tbody>
-      <%= render partial: 'metric_result', collection: @metric_results %>
+      <%= render partial: 'metric_result', collection: @root_module_result.metric_results %>
     </tbody>
 
   </table>
