@@ -31,4 +31,32 @@ describe ProcessingsHelper do
       helper.find_range_snapshot(metric_result).should eq(range_snapshot_5dot1_to_10)
     end
   end
+
+  describe 'format_module_name' do
+    context 'when it is a String' do
+      let(:name) { 'org' }
+
+      it 'should not make any change' do
+        helper.format_module_name(name).should eq(name)
+      end
+    end
+
+    context 'when it is a Array' do
+      let(:name) { ['org', 'mezuro'] }
+
+      it "should return it's last element" do
+        helper.format_module_name(name).should eq(name.last)
+      end
+    end
+
+    context 'when it is a neither Array or String' do
+      let(:name) { Object.new }
+
+      it "should try to convert it to String" do
+        name.expects(:to_s)
+
+        helper.format_module_name(name)
+      end
+    end
+  end
 end

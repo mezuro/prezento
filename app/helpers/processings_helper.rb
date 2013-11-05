@@ -14,4 +14,14 @@ module ProcessingsHelper
       return range_snapshot if (range_snapshot.beginning <= metric_result.value && range_snapshot.end >= metric_result.value)
     end
   end
+
+  def format_module_name(module_name)
+    if module_name.is_a?(Array)
+      module_name.last
+    elsif module_name.is_a?(String)
+      module_name
+    else
+      module_name.to_s
+    end
+  end
 end
