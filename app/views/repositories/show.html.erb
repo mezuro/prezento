@@ -67,7 +67,6 @@
       </tbody>
     </table>
   <% end %>
-
   <hr/>
 
   <h2>Metric Results</h2>
@@ -80,7 +79,7 @@
     </thead>
 
     <tbody>
-      <%= render partial: 'metric_result', collection: @root_module_result.metric_results %>
+      <%= render partial: 'metric_result', collection: @root_module_result.metric_results, locals: {module_result: @root_module_result} %>
     </tbody>
 
   </table>
