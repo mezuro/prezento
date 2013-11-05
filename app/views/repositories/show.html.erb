@@ -52,7 +52,7 @@
     <%= format_grade(@root_module_result.grade) %>
   </p>
   <% unless @root_module_result.parent_id.nil? %>
-    <p><%= link_to '../', project_repository_module_path(@repository.project_id, @repository.id, @root_module_result.parent_id) %></p>
+    <p><i class="icon-arrow-up"></i><%= link_to '../', project_repository_module_path(@repository.project_id, @repository.id, @root_module_result.parent_id) %></p>
   <% end %>
   <% children = @root_module_result.children %>
   <% unless children.empty? %>
