@@ -2,9 +2,10 @@
 <% unless metric_configuration_snapshot.range_snapshot.nil? %>
   <% range_snapshot = find_range_snapshot(metric_result) %>
   <tr>
-    <td><%= link_to metric_configuration_snapshot.metric.name, "#", onclick: "generate_graphic('metrica', 'modulo', '12/09/2012,21/10/2013,30/05/2013','12.7,13,20')" %></td>
+    <td><%= link_to metric_configuration_snapshot.metric.name, '#', onclick: "generate_graphic(#{metric_result.id},#{metric_configuration_snapshot.metric.name}, #{module_result.module.name}, '12/09/2012,21/10/2013,30/05/2013','12.7,13,20')" %></td>
     <td><%= format_grade(metric_result.value) %></td>
     <td><%= metric_configuration_snapshot.weight %></td>
     <td><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span></td>
   </tr>
-<% end %>
+  <tr><td colspan="4"><div id="container_<%= metric_result.id %>"></div></td></tr>
+<% end %> 

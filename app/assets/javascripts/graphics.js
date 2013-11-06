@@ -1,13 +1,14 @@
-function generate_graphic(metric_name, module_name, date_list, metric_values_list)
+function generate_graphic(container_id, metric_name, module_name, date_list, metric_values_list)
 {
   date_list = date_list.split(',');
   metric_values_list = metric_values_list.split(',');
   for(var i = 0; i < metric_values_list.length; i++) {
     metric_values_list[i] = parseInt(metric_values_list[i]);
   }
+  $('#container_'+container_id).hide();
 
   $(function () {
-        $('#container').highcharts({
+        $('#container_'+container_id).highcharts({
             title: {
                 text: metric_name,
                 x: -20 //center
@@ -41,4 +42,5 @@ function generate_graphic(metric_name, module_name, date_list, metric_values_lis
             }]
         });
     });
+  $('#container_'+container_id).show('slow');
 }
