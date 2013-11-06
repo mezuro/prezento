@@ -103,8 +103,8 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    kalibro_entities (0.0.1.rc5)
-      activesupport (~> 4.0.0)
+    kalibro_entities (0.0.1.rc6)
+      activesupport (~> 4.0.1)
       savon-ng-1.6 (~> 2.4.1)
     konacha (3.0.0)
       actionpack (>= 3.1, < 5)
@@ -259,7 +259,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.3.0)
   jbuilder (~> 1.2)
   jquery-rails
-  kalibro_entities (~> 0.0.1.rc5)
+  kalibro_entities (~> 0.0.1.rc6)
   konacha (~> 3.0.0)
   mocha
   modernizr-rails

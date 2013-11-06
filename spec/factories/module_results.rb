@@ -7,7 +7,7 @@ FactoryGirl.define do
     height "6"
   end
 
-   factory :root_module_result, class: ModuleResult do
+  factory :root_module_result, class: ModuleResult do
     id "21"
     self.module { FactoryGirl.build(:module) }
     grade "6.0"
