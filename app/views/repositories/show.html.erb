@@ -87,6 +87,8 @@
 
 <hr/>
 
+<div id="container"></div>
+
 <%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
   <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
