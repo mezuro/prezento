@@ -26,7 +26,6 @@ class RepositoriesController < ApplicationController
   # GET /repositories/1/edit
   def edit
     @project_id = params[:project_id]
-    set_repository #FIXME: this method has been already called on before_action
     @repository_types = Repository.repository_types
   end
 
@@ -34,8 +33,7 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories.json
   def create
     @repository = Repository.new(repository_params)
-    @repository.project_id = params[:project_id] #TODO: refactor this
-                                                 #      project_id should be part of repository params on the form
+    @repository.project_id = params[:project_id] 
 
     respond_to do |format|
       if @repository.save
@@ -50,7 +48,6 @@ class RepositoriesController < ApplicationController
   # PUT /projects/1/repositories/1
   # PUT /projects/1/repositories/1.json
   def update
-  	set_repository
     respond_to do |format|
       if @repository.update(repository_params)
         format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: 'Repository was successfully updated.') }
