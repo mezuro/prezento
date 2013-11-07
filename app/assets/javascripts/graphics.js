@@ -1,11 +1,11 @@
-function generate_graphic(container_id, metric_name, module_name, date_list, metric_values_list)
+function chart_of_the_historic_of_metric (container_id, metric_name, module_name, date_list, metric_values_list)
 {
   date_list = date_list.split(',');
   metric_values_list = metric_values_list.split(',');
   for(var i = 0; i < metric_values_list.length; i++) {
     metric_values_list[i] = parseInt(metric_values_list[i]);
   }
-  $('#container_'+container_id).hide();
+  $('#tr_container_' + container_id).hide();
 
   $(function () {
         $('#container_'+container_id).highcharts({
@@ -37,10 +37,10 @@ function generate_graphic(container_id, metric_name, module_name, date_list, met
                 borderWidth: 0
             },
             series: [{
-                name: 'Tokyo',
+                name: 'Metric value',
                 data: metric_values_list
             }]
         });
     });
-  $('#container_'+container_id).show('slow');
+  $('#tr_container_' + container_id).show("slow");
 }
