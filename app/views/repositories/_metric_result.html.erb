@@ -2,7 +2,10 @@
 <% unless metric_configuration_snapshot.range_snapshot.nil? %>
   <% range_snapshot = find_range_snapshot(metric_result) %>
   <tr>
-    <td><%= link_to metric_configuration_snapshot.metric.name, "#metric_#{module_result.id}", onclick: "chart_of_the_historic_of_metric(#{metric_result.id},\'#{metric_configuration_snapshot.metric.name}\', \'#{module_result.module.name}\', '12/09/2012,21/10/2013,30/05/2013','12.7,13,20')", id: "metirc_#{module_result.id}" %></td>
+    <td><%= link_to metric_configuration_snapshot.metric.name, "#metric_#{module_result.id}", 
+      onclick: "chart_of_the_historic_of_metric(#{metric_result.id},\'#{metric_configuration_snapshot.metric.name}\', \'#{module_result.module.name}\', '12/09/2012,21/10/2013,30/05/2013','12.7,13,20')", 
+      id: "metirc_#{module_result.id}",
+      remote: true %></td>
     <td><%= format_grade(metric_result.value) %></td>
     <td><%= metric_configuration_snapshot.weight %></td>
     <td><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span></td>

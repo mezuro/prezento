@@ -10,7 +10,11 @@ Mezuro::Application.routes.draw do
     put '/repositories/:id' => 'repositories#update', as: :repository_update
   end
 
+  #resources :modules
+  get '/modules/metric_history' => 'modules#metric_history'
+  
   root "home#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
