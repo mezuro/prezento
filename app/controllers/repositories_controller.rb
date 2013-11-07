@@ -43,17 +43,12 @@ class RepositoriesController < ApplicationController
     @repository.project_id = params[:project_id] #TODO: refactor this
                                                  #      project_id should be part of repository params on the form
 
-
     respond_to do |format|
       if @repository.save
         format.html { redirect_to project_path(params[:project_id]), notice: 'Repository was successfully created.' }
         format.json { render action: 'show', status: :created, location: @repository }
       else
-        @project_id = params[:project_id]
-        @repository_types = Repository.repository_types
-
-        format.html { render action: 'new' }
-        format.json { render json: @repository.errors, status: :unprocessable_entity }
+        failed_action(format, 'new')
       end
     end
   end
@@ -67,11 +62,7 @@ class RepositoriesController < ApplicationController
         format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: 'Repository was successfully updated.') }
         format.json { head :no_content }
       else
-        @project_id = params[:project_id]
-        @repository_types = Repository.repository_types
-        
-        format.html { render action: 'edit' }
-        format.json { render json: @repository.errors, status: :unprocessable_entity }
+        failed_action(format, 'edit')
       end
     end
   end
@@ -87,6 +78,14 @@ class RepositoriesController < ApplicationController
   end
 
 private
+  def failed_action(format, destiny_action)
+    @project_id = params[:project_id]
+    @repository_types = Repository.repository_types
+    
+    format.html { render action: destiny_action }
+    format.json { render json: @repository.errors, status: :unprocessable_entity }
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_repository
     @repository = Repository.find(params[:id].to_i)
