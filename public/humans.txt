@@ -84,6 +84,7 @@
     HTML5, CSS3
 
     Normalize.css, jQuery, Modernizr, Twitter Bootstrap
+      Glyphicons
 
     Kalibro
       kalibro-gem
