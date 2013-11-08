@@ -21,15 +21,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     respond_to do |format|
-      if @project.save
-        current_user.project_ownerships.create project_id: @project.id
-
-        format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+      create_project_and_redir(format)
     end
   end
 
@@ -76,5 +68,18 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params[:project]
+    end
+
+    # Extracted code from create action
+    def create_project_and_redir(format)
+      if @project.save
+        current_user.project_ownerships.create project_id: @project.id
+
+        format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @project }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
 end
