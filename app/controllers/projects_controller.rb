@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     respond_to do |format|
-      create_project_and_redir(format)
+      create_and_redir(format)
     end
   end
 
@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
     end
 
     # Extracted code from create action
-    def create_project_and_redir(format)
+    def create_and_redir(format)
       if @project.save
         current_user.project_ownerships.create project_id: @project.id
 

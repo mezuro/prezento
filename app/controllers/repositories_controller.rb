@@ -36,12 +36,7 @@ class RepositoriesController < ApplicationController
     @repository.project_id = params[:project_id] 
 
     respond_to do |format|
-      if @repository.save
-        format.html { redirect_to project_path(params[:project_id]), notice: 'Repository was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @repository }
-      else
-        failed_action(format, 'new')
-      end
+      create_and_redir(format)
     end
   end
 
@@ -100,5 +95,15 @@ private
   # Start to process a repository
   def process_respository
     @repository.process if @repository.persisted?
+  end
+
+  # Code extracted from create action
+  def create_and_redir(format)
+    if @repository.save
+      format.html { redirect_to project_path(params[:project_id]), notice: 'Repository was successfully created.' }
+      format.json { render action: 'show', status: :created, location: @repository }
+    else
+      failed_action(format, 'new')
+    end
   end
 end
