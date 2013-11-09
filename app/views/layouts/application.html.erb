@@ -80,6 +80,7 @@
               <% if user_signed_in? %>
                 <li class="nav-header">User info</li>
                 <li>Hello, <strong><%= current_user.name %></strong></li>
+                <li><%= link_to 'My projects', user_projects_path(current_user.id) %></li>
               <% end %>
               <% if content_for?(:sidebar) %>
                 <%= yield :sidebar %>

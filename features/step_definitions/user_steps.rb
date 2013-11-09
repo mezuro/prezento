@@ -14,3 +14,7 @@ Then(/^my name should have changed to (.+)$/) do |text|
   @user.reload
   @user.name.should eq(text)
 end
+
+Then(/^I should be in the User Projects page$/) do
+  page.should have_content("#{@user.name} Projects")
+end

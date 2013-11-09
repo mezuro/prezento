@@ -4,27 +4,4 @@
 
 <p><% if user_signed_in? %><%= link_to 'New Project', new_project_path, class: 'btn  btn-primary' %><% end %></p>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to 'Show', project_path(project.id), class: 'btn btn-info' %></td>
-        <td>
-          <% if project_owner? project.id %>
-            <%= link_to 'Edit', edit_project_path(project.id), class: 'btn btn-info' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'shared/project_list', locals: {projects: @projects} %>
