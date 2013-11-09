@@ -1,16 +1,16 @@
 Mezuro::Application.routes.draw do
   #resources :repositories
 
-  devise_for :users
-
-  root "home#index"
-  #resources :projects
+  devise_for :users 
+  get 'users/:user_id/projects' => 'users#projects', as: :user_projects
 
   resources :projects do
     resources :repositories, except: [:update, :index]
     get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
     put '/repositories/:id' => 'repositories#update', as: :repository_update
   end
+
+  root "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
