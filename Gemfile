@@ -66,7 +66,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   # Fixtures made easy
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 4.3.0'
 
   # Deployment
   gem 'capistrano', "~>2.15.5"
