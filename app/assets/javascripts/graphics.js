@@ -1,14 +1,17 @@
-function chart_of_the_historic_of_metric (container_id, metric_name, module_name, date_list, metric_values_list)
+function chart_of_the_historic_of_metric (json_params, dinamic_values)
 {
-  date_list = date_list.split(',');
-  metric_values_list = metric_values_list.split(',');
-  for(var i = 0; i < metric_values_list.length; i++) {
-    metric_values_list[i] = parseInt(metric_values_list[i]);
-  }
-  $('#tr_container_' + container_id).hide();
+  container_id = json_params['container_id'];
+  metric_name = json_params['metric_name'];
+  module_name = json_params['module_name'];
+  dates = dinamic_values['dates'];
+  metric_values = dinamic_values['values'];
 
+  $('#tr_container_' + container_id).hide();
   $(function () {
         $('#container_'+container_id).highcharts({
+            chart: {
+            marginBottom: 80
+        },
             title: {
                 text: metric_name,
                 x: -20 //center
@@ -18,27 +21,26 @@ function chart_of_the_historic_of_metric (container_id, metric_name, module_name
                 x: -20
             },
             xAxis: {
-                categories: date_list
+                categories: dates
             },
             yAxis: {
                 title: {
                   text: 'Value'
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
+                labels: {
+                align: 'left',
+                x: 0,
+                y: -2
             },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
             },
             series: [{
                 name: 'Metric value',
-                data: metric_values_list
+                data: metric_values
             }]
         });
     });

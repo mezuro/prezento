@@ -1,9 +1,17 @@
 <% metric_configuration_snapshot = metric_result.metric_configuration_snapshot %>
 <% unless metric_configuration_snapshot.range_snapshot.nil? %>
-  <% range_snapshot = find_range_snapshot(metric_result) %>
+  <% range_snapshot = find_range_snapshot(metric_result) 
+     metric_name = metric_configuration_snapshot.metric.name
+  %>
   <tr>
-    <td><%= link_to metric_configuration_snapshot.metric.name, "#metric_#{module_result.id}", 
-      onclick: "$.get('/modules/metric_history',  function( data ) { alert( data['mk'] ); });",
+    <td><%= link_to metric_name, "#metric_#{module_result.id}", 
+      onclick: "$.get('/modules/metric_history',
+                      { metric_name: \"#{metric_name}\", 
+                        module_id: \"#{module_result.id}\"}
+                      ).done(function( data ) {
+                          json_params = JSON.parse('{\"container_id\": \"#{metric_result.id}\", \"metric_name\": \"#{metric_name}\", \"module_name\": \"#{module_result.module.name}\"}');
+                          chart_of_the_historic_of_metric (json_params, data); 
+                      });",
       id: "metric_#{module_result.id}",
       remote: true %></td>
     <td><%= format_grade(metric_result.value) %></td>
