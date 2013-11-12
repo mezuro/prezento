@@ -47,6 +47,14 @@ Given(/^I ask for the module result of the given processing$/) do
   @module_result = ModuleResult.find @processing.results_root_id
 end
 
+Given(/^I see a sample metric's name$/) do
+  page.should have_content(metric_configuration.metric.name)
+end
+
+When(/^I click on the sample metric's name$/) do
+  click_link @metric_configuration.metric.name
+end
+
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
   select text, from: field
 end
