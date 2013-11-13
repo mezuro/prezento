@@ -8,11 +8,13 @@ Given(/^I have a sample configuration with native metrics$/) do
 end
 
 Given(/^I have a sample repository within the sample project$/) do
-  @repository = FactoryGirl.create(:repository, {project_id: @project.id, configuration_id: @configuration.id, id: nil})
+  @repository = FactoryGirl.create(:repository, {project_id: @project.id, 
+                                                 configuration_id: @configuration.id, id: nil})
 end
 
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
-  @repository = FactoryGirl.create(:repository, {project_id: @project.id, configuration_id: @configuration.id, id: nil, name: name})
+  @repository = FactoryGirl.create(:repository, {project_id: @project.id, 
+                                                 configuration_id: @configuration.id, id: nil, name: name})
 end
 
 Given(/^I start to process that repository$/) do
@@ -47,12 +49,16 @@ Given(/^I ask for the module result of the given processing$/) do
   @module_result = ModuleResult.find @processing.results_root_id
 end
 
+Given(/^I ask for the metric results of the given module result$/) do
+  @metric_results = @module_result.metric_results
+end
+
 Given(/^I see a sample metric's name$/) do
-  page.should have_content(metric_configuration.metric.name)
+  page.should have_content(@metric_results.first.metric_configuration_snapshot.metric.name)
 end
 
 When(/^I click on the sample metric's name$/) do
-  click_link @metric_configuration.metric.name
+  click_link @metric_results.first.metric_configuration_snapshot.metric.name
 end
 
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
