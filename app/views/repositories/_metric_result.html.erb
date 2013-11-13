@@ -18,5 +18,9 @@
     <td><%= metric_configuration_snapshot.weight %></td>
     <td><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span></td>
   </tr>
-  <tr id="tr_container_<%= metric_result.id %>" style="display: none"><td colspan="4"><div id="container_<%= metric_result.id %>"></div></td></tr>
-<% end %> 
+  <tr id="tr_container_<%= metric_result.id %>" style="display: none">
+    <td colspan="4">
+      <div id="container_<%= metric_result.id %>"></div>
+    </td>
+  </tr>
+<% end %>
