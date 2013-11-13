@@ -30,5 +30,8 @@ class ModulesController < ApplicationController
 
     graphic.to_blob
   end
+  
+  # POST /project/1/repositories/42/modules/24
+  def load_tree; end
 
 end

@@ -8,6 +8,7 @@ Mezuro::Application.routes.draw do
     resources :repositories, except: [:update, :index]
     get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
     put '/repositories/:id' => 'repositories#update', as: :repository_update
+    post '/repositories/:id/modules/:module_result_id' => 'modules#load_tree', as: :load_module_tree 
   end
 
   #resources :modules
