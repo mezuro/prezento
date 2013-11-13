@@ -32,6 +32,8 @@ class ModulesController < ApplicationController
   end
   
   # POST /project/1/repositories/42/modules/24
-  def load_tree; end
+  def load_tree
+    render :partial => "modules/javascript.html.erb"
+  end
 
 end

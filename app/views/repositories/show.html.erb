@@ -36,6 +36,14 @@
 <% end %>
 
 <hr/>
+  <div id="teste"></div>
+  <script>
+    window.onload=function(){
+      $.post("project_load_module_tree").done(function(data){
+          $("#teste").append(data);
+      });
+    }
+  </script>
 
 <% if @processing.ready? %>
   <h2>Modules Tree</h2>
