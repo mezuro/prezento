@@ -2,32 +2,25 @@ require "spec_helper"
 
 describe ProjectsController do
   describe "routing" do
-    it 'should route to #new' do
-      get('/projects/new').should route_to('projects#new')
-    end
+    it { should route(:get, '/projects/new').
+                  to(controller: :projects, action: :new) }
 
-    it 'should route to #index' do
-      get('/projects').should route_to('projects#index')
-    end
+    it { should route(:get, '/projects').
+                  to(controller: :projects, action: :index) }
 
-    it 'should route to #create' do
-      post('/projects').should route_to('projects#create')
-    end
+    it { should route(:post, '/projects').
+                  to(controller: :projects, action: :create) }
 
-    it 'should route to #show' do
-      get('/projects/1').should route_to('projects#show', :id => "1")
-    end
+    it { should route(:get, '/projects/1').
+                  to(controller: :projects, action: :show, id: "1") }
 
-    it 'should route to #edit' do
-      get('/projects/1/edit').should route_to('projects#edit', :id => "1")
-    end
+    it { should route(:get, '/projects/1/edit').
+                  to(controller: :projects, action: :edit, id: "1") }
 
-    it 'should route to #update' do
-      put('/projects/1').should route_to('projects#update', :id => "1")
-    end
+    it { should route(:put, '/projects/1').
+                  to(controller: :projects, action: :update, id: "1") }
 
-    it 'should route to #destroy' do
-      delete('/projects/1').should route_to('projects#destroy', :id => "1")
-    end
+    it { should route(:delete, '/projects/1').
+                  to(controller: :projects, action: :destroy, id: "1") }
   end
 end
