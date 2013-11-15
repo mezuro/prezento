@@ -1,4 +1,3 @@
-require 'json'
 class ModulesController < ApplicationController
 
   # GET /modules/metric_history
@@ -11,7 +10,25 @@ class ModulesController < ApplicationController
       dates.push date
       values.push metric_history[date]
     end
-    render :json => {dates: dates, values: values}.to_json
+    
+    send_data(Base64.encode64(graphic_for(values, dates)), type: 'image/png', filename: "#{params[:module_id]}-#{params[:metric_name]}.png")
+  end
+
+  private
+
+  def graphic_for(values, dates)
+    graphic = Gruff::Line.new(400)
+    graphic.hide_title = true
+    graphic.hide_legend = true
+    graphic.theme = {
+      :background_colors => 'transparent'
+    }
+
+    graphic.labels = Hash[dates.each_with_index.map{ |date, index| [index, date.to_s]}]
+
+    graphic.data('Values', values)
+
+    graphic.to_blob
   end
 
 end

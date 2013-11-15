@@ -45,6 +45,9 @@ gem "pg", "~> 0.17.0"
 # Twitter Bootstrap for layout
 gem "twitter-bootstrap-rails", "~> 2.2.8"
 
+# Chart generation
+gem "gruff", "~> 0.5.1"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

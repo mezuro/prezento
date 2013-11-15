@@ -5,22 +5,17 @@
   %>
   <tr>
     <td><%= link_to metric_name, "#metric_#{module_result.id}", 
-      onclick: "$.get('/modules/metric_history',
-                      { metric_name: \"#{metric_name}\", 
-                        module_id: \"#{module_result.id}\"}
-                      ).done(function( data ) {
-                          json_params = JSON.parse('{\"container_id\": \"#{metric_result.id}\", \"metric_name\": \"#{metric_name}\", \"module_name\": \"#{module_result.module.name}\"}');
-                          chart_of_the_historic_of_metric (json_params, data); 
-                      });",
-      id: "metric_#{module_result.id}",
-      remote: true %></td>
+              onclick: "new Module.Graphic('container#{metric_result.id}', '#{metric_name}', '#{module_result.id}')",
+              id: "metric_#{module_result.id}",
+              remote: true %>
+    </td>
     <td><%= format_grade(metric_result.value) %></td>
     <td><%= metric_configuration_snapshot.weight %></td>
     <td><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span></td>
   </tr>
-  <tr id="tr_container_<%= metric_result.id %>" style="display: none">
+  <tr id="container<%= metric_result.id %>" style="display: none">
     <td colspan="4">
-      <div id="container_<%= metric_result.id %>"></div>
+      <div id="container<%= metric_result.id %>" class="graphic_container"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
     </td>
   </tr>
 <% end %>

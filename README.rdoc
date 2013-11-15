@@ -12,7 +12,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
   4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
 
-* System dependencies
+* System dependencies (Ubuntu package names)
 
   * build-essential
 
@@ -27,6 +27,12 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   * postgresql-server-dev-9.1
 
   * PhantomJS 1.9.1 (http://phantomjs.org/)
+
+  * imagemagick
+
+  * libmagickcore-dev
+
+  * libmagickwand-dev
 
 * Ruby version
 
