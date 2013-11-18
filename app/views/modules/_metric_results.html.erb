@@ -1,0 +1,12 @@
+<table class="table table-hover">
+  <thead>
+    <th>Metric</th>
+    <th>Value</th>
+    <th>Weight</th>
+    <th>Threshold</th>
+  </thead>
+
+  <tbody>
+    <%= render partial: 'metric_result', collection: @root_module_result.metric_results, locals: {module_result: @root_module_result} %>
+  </tbody>
+</table>

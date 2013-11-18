@@ -3,7 +3,7 @@ Feature: Show Repository
   As a regular user
   I should see it's informations
 
-  @kalibro_restart
+  @kalibro_restart @javascript
   Scenario: With a ready processing
     Given I am a regular user
     And I am signed in
@@ -26,7 +26,7 @@ Feature: Show Repository
     And I should see "Weight"
     And I should see "Threshold"
 
-  @kalibro_restart
+  @kalibro_restart @javascript
   Scenario: Just after start to process
     Given I am a regular user
     And I am signed in
@@ -45,7 +45,7 @@ Feature: Show Repository
     And I should not see Weight
     And I should not see Threshold
 
-  @kalibro_restart
+  @kalibro_restart @javascript
   Scenario: Should show modules directories root when the process has been finished
     Given I am a regular user
     And I am signed in

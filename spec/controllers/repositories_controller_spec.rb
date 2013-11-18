@@ -86,7 +86,6 @@ describe RepositoriesController do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        processing.expects(:root_module_result).returns(FactoryGirl.build(:module_result))
         repository.expects(:last_processing).returns(processing)
         KalibroEntities::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
@@ -101,14 +100,12 @@ describe RepositoriesController do
 
       before :each do
         processing = FactoryGirl.build(:processing)
-        module_result = FactoryGirl.build(:module_result)
 
-        ModuleResult.expects(:find).with(module_result.id)
         repository.expects(:last_processing).returns(processing)
         KalibroEntities::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 
-        get :show, id: repository.id.to_s, project_id: project.id.to_s, module_result_id: module_result.id
+        get :show, id: repository.id.to_s, project_id: project.id.to_s
       end
 
       it { should render_template(:show) }

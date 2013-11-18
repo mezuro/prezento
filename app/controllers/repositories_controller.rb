@@ -13,7 +13,6 @@ class RepositoriesController < ApplicationController
   def show
     @configuration = KalibroEntities::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
     @processing = @repository.last_processing
-    set_root_module_result if @processing.ready?
   end
 
   # GET projects/1/repositories/new
@@ -64,15 +63,6 @@ class RepositoriesController < ApplicationController
   end
 
 private
-  # Reducing show action cyclomatic complexity
-  def set_root_module_result
-    if params[:module_result_id].nil?
-      @root_module_result = @processing.root_module_result
-    else
-      @root_module_result = ModuleResult.find(params[:module_result_id].to_i)
-    end
-  end
-
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
     @project_id = params[:project_id]

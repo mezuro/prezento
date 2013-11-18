@@ -36,38 +36,26 @@
 <% end %>
 
 <hr/>
-<h2>Modules Tree</h2>
-<div id="module_tree"></div>
-<hr/>
-
 <% if @processing.ready? %>
+  <h2>Modules Tree</h2>
+  <div id="module_tree"></div>
+
+  <hr/>
+
   <h2>Metric Results</h2>
-  <table class="table table-hover">
-    <thead>
-      <th>Metric</th>
-      <th>Value</th>
-      <th>Weight</th>
-      <th>Threshold</th>
-    </thead>
+  <div id="metric_results"></div>
 
-    <tbody>
-      <%= render partial: 'metric_result', collection: @root_module_result.metric_results, locals: {module_result: @root_module_result} %>
-    </tbody>
-
-  </table>
+  <hr/>
+  
+  <script type="text/javascript">
+    $(document).ready(function () {
+      Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>);
+    });
+  </script>
 <% end %>
-
-<hr/>
-
-<div id="container"></div>
 
 <%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
   <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 <% end %>
 
-<script type="text/javascript">
-  $(document).ready(function () {
-    Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>);
-  });
-</script>
