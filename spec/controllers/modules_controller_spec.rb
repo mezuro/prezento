@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe ModulesController do
   describe "load_module_tree" do
-    render_views
-
     before :each do
       ModuleResult.expects(:find).with(42).returns(FactoryGirl.build(:module_result))
       request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
