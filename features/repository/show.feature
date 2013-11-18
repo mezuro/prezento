@@ -59,7 +59,7 @@ Feature: Show Repository
     When I visit the repository show page
     Then I should see the given module result
 
-  @kalibro_restart
+  @kalibro_restart @javascript
   Scenario: Should show children of root when the process has been finished
     Given I am a regular user
     And I am signed in
@@ -76,7 +76,7 @@ Feature: Show Repository
     And I should see "Granularity"
     And I should see "Grade"
 
-  @kalibro_restart
+  @kalibro_restart @javascript
   Scenario: Module navigation
     Given I am a regular user
     And I am signed in

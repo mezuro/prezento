@@ -1,0 +1,28 @@
+<p>
+  <strong>Name:</strong>
+  <%= format_module_name(@root_module_result.module.name) %>
+</p>
+<p>
+  <strong>Granularity:</strong>
+  <%= @root_module_result.module.granularity %>
+</p>
+<p>
+  <strong>Grade:</strong>
+  <%= format_grade(@root_module_result.grade) %>
+</p>
+<% unless @root_module_result.parent_id.nil? %>
+  <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} Loading data. Please, wait.', #{@root_module_result.parent_id});" %></p>
+<% end %>
+<% children = @root_module_result.children %>
+<% unless children.empty? %>
+  <table class="table table-hover">
+    <thead>
+      <th>Name</th>
+      <th>Granularity</th>
+      <th>Grade</th>
+    </thead>
+    <tbody>
+      <%= render partial: 'module_result', collection: children %>
+    </tbody>
+  </table>
+<% end %>

@@ -36,47 +36,11 @@
 <% end %>
 
 <hr/>
-  <div id="teste"></div>
-  <script>
-    window.onload=function(){
-      $.post("project_load_module_tree").done(function(data){
-          $("#teste").append(data);
-      });
-    }
-  </script>
+<h2>Modules Tree</h2>
+<div id="module_tree"></div>
+<hr/>
 
 <% if @processing.ready? %>
-  <h2>Modules Tree</h2>
-  <p>
-    <strong>Name:</strong>
-    <%= format_module_name(@root_module_result.module.name) %>
-  </p>
-  <p>
-    <strong>Granularity:</strong>
-    <%= @root_module_result.module.granularity %>
-  </p>
-  <p>
-    <strong>Grade:</strong>
-    <%= format_grade(@root_module_result.grade) %>
-  </p>
-  <% unless @root_module_result.parent_id.nil? %>
-    <p><i class="icon-arrow-up"></i><%= link_to '../', project_repository_module_path(@repository.project_id, @repository.id, @root_module_result.parent_id) %></p>
-  <% end %>
-  <% children = @root_module_result.children %>
-  <% unless children.empty? %>
-    <table class="table table-hover">
-      <thead>
-        <th>Name</th>
-        <th>Granularity</th>
-        <th>Grade</th>
-      </thead>
-      <tbody>
-        <%= render partial: 'module_result', collection: children, locals: {repository: @repository} %>
-      </tbody>
-    </table>
-  <% end %>
-  <hr/>
-
   <h2>Metric Results</h2>
   <table class="table table-hover">
     <thead>
@@ -101,3 +65,9 @@
 <% if project_owner? @repository.project_id %>
   <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>);
+  });
+</script>

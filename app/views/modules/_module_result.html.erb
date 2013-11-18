@@ -1,0 +1,12 @@
+<tr>
+	<td id="module_<%= module_result.id %>">
+    <% if module_result.folder? %>
+      <i class="icon-folder-close"></i>
+    <% else %>
+      <i class="icon-file"></i>
+    <% end %>
+    <%= link_to format_module_name(module_result.module.name), "#module_#{module_result.id}", onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} Loading data. Please, wait.', #{module_result.id});" %>
+  </td>
+	<td><%= module_result.module.granularity %></td>
+	<td><%= format_grade(module_result.grade) %></td>
+</tr>

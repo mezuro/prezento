@@ -1,5 +1,3 @@
-@Module = { }
-
 class Module.Graphic
   constructor: (@container, @metric_name, @module_id) ->
     $('tr#'+@container).slideDown('slow')

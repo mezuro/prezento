@@ -14,6 +14,11 @@ class ModulesController < ApplicationController
     send_data(Base64.encode64(graphic_for(values, dates)), type: 'image/png', filename: "#{params[:module_id]}-#{params[:metric_name]}.png")
   end
 
+  # POST /modules/1/tree
+  def load_module_tree
+    @root_module_result = ModuleResult.find(params[:id].to_i)
+  end
+
   private
 
   def graphic_for(values, dates)
@@ -31,9 +36,5 @@ class ModulesController < ApplicationController
     graphic.to_blob
   end
   
-  # POST /project/1/repositories/42/modules/24
-  def load_tree
-    render :partial => "modules/javascript.html.erb"
-  end
 
 end
