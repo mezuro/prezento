@@ -11,7 +11,7 @@
     </td>
     <td><%= format_grade(metric_result.value) %></td>
     <td><%= metric_configuration_snapshot.weight %></td>
-    <td><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span></td>
+    <td><% if range_snapshot.nil? %>Missing range<% else %><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span><% end %></td>
   </tr>
   <tr id="container<%= metric_result.id %>" style="display: none">
     <td colspan="4">
