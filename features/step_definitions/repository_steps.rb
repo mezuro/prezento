@@ -1,10 +1,14 @@
 Given(/^I have a sample configuration with native metrics$/) do
   reading_group = FactoryGirl.create(:reading_group, id: nil)
+  reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
+  range = FactoryGirl.build(:range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => '+INF'})
   @configuration = FactoryGirl.create(:configuration, id: nil)
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {id: nil,
+                                             metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
                                              configuration_id: @configuration.id})
+  range.save metric_configuration.id
 end
 
 Given(/^I have a sample repository within the sample project$/) do
