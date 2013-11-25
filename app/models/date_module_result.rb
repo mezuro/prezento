@@ -1,4 +1,4 @@
-class DateModuleResult < KalibroEntities::Entities::DateModuleResult
+class DateModuleResult < KalibroGem::Entities::DateModuleResult
   include KalibroRecord
 
   def module_result

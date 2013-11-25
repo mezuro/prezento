@@ -25,7 +25,7 @@ require 'capybara/poltergeist'
 #Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 
-#require 'kalibro_entities/kalibro_cucumber_helpers/hooks'
+#require 'kalibro_gem/kalibro_cucumber_helpers/hooks'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -78,10 +78,10 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 # Kalibro hooks
-require 'kalibro_entities/kalibro_cucumber_helpers/hooks'
+require 'kalibro_gem/kalibro_cucumber_helpers/hooks'
 
 # Configuring the right hooks
-KalibroEntities::KalibroCucumberHelpers.configure_from_yml("#{__dir__}/kalibro_cucumber_helpers.yml")
+KalibroGem::KalibroCucumberHelpers.configure_from_yml("#{__dir__}/kalibro_cucumber_helpers.yml")
 
 # Warden test helpers so the user authentication can be as fast as possible
 include Warden::Test::Helpers

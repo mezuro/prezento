@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 FactoryGirl.define do
-  factory :range, class: KalibroEntities::Entities::Range do
+  factory :range, class: KalibroGem::Entities::Range do
     beginning 1.1 
     self.end 5.1 
     reading_id 3

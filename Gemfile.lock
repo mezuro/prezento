@@ -105,7 +105,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
-    kalibro_entities (0.0.1.rc6)
+    kalibro_gem (0.0.1.rc7)
       activesupport (~> 4.0.1)
       savon-ng-1.6 (~> 2.4.1)
     konacha (3.0.0)
@@ -263,7 +263,7 @@ DEPENDENCIES
   gruff (~> 0.5.1)
   jbuilder (~> 1.2)
   jquery-rails
-  kalibro_entities (~> 0.0.1.rc6)
+  kalibro_gem (~> 0.0.1.rc7)
   konacha (~> 3.0.0)
   mocha
   modernizr-rails

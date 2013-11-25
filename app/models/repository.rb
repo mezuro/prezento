@@ -1,4 +1,4 @@
-class Repository < KalibroEntities::Entities::Repository
+class Repository < KalibroGem::Entities::Repository
 	include KalibroRecord
 
   validates :name, presence: true, kalibro_uniqueness: true

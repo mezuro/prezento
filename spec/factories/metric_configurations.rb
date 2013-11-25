@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :metric_configuration, class: KalibroEntities::Entities::MetricConfiguration do
+  factory :metric_configuration, class: KalibroGem::Entities::MetricConfiguration do
     id 1
     code 'code'
     metric {FactoryGirl.build(:metric)}

@@ -12,14 +12,14 @@ Scenario: repository creation
   And I am at the New Repository page
   And I fill the Name field with "Kalibro"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_entities.git"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
   Then I should be in the Sample Project page
   And I should not see There are no repositories yet!
   And I should see "Kalibro"
   And I should see "GIT"
-  And I should see "https://github.com/mezuro/kalibro_entities.git"
+  And I should see "https://github.com/mezuro/kalibro_gem.git"
 
 @kalibro_restart
 Scenario: repository creation blank validations
@@ -44,7 +44,7 @@ Scenario: repository creation with name already taken
   And I am at the New Repository page
   And I fill the Name field with "KalibroEntities"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_entities.git"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
   Then I should see "There's already"

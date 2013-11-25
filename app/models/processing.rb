@@ -1,4 +1,4 @@
-class Processing < KalibroEntities::Entities::Processing
+class Processing < KalibroGem::Entities::Processing
   include KalibroRecord
 
   def ready?

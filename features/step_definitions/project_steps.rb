@@ -1,4 +1,4 @@
-require 'kalibro_entities/errors'
+require 'kalibro_gem/errors'
 
 Given(/^I am at the All Projects page$/) do
   visit projects_path

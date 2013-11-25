@@ -87,7 +87,7 @@ describe RepositoriesController do
         processing = FactoryGirl.build(:processing)
 
         repository.expects(:last_processing).returns(processing)
-        KalibroEntities::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
+        KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -102,7 +102,7 @@ describe RepositoriesController do
         processing = FactoryGirl.build(:processing)
 
         repository.expects(:last_processing).returns(processing)
-        KalibroEntities::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
+        KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
