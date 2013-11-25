@@ -16,4 +16,4 @@ class Module.Graphic
             display(data,container)
 
   display: (data, container) ->
-    $('div#'+container).html('<img src="data:image/png;base64,' + data + '" />')
+    $('div#'+container).html('<img id="' + container + '" src="data:image/png;base64,' + data + '" />')

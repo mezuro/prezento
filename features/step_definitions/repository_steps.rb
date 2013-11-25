@@ -92,3 +92,10 @@ end
 Then(/^I should see a sample child's name$/) do
   page.should have_content(@module_result.children.first.module.name)
 end
+
+Then(/^I should see a loaded graphic for the sample metric$/) do
+  while (page.driver.network_traffic.last.response_parts.empty?) do
+    sleep(10)
+  end
+  page.all("img#container" + @metric_results.first.id.to_s).first.should_not be_nil
+end

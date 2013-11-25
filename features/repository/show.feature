@@ -91,7 +91,7 @@ Feature: Show Repository
     And I click on the sample child's name
     Then I should see a sample child's name
 
-  @kalibro_restart @javascript @wip
+  @kalibro_restart @javascript
   Scenario: Should show the graphic of a given metric
     Given I am a regular user
     And I am signed in
@@ -106,3 +106,5 @@ Feature: Show Repository
     When I visit the repository show page
     And I see a sample metric's name
     When I click on the sample metric's name
+    Then I should see "Loading data. Please, wait."
+    Then I should see a loaded graphic for the sample metric
