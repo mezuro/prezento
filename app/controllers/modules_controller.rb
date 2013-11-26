@@ -1,8 +1,8 @@
 class ModulesController < ApplicationController
 
-  # GET /modules/metric_history
+  # GET /modules/1/metric_history
   def metric_history
-    module_result = ModuleResult.new({ id: params[:module_id] })
+    module_result = ModuleResult.new({ id: params[:id] })
     metric_history = module_result.metric_history(params[:metric_name]) # pending: sort this hash.
     dates = Array.new
     values = Array.new

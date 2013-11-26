@@ -9,9 +9,8 @@ class Module.Graphic
     container = @container 
     display = this.display
 
-    $.get '/modules/metric_history',
+    $.get '/modules/' + @module_id + '/metric_history',
           metric_name: @metric_name
-          module_id: @module_id
           (data) ->
             display(data,container)
 

@@ -11,7 +11,7 @@ Mezuro::Application.routes.draw do
   end
 
   #resources :modules
-  get '/modules/metric_history' => 'modules#metric_history'
+  get '/modules/:id/metric_history' => 'modules#metric_history'
   post '/modules/:id/tree' => 'modules#load_module_tree'
   
   root "home#index"

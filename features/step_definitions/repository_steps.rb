@@ -97,5 +97,5 @@ Then(/^I should see a loaded graphic for the sample metric$/) do
   while (page.driver.network_traffic.last.response_parts.empty?) do
     sleep(10)
   end
-  page.all("img#container" + @metric_results.first.id.to_s).first.should_not be_nil
+  page.all("img#container" + @metric_results.first.id.to_s)[0].should_not be_nil
 end
