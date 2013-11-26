@@ -26,7 +26,9 @@ class ModulesController < ApplicationController
     graphic.hide_title = true
     graphic.hide_legend = true
     graphic.theme = {
-      :background_colors => 'transparent'
+      colors: ['grey'],
+      marker_color: 'black',
+      background_colors: '#fff',
     }
 
     graphic.labels = Hash[dates.each_with_index.map{ |date, index| [index, date.to_s]}]
