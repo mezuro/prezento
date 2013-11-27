@@ -77,6 +77,10 @@ When(/^I click on the sample child's name$/) do
   click_link @module_result.children.first.module.name
 end
 
+When(/^I click the "(.*?)" h3$/) do |text|
+  page.find('h3', text: text).click()
+end
+
 Then(/^I should see the sample repository name$/) do
   page.should have_content(@repository.name)
 end

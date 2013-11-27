@@ -14,45 +14,54 @@
 
 <hr/>
 
-<h2>Processing information</h2>
-
-<p>
-  <strong>State:</strong>
-  <%= @processing.state %>
-</p>
-
-<p>
-  <strong>Creation date:</strong>
-  <%= @processing.date.strftime("%Y/%m/%d at %Hh%M (%z)") %>
-</p>
-
-<% unless @processing.process_times.nil? %>
-  <% @processing.process_times.each do |process_time| %>
+<div id="repository-accordion">
+  <h3>Processing information</h3>
+  <div>
     <p>
-      <strong><%= process_time.state %> time:</strong>
-      <%= humanize_eplased_time(process_time.time) %>
+      <strong>State:</strong>
+      <%= @processing.state %>
     </p>
+
+    <p>
+      <strong>Creation date:</strong>
+      <%= @processing.date.strftime("%Y/%m/%d at %Hh%M (%z)") %>
+    </p>
+
+    <% unless @processing.process_times.nil? %>
+      <% @processing.process_times.each do |process_time| %>
+        <p>
+          <strong><%= process_time.state %> time:</strong>
+          <%= humanize_eplased_time(process_time.time) %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if @processing.ready? %>
+    <h3>Modules Tree</h3>
+    <div id="module_tree"></div>
+
+    <h3>Metric Results</h3>
+    <div id="metric_results"></div>
+
   <% end %>
-<% end %>
+</div>
+<script type="text/javascript">
+  <% if @processing.ready? %>
+    $(document).ready(function () {
+        Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>);
+    });
+  <% end %>
+
+  //Loads the accorcion
+  $(function() {
+    $( "#repository-accordion" ).accordion({
+      heightStyle: "content"
+    });
+  });
+</script>
 
 <hr/>
-<% if @processing.ready? %>
-  <h2>Modules Tree</h2>
-  <div id="module_tree"></div>
-
-  <hr/>
-
-  <h2>Metric Results</h2>
-  <div id="metric_results"></div>
-
-  <hr/>
-  
-  <script type="text/javascript">
-    $(document).ready(function () {
-      Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>);
-    });
-  </script>
-<% end %>
 
 <%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>

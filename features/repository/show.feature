@@ -21,7 +21,9 @@ Feature: Show Repository
     And I should see "LOADING time"
     And I should see "COLLECTING time"
     And I should see "ANALYZING time"
-    And I should see "Metric"
+    #TODO: test if the module results tree is getting rendered
+    When I click the "Metric Results" h3
+    Then I should see "Metric"
     And I should see "Value"
     And I should see "Weight"
     And I should see "Threshold"
@@ -71,6 +73,7 @@ Feature: Show Repository
     And I ask for the last ready processing of the given repository
     And I ask for the module result of the given processing
     When I visit the repository show page
+    And I click the "Modules Tree" h3
     Then I should see a sample child's name
     And I should see "Name"
     And I should see "Granularity"
@@ -88,6 +91,7 @@ Feature: Show Repository
     And I ask for the last ready processing of the given repository
     And I ask for the module result of the given processing
     When I visit the repository show page
+    And I click the "Modules Tree" h3
     And I click on the sample child's name
     Then I should see a sample child's name
 
@@ -104,6 +108,7 @@ Feature: Show Repository
     And I ask for the module result of the given processing
     And I ask for the metric results of the given module result
     When I visit the repository show page
+    And I click the "Metric Results" h3
     And I see a sample metric's name
     When I click on the sample metric's name
     Then I should see "Loading data. Please, wait."
