@@ -10,6 +10,7 @@
  *
  *= boilerplate/main.css
  *= boilerplate/normalize.css
+ *= require jquery.ui.all
  *= require_self
  *= require_tree .
  */

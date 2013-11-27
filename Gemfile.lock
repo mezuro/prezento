@@ -104,6 +104,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.0)
+      railties (>= 3.1.0)
     json (1.8.1)
     kalibro_gem (0.0.1.rc7)
       activesupport (~> 4.0.1)
@@ -263,6 +265,7 @@ DEPENDENCIES
   gruff (~> 0.5.1)
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails (~> 4.1.0)
   kalibro_gem (~> 0.0.1.rc7)
   konacha (~> 3.0.0)
   mocha

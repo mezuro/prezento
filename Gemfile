@@ -48,6 +48,9 @@ gem "twitter-bootstrap-rails", "~> 2.2.8"
 # Chart generation
 gem "gruff", "~> 0.5.1"
 
+# JQueryUI
+gem 'jquery-ui-rails', '~> 4.1.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
