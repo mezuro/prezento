@@ -3,8 +3,28 @@
 </div>
 
 <p>
+  <strong>Description:</strong>
+  <%= @repository.description %>
+</p>
+
+<p>
+  <strong>License:</strong>
+  <%= @repository.license %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @repository.type %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @repository.address %>
+</p>
+
+<p>
+  <strong>Periodicity:</strong>
+  <%= periodicity_option(@repository.process_period) %>
 </p>
 
 <p>

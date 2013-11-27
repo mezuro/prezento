@@ -97,6 +97,13 @@ Then(/^I should see a sample child's name$/) do
   page.should have_content(@module_result.children.first.module.name)
 end
 
+Then(/^I should see the given repository's content$/) do
+  page.should have_content(@repository.type)
+  page.should have_content(@repository.description)
+  page.should have_content(@repository.name)
+  page.should have_content(@repository.license)
+end
+
 Then(/^I should see a loaded graphic for the sample metric$/) do
   while (page.driver.network_traffic.last.response_parts.empty?) do
     sleep(10)

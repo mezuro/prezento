@@ -13,4 +13,10 @@ describe RepositoryHelper do
       helper.license_options.should eq YAML.load_file("config/licenses.yml").split("; ")
     end
   end
+
+  describe 'periodicity_option' do
+    it 'should return the periodicity option associated to the given number' do
+      helper.periodicity_option(1).should eq "1 day"
+    end
+  end
 end

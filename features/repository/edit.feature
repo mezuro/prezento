@@ -16,12 +16,16 @@ Feature: Repository Edit
     Then the field "Name" should be filled with "QtCalculator"
     And the field "Type" should be filled with "SUBVERSION"
     And the field "Address" should be filled with "svn://svn.code.sf.net/p/qt-calculator/code/trunk"
+    And I set the select field "Process Period" as "Weekly"
+    And I set the select field "License" as "EU DataGrid Software License (EUDatagrid)"
     When I fill the Name field with "MedSquare"
     And I set the select field "Type" as "GIT"
     And I fill the Address field with "git://git.code.sf.net/p/medsquare/git"
     And I press the Save button
     Then I should see "MedSquare"
     And I should see "git://git.code.sf.net/p/medsquare/git"
+    And I should see "Weekly"
+    And I should see "EU DataGrid Software License (EUDatagrid)"
 
   @kalibro_restart
   Scenario: editing a repository with blank fields

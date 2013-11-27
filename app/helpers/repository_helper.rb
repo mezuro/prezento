@@ -6,4 +6,8 @@ module RepositoryHelper
   def license_options
    YAML.load_file("config/licenses.yml").split("; ")
   end
+
+  def periodicity_option(periodicity)
+    periodicity_options.select {|option| option.last == periodicity}.first.first
+  end
 end
