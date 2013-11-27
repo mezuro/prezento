@@ -1,6 +1,6 @@
 class Module.Graphic
   constructor: (@container, @metric_name, @module_id) ->
-    $('tr#'+@container).slideDown('slow')
+    $('tr#'+@container).slideToggle('slow')
     this.load()
 
   load: ->
