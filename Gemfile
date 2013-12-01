@@ -75,8 +75,10 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.3.0'
 
   # Deployment
-  gem 'capistrano', "~>2.15.5"
-  gem 'rvm-capistrano'
+  gem 'capistrano', "~>3.0.1", require: false
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
 
   # JavaScript unit tests
   gem "konacha", "~> 3.0.0"

@@ -1,45 +1,54 @@
-require "rvm/capistrano"
-require 'bundler/capistrano'
+set :application, 'mezuro'
+set :repo_url, 'https://github.com/mezuro/mezuro.git'
 
-set :default_shell, "/bin/bash -l"
-set :rails_env, "production"
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
+set :deploy_to, "/home/mezuro/app"
+# set :scm, :git
+
+# set :format, :pretty
+# set :log_level, :debug
+# set :pty, true
+
+# set :linked_files, %w{config/database.yml}
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+# set :keep_releases, 5
+
+# User info
+set :user, 'mezuro'
+
+# RVM
 set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
 set :rvm_type, :user
-
-set :application, "mezuro"
-set :deploy_to, "/home/mezuro/app"
-set :repository,  "https://github.com/mezuro/mezuro.git"
-
-set :user, 'mezuro'
-set :use_sudo, false
 set :rvm_install_with_sudo, true
-default_run_options[:pty] = true
-
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-role :web, "mezuro.org"                          # Your HTTP server, Apache/etc
-role :app, "mezuro.org"                          # This may be the same as your `Web` server
-role :db,  "mezuro.org", :primary => true # This is where Rails migrations will run
-
-# before 'deploy:setup',          'rvm:install_rvm'        # install RVM
-before 'deploy:setup',          'rvm:install_ruby'       # install Ruby and create gemset, OR:
-before 'deploy:setup',          'rvm:create_gemset'      # only create gemset
-after  'deploy:assets:symlink', 'deploy:config_symlinks'
-after  'deploy:restart',        "deploy:cleanup"
 
 namespace :deploy do
-  task :start do ; end
 
-  task :stop do ; end
-
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute "touch #{File.join(current_path,'tmp','restart.txt')}"
+    end
   end
 
-  task :config_symlinks do
-    run "ln -s #{File.join(deploy_to, 'shared', 'config/database.yml')} #{File.join(release_path, 'config/database.yml')}"
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
   end
+
+  before :compile_assets, :config_symlinks do
+    on roles(:web) do
+      execute "ln -s #{File.join(deploy_to, 'shared', 'config/database.yml')} #{File.join(release_path, 'config/database.yml')}"
+    end
+  end
+
+  after :finishing, 'deploy:cleanup'
+
 end
