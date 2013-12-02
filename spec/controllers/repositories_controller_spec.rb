@@ -86,7 +86,6 @@ describe RepositoriesController do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        repository.expects(:last_processing).returns(processing)
         KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 
@@ -101,7 +100,6 @@ describe RepositoriesController do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        repository.expects(:last_processing).returns(processing)
         KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 

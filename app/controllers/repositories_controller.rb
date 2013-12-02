@@ -12,7 +12,6 @@ class RepositoriesController < ApplicationController
   # GET /projects/1/repositories/1/modules/1.json
   def show
     @configuration = KalibroGem::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
-    @processing = @repository.last_processing
   end
 
   # GET projects/1/repositories/new

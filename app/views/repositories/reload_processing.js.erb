@@ -1,0 +1,3 @@
+$('div#processing_information').html('<%= escape_javascript(render partial: "processing_information") %>');
+repository = new Module.Repository(<%= @repository.project_id %>, <%= @repository.id %>)
+repository.schedule_poll_state('<%= @processing.state %>')

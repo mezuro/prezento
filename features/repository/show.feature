@@ -59,10 +59,10 @@ Feature: Show Repository
     And I should see "Configuration"
     And I should see "State"
     And I should see "Creation date"
-    And I should not see Metric
-    And I should not see Value
-    And I should not see Weight
-    And I should not see Threshold
+    When I click the "Metric Results" h3
+    Then I should see "Loading data. Please, wait."
+    When I click the "Modules Tree" h3
+    Then I should see "Loading data. Please, wait."
 
   @kalibro_restart @javascript
   Scenario: Should show modules directories root when the process has been finished

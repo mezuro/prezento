@@ -1,0 +1,2 @@
+$('div#processing_information').html('<%= escape_javascript(render partial: "processing_information") %>');
+Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>)

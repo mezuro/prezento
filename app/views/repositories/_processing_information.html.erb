@@ -1,0 +1,18 @@
+<p>
+  <strong>State:</strong>
+  <%= @processing.state %>
+</p>
+
+<p>
+  <strong>Creation date:</strong>
+  <%= @processing.date.strftime("%Y/%m/%d at %Hh%M (%z)") %>
+</p>
+
+<% unless @processing.process_times.nil? %>
+  <% @processing.process_times.each do |process_time| %>
+    <p>
+      <strong><%= process_time.state %> time:</strong>
+      <%= humanize_eplased_time(process_time.time) %>
+    </p>
+  <% end %>
+<% end %>

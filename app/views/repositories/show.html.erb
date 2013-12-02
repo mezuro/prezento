@@ -36,44 +36,20 @@
 
 <div id="repository-accordion">
   <h3>Processing information</h3>
-  <div>
-    <p>
-      <strong>State:</strong>
-      <%= @processing.state %>
-    </p>
+  <div id="processing_information"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
 
-    <p>
-      <strong>Creation date:</strong>
-      <%= @processing.date.strftime("%Y/%m/%d at %Hh%M (%z)") %>
-    </p>
+  <h3>Modules Tree</h3>
+  <div id="module_tree"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
 
-    <% unless @processing.process_times.nil? %>
-      <% @processing.process_times.each do |process_time| %>
-        <p>
-          <strong><%= process_time.state %> time:</strong>
-          <%= humanize_eplased_time(process_time.time) %>
-        </p>
-      <% end %>
-    <% end %>
-  </div>
-
-  <% if @processing.ready? %>
-    <h3>Modules Tree</h3>
-    <div id="module_tree"></div>
-
-    <h3>Metric Results</h3>
-    <div id="metric_results"></div>
-
-  <% end %>
+  <h3>Metric Results</h3>
+  <div id="metric_results"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
 </div>
 <script type="text/javascript">
-  <% if @processing.ready? %>
     $(document).ready(function () {
-        Module.Tree.load("<%= escape_javascript(image_tag 'loader.gif') %> Loading data. Please, wait.", <%= @processing.results_root_id %>);
+      (new Module.Repository(<%= @repository.project_id %>, <%= @repository.id %>)).poll_state('')
     });
-  <% end %>
 
-  //Loads the accorcion
+  //Loads the accordion
   $(function() {
     $( "#repository-accordion" ).accordion({
       heightStyle: "content"
