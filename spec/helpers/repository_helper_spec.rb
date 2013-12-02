@@ -18,5 +18,9 @@ describe RepositoryHelper do
     it 'should return the periodicity option associated to the given number' do
       helper.periodicity_option(1).should eq "1 day"
     end
+
+    it 'should return Undefined when there is no periodicity value' do
+      helper.periodicity_option(nil).should eq "Undefined"
+    end
   end
 end
