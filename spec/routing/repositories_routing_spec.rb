@@ -18,5 +18,7 @@ describe RepositoriesController do
                   to(controller: :repositories, action: :update, project_id: 1, id: 1) }
     it { should_not route(:get, '/projects/1/repositories').
                   to(controller: :repositories, action: :index, project_id: 1) }
+    it { should route(:get, '/projects/1/repositories/1/state').
+                  to(controller: :repositories, action: :state, project_id: 1, id: 1) }
   end
 end

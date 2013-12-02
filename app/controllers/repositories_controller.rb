@@ -62,6 +62,9 @@ class RepositoriesController < ApplicationController
     end
   end
 
+  # GET /projects/1/repositories/1/state
+  def state ; end
+
 private
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
