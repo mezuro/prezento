@@ -214,7 +214,7 @@ describe RepositoriesController do
             Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
             Repository.any_instance.expects(:update).with(repository_params).returns(true)
 
-            post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
+            post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
           end
 
           it { should redirect_to(project_repository_path(repository.project_id, repository.id)) }
@@ -227,7 +227,7 @@ describe RepositoriesController do
             Repository.any_instance.expects(:update).with(repository_params).returns(false)
             Repository.expects(:repository_types).returns([])
 
-            post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
+            post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
           end
 
           it { should render_template(:edit) }
@@ -238,7 +238,7 @@ describe RepositoriesController do
         before :each do
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-          post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
+          post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
         end
 
         it { should redirect_to projects_path }
@@ -247,10 +247,56 @@ describe RepositoriesController do
 
     context 'with no user logged in' do
       before :each do
-        post :update, project_id: project.id.to_s, :id => repository.id, :repository => repository_params
+        post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
       end
 
       it { should redirect_to new_user_session_path }
+    end
+  end
+
+  describe 'state' do
+    let(:repository) { FactoryGirl.build(:repository) }
+
+    context 'with a READY state' do
+      let(:ready_processing) { FactoryGirl.build(:processing) }
+
+      before :each do
+        repository.expects(:last_processing).returns(ready_processing)
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+
+        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'
+      end
+
+      it { should respond_with(:success) }
+      it { should render_template(:load_ready_processing) }
+    end
+
+    context 'with another state then READY' do
+      let(:processing) { FactoryGirl.build(:processing, state: 'ANALYZING') }
+
+       before :each do
+        repository.expects(:last_processing).returns(processing)
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+
+        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'LOADING'
+      end
+
+      it { should respond_with(:success) }
+      it { should render_template(:reload_processing) }
+    end
+
+    context 'when it was already READY' do
+      before :each do
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+
+        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'READY'
+      end
+
+      it { should respond_with(:ok) }
+      it { should_not render_with_layout }
     end
   end
 end

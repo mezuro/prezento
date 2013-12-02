@@ -1,9 +1,9 @@
 include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
-  before_action :authenticate_user!, except: :show
-  before_action :set_repository, only: [:show, :edit, :update, :destroy]
-  before_action :check_repository_ownership, except: [:show]
+  before_action :authenticate_user!, except: [:show, :state]
+  before_action :set_repository, only: [:show, :edit, :update, :destroy, :state]
+  before_action :check_repository_ownership, except: [:show, :state]
   after_action :process_respository, only: :create
 
   # GET /projects/1/repositories/1
@@ -62,8 +62,22 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # GET /projects/1/repositories/1/state
-  def state ; end
+  # POST /projects/1/repositories/1/state
+  def state 
+    if params[:last_state] != 'READY'
+      @processing = @repository.last_processing
+
+      respond_to do |format|
+        if @processing.state == 'READY'
+          format.js { render action: 'load_ready_processing' }
+        else
+          format.js { render action: 'reload_processing' }
+        end
+      end
+    else
+      head :ok, :content_type => 'text/html' # Just don't do anything
+    end
+  end
 
 private
   # Duplicated code on create and update actions extracted here
