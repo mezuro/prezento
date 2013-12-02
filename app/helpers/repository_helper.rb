@@ -8,6 +8,10 @@ module RepositoryHelper
   end
 
   def periodicity_option(periodicity)
-    periodicity_options.select {|option| option.last == periodicity}.first.first
+    periodicity_label = periodicity_options.select {|option| option.last == periodicity}.first
+    unless periodicity_label.nil?
+      return periodicity_label.first
+    end
+    return "Undefined"
   end
 end

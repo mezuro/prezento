@@ -3,7 +3,7 @@ Feature: Show Repository
   As a regular user
   I should see it's informations
 
-  @kalibro_restart @javascript @wip
+  @kalibro_restart @javascript
   Scenario: Testing the repository values
     Given I have a sample project
     And I have a sample configuration with native metrics

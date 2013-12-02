@@ -102,6 +102,9 @@ Then(/^I should see the given repository's content$/) do
   page.should have_content(@repository.description)
   page.should have_content(@repository.name)
   page.should have_content(@repository.license)
+  page.should have_content(@repository.address)
+  page.should have_content(@configuration.name)
+  page.should have_content("1 day") # The given repository periodicity
 end
 
 Then(/^I should see a loaded graphic for the sample metric$/) do
