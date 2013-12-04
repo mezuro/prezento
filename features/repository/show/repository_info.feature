@@ -19,7 +19,7 @@ Feature: Show Repository
     And I should see "License"
     And I should see the given repository's content
 
-  @kalibro_restart @javascript
+  @kalibro_restart @javascript @wip
   Scenario: With a ready processing
     Given I am a regular user
     And I am signed in
@@ -44,6 +44,9 @@ Feature: Show Repository
     Then I should see "Name"
     And I should see "Granularity"
     And I should see "Grade"
+    When I click the "Processing information" h3
+    And I click the "Reprocess" link
+    Then I should see "LOADING"
 
   @kalibro_restart @javascript
   Scenario: Just after start to process
