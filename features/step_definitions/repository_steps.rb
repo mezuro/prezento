@@ -116,3 +116,13 @@ end
 Then(/^I should see a loaded graphic for the sample metric$/) do
   page.all("img#container" + @metric_results.first.id.to_s)[0].should_not be_nil
 end
+
+Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
+  start_time = Time.now
+  while(page.html.match(text).nil?)
+    break if (Time.now - start_time) >= timeout.to_f
+    sleep 1
+  end 
+  
+  page.should have_content(text)
+end
