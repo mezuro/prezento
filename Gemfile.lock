@@ -250,7 +250,7 @@ GEM
     wasabi-ng-1.6 (3.3.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.0)
-    websocket-driver (0.3.0)
+    websocket-driver (0.3.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
