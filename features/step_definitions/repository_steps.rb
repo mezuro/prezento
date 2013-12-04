@@ -81,6 +81,12 @@ When(/^I click the "(.*?)" h3$/) do |text|
   page.find('h3', text: text).click()
 end
 
+When(/^I wait up for the ajax request$/) do
+  while (page.driver.network_traffic.last.response_parts.empty?) do
+    sleep(10)
+  end
+end
+
 Then(/^I should see the sample repository name$/) do
   page.should have_content(@repository.name)
 end
@@ -108,8 +114,5 @@ Then(/^I should see the given repository's content$/) do
 end
 
 Then(/^I should see a loaded graphic for the sample metric$/) do
-  while (page.driver.network_traffic.last.response_parts.empty?) do
-    sleep(10)
-  end
   page.all("img#container" + @metric_results.first.id.to_s)[0].should_not be_nil
 end

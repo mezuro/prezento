@@ -20,4 +20,5 @@ Feature: Repository metric results
     And I see a sample metric's name
     When I click on the sample metric's name
     Then I should see "Loading data. Please, wait."
+    When I wait up for the ajax request
     Then I should see a loaded graphic for the sample metric
