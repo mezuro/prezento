@@ -4,7 +4,7 @@
      metric_name = metric_configuration_snapshot.metric.name
   %>
   <tr>
-    <td><%= link_to metric_name, "", 
+    <td><%= link_to "<i class='icon-align-left'></i> #{metric_name}".html_safe, "", 
               onclick: "new Module.Graphic('container#{metric_result.id}', '#{metric_name}', '#{module_result.id}')",
               id: "metric_#{module_result.id}",
               remote: true %>
