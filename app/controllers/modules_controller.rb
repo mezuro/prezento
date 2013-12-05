@@ -1,5 +1,4 @@
 class ModulesController < ApplicationController
-
   # GET /modules/1/metric_history
   def metric_history
     module_result = ModuleResult.new({ id: params[:id] })
@@ -28,15 +27,13 @@ class ModulesController < ApplicationController
     graphic.theme = {
       colors: ['grey'],
       marker_color: 'black',
-      background_colors: '#fff',
+      background_colors: '#fff'
     }
 
-    graphic.labels = Hash[dates.each_with_index.map{ |date, index| [index, date.to_s]}]
+    graphic.labels = Hash[dates.each_with_index.map{ |date, index| [index, date.strftime("%Y/%m/%d")]}]
 
     graphic.data('Values', values)
 
     graphic.to_blob
   end
-  
-
 end

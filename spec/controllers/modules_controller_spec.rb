@@ -16,12 +16,12 @@ describe ModulesController do
   describe "metric_history" do
     let (:module_id){ 1 }
     let (:metric_name ){ FactoryGirl.build(:loc).name }
-    let (:date ){ "2011-10-20T18:26:43.151+00:00" }
+    let (:date ){ DateTime.parse("2011-10-20T18:26:43.151+00:00") }
     let (:metric_result){ FactoryGirl.build(:metric_result) }
     let (:module_result){ FactoryGirl.build(:module_result) }
 
     before :each do
-      module_result #TODO discovery why this line is fundamental, without this line the test generates a nil object for module_result
+      module_result #TODO discover why this line is fundamental, without this line the test generates a nil object for module_result
       ModuleResult.expects(:new).at_least_once.with({id: module_result.id.to_s}).returns(module_result)
       module_result.expects(:metric_history).with(metric_name).returns({date => metric_result.value})
     end
@@ -43,7 +43,7 @@ describe ModulesController do
       it "should return two arrays, one of dates and other of values" do
         get :metric_history, id: module_result.id, metric_name: metric_name, module_id: module_id
         @graphic.maximum_value.should eq metric_result.value
-        @graphic.labels.first[1].should eq date  
+        @graphic.labels.first[1].should eq date.strftime("%Y/%m/%d") 
       end
     end
 
