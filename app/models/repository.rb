@@ -5,6 +5,10 @@ class Repository < KalibroGem::Entities::Repository
   validates :address, presence: true
 
   def last_processing
-    Processing.processing_of(@id)
+    if Processing.has_processing(@id)
+      Processing.processing_of(@id)
+    else
+      nil
+    end
   end
 end

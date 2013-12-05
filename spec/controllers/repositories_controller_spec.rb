@@ -255,6 +255,19 @@ describe RepositoriesController do
   describe 'state' do
     let(:repository) { FactoryGirl.build(:repository) }
 
+    context 'with no processing at all' do
+      before :each do
+        repository.expects(:last_processing).returns(nil)
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+
+        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: ''
+      end
+
+      it { should respond_with(:success) }
+      it { should render_template(:unprocessed) }
+    end
+
     context 'with a READY state' do
       let(:ready_processing) { FactoryGirl.build(:processing) }
 

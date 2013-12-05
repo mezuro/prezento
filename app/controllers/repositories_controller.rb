@@ -31,7 +31,7 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories.json
   def create
     @repository = Repository.new(repository_params)
-    @repository.project_id = params[:project_id] 
+    @repository.project_id = params[:project_id]
 
     respond_to do |format|
       create_and_redir(format)
@@ -62,12 +62,14 @@ class RepositoriesController < ApplicationController
   end
 
   # POST /projects/1/repositories/1/state
-  def state 
+  def state
     if params[:last_state] != 'READY'
       @processing = @repository.last_processing
 
       respond_to do |format|
-        if @processing.state == 'READY'
+        if @processing.nil?
+          format.js { render action: 'unprocessed' }
+        elsif @processing.state == 'READY'
           format.js { render action: 'load_ready_processing' }
         else
           format.js { render action: 'reload_processing' }
@@ -83,7 +85,7 @@ private
   def failed_action(format, destiny_action)
     @project_id = params[:project_id]
     @repository_types = Repository.repository_types
-    
+
     format.html { render action: destiny_action }
     format.json { render json: @repository.errors, status: :unprocessable_entity }
   end

@@ -5,10 +5,21 @@ describe Repository do
     describe 'last_processing' do
       subject { FactoryGirl.build(:repository) }
 
+      context 'with no processing at all' do
+        before :each do
+          Processing.expects(:has_processing).with(subject.id).returns(false)
+        end
+
+        it 'should return nil' do
+          subject.last_processing.should be_nil
+        end
+      end
+
       context 'with a ready processing' do
         let(:processing) { FactoryGirl.build(:processing) }
 
         before :each do
+          Processing.expects(:has_processing).with(subject.id).returns(true)
           Processing.expects(:has_ready_processing).with(subject.id).returns(true)
         end
 
@@ -23,6 +34,7 @@ describe Repository do
         let(:processing) { FactoryGirl.build(:processing, state: 'COLLECTING') }
 
         before :each do
+          Processing.expects(:has_processing).with(subject.id).returns(true)
           Processing.expects(:has_ready_processing).with(subject.id).returns(false)
         end
 
@@ -37,8 +49,8 @@ describe Repository do
 
   describe 'validations' do
     subject {FactoryGirl.build(:repository)}
-    
-    context 'active model validations' do  
+
+    context 'active model validations' do
       before :each do
         Repository.expects(:all).at_least_once.returns([])
       end
