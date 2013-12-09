@@ -5,12 +5,8 @@
 Mezuro is a source code tracking platform based on Noosfero social networking
 platform with Mezuro Plugin actived to access Kalibro Web Service.
 
-* Install
+=== Development
 
-  1. Make sure that the deployment file <tt>config/deploy.rb</tt> is correctly configured to the installation server;
-  2. Also, make sure that the installation server already has rvm installed;
-  3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
-  4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
 
 * System dependencies (Ubuntu package names)
 
@@ -18,15 +14,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   * curl
 
-  * libxml2
-
-  * libxml2-dev
-
-  * libxslt1-dev
-
   * postgresql-server-dev-9.1
-
-  * PhantomJS 1.9.1 (http://phantomjs.org/)
 
   * imagemagick
 
@@ -34,9 +22,22 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   * libmagickwand-dev
 
+* Unpacked dependecies
+
+  * PhantomJS >= 1.9.2 (http://phantomjs.org/)
+  
+  *NOTE:* Just create sym links for that
+  
+    cd /usr/local/share
+    wget http://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
+    tar xjf phantomjs-1.9.2-linux-x86_64.tar.bz2
+    sudo ln -s /usr/local/share/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs
+    sudo ln -s /usr/local/share/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
+    sudo ln -s /usr/local/share/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
+
 * Ruby version
 
-  2.0.0-p247
+  2.0.0-p353
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
@@ -74,7 +75,17 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   Otherwise, you can also modify the deployment file at <tt>config/deploy.rb</tt>.
 
-* License
+=== Install
+
+* First Deploy
+
+  1. Make sure that the deployment file <tt>config/deploy.rb</tt> is correctly configured to the installation server;
+  2. Also, make sure that the installation server already has rvm installed;
+  3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
+  4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
+
+
+=== License
 
 Copyright (c) 2013 The Author developers.
 
@@ -91,11 +102,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-* Authors
+=== Authors
 
 Please see the humans.txt file with the authors
 
-* Acknowledgments
+=== Acknowledgments
 
 The authors have been supported by organizations:
 
