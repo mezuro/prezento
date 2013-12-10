@@ -310,4 +310,17 @@ describe RepositoriesController do
       it { should_not render_with_layout }
     end
   end
+
+  describe 'reprocess' do
+      let(:repository) { FactoryGirl.build(:repository) }
+      before :each do
+        sign_in FactoryGirl.create(:user)
+        subject.expects(:check_repository_ownership).returns true
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+        repository.expects(:process)
+        KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
+        get :reprocess, project_id: project.id.to_s, id: repository.id
+      end
+      it { should redirect_to("/projects/#{repository.project_id}/repositories/#{repository.id}") }
+  end
 end

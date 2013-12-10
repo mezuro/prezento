@@ -80,6 +80,13 @@ class RepositoriesController < ApplicationController
     end
   end
 
+  # GET /projects/1/repositories/1/reprocess
+  def reprocess
+    set_repository.process
+    show
+    redirect_to project_repository_path(@repository.project_id, @repository.id)
+  end
+
 private
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
