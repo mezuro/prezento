@@ -23,4 +23,22 @@ describe RepositoryHelper do
       helper.periodicity_option(nil).should eq "Undefined"
     end
   end
+
+  describe 'calendar' do
+    it 'should return an array with the number of days' do
+      days = (1..31).to_a.map {|day| [day, day]}
+      helper.day_options.should eq days
+    end
+
+    it 'should return an array with the number of months' do
+      months = (1..12).to_a.map {|month| [month, month]}
+      helper.month_options.should eq months
+    end
+
+    it 'should return a range of years' do
+      years = (2013..2020).to_a.map {|year| [year, year]}
+      helper.year_options.should eq years
+    end
+  end
+
 end

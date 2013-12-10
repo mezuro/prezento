@@ -14,4 +14,16 @@ module RepositoryHelper
     end
     return "Undefined"
   end
+
+  def day_options
+    (1..31).to_a.map {|day| [day, day]}
+  end
+
+  def month_options
+    (1..12).to_a.map {|month| [month, month]}
+  end
+
+  def year_options
+    (2013..2020).to_a.map {|year| [year, year]}
+  end
 end

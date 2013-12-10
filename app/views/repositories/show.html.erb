@@ -32,6 +32,14 @@
   <%= @configuration.name %>
 </p>
 
+<p><strong> Retrieve a processing information from: </strong></p>
+
+<p> Day: <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
+Month: <%= select_tag(:month, options_for_select(month_options), :style => "width:55px; margin-top:5px") %>
+Year: <%= select_tag(:year, options_for_select(year_options), :style => "width:70px; margin-top:5px") %>
+<%= link_to 'Search', "#", class: 'btn btn-info' , style: 'margin-bottom:5px' %> </p>
+</p>
+
 <hr/>
 
 <div id="repository-accordion">
