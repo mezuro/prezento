@@ -20,7 +20,7 @@ describe RepositoriesController do
                   to(controller: :repositories, action: :index, project_id: 1) }
     it { should route(:post, '/projects/1/repositories/1/state').
                   to(controller: :repositories, action: :state, project_id: 1, id: 1) }
-    it { should route(:get, '/projects/1/repositories/1/reprocess').
-                  to(controller: :repositories, action: :reprocess, project_id: 1, id: 1) }
+    it { should route(:get, '/projects/1/repositories/1/process').
+                  to(controller: :repositories, action: :process_repository, project_id: 1, id: 1) }
   end
 end

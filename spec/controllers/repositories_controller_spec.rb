@@ -46,20 +46,17 @@ describe RepositoriesController do
       context 'with valid fields' do
         before :each do
           Repository.any_instance.expects(:save).returns(true)
-          Repository.any_instance.expects(:process)
-          Repository.any_instance.expects(:persisted?).at_least_once.returns(true)
 
           post :create, project_id: project.id, repository: repository_params
         end
 
-        it { should redirect_to(project_path(repository.project_id)) }
+        it { should redirect_to(project_repository_process_path(repository.project_id, repository.id)) }
         it { should respond_with(:redirect) }
       end
 
       context 'with an invalid field' do
         before :each do
           Repository.any_instance.expects(:save).returns(false)
-          Repository.any_instance.expects(:persisted?).at_least_once.returns(false)
           Repository.expects(:repository_types).returns([])
 
           post :create, project_id: project.id.to_s, repository: repository_params
@@ -311,16 +308,16 @@ describe RepositoriesController do
     end
   end
 
-  describe 'reprocess' do
+  describe 'process_repository' do
       let(:repository) { FactoryGirl.build(:repository) }
       before :each do
         sign_in FactoryGirl.create(:user)
         subject.expects(:check_repository_ownership).returns true
-        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
         repository.expects(:process)
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
         KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
-        get :reprocess, project_id: project.id.to_s, id: repository.id
+        get :process_repository, project_id: project.id.to_s, id: repository.id
       end
-      it { should redirect_to("/projects/#{repository.project_id}/repositories/#{repository.id}") }
+      it { should render_template(:show) }
   end
 end

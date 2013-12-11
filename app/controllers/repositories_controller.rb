@@ -2,16 +2,15 @@ include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :state]
-  before_action :set_repository, only: [:show, :edit, :update, :destroy, :state]
+  before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :process_repository]
   before_action :check_repository_ownership, except: [:show, :state]
-  after_action :process_respository, only: :create
 
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
   # GET /projects/1/repositories/1/modules/1
   # GET /projects/1/repositories/1/modules/1.json
   def show
-    @configuration = KalibroGem::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
+    set_configuration
   end
 
   # GET projects/1/repositories/new
@@ -32,7 +31,6 @@ class RepositoriesController < ApplicationController
   def create
     @repository = Repository.new(repository_params)
     @repository.project_id = params[:project_id]
-
     respond_to do |format|
       create_and_redir(format)
     end
@@ -80,11 +78,13 @@ class RepositoriesController < ApplicationController
     end
   end
 
-  # GET /projects/1/repositories/1/reprocess
-  def reprocess
-    set_repository.process
-    show
-    redirect_to project_repository_path(@repository.project_id, @repository.id)
+  # GET /projects/1/repositories/1/process
+  def process_repository
+    @repository.process
+    set_configuration
+    respond_to do |format|
+      format.html { render :show }
+    end
   end
 
 private
@@ -102,23 +102,22 @@ private
     @repository = Repository.find(params[:id].to_i)
   end
 
+  def set_configuration
+    @configuration = KalibroGem::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def repository_params
     params[:repository]
   end
 
-  # Start to process a repository
-  def process_respository
-    @repository.process if @repository.persisted?
-  end
-
   # Code extracted from create action
   def create_and_redir(format)
     if @repository.save
-      format.html { redirect_to project_path(params[:project_id]), notice: 'Repository was successfully created.' }
-      format.json { render action: 'show', status: :created, location: @repository }
+      format.html { redirect_to project_repository_process_path(@repository.project_id, @repository.id), notice: 'Repository was successfully created.' }
     else
       failed_action(format, 'new')
     end
   end
+
 end

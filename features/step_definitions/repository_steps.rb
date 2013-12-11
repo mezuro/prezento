@@ -126,3 +126,13 @@ Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
   
   page.should have_content(text)
 end
+
+Then(/^I should see the saved repository's content$/) do
+  @repository = Repository.all.last # suposing the last repository created is the only created too.
+  page.should have_content(@repository.type)
+  page.should have_content(@repository.description)
+  page.should have_content(@repository.name)
+  page.should have_content(@repository.license)
+  page.should have_content(@repository.address)
+  page.should have_content(@configuration.name)
+end

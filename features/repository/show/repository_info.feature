@@ -19,13 +19,13 @@ Feature: Show Repository
     And I should see "License"
     And I should see the given repository's content
 
-  @kalibro_restart @javascript @wip
-  Scenario: With a ready processing
+  @kalibro_restart @javascript
+  Scenario: With a ready processing and asking to reprocess
     Given I am a regular user
     And I am signed in
-    And I have a sample project
+    And I own a sample project
     And I have a sample configuration with native metrics
-    And I have a sample repository within the sample project
+    And I have a sample repository within the sample project named "QtCalculator"
     And I start to process that repository
     And I wait up for a ready processing
     When I visit the repository show page
@@ -45,7 +45,7 @@ Feature: Show Repository
     And I should see "Granularity"
     And I should see "Grade"
     When I click the "Processing information" h3
-    And I click the "Reprocess" link
+    And I click the Reprocess link
     Then I should see "LOADING"
 
   @kalibro_restart @javascript

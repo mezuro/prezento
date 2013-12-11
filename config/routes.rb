@@ -9,7 +9,7 @@ Mezuro::Application.routes.draw do
     get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
     post '/repositories/:id/state' => 'repositories#state', as: :repository_state
     put '/repositories/:id' => 'repositories#update', as: :repository_update
-    get '/repositories/:id/reprocess' => 'repositories#reprocess', as: :repository_reprocess
+    get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
   end
 
   #resources :modules

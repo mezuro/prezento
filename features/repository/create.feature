@@ -3,7 +3,7 @@ Feature: Repository Creation
   As a regular user
   I should be able to create repositories
 
-@kalibro_restart 
+@kalibro_restart
 Scenario: repository creation
   Given I am a regular user
   And I am signed in
@@ -18,11 +18,7 @@ Scenario: repository creation
   And I set the select field "Process Period" as "1 day"
   And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
-  Then I should be in the Sample Project page
-  And I should not see There are no repositories yet!
-  And I should see "Kalibro"
-  And I should see "GIT"
-  And I should see "https://github.com/mezuro/kalibro_gem.git"
+  Then I should see the saved repository's content
 
 @kalibro_restart 
 Scenario: repository creation blank validations

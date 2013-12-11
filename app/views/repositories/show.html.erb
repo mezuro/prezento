@@ -61,7 +61,7 @@
 
 <%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
-  <%= link_to 'Reprocess', project_repository_reprocess_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
+  <%= link_to 'Reprocess', project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
   <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure you want to DESTROY this repository?' }, class: 'btn btn-danger' %>
 <% end %>
 
