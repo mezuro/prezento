@@ -306,6 +306,21 @@ describe RepositoriesController do
       it { should respond_with(:ok) }
       it { should_not render_with_layout }
     end
+
+    context 'with a given date' do
+      let(:processing) { FactoryGirl.build(:processing) }
+
+      before :each do
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+        Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
+
+        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013'
+      end
+
+      it { should respond_with(:ok) }
+      it { should_not render_with_layout }
+    end
   end
 
   describe 'process_repository' do

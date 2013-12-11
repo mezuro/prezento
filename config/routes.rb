@@ -7,7 +7,6 @@ Mezuro::Application.routes.draw do
   resources :projects do
     resources :repositories, except: [:update, :index]
     get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
-    get '/repositories/:id/date' => 'repositories#date', as: :repository_date
     post '/repositories/:id/state' => 'repositories#state', as: :repository_state
     put '/repositories/:id' => 'repositories#update', as: :repository_update
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process

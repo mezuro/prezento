@@ -62,7 +62,12 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories/1/state
   def state
     if params[:last_state] != 'READY'
-      @processing = @repository.last_processing
+      if params[:day].nil?
+        @processing = @repository.last_processing
+      else
+        year, month, day = params[:year], params[:month], params[:day]
+        @processing = Processing.processing_with_date_of(@repository.id, "#{year}-#{month}-#{day}")
+      end
 
       respond_to do |format|
         if @processing.nil?

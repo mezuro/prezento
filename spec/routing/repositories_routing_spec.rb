@@ -22,7 +22,5 @@ describe RepositoriesController do
                   to(controller: :repositories, action: :state, project_id: 1, id: 1) }
     it { should route(:get, '/projects/1/repositories/1/process').
                   to(controller: :repositories, action: :process_repository, project_id: 1, id: 1) }
-    it { should route(:get, '/projects/1/repositories/1/date').
-                  to(controller: :repositories, action: :date, project_id: 1, id: 1) }
    end
 end
