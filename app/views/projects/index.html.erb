@@ -2,6 +2,15 @@
   <h1>Projects</h1>
 </div>
 
-<p><% if user_signed_in? %><%= link_to 'New Project', new_project_path, class: 'btn  btn-primary' %><% end %></p>
+<% if user_signed_in? %>
+  <p>
+    <%= link_to 'New Project', new_project_path, class: 'btn  btn-primary' %>
+  </p>
+<%else%>
+  <p class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    To create new projects you must be logged in page. 
+  </p>
+<% end %>
 
 <%= render partial: 'shared/project_list', locals: {projects: @projects} %>
