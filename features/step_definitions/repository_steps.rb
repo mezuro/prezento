@@ -87,6 +87,11 @@ When(/^I wait up for the ajax request$/) do
   end
 end
 
+When(/^I get the Creation date information as "(.*?)"$/) do |variable|
+  val = page.find('p', text: 'Creation date').text.match(/^Creation date:(.*)$/).captures.first
+  eval ("@#{variable} = '#{val}'")
+end
+
 Then(/^I should see the sample repository name$/) do
   page.should have_content(@repository.name)
 end
@@ -127,6 +132,10 @@ Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
   page.should have_content(text)
 end
 
+Then(/^I wait for "(.*?)" seconds$/) do |timeout|
+  sleep timeout.to_f
+end
+
 Then(/^I should see the saved repository's content$/) do
   @repository = Repository.all.last # suposing the last repository created is the only created too.
   page.should have_content(@repository.type)
@@ -135,4 +144,10 @@ Then(/^I should see the saved repository's content$/) do
   page.should have_content(@repository.license)
   page.should have_content(@repository.address)
   page.should have_content(@configuration.name)
+end
+
+Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|
+  v1 = eval "@#{arg1}"
+  v2 = eval "@#{arg2}"
+  (v1 < v2).should be_true
 end
