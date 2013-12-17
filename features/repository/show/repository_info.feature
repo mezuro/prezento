@@ -66,16 +66,6 @@ Feature: Show Repository
     Then I should see "Loading data. Please, wait."
     When I click the "Modules Tree" h3
     Then I should see "Loading data. Please, wait."
-    When I click the "Processing information" h3
     And I wait for "75" seconds or until I see "COLLECTING"
     And I wait for "60" seconds or until I see "ANALYZING"
     And I wait for "400" seconds or until I see "READY"
-    When I click the "Metric Results" h3
-    Then I should see "Metric"
-    And I should see "Value"
-    And I should see "Weight"
-    And I should see "Threshold"
-    When I click the "Modules Tree" h3
-    Then I should see "Name"
-    And I should see "Granularity"
-    And I should see "Grade"
