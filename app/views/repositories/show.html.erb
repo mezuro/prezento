@@ -47,14 +47,20 @@
 <hr/>
 
 <div id="repository-accordion">
-  <h3>Processing information</h3>
-  <div id="processing_information"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+  <div id="processing-accordion">
+    <h3>Processing information</h3>
+    <div id="processing_information"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+  </div>
 
-  <h3>Modules Tree</h3>
-  <div id="module_tree"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
-
-  <h3>Metric Results</h3>
-  <div id="metric_results"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+  <div id="module-accordion">
+    <h3>Modules Tree</h3>
+    <div id="module_tree"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+  </div>
+  
+  <div id="metric-accordion">
+    <h3>Metric Results</h3>
+    <div id="metric_results"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+  </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -63,9 +69,12 @@
 
   //Loads the accordion
   $(function() {
-    $( "#repository-accordion" ).accordion({
-      heightStyle: "content"
+    $( "#repository-accordion > div" ).accordion({
+      heightStyle: "content",
+      collapsible: true,
     });
+    $("#module-accordion").accordion({active: false})
+    $("#metric-accordion").accordion({active: false})
   });
 </script>
 

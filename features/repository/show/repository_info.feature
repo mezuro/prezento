@@ -36,16 +36,15 @@ Feature: Show Repository
     And I should see "COLLECTING time"
     And I should see "ANALYZING time"
     When I click the "Metric Results" h3
+    And I click the "Modules Tree" h3
     Then I should see "Metric"
     And I should see "Value"
     And I should see "Weight"
     And I should see "Threshold"
-    When I click the "Modules Tree" h3
-    Then I should see "Name"
+    And I should see "Name"
     And I should see "Granularity"
     And I should see "Grade"
-    When I click the "Processing information" h3
-    And I click the Reprocess link
+    When I click the Reprocess link
     Then I should see "LOADING"
 
   @kalibro_restart @javascript
