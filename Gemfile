@@ -85,6 +85,10 @@ group :development, :test do
 
   # Test coverage history
   gem 'coveralls', require: false
+
+  # Better error interface
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Acceptance tests
