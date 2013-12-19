@@ -12,6 +12,8 @@ Mezuro::Application.routes.draw do
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
   end
 
+  resources :reading_groups
+
   #resources :modules
   get '/modules/:id/metric_history' => 'modules#metric_history'
   post '/modules/:id/tree' => 'modules#load_module_tree'
