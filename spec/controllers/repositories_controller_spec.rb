@@ -11,7 +11,7 @@ describe RepositoriesController do
     context 'when the current user owns the project' do
       before :each do
         Repository.expects(:repository_types).returns([])
-        subject.expects(:check_repository_ownership).returns true
+        subject.expects(:repository_owner?).returns true
 
         get :new, project_id: project.id.to_s
       end
@@ -40,7 +40,7 @@ describe RepositoriesController do
 
     context 'when the current user owns the project' do
       before :each do
-        subject.expects(:check_repository_ownership).returns true
+        subject.expects(:repository_owner?).returns true
       end
 
       context 'with valid fields' do
@@ -117,7 +117,7 @@ describe RepositoriesController do
 
       context 'when the user owns the project' do
         before :each do
-          subject.expects(:check_repository_ownership).returns true
+          subject.expects(:repository_owner?).returns true
           repository.expects(:destroy)
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
@@ -159,7 +159,7 @@ describe RepositoriesController do
 
       context 'when the user owns the repository' do
         before :each do
-          subject.expects(:check_repository_ownership).returns true
+          subject.expects(:repository_owner?).returns true
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
           Repository.expects(:repository_types).returns(["SUBVERSION"])
           get :edit, id: repository.id, project_id: project.id.to_s
@@ -201,7 +201,7 @@ describe RepositoriesController do
 
       context 'when user owns the repository' do
         before :each do
-          subject.expects(:check_repository_ownership).returns true
+          subject.expects(:repository_owner?).returns true
         end
 
         context 'with valid fields' do
@@ -327,7 +327,7 @@ describe RepositoriesController do
       let(:repository) { FactoryGirl.build(:repository) }
       before :each do
         sign_in FactoryGirl.create(:user)
-        subject.expects(:check_repository_ownership).returns true
+        subject.expects(:repository_owner?).returns true
         repository.expects(:process)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
         KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))

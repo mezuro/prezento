@@ -3,7 +3,7 @@ include OwnershipAuthentication
 class ProjectsController < ApplicationController
   before_action :authenticate_user!,
     except: [:index, :show]
-  before_action :check_project_ownership, only: [:edit, :update, :destroy]
+  before_action :project_owner?, only: [:edit, :update, :destroy]
 
   # GET /projects/new
   def new
