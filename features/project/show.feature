@@ -4,7 +4,7 @@ Feature: Show Project
   I should be able to see each of them
 
 @kalibro_restart
-Scenario: Should not show the create repository link to user that doesn't own the projetct
+Scenario: Should not show the create repository link to user that doesn't own the project
   Given I am a regular user
   And I have a sample project
   And I have a sample configuration with native metrics

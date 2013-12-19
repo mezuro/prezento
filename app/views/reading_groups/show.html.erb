@@ -1,0 +1,57 @@
+<div class="page-header">
+  <h1><%= @reading_group.name %></h1>
+</div>
+
+<p>
+  <strong>Description:</strong>
+  <%= @reading_group.description %>
+</p>
+
+<hr />
+
+<h2>Readings</h2>
+
+<% if reading_group_owner? @reading_group.id %><%= link_to 'New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Address</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @reading_group_readings.size == 0 %>
+      <tr> 
+        <% col_number = reading_group_owner?(@reading_group.id) ? 4 : 3 %>
+        <td colspan="<%= col_number %>">There are no readings yet!</td>
+      </tr>
+    <% end %> 
+    <% @reading_group_readings.each do |reading| %>
+      <tr>
+        <td><%= reading.label %></td>
+        <td><%= reading.grade %></td>
+        <td><%= reading.color %></td>
+        <td>
+          <% if reading_group_owner? @reading_group.id %>
+            <%= link_to 'Edit', edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr />
+
+<p>
+  <% if project_owner? @project.id %>
+    <%= link_to 'Destroy project', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <% end %>
+</p>
