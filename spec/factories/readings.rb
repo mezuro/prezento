@@ -15,10 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 FactoryGirl.define do
-  factory :reading, class: KalibroGem::Entities::Reading do
+  factory :reading do
     id 42
     label "Good"
-    grade 10.5 
+    grade 10.5
     color "33DD33" 
     group_id 31
   end  
