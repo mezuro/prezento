@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Reading Groups</h1>
+</div>
+
+<% if user_signed_in? %>
+  <p>
+    <%= link_to 'New Reading Group', new_reading_group_path, class: 'btn  btn-primary' %>
+  </p>
+<%else%>
+  <p class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    To create new reading groups you must be logged in page. 
+  </p>
+<% end %>
+
+<%= render partial: 'shared/reading_groups_list', locals: {reading_groups: @reading_groups} %>
