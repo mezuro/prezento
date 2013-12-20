@@ -12,7 +12,9 @@ Mezuro::Application.routes.draw do
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
   end
 
-  resources :reading_groups
+  resources :reading_groups do
+    resources :readings
+  end
 
   #resources :modules
   get '/modules/:id/metric_history' => 'modules#metric_history'
