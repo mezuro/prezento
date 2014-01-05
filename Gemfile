@@ -75,7 +75,7 @@ group :development, :test do
   gem 'capistrano', "~>3.0.1", require: false
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
-  gem 'capistrano-rvm'
+  gem 'capistrano-rvm', "~>0.1.0"
 
   # JavaScript unit tests
   gem "konacha", "~> 3.0.0"
