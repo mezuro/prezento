@@ -120,7 +120,7 @@ GEM
     jquery-ui-rails (4.1.1)
       railties (>= 3.1.0)
     json (1.8.1)
-    kalibro_gem (0.0.1.rc8)
+    kalibro_gem (0.0.1.rc9)
       activesupport (~> 4.0.1)
       savon (~> 2.3.2)
     konacha (3.0.0)
