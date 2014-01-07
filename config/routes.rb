@@ -13,7 +13,7 @@ Mezuro::Application.routes.draw do
   end
 
   resources :reading_groups do
-    resources :readings
+    resources :readings, except: [:index, :show]
   end
 
   #resources :modules
