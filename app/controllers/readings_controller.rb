@@ -11,7 +11,7 @@ class ReadingsController < ApplicationController
 
   def create
     @reading = Reading.new(reading_params)
-    @reading.group_id = params[:reading_group_id]
+    @reading.group_id = params[:reading_group_id].to_i
     respond_to do |format|
       create_and_redir(format)
     end
