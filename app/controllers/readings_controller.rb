@@ -23,6 +23,20 @@ class ReadingsController < ApplicationController
     @reading_group_id = params[:reading_group_id]
   end
 
+  # PUT /reading_groups/1/readings/1
+  # PUT /reading_groups/1/readings/1.json
+  def update
+    @reading.group_id = params[:reading_group_id].to_i
+    respond_to do |format|
+      if @reading.update(reading_params)
+        format.html { redirect_to(reading_group_reading_path(params[:reading_group_id].to_i, @reading.id), notice: 'Reading was successfully updated.') }
+        format.json { head :no_content }
+      else
+        failed_action(format, 'edit')
+      end
+    end
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

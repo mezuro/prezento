@@ -102,4 +102,63 @@ describe ReadingsController do
       it { should redirect_to new_user_session_path }
     end
   end
+
+  describe 'update' do
+    let(:reading) { FactoryGirl.build(:reading) }
+    let(:reading_params) { Hash[FactoryGirl.attributes_for(:reading).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+    context 'when the user is logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when user owns the reading' do
+        before :each do
+          subject.expects(:reading_owner?).returns true
+        end
+
+        context 'with valid fields' do
+          before :each do
+            Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
+            Reading.any_instance.expects(:update).with(reading_params).returns(true)
+
+            post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
+          end
+
+          it { should redirect_to(reading_group_reading_path(reading_group.id, reading.id)) }
+          it { should respond_with(:redirect) }
+        end
+
+        context 'with an invalid field' do
+          before :each do
+            Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
+            Reading.any_instance.expects(:update).with(reading_params).returns(false)
+
+            post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
+          end
+
+          it { should render_template(:edit) }
+        end
+      end
+
+      context 'when the user does not own the reading' do
+        before :each do
+          Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
+
+          post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
+        end
+
+        it { should redirect_to reading_group_path(reading_group.id) }
+      end
+    end
+
+    context 'with no user logged in' do
+      before :each do
+        post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
+      end
+
+      it { should redirect_to new_user_session_path }
+    end
+  end
+
 end
