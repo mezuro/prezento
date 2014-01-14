@@ -1,9 +1,8 @@
 <div class="page-header">
-  <h1>Editing repository</h1>
+  <h1>Editing Repository</h1>
 </div>
 
 <%= form_for(@repository, :url => project_repository_update_url(@project_id, @repository.id), method: :put) do |f| %>
-	<%= render partial: 'form', locals: {f: f} %>
+  <%= render partial: 'form', locals: {f: f} %>
   <%= link_to 'Back', project_path(@project_id), class: 'btn btn-default' %>
 <% end %>
-

@@ -5,7 +5,7 @@ describe RepositoriesController do
 
   describe 'new' do
     before :each do
-      sign_in FactoryGirl.create(:user)
+      sign_in FactoryGirl.create(:user) #TODO create a context when there's no user logged in
     end
 
     context 'when the current user owns the project' do

@@ -6,3 +6,6 @@ Given(/^I am at the New Reading page$/) do
   visit new_reading_group_reading_url(@reading_group.id)
 end
 
+Given(/^I am at the Edit Reading page$/) do
+  visit edit_reading_group_reading_url(@reading_group.id, @reading.id)
+end
