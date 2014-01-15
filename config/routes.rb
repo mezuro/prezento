@@ -13,7 +13,7 @@ Mezuro::Application.routes.draw do
   end
 
   resources :reading_groups do
-    resources :readings, except: [:index, :update]
+    resources :readings, except: [:index, :update, :show]
     put '/readings/:id' => 'readings#update', as: :reading_update
   end
 
