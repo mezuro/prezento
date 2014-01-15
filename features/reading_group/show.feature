@@ -12,3 +12,15 @@ Scenario: Should not show the create reading link to user that doesn't own the r
   Then I should not see New Reading
   And I should not see Destroy reading group
   And I should not see Edit
+
+@kalibro_restart  @wip
+Scenario: Should show the create reading link to user that do own the reading group
+  Given I am a regular user
+  And I own a sample reading group
+  And I have a sample reading within the sample reading group
+  When I visit the Sample Reading Group page
+  Then I should be in the Sample Reading Group page
+  And I should see "Destroy"
+  And I should see "Edit"
+  And I should see "Destroy reading group"
+  And I should see "New reading group"
