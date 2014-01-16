@@ -1,5 +1,17 @@
 require 'kalibro_gem/errors'
 
+Given(/^I am at the All Reading Groups page$/) do
+  visit reading_groups_path
+end
+
+Given(/^I am at the New Reading Group page$/) do
+  visit new_reading_group_path
+end
+
+Given(/^I have a reading group named "(.*?)"$/) do |name|
+  @reading_group = FactoryGirl.create(:reading_group, {id: nil, name: name})
+end
+
 Given(/^I own a sample reading group$/) do
   @reading_group = FactoryGirl.create(:reading_group, {id: nil})
   FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})
