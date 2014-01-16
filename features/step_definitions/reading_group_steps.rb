@@ -13,13 +13,16 @@ Given(/^I visit the Sample Reading Group page$/) do
   visit reading_group_path(@reading_group.id)
 end
 
-When(/^I am at the Sample Reading Group page$/) do
-  p @reading_group
+Then(/^I should be in the Sample Reading Group page$/) do
   page.should have_content(@reading_group.name)
   page.should have_content(@reading_group.description)
 end
 
-Then(/^I should be in the Sample Reading Group page$/) do
-  page.should have_content(@reading_group.name)
-  page.should have_content(@reading_group.description)
+Then(/^I should see the information of the sample reading$/) do
+  page.should have_content(@reading.label)
+  page.should have_content(@reading.grade)
+  pager = page.body
+  color = @reading.color.downcase
+  var = (pager =~ /#{color}/)
+  var.should_not be_nil
 end
