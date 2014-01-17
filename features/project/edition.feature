@@ -3,7 +3,7 @@ Feature: Project
   As a regular user
   I should be able to edit my projects
 
-  @kalibro_restart
+  @kalibro_restarts
   Scenario: Should go to the edit page from a project that I own
     Given I am a regular user
     And I am signed in

@@ -25,6 +25,23 @@ Given(/^I visit the Sample Reading Group page$/) do
   visit reading_group_path(@reading_group.id)
 end
 
+Given(/^I am at the sample reading group edit page$/) do
+  visit edit_reading_group_path(@reading_group.id)
+end
+
+Given(/^I own a reading group named "(.*?)"$/) do |name|
+  @reading_group = FactoryGirl.create(:reading_group, {id: nil, name: name})
+  FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})
+end
+
+When(/^I visit the sample reading group edit page$/) do
+  visit edit_reading_group_path(@reading_group.id)
+end
+
+Then(/^The field "(.*?)" should be filled with the sample reading group "(.*?)"$/) do |field, value|
+  page.find_field(field).value.should eq(@reading_group.send(value))
+end
+
 Then(/^I should be in the Sample Reading Group page$/) do
   page.should have_content(@reading_group.name)
   page.should have_content(@reading_group.description)
@@ -37,4 +54,8 @@ Then(/^I should see the information of the sample reading$/) do
   color = @reading.color.downcase
   var = (pager =~ /#{color}/)
   var.should_not be_nil
+end
+
+Then(/^I should be in the Edit Reading Group page$/) do
+  visit edit_reading_group_path(@reading_group.id)
 end
