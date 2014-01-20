@@ -37,6 +37,16 @@ class ReadingsController < ApplicationController
     end
   end
 
+  # DELETE /reading_groups/1/readings/1
+  # DELETE /reading_groups/1/readings/1
+  def destroy
+    @reading.destroy
+    respond_to do |format|
+      format.html { redirect_to reading_group_path(params[:reading_group_id].to_i) }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

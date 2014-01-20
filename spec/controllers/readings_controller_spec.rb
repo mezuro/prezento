@@ -125,7 +125,7 @@ describe ReadingsController do
             post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
           end
 
-          it { should redirect_to(reading_group_reading_path(reading_group.id, reading.id)) }
+          it { should redirect_to(reading_group_path(reading_group.id)) }
           it { should respond_with(:redirect) }
         end
 
@@ -155,6 +155,48 @@ describe ReadingsController do
     context 'with no user logged in' do
       before :each do
         post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
+      end
+
+      it { should redirect_to new_user_session_path }
+    end
+  end
+
+  describe 'destroy' do
+    let(:reading) { FactoryGirl.build(:reading) }
+
+    context 'with an User logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when the user owns the reading group' do
+        before :each do
+          subject.expects(:reading_owner?).returns true
+          reading.expects(:destroy)
+          Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
+
+          delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
+        end
+
+        it { should redirect_to(reading_group_path(reading.group_id)) }
+        it { should respond_with(:redirect) }
+      end
+
+      context "when the user doesn't own the reading group" do
+        before :each do
+          Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
+
+          delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
+        end
+
+        it { should redirect_to(reading_group_path(reading.group_id)) }
+        it { should respond_with(:redirect) }
+      end
+    end
+
+    context 'with no User logged in' do
+      before :each do
+        delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
       end
 
       it { should redirect_to new_user_session_path }

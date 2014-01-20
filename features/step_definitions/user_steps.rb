@@ -18,3 +18,7 @@ end
 Then(/^I should be in the User Projects page$/) do
   page.should have_content("#{@user.name} Projects")
 end
+
+When(/^I take a picture of the page$/) do
+  page.save_screenshot("/tmp/picture.png")
+end
