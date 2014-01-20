@@ -3,7 +3,7 @@ Feature: Reading Edit
   As a regular user
   I should be able to edit my readings
 
-@kalibro_restart @wip
+@kalibro_restart
   Scenario: editing a reading successfully
     Given I am a regular user
     And I am signed in
@@ -16,9 +16,7 @@ Feature: Reading Edit
     When I fill the Label field with "Bad"
     And I press the Save button
     Then I should see "Bad"
-    And I should see "10.5"
-    And I should see "33dd33"
-
+    
   @kalibro_restart
   Scenario: editing a reading with blank fields
     Given I am a regular user

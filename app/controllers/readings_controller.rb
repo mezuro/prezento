@@ -29,7 +29,7 @@ class ReadingsController < ApplicationController
     @reading.group_id = params[:reading_group_id].to_i
     respond_to do |format|
       if @reading.update(reading_params)
-        format.html { redirect_to(reading_group_reading_path(params[:reading_group_id].to_i, @reading.id), notice: 'Reading was successfully updated.') }
+        format.html { redirect_to(reading_group_path(params[:reading_group_id].to_i), notice: 'Reading was successfully updated.') }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
