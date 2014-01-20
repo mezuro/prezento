@@ -12,6 +12,10 @@ Given(/^I have a reading group named "(.*?)"$/) do |name|
   @reading_group = FactoryGirl.create(:reading_group, {id: nil, name: name})
 end
 
+Given(/^I have a sample reading within the sample reading group$/) do
+  @reading = FactoryGirl.create(:reading, {group_id: @reading_group.id, id: nil})
+end
+
 Given(/^I own a sample reading group$/) do
   @reading_group = FactoryGirl.create(:reading_group, {id: nil})
   FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})

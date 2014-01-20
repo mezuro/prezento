@@ -19,7 +19,7 @@ Feature: Reading Edit
     And I should see "10.5"
     And I should see "33dd33"
 
-  @kalibro_restart @wip
+  @kalibro_restart
   Scenario: editing a reading with blank fields
     Given I am a regular user
     And I am signed in
@@ -34,7 +34,7 @@ Feature: Reading Edit
     And I should see "Grade can't be blank"
     And I should see "Color can't be blank"
 
-  @kalibro_restart @wip
+  @kalibro_restart
   Scenario: editing a reading with already taken name
     Given I am a regular user
     And I am signed in
