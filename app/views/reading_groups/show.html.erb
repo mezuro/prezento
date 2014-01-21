@@ -23,13 +23,14 @@
   </thead>
 
   <tbody>
-    <% if @reading_group_readings.size == 0 %>
+    <% reading_group_readings = @reading_group.readings %>
+    <% if reading_group_readings.size == 0 %>
       <tr> 
         <% col_number = reading_groups_owner?(@reading_group.id) ? 5 : 3 %>
         <td colspan="<%= col_number %>">There are no readings yet!</td>
       </tr>
     <% end %> 
-    <% @reading_group_readings.each do |reading| %>
+    <% reading_group_readings.each do |reading| %>
       <tr>
         <td><%= reading.label %></td>
         <td><%= reading.grade %></td>

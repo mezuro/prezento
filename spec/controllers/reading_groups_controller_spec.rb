@@ -65,7 +65,6 @@ describe ReadingGroupsController do
   	let(:reading) { FactoryGirl.build(:reading) }
     before :each do
       ReadingGroup.expects(:find).with(subject.id.to_s).returns(subject)
-      subject.expects(:readings).returns(reading)
       get :show, :id => subject.id
     end
 

@@ -10,7 +10,7 @@ describe ReadingsController do
 
     context 'when the current user owns the reading group' do
       before :each do
-        subject.expects(:reading_owner?).returns true
+        subject.expects(:reading_group_owner?).returns true
         get :new, reading_group_id: reading_group.id
       end
 
@@ -38,7 +38,7 @@ describe ReadingsController do
 
     context 'when the current user owns the reading group' do
       before :each do
-        subject.expects(:reading_owner?).returns true
+        subject.expects(:reading_group_owner?).returns true
       end
 
       context 'with valid fields' do

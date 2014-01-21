@@ -10,7 +10,15 @@ module OwnershipAuthentication
   end
   
   def reading_group_owner?
-    check_reading_group_ownership(params[:id])
+    if self.kind_of?(ReadingGroupsController)
+      id = params[:id]
+    elsif self.kind_of?(ReadingsController)
+      id = params[:reading_group_id]
+    else
+      raise "Not supported"
+    end
+
+    check_reading_group_ownership(id)
   end
 
   def reading_owner?

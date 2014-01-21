@@ -3,7 +3,8 @@ include OwnershipAuthentication
 class ReadingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_reading, only: [:edit, :update, :destroy]
-  before_action :reading_owner?, except: [:new]
+  before_action :reading_owner?, except: [:new, :create]
+  before_action :reading_group_owner?, only: [:new, :create]
 
   def new
     @reading_group_id = params[:reading_group_id]
