@@ -79,6 +79,5 @@ Mezuro::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Root URL for ActionMailer
-  # FIXME: Before sending to production review this
   config.action_mailer.default_url_options = { :host => 'mezuro.org' }
 end
