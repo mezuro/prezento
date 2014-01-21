@@ -1,4 +1,6 @@
 class ModulesController < ApplicationController
+  caches_action :metric_history, cache_path: Proc.new{"#{params[:id]}_#{params[:metric_name]}"}
+
   # GET /modules/1/metric_history
   def metric_history
     module_result = ModuleResult.new({ id: params[:id] })
