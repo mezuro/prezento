@@ -292,7 +292,7 @@ DEPENDENCIES
   poltergeist (~> 1.5.0)
   rails (= 4.0.2)
   rspec-rails
-  sass-rails (~> 4.0.0.rc2)
+  sass-rails (~> 4.0.1)
   sdoc
   shoulda-matchers
   simplecov
