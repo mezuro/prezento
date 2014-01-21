@@ -36,4 +36,7 @@ Mezuro::Application.configure do
 
   #Root URL for ActionMailer
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Enables page caching
+  config.action_controller.perform_caching = true
 end
