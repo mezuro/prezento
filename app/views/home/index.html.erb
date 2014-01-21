@@ -11,7 +11,9 @@
 <h2>Latest projects</h2>
 
 <ul>
-  <% @latest_projects.each do |project| %>
-    <li><%= link_to(project.name, project_path(project.id)) %></li>
+  <% cache do %>
+    <% @latest_projects.each do |project| %>
+      <li><%= link_to(project.name, project_path(project.id)) %></li>
+    <% end %>
   <% end %>
 </ul>
