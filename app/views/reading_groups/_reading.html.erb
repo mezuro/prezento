@@ -1,0 +1,14 @@
+<tr>
+  <td><%= reading.label %></td>
+  <td><%= reading.grade %></td>
+  <td style="background-color: #<%= reading.color %>; width: 20%;">&nbsp;</td>
+  <% if reading_groups_owner? @reading_group.id %>
+    <td>
+      <%= link_to 'Edit', edit_reading_group_reading_path(@reading_group.id, reading.id), class: 'btn btn-info' %>
+    </td>
+    <td>
+      <%= link_to 'Destroy', reading_group_reading_path(@reading_group.id, reading.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this reading?' }, class: 'btn btn-danger' %>
+    </td>
+    </td>
+ <% end %>
+</tr>

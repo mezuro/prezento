@@ -25,26 +25,9 @@
   <tbody>
     <% reading_group_readings = @reading_group.readings %>
     <% if reading_group_readings.size == 0 %>
-      <tr> 
-        <% col_number = reading_groups_owner?(@reading_group.id) ? 5 : 3 %>
-        <td colspan="<%= col_number %>">There are no readings yet!</td>
-      </tr>
-    <% end %> 
-    <% reading_group_readings.each do |reading| %>
-      <tr>
-        <td><%= reading.label %></td>
-        <td><%= reading.grade %></td>
-        <td style="background-color: #<%= reading.color %>; width: 20%;">&nbsp;</td>
-        <% if reading_groups_owner? @reading_group.id %>
-          <td>
-            <%= link_to 'Edit', edit_reading_group_reading_path(@reading_group.id, reading.id), class: 'btn btn-info' %>
-          </td>
-          <td>
-            <%= link_to 'Destroy', reading_group_reading_path(@reading_group.id, reading.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this reading?' }, class: 'btn btn-danger' %>
-          </td>
-          </td>
-       <% end %>
-      </tr>
+      <%= render partial: 'no_readings' %>
+    <% else %>
+      <%= render partial: 'reading', collection: reading_group_readings, as: :reading %>      
     <% end %>
   </tbody>
 </table>
