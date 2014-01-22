@@ -1,19 +1,19 @@
 <div class="page-header">
-  <h1>Sign In</h1>
+  <h1>Log in to Mezuro</h1>
 </div>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <div class="inline_div"><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %><p></div>
 
-  <div><%= f.label :password %><br />
+  <div class="inline_div"><%= f.label :password %> <a href="/users/password/new">(forgot password)</a> <br />
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div class="inline_div"><%= f.check_box :remember_me %>&nbsp<%= f.label :remember_me %></div>
   <% end -%>
+  
+  <div><%= f.submit "Sign In", class: 'btn btn-primary' %>
+  <%= render "devise/shared/links" %> </div>
 
-  <div><%= f.submit "Sign In", class: 'btn btn-primary' %></div>
 <% end %>
-
-<%= render "devise/shared/links" %>
