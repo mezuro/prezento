@@ -12,6 +12,8 @@ Mezuro::Application.routes.draw do
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
   end
 
+  resources :configurations
+
   resources :reading_groups do
     resources :readings, except: [:index, :update, :show]
     put '/readings/:id' => 'readings#update', as: :reading_update

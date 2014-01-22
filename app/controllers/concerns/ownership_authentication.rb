@@ -25,6 +25,12 @@ module OwnershipAuthentication
     check_reading_group_ownership(params[:reading_group_id])
   end
 
+  def configuration_owner?
+    check_configuration_ownership(params[:configuration_id])
+  end
+
+  private
+
   def check_project_ownership(id)
     if current_user.project_ownerships.find_by_project_id(id).nil?
       respond_to do |format|
@@ -38,6 +44,15 @@ module OwnershipAuthentication
     if current_user.reading_group_ownerships.find_by_reading_group_id(id).nil?
       respond_to do |format|
         format.html { redirect_to reading_group_url(id), notice: "You're not allowed to do this operation" }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def check_configuration_ownership(id)
+    if current_user.configuration_ownerships.find_by_configuration_id(id).nil?
+      respond_to do |format|
+        format.html { redirect_to configuration_url(id), notice: "You're not allowed to do this operation" }
         format.json { head :no_content }
       end
     end
