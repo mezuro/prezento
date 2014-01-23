@@ -5,7 +5,7 @@ class MezuroConfigurationsController < ApplicationController
   end
   
   def show
-  	@configuration = MezuroConfiguration.find(params[:id])
+  	@configuration = KalibroGem::Entities::Configuration.find(params[:id])
   end
 
   def new
