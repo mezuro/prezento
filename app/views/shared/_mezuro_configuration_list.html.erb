@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% configurations.each do |configuration| %>
+      <tr>
+        <td><%= configuration.name %></td>
+        <td><%= configuration.description %></td>
+        <td><%= link_to 'Show', mezuro_configuration_path(configuration.id), class: 'btn btn-info' %></td>
+        <td>
+          <%= link_to 'Edit', edit_mezuro_configuration_path(configuration.id), class: 'btn btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Configurations</h1>
+</div>
+
+<% if user_signed_in? %>
+  <p>
+    <%= link_to 'New configuration', new_mezuro_configuration_path, class: 'btn  btn-primary' %>
+  </p>
+<%else%>
+  <p class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    To create new configurations you must be logged in page. 
+  </p>
+<% end %>
+
+<%= render partial: 'shared/mezuro_configuration_list', locals: {configurations: @configurations} %>
