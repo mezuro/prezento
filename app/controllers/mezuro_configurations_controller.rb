@@ -1,11 +1,11 @@
 class MezuroConfigurationsController < ApplicationController
 
   def index
-    @configurations = KalibroGem::Entities::Configuration.all
+    @configurations = MezuroConfiguration.all
   end
   
   def show
-  	@configuration = KalibroGem::Entities::Configuration.find(params[:id])
+  	@configuration = MezuroConfiguration.find(params[:id])
   end
 
   def new
@@ -13,7 +13,7 @@ class MezuroConfigurationsController < ApplicationController
   end
 
   def create
-  	@configuration = KalibroGem::Entities::Configuration.new(configuration_params)
+  	@configuration = MezuroConfiguration.new(configuration_params)
   	if @configuration.save
   		redirect_to mezuro_configuration_path(@configuration.id),
   		notice: 'Configuração criada com sucesso!'
@@ -23,7 +23,7 @@ class MezuroConfigurationsController < ApplicationController
   end
 
   def edit
-    @configuration = KalibroGem::Entities::Configuration.find(params[:id])
+    @configuration = MezuroConfiguration.find(params[:id])
   end
 
   private

@@ -5,5 +5,4 @@ class MezuroConfiguration < KalibroGem::Entities::Configuration
 
   attr_accessor :name
   validates :name, presence: true, kalibro_uniqueness: true
-
 end
