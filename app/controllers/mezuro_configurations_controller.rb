@@ -13,9 +13,9 @@ class MezuroConfigurationsController < ApplicationController
   end
 
   def create
-	@configuration = MezuroConfiguration.new(configuration_params)
+	@configuration = KalibroGem::Entities::Configuration.new(configuration_params)
 	if @configuration.save
-		redirect_to @configuration,
+		redirect_to mezuro_configuration_path(@configuration.id),
 		notice: 'Configuração criada com sucesso!'
 	else
 		render action: :new
