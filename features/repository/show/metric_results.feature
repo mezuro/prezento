@@ -3,7 +3,7 @@ Feature: Repository metric results
   As a regular user
   I should see the metric results table with its graphics
 
-  @kalibro_restart @javascript
+  @wip @kalibro_restart @javascript
   Scenario: Should show the graphic of a given metric
     Given I am a regular user
     And I am signed in

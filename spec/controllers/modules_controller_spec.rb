@@ -23,11 +23,12 @@ describe ModulesController do
     before :each do
       ModuleResult.expects(:new).at_least_once.with({id: module_result.id.to_s}).returns(module_result)
       module_result.expects(:metric_history).with(metric_name).returns({date => metric_result.value})
+      subject.expire_fragment("#{module_result.id}_#{metric_name}")
     end
 
     context "testing existence of the image in the response" do
-      pending "It brokes with graphic caching" do
-        it "should return an image" do
+      it "should return an image" do
+        pending "It brokes with graphic caching" do
           get :metric_history, id: module_result.id, metric_name: metric_name, module_id: module_id      
           response.content_type.should eq "image/png"
         end
@@ -35,13 +36,12 @@ describe ModulesController do
     end
 
     context "testing parameter values" do
-      
-      before :each do
-        @graphic = Gruff::Line.new(400)
-        Gruff::Line.expects(:new).with(400).returns(@graphic)
-      end
+      pending do
+        before :each do
+          @graphic = Gruff::Line.new(400)
+          Gruff::Line.expects(:new).with(400).returns(@graphic)
+        end
 
-        pending "It brokes with graphic caching" do
         it "should return two arrays, one of dates and other of values" do
           get :metric_history, id: module_result.id, metric_name: metric_name, module_id: module_id
           @graphic.maximum_value.should eq metric_result.value

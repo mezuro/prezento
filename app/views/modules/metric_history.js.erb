@@ -1,0 +1,8 @@
+var dates = [];
+var values = [];
+<% @metric_history.keys.each do |date| %>
+  dates.push("<%= date %>");
+  values.push(<%= @metric_history[date] %>);
+<% end %>
+
+Module.Graphic.display(dates, values, '<%= @container %>');

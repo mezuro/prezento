@@ -43,7 +43,7 @@ gem "pg", "~> 0.17.0"
 gem "twitter-bootstrap-rails", "~> 2.2.8"
 
 # Chart generation
-gem "gruff", "~> 0.5.1"
+gem "chart-js-rails", "~> 0.0.6"
 
 # JQueryUI
 gem 'jquery-ui-rails', '~> 4.1.0'
