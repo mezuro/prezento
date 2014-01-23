@@ -1,15 +1,15 @@
-class ConfigurationsController < ApplicationController
+class MezuroConfigurationsController < ApplicationController
   
   def show
-  	@configuration = Configuration.find(params[:id])
+  	@configuration = MezuroConfiguration.find(params[:id])
   end
 
   def new
-    @configuration = Configuration.new
+    @configuration = MezuroConfiguration.new
   end
 
   def create
-	@configuration = Configuration.new(configuration_params)
+	@configuration = MezuroConfiguration.new(configuration_params)
 	if @configuration.save
 		redirect_to @configuration,
 		notice: 'Configuração criada com sucesso!'
@@ -22,8 +22,9 @@ class ConfigurationsController < ApplicationController
 
   def configuration_params
     params.
-     require(:configuration).
+     require(:mezuro_configuration).
       permit(:name, :description)
   end
 
 end
+
