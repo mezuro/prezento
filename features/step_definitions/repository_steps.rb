@@ -2,7 +2,7 @@ Given(/^I have a sample configuration with native metrics$/) do
   reading_group = FactoryGirl.create(:reading_group, id: nil)
   reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
   range = FactoryGirl.build(:range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => '+INF'})
-  @configuration = FactoryGirl.create(:configuration, id: nil)
+  @configuration = FactoryGirl.create(:mezuro_configuration, id: nil)
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {id: nil,
                                              metric: FactoryGirl.build(:loc),

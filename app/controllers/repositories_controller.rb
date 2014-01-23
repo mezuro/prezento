@@ -108,7 +108,7 @@ private
   end
 
   def set_configuration
-    @configuration = KalibroGem::Entities::Configuration.find(@repository.configuration_id) #FIXME: As soon as the Configuration model gets created refactor this!
+    @configuration = MezuroConfiguration.find(@repository.configuration_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

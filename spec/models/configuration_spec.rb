@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Configuration do
-  subject { FactoryGirl.build(:configuration) }
+describe MezuroConfiguration do
+  subject { FactoryGirl.build(:mezuro_configuration) }
   describe 'methods' do
     describe 'persisted?' do
       before :each do
-        Configuration.expects(:exists?).with(subject.id).returns(false)
+        MezuroConfiguration.expects(:exists?).with(subject.id).returns(false)
       end
 
       it 'should return false' do
@@ -15,7 +15,7 @@ describe Configuration do
 
     describe 'update' do
       before :each do
-        @subject_params = Hash[FactoryGirl.attributes_for(:configuration).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+        @subject_params = Hash[FactoryGirl.attributes_for(:mezuro_configuration).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
       end
 
       context 'with valid attributes' do
@@ -43,14 +43,14 @@ describe Configuration do
   describe 'validations' do
     context 'active model validations' do  
       before :each do
-        Configuration.expects(:all).at_least_once.returns([])
+        MezuroConfiguration.expects(:all).at_least_once.returns([])
       end
       it { should validate_presence_of(:name) }
     end
 
     context 'kalibro validations' do
       before :each do
-        Configuration.expects(:request).returns(42)
+        MezuroConfiguration.expects(:request).returns(42)
       end
 
       it 'should validate uniqueness' do

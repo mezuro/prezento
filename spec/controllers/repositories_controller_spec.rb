@@ -83,7 +83,7 @@ describe RepositoriesController do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
+        MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -97,7 +97,7 @@ describe RepositoriesController do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
+        MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
         Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -330,7 +330,7 @@ describe RepositoriesController do
         subject.expects(:repository_owner?).returns true
         repository.expects(:process)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-        KalibroGem::Entities::Configuration.expects(:find).with(repository.id).returns(FactoryGirl.build(:configuration))
+        MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
         get :process_repository, project_id: project.id.to_s, id: repository.id
       end
       it { should render_template(:show) }
