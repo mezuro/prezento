@@ -2,20 +2,30 @@
   <h1>Sign Up</h1>
 </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => { :class => "form-inline" }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name, class: 'control-label' %><br />
-  <%= f.text_field :name, :autofocus => true, class: 'form-control' %></div>
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %><br />
+    <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+  </div>
 
-  <div><%= f.label :email, class: 'control-label' %><br />
-  <%= f.email_field :email, class: 'form-control' %></div>
+  <div class="control-group">
+    <%= f.label :email, class: 'control-label' %><br />
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
 
-  <div><%= f.label :password, class: 'control-label' %><br />
-  <%= f.password_field :password, class: 'form-control' %></div>
+  <div class="control-group">
+    <%= f.label :password, class: 'control-label' %><br />
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
 
-  <div><%= f.label :password_confirmation, class: 'control-label' %><br />
-  <%= f.password_field :password_confirmation, class: 'form-control' %></div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, class: 'control-label' %><br />
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
 
-  <div><%= f.submit "Sign Up", class: 'btn btn-primary' %></div>
+  <div class="control-group">
+    <%= f.submit "Sign Up", class: 'btn btn-primary' %>
+  </div>
 <% end %>
