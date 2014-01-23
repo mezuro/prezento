@@ -13,13 +13,17 @@ class MezuroConfigurationsController < ApplicationController
   end
 
   def create
-	@configuration = KalibroGem::Entities::Configuration.new(configuration_params)
-	if @configuration.save
-		redirect_to mezuro_configuration_path(@configuration.id),
-		notice: 'Configuração criada com sucesso!'
-	else
-		render action: :new
-	end
+  	@configuration = KalibroGem::Entities::Configuration.new(configuration_params)
+  	if @configuration.save
+  		redirect_to mezuro_configuration_path(@configuration.id),
+  		notice: 'Configuração criada com sucesso!'
+  	else
+  		render action: :new
+  	end
+  end
+
+  def edit
+    @configuration = KalibroGem::Entities::Configuration.find(params[:id])
   end
 
   private
