@@ -2,18 +2,37 @@
   <h1>Log in to Mezuro</h1>
 </div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="inline_div"><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %><p></div>
 
-  <div class="inline_div"><%= f.label :password %> <a href="/users/password/new">(forgot password)</a> <br />
-  <%= f.password_field :password %></div>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => { :class => "form-inline" }) do |f| %>
+  <div class="control-group">
+    <%= f.label :email, :class => "control-label" %>
+    <div class="controls">
+      <%= f.email_field :email, :autofocus => true%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password, :class => "control-label" %> <a href="/users/password/new">(forgot password)</a>
+    <div class="controls">
+      <%= f.password_field :password %>
+    </div>
+  </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="inline_div"><%= f.check_box :remember_me %>&nbsp<%= f.label :remember_me %></div>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <%= f.check_box :remember_me %><%= f.label :remember_me %>
+        </label>
+      </div>
+    </div>
   <% end -%>
-  
-  <div><%= f.submit "Sign In", class: 'btn btn-primary' %>
-  <%= render "devise/shared/links" %> </div>
+
+  <div class="control-group">
+    <div class="controls controls-row span3">
+      <%= f.submit "Sign In", class: 'btn btn-primary span6' %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
 
 <% end %>

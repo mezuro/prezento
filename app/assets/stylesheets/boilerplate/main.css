@@ -94,16 +94,6 @@ textarea {
    ========================================================================== */
 
 
-.inline_div label{
-    display: inline-block;
-    margin-bottom: 0 20px;
-}
-
-.inline_div input[type='checkbox']{
-    margin:0;
-}
-
-
 
 
 
