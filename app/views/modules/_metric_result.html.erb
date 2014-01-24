@@ -15,7 +15,9 @@
   </tr>
   <tr id="container<%= metric_result.id %>" style="display: none">
     <td colspan="4">
-      <canvas id="container<%= metric_result.id %>" class="graphic_container"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</canvas>
+      <span id="loader_container<%= metric_result.id %>"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</span>
+      <canvas id="container<%= metric_result.id %>" class="graphic_container" style="display: none"></canvas>
+      <span id="container<%= metric_result.id %>" style="display: none">There is just a point and it should not be printed into a chart.</span>
     </td>
   </tr>
 <% end %>

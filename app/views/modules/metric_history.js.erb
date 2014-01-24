@@ -1,8 +1,16 @@
 var dates = [];
 var values = [];
+
 <% @metric_history.keys.each do |date| %>
   dates.push("<%= date %>");
   values.push(<%= @metric_history[date] %>);
 <% end %>
 
-Module.Graphic.display(dates, values, '<%= @container %>');
+$("#loader_<%= @container %>").hide()
+if (dates.length > 1) {
+	$("canvas#<%= @container %>").show()
+	Module.Graphic.display(dates, values, '<%= @container %>');
+}
+else {
+	$('span#<%= @container %>').show()
+}

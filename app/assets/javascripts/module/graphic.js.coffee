@@ -21,7 +21,7 @@ class Module.Graphic
       opts = {
               bezierCurve: false,
               scaleOverride: true,
-              scaleStartValue: (min_value - 2),
+              scaleStartValue: (min_value - 30),
               scaleSteps: 3,
               scaleStepWidth: 1
             }
