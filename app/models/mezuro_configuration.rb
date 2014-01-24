@@ -5,4 +5,8 @@ class MezuroConfiguration < KalibroGem::Entities::Configuration
 
   attr_accessor :name
   validates :name, presence: true, kalibro_uniqueness: true
+
+  def metric_configurations
+    KalibroGem::Entities::MetricConfiguration.metric_configurations_of(self.id)
+  end
 end

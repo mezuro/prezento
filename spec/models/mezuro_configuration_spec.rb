@@ -38,6 +38,17 @@ describe MezuroConfiguration do
         end
       end
     end
+
+    describe 'metric_configurations' do
+      subject { FactoryGirl.build(:mezuro_configuration) }
+      let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+
+      it 'should call metric_configurations_of on the Metric Configuration model' do
+        KalibroGem::Entities::MetricConfiguration.expects(:metric_configurations_of).with(subject.id).returns([metric_configuration])
+
+        subject.metric_configurations.should include(metric_configuration)
+      end
+    end
   end
 
   describe 'validations' do

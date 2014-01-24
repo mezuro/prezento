@@ -12,6 +12,7 @@ describe User do
   describe 'associations' do
     it { should have_many(:project_ownerships) }
     it { should have_many(:reading_group_ownerships) }
+    it { should have_many(:mezuro_configuration_ownerships) }
   end
 
   describe 'methods' do
@@ -42,6 +43,21 @@ describe User do
 
       it 'should return a list of reading groups owned by the user' do
         subject.reading_groups.should eq([reading_group])
+      end
+    end
+
+    describe 'mezuro_configurations' do
+      subject { FactoryGirl.build(:user) }
+      let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+      let(:mezuro_configuration_ownership) { FactoryGirl.build(:mezuro_configuration_ownership) }
+
+      before :each do
+        mezuro_configuration_ownership.expects(:mezuro_configuration).returns(mezuro_configuration)
+        subject.expects(:mezuro_configuration_ownerships).returns([mezuro_configuration_ownership])
+      end
+
+      it 'should return a list of mezuro configurations owned by the user' do
+        subject.mezuro_configurations.should eq([mezuro_configuration])
       end
     end
   end

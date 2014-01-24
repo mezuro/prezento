@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :project_ownerships
   
   has_many :reading_group_ownerships
+
+  has_many :mezuro_configuration_ownerships
   # Alert: when adding new parameters to this model, they should also be added to registrations_controller
 
   def projects
@@ -19,5 +21,9 @@ class User < ActiveRecord::Base
   
   def reading_groups
     reading_group_ownerships.map { |reading_group_ownership| reading_group_ownership.reading_group }
+  end
+
+  def mezuro_configurations
+    mezuro_configuration_ownerships.map { |mezuro_configuration_ownership| mezuro_configuration_ownership.mezuro_configuration }
   end
 end

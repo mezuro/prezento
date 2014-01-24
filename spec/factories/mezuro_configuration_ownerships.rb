@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :mezuro_configuration_ownership do
     user_id 1
-    configuration_id 1
+    mezuro_configuration_id 1
   end
 end
