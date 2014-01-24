@@ -1,6 +1,4 @@
 Mezuro::Application.routes.draw do
-  #resources :repositories
-
   devise_for :users 
   get 'users/:user_id/projects' => 'users#projects', as: :user_projects
 

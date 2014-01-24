@@ -1,4 +1,4 @@
-FactoryGirl.define do
+  FactoryGirl.define do
   factory :mezuro_configuration, class: MezuroConfiguration do
     id 1
     name "Java"

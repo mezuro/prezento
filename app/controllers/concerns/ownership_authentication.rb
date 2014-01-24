@@ -25,8 +25,8 @@ module OwnershipAuthentication
     check_reading_group_ownership(params[:reading_group_id])
   end
 
-  def configuration_owner?
-    check_configuration_ownership(params[:configuration_id])
+  def mezuro_configuration_owner?
+    check_mezuro_configuration_ownership(params[:configuration_id])
   end
 
   private
@@ -49,10 +49,10 @@ module OwnershipAuthentication
     end
   end
 
-  def check_configuration_ownership(id)
-    if current_user.configuration_ownerships.find_by_configuration_id(id).nil?
+  def check_mezuro_configuration_ownership(id)
+    if current_user.mezuro_configuration_ownerships.find_by_mezuro_configuration_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to configuration_url(id), notice: "You're not allowed to do this operation" }
+        format.html { redirect_to mezuro_configuration_url(id), notice: "You're not allowed to do this operation" }
         format.json { head :no_content }
       end
     end
