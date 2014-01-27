@@ -16,12 +16,12 @@
 FactoryGirl.define do
   factory :repository, class: Repository do
     id 1
-    name "QtCalculator"
+    name "SBKing"
     description "A simple calculator"
     license "GPLv3"
     process_period 1
-    type "SUBVERSION"
-    address "svn://svn.code.sf.net/p/qt-calculator/code/trunk"
+    type "GIT"
+    address "https://git.gitorious.org/sbking/sbking.git"
     configuration_id 1
     project_id 1
     send_email "test@test.com"

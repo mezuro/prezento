@@ -119,7 +119,7 @@ Then(/^I should see the given repository's content$/) do
 end
 
 Then(/^I should see a loaded graphic for the sample metric$/) do
-  page.all("img#container" + @metric_results.first.id.to_s)[0].should_not be_nil
+  page.all("canvas#container" + @metric_results.first.id.to_s)[0].should_not be_nil
 end
 
 Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
