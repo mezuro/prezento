@@ -3,7 +3,7 @@ class ModulesController < ApplicationController
 
   # POST /modules/1/metric_history
   def metric_history
-    module_result = ModuleResult.new({ id: params[:id] })
+    module_result = ModuleResult.find(params[:id].to_i)
     @container = params[:container]
     @metric_history = module_result.metric_history(params[:metric_name]) # pending: sort this hash.  
   end
