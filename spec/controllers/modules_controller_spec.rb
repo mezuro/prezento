@@ -22,7 +22,6 @@ describe ModulesController do
 
     before :each do
       ModuleResult.expects(:find).at_least_once.with(module_result.id).returns(module_result)
-      module_result.expects(:metric_history).with(metric_name).returns({date => metric_result.value})
       subject.expire_fragment("#{module_result.id}_#{metric_name}")
 
       request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
