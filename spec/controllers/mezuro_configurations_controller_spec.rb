@@ -90,7 +90,7 @@ describe MezuroConfigurationsController do
           @ownership.expects(:destroy)
           @subject.expects(:destroy)
 
-          #Those two mocks looks the same but they are necessary since params[:id] is a String and @mezuro_configuration.id is an Integer :(
+          #Those two mocks looks the same but they are necessary since params[:id] is a String and @configuration.id is an Integer :(
           @ownerships.expects(:find_by_mezuro_configuration_id).with("#{@subject.id}").returns(@ownership)
           @ownerships.expects(:find_by_mezuro_configuration_id).with(@subject.id).returns(@ownership)
 
@@ -164,8 +164,8 @@ describe MezuroConfigurationsController do
 
         it { should render_template(:edit) }
 
-        it 'should assign to @mezuro_configuration the @subject' do
-          assigns(:mezuro_configuration).should eq(@subject)
+        it 'should assign to @configuration the @subject' do
+          assigns(:configuration).should eq(@subject)
         end
       end
 
