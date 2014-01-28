@@ -11,4 +11,7 @@
 
 <p>
   <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
+  <% if configuration_owner? @configuration.id %>
+    <%= link_to 'Destroy configuration', mezuro_configuration_path(@configuration.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <% end %>
 </p>

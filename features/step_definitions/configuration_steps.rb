@@ -15,8 +15,8 @@ Given(/^I have a sample configuration$/) do
 end
 
 Given(/^I own a sample configuration$/) do
-  @mezuro_configuration = FactoryGirl.build(:mezuro_configuration, {id: nil})
-  FactoryGirl.create(:mezuro_configuration_ownership, {user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
+  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil})
+  FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
 end
 
 Given(/^I am at the Sample Configuration page$/) do
@@ -28,12 +28,12 @@ Given(/^I am at the sample configuration edit page$/) do
 end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
-  @mezuro_configuration = FactoryGirl.build(:mezuro_configuration, {id: nil, name: name})
-  FactoryGirl.create(:mezuro_configuration_ownership, {user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
+  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil, name: name})
+  FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
 end
 
 When(/^I visit the sample configuration edit page$/) do
-  visit edit_mezuro_configuration(@mezuro_configuration.id)
+  visit edit_mezuro_configuration_path(@mezuro_configuration.id)
 end
 
 Then(/^I should be in the Edit Configuration page$/) do
