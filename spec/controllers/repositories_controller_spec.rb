@@ -333,6 +333,6 @@ describe RepositoriesController do
         MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
         get :process_repository, project_id: project.id.to_s, id: repository.id
       end
-      it { should render_template(:show) }
+      it { should redirect_to(project_repository_path(repository.project_id, repository.id)) }
   end
 end

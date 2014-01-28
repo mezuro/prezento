@@ -88,7 +88,7 @@ class RepositoriesController < ApplicationController
     @repository.process
     set_configuration
     respond_to do |format|
-      format.html { render :show }
+      format.html { redirect_to project_repository_path(@repository.project_id, @repository.id) }
     end
   end
 
