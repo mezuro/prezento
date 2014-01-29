@@ -27,6 +27,4 @@ Feature: Project listing
     And I have a sample project
     And I am at the All Projects page
     When I click the Show link
-    Then I should see "Name"
-    And I should see "Description"
-    And the sample project should be there
+    Then the sample project should be there

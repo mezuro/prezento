@@ -27,6 +27,4 @@ Feature: Configuration listing
     And I have a sample configuration
     And I am at the All Configurations page
     When I click the Show link
-    Then I should see "Name"
-    And I should see "Description"
-    And the sample configuration should be there
+    Then the sample configuration should be there

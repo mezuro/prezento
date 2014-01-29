@@ -10,12 +10,10 @@ Feature: Repository Edit
     And I own a sample project
     And I have a sample configuration with native metrics
     And I have a sample repository within the sample project named "QtCalculator"
-    And I start to process that repository
-    And I wait up for a ready processing
     And I am at repository edit page
     Then the field "Name" should be filled with "QtCalculator"
-    And the field "Type" should be filled with "SUBVERSION"
-    And the field "Address" should be filled with "svn://svn.code.sf.net/p/qt-calculator/code/trunk"
+    And the field "Type" should be filled with "GIT"
+    And the field "Address" should be filled with "https://git.gitorious.org/sbking/sbking.git"
     And I set the select field "Process Period" as "Weekly"
     And I set the select field "License" as "EU DataGrid Software License (EUDatagrid)"
     When I fill the Name field with "MedSquare"
