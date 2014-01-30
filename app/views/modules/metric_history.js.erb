@@ -5,7 +5,7 @@
   var values = [];
 
   <% metric_history.keys.each do |date| %>
-    dates.push("<%= date %>");
+    dates.push("<%= date.to_s[0,10] %>");
     values.push(<%= metric_history[date] %>);
   <% end %>
 

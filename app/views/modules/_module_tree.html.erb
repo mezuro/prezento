@@ -14,7 +14,7 @@
   <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} Loading data. Please, wait.', #{@root_module_result.parent_id});" %></p>
 <% end %>
 
-<% cache do %>
+<% cache("#{@root_module_result.id}_tree") do %>
   <% children = @root_module_result.children %>
   <% unless children.empty? %>
     <table class="table table-hover">
