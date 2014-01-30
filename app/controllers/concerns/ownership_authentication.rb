@@ -47,6 +47,8 @@ module OwnershipAuthentication
         format.json { head :no_content }
       end
     end
+
+    return true
   end
 
   def check_mezuro_configuration_ownership(id)
