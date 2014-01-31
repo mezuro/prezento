@@ -7,11 +7,29 @@
   <%= @configuration.description %>
 </p>
 
-<hr />
+<hr>
+
+<h2> Metrics </h2>
+
+<% if configuration_owner? @configuration.id %>
+  <%= link_to 'Add Metric', new_mezuro_configuration_metric_configuration_path(@configuration), class: 'btn btn-info' %>
+<% end %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Metric Name</th>
+      <th>Code</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+</table>
+
+<hr>
 
 <p>
-  <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
-  <% if configuration_owner? @configuration.id %>
-    <%= link_to 'Destroy configuration', mezuro_configuration_path(@configuration.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-  <% end %>
+ <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
+ <% if configuration_owner? @configuration.id %>
+   <%= link_to 'Destroy Configuration', mezuro_configuration_path(@configuration.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+ <% end %>
 </p>

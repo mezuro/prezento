@@ -10,7 +10,11 @@ Mezuro::Application.routes.draw do
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
   end
 
-  resources :mezuro_configurations
+  resources :mezuro_configurations do
+    resources :metric_configurations, except: [:update]
+    get '/metric_configurations/:id/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
+    put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update
+  end
 
   resources :reading_groups do
     resources :readings, except: [:index, :update, :show]
