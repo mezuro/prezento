@@ -4,7 +4,14 @@ class MetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :mezuro_configuration_owner?, except: [:show]
        
+  def choose_metric
+    @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
+    @base_tools = KalibroGem::Entities::BaseTool.all
+  end
+
   def new
+    @base_tool_name = params[:base_tool_name]
+    @metric = KalibroGem::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration = MetricConfiguration.new
   end

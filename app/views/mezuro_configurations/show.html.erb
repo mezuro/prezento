@@ -12,7 +12,7 @@
 <h2> Metrics </h2>
 
 <% if configuration_owner? @configuration.id %>
-  <%= link_to 'Add Metric', new_mezuro_configuration_metric_configuration_path(@configuration), class: 'btn btn-info' %>
+  <%= link_to 'Add Metric', mezuro_configuration_choose_metric_path(@configuration), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
