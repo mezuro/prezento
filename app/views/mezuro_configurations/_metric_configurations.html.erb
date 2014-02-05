@@ -1,0 +1,17 @@
+<tr>
+  <td><%= metric_configuration.metric.name %></td>
+  <td><%= metric_configuration.code %></td>
+  <td><%= metric_configuration.weight %></td>
+  <% if mezuro_configuration_owner? @mezuro_configuration.id %>
+    <td>
+      <%= link_to 'Edit', edit_mezuro_configuration_metric_configurations_path(@mezuro_configuration.id, metric_configuration.id), 
+                  class: 'btn btn-info' %>
+    </td>
+    <td>
+      <%= link_to 'Destroy', mezuro_configuration_metric_configurations_path(@mezuro_configuration.id, metric_configuration.id), 
+                   method: :delete, data: { confirm: 'Are you sure that you want to destroy this metric configuration?' }, 
+                   class: 'btn btn-danger' %>
+    </td>
+    </td>
+ <% end %>
+</tr>
