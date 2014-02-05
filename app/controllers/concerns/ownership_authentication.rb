@@ -26,7 +26,14 @@ module OwnershipAuthentication
   end
 
   def mezuro_configuration_owner?
-    check_mezuro_configuration_ownership(params[:id])
+    if self.kind_of?(MezuroConfigurationsController)
+      id = params[:id]
+    elsif self.kind_of?(MetricConfigurationsController)
+      id = params[:mezuro_configuration_id]
+    else
+      raise "Not supported"
+    end
+    check_mezuro_configuration_ownership(id)
   end
 
   private
