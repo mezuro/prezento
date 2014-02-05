@@ -63,4 +63,20 @@ describe OwnershipAuthentication, type: :controller do
       end
     end
   end
+
+  describe 'mezuro_configuration_owner?' do
+    let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+
+    context 'Not MezuroConfigurationsController nor MetricConfigurationsController' do
+      let!(:projects_controller) { ProjectsController.new }
+
+      before do
+        projects_controller.extend(OwnershipAuthentication)
+      end
+
+      it 'should raise an exception' do
+        expect { projects_controller.mezuro_configuration_owner? }.to raise_error("Not supported")
+      end
+    end
+  end
 end

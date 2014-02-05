@@ -2,6 +2,25 @@
   <h1>New Metric Configuration</h1>
 </div>
 
+<p>
+  <b>Base Tool:</b> <%= @base_tool_name %>
+</p>
+<p>
+  <b>Metric Name:</b> <%= @metric.name %>
+</p>
+<p>
+  <b>Metric Description:</b> <%= @metric.description.nil? ? "No description available." : @metric.description %>
+</p>
+<p>
+  <b>Language:</b> <%= @metric.languages.to_s %>
+</p>
+
+<p>
+  <b>Scope:</b> <%= @metric.scope %>
+</p>
+
+<br>
+
 <%= form_for(@metric_configuration, :url => mezuro_configuration_metric_configurations_path(@mezuro_configuration_id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>

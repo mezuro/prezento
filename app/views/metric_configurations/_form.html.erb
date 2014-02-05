@@ -1,14 +1,20 @@
 <%= render :partial => 'shared/form_errors', :locals => {:object => @metric_configuration} %>
 
 <div class="form-group">
-  <%= f.label :code, class: 'control-label' %><br>
+  <%= f.label :code, class: 'control-label' %>
   <%= f.text_field :code, class: 'form-control' %>
 </div>
 
 <div class="form-group">
-  <%= f.label :weight, class: 'control-label' %><br>
+  <%= f.label :weight, class: 'control-label' %>
   <%= f.text_field :weight, class: 'form-control' %>
 </div>
 
+<div class="form-group">
+  <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
+  <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
+</div>
+
+<br>
 <%= f.submit 'Save', class: 'btn btn-primary' %>
 <%= link_to 'Back',  mezuro_configuration_path(@mezuro_configuration_id), class: 'btn btn-default' %>

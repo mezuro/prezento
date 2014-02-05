@@ -11,8 +11,9 @@ Mezuro::Application.routes.draw do
   end
 
   resources :mezuro_configurations do
-    resources :metric_configurations, except: [:update]
-    get '/metric_configurations/:id/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
+    get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
+    resources :metric_configurations, except: [:update, :new]
+    get '/metric_configurations/:metric_name/:base_tool_name/new' => 'metric_configurations#new', as: :new_metric_configuration
     put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update
   end
 
