@@ -9,7 +9,7 @@ Feature: Metric Configuration Creation
     And I am at the Sample Configuration page
     Then I should not see New Metric Configuration
 
-  @kalibro_restart @wip
+  @kalibro_restart
   Scenario: metric configuration creation
     Given I am a regular user
     And I am signed in

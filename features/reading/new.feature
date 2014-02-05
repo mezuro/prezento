@@ -15,7 +15,7 @@ Feature: New reading
     And I should see "Grade"
     And I should see "Color"
 
-  @kalibro_restart @wip
+  @kalibro_restart 
   Scenario: With valid fields
     Given I am a regular user
     And I am signed in

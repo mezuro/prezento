@@ -23,6 +23,6 @@ Feature: Configuration Deletion
     And I am signed in
     And I own a sample configuration
     And I am at the Sample Configuration page
-    When I click the Destroy configuration link
+    When I click the Destroy Configuration link
     Then I should be in the All configurations page
     And the sample configuration should not be there

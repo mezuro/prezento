@@ -164,8 +164,8 @@ describe MezuroConfigurationsController do
 
         it { should render_template(:edit) }
 
-        it 'should assign to @configuration the @subject' do
-          assigns(:configuration).should eq(@subject)
+        it 'should assign to @mezuro_configuration the @subject' do
+          assigns(:mezuro_configuration).should eq(@subject)
         end
       end
 

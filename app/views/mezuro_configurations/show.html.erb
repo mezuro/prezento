@@ -1,18 +1,18 @@
 <div class="page-header">
-  <h1><%= @configuration.name %></h1>
+  <h1><%= @mezuro_configuration.name %></h1>
 </div>
 
 <p>
   <strong>Description:</strong>
-  <%= @configuration.description %>
+  <%= @mezuro_configuration.description %>
 </p>
 
 <hr>
 
 <h2> Metrics </h2>
 
-<% if configuration_owner? @configuration.id %>
-  <%= link_to 'Add Metric', mezuro_configuration_choose_metric_path(@configuration), class: 'btn btn-info' %>
+<% if mezuro_configuration_owner? @mezuro_configuration.id %>
+  <%= link_to 'Add Metric', mezuro_configuration_choose_metric_path(@mezuro_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
@@ -23,13 +23,22 @@
       <th>Weight</th>
     </tr>
   </thead>
+  <tbody>
+    <% if @mezuro_configuration_metric_configurations.size == 0 %>
+      <%= render partial: 'no_metric_configurations' %>
+    <% else %>
+      <% cache do %>
+        <%= render partial: 'metric_configurations', collection: @mezuro_configuration_metric_configurations, as: :metric_configuration %>      
+      <% end %>
+    <% end %>
+  </tbody>
 </table>
 
 <hr>
 
 <p>
  <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
- <% if configuration_owner? @configuration.id %>
-   <%= link_to 'Destroy Configuration', mezuro_configuration_path(@configuration.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+ <% if mezuro_configuration_owner? @mezuro_configuration.id %>
+   <%= link_to 'Destroy Configuration', mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
  <% end %>
 </p>

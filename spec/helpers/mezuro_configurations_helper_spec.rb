@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe MezuroConfigurationsHelper do
-  describe 'configuration_owner?' do
+  describe 'mezuro_configuration_owner?' do
     before :each do
       @subject = FactoryGirl.build(:mezuro_configuration)
     end
@@ -10,7 +10,7 @@ describe MezuroConfigurationsHelper do
       before :each do
         helper.expects(:user_signed_in?).returns(false)
       end
-      it { helper.configuration_owner?(@subject.id).should be_false }
+      it { helper.mezuro_configuration_owner?(@subject.id).should be_false }
     end
 
     context 'returns false if is not the owner' do
@@ -24,7 +24,7 @@ describe MezuroConfigurationsHelper do
         User.any_instance.expects(:mezuro_configuration_ownerships).returns(@ownerships)
       end
 
-      it { helper.configuration_owner?(@subject.id).should be_false }
+      it { helper.mezuro_configuration_owner?(@subject.id).should be_false }
     end
 
     context 'returns true if user is the mezuro_configuration owner' do
@@ -38,7 +38,7 @@ describe MezuroConfigurationsHelper do
         User.any_instance.expects(:mezuro_configuration_ownerships).returns(@ownerships)
       end
 
-      it { helper.configuration_owner?(@subject.id).should be_true }
+      it { helper.mezuro_configuration_owner?(@subject.id).should be_true }
     end
   end
 end
