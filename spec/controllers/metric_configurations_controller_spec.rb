@@ -113,7 +113,7 @@ describe MetricConfigurationsController do
           delete :destroy, id: metric_configuration.id, mezuro_configuration_id: mezuro_configuration.id.to_s
         end
 
-         it { should redirect_to(mezuro_configurations_path) }
+         it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
          it { should respond_with(:redirect) }
       end
     end

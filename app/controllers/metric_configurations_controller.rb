@@ -31,7 +31,7 @@ class MetricConfigurationsController < ApplicationController
   def destroy
     @metric_configuration.destroy
     respond_to do |format|
-      format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id) }
+      format.html { redirect_to mezuro_configuration_path(params[:mezuro_configuration_id]) }
       format.json { head :no_content }
     end
   end
