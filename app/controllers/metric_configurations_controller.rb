@@ -2,7 +2,9 @@ include OwnershipAuthentication
 
 class MetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :mezuro_configuration_owner?, except: [:show]
+  before_action :set_metric_configuration, only: [:destroy]
+  before_action :metric_configuration_owner?, only: [:destroy]
+  before_action :mezuro_configuration_owner?, only: [:new, :create, :choose_metric]
        
   def choose_metric
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
@@ -23,6 +25,14 @@ class MetricConfigurationsController < ApplicationController
     @metric_configuration.base_tool_name = params[:base_tool_name]
     respond_to do |format|
       create_and_redir(format)
+    end
+  end
+
+  def destroy
+    @metric_configuration.destroy
+    respond_to do |format|
+      format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id) }
+      format.json { head :no_content }
     end
   end
 
@@ -48,5 +58,9 @@ class MetricConfigurationsController < ApplicationController
     else
       failed_action(format, 'new')
     end
+  end
+
+  def set_metric_configuration
+    @metric_configuration = MetricConfiguration.find(params[:id].to_i)
   end
 end

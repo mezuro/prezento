@@ -27,9 +27,7 @@
     <% if @mezuro_configuration_metric_configurations.size == 0 %>
       <%= render partial: 'no_metric_configurations' %>
     <% else %>
-      <% cache do %>
-        <%= render partial: 'metric_configurations', collection: @mezuro_configuration_metric_configurations, as: :metric_configuration %>      
-      <% end %>
+      <%= render partial: 'metric_configurations', collection: @mezuro_configuration_metric_configurations, as: :metric_configuration %>      
     <% end %>
   </tbody>
 </table>

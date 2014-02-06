@@ -36,6 +36,11 @@ module OwnershipAuthentication
     check_mezuro_configuration_ownership(id)
   end
 
+  def metric_configuration_owner?
+    check_mezuro_configuration_ownership(params[:mezuro_configuration_id])
+  end
+
+
   private
 
   def check_project_ownership(id)
