@@ -15,6 +15,14 @@
   <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
 </div>
 
+<div class="form-group">
+  <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+  <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
+</div>
+
+<%= hidden_field_tag(:metric_name, @metric.name) %>
+<%= hidden_field_tag(:base_tool_name, @base_tool_name) %>
+
 <br>
 <%= f.submit 'Save', class: 'btn btn-primary' %>
 <%= link_to 'Back',  mezuro_configuration_path(@mezuro_configuration_id), class: 'btn btn-default' %>

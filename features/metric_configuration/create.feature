@@ -14,17 +14,16 @@ Feature: Metric Configuration Creation
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
-    And I have a reading group named "Schoolar"
+    And I have a reading group named "Scholar"
     And I am at the Sample Configuration page
     And I click the Add Metric link
+    And I click the "Analizo" h3
+    And I click the Total Lines of Code link
     And I fill the Code field with "My Code"
-    And I set the select field "BaseTool" as "Analizo"
-    And I set the select field "Metric" as "Lines Of Code"
-    And I fill the Description field with "Web Service to collect metrics"
-    And I fill the Weigth field with "2"
-    And I set the select field "AgregationForm" as "Average"
-    And I set the select field "ReadingGroup" as "Schoolar"
+    And I fill the Weight field with "2"
+    And I set the select field "Aggregation Form" as "Average"
+    And I set the select field "Reading Group" as "Scholar"
     When I press the Save button
     Then I should see "My Code"
-    Then I should see "Lines Of Code"
+    Then I should see "Total Lines of Code"
     Then I should see "2"

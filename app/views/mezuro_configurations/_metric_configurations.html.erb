@@ -4,7 +4,7 @@
   <td><%= metric_configuration.weight %></td>
   <% if mezuro_configuration_owner? @mezuro_configuration.id %>
     <td>
-      <%= link_to 'Edit', edit_mezuro_configuration_metric_configurations_path(@mezuro_configuration.id, metric_configuration.id), 
+      <%= link_to 'Edit', edit_mezuro_configuration_metric_configuration_path(@mezuro_configuration.id, metric_configuration.id), 
                   class: 'btn btn-info' %>
     </td>
     <td>

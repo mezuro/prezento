@@ -7,4 +7,16 @@ describe MetricConfigurationsHelper do
       ["Count", "COUNT"], ["Standard Deviation", "STANDARD_DEVIATION"]]
     end
   end
+
+  describe 'reading_group_options' do
+    let! (:reading_group) { FactoryGirl.build(:reading_group) }
+
+    before :each do
+      ReadingGroup.expects(:all).returns([reading_group])
+    end
+
+    it 'should return a pair with the reading group name and id' do
+      helper.reading_group_options.should eq [[reading_group.name, reading_group.id]]
+    end
+  end
 end
