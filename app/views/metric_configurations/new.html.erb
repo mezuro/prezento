@@ -3,24 +3,24 @@
 </div>
 
 <p>
-  <b>Base Tool:</b> <%= @base_tool_name %>
+  <b>Base Tool:</b> <%= @metric_configuration.base_tool_name %>
 </p>
 <p>
-  <b>Metric Name:</b> <%= @metric.name %>
+  <b>Metric Name:</b> <%= @metric_configuration.metric.name %>
 </p>
 <p>
-  <b>Metric Description:</b> <%= @metric.description.nil? ? "No description available." : @metric.description %>
+  <b>Metric Description:</b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric.description %>
 </p>
 <p>
-  <b>Language:</b> <%= @metric.languages.to_s %>
+  <b>Language:</b> <%= @metric_configuration.metric.languages.to_s %>
 </p>
 
 <p>
-  <b>Scope:</b> <%= @metric.scope %>
+  <b>Scope:</b> <%= @metric_configuration.metric.scope %>
 </p>
 
 <br>
 
-<%= form_for(@metric_configuration, :url => mezuro_configuration_metric_configurations_path(@mezuro_configuration_id)) do |f| %>
+<%= form_for(@metric_configuration, :url => mezuro_configuration_metric_configurations_path(@metric_configuration.configuration_id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>
