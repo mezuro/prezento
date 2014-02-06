@@ -85,6 +85,46 @@ describe MetricConfigurationsController do
     end
   end
 
+  describe 'edit' do
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+
+    context 'with an User logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when the user owns the metric configuration' do
+        before :each do
+          subject.expects(:metric_configuration_owner?).returns true
+          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+          get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
+        end
+
+        it { should render_template(:edit) }
+      end
+
+      context 'when the user does not own the metric configuration' do
+        before do
+          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+          get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
+        end
+
+        it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+        it { should respond_with(:redirect) }
+        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+      end
+    end
+
+    context 'with no user logged in' do
+      before :each do
+        get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
+      end
+
+      it { should redirect_to new_user_session_path }
+    end
+  end
+
+
   describe 'destroy' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
 
@@ -110,7 +150,7 @@ describe MetricConfigurationsController do
         before :each do
           MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
 
-          delete :destroy, id: metric_configuration.id, mezuro_configuration_id: mezuro_configuration.id.to_s
+          delete :destroy, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
          it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page

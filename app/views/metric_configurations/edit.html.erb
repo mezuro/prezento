@@ -1,0 +1,7 @@
+<div class="page-header">
+  <h1>Editing Metric Configuration</h1>
+</div>
+
+<%= form_for(@metric_configuration, :url => mezuro_configuration_metric_configuration_update_url(@mezuro_configuration_id, @metric_configuration.id), method: :put) do |f| %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>
