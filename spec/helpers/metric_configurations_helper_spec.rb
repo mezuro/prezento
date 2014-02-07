@@ -19,4 +19,16 @@ describe MetricConfigurationsHelper do
       helper.reading_group_options.should eq [[reading_group.name, reading_group.id]]
     end
   end
+
+  describe 'native_metrics_of' do
+    let! (:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+
+    before :each do
+      MetricConfiguration.expects(:metric_configurations_of).with(metric_configuration.configuration_id).returns([metric_configuration])
+    end
+
+    it 'should return a pair with the metric configuration code and metric name' do
+      helper.native_metrics_of(metric_configuration.configuration_id).should eq [[metric_configuration.code, metric_configuration.metric.name]]
+    end
+  end
 end
