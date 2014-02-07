@@ -9,8 +9,4 @@ class MetricConfiguration < KalibroGem::Entities::MetricConfiguration
   validates :weight, presence: true
   validates :aggregation_form, presence: true
 
-  def persisted?
-    self.id != nil #FIXME: create method exists in KalibroGem
-  end
-
 end
