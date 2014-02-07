@@ -6,6 +6,8 @@ describe MetricConfigurationsController do
                   to(controller: :metric_configurations, action: :new, mezuro_configuration_id: "1", metric_name: "LOC", base_tool_name: "Analizo") }
     it { should route(:get, '/mezuro_configurations/1/metric_configurations').
                   to(controller: :metric_configurations, action: :index, mezuro_configuration_id: "1") }
+    it { should route(:get, '/mezuro_configurations/1/new_compound_metric').
+                  to(controller: :metric_configurations, action: :new_compound_metric, mezuro_configuration_id: "1") }
     it { should route(:post, '/mezuro_configurations/1/metric_configurations').
                   to(controller: :metric_configurations, action: :create, mezuro_configuration_id: "1") }
     it { should route(:get, '/mezuro_configurations/1/metric_configurations/1').
