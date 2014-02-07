@@ -17,3 +17,13 @@ Then(/^I should see the sample metric configuration content$/) do
   page.should have_content(@metric_configuration.code)
   page.should have_content(@metric_configuration.weight)
 end
+
+When(/^I visit the sample metric configuration page$/) do
+  visit edit_mezuro_configuration_path(@mezuro_configuration.id)
+end
+
+
+Then(/^I should be at metric configuration sample page$/) do
+  page.should have_content(@metric_configuration.metric.name)
+  page.should have_content("Ranges")
+end

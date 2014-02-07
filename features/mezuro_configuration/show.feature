@@ -1,5 +1,5 @@
 Feature: Show Configuration
-  In order to know all the repositories of the given configuration and its contents
+  In order to know all the contents of a given configuration 
   As a regular user
   I should be able to see each of them
 

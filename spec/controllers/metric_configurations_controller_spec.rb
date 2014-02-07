@@ -84,6 +84,17 @@ describe MetricConfigurationsController do
       end
     end
   end
+  
+  describe 'show' do
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:reading_group) { FactoryGirl.build(:reading_group) }
+    before :each do
+      ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
+      get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
+    end
+
+    it { should render_template(:show) }
+  end
 
   describe 'edit' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }

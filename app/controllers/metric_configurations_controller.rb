@@ -2,8 +2,8 @@ include OwnershipAuthentication
 include MetricConfigurationsConcern
 
 class MetricConfigurationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :set_metric_configuration, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_metric_configuration, only: [:show, :edit, :update, :destroy]
   before_action :metric_configuration_owner?, only: [:edit, :update, :destroy]
   before_action :mezuro_configuration_owner?, only: [:new, :create, :choose_metric]
        
@@ -27,6 +27,10 @@ class MetricConfigurationsController < ApplicationController
     respond_to do |format|
       create_and_redir(format)
     end
+  end
+
+  def show 
+    @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
   end
 
   def edit

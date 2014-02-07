@@ -2,6 +2,10 @@
   <td><%= metric_configuration.metric.name %></td>
   <td><%= metric_configuration.code %></td>
   <td><%= metric_configuration.weight %></td>
+  <td>
+    <%= link_to 'Show', mezuro_configuration_metric_configuration_path(@mezuro_configuration.id, metric_configuration.id), 
+                class: 'btn btn-info' %>
+  </td>
   <% if mezuro_configuration_owner? @mezuro_configuration.id %>
     <td>
       <%= link_to_edit_form(metric_configuration, @mezuro_configuration.id) %>
