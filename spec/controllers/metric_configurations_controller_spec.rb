@@ -124,6 +124,56 @@ describe MetricConfigurationsController do
     end
   end
 
+  describe 'update' do
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:metric_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+    context 'when the user is logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when user owns the metric configuration' do
+        before :each do
+          subject.expects(:metric_configuration_owner?).returns true
+        end
+
+        context 'with valid fields' do
+          before :each do
+            MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+            MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
+
+            post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
+          end
+
+          it { should redirect_to(mezuro_configuration_path(metric_configuration.configuration_id)) }
+          it { should respond_with(:redirect) }
+        end
+
+        context 'with an invalid field' do
+          before :each do
+            MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+            MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
+
+            post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
+          end
+
+          it { should render_template(:edit) }
+        end
+      end
+
+      context 'when the user does not own the reading' do
+        before :each do
+          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+
+          post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
+        end
+
+        it { should redirect_to mezuro_configurations_path }
+      end
+    end
+  end
+
 
   describe 'destroy' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }

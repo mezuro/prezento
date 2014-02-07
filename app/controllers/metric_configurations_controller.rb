@@ -2,8 +2,8 @@ include OwnershipAuthentication
 
 class MetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_metric_configuration, only: [:edit, :destroy]
-  before_action :metric_configuration_owner?, only: [:edit, :destroy]
+  before_action :set_metric_configuration, only: [:edit, :update, :destroy]
+  before_action :metric_configuration_owner?, only: [:edit, :update, :destroy]
   before_action :mezuro_configuration_owner?, only: [:new, :create, :choose_metric]
        
   def choose_metric
@@ -31,6 +31,18 @@ class MetricConfigurationsController < ApplicationController
   def edit
     @mezuro_configuration_id = params[:mezuro_configuration_id]
     @metric_configuration.configuration_id = @mezuro_configuration_id
+  end
+
+  def update
+    respond_to do |format|
+      @metric_configuration.configuration_id = params[:mezuro_configuration_id]
+      if @metric_configuration.update(metric_configuration_params)
+        format.html { redirect_to(mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
+        format.json { head :no_content }
+      else
+        failed_action(format, 'edit')
+      end
+    end
   end
 
   def destroy

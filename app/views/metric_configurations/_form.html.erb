@@ -15,10 +15,14 @@
   <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
 </div>
 
-<div class="form-group">
-  <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
-  <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
-</div>
+<% if @metric_configuration.persisted? %>
+  <%= hidden_field_tag(:reading_group_id, @metric_configuration.reading_group_id) %>
+<% else %>
+  <div class="form-group">
+    <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+    <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
+  </div>
+<% end %>
 
 <%= hidden_field_tag(:metric_name, @metric_configuration.metric.name) %>
 <%= hidden_field_tag(:base_tool_name, @metric_configuration.base_tool_name) %>
