@@ -16,7 +16,5 @@ describe MezuroConfigurationsController do
                   to(controller: :mezuro_configurations, action: :update, id: "1") }
     it { should route(:delete, '/mezuro_configurations/1').
                   to(controller: :mezuro_configurations, action: :destroy, id: "1") }
-    it { should route(:get, '/mezuro_configurations/1/metric_configurations/choose_metric').
-                  to(controller: :metric_configurations, action: :choose_metric, mezuro_configuration_id: "1") }
   end
 end

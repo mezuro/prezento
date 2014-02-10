@@ -12,10 +12,11 @@ Mezuro::Application.routes.draw do
 
   resources :mezuro_configurations do
     get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
-    get '/new_compound_metric' => 'metric_configurations#new_compound_metric', as: :new_compound_metric
     resources :metric_configurations, except: [:update, :new]
     get '/metric_configurations/:metric_name/:base_tool_name/new' => 'metric_configurations#new', as: :new_metric_configuration
     put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update
+
+    resources :compound_metric_configurations
   end
 
   resources :reading_groups do

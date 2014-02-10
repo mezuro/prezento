@@ -1,0 +1,3 @@
+class CompoundMetricConfigurationsController < ApplicationController
+
+end
