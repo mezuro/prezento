@@ -16,7 +16,7 @@ describe CodeUniquenessValidator do
         end
       end
 
-      context 'with name already taken by another metric_configuration' do
+      context 'with code already taken by another metric_configuration' do
         before :each do
           @subject = FactoryGirl.build(:metric_configuration)
           MetricConfiguration.expects(:metric_configurations_of).with(@subject.configuration_id).returns([FactoryGirl.build(:metric_configuration, id: @subject.id + 1)])
