@@ -3,8 +3,9 @@ Feature: Compound Metric Configuration Creation
   As a regular user
   I should be able to create compound metric configurations
 
-  @kalibro_restart @wip #Missing create action and native metrics name and code
-  Scenario: compound metric configuration creation
+  #Missing create action and native metrics name and code
+  @kalibro_restart @wip
+    Scenario: compound metric configuration creation
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
