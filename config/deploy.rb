@@ -22,7 +22,7 @@ set :user, 'mezuro'
 # RVM
 set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
-set :rvm_type, :user
+set :rvm_type, :system
 set :rvm_install_with_sudo, true
 
 namespace :deploy do
