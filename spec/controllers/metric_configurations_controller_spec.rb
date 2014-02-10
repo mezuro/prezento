@@ -90,6 +90,7 @@ describe MetricConfigurationsController do
     let(:reading_group) { FactoryGirl.build(:reading_group) }
     before :each do
       ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
+      MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
       get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
     end
 

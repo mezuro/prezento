@@ -1,3 +1,5 @@
+require "validators/beginning_uniqueness_validator.rb"
+
 class MezuroRange < KalibroGem::Entities::Range
   include KalibroRecord
   

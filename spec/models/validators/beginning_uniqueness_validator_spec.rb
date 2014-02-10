@@ -1,7 +1,8 @@
 require 'spec_helper'
+require "validators/beginning_uniqueness_validator.rb"
 
-pending 'TO FIX' do
-  describe BeginningUniquenessValidator do
+describe BeginningUniquenessValidator do
+  pending 'TO FIX' do
     describe 'methods' do    
       subject { FactoryGirl.build(:range) }
       describe 'validate_each' do
