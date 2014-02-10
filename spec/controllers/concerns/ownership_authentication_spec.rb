@@ -67,7 +67,7 @@ describe OwnershipAuthentication, type: :controller do
   describe 'mezuro_configuration_owner?' do
     let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
 
-    context 'Not MezuroConfigurationsController nor MetricConfigurationsController' do
+    context 'Not MezuroConfigurationsController nor MetricConfigurationsController nor CompoundMetricConfigurationsController' do
       let!(:projects_controller) { ProjectsController.new }
 
       before do

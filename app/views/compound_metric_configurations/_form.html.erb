@@ -1,0 +1,33 @@
+<%= render :partial => 'shared/form_errors', :locals => {:object => @compound_metric_configuration} %>
+
+<%= f.fields_for :metric do |metric| %>
+    <%= render "metric_options", :f => metric %>
+<% end %>
+
+<div class="form-group">
+  <%= f.label :code, class: 'control-label' %>
+  <%= f.text_field :code, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :weight, class: 'control-label' %>
+  <%= f.text_field :weight, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
+  <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
+</div>
+
+<% if @compound_metric_configuration.persisted? %>
+  <%= hidden_field_tag(:reading_group_id, @compound_metric_configuration.reading_group_id) %>
+<% else %>
+  <div class="form-group">
+    <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+    <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
+  </div>
+<% end %>
+
+<br>
+<%= f.submit 'Save', class: 'btn btn-primary' %>
+<%= link_to 'Back',  mezuro_configuration_choose_metric_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
