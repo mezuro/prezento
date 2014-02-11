@@ -33,7 +33,6 @@ describe CompoundMetricConfigurationsController do
   describe 'create' do
     let!(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:metric_configuration).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
     let!(:metric_params) { Hash[FactoryGirl.attributes_for(:metric).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
-    let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
 
     before do
       sign_in FactoryGirl.create(:user)
@@ -79,6 +78,7 @@ describe CompoundMetricConfigurationsController do
         before :each do
           subject.expects(:metric_configuration_owner?).returns(true)
           MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+          MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
           get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
 
