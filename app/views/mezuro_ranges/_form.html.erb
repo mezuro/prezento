@@ -1,0 +1,21 @@
+  <%= render :partial => 'shared/form_errors', :locals => {:object => @mezuro_range} %>
+
+  <div class="form-group">
+    <%= f.label :beginning, class: 'control-label' %><br>
+    <%= f.text_field :beginning, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end, class: 'control-label' %><br>
+    <%= f.text_area :end, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :comments, class: 'control-label' %><br>
+    <%= f.text_area :comments, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-primary' %>
+
+  <%= link_to 'Back', mezuro_configuration_metric_configuration_path(@mezuro_range.mezuro_configuration_id, @mezuro_range.metric_configuration_id), 
+      class: 'btn btn-default' %>

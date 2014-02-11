@@ -1,0 +1,7 @@
+<h1>New Range</h1>
+
+
+<%= form_for(@mezuro_range, :url => mezuro_configuration_metric_configuration_path(@mezuro_range.mezuro_configuration_id, 
+    @mezuro_range.metric_configuration_id)) do |f|  %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>

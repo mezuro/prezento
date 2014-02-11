@@ -2,25 +2,29 @@ include OwnershipAuthentication
 
 class MezuroRangesController < ApplicationController
 
-def show
-end
+  def new
+    @mezuro_range = MezuroRange.new
+    @mezuro_range.metric_configuration_id = params[:metric_configuration_id].to_i
+    @mezuro_range.mezuro_configuration_id = params[:mezuro_configuration_id].to_i
+  end
 
-def create
-end
+  def show
+  end
 
-def destroy
-end
+  def create
+  end
 
-def update
-end
+  def destroy
+  end
 
-def index
-end
+  def update
+  end
 
-def edit
-end
+  def index
+  end
 
-def new
-end
+  def edit
+  end
+
 
 end

@@ -31,6 +31,7 @@ class MetricConfigurationsController < ApplicationController
 
   def show 
     @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
+    @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 
   def edit
