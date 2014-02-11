@@ -6,6 +6,8 @@ class MezuroRangesController < ApplicationController
     @mezuro_range = MezuroRange.new
     @mezuro_range.metric_configuration_id = params[:metric_configuration_id].to_i
     @mezuro_range.mezuro_configuration_id = params[:mezuro_configuration_id].to_i
+    @reading_group_id = MetricConfiguration.find(@mezuro_range.metric_configuration_id).reading_group_id
+    @reading_group = ReadingGroup.find(@reading_group_id)
   end
 
   def show
@@ -25,6 +27,5 @@ class MezuroRangesController < ApplicationController
 
   def edit
   end
-
 
 end
