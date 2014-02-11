@@ -19,5 +19,5 @@ coverage
 
 database.yml
 database.yml~
-database.yml.sample
+kalibro.yml
 kalibro_cucumber_helpers.yml

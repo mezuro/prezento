@@ -80,4 +80,8 @@ Mezuro::Application.configure do
 
   # Root URL for ActionMailer
   config.action_mailer.default_url_options = { :host => 'mezuro.org' }
+
+  # Kalibro URL
+  KalibroGem.configure_with(Rails.root.join('config', 'kalibro.yml'))
+  puts Rails.root.join('config', 'kalibro.yml')
 end

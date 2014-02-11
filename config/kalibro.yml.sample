@@ -1,0 +1,2 @@
+# Configuration loaded only for production environment
+address: http://localhost:8080/KalibroService/
