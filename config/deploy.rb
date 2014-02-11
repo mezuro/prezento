@@ -26,6 +26,7 @@ set :rvm_type, :system
 set :rvm_install_with_sudo, true
 
 namespace :deploy do
+  after 'deploy:publishing', 'deploy:restart'
 
   desc 'Restart application'
   task :restart do
