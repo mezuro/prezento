@@ -48,6 +48,9 @@ gem "chart-js-rails", "~> 0.0.6"
 # JQueryUI
 gem 'jquery-ui-rails', '~> 4.1.0'
 
+# Memcached
+gem "dalli", "~> 2.7.0"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
