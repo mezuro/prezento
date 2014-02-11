@@ -1,4 +1,5 @@
 include OwnershipAuthentication
+include MetricConfigurationsConcern
 
 class MetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
@@ -29,6 +30,7 @@ class MetricConfigurationsController < ApplicationController
   end
 
   def edit
+    #FIXME: set the configuration id just once!
     @mezuro_configuration_id = params[:mezuro_configuration_id]
     @metric_configuration.configuration_id = @mezuro_configuration_id
   end
@@ -75,9 +77,5 @@ class MetricConfigurationsController < ApplicationController
     else
       failed_action(format, 'new')
     end
-  end
-
-  def set_metric_configuration
-    @metric_configuration = MetricConfiguration.find(params[:id].to_i)
   end
 end

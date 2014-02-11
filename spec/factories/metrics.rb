@@ -16,4 +16,13 @@ FactoryGirl.define do
     script ""
     language ["C", "CPP", "JAVA"]
   end
+
+  factory :compound_metric, class: KalibroGem::Entities::Metric do
+    name "Compound"
+    compound true
+    scope "CLASS"
+    description nil
+    script ""
+    language ["C", "CPP", "JAVA"]
+  end
 end

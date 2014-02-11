@@ -1,12 +1,12 @@
 <div class="page-header">
-  <h1>New Compound Metric Configuration</h1>
+  <h1>Edit Compound Metric Configuration</h1>
 </div>
 
 <%= render partial: 'created_metrics', locals: {metric_configurations: @metric_configurations} %>
 
 <br>
 
-<%= form_for(@compound_metric_configuration, :url => mezuro_configuration_compound_metric_configurations_path(@compound_metric_configuration.configuration_id)) do |f| %>
+<%= form_for(@compound_metric_configuration, :url => mezuro_configuration_compound_metric_configuration_update_path(@compound_metric_configuration.configuration_id, @compound_metric_configuration.id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>
 

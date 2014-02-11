@@ -1,14 +1,17 @@
 include OwnershipAuthentication
+include MetricConfigurationsConcern
 
 class CompoundMetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :mezuro_configuration_owner?, only: [:new, :create]
-
+  before_action :metric_configuration_owner?, only: [:edit]
+  before_action :set_metric_configuration, only: [:edit]
+  before_action :set_metric_configurations, only: [:new, :edit]
+  
   # GET mezuro_configurations/1/compound_metric_configurations/new
   def new
     @compound_metric_configuration = MetricConfiguration.new
     @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
-    @metric_configurations = MetricConfiguration.metric_configurations_of(params[:mezuro_configuration_id].to_i)
   end
 
   def create
@@ -18,6 +21,11 @@ class CompoundMetricConfigurationsController < ApplicationController
     respond_to do |format|
       create_and_redir(format)
     end
+  end
+
+  def edit
+    @compound_metric_configuration = @metric_configuration
+    @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 
   private
@@ -42,6 +50,10 @@ class CompoundMetricConfigurationsController < ApplicationController
     else
       failed_action(format, 'new')
     end
+  end
+
+  def set_metric_configurations
+    @metric_configurations = MetricConfiguration.metric_configurations_of(params[:mezuro_configuration_id].to_i)
   end
 
 end

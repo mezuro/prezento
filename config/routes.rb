@@ -16,7 +16,8 @@ Mezuro::Application.routes.draw do
     get '/metric_configurations/:metric_name/:base_tool_name/new' => 'metric_configurations#new', as: :new_metric_configuration
     put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update
 
-    resources :compound_metric_configurations, except: [:delete]
+    resources :compound_metric_configurations, except: [:destroy, :update]
+    put '/compound_metric_configurations/:id' => 'compound_metric_configurations#update', as: :compound_metric_configuration_update
   end
 
   resources :reading_groups do

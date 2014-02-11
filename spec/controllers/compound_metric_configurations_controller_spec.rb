@@ -66,4 +66,42 @@ describe CompoundMetricConfigurationsController do
       end
     end
   end
+
+  describe 'edit' do
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
+
+    context 'with an User logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when the user owns the compound metric configuration' do
+        before :each do
+          subject.expects(:metric_configuration_owner?).returns(true)
+          MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+          get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
+        end
+
+        it { should render_template(:edit) }
+      end
+
+      context 'when the user does not own the compound metric configuration' do
+        before do
+          get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
+        end
+
+        it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+        it { should respond_with(:redirect) }
+        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+      end
+    end
+
+    context 'with no user logged in' do
+      before :each do
+        get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
+      end
+
+      it { should redirect_to new_user_session_path }
+    end
+  end
 end

@@ -14,5 +14,7 @@ describe CompoundMetricConfigurationsController do
                   to(controller: :compound_metric_configurations, action: :edit, mezuro_configuration_id: "1", id: "1") }
     it { should route(:put, '/mezuro_configurations/1/compound_metric_configurations/1').
                   to(controller: :compound_metric_configurations, action: :update, mezuro_configuration_id: "1", id: "1") }
+    it { should_not route(:delete, '/mezuro_configurations/1/compound_metric_configurations/1').
+                  to(controller: :compound_metric_configurations, action: :destroy, mezuro_configuration_id: "1", id: "1") }
   end
 end
