@@ -83,5 +83,4 @@ Mezuro::Application.configure do
 
   # Kalibro URL
   KalibroGem.configure_with(Rails.root.join('config', 'kalibro.yml'))
-  puts Rails.root.join('config', 'kalibro.yml')
 end
