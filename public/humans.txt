@@ -9,7 +9,6 @@
       Diego Araújo (diegoamc90 at gmail.com)
       Fellipe Souto Sampaio (fllsouto at gmail.com)
       Guilherme Rojas (guilhermehrojas at gmail.com)
-      João M. M. Silva (jaodsilv at linux.ime.usp.br)
       Paulo Meirelles (paulo at softwarelivre.org)
       Rafael Reggiani Manzo (rr.manzo at gmail.com)
       Renan Fichberg (rfichberg at gmail.com)
@@ -18,6 +17,7 @@
 
     Actual version collaborators
     ---------------------------------------------------------
+    João M. M. Silva (jaodsilv at linux.ime.usp.br)
     Vinicius Vieira (vvieira17 at gmail.com)
 
     USP Lab XP course 2013 kickstarters for the standalone
