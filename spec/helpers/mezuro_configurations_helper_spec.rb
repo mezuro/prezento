@@ -41,4 +41,20 @@ describe MezuroConfigurationsHelper do
       it { helper.mezuro_configuration_owner?(@subject.id).should be_true }
     end
   end
+
+  describe 'link to edit form' do
+    context 'when the metric is native' do
+      let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+      let(:response_link) {"<a class=\"btn btn-info\" href=\"/mezuro_configurations/#{metric_configuration.configuration_id}/metric_configurations/#{metric_configuration.id}/edit\">Edit</a>"}
+
+      it { helper.link_to_edit_form(metric_configuration, metric_configuration.configuration_id).should eq(response_link) }
+    end
+
+    context 'when the metric is compound' do
+      let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
+      let(:response_link) {"<a class=\"btn btn-info\" href=\"/mezuro_configurations/#{compound_metric_configuration.configuration_id}/compound_metric_configurations/#{compound_metric_configuration.id}/edit\">Edit</a>"}
+
+      it { helper.link_to_edit_form(compound_metric_configuration, compound_metric_configuration.configuration_id).should eq(response_link) }
+    end
+  end
 end
