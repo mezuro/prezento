@@ -7,5 +7,6 @@ class MezuroRange < KalibroGem::Entities::Range
 
   validates :beginning, presence: true, beginning_uniqueness: true
   validates :end, presence: true #TODO: Validates numeracy
+  validates :reading_id, presence: true
 
 end

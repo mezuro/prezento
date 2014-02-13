@@ -1,4 +1,23 @@
-<tr> 
-  <% col_number = reading_groups_owner?(@reading_group.id) ? 5 : 3 %>
-  <td colspan="<%= col_number %>">There are no readings yet!</td>
-</tr>
+<div class="alert alert-error alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<h4 class="alert-heading">There is not reading yet!</h4>
+	<p>	 
+		You need to create reading in your associeated reading group before create a range
+	</p>
+	<p>
+		<% if reading_groups_owner? @reading_group.id %>
+			
+			<%= link_to 'Create New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-danger' %>
+		
+		<% else %>
+		
+			</p></div>
+			<div class="alert alert-error alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<p> You are not allowed to do this operation, your reading belongs to another person. </p>
+			</div>
+		
+		<% end %>
+	</p>
+	
+</div>

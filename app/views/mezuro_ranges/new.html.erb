@@ -4,22 +4,4 @@
     @mezuro_range.metric_configuration_id)) do |f|  %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Label</th>
-      <th>Grade</th>
-      <th>Color</th>
-    </tr>
-  </thead>
-	
-	<tbody>
-		<% if @reading_group.readings.size == 0 %>
-			<%= render partial: 'no_readings' %>
-		<% else %>
-			<%= render partial: 'reading', collection: @reading_group.readings, as: :reading %>      
-		<% end %>
-	</tbody>
-
-</table>
+<%= raise mezuro_range.inspect %>
