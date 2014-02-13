@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 FactoryGirl.define do
-  factory :range, class: KalibroGem::Entities::Range do
+  factory :mezuro_range do
     beginning 1.1 
     self.end 5.1 
     reading_id 3
@@ -25,6 +25,6 @@ FactoryGirl.define do
       comments "Another Comment"
     end
 
-    factory :another_range, traits: [:another_comment]
+    factory :another_mezuro_range, traits: [:another_comment]
   end
 end
