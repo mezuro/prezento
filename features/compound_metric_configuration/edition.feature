@@ -15,7 +15,7 @@ Feature: Compound Metric Configuration edition
     Then I should not see "Edit"
 
   @kalibro_restart
-  Scenario: editing a metric configuration successfully
+  Scenario: editing a compound metric configuration successfully
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -23,10 +23,11 @@ Feature: Compound Metric Configuration edition
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
-    When I click the Edit link
-    And I fill the Code field with "Another_Code"
+    When I click the edit link of the Coumpound Metric
+    And I fill the Script field with "Another javascript"
+    And I fill the Code field with "Another_code"
     And I press the Save button
-    Then I should see "Another_Code"
+    Then I should see "Another_code"
 
   @kalibro_restart @wip
   Scenario: trying to edit with an existing code

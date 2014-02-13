@@ -36,15 +36,7 @@ class MetricConfigurationsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      @metric_configuration.configuration_id = params[:mezuro_configuration_id]
-      if @metric_configuration.update(metric_configuration_params)
-        format.html { redirect_to(mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
-        format.json { head :no_content }
-      else
-        failed_action(format, 'edit')
-      end
-    end
+    update_metric_configuration
   end
 
   def destroy
@@ -58,6 +50,7 @@ class MetricConfigurationsController < ApplicationController
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.
+  # TODO: this should be refactored to the concern metric configuration
   def metric_configuration_params
     params[:metric_configuration]
   end

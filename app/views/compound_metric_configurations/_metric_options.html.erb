@@ -1,19 +1,21 @@
 <div class="form-group">
   <%= f.label :name, class: 'control-label' %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.text_field :name, class: 'form-control', value: (metric.name unless metric.nil?) %>
 </div>
 
 <div class="form-group">
   <%= f.label :description, class: 'control-label' %>
-  <%= f.text_field :description, class: 'form-control' %>
+  <%= f.text_field :description, class: 'form-control', value: (metric.description unless metric.nil?)  %>
 </div>
 
 <div class="form-group">
   <%= f.label :script, class: 'control-label' %>
-  <%= f.text_area :script, class: 'form-control' %>
+  <%= f.text_area :script, class: 'form-control', value: (metric.script unless metric.nil?)  %>
 </div>
 
 <div class="form-group">
   <%= f.label :scope, 'Scope', class: 'control-label' %>
-  <%= f.select( :scope, scope_options, {class: 'form-control'} ) %>
+  <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
 </div>
+
+<%= f.hidden_field(:compound, { value: "true"}) %>

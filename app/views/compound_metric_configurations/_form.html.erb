@@ -1,7 +1,7 @@
 <%= render :partial => 'shared/form_errors', :locals => {:object => @compound_metric_configuration} %>
 
 <%= f.fields_for :metric do |metric| %>
-    <%= render "metric_options", :f => metric %>
+    <%= render partial: "metric_options", :locals => {:f => metric, :metric => @compound_metric_configuration.metric} %>
 <% end %>
 
 <div class="form-group">
@@ -30,4 +30,4 @@
 
 <br>
 <%= f.submit 'Save', class: 'btn btn-primary' %>
-<%= link_to 'Back',  mezuro_configuration_choose_metric_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
+<%= link_to 'Back', mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>

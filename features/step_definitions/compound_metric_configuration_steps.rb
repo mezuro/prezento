@@ -17,3 +17,7 @@ end
 When(/^I visit the sample compound metric configuration edit page$/) do
   visit edit_mezuro_configuration_compound_metric_configuration_path(@compound_metric_configuration.configuration_id, @compound_metric_configuration.id)
 end
+
+When(/^I click the edit link of the Coumpound Metric$/) do
+  page.find('tr', :text => @compound_metric_configuration.metric.name).click_link('Edit')
+end
