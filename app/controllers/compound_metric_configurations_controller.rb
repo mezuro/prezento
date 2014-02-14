@@ -28,10 +28,6 @@ class CompoundMetricConfigurationsController < ApplicationController
     @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 
-  def update
-    update_metric_configuration
-  end
-
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -43,6 +39,7 @@ class CompoundMetricConfigurationsController < ApplicationController
   def failed_action(format, destiny_action)
     @mezuro_configuration_id = params[:mezuro_configuration_id]
 
+    set_metric_configurations
     format.html { render action: destiny_action }
     format.json { render json: @compound_metric_configuration.errors, status: :unprocessable_entity }
   end
