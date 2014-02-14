@@ -59,7 +59,6 @@ describe CompoundMetricConfigurationsController do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
           MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
-
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params
         end
 
