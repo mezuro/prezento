@@ -15,16 +15,14 @@
     <%= f.text_area :comments, class: 'form-control' %>
   </div>
   
-  <% if @reading_group.readings.size == 0 %>
+  <% if @readings.size == 0 %>
     <%= render partial: 'no_readings' %>
   <% else %>
     <div class="form-group">
       <%= f.label :reading_id, 'Reading', class: 'control-label' %>
-      <%= f.select( :reading_id, readings_options(@reading_group), {class: 'form-control'} ) %>
+      <%= f.select( :reading_id, readings_options(@readings), {class: 'form-control'} ) %>
     </div></br>    
   <% end %>
-
-
 
 
   <%= f.submit 'Save', class: 'btn btn-primary' %>
