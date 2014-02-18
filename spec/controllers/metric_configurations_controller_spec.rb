@@ -20,30 +20,32 @@ describe MetricConfigurationsController do
     end
   end
 
-  describe 'new' do
-    let(:base_tool) { FactoryGirl.build(:base_tool) }
-    before :each do
-      sign_in FactoryGirl.create(:user)
-    end
-
-    context 'when the current user owns the mezuro configuration' do
+  pending 'testing the js behavior first' do
+    describe 'new' do
+      let(:base_tool) { FactoryGirl.build(:base_tool) }
       before :each do
-        subject.expects(:mezuro_configuration_owner?).returns true
-        KalibroGem::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
-        get :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
+        sign_in FactoryGirl.create(:user)
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:new) }
-    end
+      context 'when the current user owns the mezuro configuration' do
+        before :each do
+          subject.expects(:mezuro_configuration_owner?).returns true
+          KalibroGem::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
+          get :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
+        end
 
-    context "when the current user doesn't owns the mezuro configuration" do
-      before :each do
-        get :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
+        it { should respond_with(:success) }
+        it { should render_template(:new) }
       end
 
-      it { should redirect_to(mezuro_configurations_url) }
-      it { should respond_with(:redirect) }
+      context "when the current user doesn't owns the mezuro configuration" do
+        before :each do
+          get :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
+        end
+
+        it { should redirect_to(mezuro_configurations_url) }
+        it { should respond_with(:redirect) }
+      end
     end
   end
 

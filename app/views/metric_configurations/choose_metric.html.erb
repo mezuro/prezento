@@ -7,7 +7,9 @@
       <h3><%= base_tool.name %></h3>
       <div>
         <% base_tool.supported_metrics.each do |metric| %>
-          <%= link_to metric.name, mezuro_configuration_new_metric_configuration_path(@mezuro_configuration_id, metric.name, base_tool.name) %><br>
+          <%= link_to metric.name, '',
+                onclick: "BaseTool.choose_metric(#{@mezuro_configuration_id}, '#{metric.name}', '#{base_tool.name}')",
+                remote: true%><br>
         <% end %>
       </div>
   <% end %>
