@@ -3,8 +3,7 @@
   <td><%= metric_configuration.code %></td>
   <td><%= metric_configuration.weight %></td>
   <td>
-    <%= link_to 'Show', mezuro_configuration_metric_configuration_path(@mezuro_configuration.id, metric_configuration.id), 
-                class: 'btn btn-info' %>
+    <%= link_to_show_page(metric_configuration, @mezuro_configuration.id) %>
   </td>
   <% if mezuro_configuration_owner? @mezuro_configuration.id %>
     <td>

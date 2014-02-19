@@ -10,4 +10,12 @@ module MezuroConfigurationsHelper
       link_to('Edit', edit_mezuro_configuration_metric_configuration_path(mezuro_configuration_id, metric_configuration.id), class: 'btn btn-info')
     end
   end
+
+  def link_to_show_page(metric_configuration, mezuro_configuration_id)
+    if (metric_configuration.metric.compound)
+      link_to('Show', mezuro_configuration_compound_metric_configuration_path(mezuro_configuration_id, metric_configuration.id), class: 'btn btn-info')
+    else
+      link_to('Show', mezuro_configuration_metric_configuration_path(mezuro_configuration_id, metric_configuration.id), class: 'btn btn-info')
+    end
+  end
 end
