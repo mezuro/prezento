@@ -5,9 +5,9 @@
 		You need to create reading in your associeated reading group before create a range
 	</p>
 	<p>
-		<% if reading_groups_owner? @reading_group.id %>
+		<% if reading_groups_owner? @reading_group_id %>
 			
-			<%= link_to 'Create New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-danger' %>
+			<%= link_to 'Create New Reading', new_reading_group_reading_path(@reading_group_id), class: 'btn btn-danger' %>
 		
 		<% else %>
 		
