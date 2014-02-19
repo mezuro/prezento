@@ -55,8 +55,10 @@ describe CompoundMetricConfigurationsController do
       end
 
       context 'with invalid fields' do
+        let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
+          MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([metric_configuration])
 
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params
         end
