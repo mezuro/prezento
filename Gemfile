@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.0.2'
 gem 'devise', '~> 3.2.0'
 
 # Kalibro integration
-gem 'kalibro_gem', "~> 0.0.1.rc17"
+gem 'kalibro_gem', "~> 0.0.1.rc18"
 
 # PostgreSQL integration
 gem "pg", "~> 0.17.0"
