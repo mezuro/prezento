@@ -2,10 +2,10 @@ include OwnershipAuthentication
 include MetricConfigurationsConcern
 
 class CompoundMetricConfigurationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :mezuro_configuration_owner?, only: [:new, :create]
   before_action :metric_configuration_owner?, only: [:edit, :update]
-  before_action :set_metric_configuration, only: [:edit, :update]
+  before_action :set_metric_configuration, only: [:show, :edit, :update]
   before_action :set_metric_configurations, only: [:new, :edit]
   
   # GET mezuro_configurations/1/compound_metric_configurations/new
@@ -21,6 +21,12 @@ class CompoundMetricConfigurationsController < ApplicationController
     respond_to do |format|
       create_and_redir(format)
     end
+  end
+
+  def show
+    @compound_metric_configuration = @metric_configuration
+    @reading_group = ReadingGroup.find(@compound_metric_configuration.reading_group_id)
+    @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 
   def edit

@@ -68,6 +68,20 @@ describe CompoundMetricConfigurationsController do
     end
   end
 
+  describe 'show' do
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
+    let(:reading_group) { FactoryGirl.build(:reading_group) }
+
+    before :each do
+      ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
+      MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
+
+      get :show, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
+    end
+
+    it { should render_template(:show) }
+  end
+
   describe 'edit' do
     let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
 
