@@ -20,6 +20,7 @@ FactoryGirl.define do
     self.end 5.1 
     reading_id 3
     comments "Comment"
+    metric_configuration_id 32
 
     trait :another_comment do
       comments "Another Comment"
