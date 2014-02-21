@@ -51,7 +51,6 @@ Feature: Create range
     And I should see "You must have readings in your associated reading group to create a new range."
     When I click the Create New Reading link
     Then I should be at the New Reading page
-    And I take a picture of the page
     And I should see "Label"
     And I should see "Grade"
     And I should see "Color"
