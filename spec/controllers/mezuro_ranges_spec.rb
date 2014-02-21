@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe MezuroRangesController do
+  let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1) }
+  let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+  
   describe 'new' do
-    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
     let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
 
     before :each do
       sign_in FactoryGirl.create(:user)
@@ -35,8 +36,6 @@ describe MezuroRangesController do
   describe 'create' do
     let(:mezuro_range_params) { Hash[FactoryGirl.attributes_for(:mezuro_range).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
     let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
-    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
 
     before do
       sign_in FactoryGirl.create(:user)
@@ -68,6 +67,44 @@ describe MezuroRangesController do
 
         it { should render_template(:new) }
       end
+    end
+  end
+
+  describe 'destroy' do
+    context 'with an User logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when the user owns the metric configuration' do
+        before :each do
+          subject.expects(:metric_configuration_owner?).returns true
+          mezuro_range.expects(:destroy)
+          MezuroRange.expects(:find).at_least_once.with(mezuro_range.id).returns(mezuro_range)
+
+          delete :destroy, id: mezuro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, mezuro_configuration_id: metric_configuration.configuration_id.to_s
+        end
+
+        it { should redirect_to(mezuro_configuration_metric_configuration_path(metric_configuration.configuration_id, metric_configuration.id)) }
+        it { should respond_with(:redirect) }
+      end
+
+      context "when the user doesn't own the metric configuration" do
+        before :each do
+          delete :destroy, id: mezuro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, mezuro_configuration_id: metric_configuration.configuration_id.to_s
+        end
+
+         it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+         it { should respond_with(:redirect) }
+      end
+    end
+
+    context 'with no User logged in' do
+      before :each do
+        delete :destroy, id: mezuro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, mezuro_configuration_id: metric_configuration.configuration_id.to_s
+      end
+
+      it { should redirect_to new_user_session_path }
     end
   end
 end

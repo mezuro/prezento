@@ -2,7 +2,8 @@ include OwnershipAuthentication
 
 class MezuroRangesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :metric_configuration_owner?, only: [:new, :create]
+  before_action :metric_configuration_owner?, only: [:new, :create, :destroy]
+  before_action :get_url_params, only: [:create, :destroy]
 
   def new
     @mezuro_range = MezuroRange.new
@@ -11,8 +12,6 @@ class MezuroRangesController < ApplicationController
 
   def create
     @mezuro_range = MezuroRange.new(mezuro_range_params)
-    @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
-    @metric_configuration_id = params[:metric_configuration_id].to_i
     @mezuro_range.metric_configuration_id = params[:metric_configuration_id].to_i
     respond_to do |format|
       create_and_redir(format)
@@ -20,6 +19,13 @@ class MezuroRangesController < ApplicationController
   end
 
   def destroy
+    @mezuro_range = MezuroRange.find(params[:id].to_i)
+    @mezuro_range.destroy
+    respond_to do |format|
+      format.html { redirect_to mezuro_configuration_metric_configuration_path(
+          @mezuro_configuration_id, @metric_configuration_id) }
+      format.json { head :no_content }
+    end
   end
 
   def update
@@ -50,10 +56,14 @@ class MezuroRangesController < ApplicationController
   end
 
   def before_form
-    @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
-    @metric_configuration_id = params[:metric_configuration_id].to_i
+    get_url_params
     @reading_group_id = MetricConfiguration.find(@metric_configuration_id).reading_group_id
     @readings = Reading.readings_of(@reading_group_id)
+  end
+
+  def get_url_params
+    @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
+    @metric_configuration_id = params[:metric_configuration_id].to_i
   end
 
 end
