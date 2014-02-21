@@ -9,6 +9,7 @@ class MetricConfigurationsController < ApplicationController
        
   def choose_metric
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
+    @metric_configuration_id = params[:metric_configuration_id].to_i
     @base_tools = KalibroGem::Entities::BaseTool.all
   end
 
@@ -17,8 +18,6 @@ class MetricConfigurationsController < ApplicationController
     @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration.base_tool_name = params[:base_tool_name]
     @metric_configuration.metric = KalibroGem::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
-    format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully created.' }
-
   end
 
   def create

@@ -2,14 +2,17 @@
   <h1>Choose a metric from a base tool:</h1>
 </div>
 
+<%= form_tag mezuro_configuration_new_metric_configuration_path(@mezuro_configuration_id) do %>
+  <%= hidden_field_tag(:base_tool_name,) %>
+  <%= hidden_field_tag(:metric_name) %>
+<% end %>
+
 <div id="base-tool-accordion">
-  <% @base_tools.each do |base_tool| %>
+ <% @base_tools.each do |base_tool| %>
       <h3><%= base_tool.name %></h3>
       <div>
         <% base_tool.supported_metrics.each do |metric| %>
-          <%= link_to metric.name, '',
-                onclick: "BaseTool.choose_metric(#{@mezuro_configuration_id}, '#{metric.name}', '#{base_tool.name}')",
-                remote: true%><br>
+          <%= link_to metric.name, '#', onclick: "BaseTool.choose_metric('#{metric.name}', '#{base_tool.name}')", remote: true %><br>
         <% end %>
       </div>
   <% end %>
