@@ -1,9 +1,8 @@
 include OwnershipAuthentication
 
 class MezuroRangesController < ApplicationController
-
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :metric_configuration_owner?, except: [:index]
+  before_action :authenticate_user!, except: [:show]
+  before_action :metric_configuration_owner?, only: [:new, :create]
 
   def new
     @mezuro_range = MezuroRange.new
@@ -24,9 +23,6 @@ class MezuroRangesController < ApplicationController
   end
 
   def update
-  end
-
-  def index
   end
 
   def edit

@@ -56,7 +56,7 @@ describe MetricConfigurationsController do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the reading group' do
+    context 'when the current user owns the metric configuration' do
       before :each do
         subject.expects(:mezuro_configuration_owner?).returns true
       end
