@@ -1,8 +1,22 @@
 require 'spec_helper'
 
 describe MetricConfiguration do
+  subject {FactoryGirl.build(:metric_configuration)}
+
+  describe 'methods' do
+    describe 'mezuro_ranges' do
+      let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
+      before :each do
+        MezuroRange.expects(:ranges_of).with(subject.id).returns([mezuro_range])
+      end
+
+      it 'should returns a list with its ranges' do
+        subject.mezuro_ranges.should eq([mezuro_range])
+      end
+    end
+  end
+
   describe 'validations' do
-    subject {FactoryGirl.build(:metric_configuration)}
 
     context 'active model validations' do
       before :each do

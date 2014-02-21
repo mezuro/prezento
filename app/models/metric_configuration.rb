@@ -9,4 +9,7 @@ class MetricConfiguration < KalibroGem::Entities::MetricConfiguration
   validates :weight, presence: true
   validates :aggregation_form, presence: true
 
+  def mezuro_ranges
+    MezuroRange.ranges_of self.id
+  end
 end
