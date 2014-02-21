@@ -63,11 +63,13 @@
     </tr>
   </thead>
   <tbody>
-    
+    <% if @mezuro_ranges.size == 0 %>
+      <%= render partial: 'no_ranges' %>
+    <% else %>
+      <%= render partial: 'ranges', collection: @mezuro_ranges, as: :mezuro_range %>
+    <% end %>
   </tbody>
 </table>
-
-<hr>
 
 <p>
  <%= link_to 'Back', mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
