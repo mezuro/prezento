@@ -12,6 +12,16 @@ When(/^I visit the sample metric configuration edit page$/) do
   visit edit_mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id, @metric_configuration.id)
 end
 
+When(/^I visit the sample metric configuration page$/) do
+  visit mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id, @metric_configuration.id)
+end
+
+Then(/^I am at the sample metric configuration page$/) do
+  visit mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id, @metric_configuration.id)
+  page.should have_content(@metric_configuration.metric.name)
+  page.should have_content("Ranges")
+end
+
 Then(/^I should see the sample metric configuration content$/) do
   page.should have_content(@metric_configuration.metric.name)
   page.should have_content(@metric_configuration.code)
