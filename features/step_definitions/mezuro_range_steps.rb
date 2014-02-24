@@ -3,6 +3,11 @@ Given(/^I have a sample range within the sample metric configuration with beginn
                                      reading_id: @reading.id, id: nil})
 end
 
+Given(/^I have a sample range within the sample metric configuration$/) do
+  @mezuro_range = FactoryGirl.create(:mezuro_range, {metric_configuration_id: @metric_configuration.id, 
+                                     reading_id: @reading.id, id: nil})
+end
+
 Then(/^I should be at the New Range page$/) do
   page.should have_content("New Range")
   page.should have_content("Beginning")
