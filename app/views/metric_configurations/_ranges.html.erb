@@ -2,4 +2,11 @@
   <td style="color: #<%= mezuro_range.color %>"><%= mezuro_range.label %></td>
   <td><%= mezuro_range.beginning %></td>
   <td><%= mezuro_range.end %></td>
+  <td> 
+    <% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
+      <%= link_to 'Destroy Range', mezuro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.configuration_id,
+      @metric_configuration.id, mezuro_range.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this range?' }, 
+      class: 'btn btn-danger' %>
+    <% end %>
+  </td>
 </tr>
