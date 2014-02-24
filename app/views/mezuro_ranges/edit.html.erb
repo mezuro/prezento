@@ -1,0 +1,6 @@
+<h1>Edit Range</h1>
+
+<%= form_for(@mezuro_range, :url => mezuro_configuration_metric_configuration_mezuro_range_update_url(
+             @mezuro_configuration_id, @metric_configuration_id, @mezuro_range.id), method: :put) do |f|  %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>

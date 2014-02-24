@@ -2,8 +2,9 @@ include OwnershipAuthentication
 
 class MezuroRangesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :metric_configuration_owner?, only: [:new, :create, :destroy]
-  before_action :get_url_params, only: [:create, :destroy]
+  before_action :metric_configuration_owner?, only: [:new, :create, :destroy, :update]
+  before_action :get_url_params, only: [:update, :create, :destroy]
+  before_action :set_mezuro_range, only: [:edit, :update]
 
   def new
     @mezuro_range = MezuroRange.new
@@ -28,10 +29,22 @@ class MezuroRangesController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    @mezuro_range_id = params[:mezuro_range_id]
+    before_form
   end
 
-  def edit
+  def update
+    respond_to do |format|
+      @mezuro_range.metric_configuration_id = @metric_configuration_id
+      if @mezuro_range.update(mezuro_range_params)
+        format.html { redirect_to mezuro_configuration_metric_configuration_path(
+            @mezuro_configuration_id, @metric_configuration_id), notice: 'The range was successfully edited.' }
+        format.json { head :no_content }
+      else
+        failed_action(format, 'edit')
+      end    
+    end
   end
 
   private
@@ -66,4 +79,8 @@ class MezuroRangesController < ApplicationController
     @metric_configuration_id = params[:metric_configuration_id].to_i
   end
 
+
+  def set_mezuro_range
+    @mezuro_range = MezuroRange.find(params[:id].to_i)
+  end
 end
