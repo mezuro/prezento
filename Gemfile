@@ -72,7 +72,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   # Fixtures made easy
-  gem 'factory_girl_rails', '~> 4.3.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
 
   # Deployment
   gem 'capistrano', "~>3.1.0", require: false
