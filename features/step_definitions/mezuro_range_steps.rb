@@ -3,6 +3,14 @@ Given(/^I have a sample range within the sample metric configuration with beginn
                                      reading_id: @reading.id, id: nil})
 end
 
+Given(/^I am at the Edit Mezuro Range page$/) do
+  visit edit_mezuro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id, @mezuro_range.id)
+end
+
+Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
+  select text, from: field
+end
+
 Given(/^I have a sample range within the sample metric configuration$/) do
   @mezuro_range = FactoryGirl.create(:mezuro_range, {metric_configuration_id: @metric_configuration.id, 
                                      reading_id: @reading.id, id: nil})
