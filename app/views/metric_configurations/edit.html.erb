@@ -4,4 +4,5 @@
 
 <%= form_for(@metric_configuration, :url => mezuro_configuration_metric_configuration_update_url(@mezuro_configuration_id, @metric_configuration.id), method: :put) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
+  <%= link_to 'Back',  mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
 <% end %>
