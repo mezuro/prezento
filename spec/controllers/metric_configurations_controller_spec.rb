@@ -121,7 +121,6 @@ describe MetricConfigurationsController do
 
       context 'when the user does not own the metric configuration' do
         before do
-          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
           get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
@@ -180,8 +179,6 @@ describe MetricConfigurationsController do
 
       context 'when the user does not own the reading' do
         before :each do
-          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
-
           post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
@@ -214,8 +211,6 @@ describe MetricConfigurationsController do
 
       context "when the user doesn't own the configuration" do
         before :each do
-          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
-
           delete :destroy, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
