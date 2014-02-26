@@ -130,8 +130,6 @@ describe RepositoriesController do
 
       context "when the user doesn't own the project" do
         before :each do
-          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-
           delete :destroy, id: repository.id, project_id: project.id.to_s
         end
 
@@ -170,8 +168,6 @@ describe RepositoriesController do
 
       context 'when the user does not own the repository' do
         before do
-          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-
           get :edit, id: repository.id, project_id: project.id.to_s
         end
 
@@ -231,8 +227,6 @@ describe RepositoriesController do
 
       context 'when the user does not own the repository' do
         before :each do
-          Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-
           post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
         end
 
