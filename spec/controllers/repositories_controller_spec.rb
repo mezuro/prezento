@@ -11,7 +11,7 @@ describe RepositoriesController do
     context 'when the current user owns the project' do
       before :each do
         Repository.expects(:repository_types).returns([])
-        subject.expects(:repository_owner?).returns true
+        subject.expects(:project_owner?).returns true
 
         get :new, project_id: project.id.to_s
       end
@@ -40,7 +40,7 @@ describe RepositoriesController do
 
     context 'when the current user owns the project' do
       before :each do
-        subject.expects(:repository_owner?).returns true
+        subject.expects(:project_owner?).returns true
       end
 
       context 'with valid fields' do

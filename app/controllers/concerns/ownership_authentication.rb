@@ -2,7 +2,15 @@ module OwnershipAuthentication
   extend ActiveSupport::Concern
 
   def project_owner?
-    check_project_ownership(params[:id])
+    if self.kind_of?(ProjectsController)
+      id = params[:id]
+    elsif self.kind_of?(RepositoriesController)
+      id = params[:project_id]
+    else
+      raise "Not supported"
+    end
+
+    check_project_ownership(id)
   end
 
   def repository_owner?
@@ -50,6 +58,8 @@ module OwnershipAuthentication
         format.json { head :no_content }
       end
     end
+
+    return true
   end
 
   def check_reading_group_ownership(id)

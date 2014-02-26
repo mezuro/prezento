@@ -2,7 +2,8 @@ include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :state]
-  before_action :repository_owner?, except: [:show, :state]
+  before_action :project_owner?, only: [:new, :create]
+  before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :process_repository]
 
   # GET /projects/1/repositories/1
