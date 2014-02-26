@@ -76,7 +76,7 @@ module OwnershipAuthentication
   def check_mezuro_configuration_ownership(id)
     if current_user.mezuro_configuration_ownerships.find_by_mezuro_configuration_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to mezuro_configurations_url, notice: "You're not allowed to do this operation" }
+        format.html { redirect_to mezuro_configurations_url(id), notice: "You're not allowed to do this operation" }
         format.json { head :no_content }
       end
     end

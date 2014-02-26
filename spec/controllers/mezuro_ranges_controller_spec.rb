@@ -28,7 +28,7 @@ describe MezuroRangesController do
         get :new, mezuro_configuration_id: mezuro_configuration.id, metric_configuration_id: mezuro_range.metric_configuration_id
       end
 
-      it { should redirect_to(mezuro_configurations_path) }
+      it { should redirect_to(mezuro_configurations_path(mezuro_configuration.id)) }
       it { should respond_with(:redirect) }
     end
   end
@@ -94,7 +94,7 @@ describe MezuroRangesController do
           delete :destroy, id: mezuro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-         it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+         it { should redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
          it { should respond_with(:redirect) }
       end
     end
@@ -137,7 +137,7 @@ describe MezuroRangesController do
           get :edit, id: mezuro_range.id, mezuro_configuration_id: metric_configuration.configuration_id, metric_configuration_id: metric_configuration.id
         end
 
-        it { should redirect_to(mezuro_configurations_url) }
+        it { should redirect_to(mezuro_configurations_url(metric_configuration.configuration_id)) }
         it { should respond_with(:redirect) }
         it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -199,7 +199,7 @@ describe MezuroRangesController do
           post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: mezuro_range.id, metric_configuration_id: metric_configuration.id, mezuro_range: mezuro_range_params
         end
 
-        it { should redirect_to mezuro_configurations_path }
+        it { should redirect_to mezuro_configurations_path(metric_configuration.configuration_id) }
       end
     end
   end

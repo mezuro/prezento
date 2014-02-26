@@ -42,7 +42,7 @@ describe MetricConfigurationsController do
         post :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
       end
 
-      it { should redirect_to(mezuro_configurations_url) }
+      it { should redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
       it { should respond_with(:redirect) }
     end
   end
@@ -124,7 +124,7 @@ describe MetricConfigurationsController do
           get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-        it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+        it { should redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
         it { should respond_with(:redirect) }
         it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -182,7 +182,7 @@ describe MetricConfigurationsController do
           post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should redirect_to mezuro_configurations_path }
+        it { should redirect_to mezuro_configurations_path(metric_configuration.configuration_id) }
       end
     end
   end
@@ -214,7 +214,7 @@ describe MetricConfigurationsController do
           delete :destroy, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-         it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+         it { should redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
          it { should respond_with(:redirect) }
       end
     end

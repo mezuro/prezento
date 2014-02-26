@@ -25,7 +25,7 @@ describe CompoundMetricConfigurationsController do
         get :new, mezuro_configuration_id: mezuro_configuration.id
       end
 
-      it { should redirect_to(mezuro_configurations_url) }
+      it { should redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
       it { should respond_with(:redirect) }
     end
   end
@@ -105,7 +105,7 @@ describe CompoundMetricConfigurationsController do
           get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
 
-        it { should redirect_to(mezuro_configurations_path) } #FIXME : It should redirect to configuration show page
+        it { should redirect_to(mezuro_configurations_path(mezuro_configuration.id)) }
         it { should respond_with(:redirect) }
         it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end

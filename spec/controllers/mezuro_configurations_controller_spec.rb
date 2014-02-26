@@ -115,7 +115,7 @@ describe MezuroConfigurationsController do
           delete :destroy, :id => @subject.id
         end
 
-         it { should redirect_to(mezuro_configurations_path)  }
+         it { should redirect_to(mezuro_configurations_path(@subject.id))  }
       end
     end
 
@@ -177,7 +177,7 @@ describe MezuroConfigurationsController do
           get :edit, :id => @subject.id
         end
 
-        it { should redirect_to(mezuro_configurations_path)  }
+        it { should redirect_to(mezuro_configurations_path(@subject.id))  }
         it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
@@ -255,7 +255,7 @@ describe MezuroConfigurationsController do
           post :update, :id => @subject.id, :mezuro_configuration => @subject_params
         end
 
-        it { should redirect_to mezuro_configurations_path }
+        it { should redirect_to mezuro_configurations_path(@subject.id) }
       end
     end
 
