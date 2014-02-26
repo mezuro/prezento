@@ -83,8 +83,6 @@ describe ReadingsController do
 
       context 'when the user does not own the reading' do
         before do
-          Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
-
           get :edit, id: reading.id, reading_group_id: reading_group.id.to_s
         end
 
@@ -143,8 +141,6 @@ describe ReadingsController do
 
       context 'when the user does not own the reading' do
         before :each do
-          Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
-
           post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
         end
 
@@ -184,8 +180,6 @@ describe ReadingsController do
 
       context "when the user doesn't own the reading group" do
         before :each do
-          Reading.expects(:find).at_least_once.with(reading.id).returns(reading)
-
           delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
         end
 
