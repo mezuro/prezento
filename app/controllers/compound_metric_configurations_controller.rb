@@ -26,6 +26,7 @@ class CompoundMetricConfigurationsController < ApplicationController
   def show
     @compound_metric_configuration = @metric_configuration
     @reading_group = ReadingGroup.find(@compound_metric_configuration.reading_group_id)
+    @mezuro_ranges = @compound_metric_configuration.mezuro_ranges
     @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 

@@ -63,7 +63,7 @@
     </tr>
   </thead>
   <tbody>
-    <% if @mezuro_ranges.size == 0 %>
+    <% if @mezuro_ranges.empty? %>
       <%= render partial: 'no_ranges' %>
     <% else %>
       <%= render partial: 'ranges', collection: @mezuro_ranges, as: :mezuro_range %>

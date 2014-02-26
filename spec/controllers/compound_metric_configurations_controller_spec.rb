@@ -70,10 +70,12 @@ describe CompoundMetricConfigurationsController do
   describe 'show' do
     let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
     let(:reading_group) { FactoryGirl.build(:reading_group) }
+    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
 
     before :each do
       ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
       MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
+      MezuroRange.expects(:ranges_of).with(compound_metric_configuration.id).returns([mezuro_range])
 
       get :show, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
     end

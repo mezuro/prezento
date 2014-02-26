@@ -58,7 +58,11 @@
     </tr>
   </thead>
   <tbody>
-    
+    <% if @mezuro_ranges.empty? %>
+      <%= render partial: 'no_ranges' %>
+    <% else %>
+      <%= render partial: 'metric_configurations/ranges', collection: @mezuro_ranges, as: :mezuro_range %>
+    <% end %>
   </tbody>
 </table>
 
