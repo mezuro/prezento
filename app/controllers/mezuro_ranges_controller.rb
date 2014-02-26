@@ -2,7 +2,7 @@ include OwnershipAuthentication
 
 class MezuroRangesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :metric_configuration_owner?, only: [:new, :create, :destroy, :update]
+  before_action :metric_configuration_owner?, only: [:new, :create, :destroy, :edit, :update]
   before_action :get_url_params, only: [:update, :create, :destroy]
   before_action :set_mezuro_range, only: [:edit, :update]
 
@@ -30,7 +30,6 @@ class MezuroRangesController < ApplicationController
   end
 
   def edit
-    @mezuro_range_id = params[:mezuro_range_id]
     before_form
   end
 
