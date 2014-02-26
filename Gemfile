@@ -81,7 +81,7 @@ group :development, :test do
   gem 'capistrano-rvm', "~>0.1.0"
 
   # JavaScript unit tests
-  gem "konacha", "~> 3.0.0"
+  gem "konacha", "~> 3.1.0"
 
   # Test coverage history
   gem 'coveralls', require: false
