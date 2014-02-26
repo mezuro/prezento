@@ -104,7 +104,8 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from getting saved" 
+    And I should see "1 error prohibited this MezuroRange from getting saved"
+    And I should see "Beginning is not a number"
 
   @kalibro_restart
   Scenario: With an invalid end (not a number)
