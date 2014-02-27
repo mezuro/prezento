@@ -18,8 +18,3 @@
 //= require modules
 //= require Chart
 //= require_tree .
-
-
-$(function ()  
-{ $("#comments").popover();  
-});
