@@ -1,5 +1,11 @@
 <tr>
-  <td style="color: #<%= mezuro_range.color %>"><%= mezuro_range.label %></td>
+  <td style="color: #<%= mezuro_range.color %>">
+    <div>
+      <a type="button" id="comments" rel="popover" data-placement="left" data-original-title="Comments" data-content="<%= mezuro_range.comments %>">
+        Popover on left
+      </a>
+    </div>
+  </td>
   <td><%= mezuro_range.beginning %></td>
   <td><%= mezuro_range.end %></td>
   <td> 
