@@ -2,6 +2,11 @@ When(/^I click the (.+) link$/) do |text|
   click_link text
 end
 
+When(/^I click the (.+) image$/) do |image|
+  find(:xpath, "//a/img[@alt='#{image}']/..").click
+  sleep(1) #This sleep is essential to make the popup visible when we take a picture of the page
+end
+
 When(/^I press the (.+) button$/) do |text|
   click_button text
 end
