@@ -18,7 +18,9 @@
   <% end %>
 </div><br />
 
-<%= link_to 'Compound Metric', new_mezuro_configuration_compound_metric_configuration_path(@mezuro_configuration_id), class: 'btn btn-info' %>
+<%= link_to 'Back', mezuro_configuration_path(@mezuro_configuration_id), class: 'btn btn-default' %>
+<%= link_to 'Compound Metric', new_mezuro_configuration_compound_metric_configuration_path(@mezuro_configuration_id), class: 'btn btn-info', id: "link_to_compound" %>
+
 
 <script type="text/javascript">
   //Loads the accordion
@@ -28,4 +30,8 @@
       collapsible: true,
     });
   });
+
+  <% if @exist_metric.nil? %>
+    $("#link_to_compound").css("display", "none");
+  <% end %>
 </script>

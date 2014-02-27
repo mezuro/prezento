@@ -11,6 +11,7 @@ class MetricConfigurationsController < ApplicationController
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
     @base_tools = KalibroGem::Entities::BaseTool.all
+    @exist_metric = params[:exist_metric]
   end
 
   def new
