@@ -49,6 +49,7 @@ class MezuroRangesController < ApplicationController
   private
 
   def mezuro_range_params
+    params[:mezuro_range][:beginning] = params[:mezuro_range][:beginning].to_f.to_s if numeric?(params[:mezuro_range][:beginning]) # this is necessary for the beginning validator
     params[:mezuro_range]
   end
 
@@ -78,6 +79,10 @@ class MezuroRangesController < ApplicationController
     @metric_configuration_id = params[:metric_configuration_id].to_i
   end
 
+  # used on mezuro_range_params
+  def numeric?(text)
+    Float(text) != nil rescue false
+  end
 
   def set_mezuro_range
     @mezuro_range = MezuroRange.find(params[:id].to_i)

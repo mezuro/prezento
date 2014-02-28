@@ -13,7 +13,7 @@ Feature: Range Deletion
     And I have a sample reading within the sample reading group labeled "My Reading"
     And I have a sample range within the sample metric configuration
     And I am at the sample metric configuration page
-    When I click the Destroy Range link
+    When I click the Destroy link
     Then I should be at metric configuration sample page
     And I should see "There are no ranges yet!"
 
@@ -27,4 +27,4 @@ Feature: Range Deletion
     And I have a sample reading within the sample reading group labeled "My Reading"
     And I have a sample range within the sample metric configuration
     When I am at the sample metric configuration page
-    Then I should not see "Destroy Range"
+    Then I should not see "Destroy"
