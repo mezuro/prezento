@@ -40,3 +40,8 @@ Feature: Metric Configuration Creation
     And I click the Total Lines of Code link
     When I click the Back link
     Then I should be at the choose metric page
+    # Checks for error loading metrics with '' characters
+    When I click the "Checkstyle" h3
+    And I click the Average 'for' Depth link
+    Then I should see "Average nested depth of all 'for' blocks."
+
