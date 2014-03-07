@@ -9,7 +9,7 @@
   <b>Metric Name:</b> <%= @metric_configuration.metric.name %>
 </p>
 <p>
-  <b>Metric Description:</b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric.description %>
+  <b>Metric Description:</b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric_configuration.metric.description %>
 </p>
 <p>
   <b>Language:</b> <%= @metric_configuration.metric.languages.to_s %>
