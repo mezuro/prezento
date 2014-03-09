@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0.2'
+gem 'jbuilder', '~> 2.0.4'
 
 # For user authentication and everything else
 gem 'devise', '~> 3.2.0'
@@ -94,8 +94,6 @@ end
 # Acceptance tests
 group :cucumber do
   gem 'cucumber-rails', '~> 1.4.0'
-  #Fixed the cumcumber version since the version 1.3.4 causes tests failure
-  gem 'cucumber', '~> 1.3.10'
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.5.0'
 end
