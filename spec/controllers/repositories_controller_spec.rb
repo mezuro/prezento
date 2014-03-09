@@ -251,8 +251,7 @@ describe RepositoriesController do
         repository.expects(:last_processing).returns(nil)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: ''
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: '', format: :js
       end
 
       it { should respond_with(:success) }
@@ -266,8 +265,7 @@ describe RepositoriesController do
         repository.expects(:last_processing).returns(ready_processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING', format: :js
       end
 
       it { should respond_with(:success) }
@@ -281,8 +279,7 @@ describe RepositoriesController do
         repository.expects(:last_processing).returns(processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'LOADING'
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'LOADING', format: :js
       end
 
       it { should respond_with(:success) }
@@ -293,8 +290,7 @@ describe RepositoriesController do
       before :each do
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'READY'
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'READY', format: :js
       end
 
       it { should respond_with(:ok) }
@@ -308,8 +304,7 @@ describe RepositoriesController do
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
         Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
 
-        request.env["HTTP_ACCEPT"] = 'application/javascript' # FIXME: there should be a better way to force JS
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013'
+        get :state, project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013', format: :js
       end
 
       it { should respond_with(:ok) }
