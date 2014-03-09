@@ -126,7 +126,7 @@ GEM
     kalibro_gem (0.0.1.rc18)
       activesupport (~> 4.0.2)
       savon (~> 2.3.3)
-    konacha (3.1.0)
+    konacha (3.2.0)
       actionpack (>= 3.1, < 5)
       capybara
       colorize
@@ -287,7 +287,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails (~> 4.2.0)
   kalibro_gem (~> 0.0.1.rc18)
-  konacha (~> 3.1.0)
+  konacha (~> 3.2.0)
   mocha
   modernizr-rails
   pg (~> 0.17.0)
