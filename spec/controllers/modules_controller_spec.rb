@@ -23,10 +23,10 @@ describe ModulesController do
       ModuleResult.expects(:find).at_least_once.with(module_result.id).returns(module_result)
       subject.expire_fragment("#{module_result.id}_#{metric_name}")
 
-      get :metric_history, id: module_result.id, metric_name: metric_name, module_id: module_id, format: :js
+      xhr :get, :metric_history, {id: module_result.id, metric_name: metric_name, module_id: module_id}
     end
 
     it { should respond_with(:success) }
     it { should render_template(:metric_history) }
-  end 
+  end
 end

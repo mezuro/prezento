@@ -255,7 +255,7 @@ describe RepositoriesController do
         repository.expects(:last_processing).returns(nil)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: '', format: :js
+        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: ''}
       end
 
       it { should respond_with(:success) }
@@ -269,7 +269,7 @@ describe RepositoriesController do
         repository.expects(:last_processing).returns(ready_processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING', format: :js
+        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'}
       end
 
       it { should respond_with(:success) }
@@ -283,7 +283,7 @@ describe RepositoriesController do
         repository.expects(:last_processing).returns(processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'LOADING', format: :js
+        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'LOADING'}
       end
 
       it { should respond_with(:success) }
@@ -294,7 +294,7 @@ describe RepositoriesController do
       before :each do
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: 'READY', format: :js
+        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'READY'}
       end
 
       it { should respond_with(:ok) }
@@ -308,7 +308,7 @@ describe RepositoriesController do
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
         Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
 
-        get :state, project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013', format: :js
+        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013'}
       end
 
       it { should respond_with(:ok) }
