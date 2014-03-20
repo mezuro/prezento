@@ -42,6 +42,7 @@ Feature: Metric Configuration Creation
     Then I should be at the choose metric page
     # Checks for error loading metrics with '' characters
     When I click the "Checkstyle" h3
-    And I click the Average 'for' Depth link
-    Then I should see "Average nested depth of all 'for' blocks."
+    And I click the Average 'if' Depth link
+    And I wait for "1" seconds
+    Then I should see "Average nested depth of all 'if-else' blocks. Default maximum: 1."
 
