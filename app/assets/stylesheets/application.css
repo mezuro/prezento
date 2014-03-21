@@ -13,4 +13,5 @@
  *= require jquery.ui.all
  *= require_self
  *= require_tree .
+ *= require colorpicker
  */
