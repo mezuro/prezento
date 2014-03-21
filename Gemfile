@@ -48,6 +48,9 @@ gem "chart-js-rails", "~> 0.0.6"
 # JQueryUI
 gem 'jquery-ui-rails', '~> 4.2.0'
 
+# colorpicker
+gem 'colorpicker', '~> 0.0.5'
+
 # Memcached
 gem "dalli", "~> 2.7.0"
 

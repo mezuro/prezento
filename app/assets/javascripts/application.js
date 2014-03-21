@@ -18,3 +18,4 @@
 //= require modules
 //= require Chart
 //= require_tree .
+//= require colorpicker
