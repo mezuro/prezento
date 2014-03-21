@@ -11,6 +11,8 @@ describe Reading do
       
       it { should validate_presence_of(:label) }
       it { should validate_presence_of(:color) }
+      it { should validate_presence_of(:grade) }
+      it { should validate_numericality_of(:grade) }
     end
 
     context 'kalibro validations' do
