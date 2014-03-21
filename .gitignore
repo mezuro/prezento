@@ -21,3 +21,8 @@ database.yml
 database.yml~
 kalibro.yml
 kalibro_cucumber_helpers.yml
+KalibroService.tar.gz
+KalibroService/
+analizo_1.16.0_all.deb
+db_bootstrap.sql
+install.sh
