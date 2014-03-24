@@ -16,18 +16,12 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   * postgresql-server-dev-9.1
 
-  * imagemagick
-
-  * libmagickcore-dev
-
-  * libmagickwand-dev
-
 * Unpacked dependecies
 
   * PhantomJS >= 1.9.2 (http://phantomjs.org/)
-  
+
   *NOTE:* Just create sym links for that
-  
+
     cd /usr/local/share
     wget http://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
     tar xjf phantomjs-1.9.2-linux-x86_64.tar.bz2
@@ -37,7 +31,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
 * Ruby version
 
-  2.0.0-p353
+  2.1.1
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
@@ -69,7 +63,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
   Deployment is made through Capistano (https://github.com/capistrano/capistrano)
 
-    cap deploy:migrations
+    cap production deploy
 
   In order to do this, you must have the password.
 
@@ -84,10 +78,16 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
   4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
 
+=== Contributing
+
+Please, have a look the wiki pages about development workflow and code standards:
+
+* https://github.com/mezuro/mezuro/wiki/Development-workflow
+* https://github.com/mezuro/mezuro/wiki/Standards
 
 === License
 
-Copyright (c) 2013 The Author developers.
+Copyright (c) 2013-2014 The Author developers.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
@@ -104,7 +104,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 === Authors
 
-Please see the humans.txt file with the authors
+Please see the humans.txt (at the `public` folder) file with the authors
 
 === Acknowledgments
 
