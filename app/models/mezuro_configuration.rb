@@ -1,6 +1,6 @@
 require "validators/kalibro_uniqueness_validator.rb"
 
-class MezuroConfiguration < KalibroGem::Entities::Configuration
+class MezuroConfiguration < KalibroGatekeeperClient::Entities::Configuration
   include KalibroRecord
 
   attr_accessor :name

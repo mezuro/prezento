@@ -11,7 +11,7 @@ describe MetricConfigurationsController do
     context 'when adding new metrics' do
       before :each do
         subject.expects(:mezuro_configuration_owner?).returns true
-        KalibroGem::Entities::BaseTool.expects(:all).returns([base_tool])
+        KalibroGatekeeperClient::Entities::BaseTool.expects(:all).returns([base_tool])
         get :choose_metric, mezuro_configuration_id: mezuro_configuration.id
       end
 
@@ -29,7 +29,7 @@ describe MetricConfigurationsController do
     context 'when the current user owns the mezuro configuration' do
       before :each do
         subject.expects(:mezuro_configuration_owner?).returns true
-        KalibroGem::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
+        KalibroGatekeeperClient::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
         post :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
       end
 
@@ -64,7 +64,7 @@ describe MetricConfigurationsController do
       context 'with valid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(true)
-          KalibroGem::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
+          KalibroGatekeeperClient::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
 
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
         end
@@ -75,7 +75,7 @@ describe MetricConfigurationsController do
       context 'with invalid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
-          KalibroGem::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
+          KalibroGatekeeperClient::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
 
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
         end

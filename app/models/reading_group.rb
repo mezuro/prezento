@@ -1,6 +1,6 @@
 require "validators/kalibro_uniqueness_validator.rb"
 
-class ReadingGroup < KalibroGem::Entities::ReadingGroup
+class ReadingGroup < KalibroGatekeeperClient::Entities::ReadingGroup
   include KalibroRecord
 
   attr_accessor :name

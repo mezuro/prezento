@@ -1,8 +1,8 @@
-class ModuleResult < KalibroGem::Entities::ModuleResult
+class ModuleResult < KalibroGatekeeperClient::Entities::ModuleResult
   include KalibroRecord
 
   def metric_results
-    KalibroGem::Entities::MetricResult.metric_results_of(@id)
+    KalibroGatekeeperClient::Entities::MetricResult.metric_results_of(@id)
   end
 
   def history

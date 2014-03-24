@@ -10,7 +10,7 @@ class MetricConfigurationsController < ApplicationController
   def choose_metric
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
-    @base_tools = KalibroGem::Entities::BaseTool.all
+    @base_tools = KalibroGatekeeperClient::Entities::BaseTool.all
     @exist_metric = params[:exist_metric]
   end
 
@@ -18,13 +18,13 @@ class MetricConfigurationsController < ApplicationController
     @metric_configuration = MetricConfiguration.new
     @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration.base_tool_name = params[:base_tool_name]
-    @metric_configuration.metric = KalibroGem::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
+    @metric_configuration.metric = KalibroGatekeeperClient::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
   end
 
   def create
     @metric_configuration = MetricConfiguration.new(metric_configuration_params)
     @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
-    @metric_configuration.metric = KalibroGem::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
+    @metric_configuration.metric = KalibroGatekeeperClient::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
     @metric_configuration.base_tool_name = params[:base_tool_name]
     respond_to do |format|
       create_and_redir(format)

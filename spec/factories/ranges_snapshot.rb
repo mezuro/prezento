@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 FactoryGirl.define do
-  factory :range_snapshot, class: KalibroGem::Entities::RangeSnapshot do
+  factory :range_snapshot, class: KalibroGatekeeperClient::Entities::RangeSnapshot do
     beginning 1.1
   	self.end 5.1
   	label "Snapshot"

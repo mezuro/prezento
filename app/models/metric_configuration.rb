@@ -1,6 +1,6 @@
 require "validators/code_uniqueness_validator.rb"
 
-class MetricConfiguration < KalibroGem::Entities::MetricConfiguration
+class MetricConfiguration < KalibroGatekeeperClient::Entities::MetricConfiguration
   include KalibroRecord
 
   attr_accessor :code, :weight, :aggregation_form

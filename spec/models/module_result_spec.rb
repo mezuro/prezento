@@ -6,7 +6,7 @@ describe ModuleResult do
     
     describe 'metric_results' do
       it 'should call the metric_results_of method' do
-        KalibroGem::Entities::MetricResult.expects(:metric_results_of).with(subject.id).returns(nil)
+        KalibroGatekeeperClient::Entities::MetricResult.expects(:metric_results_of).with(subject.id).returns(nil)
 
         subject.metric_results
       end

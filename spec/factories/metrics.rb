@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :metric, class: KalibroGem::Entities::Metric do
+  factory :metric, class: KalibroGatekeeperClient::Entities::Metric do
     name "Total Abstract Classes"
     compound false
     scope "SOFTWARE"
@@ -8,7 +8,7 @@ FactoryGirl.define do
     language ["C", "CPP", "JAVA"]
   end
 
-  factory :loc, class: KalibroGem::Entities::Metric do
+  factory :loc, class: KalibroGatekeeperClient::Entities::Metric do
     name "Lines of Code"
     compound false
     scope "CLASS"
@@ -17,7 +17,7 @@ FactoryGirl.define do
     language ["C", "CPP", "JAVA"]
   end
 
-  factory :compound_metric, class: KalibroGem::Entities::Metric do
+  factory :compound_metric, class: KalibroGatekeeperClient::Entities::Metric do
     name "Compound"
     compound true
     scope "CLASS"

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :module, class: KalibroGem::Entities::Module do
+  factory :module, class: KalibroGatekeeperClient::Entities::Module do
     name 'Qt-Calculator'
     granularity 'APPLICATION'
   end

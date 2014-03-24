@@ -32,7 +32,8 @@
 
 <div class="form-group">
   <%= f.label :configuration, class: 'control-label' %>
-  <% configuration_list = KalibroGem::Entities::Configuration.all.map { |conf| [conf.name, conf.id] } %>
+  <% configuration_list = KalibroGatekeeperClient::Entities::Configuration.all.map { |conf| [conf.name, conf.id] } %>
+  <% p configuration_list %>
   <%= f.select( :configuration_id, configuration_list, {class: 'form-control'} ) %>
 </div></br>
 

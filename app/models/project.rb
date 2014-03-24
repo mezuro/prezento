@@ -1,6 +1,6 @@
 require "validators/kalibro_uniqueness_validator.rb"
 
-class Project < KalibroGem::Entities::Project
+class Project < KalibroGatekeeperClient::Entities::Project
   include KalibroRecord
 
   attr_accessor :name
