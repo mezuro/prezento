@@ -57,7 +57,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 * Services (job queues, cache servers, search engines, etc.)
 
   Kalibro Web Service 1.0 r6
-  You can find a script to install it on Ubuntu at https://gist.github.com/rafamanzo/6179925
+  You can find a script to install it on Ubuntu at https://gist.github.com/rafamanzo/6179925/91908b8f1fe291db0ae90a3b6998f5fbb1fa671a (if you're brave https://gist.github.com/rafamanzo/6179925/ shows a unstable script with JBoss instead of Tomcat)
 
 * Deployment instructions
 
