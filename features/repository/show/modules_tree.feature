@@ -35,7 +35,7 @@ Feature: Repository modules tree
     And I should see "Granularity"
     And I should see "Grade"
 
-  @kalibro_restart @javascript
+  @kalibro_restart @javascript @wip
   Scenario: Module navigation
     Given I am a regular user
     And I am signed in

@@ -2,8 +2,8 @@ Feature: Date Select
   In order to view previous processings
   As a regular user
   I should be able to select a specific date
-  
-  @kalibro_restart @javascript
+
+  @kalibro_restart @javascript @wip
   Scenario: With a specific date selected
     Given I have a sample project
     And I have a sample configuration with native metrics
