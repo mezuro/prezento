@@ -41,7 +41,7 @@ Feature: New reading
     Then I should see "1 error prohibited this Reading from getting saved"
     And I should be at the New Reading page
 
-  @kalibro_restart
+  @kalibro_restart @wip
   Scenario: With an invalid grade
     Given I am a regular user
     And I am signed in
@@ -54,7 +54,7 @@ Feature: New reading
     Then I should see "1 error prohibited this Reading from getting saved"
     And I should be at the New Reading page
 
-  @kalibro_restart
+  @kalibro_restart @wip
   Scenario: With an invalid color
     Given I am a regular user
     And I am signed in

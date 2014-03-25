@@ -3,7 +3,7 @@ Feature: Repository metric results
   As a regular user
   I should see the metric results table with its graphics
 
-  @kalibro_restart @javascript
+  @kalibro_restart @javascript @wip
   Scenario: Should show the message when the graphic of the given metric have only a single point
     Given I am a regular user
     And I am signed in

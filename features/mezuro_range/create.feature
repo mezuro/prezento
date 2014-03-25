@@ -18,7 +18,7 @@ Feature: Create range
     And I should see "End"
     And I should see "Comments"
     And I should see "Reading"
-    
+
   @kalibro_restart
   Scenario: Visiting range creation page when the user don't own the reading group and this reading group is empty
     Given I am a regular user
@@ -34,7 +34,7 @@ Feature: Create range
     And I should see "Comments"
     And I should see "You must have readings in your associated reading group to create a new range."
     And I should see "Your metric configurations' reading group belongs to another user and you are not allowed to modify it."
-    
+
   @kalibro_restart
   Scenario: Visiting range creation page when the user own an empty reading group (testing link to New Reading)
     Given I am a regular user
@@ -54,7 +54,7 @@ Feature: Create range
     And I should see "Label"
     And I should see "Grade"
     And I should see "Color"
-    
+
   @kalibro_restart
   Scenario: With valid fields and owning a non-empty reading group
     Given I am a regular user
@@ -71,7 +71,7 @@ Feature: Create range
     When I press the Save button
     Then I should be at metric configuration sample page
 
-  @kalibro_restart
+  @kalibro_restart @wip
   Scenario: With invalid fields and owning a non-empty reading group (Beginning > End)
     Given I am a regular user
     And I am signed in
@@ -86,7 +86,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from getting saved" 
+    And I should see "1 error prohibited this MezuroRange from getting saved"
     And I should see "[666.0, 42.0[ is not a valid range"
 
   @kalibro_restart
