@@ -35,7 +35,7 @@ Scenario: repository creation blank validations
   Then I should see "Name can't be blank"
   And I should see "Address can't be blank"
 
-@kalibro_restart @javascript @wip
+@kalibro_restart @javascript
 Scenario: repository creation with name already taken
   Given I am a regular user
   And I am signed in
@@ -49,6 +49,6 @@ Scenario: repository creation with name already taken
   And I set the select field "Type" as "GIT"
   And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "Process Period" as "1 day"
-  And I set the select field "Configuration" as "Java"
+  And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
   Then I should see "There's already"
