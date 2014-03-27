@@ -71,7 +71,7 @@ Feature: Create range
     When I press the Save button
     Then I should be at metric configuration sample page
 
-  @kalibro_restart @wip
+  @kalibro_restart
   Scenario: With invalid fields and owning a non-empty reading group (Beginning > End)
     Given I am a regular user
     And I am signed in
