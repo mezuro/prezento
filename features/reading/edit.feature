@@ -43,3 +43,16 @@ Feature: Reading Edit
     When I fill the Label field with "Average"
     And I press the Save button
     Then I should see "There's already"
+
+  @kalibro_restart 
+  Scenario: editing a reading with non numerical value 
+    Given I am a regular user
+    And I am signed in
+    And I own a sample reading group
+    And I have a sample reading within the sample reading group
+    And I am at the Edit Reading page
+    When I fill the Label field with "macaco"
+    And I fill the Grade field with "z"
+    And I fill the Color field with "FFFFFF"
+    And I press the Save button
+    Then I should see "Grade is not a number"
