@@ -9,6 +9,11 @@ class MezuroConfigurationsController < ApplicationController
     @mezuro_configuration = MezuroConfiguration.new
   end
 
+  def fork
+    @mezuro_configuration = MezuroConfiguration.new
+    @mezuro_configuration.description = MezuroConfiguration.find(params[:mezuro_configuration_id]).description #see later if we can change :mezuro_configuration_id by :id
+  end
+
   # GET /mezuro_configurations
   # GET /mezuro_configurations.json
   def index
