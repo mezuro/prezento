@@ -5,6 +5,8 @@
   <td>
     <% if mezuro_configuration_owner?(mezuro_configuration.id) %>
       <%= link_to 'Edit', edit_mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
+    <% else %>
+		  <%= link_to 'Fork', mezuro_configuration_fork_path(mezuro_configuration.id) , class: 'btn btn-success' %>
     <% end %>
   </td>
 </tr>
