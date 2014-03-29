@@ -10,11 +10,9 @@ before_script:
   - chmod +x install.sh
   - ./install.sh
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  - git clone https://github.com/mezuro/kalibro_gatekeeper.git
-  - cd kalibro_gatekeeper
-  - cp config/database.yml.sample config/database.yml
-  - export BUNDLE_GEMFILE=$PWD/Gemfile
-  - bundle install
+  - wget https://gist.githubusercontent.com/rafamanzo/9859244/raw/d60ddc9d26dc46f5c722d2fa3a4ff6c14dc0ce99/install-gatekeeper.sh
+  - chmod +x install-gatekeeper.sh
+  - ./install-gatekeeper.sh
   - bundle exec rails s -p 8081 -d
   - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
