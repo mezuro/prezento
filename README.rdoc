@@ -60,7 +60,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   You can find a script to install it on Ubuntu at https://gist.github.com/rafamanzo/6179925/91908b8f1fe291db0ae90a3b6998f5fbb1fa671a (if you're brave https://gist.github.com/rafamanzo/6179925/ shows a unstable script with JBoss instead of Tomcat)
 
   Kalibro Gatekeeper
-  You can find a script to install it on any machine with Rails on https://gist.github.com/rafamanzo/9859244
+  You can find a script to install it on any machine with Rails on https://gist.github.com/rafamanzo/9859244. After running this script, run ```unset BUNDLE_GEMFILE```.
   By default Mezuro will expect it to be running on port 8081 at localhost.
   In order to run it as expected, run: ```rails s -p 8081```.
 

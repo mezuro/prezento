@@ -10,7 +10,7 @@ before_script:
   - chmod +x install.sh
   - ./install.sh
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  - wget https://gist.githubusercontent.com/rafamanzo/9859244/raw/d60ddc9d26dc46f5c722d2fa3a4ff6c14dc0ce99/install-gatekeeper.sh
+  - wget https://gist.githubusercontent.com/rafamanzo/9859244/raw/ddbbbb79bb57e7f1f8eb8bfaa82b70596b3eecd9/install-gatekeeper.sh
   - chmod +x install-gatekeeper.sh
   - ./install-gatekeeper.sh
   - bundle exec rails s -p 8081 -d
