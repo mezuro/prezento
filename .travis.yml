@@ -13,6 +13,7 @@ before_script:
   - wget https://gist.githubusercontent.com/rafamanzo/9859244/raw/ddbbbb79bb57e7f1f8eb8bfaa82b70596b3eecd9/install-gatekeeper.sh
   - chmod +x install-gatekeeper.sh
   - ./install-gatekeeper.sh
+  - cd kalibro_gatekeeper
   - bundle exec rails s -p 8081 -d
   - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
