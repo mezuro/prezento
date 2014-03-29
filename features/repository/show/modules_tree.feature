@@ -30,6 +30,7 @@ Feature: Repository modules tree
     And I ask for the module result of the given processing
     When I visit the repository show page
     And I click the "Modules Tree" h3
+    And I wait for "5" seconds
     Then I should see a sample child's name
     And I should see "Name"
     And I should see "Granularity"
