@@ -7,10 +7,29 @@ describe MezuroRange do
       before :each do
         MezuroRange.expects(:ranges_of).with(subject.metric_configuration_id).at_least_once.returns([])
       end
-      
+
       it { should validate_presence_of(:beginning) }
       it { should validate_presence_of(:end) }
       it { should validate_presence_of(:reading_id) }
+
+      context 'beginning and end numericality' do
+        it { should validate_presence_of(:beginning) }
+        it { should validate_presence_of(:end) }
+
+        it 'should allow -INF and +INF to beginning' do
+          subject.beginning = '-INF'
+          subject.save
+
+          subject.errors.messages.should be_empty
+        end
+
+        it 'should allow -INF and +INF to end' do
+          subject.end = '-INF'
+          subject.save
+
+          subject.errors.messages.should be_empty
+        end
+      end
     end
   end
 
