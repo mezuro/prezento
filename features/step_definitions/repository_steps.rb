@@ -7,17 +7,17 @@ Given(/^I have a sample configuration with native metrics$/) do
                                              metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
                                              configuration_id: @configuration.id})
-  range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => '+INF', metric_configuration_id: metric_configuration.id})
+  range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
 end
 
 Given(/^I have a sample repository within the sample project$/) do
-  @repository = FactoryGirl.create(:repository, {project_id: @project.id, 
+  @repository = FactoryGirl.create(:repository, {project_id: @project.id,
                                                  configuration_id: @configuration.id, id: nil})
 end
 
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
-  @repository = FactoryGirl.create(:repository, {project_id: @project.id, 
+  @repository = FactoryGirl.create(:repository, {project_id: @project.id,
                                                  configuration_id: @configuration.id, id: nil, name: name})
 end
 
@@ -128,8 +128,8 @@ Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
   while(page.html.match(text).nil?)
     break if (Time.now - start_time) >= timeout.to_f
     sleep 1
-  end 
-  
+  end
+
   page.should have_content(text)
 end
 

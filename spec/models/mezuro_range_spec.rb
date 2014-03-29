@@ -16,15 +16,25 @@ describe MezuroRange do
         it { should validate_presence_of(:beginning) }
         it { should validate_presence_of(:end) }
 
-        it 'should allow -INF and +INF to beginning' do
+        it 'should allow -INF and INF to beginning' do
           subject.beginning = '-INF'
+          subject.save
+
+          subject.errors.messages.should be_empty
+
+          subject.beginning = 'INF'
           subject.save
 
           subject.errors.messages.should be_empty
         end
 
-        it 'should allow -INF and +INF to end' do
+        it 'should allow -INF and INF to end' do
           subject.end = '-INF'
+          subject.save
+
+          subject.errors.messages.should be_empty
+
+          subject.end = 'INF'
           subject.save
 
           subject.errors.messages.should be_empty

@@ -14,10 +14,10 @@ class MezuroRange < KalibroGatekeeperClient::Entities::Range
   private
 
   def non_infinite_end?
-    !(self.end == '-INF' || self.end == '+INF')
+    !(self.end == '-INF' || self.end == 'INF')
   end
 
   def non_infinite_beginning?
-    val = !(self.beginning == '-INF' || self.beginning == '+INF')
+    val = !(self.beginning == '-INF' || self.beginning == 'INF')
   end
 end
