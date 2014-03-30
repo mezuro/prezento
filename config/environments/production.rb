@@ -82,5 +82,5 @@ Mezuro::Application.configure do
   config.action_mailer.default_url_options = { :host => 'mezuro.org' }
 
   # Kalibro URL
-  KalibroGatekeeper.configure_with(Rails.root.join('config', 'kalibro_gatekeeper.yml'))
+  KalibroGatekeeperClient.configure_with(Rails.root.join('config', 'kalibro_gatekeeper.yml'))
 end
