@@ -47,7 +47,7 @@ namespace :deploy do
   before :compile_assets, :config_symlinks do
     on roles(:web) do
       execute "ln -s #{File.join(deploy_to, 'shared', 'config/database.yml')} #{File.join(release_path, 'config/database.yml')}"
-      execute "ln -s #{File.join(deploy_to, 'shared', 'config/kalibro.yml')} #{File.join(release_path, 'config/kalibro.yml')}"
+      execute "ln -s #{File.join(deploy_to, 'shared', 'config/kalibro_gayekeeper.yml')} #{File.join(release_path, 'config/kalibro_gatekeeper.yml')}"
     end
   end
 
