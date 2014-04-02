@@ -40,6 +40,10 @@ Then(/^I should be in the Edit Configuration page$/) do
   page.should have_content("Edit Configuration")
 end
 
+Then(/^I should be in the Fork Configuration page$/) do
+  page.should have_content("Fork Configuration")
+end
+
 Then(/^The field "(.*?)" should be filled with the sample configuration "(.*?)"$/) do |field, value|
   page.find_field(field).value.should eq(@mezuro_configuration.send(value))
 end
