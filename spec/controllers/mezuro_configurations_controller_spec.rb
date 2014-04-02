@@ -12,6 +12,18 @@ describe MezuroConfigurationsController do
     it { should render_template(:new) }
   end
 
+  describe 'fork' do
+    let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+    before do
+      sign_in FactoryGirl.create(:user)
+      MezuroConfiguration.expects(:find).at_least_once.with(mezuro_configuration.id.to_s).returns(mezuro_configuration)
+      get :fork, :mezuro_configuration_id => mezuro_configuration.id
+    end
+
+    it { should respond_with(:success) }
+    it { should render_template(:fork) }
+  end
+
   describe 'create' do
     before do
       sign_in FactoryGirl.create(:user)
