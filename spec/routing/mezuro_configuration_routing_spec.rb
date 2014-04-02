@@ -16,5 +16,8 @@ describe MezuroConfigurationsController, :type => :routing do
                   to(controller: :mezuro_configurations, action: :update, id: "1") }
     it { is_expected.to route(:delete, '/mezuro_configurations/1').
                   to(controller: :mezuro_configurations, action: :destroy, id: "1") }
+    it { should route(:get, '/mezuro_configurations/1/fork').
+                  to(controller: :mezuro_configurations, action: :fork, mezuro_configuration_id: "1") }
+
   end
 end
