@@ -1,11 +1,4 @@
-include OwnershipAuthentication
-include MetricConfigurationsConcern
-
 class CompoundMetricConfigurationsController < BaseConfigurationsController
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :mezuro_configuration_owner?, only: [:new, :create]
-  before_action :metric_configuration_owner?, only: [:edit, :update]
-  before_action :set_metric_configuration, only: [:show, :edit, :update]
   before_action :set_metric_configurations, only: [:new, :edit]
 
   def create
@@ -29,11 +22,11 @@ class CompoundMetricConfigurationsController < BaseConfigurationsController
   protected
 
   def metric_configuration
-    @compound_metric_configuration;
+    @compound_metric_configuration
   end
 
   def update_metric_configuration (new_metric_configuration)
-    @compound_metric_configuration = new_metric_configuration;
+    @compound_metric_configuration = new_metric_configuration
   end
 
   private

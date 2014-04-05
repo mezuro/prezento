@@ -1,12 +1,4 @@
-include OwnershipAuthentication
-include MetricConfigurationsConcern
-
 class MetricConfigurationsController < BaseConfigurationsController
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :metric_configuration_owner?, only: [:edit, :update, :destroy]
-  before_action :mezuro_configuration_owner?, only: [:new, :create, :choose_metric]
-  before_action :set_metric_configuration, only: [:show, :edit, :update, :destroy]
-       
   def choose_metric
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
@@ -58,11 +50,11 @@ class MetricConfigurationsController < BaseConfigurationsController
   protected
 
   def metric_configuration
-    @metric_configuration;
+    @metric_configuration
   end
 
   def update_metric_configuration (new_metric_configuration)
-    @metric_configuration = new_metric_configuration;
+    @metric_configuration = new_metric_configuration
   end
 
   private

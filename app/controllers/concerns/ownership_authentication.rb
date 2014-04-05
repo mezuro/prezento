@@ -36,7 +36,7 @@ module OwnershipAuthentication
   def mezuro_configuration_owner?
     if self.kind_of?(MezuroConfigurationsController)
       id = params[:id]
-    elsif (self.kind_of?(MetricConfigurationsController) || self.kind_of?(CompoundMetricConfigurationsController))
+    elsif (self.kind_of?(BaseConfigurationsController))
       id = params[:mezuro_configuration_id]
     else
       raise "Not supported"
