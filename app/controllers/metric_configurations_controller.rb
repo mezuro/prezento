@@ -1,7 +1,7 @@
 include OwnershipAuthentication
 include MetricConfigurationsConcern
 
-class MetricConfigurationsController < ApplicationController
+class MetricConfigurationsController < BaseConfigurationsController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :metric_configuration_owner?, only: [:edit, :update, :destroy]
   before_action :mezuro_configuration_owner?, only: [:new, :create, :choose_metric]
@@ -15,26 +15,18 @@ class MetricConfigurationsController < ApplicationController
   end
 
   def new
-    @metric_configuration = MetricConfiguration.new
-    @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
-    @metric_configuration.base_tool_name = params[:base_tool_name]
-    @metric_configuration.metric = KalibroGatekeeperClient::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
+    super
+    metric_configuration.base_tool_name = params[:base_tool_name]
+    metric_configuration.metric = KalibroGatekeeperClient::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
   end
 
   def create
-    @metric_configuration = MetricConfiguration.new(metric_configuration_params)
-    @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
+    super
     @metric_configuration.metric = KalibroGatekeeperClient::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
     @metric_configuration.base_tool_name = params[:base_tool_name]
     respond_to do |format|
       create_and_redir(format)
     end
-  end
-
-  def show 
-    @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
-    @mezuro_ranges = @metric_configuration.mezuro_ranges
-    @metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 
   def edit
@@ -63,13 +55,17 @@ class MetricConfigurationsController < ApplicationController
     end
   end
 
-  private
+  protected
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  # TODO: this should be refactored to the concern metric configuration
-  def metric_configuration_params
-    params[:metric_configuration]
+  def metric_configuration
+    @metric_configuration;
   end
+
+  def update_metric_configuration (new_metric_configuration)
+    @metric_configuration = new_metric_configuration;
+  end
+
+  private
 
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
