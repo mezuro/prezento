@@ -13,27 +13,24 @@
 <div class="form-group">
   <%= f.label :color, class: 'control-label' %><br>
   <div id="color_div">
-  	<%= f.text_field :color, class: 'form-control' %>
+    <%= f.text_field :color, class: 'form-control' %>
     <!-- We should use the glyph from bootstrap instead of loading a custom img -->
     <input type="image" id="colorpicker_button" src="/assets/colorpicker.png"</input>
   </div>
-  
   <script>
-	options = {
-		trigger_event: "click",
-		color: {
-		    r: 0,
-		    g: 0,
-		    b: 0
-		},
-		onChange: function(colorHSB) {
-			//$("#reading_color").val(colorHSB.toHex());
-			$("#color_div").children().val(colorHSB.toHex());
-		}
-	}
-	new ColorPicker($("#colorpicker_button"), options);
+    options = {
+      trigger_event: "click",
+      color: {
+        r: 0,
+        g: 0,
+        b: 0
+      },
+      onChange: function(colorHSB) {
+        $("#color_div").children().val(colorHSB.toHex());
+      }
+    }
+    new ColorPicker($("#colorpicker_button"), options);
   </script>
-
 </div>
 
 <%= f.submit 'Save', class: 'btn btn-primary' %>
