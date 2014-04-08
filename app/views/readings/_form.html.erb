@@ -12,24 +12,26 @@
 
 <div class="form-group">
   <%= f.label :color, class: 'control-label' %><br>
-  <div class="input-append">
-    <%= f.text_field :color, :id => "color-form", class: 'form-control' %>
-    <input type="button" class="btn btn-info" value="Pick color" id="pickcolor-button"></input>
+  <div class="input-append" id="color_div">
+    <%= f.text_field :color, class: 'form-control' %>
+    <input type="button" class="btn btn-info" id="pickcolor_button" value="Pick color"></input>
   </div>
-  <script>
-    options = {
-      trigger_event: "click",
-      color: {
-        r: 0,
-        g: 0,
-        b: 0
-      },
-      onChange: function(colorHSB) {
-        $("#color-form").val(colorHSB.toHex());
-      }
-    }
-    new ColorPicker($("#pickcolor-button"), options);
-  </script>
 </div>
+
+<script>
+  options = {
+    trigger_event: "click",
+    color: {
+      r: 0,
+      g: 0,
+      b: 0
+    },
+    onChange: function(colorHSB) {
+      // Get first children "eq(0)" of #color_div with type "input"
+      $("#color_div").children("input").eq(0).val(colorHSB.toHex());
+    }
+  }
+  new ColorPicker($("#pickcolor_button"), options);
+</script>
 
 <%= f.submit 'Save', class: 'btn btn-primary' %>
