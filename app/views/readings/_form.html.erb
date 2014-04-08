@@ -12,10 +12,9 @@
 
 <div class="form-group">
   <%= f.label :color, class: 'control-label' %><br>
-  <div id="color_div">
-    <%= f.text_field :color, class: 'form-control' %>
-    <!-- We should use the glyph from bootstrap instead of loading a custom img -->
-    <input type="image" id="colorpicker_button" src="/assets/colorpicker.png"</input>
+  <div class="input-append">
+    <%= f.text_field :color, :id => "color-form", class: 'form-control' %>
+    <input type="button" class="btn btn-info" value="Pick color" id="pickcolor-button"></input>
   </div>
   <script>
     options = {
@@ -26,10 +25,10 @@
         b: 0
       },
       onChange: function(colorHSB) {
-        $("#color_div").children().val(colorHSB.toHex());
+        $("#color-form").val(colorHSB.toHex());
       }
     }
-    new ColorPicker($("#colorpicker_button"), options);
+    new ColorPicker($("#pickcolor-button"), options);
   </script>
 </div>
 
