@@ -14,7 +14,7 @@ Feature: User projects list
     And the sample project should be there
 
   # See issue #55
-  @kalibro_restart @wip @javascript
+  @kalibro_restart
   Scenario: after deleting a project I try to access My Project page
     Given I am a regular user
     And I own a sample project
