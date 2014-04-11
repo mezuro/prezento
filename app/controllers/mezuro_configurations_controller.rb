@@ -7,15 +7,14 @@ class MezuroConfigurationsController < ApplicationController
   # GET /mezuro_configurations/new
   def new
     @mezuro_configuration = MezuroConfiguration.new
+    @original = nil
   end
 
   def fork
-    original = MezuroConfiguration.find(params[:mezuro_configuration_id])
+    @original = MezuroConfiguration.find(params[:mezuro_configuration_id])
 
     @mezuro_configuration = MezuroConfiguration.new
-    @mezuro_configuration.description = original.description
-    @mezuro_configuration.parent = original
-
+    @mezuro_configuration.description = @original.description
     #see later if we can change :mezuro_configuration_id by :id
   end
 
@@ -83,7 +82,7 @@ class MezuroConfigurationsController < ApplicationController
   # Extracted code from create action
   def create_and_redir(format)
     if @mezuro_configuration.save
-      current_user.mezuro_configuration_ownerships.create mezuro_configuration_id: @mezuro_configuration.id
+      current_user.mezuro_configuration_ownerships.create mezuro_configuration_id: @mezuro_configuration.id, parent: @original
 
       format.html { redirect_to mezuro_configuration_path(@mezuro_configuration.id), notice: 'mezuro configuration was successfully created.' }
       format.json { render action: 'show', status: :created, location: @mezuro_configuration }
