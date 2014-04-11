@@ -10,8 +10,13 @@ class MezuroConfigurationsController < ApplicationController
   end
 
   def fork
+    original = MezuroConfiguration.find(params[:mezuro_configuration_id])
+
     @mezuro_configuration = MezuroConfiguration.new
-    @mezuro_configuration.description = MezuroConfiguration.find(params[:mezuro_configuration_id]).description #see later if we can change :mezuro_configuration_id by :id
+    @mezuro_configuration.description = original.description
+    @mezuro_configuration.parent = original
+
+    #see later if we can change :mezuro_configuration_id by :id
   end
 
   # GET /mezuro_configurations
