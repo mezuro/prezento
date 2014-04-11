@@ -93,59 +93,6 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-.form-table {
-    margin: 0 !important;
-    background: #fff;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
-}
-
-.margin-left-none{
-    margin-left: 0 !important;
-}
-
-.field {
-float: left;
-width: 100%;
-border-bottom: 1px solid #f2f2f2;
-border-top: 1px solid #e3e3e3;
-overflow: hidden;
-display: inline-flex;
-}
-
-.user-details {
-position: relative;
-float: left;
-width: 653px;
-padding: 20px;
-}
-
-.help {
-float: left;
-width: 307px;
-margin: 0 0 -20000px 0;
-padding: 20px 20px 20000px 20px;
-background: #f5f5f5;
-border-left: 1px solid #e3e3e3;
-border-right: 1px solid #e3e3e3;
-}
-
-.label2 {
-width: 95% !important;
-height: 50px;
-margin: 0;
-padding: 10px;
-color: #555;
-font-size: 15px;
-background: #f9f9f9;
-border: 1px solid #dfdfdf;
-}
-
-
-
-
-
-
 /* ==========================================================================
    Helper classes
    ========================================================================== */
