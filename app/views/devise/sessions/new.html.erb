@@ -2,7 +2,6 @@
   <h1>Log in to Mezuro</h1>
 </div>
 
-
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => { :class => "form-inline" }) do |f| %>
   <div class="control-group">
     <%= f.label :email, :class => "control-label" %>
@@ -34,5 +33,4 @@
       <%= render "devise/shared/links" %>
     </div>
   </div>
-
 <% end %>
