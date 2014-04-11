@@ -12,3 +12,16 @@ Feature: User projects list
     When I click the My projects link
     Then I should be in the User Projects page
     And the sample project should be there
+
+  # See issue #55
+  @kalibro_restart @wip @javascript
+  Scenario: after deleting a project I try to access My Project page
+    Given I am a regular user
+    And I own a sample project
+    And I am signed in
+    And I am at the homepage
+    And I click the My projects link
+    And I click the Show link
+    And I click the Destroy project link
+    When I click the My projects link
+    Then I should be in the User Projects page
