@@ -48,7 +48,6 @@ describe InheritsFromBaseConfigurationsController do
       resources :mezuro_configurations do
         match '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric, :via => [:get]
         resources :inherits_from_base_configurations do
-          #match '/metric_configurations/choose_metric' => "inherits_from_base_configurations#show", :via => [:get]
           match '/metric_configurations/new' => 'metric_configurations#new', as: :new_metric_configuration, :via => [:post]
           match '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update, :via => [:put]
         end
