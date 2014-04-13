@@ -1,7 +1,11 @@
 require 'spec_helper'
 
+class CleanInheritsFromBaseConfigurationsController < BaseConfigurationsController
+  def metric_configuration; super; end
+  def update_metric_configuration (new_metric_configuration); super; end
+end
+
 class InheritsFromBaseConfigurationsController < BaseConfigurationsController
-  
   def new
     render :nothing => true
     super
@@ -13,9 +17,9 @@ class InheritsFromBaseConfigurationsController < BaseConfigurationsController
   end
 
   def show
-    render :nothing => true
     update_metric_configuration(@metric_configuration)
     super
+    render :nothing => true
   end
 
   def metric_configuration
@@ -112,16 +116,44 @@ describe InheritsFromBaseConfigurationsController do
     let(:reading_group) { FactoryGirl.build(:reading_group) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
 
-    before :each do
-      ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-      MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
-      MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([mezuro_range])
+    context 'with a valid metric_configuration' do
+      before :each do
+        ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
+        MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
+        MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([mezuro_range])
 
-      get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
+        get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
+      end
+
+      it { subject.mezuro_ranges.should_not be_nil}
+      it { subject.reading_group.should_not be_nil }
     end
 
-    it { subject.mezuro_ranges.should_not be_nil}
-    it { subject.reading_group.should_not be_nil }
+    context 'with a invalid metric_configuration' do
+      before :each do
+        subject.expects(:metric_configuration).returns(false)
+      end
+
+      it 'should raise a NotImplementedError' do
+        expect { subject.show }.to raise_error(NotImplementedError)
+      end
+    end
   end
 
+
+  context 'with a inheritance without overrides methods' do
+    subject { CleanInheritsFromBaseConfigurationsController.new }
+
+    describe 'metric_configuration' do
+      it 'should raise a NotImplementedError' do
+        expect { subject.metric_configuration }.to raise_error(NotImplementedError)
+      end
+    end
+
+    describe 'update_metric_configuration' do
+      it 'should raise a NotImplementedError' do
+        expect { subject.update_metric_configuration(nil) }.to raise_error(NotImplementedError)
+      end
+    end
+  end
 end
