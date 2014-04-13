@@ -1,38 +1,32 @@
-include OwnershipAuthentication
-include MetricConfigurationsConcern
-
-class CompoundMetricConfigurationsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :mezuro_configuration_owner?, only: [:new, :create]
-  before_action :metric_configuration_owner?, only: [:edit, :update]
-  before_action :set_metric_configuration, only: [:show, :edit, :update]
+class CompoundMetricConfigurationsController < BaseMetricConfigurationsController
   before_action :set_metric_configurations, only: [:new, :edit]
-  
-  # GET mezuro_configurations/1/compound_metric_configurations/new
-  def new
-    @compound_metric_configuration = MetricConfiguration.new
-    @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
-  end
 
   def create
-    @compound_metric_configuration = MetricConfiguration.new(metric_configuration_params)
-    @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
-    @compound_metric_configuration.metric.compound = true
+    super
+    metric_configuration.metric.compound = true
     respond_to do |format|
       create_and_redir(format)
     end
   end
 
   def show
-    @compound_metric_configuration = @metric_configuration
-    @reading_group = ReadingGroup.find(@compound_metric_configuration.reading_group_id)
-    @mezuro_ranges = @compound_metric_configuration.mezuro_ranges
-    @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
+    update_metric_configuration(@metric_configuration)
+    super
   end
 
   def edit
     @compound_metric_configuration = @metric_configuration
     @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
+  end
+
+  protected
+
+  def metric_configuration
+    @compound_metric_configuration
+  end
+
+  def update_metric_configuration (new_metric_configuration)
+    @compound_metric_configuration = new_metric_configuration
   end
 
   private

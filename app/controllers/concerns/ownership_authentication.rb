@@ -16,7 +16,7 @@ module OwnershipAuthentication
   def repository_owner?
     check_project_ownership(params[:project_id])
   end
-  
+
   def reading_group_owner?
     if self.kind_of?(ReadingGroupsController)
       id = params[:id]
@@ -36,7 +36,7 @@ module OwnershipAuthentication
   def mezuro_configuration_owner?
     if self.kind_of?(MezuroConfigurationsController)
       id = params[:id]
-    elsif (self.kind_of?(MetricConfigurationsController) || self.kind_of?(CompoundMetricConfigurationsController))
+    elsif (self.kind_of?(BaseMetricConfigurationsController))
       id = params[:mezuro_configuration_id]
     else
       raise "Not supported"
