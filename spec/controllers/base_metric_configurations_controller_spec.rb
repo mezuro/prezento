@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-class CleanInheritsFromBaseConfigurationsController < BaseConfigurationsController
+class CleanInheritsFromBaseMetricConfigurationsController < BaseMetricConfigurationsController
   def metric_configuration; super; end
   def update_metric_configuration (new_metric_configuration); super; end
 end
 
-class InheritsFromBaseConfigurationsController < BaseConfigurationsController
+class InheritsFromBaseMetricConfigurationsController < BaseMetricConfigurationsController
   def new
     render :nothing => true
     super
@@ -40,14 +40,14 @@ class InheritsFromBaseConfigurationsController < BaseConfigurationsController
 end
 
 
-describe InheritsFromBaseConfigurationsController do
+describe InheritsFromBaseMetricConfigurationsController do
   let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
 
   before do
     Rails.application.routes.draw do
       resources :mezuro_configurations do
         match '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric, :via => [:get]
-        resources :inherits_from_base_configurations do
+        resources :inherits_from_base_metric_configurations do
           match '/metric_configurations/new' => 'metric_configurations#new', as: :new_metric_configuration, :via => [:post]
           match '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update, :via => [:put]
         end
@@ -141,7 +141,7 @@ describe InheritsFromBaseConfigurationsController do
 
 
   context 'with a inheritance without overrides methods' do
-    subject { CleanInheritsFromBaseConfigurationsController.new }
+    subject { CleanInheritsFromBaseMetricConfigurationsController.new }
 
     describe 'metric_configuration' do
       it 'should raise a NotImplementedError' do

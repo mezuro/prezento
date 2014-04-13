@@ -1,7 +1,7 @@
 include OwnershipAuthentication
 include MetricConfigurationsConcern
 
-class BaseConfigurationsController < ApplicationController
+class BaseMetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :metric_configuration_owner?, only: [:edit, :update, :destroy]
   before_action :mezuro_configuration_owner?, only: [:new, :create, :choose_metric]

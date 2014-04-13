@@ -1,4 +1,4 @@
-class CompoundMetricConfigurationsController < BaseConfigurationsController
+class CompoundMetricConfigurationsController < BaseMetricConfigurationsController
   before_action :set_metric_configurations, only: [:new, :edit]
 
   def create

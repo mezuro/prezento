@@ -1,4 +1,4 @@
-class MetricConfigurationsController < BaseConfigurationsController
+class MetricConfigurationsController < BaseMetricConfigurationsController
   def choose_metric
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
