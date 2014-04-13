@@ -173,11 +173,7 @@ describe RepositoriesController do
 
         it { should redirect_to(projects_url) }
         it { should respond_with(:redirect) }
-        it 'should set the flash' do
-          pending 'incompability between shoulda-matchers and Rails 4.1.0.rc1' do
-            should set_the_flash[:notice].to("You're not allowed to do this operation")
-          end
-        end
+        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 

@@ -15,6 +15,6 @@ describe ReadingsController do
     it { should route(:put, '/reading_groups/1/readings/1').
                   to(controller: :readings, action: :update, reading_group_id: 1, id: 1) }
     it { should_not route(:get, '/reading_groups/1/readings').
-                  to(controller: :readings, action: :index, reading_group_id: 1) }
-   end
+                    to(controller: :readings, action: :index, reading_group_id: 1) }
+  end
 end

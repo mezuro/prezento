@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MezuroRangesController do
   let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1) }
   let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
-  
+
   describe 'new' do
     let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
 
@@ -107,12 +107,12 @@ describe MezuroRangesController do
       it { should redirect_to new_user_session_path }
     end
   end
-  
+
   describe 'edit' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1, metric_configuration_id: metric_configuration.id) }
     let(:reading) { FactoryGirl.build(:reading, group_id: metric_configuration.reading_group_id) }
-    
+
     context 'with an User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
@@ -132,7 +132,7 @@ describe MezuroRangesController do
 
       context 'when the user does not own the mezuro range' do
         let!(:reading_group) { FactoryGirl.build(:reading_group, id: metric_configuration.reading_group_id) }
-      
+
         before do
           get :edit, id: mezuro_range.id, mezuro_configuration_id: metric_configuration.configuration_id, metric_configuration_id: metric_configuration.id
         end
@@ -151,7 +151,7 @@ describe MezuroRangesController do
       it { should redirect_to new_user_session_path }
     end
   end
-  
+
   describe 'update' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1, metric_configuration_id: metric_configuration.id) }
