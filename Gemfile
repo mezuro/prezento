@@ -40,7 +40,7 @@ gem 'kalibro_gatekeeper_client', "~> 0.0.1"
 gem "pg", "~> 0.17.0"
 
 # Twitter Bootstrap for layout
-gem "twitter-bootstrap-rails", "~> 2.2.8"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # Chart generation
 gem "chart-js-rails", "~> 0.0.6"
