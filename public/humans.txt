@@ -17,7 +17,17 @@
 
     Actual version independent collaborators
     ---------------------------------------------------------
+      Arthur del Esposte (arthurmde at gmail.com)
       Vinicius Vieira (vvieira17 at gmail.com)
+
+    USP Lab XP course 2014
+    ---------------------------------------------------------
+      Daniel Miranda (danielkza2@gmail.com)
+      Fellipe Souto Sampaio (fllsouto at gmail.com)
+      Pedro Bruel (pedro.bruel@gmail.com)
+      Pedro Paulo (pedro at vezza.com.br)
+      Pedro Scocco (pedroscocco at gmail.com)
+      Thiago Kenji Okada <thiago.mast3r at gmail.com>
 
     Former team members
     ---------------------------------------------------------
