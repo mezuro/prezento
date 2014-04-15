@@ -5,11 +5,7 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
 }
 
-.margin-left-none{
-  margin-left: 0 !important;
-}
-
-.field {
+.form-row {
   float: left;
   width: 100%;
   border-bottom: 1px solid #f2f2f2;
@@ -18,14 +14,14 @@
   display: inline-flex;
 }
 
-.user-details {
+.field-container {
   position: relative;
   float: left;
   width: 653px;
   padding: 20px;
 }
 
-.help {
+.help-container {
   float: left;
   width: 400px;
   margin: 0 0 -20000px 0;
@@ -35,13 +31,8 @@
   border-right: 1px solid #e3e3e3;
 }
 
-.label2 {
+.text-field {
   width: 95% !important;
-  height: 50px;
   margin: 0;
-  padding: 10px;
-  color: #555;
-  font-size: 15px;
   background: #f9f9f9;
-  border: 1px solid #dfdfdf;
 }
