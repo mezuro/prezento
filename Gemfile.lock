@@ -213,9 +213,9 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
-    sshkit (1.3.0)
+    sshkit (1.4.0)
       net-scp (>= 1.1.2)
-      net-ssh
+      net-ssh (>= 2.8.0)
       term-ansicolor
     term-ansicolor (1.3.0)
       tins (~> 1.0)
