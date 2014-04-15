@@ -6,13 +6,13 @@
   <%= devise_error_messages! %>
 
   <div class="row margin-left-none">
-    <div class="form-table span7">
+    <div class="form-table span9">
       <div class="field">
         <div class="user-details"><%= f.label :name, class: 'control-label' %><br />
           <%= f.text_field :name, :autofocus => true, class: 'label2' %></div>
         <div class="help">
           <p>
-            Your name!
+            Your full name!
           </p>
         </div>
       </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="help">
           <p>
-            Your email!
+            Your email is the form of communication we have with you, so make sure you typed it correctly!
           </p>
         </div>
       </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="help">
           <p>
-            Your password!
+            Your password must be at least 8 characters. Strong passwords contain characters in upper and lowercase, numbers and symbols.
           </p>
         </div>
       </div>
