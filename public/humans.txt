@@ -18,6 +18,7 @@
     Actual version independent collaborators
     ---------------------------------------------------------
       Arthur del Esposte (arthurmde at gmail.com)
+      Renan Costa (renan2727 at hotmail.com)
       Vinicius Vieira (vvieira17 at gmail.com)
 
     USP Lab XP course 2014
