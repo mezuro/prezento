@@ -46,7 +46,7 @@ gem "twitter-bootstrap-rails", "~> 2.2.8"
 gem "chart-js-rails", "~> 0.0.6"
 
 # JQueryUI
-gem 'jquery-ui-rails', '~> 4.2.0'
+gem 'jquery-ui-rails', '~> 4.2.1'
 
 # colorpicker
 gem 'colorpicker', '~> 0.0.5'
