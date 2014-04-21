@@ -2,29 +2,80 @@
   <h1>Edit <%= resource_name.to_s.humanize %></h1>
 </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-inline" }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name, :autofocus => true %></div>
+  <div class="row margin-left-none">
+    <div class="form-table span9">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :name, class: 'control-label' %><br />
+          <%= f.text_field :name, :autofocus => true, class: 'text-field' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Your full name!
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :email, class: 'control-label' %><br />
+          <%= f.email_field :email, class: 'text-field' %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        </div>
+        <div class="help-container">
+          <p>
+            Your email is the form of communication we have with you, so make sure you typed it correctly!
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :password, class: 'control-label' %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, :autocomplete => "off", class: 'text-field' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Your password must be at least 8 characters. Strong passwords contain characters in upper and lowercase, numbers and symbols.
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :password_confirmation, class: 'control-label' %><br />
+          <%= f.password_field :password_confirmation, class: 'text-field' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Confirm your password!
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :current_password, class: 'control-label' %><br />
+          <%= f.password_field :current_password, class: 'text-field' %>
+        </div>
+        <div class="help-container">
+          <p>
+            We need your current password to confirm your changes!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div><%= f.submit "Update", class: 'btn btn-primary' %></div>
+  <div class="row margin-left-none" style="margin-top: 20px">
+    <%= f.submit "Update", class: 'btn btn-primary span2' %>
+  </div>
 <% end %>
 
 <hr />
