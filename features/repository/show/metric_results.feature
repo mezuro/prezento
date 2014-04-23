@@ -18,7 +18,7 @@ Feature: Repository metric results
     When I visit the repository show page
     And I click the "Metric Results" h3
     And I see a sample metric's name
-    When I click on the sample metric's name
+    And I click on the sample metric's name
     Then I should see "Loading data. Please, wait."
     When I wait up for the ajax request
     Then I should see "There is just a point and it should not be printed into a chart."

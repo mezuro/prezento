@@ -58,12 +58,11 @@ Given(/^I ask for the metric results of the given module result$/) do
 end
 
 Given(/^I see a sample metric's name$/) do
-  page.save_screenshot("/tmp/picture.png")
   page.should have_content(@metric_results.first.metric_configuration_snapshot.metric.name)
 end
 
 When(/^I click on the sample metric's name$/) do
-  click_link @metric_results.first.metric_configuration_snapshot.metric.name
+  find_link(@metric_results.first.metric_configuration_snapshot.metric.name).trigger('click')
 end
 
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
