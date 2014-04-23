@@ -36,3 +36,8 @@
   margin: 0;
   background: #f9f9f9;
 }
+
+.text-area {
+  width: 95% !important;
+  margin: 0;
+}
