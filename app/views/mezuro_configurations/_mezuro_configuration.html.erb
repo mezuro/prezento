@@ -6,7 +6,10 @@
     <% if mezuro_configuration_owner?(mezuro_configuration.id) %>
       <%= link_to 'Edit', edit_mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
     <% else %>
-		  <%= link_to 'Fork', mezuro_configuration_fork_path(mezuro_configuration.id) , class: 'btn btn-success' %>
+      <div class='btn-group'>
+  		  <%= link_to 'Fork', mezuro_configuration_fork_path(mezuro_configuration.id) , class: 'btn btn-success' %>
+        <%= link_to (mezuro_configuration.mezuro_configuration_ownership != nil ? mezuro_configuration.mezuro_configuration_ownership.fork_count : '0'), mezuro_configuration_fork_path(mezuro_configuration.id) , class: 'btn btn-default disabled' %>
+      </div>
     <% end %>
   </td>
 </tr>

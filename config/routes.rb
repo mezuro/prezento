@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :mezuro_configurations do
     get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
     get '/fork' => 'mezuro_configurations#fork', as: :fork
+    post '/fork' => 'mezuro_configurations#create_fork', as: :create_fork
     resources :metric_configurations, except: [:update, :new] do
       get '/mezuro_ranges/new' => 'mezuro_ranges#new', as: :new_mezuro_range
       resources :mezuro_ranges, except: [:update, :new]

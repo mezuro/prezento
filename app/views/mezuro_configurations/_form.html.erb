@@ -1,4 +1,7 @@
-<%= form_for(@mezuro_configuration, :html => { role: 'form' }) do |f|  %>
+<%=
+form_for(@mezuro_configuration, :html => { role: 'form' },
+  :url => (if @fork_original_id != nil then { action: 'create_fork' } else nil end)
+) do |f|  %>
   <%= render :partial => 'shared/form_errors', :locals => {:object => @mezuro_configuration} %>
 
 <div class="row margin-left-none">
