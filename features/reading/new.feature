@@ -37,7 +37,7 @@ Feature: New reading
     When I press the Pick color button
     Then I should see a color picker Canvas
  
-  @kalibro_restart @javascript @wip
+  @kalibro_restart @javascript
   Scenario: Selecting a valid color with color picker
     Given I am a regular user
     And I am signed in
