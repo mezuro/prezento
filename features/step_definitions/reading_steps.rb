@@ -22,3 +22,6 @@ Then(/^I should be at the New Reading page$/) do
   visit new_reading_group_reading_path(@reading_group.id)
 end
 
+Then(/^I should see a color picker Canvas$/) do
+  page.find('div.colorpicker')
+end
