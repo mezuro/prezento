@@ -29,7 +29,7 @@ Feature: New reading
     Then I should be in the Sample Reading Group page
      
   @kalibro_restart @javascript
-  Scenario: Using Colorpicker
+  Scenario: Checking color picker existence
     Given I am a regular user
     And I am signed in
     And I own a sample reading group
@@ -37,6 +37,19 @@ Feature: New reading
     When I press the Pick color button
     Then I should see a color picker Canvas
  
+  @kalibro_restart @javascript @wip
+  Scenario: Selecting a valid color with color picker
+    Given I am a regular user
+    And I am signed in
+    And I own a sample reading group
+    And I am at the New Reading page
+    And I fill the Label field with "My Reading"
+    And I fill the Grade field with "1"
+    When I press the Pick color button
+    And I click on the center of the color picker
+    And I press the Save button
+    Then I should be in the Sample Reading Group page
+
   @kalibro_restart
   Scenario: With an existing label (Label uniqueness test)
     Given I am a regular user

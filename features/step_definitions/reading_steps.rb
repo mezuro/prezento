@@ -18,6 +18,10 @@ When(/^I click the "(.*?)" td$/) do |text|
   p page.find('td', text: text).methods
 end
 
+When(/^I click on the center of the color picker$/) do
+  page.find('div.colorpicker_color').click
+end
+
 Then(/^I should be at the New Reading page$/) do
   visit new_reading_group_reading_path(@reading_group.id)
 end
