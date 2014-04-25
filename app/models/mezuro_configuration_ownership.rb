@@ -10,6 +10,13 @@ class MezuroConfigurationOwnership < ActiveRecord::Base
   	@errors.add(:base, "configuration should not bet it's own parent") if config == config.parent
   end
 
+  after_create do
+    if self.parent != nil
+      self.parent.fork_count += 1
+      self.parent.save
+    end
+  end
+
   def mezuro_configuration
     MezuroConfiguration.find(mezuro_configuration_id)
   end

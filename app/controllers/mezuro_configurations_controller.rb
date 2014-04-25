@@ -7,14 +7,16 @@ class MezuroConfigurationsController < ApplicationController
   # GET /mezuro_configurations/new
   def new
     @mezuro_configuration = MezuroConfiguration.new
-    @original = nil
   end
 
+  # GET /mezuro_configuration/id/fork
   def fork
-    @original = MezuroConfiguration.find(params[:mezuro_configuration_id])
+    original = MezuroConfiguration.find(params[:mezuro_configuration_id])
+    
+    @fork_original_id = original.id
 
     @mezuro_configuration = MezuroConfiguration.new
-    @mezuro_configuration.description = @original.description
+    @mezuro_configuration.description = original.description
     #see later if we can change :mezuro_configuration_id by :id
   end
 
@@ -29,9 +31,24 @@ class MezuroConfigurationsController < ApplicationController
   def create
     @mezuro_configuration = MezuroConfiguration.new(mezuro_configuration_params)
     respond_to do |format|
-      create_and_redir(format)
+      create_and_redir(format, nil)
     end
   end
+
+  # POST /mezuro_configurations/1/fork
+  def create_fork
+    original = MezuroConfiguration.find(params[:mezuro_configuration_id])
+
+    respond_to do |format|
+      if original == nil
+        render nothing: true,  status: :bad_request
+      else
+        @mezuro_configuration = MezuroConfiguration.new(mezuro_configuration_params)
+        create_and_redir(format, original)
+      end
+    end
+  end
+
 
   # GET /mezuro_configurations/1
   # GET /mezuro_configurations/1.json
@@ -80,9 +97,18 @@ class MezuroConfigurationsController < ApplicationController
   end
 
   # Extracted code from create action
-  def create_and_redir(format)
+  def create_and_redir(format, parent)
+    if parent != nil
+      parent_ownership = parent.mezuro_configuration_ownership
+      if parent_ownership == nil
+        format.html { redirect_to mezuro_configuration_fork_path(parent.id), error: 'Parent ownership does not exist' }  
+        format.json { render status: :unprocessable_entity }
+        return
+      end
+    end
+
     if @mezuro_configuration.save
-      current_user.mezuro_configuration_ownerships.create mezuro_configuration_id: @mezuro_configuration.id, parent: @original
+      current_user.mezuro_configuration_ownerships.create mezuro_configuration_id: @mezuro_configuration.id, parent: parent_ownership
 
       format.html { redirect_to mezuro_configuration_path(@mezuro_configuration.id), notice: 'mezuro configuration was successfully created.' }
       format.json { render action: 'show', status: :created, location: @mezuro_configuration }

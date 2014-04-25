@@ -9,4 +9,8 @@ class MezuroConfiguration < KalibroGatekeeperClient::Entities::Configuration
   def metric_configurations
     MetricConfiguration.metric_configurations_of(self.id)
   end
+
+  def mezuro_configuration_ownership
+  	MezuroConfigurationOwnership.find_by mezuro_configuration_id: self.id
+  end
 end
