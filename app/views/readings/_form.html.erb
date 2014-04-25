@@ -1,21 +1,77 @@
 <%= render :partial => 'shared/form_errors', :locals => {:object => @reading} %>
 
-<div class="form-group">
-  <%= f.label :label, class: 'control-label' %><br>
-  <%= f.text_field :label, class: 'form-control' %>
-</div>
+<div class="row margin-left-none">
+  <div class="form-table span9">
 
-<div class="form-group">
-  <%= f.label :grade, class: 'control-label' %><br>
-  <%= f.text_field :grade, class: 'form-control' %>
-</div>
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :label, class: 'control-label' %>
+        <%= f.text_field :label, class: 'text-field' %>
+      </div>
+      <div class="help-container">
+        <p>
+          Give a name for how good is the current reading.
+        </p>
+        <p>
+          Example values: terrible, bad, regular, good, great, etc.
+        </p>
+      </div>
+    </div>
 
-<div class="form-group">
-  <%= f.label :color, class: 'control-label' %><br>
-  <div class="input-append" id="color_div">
-    <%= f.text_field :color, class: 'form-control' %>
-    <input type="button" class="btn btn-info" style="height:30px" id="pickcolor_button" value="Pick color"></input>
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :grade, class: 'control-label' %>
+        <%= f.text_field :grade, class: 'text-field' %>
+      </div>
+      <div class="help-container">
+        <p>
+          Your software will be given a grade for how good it is performing in each metric, here you define this grade.
+        </p>
+        <p>
+          Example values: 0, 1, 2, 3, 4, etc.
+        </p>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :color, class: 'control-label' %>
+        <div class="input-append" id="color_div" >
+          <%= f.text_field :color, class: 'text-field' %>
+          <input type="button" class="btn btn-info" id="pickcolor_button" value="Pick color" style="margin-left: 5px;" />
+        </div>
+      </div>
+      <div class="help-container">
+        <p>
+          The color that represents your reading. Use the color picker to choose!
+        </p>
+        <p>
+          Example values: red, orange, yellow, green, blue, etc.
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :color, class: 'control-label' %><br>
+      <div class="input-append" id="color_div">
+        <%= f.text_field :color, class: 'text-field' %>
+        <input type="button" class="btn btn-info" style="height:30px" id="pickcolor_button" value="Pick color"></input>
+        <div class="help-container">
+          <p>
+            The color that represents your reading. Use the color picker to choose!
+          </p>
+          <p>
+            Example values: red, orange, yellow, green, blue, etc.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="row margin-left-none" style="margin-top: 20px">
+  <%= f.submit 'Save', class: 'btn btn-primary' %>
+  <%= link_to 'Back', reading_group_path(@reading_group_id), class: 'btn btn-default' %>
 </div>
 
 <script>
@@ -33,5 +89,3 @@
   }
   new ColorPicker($("#pickcolor_button"), options);
 </script>
-
-<%= f.submit 'Save', class: 'btn btn-primary' %>
