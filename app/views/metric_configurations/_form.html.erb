@@ -1,31 +1,66 @@
 <%= render :partial => 'shared/form_errors', :locals => {:object => @metric_configuration} %>
 
-<div class="form-group">
-  <%= f.label :code, class: 'control-label' %>
-  <%= f.text_field :code, class: 'form-control' %>
-</div>
+<div class="row margin-left-none">
+  <div class="form-table span9">
 
-<div class="form-group">
-  <%= f.label :weight, class: 'control-label' %>
-  <%= f.text_field :weight, class: 'form-control' %>
-</div>
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :code, class: 'control-label' %>
+        <%= f.text_field :code, class: 'text-field' %>
+      </div>
+      <div class="help-container">
+        <p>
+          Code it is a variable that holds the value of a metric analysis. It's used inside a compound metric
+        </p>
+        <p>
+          Example : 
+          Code foo := 10
+        </p>
+      </div>
+    </div>
 
-<div class="form-group">
-  <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
-  <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
-</div>
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :weight, class: 'control-label' %>
+        <%= f.text_field :weight, class: 'text-field' %>
+      </div>
+      <div class="help-container">
+        <p>
+          It's the weight of the metric
+        </p>
+      </div>
+    </div>
 
-<% if @metric_configuration.persisted? %>
-  <%= hidden_field_tag(:reading_group_id, @metric_configuration.reading_group_id) %>
-<% else %>
-  <div class="form-group">
-    <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
-    <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
+        <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
+      </div>
+      <div class="help-container">
+        <p>
+          It's the aggregation form of the metric
+        </p>
+      </div>
+    </div>
+
+    <% if @metric_configuration.persisted? %>
+      <%= hidden_field_tag(:reading_group_id, @metric_configuration.reading_group_id) %>
+    <% else %>
+        <div class="form-row">
+          <div class="field-container">
+            <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+            <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
+          </div>
+          <div class="help-container">
+            <p>
+              The reading group that is associated with this metric
+            </p>
+          </div>
+        </div>
+    <% end %>
+
   </div>
-<% end %>
+</div>
 
 <%= hidden_field_tag(:metric_name, @metric_configuration.metric.name) %>
 <%= hidden_field_tag(:base_tool_name, @metric_configuration.base_tool_name) %>
-
-<br>
-<%= f.submit 'Save', class: 'btn btn-primary' %>
