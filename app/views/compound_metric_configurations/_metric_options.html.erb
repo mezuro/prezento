@@ -1,21 +1,48 @@
-<div class="form-group">
-  <%= f.label :name, class: 'control-label' %>
-  <%= f.text_field :name, class: 'form-control', value: (metric.name unless metric.nil?) %>
-</div>
+    <div class="form-row">
+      <div class="field-container">
+			  <%= f.label :name, class: 'control-label' %>
+			  <%= f.text_field :name, class: 'text-field', value: (metric.name unless metric.nil?) %>
+      </div>
+      <div class="help-container">
+        <p>
+        	A custom name for your compound metric.
+        </p>
+      </div>
+    </div>
 
-<div class="form-group">
-  <%= f.label :description, class: 'control-label' %>
-  <%= f.text_field :description, class: 'form-control', value: (metric.description unless metric.nil?)  %>
-</div>
+    <div class="form-row">
+      <div class="field-container">
+			  <%= f.label :description, class: 'control-label' %>
+			  <%= f.text_field :description, class: 'text-field', value: (metric.description unless metric.nil?)  %>
+      </div>
+      <div class="help-container">
+        <p>
+        	A short description about your compound metric.
+        </p>
+      </div>
+    </div>
 
-<div class="form-group">
-  <%= f.label :script, class: 'control-label' %>
-  <%= f.text_area :script, class: 'form-control', value: (metric.script unless metric.nil?)  %>
-</div>
+    <div class="form-row">
+      <div class="field-container">
+			  <%= f.label :script, class: 'control-label' %>
+			  <%= f.text_area :script, class: 'text-area', value: (metric.script unless metric.nil?)  %>
+      </div>
+      <div class="help-container">
+        <p>
+        	A mathematic expression to calculate your compound metric.
+        </p>
+      </div>
+    </div>
 
-<div class="form-group">
-  <%= f.label :scope, 'Scope', class: 'control-label' %>
-  <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
-</div>
-
+    <div class="form-row">
+      <div class="field-container">
+			  <%= f.label :scope, 'Scope', class: 'control-label' %>
+			  <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
+      </div>
+      <div class="help-container">
+        <p>
+        	With which code type your metric is designed to work? 
+        </p>
+      </div>
+    </div>
 <%= f.hidden_field(:compound, { value: "true"}) %>
