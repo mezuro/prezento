@@ -46,7 +46,7 @@
         </div>
       </div>
 
-      <% if @metric_configuration.persisted? %>
+      <% if @compound_metric_configuration.persisted? %>
         <%= hidden_field_tag(:reading_group_id, @metric_configuration.reading_group_id) %>
       <% else %>
           <div class="form-row">
