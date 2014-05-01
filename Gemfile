@@ -62,7 +62,7 @@ gem 'spring', group: :development
 
 group :test do
   # Easier test writing
-  gem "shoulda-matchers", '~> 2.6.1.rc1'
+  gem "shoulda-matchers", '~> 2.6.1'
 
   # Test coverage
   gem 'simplecov', require: false
