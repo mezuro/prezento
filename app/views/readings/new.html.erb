@@ -4,5 +4,4 @@
 
 <%= form_for(@reading, :url => reading_group_readings_path(@reading_group_id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
-  <%= link_to 'Back',  reading_group_path(@reading_group_id), class: 'btn btn-default' %>
 <% end %>

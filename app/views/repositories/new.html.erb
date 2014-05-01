@@ -4,6 +4,5 @@
 
 <%= form_for(@repository, :url => project_repositories_url(@project_id)) do |f| %>
 	<%= render partial: 'form', locals: {f: f} %>
-  <%= link_to 'Back',  project_path(@project_id), class: 'btn btn-default' %>
 <% end %>
 
