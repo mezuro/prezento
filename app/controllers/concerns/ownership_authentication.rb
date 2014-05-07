@@ -48,6 +48,9 @@ module OwnershipAuthentication
     check_mezuro_configuration_ownership(params[:mezuro_configuration_id])
   end
 
+  def mezuro_configuration_fork_owner?
+    check_mezuro_configuration_fork_ownership(params[:mezuro_configuration_id])
+  end
 
   private
 
@@ -81,4 +84,14 @@ module OwnershipAuthentication
       end
     end
   end
+  
+  def check_mezuro_configuration_fork_ownership(id)
+    if current_user.mezuro_configuration_ownerships.find_by_mezuro_configuration_id(id).present?
+      respond_to do |format|
+        format.html { redirect_to mezuro_configurations_url(id), notice: "You're not allowed to do this operation" }
+        format.json { head :no_content }
+      end
+    end
+  end
+
 end

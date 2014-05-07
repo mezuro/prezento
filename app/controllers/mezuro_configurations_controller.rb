@@ -3,6 +3,7 @@ include OwnershipAuthentication
 class MezuroConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :mezuro_configuration_owner?, only: [:edit, :update, :destroy]
+  before_action :mezuro_configuration_fork_owner?, only: [:fork]
 
   # GET /mezuro_configurations/new
   def new
