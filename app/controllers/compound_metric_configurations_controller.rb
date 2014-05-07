@@ -19,6 +19,10 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
     @compound_metric_configuration.configuration_id = params[:mezuro_configuration_id].to_i
   end
 
+  def update
+    raise NotImplementedError
+  end
+
   protected
 
   def metric_configuration
