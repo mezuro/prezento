@@ -14,14 +14,39 @@ describe MezuroConfigurationsController, :type => :controller do
 
   describe 'fork' do
     let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
-    before do
-      sign_in FactoryGirl.create(:user)
-      MezuroConfiguration.expects(:find).at_least_once.with(mezuro_configuration.id.to_s).returns(mezuro_configuration)
-      get :fork, :mezuro_configuration_id => mezuro_configuration.id
-    end
 
-    it { should respond_with(:success) }
-    it { should render_template(:fork) }
+    context 'with valid configuration' do
+
+      before do
+        sign_in FactoryGirl.create(:user)
+        MezuroConfiguration.expects(:find).at_least_once.with(mezuro_configuration.id.to_s).returns(mezuro_configuration)
+        get :fork, :mezuro_configuration_id => mezuro_configuration.id
+      end
+
+      it { should respond_with(:success) }
+      it { should render_template(:fork) }
+    end 
+  end
+
+  describe 'create_fork' do
+    let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+    let(:mezuro_configuration_ownership){ FactoryGirl.build(:mezuro_configuration_ownership) }
+
+    let(:another_mezuro_configuration) { FactoryGirl.build(:another_mezuro_configuration) }
+    let(:subject_params) { Hash[FactoryGirl.attributes_for(:another_mezuro_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    
+    context 'with a valid mezuro_configuration' do
+      before do
+        sign_in FactoryGirl.create(:user)
+        MezuroConfiguration.expects(:find).with(mezuro_configuration.id.to_s).returns(mezuro_configuration)
+        MezuroConfiguration.any_instance.expects(:mezuro_configuration_ownership).returns(mezuro_configuration_ownership)
+        post :create_fork, :mezuro_configuration_id => mezuro_configuration.id, :mezuro_configuration => subject_params
+      end
+
+      it 'should redirect to the show view' do
+          response.should redirect_to mezuro_configuration_path(another_mezuro_configuration)
+      end
+    end
   end
 
   describe 'create' do
