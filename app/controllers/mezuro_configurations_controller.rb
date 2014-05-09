@@ -15,7 +15,6 @@ class MezuroConfigurationsController < ApplicationController
     original = MezuroConfiguration.find(params[:mezuro_configuration_id])
     
     @fork_original_id = original.id
-
     @mezuro_configuration = MezuroConfiguration.new
     @mezuro_configuration.description = original.description
     #see later if we can change :mezuro_configuration_id by :id
@@ -38,15 +37,10 @@ class MezuroConfigurationsController < ApplicationController
 
   # POST /mezuro_configurations/1/fork
   def create_fork
-    original = MezuroConfiguration.find(params[:mezuro_configuration_id])
-
+    original = MezuroConfiguration.find(params[:mezuro_configuration_id]) #TODO: ActiveRecord throws exception when record not found. Should show 404
     respond_to do |format|
-      if original == nil
-        render nothing: true,  status: :bad_request
-      else
-        @mezuro_configuration = MezuroConfiguration.new(mezuro_configuration_params)
-        create_and_redir(format, original)
-      end
+      @mezuro_configuration = MezuroConfiguration.new(mezuro_configuration_params)
+      create_and_redir(format, original)
     end
   end
 
