@@ -40,8 +40,10 @@ Feature: Compound Metric Configuration edition
     When I visit the sample compound metric configuration edit page
     And I fill the Code field with " "
     And I fill the Weight field with " "
+    And I fill the Name field with " "
     And I press the Save button
-    Then I should see "Code can't be blank"
+    Then I should see "Edit Compound Metric Configuration"
+    And I should see "Code can't be blank"
     And I should see "Weight can't be blank"
 
   @kalibro_restart
