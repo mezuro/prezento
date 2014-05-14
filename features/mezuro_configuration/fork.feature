@@ -30,7 +30,7 @@ Feature: Configuration
 		And I click the Fork link
 		And I fill the Name field with "Fork Conf"
 		When I press the Save button
-    Then I should see "Fork Conf"
+    Then I should see "mezuro configuration was successfully created."
 
   @kalibro_restart
   Scenario: With configuration name already taken
@@ -42,3 +42,15 @@ Feature: Configuration
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
     Then I should see "There's already"
+
+  @kalibro_restart
+  Scenario: Should update fork counter
+		Given I am a regular user
+		And I am signed in
+		And I have a sample configuration
+		And I am at the All Configurations page
+		And I click the Fork link
+		And I fill the Name field with "New Fork Conf"
+		And I press the Save button
+		When I click the Back link
+		Then I should see the counter showing "1"
