@@ -8,10 +8,12 @@ end
 
 Given(/^I have a configuration named "(.*?)"$/) do |name|
   @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil, name: name})
+  FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: nil, mezuro_configuration_id: @mezuro_configuration.id})
 end
 
 Given(/^I have a sample configuration$/) do
   @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil})
+  FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: nil, mezuro_configuration_id: @mezuro_configuration.id})
 end
 
 Given(/^I own a sample configuration$/) do
@@ -59,4 +61,10 @@ end
 Then(/^the sample configuration should be there$/) do
   page.should have_content(@mezuro_configuration.name)
   page.should have_content(@mezuro_configuration.description)
+end
+
+Then(/^I should see the counter showing "(.*?)"/) do |value|
+  within('.btn-group') do
+      should have_content value
+ end
 end
