@@ -28,6 +28,7 @@ Feature: Compound Metric Configuration edition
     And I fill the Code field with "Another_code"
     And I press the Save button
     Then I should see "Another_code"
+    And I should see "Compound Metric Configuration was successfully updated."
 
   @kalibro_restart
   Scenario: trying to edit with blank fields
