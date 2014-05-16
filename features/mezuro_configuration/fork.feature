@@ -10,7 +10,16 @@ Feature: Configuration
 		And I have a sample configuration
 		And I am at the All Configurations page
 		When I click the Fork link
-		Then I should be in the Fork Configuration page	
+		Then I should be in the Fork Configuration page
+
+	@kalibro_restart @javascript
+	Scenario: Shouldn't allow to go to the fork page
+		Given I am a regular user
+		And I am signed in
+		And I own a sample configuration
+		When I visit the fork page of my sample configuration
+		When I take a picture of the page
+		Then I should see "You're not allowed to do this operation"		
 
 	@kalibro_restart
 	Scenario: Should see a fork of the description
@@ -49,6 +58,7 @@ Feature: Configuration
 		And I am signed in
 		And I have a sample configuration
 		And I am at the All Configurations page
+		And I see the sample configuration fork counter showing "0"
 		And I click the Fork link
 		And I fill the Name field with "New Fork Conf"
 		And I press the Save button

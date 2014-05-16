@@ -34,8 +34,18 @@ Given(/^I own a configuration named "(.*?)"$/) do |name|
   FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
 end
 
+Given(/^I see the sample configuration fork counter showing "(.*?)"$/) do |value|
+  within('.btn-group') do
+      should have_content value
+  end
+end
+
 When(/^I visit the sample configuration edit page$/) do
   visit edit_mezuro_configuration_path(@mezuro_configuration.id)
+end
+
+When(/^I visit the fork page of my sample configuration$/) do
+  visit mezuro_configuration_fork_path(@mezuro_configuration.id)
 end
 
 Then(/^I should be in the Edit Configuration page$/) do
