@@ -5,18 +5,18 @@ rvm:
 before_script:
   - "cp config/database.yml.sample config/database.yml"
   - "bundle exec rake db:migrate RAILS_ENV=test"
-  - wget https://gist.github.com/rafamanzo/6179925/raw/77653bd6229e99d5251180a4488e2fa54d0cd4ac/db_bootstrap.sql
-  - wget https://gist.github.com/rafamanzo/6179925/raw/a38c3b33af3b1784eece46450cca65503337e4b5/install.sh
-  - chmod +x install.sh
-  - ./install.sh
+  - git clone https://gist.github.com/0c4ad3b5700c6364abf1.git kalibro_install
+  - pushd kalibro_install
+  - bash install.sh
+  - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
   - git clone https://github.com/mezuro/kalibro_gatekeeper.git
-  - cd kalibro_gatekeeper
+  - pushd kalibro_gatekeeper
   - cp config/database.yml.sample config/database.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   - bundle install
   - bundle exec rails s -p 8081 -d
-  - cd ..
+  - popd
   - export BUNDLE_GEMFILE=$PWD/Gemfile
 
 script:
