@@ -5,12 +5,12 @@ rvm:
 before_script:
   - "cp config/database.yml.sample config/database.yml"
   - "bundle exec rake db:migrate RAILS_ENV=test"
-  - git clone https://gist.github.com/0c4ad3b5700c6364abf1.git kalibro_install
+  - git clone https://gist.github.com/0c4ad3b5700c6364abf1.git -b v0.1 kalibro_install
   - pushd kalibro_install
   - bash install.sh
   - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  - git clone https://github.com/mezuro/kalibro_gatekeeper.git
+  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b master kalibro_gatekeeper
   - pushd kalibro_gatekeeper
   - cp config/database.yml.sample config/database.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
