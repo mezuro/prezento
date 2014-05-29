@@ -12,7 +12,7 @@ before_script:
   - bash install.sh
   - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b master kalibro_gatekeeper
+  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b v0.0.1 kalibro_gatekeeper
   - pushd kalibro_gatekeeper
   - cp config/database.yml.sample config/database.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
