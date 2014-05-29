@@ -79,7 +79,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.4.1'
 
   # Deployment
-  gem 'capistrano', "~>3.1.0", require: false
+  gem 'capistrano', "~>3.2.1", require: false
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm', "~>0.1.0"
