@@ -149,7 +149,6 @@ GEM
     minitest (5.3.4)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
-    modernizr-rails (2.7.1)
     multi_json (1.10.1)
     multi_test (0.1.1)
     multipart-post (2.0.0)
@@ -283,7 +282,6 @@ DEPENDENCIES
   kalibro_gatekeeper_client (~> 0.1.0)
   konacha (~> 3.2.0)
   mocha
-  modernizr-rails
   pg (~> 0.17.0)
   poltergeist (~> 1.5.0)
   rails (= 4.1.1)

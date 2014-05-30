@@ -98,7 +98,7 @@
 
     HTML5, CSS3
 
-    Normalize.css, jQuery, Modernizr, Twitter Bootstrap
+    Normalize.css, jQuery, Twitter Bootstrap
       Glyphicons
 
     Kalibro
