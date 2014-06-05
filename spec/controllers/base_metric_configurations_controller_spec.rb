@@ -40,7 +40,7 @@ class InheritsFromBaseMetricConfigurationsController < BaseMetricConfigurationsC
 end
 
 
-describe InheritsFromBaseMetricConfigurationsController do
+describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
   let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
 
   before do
@@ -71,8 +71,8 @@ describe InheritsFromBaseMetricConfigurationsController do
         get :new, mezuro_configuration_id: mezuro_configuration.id
       end
 
-      it { metric_configuration.should_not be_nil }
-      it { should respond_with(:success) }
+      it { expect(metric_configuration).not_to be_nil }
+      it { is_expected.to respond_with(:success) }
     end
 
     context "when the current user doesn't owns the mezuro configuration" do
@@ -80,8 +80,8 @@ describe InheritsFromBaseMetricConfigurationsController do
         get :new, mezuro_configuration_id: mezuro_configuration.id
       end
 
-      it { should redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
-      it { should respond_with(:redirect) }
+      it { is_expected.to redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
+      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -104,8 +104,8 @@ describe InheritsFromBaseMetricConfigurationsController do
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
         end
 
-        it { subject.metric_configuration.should_not be_nil }
-        it { should respond_with(:success) }
+        it { expect(subject.metric_configuration).not_to be_nil }
+        it { is_expected.to respond_with(:success) }
       end
     end
   end
@@ -124,8 +124,8 @@ describe InheritsFromBaseMetricConfigurationsController do
         get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
       end
 
-      it { subject.mezuro_ranges.should_not be_nil}
-      it { subject.reading_group.should_not be_nil }
+      it { expect(subject.mezuro_ranges).not_to be_nil}
+      it { expect(subject.reading_group).not_to be_nil }
     end
 
     context 'with a invalid metric_configuration' do

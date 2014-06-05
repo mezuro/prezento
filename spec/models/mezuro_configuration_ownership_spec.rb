@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe MezuroConfigurationOwnership do
+describe MezuroConfigurationOwnership, :type => :model do
   describe 'associations' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe 'methods' do
@@ -15,7 +15,7 @@ describe MezuroConfigurationOwnership do
       end
 
       it 'should return the mezuro_configuration' do
-        subject.mezuro_configuration.should eq(mezuro_configuration)
+        expect(subject.mezuro_configuration).to eq(mezuro_configuration)
       end
     end
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CodeUniquenessValidator do
+describe CodeUniquenessValidator, :type => :model do
   describe 'methods' do
     describe 'validate_each' do
       context 'without saved metric_configurations' do
@@ -12,7 +12,7 @@ describe CodeUniquenessValidator do
         subject { FactoryGirl.build(:metric_configuration) }
         it 'should contain no errors' do
           subject.save
-          subject.errors.should be_empty
+          expect(subject.errors).to be_empty
         end
       end
 
@@ -24,7 +24,7 @@ describe CodeUniquenessValidator do
 
         it 'should contain errors' do
           @subject.save
-          @subject.errors[:code].should eq(["There's already a MetricConfiguration with code #{@subject.code}! Please, choose another one."])
+          expect(@subject.errors[:code]).to eq(["There's already a MetricConfiguration with code #{@subject.code}! Please, choose another one."])
         end
       end
     end

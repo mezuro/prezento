@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ModulesController do
+describe ModulesController, :type => :controller do
   describe "load_module_tree" do
     before :each do
       ModuleResult.expects(:find).with(42).returns(FactoryGirl.build(:module_result))
@@ -8,8 +8,8 @@ describe ModulesController do
       post :load_module_tree, id: 42, format: :js
     end
 
-    it { should respond_with(:success) }
-    it { should render_template(:load_module_tree) }
+    it { is_expected.to respond_with(:success) }
+    it { is_expected.to render_template(:load_module_tree) }
   end
 
   describe "metric_history" do
@@ -26,7 +26,7 @@ describe ModulesController do
       xhr :get, :metric_history, {id: module_result.id, metric_name: metric_name, module_id: module_id}
     end
 
-    it { should respond_with(:success) }
-    it { should render_template(:metric_history) }
+    it { is_expected.to respond_with(:success) }
+    it { is_expected.to render_template(:metric_history) }
   end
 end

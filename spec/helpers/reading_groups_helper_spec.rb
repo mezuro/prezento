@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReadingGroupsHelper do
+describe ReadingGroupsHelper, :type => :helper do
 
   describe 'reading_group_owner?' do
     before :each do
@@ -11,7 +11,7 @@ describe ReadingGroupsHelper do
       before :each do
         helper.expects(:user_signed_in?).returns(false)
       end
-      it { helper.reading_groups_owner?(@subject.id).should be_false }
+      it { expect(helper.reading_groups_owner?(@subject.id)).to be_falsey }
     end
 
     context 'returns false if is not the owner' do
@@ -25,7 +25,7 @@ describe ReadingGroupsHelper do
         User.any_instance.expects(:reading_group_ownerships).returns(@ownerships)
       end
 
-      it { helper.reading_groups_owner?(@subject.id).should be_false }
+      it { expect(helper.reading_groups_owner?(@subject.id)).to be_falsey }
     end
 
     context 'returns true if user is the reading_group owner' do
@@ -39,7 +39,7 @@ describe ReadingGroupsHelper do
         User.any_instance.expects(:reading_group_ownerships).returns(@ownerships)
       end
 
-      it { helper.reading_groups_owner?(@subject.id).should be_true }
+      it { expect(helper.reading_groups_owner?(@subject.id)).to be_truthy }
     end
   end
 

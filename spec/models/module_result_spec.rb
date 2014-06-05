@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ModuleResult do
+describe ModuleResult, :type => :model do
   describe 'methods' do
     subject { FactoryGirl.build(:module_result) }
     
@@ -18,7 +18,7 @@ describe ModuleResult do
       end
 
       it 'should return a array of DateModuleResults' do
-        subject.history.first.should be_a(DateModuleResult)
+        expect(subject.history.first).to be_a(DateModuleResult)
       end
     end
 
@@ -32,7 +32,7 @@ describe ModuleResult do
       end
 
       it 'should return the history for the given metric name' do
-        subject.metric_history(metric_result.metric_configuration_snapshot.metric.name).should eq({date_module_result.date => metric_result.value})
+        expect(subject.metric_history(metric_result.metric_configuration_snapshot.metric.name)).to eq({date_module_result.date => metric_result.value})
       end
     end
   end

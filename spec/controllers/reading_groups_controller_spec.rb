@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe ReadingGroupsController do
+describe ReadingGroupsController, :type => :controller do
   describe 'new' do
     before :each do
       sign_in FactoryGirl.create(:user)
       get :new
     end
 
-    it { should respond_with(:success) }
-    it { should render_template(:new) }
+    it { is_expected.to respond_with(:success) }
+    it { is_expected.to render_template(:new) }
   end
 
   describe 'create' do
@@ -32,7 +32,7 @@ describe ReadingGroupsController do
         end
 
         it 'should redirect to the show view' do
-          response.should redirect_to reading_group_path(reading_group)
+          expect(response).to redirect_to reading_group_path(reading_group)
         end
       end
 
@@ -41,7 +41,7 @@ describe ReadingGroupsController do
           post :create, :reading_group => subject_params
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
     end
 
@@ -56,7 +56,7 @@ describe ReadingGroupsController do
         post :create, :reading_group => @subject_params
       end
 
-      it { should render_template(:new) }
+      it { is_expected.to render_template(:new) }
     end
   end
 
@@ -68,7 +68,7 @@ describe ReadingGroupsController do
       get :show, :id => subject.id
     end
 
-    it { should render_template(:show) }
+    it { is_expected.to render_template(:show) }
   end
 
   describe 'destroy' do
@@ -100,10 +100,10 @@ describe ReadingGroupsController do
         end
 
         it 'should redirect to the reading groups page' do
-          response.should redirect_to reading_groups_url
+          expect(response).to redirect_to reading_groups_url
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context "when the user doesn't own the reading group" do
@@ -114,7 +114,7 @@ describe ReadingGroupsController do
           delete :destroy, :id => @subject.id
         end
 
-         it { should redirect_to(reading_group_path)  }
+         it { is_expected.to redirect_to(reading_group_path)  }
       end
     end
 
@@ -123,7 +123,7 @@ describe ReadingGroupsController do
         delete :destroy, :id => @subject.id
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -134,7 +134,7 @@ describe ReadingGroupsController do
       get :index
     end
 
-    it { should render_template(:index) }
+    it { is_expected.to render_template(:index) }
   end
 
   describe 'edit' do
@@ -161,10 +161,10 @@ describe ReadingGroupsController do
           get :edit, :id => @subject.id
         end
 
-        it { should render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
 
         it 'should assign to @reading group the @subject' do
-          assigns(:reading_group).should eq(@subject)
+          expect(assigns(:reading_group)).to eq(@subject)
         end
       end
 
@@ -176,8 +176,8 @@ describe ReadingGroupsController do
           get :edit, :id => @subject.id
         end
 
-        it { should redirect_to(reading_group_path)  }
-        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to redirect_to(reading_group_path)  }
+        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -186,7 +186,7 @@ describe ReadingGroupsController do
         get :edit, :id => @subject.id
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -224,7 +224,7 @@ describe ReadingGroupsController do
             end
 
             it 'should redirect to the show view' do
-              response.should redirect_to reading_group_path(@subject)
+              expect(response).to redirect_to reading_group_path(@subject)
             end
           end
 
@@ -233,7 +233,7 @@ describe ReadingGroupsController do
               post :update, :id => @subject.id, :reading_group => @subject_params
             end
 
-            it { should respond_with(:redirect) }
+            it { is_expected.to respond_with(:redirect) }
           end
         end
 
@@ -245,7 +245,7 @@ describe ReadingGroupsController do
             post :update, :id => @subject.id, :reading_group => @subject_params
           end
 
-          it { should render_template(:edit) }
+          it { is_expected.to render_template(:edit) }
         end
       end
 
@@ -254,7 +254,7 @@ describe ReadingGroupsController do
           post :update, :id => @subject.id, :reading_group => @subject_params
         end
 
-        it { should redirect_to reading_group_path }
+        it { is_expected.to redirect_to reading_group_path }
       end
     end
 
@@ -263,7 +263,7 @@ describe ReadingGroupsController do
         post :update, :id => @subject.id, :reading_group => @subject_params
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 end

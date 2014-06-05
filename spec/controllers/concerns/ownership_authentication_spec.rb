@@ -43,7 +43,7 @@ describe OwnershipAuthentication, type: :controller do
           end
 
           it 'should return true' do
-            readings_controller.reading_group_owner?.should be_true
+            expect(readings_controller.reading_group_owner?).to be_truthy
           end
         end
 
@@ -120,7 +120,7 @@ describe OwnershipAuthentication, type: :controller do
           end
 
           it 'should return true' do
-            repositories_controller.project_owner?.should be_true
+            expect(repositories_controller.project_owner?).to be_truthy
           end
         end
 

@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Processing do
+describe Processing, :type => :model do
   describe 'methods' do
     subject { FactoryGirl.build(:processing) }
 
     describe 'ready?' do
       context 'with a READY processing' do
         it 'should return true' do
-          subject.ready?.should be_true
+          expect(subject.ready?).to be_truthy
         end
       end
 
@@ -15,7 +15,7 @@ describe Processing do
         subject { FactoryGirl.build(:processing, state: 'COLLECTING') }
 
         it 'should return false' do
-          subject.ready?.should be_false
+          expect(subject.ready?).to be_falsey
         end
       end
     end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MetricConfiguration do
+describe MetricConfiguration, :type => :model do
   subject {FactoryGirl.build(:metric_configuration)}
 
   describe 'methods' do
@@ -11,7 +11,7 @@ describe MetricConfiguration do
       end
 
       it 'should returns a list with its ranges' do
-        subject.mezuro_ranges.should eq([mezuro_range])
+        expect(subject.mezuro_ranges).to eq([mezuro_range])
       end
     end
   end
@@ -23,9 +23,9 @@ describe MetricConfiguration do
         MetricConfiguration.expects(:metric_configurations_of).at_least_once.returns([])
       end
       
-      it { should validate_presence_of(:code) }
-      it { should validate_presence_of(:weight) }
-      it { should validate_presence_of(:aggregation_form) }
+      it { is_expected.to validate_presence_of(:code) }
+      it { is_expected.to validate_presence_of(:weight) }
+      it { is_expected.to validate_presence_of(:aggregation_form) }
     end
 
     context 'code validations' do

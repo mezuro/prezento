@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   context 'validations' do
     subject { FactoryGirl.build(:user) }
 
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email) }
   end
 
   describe 'associations' do
-    it { should have_many(:project_ownerships) }
-    it { should have_many(:reading_group_ownerships) }
-    it { should have_many(:mezuro_configuration_ownerships) }
+    it { is_expected.to have_many(:project_ownerships) }
+    it { is_expected.to have_many(:reading_group_ownerships) }
+    it { is_expected.to have_many(:mezuro_configuration_ownerships) }
   end
 
   describe 'methods' do
@@ -27,7 +27,7 @@ describe User do
       end
 
       it 'should return a list of projects owned by the user' do
-        subject.projects.should eq([project])
+        expect(subject.projects).to eq([project])
       end
     end
 
@@ -42,7 +42,7 @@ describe User do
       end
 
       it 'should return a list of reading groups owned by the user' do
-        subject.reading_groups.should eq([reading_group])
+        expect(subject.reading_groups).to eq([reading_group])
       end
     end
 
@@ -57,7 +57,7 @@ describe User do
       end
 
       it 'should return a list of mezuro configurations owned by the user' do
-        subject.mezuro_configurations.should eq([mezuro_configuration])
+        expect(subject.mezuro_configurations).to eq([mezuro_configuration])
       end
     end
   end

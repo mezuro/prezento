@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Project do
+describe Project, :type => :model do
   describe 'methods' do
     describe 'persisted?' do
       before :each do
@@ -9,7 +9,7 @@ describe Project do
       end
 
       it 'should return false' do
-        @subject.persisted?.should eq(false)
+        expect(@subject.persisted?).to eq(false)
       end
     end
 
@@ -22,12 +22,12 @@ describe Project do
       end
 
       it 'should return the two projects ordered' do
-        Project.latest(2).should eq([@kalibro, @qt])
+        expect(Project.latest(2)).to eq([@kalibro, @qt])
       end
 
       context 'when no parameter is passed' do
         it 'should return just the most recent project' do
-          Project.latest.should eq([@kalibro])
+          expect(Project.latest).to eq([@kalibro])
         end
       end
     end
@@ -44,7 +44,7 @@ describe Project do
         end
 
         it 'should return true' do
-          @qt.update(@qt_params).should eq(true)
+          expect(@qt.update(@qt_params)).to eq(true)
         end
       end
 
@@ -54,7 +54,7 @@ describe Project do
         end
 
         it 'should return false' do
-          @qt.update(@qt_params).should eq(false)
+          expect(@qt.update(@qt_params)).to eq(false)
         end
       end
     end
@@ -66,7 +66,7 @@ describe Project do
       it 'should call repositories_of on the Repository model' do
         Repository.expects(:repositories_of).with(subject.id).returns([repository])
 
-        subject.repositories.should include(repository)
+        expect(subject.repositories).to include(repository)
       end
     end
   end
@@ -77,7 +77,7 @@ describe Project do
       before :each do
         Project.expects(:all).at_least_once.returns([])
       end
-      it { should validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:name) }
     end
 
     context 'kalibro validations' do

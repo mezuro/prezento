@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HomeController do
+describe HomeController, :type => :controller do
   context 'Method' do
     context '#index' do
       before :each do
@@ -9,7 +9,7 @@ describe HomeController do
         get :index
       end
 
-      it {should render_template(:index)}
+      it {is_expected.to render_template(:index)}
     end
   end
 end

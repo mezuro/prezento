@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReadingGroup do
+describe ReadingGroup, :type => :model do
   describe 'methods' do
     describe 'persisted?' do
       before :each do
@@ -9,7 +9,7 @@ describe ReadingGroup do
       end
 
       it 'should return false' do
-        @subject.persisted?.should eq(false)
+        expect(@subject.persisted?).to eq(false)
       end
     end
     
@@ -25,7 +25,7 @@ describe ReadingGroup do
         end
 
         it 'should return true' do
-          @qt.update(@qt_params).should eq(true)
+          expect(@qt.update(@qt_params)).to eq(true)
         end
       end
 
@@ -35,7 +35,7 @@ describe ReadingGroup do
         end
 
         it 'should return false' do
-          @qt.update(@qt_params).should eq(false)
+          expect(@qt.update(@qt_params)).to eq(false)
         end
       end
     end
@@ -47,7 +47,7 @@ describe ReadingGroup do
       it 'should call readings_of on the Reading model' do
         Reading.expects(:readings_of).with(subject.id).returns([reading])
 
-        subject.readings.should include(reading)
+        expect(subject.readings).to include(reading)
       end
     end
   end
@@ -58,7 +58,7 @@ describe ReadingGroup do
       before :each do
         ReadingGroup.expects(:all).at_least_once.returns([])
       end
-      it { should validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:name) }
     end
 
     context 'kalibro validations' do

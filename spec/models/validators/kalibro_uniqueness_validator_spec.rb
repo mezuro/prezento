@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe KalibroUniquenessValidator do
+describe KalibroUniquenessValidator, :type => :model do
   describe 'methods' do
     describe 'validate_each' do
       context 'without saved projects' do
@@ -12,7 +12,7 @@ describe KalibroUniquenessValidator do
         subject { FactoryGirl.build(:project) }
         it 'should contain no errors' do
           subject.save
-          subject.errors.should be_empty
+          expect(subject.errors).to be_empty
         end
       end
 
@@ -24,7 +24,7 @@ describe KalibroUniquenessValidator do
 
         it 'should contain errors' do
           @subject.save
-          @subject.errors[:name].should eq(["There's already a Project with name #{@subject.name}! Please, choose another one."])
+          expect(@subject.errors[:name]).to eq(["There's already a Project with name #{@subject.name}! Please, choose another one."])
         end
       end
     end

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe ReadingGroupOwnership do
+describe ReadingGroupOwnership, :type => :model do
   describe 'associations' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe 'methods' do
@@ -15,7 +15,7 @@ describe ReadingGroupOwnership do
       end
 
       it 'should return the reading_group' do
-        subject.reading_group.should eq(reading_group)
+        expect(subject.reading_group).to eq(reading_group)
       end
     end
   end

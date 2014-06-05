@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Reading do
+describe Reading, :type => :model do
   describe 'validations' do
     subject {FactoryGirl.build(:reading)}
 
@@ -9,10 +9,10 @@ describe Reading do
         Reading.expects(:all).at_least_once.returns([])
       end
       
-      it { should validate_presence_of(:label) }
-      it { should validate_presence_of(:color) }
-      it { should validate_presence_of(:grade) }
-      it { should validate_numericality_of(:grade) }
+      it { is_expected.to validate_presence_of(:label) }
+      it { is_expected.to validate_presence_of(:color) }
+      it { is_expected.to validate_presence_of(:grade) }
+      it { is_expected.to validate_numericality_of(:grade) }
     end
 
     context 'kalibro validations' do

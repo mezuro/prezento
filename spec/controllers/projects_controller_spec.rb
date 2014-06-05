@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsController do
+describe ProjectsController, :type => :controller do
 
   describe 'new' do
     before :each do
@@ -8,8 +8,8 @@ describe ProjectsController do
       get :new
     end
 
-    it { should respond_with(:success) }
-    it { should render_template(:new) }
+    it { is_expected.to respond_with(:success) }
+    it { is_expected.to render_template(:new) }
   end
 
   describe 'create' do
@@ -33,7 +33,7 @@ describe ProjectsController do
         end
 
         it 'should redirect to the show view' do
-          response.should redirect_to project_path(project)
+          expect(response).to redirect_to project_path(project)
         end
       end
 
@@ -42,7 +42,7 @@ describe ProjectsController do
           post :create, :project => subject_params
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
     end
 
@@ -57,7 +57,7 @@ describe ProjectsController do
         post :create, :project => @subject_params
       end
 
-      it { should render_template(:new) }
+      it { is_expected.to render_template(:new) }
     end
   end
 
@@ -70,7 +70,7 @@ describe ProjectsController do
       get :show, :id => subject.id
     end
 
-    it { should render_template(:show) }
+    it { is_expected.to render_template(:show) }
   end
 
   describe 'destroy' do
@@ -102,10 +102,10 @@ describe ProjectsController do
         end
 
         it 'should redirect to the projects page' do
-          response.should redirect_to projects_url
+          expect(response).to redirect_to projects_url
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context "when the user doesn't own the project" do
@@ -116,7 +116,7 @@ describe ProjectsController do
           delete :destroy, :id => @subject.id
         end
 
-         it { should redirect_to(projects_path)  }
+         it { is_expected.to redirect_to(projects_path)  }
       end
     end
 
@@ -125,7 +125,7 @@ describe ProjectsController do
         delete :destroy, :id => @subject.id
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -136,7 +136,7 @@ describe ProjectsController do
       get :index
     end
 
-    it { should render_template(:index) }
+    it { is_expected.to render_template(:index) }
   end
 
   describe 'edit' do
@@ -163,10 +163,10 @@ describe ProjectsController do
           get :edit, :id => @subject.id
         end
 
-        it { should render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
 
         it 'should assign to @project the @subject' do
-          assigns(:project).should eq(@subject)
+          expect(assigns(:project)).to eq(@subject)
         end
       end
 
@@ -178,8 +178,8 @@ describe ProjectsController do
           get :edit, :id => @subject.id
         end
 
-        it { should redirect_to(projects_path)  }
-        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to redirect_to(projects_path)  }
+        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -188,7 +188,7 @@ describe ProjectsController do
         get :edit, :id => @subject.id
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -226,7 +226,7 @@ describe ProjectsController do
             end
 
             it 'should redirect to the show view' do
-              response.should redirect_to project_path(@subject)
+              expect(response).to redirect_to project_path(@subject)
             end
           end
 
@@ -235,7 +235,7 @@ describe ProjectsController do
               post :update, :id => @subject.id, :project => @subject_params
             end
 
-            it { should respond_with(:redirect) }
+            it { is_expected.to respond_with(:redirect) }
           end
         end
 
@@ -247,7 +247,7 @@ describe ProjectsController do
             post :update, :id => @subject.id, :project => @subject_params
           end
 
-          it { should render_template(:edit) }
+          it { is_expected.to render_template(:edit) }
         end
       end
 
@@ -256,7 +256,7 @@ describe ProjectsController do
           post :update, :id => @subject.id, :project => @subject_params
         end
 
-        it { should redirect_to projects_path }
+        it { is_expected.to redirect_to projects_path }
       end
     end
 
@@ -265,7 +265,7 @@ describe ProjectsController do
         post :update, :id => @subject.id, :project => @subject_params
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 end

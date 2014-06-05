@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MezuroConfiguration do
+describe MezuroConfiguration, :type => :model do
   subject { FactoryGirl.build(:mezuro_configuration) }
   describe 'methods' do
     describe 'persisted?' do
@@ -9,7 +9,7 @@ describe MezuroConfiguration do
       end
 
       it 'should return false' do
-        subject.persisted?.should eq(false)
+        expect(subject.persisted?).to eq(false)
       end
     end
 
@@ -24,7 +24,7 @@ describe MezuroConfiguration do
         end
 
         it 'should return true' do
-          subject.update(@subject_params).should eq(true)
+          expect(subject.update(@subject_params)).to eq(true)
         end
       end
 
@@ -34,7 +34,7 @@ describe MezuroConfiguration do
         end
 
         it 'should return false' do
-          subject.update(@subject_params).should eq(false)
+          expect(subject.update(@subject_params)).to eq(false)
         end
       end
     end
@@ -46,7 +46,7 @@ describe MezuroConfiguration do
       it 'should call metric_configurations_of on the Metric Configuration model' do
         MetricConfiguration.expects(:metric_configurations_of).with(subject.id).returns([metric_configuration])
 
-        subject.metric_configurations.should include(metric_configuration)
+        expect(subject.metric_configurations).to include(metric_configuration)
       end
     end
   end
@@ -56,7 +56,7 @@ describe MezuroConfiguration do
       before :each do
         MezuroConfiguration.expects(:all).at_least_once.returns([])
       end
-      it { should validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:name) }
     end
 
     context 'kalibro validations' do

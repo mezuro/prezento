@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RepositoriesController do
+describe RepositoriesController, :type => :controller do
   let(:project) { FactoryGirl.build(:project) }
 
   describe 'new' do
@@ -16,8 +16,8 @@ describe RepositoriesController do
         get :new, project_id: project.id.to_s
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:new) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:new) }
     end
 
     context "when the current user doesn't owns the project" do
@@ -25,8 +25,8 @@ describe RepositoriesController do
         get :new, project_id: project.id.to_s
       end
 
-      it { should redirect_to(projects_url) }
-      it { should respond_with(:redirect) }
+      it { is_expected.to redirect_to(projects_url) }
+      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -50,8 +50,8 @@ describe RepositoriesController do
           post :create, project_id: project.id, repository: repository_params
         end
 
-        it { should redirect_to(project_repository_process_path(repository.project_id, repository.id)) }
-        it { should respond_with(:redirect) }
+        it { is_expected.to redirect_to(project_repository_process_path(repository.project_id, repository.id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context 'with an invalid field' do
@@ -62,7 +62,7 @@ describe RepositoriesController do
           post :create, project_id: project.id.to_s, repository: repository_params
         end
 
-        it { should render_template(:new) }
+        it { is_expected.to render_template(:new) }
       end
     end
 
@@ -71,8 +71,8 @@ describe RepositoriesController do
         post :create, project_id: project.id, repository: repository_params
       end
 
-      it { should redirect_to(projects_url) }
-      it { should respond_with(:redirect) }
+      it { is_expected.to redirect_to(projects_url) }
+      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -89,7 +89,7 @@ describe RepositoriesController do
         get :show, id: repository.id.to_s, project_id: project.id.to_s
       end
 
-      it { should render_template(:show) }
+      it { is_expected.to render_template(:show) }
     end
 
     context 'for an specific module_result' do
@@ -103,7 +103,7 @@ describe RepositoriesController do
         get :show, id: repository.id.to_s, project_id: project.id.to_s
       end
 
-      it { should render_template(:show) }
+      it { is_expected.to render_template(:show) }
     end
   end
 
@@ -124,8 +124,8 @@ describe RepositoriesController do
           delete :destroy, id: repository.id, project_id: project.id.to_s
         end
 
-        it { should redirect_to(project_path(repository.project_id)) }
-        it { should respond_with(:redirect) }
+        it { is_expected.to redirect_to(project_path(repository.project_id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context "when the user doesn't own the project" do
@@ -133,8 +133,8 @@ describe RepositoriesController do
           delete :destroy, id: repository.id, project_id: project.id.to_s
         end
 
-         it { should redirect_to(projects_url) }
-         it { should respond_with(:redirect) }
+         it { is_expected.to redirect_to(projects_url) }
+         it { is_expected.to respond_with(:redirect) }
       end
     end
 
@@ -143,7 +143,7 @@ describe RepositoriesController do
         delete :destroy, id: repository.id, project_id: project.id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -163,7 +163,7 @@ describe RepositoriesController do
           get :edit, id: repository.id, project_id: project.id.to_s
         end
 
-        it { should render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
       end
 
       context 'when the user does not own the repository' do
@@ -171,9 +171,9 @@ describe RepositoriesController do
           get :edit, id: repository.id, project_id: project.id.to_s
         end
 
-        it { should redirect_to(projects_url) }
-        it { should respond_with(:redirect) }
-        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to redirect_to(projects_url) }
+        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -182,7 +182,7 @@ describe RepositoriesController do
         get :edit, id: repository.id, project_id: project.id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -208,8 +208,8 @@ describe RepositoriesController do
             post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
           end
 
-          it { should redirect_to(project_repository_path(repository.project_id, repository.id)) }
-          it { should respond_with(:redirect) }
+          it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }
+          it { is_expected.to respond_with(:redirect) }
         end
 
         context 'with an invalid field' do
@@ -221,7 +221,7 @@ describe RepositoriesController do
             post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
           end
 
-          it { should render_template(:edit) }
+          it { is_expected.to render_template(:edit) }
         end
       end
 
@@ -230,7 +230,7 @@ describe RepositoriesController do
           post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
         end
 
-        it { should redirect_to projects_path }
+        it { is_expected.to redirect_to projects_path }
       end
     end
 
@@ -239,7 +239,7 @@ describe RepositoriesController do
         post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -254,8 +254,8 @@ describe RepositoriesController do
         xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: ''}
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:unprocessed) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:unprocessed) }
     end
 
     context 'with a READY state' do
@@ -268,8 +268,8 @@ describe RepositoriesController do
         xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'}
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:load_ready_processing) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:load_ready_processing) }
     end
 
     context 'with another state then READY' do
@@ -282,8 +282,8 @@ describe RepositoriesController do
         xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'LOADING'}
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:reload_processing) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:reload_processing) }
     end
 
     context 'when it was already READY' do
@@ -293,8 +293,8 @@ describe RepositoriesController do
         xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'READY'}
       end
 
-      it { should respond_with(:ok) }
-      it { should_not render_with_layout }
+      it { is_expected.to respond_with(:ok) }
+      it { is_expected.not_to render_with_layout }
     end
 
     context 'with a given date' do
@@ -307,8 +307,8 @@ describe RepositoriesController do
         xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013'}
       end
 
-      it { should respond_with(:ok) }
-      it { should_not render_with_layout }
+      it { is_expected.to respond_with(:ok) }
+      it { is_expected.not_to render_with_layout }
     end
   end
 
@@ -322,6 +322,6 @@ describe RepositoriesController do
         MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
         get :process_repository, project_id: project.id.to_s, id: repository.id
       end
-      it { should redirect_to(project_repository_path(repository.project_id, repository.id)) }
+      it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }
   end
 end

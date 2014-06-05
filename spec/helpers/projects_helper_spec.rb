@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsHelper do
+describe ProjectsHelper, :type => :helper do
 
   describe 'project_owner?' do
     before :each do
@@ -11,7 +11,7 @@ describe ProjectsHelper do
       before :each do
         helper.expects(:user_signed_in?).returns(false)
       end
-      it { helper.project_owner?(@subject.id).should be_false }
+      it { expect(helper.project_owner?(@subject.id)).to be_falsey }
     end
 
     context 'returns false if is not the owner' do
@@ -25,7 +25,7 @@ describe ProjectsHelper do
         User.any_instance.expects(:project_ownerships).returns(@ownerships)
       end
 
-      it { helper.project_owner?(@subject.id).should be_false }
+      it { expect(helper.project_owner?(@subject.id)).to be_falsey }
     end
 
     context 'returns true if user is the project owner' do
@@ -39,7 +39,7 @@ describe ProjectsHelper do
         User.any_instance.expects(:project_ownerships).returns(@ownerships)
       end
 
-      it { helper.project_owner?(@subject.id).should be_true }
+      it { expect(helper.project_owner?(@subject.id)).to be_truthy }
     end
   end
 

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe ProjectOwnership do
+describe ProjectOwnership, :type => :model do
   describe 'associations' do
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   describe 'methods' do
@@ -15,7 +15,7 @@ describe ProjectOwnership do
       end
 
       it 'should return the project' do
-        subject.project.should eq(project)
+        expect(subject.project).to eq(project)
       end
     end
   end

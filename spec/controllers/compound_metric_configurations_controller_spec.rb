@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CompoundMetricConfigurationsController do
+describe CompoundMetricConfigurationsController, :type => :controller do
   let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
 
   describe 'new' do
@@ -16,8 +16,8 @@ describe CompoundMetricConfigurationsController do
         get :new, mezuro_configuration_id: mezuro_configuration.id
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:new) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:new) }
     end
 
     context "when the current user doesn't owns the mezuro configuration" do
@@ -25,8 +25,8 @@ describe CompoundMetricConfigurationsController do
         get :new, mezuro_configuration_id: mezuro_configuration.id
       end
 
-      it { should redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
-      it { should respond_with(:redirect) }
+      it { is_expected.to redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
+      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -52,7 +52,7 @@ describe CompoundMetricConfigurationsController do
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context 'with invalid fields' do
@@ -62,7 +62,7 @@ describe CompoundMetricConfigurationsController do
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should render_template(:new) }
+        it { is_expected.to render_template(:new) }
       end
     end
   end
@@ -80,7 +80,7 @@ describe CompoundMetricConfigurationsController do
       get :show, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
     end
 
-    it { should render_template(:show) }
+    it { is_expected.to render_template(:show) }
   end
 
   describe 'edit' do
@@ -99,7 +99,7 @@ describe CompoundMetricConfigurationsController do
           get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
 
-        it { should render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
       end
 
       context 'when the user does not own the compound metric configuration' do
@@ -107,9 +107,9 @@ describe CompoundMetricConfigurationsController do
           get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
 
-        it { should redirect_to(mezuro_configurations_path(mezuro_configuration.id)) }
-        it { should respond_with(:redirect) }
-        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to redirect_to(mezuro_configurations_path(mezuro_configuration.id)) }
+        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -118,7 +118,7 @@ describe CompoundMetricConfigurationsController do
         get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 end

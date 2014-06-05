@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe UsersController, :type => :controller do
   describe 'projects' do
     let(:user) { FactoryGirl.build(:user) }
 
@@ -10,6 +10,6 @@ describe UsersController do
       get :projects, user_id: user.id
     end
 
-    it { should render_template(:projects) }
+    it { is_expected.to render_template(:projects) }
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BeginningUniquenessValidator do
+describe BeginningUniquenessValidator, :type => :model do
   describe 'methods' do
     describe 'validate_each' do
       let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
@@ -13,7 +13,7 @@ describe BeginningUniquenessValidator do
         subject { FactoryGirl.build(:mezuro_range, metric_configuration_id: metric_configuration.id) }
         it 'should contain no errors' do
           subject.save
-          subject.errors.should be_empty
+          expect(subject.errors).to be_empty
         end
       end
 
@@ -26,7 +26,7 @@ describe BeginningUniquenessValidator do
 
         it 'should contain errors' do
           @subject.save
-          @subject.errors[:beginning].should eq(["There's already a MezuroRange with beginning #{@subject.beginning}! Please, choose another one."])
+          expect(@subject.errors[:beginning]).to eq(["There's already a MezuroRange with beginning #{@subject.beginning}! Please, choose another one."])
         end
       end
     end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MetricConfigurationsController do
+describe MetricConfigurationsController, :type => :controller do
   let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
   describe 'choose_metric' do
     let(:base_tool) { FactoryGirl.build(:base_tool) }
@@ -15,8 +15,8 @@ describe MetricConfigurationsController do
         get :choose_metric, mezuro_configuration_id: mezuro_configuration.id
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:choose_metric) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:choose_metric) }
     end
   end
 
@@ -33,8 +33,8 @@ describe MetricConfigurationsController do
         post :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:new) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:new) }
     end
 
     context "when the current user doesn't owns the mezuro configuration" do
@@ -42,8 +42,8 @@ describe MetricConfigurationsController do
         post :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", base_tool_name: base_tool.name
       end
 
-      it { should redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
-      it { should respond_with(:redirect) }
+      it { is_expected.to redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
+      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -69,7 +69,7 @@ describe MetricConfigurationsController do
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context 'with invalid fields' do
@@ -80,7 +80,7 @@ describe MetricConfigurationsController do
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
         end
 
-        it { should render_template(:new) }
+        it { is_expected.to render_template(:new) }
       end
     end
   end
@@ -98,7 +98,7 @@ describe MetricConfigurationsController do
       get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
     end
 
-    it { should render_template(:show) }
+    it { is_expected.to render_template(:show) }
   end
 
   describe 'edit' do
@@ -116,7 +116,7 @@ describe MetricConfigurationsController do
           get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-        it { should render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
       end
 
       context 'when the user does not own the metric configuration' do
@@ -124,9 +124,9 @@ describe MetricConfigurationsController do
           get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-        it { should redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
-        it { should respond_with(:redirect) }
-        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
+        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -135,7 +135,7 @@ describe MetricConfigurationsController do
         get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -161,8 +161,8 @@ describe MetricConfigurationsController do
             post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          it { should redirect_to(mezuro_configuration_path(metric_configuration.configuration_id)) }
-          it { should respond_with(:redirect) }
+          it { is_expected.to redirect_to(mezuro_configuration_path(metric_configuration.configuration_id)) }
+          it { is_expected.to respond_with(:redirect) }
         end
 
         context 'with an invalid field' do
@@ -173,7 +173,7 @@ describe MetricConfigurationsController do
             post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          it { should render_template(:edit) }
+          it { is_expected.to render_template(:edit) }
         end
       end
 
@@ -182,7 +182,7 @@ describe MetricConfigurationsController do
           post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should redirect_to mezuro_configurations_path(metric_configuration.configuration_id) }
+        it { is_expected.to redirect_to mezuro_configurations_path(metric_configuration.configuration_id) }
       end
     end
   end
@@ -205,8 +205,8 @@ describe MetricConfigurationsController do
           delete :destroy, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-        it { should redirect_to(mezuro_configuration_path(metric_configuration.configuration_id)) }
-        it { should respond_with(:redirect) }
+        it { is_expected.to redirect_to(mezuro_configuration_path(metric_configuration.configuration_id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context "when the user doesn't own the configuration" do
@@ -214,8 +214,8 @@ describe MetricConfigurationsController do
           delete :destroy, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
-         it { should redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
-         it { should respond_with(:redirect) }
+         it { is_expected.to redirect_to(mezuro_configurations_path(metric_configuration.configuration_id)) }
+         it { is_expected.to respond_with(:redirect) }
       end
     end
 
@@ -224,7 +224,7 @@ describe MetricConfigurationsController do
         delete :destroy, id: metric_configuration.id, mezuro_configuration_id: mezuro_configuration.id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 end

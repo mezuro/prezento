@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Repository do
+describe Repository, :type => :model do
   describe 'methods' do
     describe 'last_processing' do
       subject { FactoryGirl.build(:repository) }
@@ -11,7 +11,7 @@ describe Repository do
         end
 
         it 'should return nil' do
-          subject.last_processing.should be_nil
+          expect(subject.last_processing).to be_nil
         end
       end
 
@@ -26,7 +26,7 @@ describe Repository do
         it 'should return a ready processing processing' do
           Processing.expects(:last_ready_processing_of).with(subject.id).returns(processing)
 
-          subject.last_processing.should eq(processing)
+          expect(subject.last_processing).to eq(processing)
         end
       end
 
@@ -41,7 +41,7 @@ describe Repository do
         it 'should return the latest processing' do
           Processing.expects(:last_processing_of).with(subject.id).returns(processing)
 
-          subject.last_processing.should eq(processing)
+          expect(subject.last_processing).to eq(processing)
         end
       end
     end
@@ -55,8 +55,8 @@ describe Repository do
         Repository.expects(:all).at_least_once.returns([])
       end
 
-      it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:address) }
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:address) }
     end
 
     context 'kalibro validations' do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ReadingsController do
+describe ReadingsController, :type => :controller do
   let(:reading_group) { FactoryGirl.build(:reading_group) }
 
   describe 'new' do
@@ -14,8 +14,8 @@ describe ReadingsController do
         get :new, reading_group_id: reading_group.id
       end
 
-      it { should respond_with(:success) }
-      it { should render_template(:new) }
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:new) }
     end
 
     context "when the current user doesn't owns the reading group" do
@@ -23,8 +23,8 @@ describe ReadingsController do
         get :new, reading_group_id: reading_group.id
       end
 
-      it { should redirect_to(reading_group_url(reading_group.id)) }
-      it { should respond_with(:redirect) }
+      it { is_expected.to redirect_to(reading_group_url(reading_group.id)) }
+      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -48,7 +48,7 @@ describe ReadingsController do
           post :create, reading_group_id: reading_group.id, reading: reading_params
         end
 
-        it { should respond_with(:redirect) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context 'with invalid fields' do
@@ -58,7 +58,7 @@ describe ReadingsController do
          post :create, reading_group_id: reading_group.id, reading: reading_params
         end
 
-        it { should render_template(:new) }
+        it { is_expected.to render_template(:new) }
       end
     end
   end
@@ -78,7 +78,7 @@ describe ReadingsController do
           get :edit, id: reading.id, reading_group_id: reading_group.id.to_s
         end
 
-        it { should render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
       end
 
       context 'when the user does not own the reading' do
@@ -86,9 +86,9 @@ describe ReadingsController do
           get :edit, id: reading.id, reading_group_id: reading_group.id.to_s
         end
 
-        it { should redirect_to(reading_group_url(reading_group.id)) }
-        it { should respond_with(:redirect) }
-        it { should set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to redirect_to(reading_group_url(reading_group.id)) }
+        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
@@ -97,7 +97,7 @@ describe ReadingsController do
         get :edit, id: reading.id, reading_group_id: reading_group.id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -123,8 +123,8 @@ describe ReadingsController do
             post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
           end
 
-          it { should redirect_to(reading_group_path(reading_group.id)) }
-          it { should respond_with(:redirect) }
+          it { is_expected.to redirect_to(reading_group_path(reading_group.id)) }
+          it { is_expected.to respond_with(:redirect) }
         end
 
         context 'with an invalid field' do
@@ -135,7 +135,7 @@ describe ReadingsController do
             post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
           end
 
-          it { should render_template(:edit) }
+          it { is_expected.to render_template(:edit) }
         end
       end
 
@@ -144,7 +144,7 @@ describe ReadingsController do
           post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
         end
 
-        it { should redirect_to reading_group_path(reading_group.id) }
+        it { is_expected.to redirect_to reading_group_path(reading_group.id) }
       end
     end
 
@@ -153,7 +153,7 @@ describe ReadingsController do
         post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 
@@ -174,8 +174,8 @@ describe ReadingsController do
           delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
         end
 
-        it { should redirect_to(reading_group_path(reading.group_id)) }
-        it { should respond_with(:redirect) }
+        it { is_expected.to redirect_to(reading_group_path(reading.group_id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context "when the user doesn't own the reading group" do
@@ -183,8 +183,8 @@ describe ReadingsController do
           delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
         end
 
-        it { should redirect_to(reading_group_path(reading.group_id)) }
-        it { should respond_with(:redirect) }
+        it { is_expected.to redirect_to(reading_group_path(reading.group_id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
     end
 
@@ -193,7 +193,7 @@ describe ReadingsController do
         delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
       end
 
-      it { should redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 

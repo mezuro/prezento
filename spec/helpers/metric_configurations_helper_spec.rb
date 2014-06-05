@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe MetricConfigurationsHelper do
+describe MetricConfigurationsHelper, :type => :helper do
   describe 'aggregation_form_options' do
     it 'should return an array with the supported aggregation forms' do
-      helper.aggregation_options.should eq [["Average","AVERAGE"], ["Median", "MEDIAN"], ["Maximum", "MAXIMUM"], ["Minimum", "MINIMUM"],
+      expect(helper.aggregation_options).to eq [["Average","AVERAGE"], ["Median", "MEDIAN"], ["Maximum", "MAXIMUM"], ["Minimum", "MINIMUM"],
       ["Count", "COUNT"], ["Standard Deviation", "STANDARD_DEVIATION"]]
     end
   end
@@ -16,7 +16,7 @@ describe MetricConfigurationsHelper do
     end
 
     it 'should return a pair with the reading group name and id' do
-      helper.reading_group_options.should eq [[reading_group.name, reading_group.id]]
+      expect(helper.reading_group_options).to eq [[reading_group.name, reading_group.id]]
     end
   end
 
@@ -28,7 +28,7 @@ describe MetricConfigurationsHelper do
     end
 
     it 'should return a pair with the metric configuration code and metric name' do
-      helper.native_metrics_of(metric_configuration.configuration_id).should eq [[metric_configuration.code, metric_configuration.metric.name]]
+      expect(helper.native_metrics_of(metric_configuration.configuration_id)).to eq [[metric_configuration.code, metric_configuration.metric.name]]
     end
   end
 end
