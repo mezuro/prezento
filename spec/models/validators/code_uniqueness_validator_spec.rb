@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CodeUniquenessValidator, :type => :model do
   describe 'methods' do

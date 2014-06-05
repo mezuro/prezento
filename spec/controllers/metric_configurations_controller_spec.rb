@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MetricConfigurationsController, :type => :controller do
   let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }

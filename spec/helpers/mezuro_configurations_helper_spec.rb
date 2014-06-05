@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MezuroConfigurationsHelper, :type => :helper do
   describe 'mezuro_configuration_owner?' do

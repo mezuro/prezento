@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MetricConfiguration, :type => :model do
   subject {FactoryGirl.build(:metric_configuration)}

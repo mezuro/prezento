@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MetricConfigurationsConcern, type: :controller do
   describe 'set_metric_configuration' do

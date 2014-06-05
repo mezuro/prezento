@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MezuroRangesController, :type => :controller do
   let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1) }

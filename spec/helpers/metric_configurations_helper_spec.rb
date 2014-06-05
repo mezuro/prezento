@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MetricConfigurationsHelper, :type => :helper do
   describe 'aggregation_form_options' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ReadingGroupsController, :type => :controller do
   describe 'new' do

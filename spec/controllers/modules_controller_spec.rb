@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ModulesController, :type => :controller do
   describe "load_module_tree" do

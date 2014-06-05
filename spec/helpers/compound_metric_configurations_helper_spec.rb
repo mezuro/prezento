@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CompoundMetricConfigurationsHelper, :type => :helper do
   describe 'scope_options' do

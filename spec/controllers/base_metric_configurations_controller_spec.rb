@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class CleanInheritsFromBaseMetricConfigurationsController < BaseMetricConfigurationsController
   def metric_configuration; super; end

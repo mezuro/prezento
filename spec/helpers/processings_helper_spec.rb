@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ProcessingsHelper, :type => :helper do
   describe 'humanize_eplased_time' do

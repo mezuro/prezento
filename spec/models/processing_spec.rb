@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Processing, :type => :model do
   describe 'methods' do

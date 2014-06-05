@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MezuroRangesHelper, :type => :helper do
   describe 'readings_options' do

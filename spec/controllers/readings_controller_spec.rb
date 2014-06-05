@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ReadingsController, :type => :controller do
   let(:reading_group) { FactoryGirl.build(:reading_group) }

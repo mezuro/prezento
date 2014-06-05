@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ModuleResult, :type => :model do
   describe 'methods' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe OwnershipAuthentication, type: :controller do
   #TODO: test other methods

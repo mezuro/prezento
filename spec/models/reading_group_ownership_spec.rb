@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ReadingGroupOwnership, :type => :model do
   describe 'associations' do

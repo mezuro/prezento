@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CompoundMetricConfigurationsController, :type => :controller do
   let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }

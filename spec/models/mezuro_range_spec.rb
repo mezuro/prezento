@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe MezuroRange, :type => :model do
   subject { FactoryGirl.build(:mezuro_range, { metric_configuration_id: 42 }) }
