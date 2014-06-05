@@ -70,7 +70,7 @@ end
 
 group :development, :test do
   # Test framework
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails', '~> 3.0.1'
 
   # Fixtures made easy
   gem 'factory_girl_rails', '~> 4.4.1'
