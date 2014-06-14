@@ -121,4 +121,55 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       it { is_expected.to redirect_to new_user_session_path }
     end
   end
+
+  describe 'update' do
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
+    let(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:compound_metric_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+
+    context 'when the user is logged in' do
+      before do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when user owns the metric configuration' do
+        before :each do
+          subject.expects(:metric_configuration_owner?).returns true
+        end
+
+        context 'with valid fields' do
+          before :each do
+            MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+            MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
+
+            post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+          end
+
+          it { should redirect_to(mezuro_configuration_path(compound_metric_configuration.configuration_id)) }
+          it { should respond_with(:redirect) }
+        end
+
+        context 'with an invalid field' do
+          before :each do
+            MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+            MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
+            MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
+
+            post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+          end
+
+          it { should render_template(:edit) }
+        end
+        
+      end
+
+      context 'when the user does not own the reading' do
+        before :each do
+          post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+        end
+
+        it { should redirect_to mezuro_configurations_path(compound_metric_configuration.configuration_id) }
+      end
+    end
+  end
+
 end
