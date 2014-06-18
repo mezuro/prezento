@@ -2,8 +2,12 @@
   <h1><%= @project.name %></h1>
 </div>
 <div class="container-fluid">
+  <% if !@project.ownership.nil? %>
     <div class="span3 thumbnail"><img class="project-image" src="<%= @project.ownership.image_url %>" /></div>
-    <div class="span9"><h2>Description</h2> <%= @project.description %></div>
+  <% else %>
+    <div class="span3 thumbnail"><img class="project-image" src="http://placehold.it/300x200" /></div>
+  <% end %>
+  <div class="span9"><h2>Description</h2> <%= @project.description %></div>
 </div>
 <hr />
 

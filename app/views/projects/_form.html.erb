@@ -21,7 +21,11 @@
     <div class="form-row">
       <div class="field-container">
         <label class="control-label" for="image_url">Image URL</label><br>
-        <input id="image_url" class="text-field " type="text" name="image_url"></input>
+        <% if @project.ownership.nil? %>
+          <input id="image_url" class="text-field " type="text" name="image_url"></input>
+        <% else %>
+          <input id="image_url" class="text-field " type="text" name="image_url" value=<%= @project.ownership.image_url %>></input>
+        <% end %>
       </div>
       <div class="help-container">
         <p>

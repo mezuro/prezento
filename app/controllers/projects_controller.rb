@@ -40,8 +40,10 @@ class ProjectsController < ApplicationController
   end 
 
   def update
+    get_extra_params
     set_project
     if @project.update(project_params)
+      @project.ownership.update(image_url: @image_url)
       redirect_to(project_path(@project.id))
     else
       render "edit"
