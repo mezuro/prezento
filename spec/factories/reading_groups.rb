@@ -10,4 +10,10 @@ FactoryGirl.define do
     name "My Reading Group"
     description "The best one"
   end
+
+  factory :forked_reading_group, class: ReadingGroup do
+    id 3
+    name "Mussum"
+    description "Cacildis!"
+  end
 end

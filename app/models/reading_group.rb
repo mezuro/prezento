@@ -9,4 +9,12 @@ class ReadingGroup < KalibroGatekeeperClient::Entities::ReadingGroup
   def readings
     Reading.readings_of(self.id)
   end
+
+  def fork
+    params = to_hash.clone
+    params.delete(:id)
+    params.delete(:errors)
+    forked = ReadingGroup.create(params)
+    forked
+  end
 end

@@ -40,6 +40,23 @@ describe ReadingGroup, :type => :model do
       end
     end
 
+    describe 'fork' do
+      subject { FactoryGirl.create(:reading_group) }
+      before :each do
+        params = subject.to_hash.clone
+        params.delete(:id)
+        params.delete(:errors)
+        expected_fork = FactoryGirl.create(:forked_reading_group)
+        ReadingGroup.expects(:create).with(params).returns(expected_fork)
+      end
+      it 'should create a new Reading Group instance with different id' do
+        forked = subject.fork()
+        expect(forked.id).not_to eq(subject.id)
+        expect(forked.name).to eq(subject.name)
+        expect(forked.description).to eq(subject.description)
+      end
+    end
+
     describe 'readings' do
       subject { FactoryGirl.build(:reading_group) }
       let(:reading) { FactoryGirl.build(:reading) }
