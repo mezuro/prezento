@@ -149,5 +149,5 @@ end
 Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|
   v1 = eval "@#{arg1}"
   v2 = eval "@#{arg2}"
-  (v1 < v2).should be_true
+  expect(v1 < v2).to be_truthy
 end
