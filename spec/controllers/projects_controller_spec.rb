@@ -214,15 +214,16 @@ describe ProjectsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
+            @ownership.expects(:update).with(image_url: @ownership.image_url).returns(true)
             Project.expects(:find).with(@subject.id.to_s).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(true)
+            Project.any_instance.expects(:ownership).returns(@ownership)
           end
 
           context 'rendering the show' do
             before :each do
               Project.expects(:exists?).returns(true)
-
-              post :update, :id => @subject.id, :project => @subject_params
+              post :update, :id => @subject.id, :project => @subject_params, :image_url => @ownership.image_url
             end
 
             it 'should redirect to the show view' do
@@ -232,7 +233,7 @@ describe ProjectsController, :type => :controller do
 
           context 'without rendering the show view' do
             before :each do
-              post :update, :id => @subject.id, :project => @subject_params
+              post :update, :id => @subject.id, :project => @subject_params, :image_url => @ownership.image_url
             end
 
             it { is_expected.to respond_with(:redirect) }
@@ -243,8 +244,7 @@ describe ProjectsController, :type => :controller do
           before :each do
             Project.expects(:find).with(@subject.id.to_s).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(false)
-
-            post :update, :id => @subject.id, :project => @subject_params
+            post :update, :id => @subject.id, :project => @subject_params, :image_url => @ownership.image_url
           end
 
           it { is_expected.to render_template(:edit) }
