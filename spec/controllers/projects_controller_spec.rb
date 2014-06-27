@@ -19,6 +19,7 @@ describe ProjectsController, :type => :controller do
 
     context 'with valid fields' do
 	    let(:project) { FactoryGirl.build(:project) }
+      let(:project_ownership){ FactoryGirl.build(:project_ownership) }
 	    let(:subject_params) { Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
 
      	before :each do
@@ -29,7 +30,7 @@ describe ProjectsController, :type => :controller do
         before :each do
           Project.expects(:exists?).returns(true)
 
-          post :create, :project => subject_params
+          post :create, :project => subject_params, :image_url => project_ownership.image_url
         end
 
         it 'should redirect to the show view' do
@@ -39,7 +40,7 @@ describe ProjectsController, :type => :controller do
 
       context 'without rendering the show view' do
         before :each do
-          post :create, :project => subject_params
+          post :create, :project => subject_params, :image_url => project_ownership.image_url
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -159,7 +160,6 @@ describe ProjectsController, :type => :controller do
         before :each do
           Project.expects(:find).with(@subject.id.to_s).returns(@subject)
           @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-
           get :edit, :id => @subject.id
         end
 
@@ -167,6 +167,7 @@ describe ProjectsController, :type => :controller do
 
         it 'should assign to @project the @subject' do
           expect(assigns(:project)).to eq(@subject)
+          assigns(:project).ownership.image_url.should eq(@ownership.image_url)
         end
       end
 
