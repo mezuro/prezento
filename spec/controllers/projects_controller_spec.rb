@@ -45,6 +45,20 @@ describe ProjectsController, :type => :controller do
 
         it { is_expected.to respond_with(:redirect) }
       end
+
+      context 'with invalid ownership' do
+        let(:ownerships) {[]}
+
+        before :each do
+          User.any_instance.expects(:project_ownerships).at_least_once.returns(ownerships)
+          ownerships.expects(:new).returns(project_ownership)
+          project_ownership.expects(:save).returns(false)
+          
+          post :create, :project => subject_params, :image_url => project_ownership.image_url
+        end
+
+        it { should render_template(:new) }
+      end
     end
 
     context 'with an invalid field' do
