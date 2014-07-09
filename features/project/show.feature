@@ -42,3 +42,4 @@ Scenario: Checking project contents
   Given I have a sample project
   When I am at the Sample Project page
   Then the sample project should be there
+  And I should see the custom project image

@@ -13,6 +13,7 @@ end
 
 When(/^I fill the (.+) field with "(.+)"$/) do |field, text|
   fill_in field, :with => text
+  @image_url = text if field.eql?("Image URL")
 end
 
 Then(/^my name should have changed to (.+)$/) do |text|

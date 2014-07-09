@@ -76,3 +76,7 @@ end
 Then(/^The field "(.*?)" should be filled with the sample project "(.*?)"$/) do |field, value|
   expect(page.find_field(field).value).to eq(@project.send(value))
 end
+
+Then(/^The field Image URL should be filled with the sample project "(.*?)"$/) do |link|
+  page.find('input#image_url').value.should eq(link)
+end

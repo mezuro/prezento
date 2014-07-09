@@ -38,6 +38,7 @@ Feature: Project
     When I click the Edit link
     Then The field "project[name]" should be filled with the sample project "name"
     And The field "project[description]" should be filled with the sample project "description"
+    And The field Image URL should be filled with the sample project "http://example.com/image.png"
 
   @kalibro_processor_restart
   Scenario: With valid attributes
@@ -47,9 +48,11 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
+    And I fill the Image URL field with "http://s3.amazonaws.com/rapgenius/Fozzy.png"
     When I press the Save button
     Then I should see "Kalibro"
     And I should see "Web Service to collect metrics"
+    And I should see the custom project image
 
   @kalibro_processor_restart
   Scenario: With project name already taken
@@ -59,6 +62,7 @@ Feature: Project
     And I own a project named "Kalibro"
     And I am at the sample project edit page
     And I fill the Name field with "Qt-Calculator"
+    And The field Image URL should be filled with the sample project "http://example.com/image.png"
     When I press the Save button
     Then I should see "Name There is already a Project with name Qt-Calculator!"
 
@@ -73,6 +77,16 @@ Feature: Project
     And I should see "Web Service to collect metrics"
 
   @kalibro_processor_restart
+  Scenario: Editing just the image URL
+    Given I am a regular user
+    And I am signed in
+    And I own a sample project
+    And I am at the sample project edit page
+    And I fill the Image URL field with "http://s3.amazonaws.com/rapgenius/Fozzy.png"
+    When I press the Save button
+    And I should see the custom project image
+
+  @kalibro_restart
   Scenario: With blank project name
     Given I am a regular user
     And I am signed in
@@ -81,3 +95,4 @@ Feature: Project
     And I fill the Name field with " "
     When I press the Save button
     Then I should see "Name can't be blank"
+
