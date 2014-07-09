@@ -69,6 +69,19 @@ describe Project, :type => :model do
         expect(subject.repositories).to include(repository)
       end
     end
+
+    describe 'project_ownership' do
+      subject { FactoryGirl.create(:project) }
+      let(:project_ownership) {FactoryGirl.build(:project_ownership)}
+
+      before :each do
+        ProjectOwnership.expects(:find_by_project_id).with(subject.id).returns(project_ownership)
+      end
+
+      it 'should return the project ownership' do
+        subject.ownership.should eq(project_ownership)
+      end
+    end
   end
 
   describe 'validations' do
