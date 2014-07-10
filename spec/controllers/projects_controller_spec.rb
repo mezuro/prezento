@@ -53,7 +53,7 @@ describe ProjectsController, :type => :controller do
           User.any_instance.expects(:project_ownerships).at_least_once.returns(ownerships)
           ownerships.expects(:new).returns(project_ownership)
           project_ownership.expects(:save).returns(false)
-          
+
           post :create, :project => subject_params, :image_url => project_ownership.image_url
         end
 
@@ -180,8 +180,9 @@ describe ProjectsController, :type => :controller do
         it { is_expected.to render_template(:edit) }
 
         it 'should assign to @project the @subject' do
+          @subject.expects(:ownership).returns(@ownership)
           expect(assigns(:project)).to eq(@subject)
-          assigns(:project).ownership.image_url.should eq(@ownership.image_url)
+          expect(assigns(:project).ownership.image_url).to eq(@ownership.image_url)
         end
       end
 
