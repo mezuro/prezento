@@ -71,7 +71,7 @@ describe Project, :type => :model do
     end
 
     describe 'project_ownership' do
-      subject { FactoryGirl.create(:project) }
+      subject { FactoryGirl.build(:project) }
       let(:project_ownership) {FactoryGirl.build(:project_ownership)}
 
       before :each do
