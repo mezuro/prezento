@@ -25,7 +25,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0.4'
+gem 'jbuilder', '~> 2.1.2'
 
 # For user authentication and everything else
 gem 'devise', '~> 3.2.4'
