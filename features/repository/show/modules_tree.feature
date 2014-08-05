@@ -3,7 +3,7 @@ Feature: Repository modules tree
   As a regular user
   I should see the tree and be able to navigate over it
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: Should show modules directories root when the process has been finished
     Given I am a regular user
     And I am signed in
@@ -17,7 +17,7 @@ Feature: Repository modules tree
     When I visit the repository show page
     Then I should see the given module result
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: Should show children of root when the process has been finished
     Given I am a regular user
     And I am signed in
@@ -36,7 +36,7 @@ Feature: Repository modules tree
     And I should see "Granularity"
     And I should see "Grade"
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: Module navigation
     Given I am a regular user
     And I am signed in

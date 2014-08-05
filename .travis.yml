@@ -4,6 +4,7 @@ rvm:
 
 before_script:
   - "cp config/database.yml.sample config/database.yml"
+  - "cp config/kalibro_processor.yml.sample config/kalibro_processor.yml"
   - "bundle exec rake db:migrate RAILS_ENV=test"
   - git clone https://gist.github.com/0c4ad3b5700c6364abf1.git -b v1.0 kalibro_install
   - pushd kalibro_install
@@ -12,13 +13,28 @@ before_script:
   - bash install.sh
   - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b v0.0.1 kalibro_gatekeeper
-  - pushd kalibro_gatekeeper
+  # Gatekeeper
+  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b v0.1.1 kalibro_gatekeeper
+  - cd kalibro_gatekeeper
   - cp config/database.yml.sample config/database.yml
+  - cp config/kalibro_processor.yml.sample config/kalibro_processor.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   - bundle install
-  - bundle exec rails s -p 8081 -d
-  - popd
+  - RAILS_ENV=local bundle exec rails s -p 8081 -d
+  - cd ..
+  - export BUNDLE_GEMFILE=$PWD/Gemfile
+  # Processor
+  - git clone https://github.com/mezuro/kalibro_processor.git -b v0.0.2 kalibro_processor
+  - cd kalibro_processor
+  - psql -c "create role kalibro_processor with createdb login password 'kalibro_processor'" -U postgres
+  - cp config/database.yml.postgresql_sample config/database.yml
+  - cp config/repositories.yml.sample config/repositories.yml
+  - export BUNDLE_GEMFILE=$PWD/Gemfile
+  - bundle install
+  - bundle exec rake db:setup db:migrate
+  - bundle exec rails s -p 8082 -d
+  - bundle exec bin/delayed_job start
+  - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
 
 script:

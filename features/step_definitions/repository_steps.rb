@@ -6,7 +6,8 @@ Given(/^I have a sample configuration with native metrics$/) do
                                             {id: nil,
                                              metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             configuration_id: @configuration.id})
+                                             configuration_id: @configuration.id,
+                                             code: 'loc'})
   range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
 end

@@ -3,7 +3,7 @@ Feature: Date Select
   As a regular user
   I should be able to select a specific date
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: With a specific date selected
     Given I have a sample project
     And I have a sample configuration with native metrics

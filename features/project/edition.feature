@@ -3,7 +3,7 @@ Feature: Project
   As a regular user
   I should be able to edit my projects
 
-  @kalibro_restarts
+  @kalibro_processor_restart
   Scenario: Should go to the edit page from a project that I own
     Given I am a regular user
     And I am signed in
@@ -12,7 +12,7 @@ Feature: Project
     When I click the Edit link
     Then I should be in the Edit Project page
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: Should not show edit links from projects that doesn't belongs to me
     Given I am a regular user
     And I am signed in
@@ -20,7 +20,7 @@ Feature: Project
     And I am at the All Projects page
     Then I should not see "Edit" within "table tr td"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: Should not render the edit page if the project doesn't belongs to the current user
     Given I am a regular user
     And I am signed in
@@ -29,7 +29,7 @@ Feature: Project
     When I visit the sample project edit page
     Then I should see "You're not allowed to do this operation"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: Filling up the form
     Given I am a regular user
     And I am signed in
@@ -39,7 +39,7 @@ Feature: Project
     Then The field "project[name]" should be filled with the sample project "name"
     And The field "project[description]" should be filled with the sample project "description"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: With valid attributes
     Given I am a regular user
     And I am signed in
@@ -51,7 +51,7 @@ Feature: Project
     Then I should see "Kalibro"
     And I should see "Web Service to collect metrics"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: With project name already taken
     Given I am a regular user
     And I am signed in
@@ -62,7 +62,7 @@ Feature: Project
     When I press the Save button
     Then I should see "There's already"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: Editing just the description
     Given I am a regular user
     And I am signed in
@@ -72,7 +72,7 @@ Feature: Project
     When I press the Save button
     And I should see "Web Service to collect metrics"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: With blank project name
     Given I am a regular user
     And I am signed in

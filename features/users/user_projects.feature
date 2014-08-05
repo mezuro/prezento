@@ -3,7 +3,7 @@ Feature: User projects list
   As a regular user
   I want to have a page with a list of my projects
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: with current password
     Given I am a regular user
     And I own a sample project

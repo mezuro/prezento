@@ -20,6 +20,7 @@ coverage
 database.yml
 database.yml~
 kalibro.yml
+kalibro_processor.yml
 kalibro_cucumber_helpers.yml
 KalibroService.tar.gz
 KalibroService/

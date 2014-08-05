@@ -3,7 +3,7 @@ Feature: Repository Edit
   As a regular user
   I should be able to edit my repositories
 
-  @kalibro_restart
+  @kalibro_restart @kalibro_processor_restart
   Scenario: editing a repository successfully
     Given I am a regular user
     And I am signed in
@@ -25,7 +25,7 @@ Feature: Repository Edit
     And I should see "Weekly"
     And I should see "EU DataGrid Software License (EUDatagrid)"
 
-  @kalibro_restart
+  @kalibro_restart @kalibro_processor_restart
   Scenario: editing a repository with blank fields
     Given I am a regular user
     And I am signed in
@@ -39,7 +39,7 @@ Feature: Repository Edit
     Then I should see "Name can't be blank"
     And I should see "Address can't be blank"
 
-  @kalibro_restart
+  @kalibro_restart @kalibro_processor_restart
   Scenario: editing a repository with already taken name
     Given I am a regular user
     And I am signed in

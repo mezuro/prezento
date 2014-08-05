@@ -3,7 +3,7 @@ Feature: Repository Creation
   As a regular user
   I should be able to create repositories
 
-@kalibro_restart @javascript
+@kalibro_restart @kalibro_processor_restart @javascript
 Scenario: repository creation
   Given I am a regular user
   And I am signed in
@@ -20,7 +20,7 @@ Scenario: repository creation
   When I press the Save button
   Then I should see the saved repository's content
 
-@kalibro_restart @javascript
+@kalibro_restart @kalibro_processor_restart @javascript
 Scenario: repository creation blank validations
   Given I am a regular user
   And I am signed in
@@ -35,7 +35,7 @@ Scenario: repository creation blank validations
   Then I should see "Name can't be blank"
   And I should see "Address can't be blank"
 
-@kalibro_restart @javascript
+@kalibro_restart @kalibro_processor_restart @javascript
 Scenario: repository creation with name already taken
   Given I am a regular user
   And I am signed in

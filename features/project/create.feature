@@ -3,12 +3,11 @@ Feature: Project Creation
   As a regular user
   I should be able to create projects
 
-  @kalibro_restart
   Scenario: Should not create project without login
     Given I am at the All Projects page
     Then I should not see New Project
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: project creation
     Given I am a regular user
     And I am signed in
@@ -19,7 +18,7 @@ Feature: Project Creation
     Then I should see "Kalibro"
     And I should see "Web Service to collect metrics"
 
-  @kalibro_restart
+  @kalibro_processor_restart
   Scenario: project creation with already taken name
     Given I am a regular user
     And I am signed in
@@ -30,7 +29,6 @@ Feature: Project Creation
     When I press the Save button
     Then I should see "There's already"
 
-  @kalibro_restart
   Scenario: project creation with blank name
     Given I am a regular user
     And I am signed in

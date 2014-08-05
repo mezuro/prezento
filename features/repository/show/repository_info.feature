@@ -3,7 +3,7 @@ Feature: Show Repository
   As a regular user
   I should see it's informations
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: Testing the repository values
     Given I have a sample project
     And I have a sample configuration with native metrics
@@ -19,7 +19,7 @@ Feature: Show Repository
     And I should see "License"
     And I should see the given repository's content
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: With a ready processing and asking to reprocess
     Given I am a regular user
     And I am signed in
@@ -32,9 +32,12 @@ Feature: Show Repository
     Then I should see the sample repository name
     And I should see "State"
     And I should see "Creation date"
-    And I should see "LOADING time"
+    And I should see "PREPARING time"
     And I should see "COLLECTING time"
-    And I should see "ANALYZING time"
+    And I should see "BUILDING time"
+    And I should see "AGGREGATING time"
+    And I should see "CALCULATING time"
+    And I should see "INTERPRETATING time"
     When I click the "Metric Results" h3
     And I click the "Modules Tree" h3
     Then I should see "Metric"
@@ -45,9 +48,9 @@ Feature: Show Repository
     And I should see "Granularity"
     And I should see "Grade"
     When I click the Reprocess link
-    Then I should see "LOADING"
+    Then I should see "PREPARING"
 
-  @kalibro_restart @javascript
+  @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: Just after start to process
     Given I am a regular user
     And I am signed in
@@ -57,7 +60,7 @@ Feature: Show Repository
     And I start to process that repository
     When I visit the repository show page
     Then I should see the sample repository name
-    And I should see "LOADING"
+    And I should see "PREPARING"
     And I should see "Address"
     And I should see "Configuration"
     And I should see "State"
@@ -67,5 +70,5 @@ Feature: Show Repository
     When I click the "Modules Tree" h3
     Then I should see "Loading data. Please, wait."
     And I wait for "75" seconds or until I see "COLLECTING"
-    And I wait for "60" seconds or until I see "ANALYZING"
+    And I wait for "60" seconds or until I see "AGGREGATING"
     And I wait for "400" seconds or until I see "READY"
