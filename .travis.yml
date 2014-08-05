@@ -24,7 +24,7 @@ before_script:
   - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   # Processor
-  - git clone https://github.com/mezuro/kalibro_processor.git -b v0.0.2 kalibro_processor
+  - git clone https://github.com/mezuro/kalibro_processor.git -b v0.0.4 kalibro_processor
   - cd kalibro_processor
   - psql -c "create role kalibro_processor with createdb login password 'kalibro_processor'" -U postgres
   - cp config/database.yml.postgresql_sample config/database.yml
