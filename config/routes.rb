@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   post '/modules/:id/metric_history' => 'modules#metric_history'
   post '/modules/:id/tree' => 'modules#load_module_tree'
   
+  # Tutorials
+  get '/tutorials/:name' => 'tutorials#view'
+
   root "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
