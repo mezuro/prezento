@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe UsersController, :type => :routing do
   describe "routing" do

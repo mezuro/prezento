@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe MezuroRangesController, :type => :routing do
   describe "routing" do
