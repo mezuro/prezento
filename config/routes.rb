@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users 
+  devise_for :users
   get 'users/:user_id/projects' => 'users#projects', as: :user_projects
 
   resources :projects do
@@ -32,9 +32,9 @@ Rails.application.routes.draw do
   #resources :modules
   post '/modules/:id/metric_history' => 'modules#metric_history'
   post '/modules/:id/tree' => 'modules#load_module_tree'
-  
+
   # Tutorials
-  get '/tutorials/:name' => 'tutorials#view'
+  get '/tutorials/:name' => 'tutorials#view', as: 'tutorials'
 
   root "home#index"
 

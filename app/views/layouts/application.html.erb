@@ -82,6 +82,8 @@
                 <li>Hello, <strong><%= current_user.name %></strong></li>
                 <li><%= link_to 'My projects', user_projects_path(current_user.id) %></li>
               <% end %>
+              <li class="nav-header">Tutorials</li>
+              <li><%= link_to 'Analysis', tutorials_path('analyzing') %></li>
               <% if content_for?(:sidebar) %>
                 <%= yield :sidebar %>
               <% else %>
