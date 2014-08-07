@@ -3,12 +3,11 @@
 
 # TEAM
 
-    Copyright 2013
-    --------------
+    Copyright 2013-2014
+    -------------------
 
       Alessandro Palmeira (alessandro.palmeira at gmail.com)
       Diego Araújo (diegoamc90 at gmail.com)
-      Fellipe Souto Sampaio (fllsouto at gmail.com)
       Paulo Meirelles (paulo at softwarelivre.org)
       Rafael Reggiani Manzo (rr.manzo at gmail.com)
       Renan Fichberg (rfichberg at gmail.com)
@@ -21,6 +20,12 @@
       Renan Costa (renan2727 at hotmail.com)
       Vinicius Vieira (vvieira17 at gmail.com)
 
+    Former team members
+    ---------------------------------------------------------
+      Fellipe Souto Sampaio (fllsouto at gmail.com)
+      Guilherme Rojas (guilhermehrojas at gmail.com)
+      João M. M. Silva (jaodsilv at linux.ime.usp.br)
+
     USP Lab XP course 2014
     ---------------------------------------------------------
       Daniel Miranda (danielkza2@gmail.com)
@@ -29,11 +34,6 @@
       Pedro Paulo (pedro at vezza.com.br)
       Pedro Scocco (pedroscocco at gmail.com)
       Thiago Kenji Okada <thiago.mast3r at gmail.com>
-
-    Former team members
-    ---------------------------------------------------------
-      Guilherme Rojas (guilhermehrojas at gmail.com)
-      João M. M. Silva (jaodsilv at linux.ime.usp.br)
 
     USP Lab XP course 2013 kickstarters for the standalone
     ---------------------------------------------------------

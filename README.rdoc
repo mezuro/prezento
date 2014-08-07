@@ -1,6 +1,6 @@
-== README - Mezuro
+== README - Prezento (old Mezuro)
 
-{<img src="https://codeclimate.com/github/mezuro/mezuro.png" />}[https://codeclimate.com/github/mezuro/mezuro] {<img src="https://travis-ci.org/mezuro/mezuro.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/mezuro] {<img src="https://coveralls.io/repos/mezuro/mezuro/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/mezuro/mezuro?branch=master]
+{<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://coveralls.io/repos/mezuro/prezento/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/mezuro/prezento?branch=master]
 
 Mezuro is a source code tracking platform based on Noosfero social networking
 platform with Mezuro Plugin actived to access Kalibro Web Service.
@@ -31,7 +31,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
 * Ruby version
 
-  2.1.1
+  2.1.2
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
@@ -62,7 +62,12 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   Kalibro Gatekeeper
   You can find a script to install it on any machine with Rails on https://gist.github.com/rafamanzo/9859244. After running this script, run ```unset BUNDLE_GEMFILE```.
   By default Mezuro will expect it to be running on port 8081 at localhost.
-  In order to run it as expected, run: ```rails s -p 8081```.
+  In order to run it as expected, run: ```RAILS_ENV=local rails s -p 8081```.
+
+  Kalibro Processor
+  You can find it at https://github.com/mezuro/kalibro_processor
+  By default Mezuro will expect it to be running on port 8082 at localhost.
+  In order to run it as expected, run on two different terminal instances: ```rails s -p 8082```; and ```rake jobs:work```.
 
 * Deployment instructions
 
