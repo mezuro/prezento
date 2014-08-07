@@ -59,7 +59,7 @@ Given(/^I ask for the metric results of the given module result$/) do
 end
 
 Given(/^I see a sample metric's name$/) do
-  page.should have_content(@metric_results.first.metric_configuration_snapshot.metric.name)
+  expect(page).to have_content(@metric_results.first.metric_configuration_snapshot.metric.name)
 end
 
 When(/^I click on the sample metric's name$/) do
@@ -94,33 +94,33 @@ When(/^I get the Creation date information as "(.*?)"$/) do |variable|
 end
 
 Then(/^I should see the sample repository name$/) do
-  page.should have_content(@repository.name)
+  expect(page).to have_content(@repository.name)
 end
 
 Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
-  page.find_field(field).value.should eq(value)
+  expect(page.find_field(field).value).to eq(value)
 end
 
 Then(/^I should see the given module result$/) do
-  page.should have_content(@module_result.module.name)
+  expect(page).to have_content(@module_result.module.name)
 end
 
 Then(/^I should see a sample child's name$/) do
-  page.should have_content(@module_result.children.first.module.name)
+  expect(page).to have_content(@module_result.children.first.module.name)
 end
 
 Then(/^I should see the given repository's content$/) do
-  page.should have_content(@repository.type)
-  page.should have_content(@repository.description)
-  page.should have_content(@repository.name)
-  page.should have_content(@repository.license)
-  page.should have_content(@repository.address)
-  page.should have_content(@configuration.name)
-  page.should have_content("1 day") # The given repository periodicity
+  expect(page).to have_content(@repository.type)
+  expect(page).to have_content(@repository.description)
+  expect(page).to have_content(@repository.name)
+  expect(page).to have_content(@repository.license)
+  expect(page).to have_content(@repository.address)
+  expect(page).to have_content(@configuration.name)
+  expect(page).to have_content("1 day") # The given repository periodicity
 end
 
 Then(/^I should see a loaded graphic for the sample metric$/) do
-  page.all("canvas#container" + @metric_results.first.id.to_s)[0].should_not be_nil
+  expect(page.all("canvas#container" + @metric_results.first.id.to_s)[0]).to_not be_nil
 end
 
 Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
@@ -130,7 +130,7 @@ Then(/^I wait for "(.*?)" seconds or until I see "(.*?)"$/) do |timeout, text|
     sleep 1
   end
 
-  page.should have_content(text)
+  expect(page).to have_content(text)
 end
 
 Then(/^I wait for "(.*?)" seconds$/) do |timeout|
@@ -139,12 +139,12 @@ end
 
 Then(/^I should see the saved repository's content$/) do
   @repository = Repository.all.last # suposing the last repository created is the only created too.
-  page.should have_content(@repository.type)
-  page.should have_content(@repository.description)
-  page.should have_content(@repository.name)
-  page.should have_content(@repository.license)
-  page.should have_content(@repository.address)
-  page.should have_content(@configuration.name)
+  expect(page).to have_content(@repository.type)
+  expect(page).to have_content(@repository.description)
+  expect(page).to have_content(@repository.name)
+  expect(page).to have_content(@repository.license)
+  expect(page).to have_content(@repository.address)
+  expect(page).to have_content(@configuration.name)
 end
 
 Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|

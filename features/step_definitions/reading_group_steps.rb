@@ -43,21 +43,21 @@ When(/^I visit the sample reading group edit page$/) do
 end
 
 Then(/^The field "(.*?)" should be filled with the sample reading group "(.*?)"$/) do |field, value|
-  page.find_field(field).value.should eq(@reading_group.send(value))
+  expect(page.find_field(field).value).to eq(@reading_group.send(value))
 end
 
 Then(/^I should be in the Sample Reading Group page$/) do
-  page.should have_content(@reading_group.name)
-  page.should have_content(@reading_group.description)
+  expect(page).to have_content(@reading_group.name)
+  expect(page).to have_content(@reading_group.description)
 end
 
 Then(/^I should see the information of the sample reading$/) do
-  page.should have_content(@reading.label)
-  page.should have_content(@reading.grade)
+  expect(page).to have_content(@reading.label)
+  expect(page).to have_content(@reading.grade)
   pager = page.body
   color = @reading.color.downcase
   var = (pager =~ /#{color}/)
-  var.should_not be_nil
+  expect(var).to_not be_nil
 end
 
 Then(/^I should be in the Edit Reading Group page$/) do

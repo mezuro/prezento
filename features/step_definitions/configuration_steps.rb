@@ -37,15 +37,15 @@ When(/^I visit the sample configuration edit page$/) do
 end
 
 Then(/^I should be in the Edit Configuration page$/) do
-  page.should have_content("Edit Configuration")
+  expect(page).to have_content("Edit Configuration")
 end
 
 Then(/^The field "(.*?)" should be filled with the sample configuration "(.*?)"$/) do |field, value|
-  page.find_field(field).value.should eq(@mezuro_configuration.send(value))
+  expect(page.find_field(field).value).to eq(@mezuro_configuration.send(value))
 end
 
 Then(/^I should be in the All configurations page$/) do
-  page.should have_content("Configurations")
+  expect(page).to have_content("Configurations")
 end
 
 Then(/^the sample configuration should not be there$/) do
@@ -53,6 +53,6 @@ Then(/^the sample configuration should not be there$/) do
 end
 
 Then(/^the sample configuration should be there$/) do
-  page.should have_content(@mezuro_configuration.name)
-  page.should have_content(@mezuro_configuration.description)
+  expect(page).to have_content(@mezuro_configuration.name)
+  expect(page).to have_content(@mezuro_configuration.description)
 end

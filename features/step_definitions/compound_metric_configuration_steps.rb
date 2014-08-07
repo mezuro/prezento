@@ -1,9 +1,9 @@
 Given(/^I see the sample metric configuration name$/) do
-  page.should have_content(@metric_configuration.metric.name)
+  expect(page).to have_content(@metric_configuration.metric.name)
 end
 
 Given(/^I see the sample metric configuration code$/) do
-  page.should have_content(@metric_configuration.code)
+  expect(page).to have_content(@metric_configuration.code)
 end
 
 Given(/^I have a sample compound metric configuration within the given mezuro configuration$/) do
@@ -23,6 +23,6 @@ When(/^I click the edit link of the Coumpound Metric$/) do
 end
 
 Then(/^I should be at compound metric configuration sample page$/) do
-  page.should have_content(@compound_metric_configuration.metric.name)
-  page.should have_content("Ranges")
+  expect(page).to have_content(@compound_metric_configuration.metric.name)
+  expect(page).to have_content("Ranges")
 end

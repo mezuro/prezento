@@ -26,16 +26,16 @@ When(/^I am at the New Range page$/) do
 end
 
 Then(/^I should be at the New Range page$/) do
-  page.should have_content("New Range")
-  page.should have_content("Beginning")
-  page.should have_content("End")
-  page.should have_content("Comments")
+  expect(page).to have_content("New Range")
+  expect(page).to have_content("Beginning")
+  expect(page).to have_content("End")
+  expect(page).to have_content("Comments")
 end
 
 Then(/^I should see the sample range$/) do
-  page.should have_content(@mezuro_range.label)
-  page.should have_content(@mezuro_range.beginning)
-  page.should have_content(@mezuro_range.end)
+  expect(page).to have_content(@mezuro_range.label)
+  expect(page).to have_content(@mezuro_range.beginning)
+  expect(page).to have_content(@mezuro_range.end)
 end
 
 
