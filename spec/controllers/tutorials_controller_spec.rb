@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TutorialsController do
   describe 'view' do
-    let!(:name) { "project_customization" }
+    let!(:name) { "analyzing" }
 
     before :each do
       get :view, name: name
