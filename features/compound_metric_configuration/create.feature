@@ -22,7 +22,6 @@ Feature: Compound Metric Configuration Creation
     And I fill the Script field with "8*8;"
     And I fill the Weight field with "8"
     And I set the select field "Scope" as "Class"
-    And I set the select field "Aggregation Form" as "Average"
     And I set the select field "Reading Group" as "Scholar"
     And I press the Save button
     Then I should see "My Compound Metric"
