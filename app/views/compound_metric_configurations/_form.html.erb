@@ -34,18 +34,6 @@
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="field-container">
-          <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
-          <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
-        </div>
-        <div class="help-container">
-          <p>
-            It's the aggregation form of the metric
-          </p>
-        </div>
-      </div>
-
       <% if @compound_metric_configuration.persisted? %>
         <%= hidden_field_tag(:reading_group_id, @metric_configuration.reading_group_id) %>
       <% else %>
