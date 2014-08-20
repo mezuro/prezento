@@ -7,7 +7,7 @@ class MetricConfiguration < KalibroGatekeeperClient::Entities::MetricConfigurati
 
   validates :code, presence: true, code_uniqueness: true
   validates :weight, presence: true
-  validates :aggregation_form, presence: true
+  validates :aggregation_form, presence: true, unless: "metric.compound == true"
 
   def mezuro_ranges
     MezuroRange.ranges_of self.id
