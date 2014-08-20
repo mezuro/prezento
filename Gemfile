@@ -43,7 +43,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem "chart-js-rails", "~> 0.0.6"
 
 # JQueryUI
-gem 'jquery-ui-rails', '~> 4.2.1'
+gem 'jquery-ui-rails', '~> 5.0.0'
 
 # colorpicker
 gem 'colorpicker', '~> 0.0.5'
