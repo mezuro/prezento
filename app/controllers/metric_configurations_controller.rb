@@ -16,6 +16,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     super
     @metric_configuration.metric = KalibroGatekeeperClient::Entities::BaseTool.find_by_name(params[:base_tool_name]).metric params[:metric_name]
     @metric_configuration.base_tool_name = params[:base_tool_name]
+    @metric_configuration.code = @metric_configuration.metric.code
     respond_to do |format|
       create_and_redir(format)
     end
