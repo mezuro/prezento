@@ -19,12 +19,10 @@ Feature: Metric Configuration Creation
     And I click the Add Metric link
     And I click the "Analizo" h3
     And I click the Total Lines of Code link
-    And I fill the Code field with "My Code"
     And I fill the Weight field with "2"
     And I set the select field "Aggregation Form" as "Average"
     And I set the select field "Reading Group" as "Scholar"
     When I press the Save button
-    Then I should see "My Code"
     Then I should see "Total Lines of Code"
     Then I should see "2"
 

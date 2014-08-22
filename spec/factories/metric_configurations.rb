@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :metric_configuration, class: MetricConfiguration do
     id 1
-    code 'native'
+    code 'total_abstract_classes'
     metric {FactoryGirl.build(:metric)}
     base_tool_name "Analizo"
     weight 1
