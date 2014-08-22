@@ -3,8 +3,8 @@ Feature: Compound Metric Configuration Creation
   As a regular user
   I should be able to create compound metric configurations
 
-  @kalibro_restart @javascript
-    Scenario: compound metric configuration creation
+  @wip @kalibro_restart @javascript
+  Scenario: compound metric configuration creation
     Given I am a regular user
     And I am signed in
     And I own a sample configuration

@@ -41,3 +41,7 @@ footer div {
 .popover-title{
   font-weight: bolder;
 }
+
+.jquery-ui-accordion{
+  line-height: normal; /*overrides h3 line-height specifically for the accordion ones*/
+}

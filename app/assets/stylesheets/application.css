@@ -12,7 +12,7 @@
  *
  *= boilerplate/main.css
  *= boilerplate/normalize.css
- *= require jquery.ui.all
+ *= require jquery-ui
  *= require colorpicker
  *= require_tree .
  *= require_self

@@ -37,7 +37,7 @@ Feature: Show Repository
     And I should see "BUILDING time"
     And I should see "AGGREGATING time"
     And I should see "CALCULATING time"
-    And I should see "INTERPRETATING time"
+    And I should see "INTERPRETING time"
     When I click the "Metric Results" h3
     And I click the "Modules Tree" h3
     Then I should see "Metric"

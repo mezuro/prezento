@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.5'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -28,7 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.1.2'
 
 # For user authentication and everything else
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 3.3.0'
 
 # Kalibro integration
 gem 'kalibro_gatekeeper_client', "~> 0.2.2"
@@ -37,13 +37,13 @@ gem 'kalibro_gatekeeper_client', "~> 0.2.2"
 gem "pg", "~> 0.17.0"
 
 # Twitter Bootstrap for layout
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :ref => '95de3b0' #Fixed the ref so it does not update accidentaly and breaks
 
 # Chart generation
 gem "chart-js-rails", "~> 0.0.6"
 
 # JQueryUI
-gem 'jquery-ui-rails', '~> 4.2.1'
+gem 'jquery-ui-rails', '~> 5.0.0'
 
 # colorpicker
 gem 'colorpicker', '~> 0.0.5'
