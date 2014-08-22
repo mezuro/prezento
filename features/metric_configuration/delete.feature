@@ -10,7 +10,7 @@ Feature: Metric Configuration Deletion
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
-    When I am at the Sample Configuration page    
+    When I am at the Sample Configuration page
     And I click the Destroy link
     Then I should see "There are no metric configurations yet!"
 
@@ -21,5 +21,5 @@ Feature: Metric Configuration Deletion
     And I have a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
-    When I am at the Sample Configuration page    
+    When I am at the Sample Configuration page
     Then I should not see "Destroy"

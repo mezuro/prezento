@@ -48,6 +48,7 @@ describe MetricConfigurationsController, :type => :controller do
   end
 
   describe 'create' do
+    let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
     let(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:metric_configuration).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
     let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
     let(:base_tool) { FactoryGirl.build(:base_tool) }
@@ -65,8 +66,9 @@ describe MetricConfigurationsController, :type => :controller do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(true)
           KalibroGatekeeperClient::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
+          base_tool.expects(:metric).with(metric_configuration.metric.name).returns(metric_configuration.metric)
 
-          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
+          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name, metric_name: metric_configuration.metric.name
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -76,15 +78,16 @@ describe MetricConfigurationsController, :type => :controller do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
           KalibroGatekeeperClient::Entities::BaseTool.expects(:find_by_name).with(base_tool.name).returns(base_tool)
+          base_tool.expects(:metric).with(metric_configuration.metric.name).returns(metric_configuration.metric)
 
-          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
+          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name, metric_name: metric_configuration.metric.name
         end
 
         it { is_expected.to render_template(:new) }
       end
     end
   end
-  
+
   describe 'show' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
     let(:reading_group) { FactoryGirl.build(:reading_group) }
