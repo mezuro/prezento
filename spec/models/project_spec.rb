@@ -79,7 +79,7 @@ describe Project, :type => :model do
       end
 
       it 'should return the project ownership' do
-        subject.ownership.should eq(project_ownership)
+        expect(subject.ownership).to eq(project_ownership)
       end
     end
   end
