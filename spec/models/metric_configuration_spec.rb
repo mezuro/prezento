@@ -22,9 +22,10 @@ describe MetricConfiguration, :type => :model do
       before :each do
         MetricConfiguration.expects(:metric_configurations_of).at_least_once.returns([])
       end
-      
+
       it { is_expected.to validate_presence_of(:code) }
       it { is_expected.to validate_presence_of(:weight) }
+      it { is_expected.to validate_numericality_of(:weight) }
       it { is_expected.to validate_presence_of(:aggregation_form) }
     end
 
