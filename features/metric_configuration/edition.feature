@@ -37,3 +37,16 @@ Feature: Metric Configuration edition
     And I fill the Weight field with " "
     And I press the Save button
     Then I should see "Weight can't be blank"
+
+  @kalibro_restart
+  Scenario: Should not edit a metric configuration with invalid weight
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I have a sample reading group
+    And I have a sample metric configuration within the given mezuro configuration
+    When I visit the sample metric configuration edit page
+    And I fill the Weight field with "0"
+    And I set the select field "Aggregation Form" as "Median"
+    When I press the Save button
+    Then I should see "Weight must be greater than 0"
