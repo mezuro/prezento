@@ -5,6 +5,7 @@ describe GreaterThanBeginningValidator, :type => :model do
     describe 'validate_each' do
       before :each do
         BeginningUniquenessValidator.any_instance.stubs(:validate_each)
+        RangeOverlappingValidator.any_instance.stubs(:validate)
       end
       context 'when beginning is INF or end is -INF' do
         subject { FactoryGirl.build(:mezuro_range, end: "-INF") }
