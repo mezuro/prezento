@@ -8,6 +8,7 @@ describe BeginningUniquenessValidator, :type => :model do
         before :each do
           MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([])
           MezuroRange.expects(:request).returns(42)
+          RangeOverlappingValidator.any_instance.stubs(:validate)
         end
 
         subject { FactoryGirl.build(:mezuro_range, metric_configuration_id: metric_configuration.id) }
@@ -22,6 +23,7 @@ describe BeginningUniquenessValidator, :type => :model do
         before :each do
           @subject = FactoryGirl.build(:mezuro_range, metric_configuration_id: metric_configuration.id)
           MezuroRange.expects(:ranges_of).with(@subject.metric_configuration_id).returns([another_mezuro_range])
+          RangeOverlappingValidator.any_instance.stubs(:validate)
         end
 
         it 'should contain errors' do
