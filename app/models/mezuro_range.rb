@@ -1,4 +1,5 @@
 require "validators/beginning_uniqueness_validator.rb"
+require "validators/greater_than_beginning_validator.rb"
 
 class MezuroRange < KalibroGatekeeperClient::Entities::Range
   include KalibroRecord
@@ -9,6 +10,7 @@ class MezuroRange < KalibroGatekeeperClient::Entities::Range
   validates :beginning, numericality: true, if: :non_infinite_beginning?
   validates :end, presence: true
   validates :end, numericality: true, if: :non_infinite_end?
+  validates :end, greater_than_beginning: true
   validates :reading_id, presence: true
 
   private

@@ -5,7 +5,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,8 +16,8 @@
 
 FactoryGirl.define do
   factory :mezuro_range do
-    beginning 1.1 
-    self.end 5.1 
+    beginning 1.1
+    self.end 5.1
     reading_id 3
     comments "Comment"
     metric_configuration_id 32
