@@ -35,6 +35,11 @@
   background: #f9f9f9;
 }
 
+.diminished-text-field {
+  width: 80%;
+  background: #f9f9f9;
+}
+
 .text-area {
   width: 95% !important;
   margin: 0;
@@ -43,4 +48,8 @@
 .field-container select {
   width: 99% !important;
   margin: 0;
+}
+
+.align-button {
+  margin-bottom: 10px;
 }
