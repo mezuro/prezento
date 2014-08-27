@@ -7,6 +7,7 @@ describe MezuroRange, :type => :model do
       before :each do
         BeginningUniquenessValidator.any_instance.stubs(:validate_each)
         GreaterThanBeginningValidator.any_instance.stubs(:validate_each)
+        RangeOverlappingValidator.any_instance.stubs(:validate)
       end
 
       it { is_expected.to validate_presence_of(:beginning) }
@@ -42,27 +43,41 @@ describe MezuroRange, :type => :model do
         end
       end
     end
-  end
 
-  context 'beginning validations' do
-    before :each do
-      GreaterThanBeginningValidator.any_instance.stubs(:validate_each)
+    context 'beginning validations' do
+      before :each do
+        GreaterThanBeginningValidator.any_instance.stubs(:validate_each)
+        RangeOverlappingValidator.any_instance.stubs(:validate)
+      end
+
+      it 'should validate uniqueness' do
+        BeginningUniquenessValidator.any_instance.expects(:validate_each).with(subject, :beginning, subject.beginning)
+        subject.save
+      end
     end
 
-    it 'should validate uniqueness' do
-      BeginningUniquenessValidator.any_instance.expects(:validate_each).with(subject, :beginning, subject.beginning)
-      subject.save
-    end
-  end
+    context 'end validations' do
+      before :each do
+        BeginningUniquenessValidator.any_instance.stubs(:validate_each)
+        RangeOverlappingValidator.any_instance.stubs(:validate)
+      end
 
-  context 'end validations' do
-    before :each do
-      BeginningUniquenessValidator.any_instance.stubs(:validate_each)
+      it 'should validate that end is greater than beginning' do
+        GreaterThanBeginningValidator.any_instance.expects(:validate_each).with(subject, :end, subject.end)
+        subject.save
+      end
     end
 
-    it 'should validate that end is greater than beginning' do
-      GreaterThanBeginningValidator.any_instance.expects(:validate_each).with(subject, :end, subject.end)
-      subject.save
+    context 'overlapping validations' do
+      before :each do
+        GreaterThanBeginningValidator.any_instance.stubs(:validate_each)
+        BeginningUniquenessValidator.any_instance.stubs(:validate_each)
+      end
+
+      it 'is expected to validate if this range overlaps the existing ones' do
+        RangeOverlappingValidator.any_instance.expects(:validate).with(subject)
+        subject.save
+      end
     end
   end
 end
