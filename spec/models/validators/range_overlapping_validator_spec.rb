@@ -12,10 +12,10 @@ describe RangeOverlappingValidator, :type => :model do
       end
 
       context 'not overlapping' do
-        let!(:not_overlapping_range) { FactoryGirl.build(:mezuro_range, beginning: 0.0, end: 'INF', metric_configuration_id: metric_configuration.id) }
+        let!(:not_overlapping_range) { FactoryGirl.build(:mezuro_range, id: 31, beginning: 0.0, end: 'INF', metric_configuration_id: metric_configuration.id) }
 
         before :each do
-          MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([not_overlapping_range])
+          MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([range, not_overlapping_range])
         end
 
         it 'is expected to not return errors' do
@@ -24,11 +24,12 @@ describe RangeOverlappingValidator, :type => :model do
         end
       end
 
+
       context 'overlapping' do
-        let!(:overlapping_range) { FactoryGirl.build(:mezuro_range, beginning: -2.0, end: -1.0, metric_configuration_id: metric_configuration.id) }
+        let!(:overlapping_range) { FactoryGirl.build(:mezuro_range, id: 31, beginning: '-INF', end: 'INF', metric_configuration_id: metric_configuration.id) }
 
         before :each do
-          MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([overlapping_range])
+          MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([range, overlapping_range])
         end
 
         it 'is expected to return errors' do
