@@ -3,34 +3,59 @@
 </div>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => { :class => "form-inline" }) do |f| %>
-  <div class="control-group">
-    <%= f.label :email, :class => "control-label" %>
-    <div class="controls">
-      <%= f.email_field :email, :autofocus => true, :tabindex => 1 %>
+  <div class="row margin-left-none">
+    <div class="form-table span9">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :email, class: "control-label" %>
+          <%= f.email_field :email, autofocus: true, tabindex: 1, class: 'text-field' %>
+        </div>
+        <div class="help-container">
+          <p>
+            The same email address that you used on the sign up
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="control-group">
-    <%= f.label :password, :class => "control-label" %> <a href="/users/password/new">(forgot password)</a>
-    <div class="controls">
-      <%= f.password_field :password, :tabindex => 2 %>
+  <div class="row margin-left-none">
+    <div class="form-table span9">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :password, class: "control-label" %>
+          <%= f.password_field :password, tabindex: 2, class: 'text-field' %>
+        </div>
+        <div class="help-container">
+          <p>
+            If you <a href="/users/password/new">forgot your password</a> follow this link to reset it
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="control-group">
-      <div class="controls">
-        <label class="checkbox">
-          <%= f.check_box :remember_me %><%= f.label :remember_me %>
-        </label>
+  <div class="row margin-left-none">
+    <div class="form-table span9">
+      <div class="form-row">
+        <div class="field-container">
+          <label class="checkbox">
+            <%= f.check_box :remember_me %><%= f.label :remember_me %>
+          </label>
+        </div>
+        <div class="help-container">
+          <p>
+            Stay logged in
+          </p>
+        </div>
       </div>
     </div>
+  </div>
   <% end -%>
 
-  <div class="control-group">
-    <div class="controls controls-row span3">
-      <%= f.submit "Sign In", class: 'btn btn-primary span6', :tabindex => 3 %>
-      <%= render "devise/shared/links" %>
-    </div>
+  <div class="row margin-left-none" style="margin-top: 20px">
+    <%= f.submit "Sign In", class: 'btn btn-primary', :tabindex => 3 %>
+    <%= render "devise/shared/links" %>
   </div>
 <% end %>
