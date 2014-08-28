@@ -150,7 +150,6 @@ Feature: Create range
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample reading within the sample reading group labeled "My Reading"
-    And I have a sample range within the sample metric configuration with beginning "2"
     And I am at the New Range page
     And I click the -∞ link
     And I click the ∞ link
