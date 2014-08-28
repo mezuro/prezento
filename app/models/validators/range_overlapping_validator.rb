@@ -2,7 +2,7 @@ class RangeOverlappingValidator < ActiveModel::Validator
   def validate(record)
     record.class.ranges_of(record.metric_configuration_id).each do |mezuro_range|
       if mezuro_range.id != record.id && overlaps?(mezuro_range,record)
-        record.errors[:beginning] << "There's already a #{record.class} within these boundaries! Please, choose another ones."
+        record.errors[:beginning] << "There is already a #{record.class} within these boundaries! Please, choose another interval."
         break
       end
     end

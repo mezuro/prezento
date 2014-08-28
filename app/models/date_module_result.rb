@@ -4,5 +4,4 @@ class DateModuleResult < KalibroGatekeeperClient::Entities::DateModuleResult
   def module_result
     ModuleResult.new @module_result.to_hash
   end
-
 end
