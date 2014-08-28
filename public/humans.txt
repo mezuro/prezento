@@ -7,7 +7,9 @@
     -------------------
 
       Alessandro Palmeira (alessandro.palmeira at gmail.com)
-      Diego Araújo (diegoamc90 at gmail.com)
+      Daniel Paulino Alves (danpaulalves at gmail.com)
+      Diego de Araújo Martinez Camarinha (diegoamc90 at gmail.com)
+      Heitor Reis Ribeiro (marcheing at gmail.com)
       Paulo Meirelles (paulo at softwarelivre.org)
       Rafael Reggiani Manzo (rr.manzo at gmail.com)
       Renan Fichberg (rfichberg at gmail.com)
@@ -28,9 +30,9 @@
 
     USP Lab XP course 2014
     ---------------------------------------------------------
-      Daniel Miranda (danielkza2@gmail.com)
+      Daniel Miranda (danielkza2 at gmail.com)
       Fellipe Souto Sampaio (fllsouto at gmail.com)
-      Pedro Bruel (pedro.bruel@gmail.com)
+      Pedro Bruel (pedro.bruel at gmail.com)
       Pedro Paulo (pedro at vezza.com.br)
       Pedro Scocco (pedroscocco at gmail.com)
       Thiago Kenji Okada <thiago.mast3r at gmail.com>
@@ -55,7 +57,7 @@
       Carlos Morais (carlos88morais at gmail.com)
       Daniel Alves (danpaulalves at gmail.com)
       Daniela Feitosa (daniela at colivre.coop.br)
-      Diego Araújo (diegoamc90 at gmail.com)
+      Diego de Araújo Martinez Camarinha (diegoamc90 at gmail.com)
       Everton Santos (everton2x4 at gmail.com)
       Guilherme Rojas (guilhermehrojas at gmail.com)
       Jefferson Fernandes (jeffs.fernandes at gmail.com)
