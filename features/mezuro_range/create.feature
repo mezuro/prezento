@@ -141,3 +141,22 @@ Feature: Create range
     When I press the Save button
     Then I should be at the New Range page
     And I should see "1 error prohibited this MezuroRange from getting saved"
+
+  @kalibro_restart @javascript
+  Scenario: Should create range with [-INF, INF] threshold
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I own a sample reading group
+    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample reading within the sample reading group labeled "My Reading"
+    And I have a sample range within the sample metric configuration with beginning "2"
+    And I am at the New Range page
+    And I click the -∞ link
+    And I click the ∞ link
+    And I fill the Comments field with "My Comment"
+    And I set the select field "Reading" as "My Reading"
+    When I press the Save button
+    Then I should be at metric configuration sample page
+    And I should see "-INF"
+    And I should see "INF"
