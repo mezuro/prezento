@@ -140,7 +140,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from getting saved"
+    And I should see "Beginning There's already a MezuroRange with beginning 2.0! Please, choose another one."
 
   @kalibro_restart @javascript
   Scenario: Should create range with [-INF, INF] threshold
@@ -150,7 +150,6 @@ Feature: Create range
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample reading within the sample reading group labeled "My Reading"
-    And I have a sample range within the sample metric configuration with beginning "2"
     And I am at the New Range page
     And I click the -∞ link
     And I click the ∞ link
