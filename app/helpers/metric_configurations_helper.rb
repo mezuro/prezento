@@ -14,4 +14,3 @@ module MetricConfigurationsHelper
     end
   end
 end
-

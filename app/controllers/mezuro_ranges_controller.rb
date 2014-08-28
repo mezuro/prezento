@@ -38,11 +38,11 @@ class MezuroRangesController < ApplicationController
       @mezuro_range.metric_configuration_id = @metric_configuration_id
       if @mezuro_range.update(mezuro_range_params)
         format.html { redirect_to mezuro_configuration_metric_configuration_path(
-            @mezuro_configuration_id, @metric_configuration_id), notice: 'The range was successfully edited.' }
+            @mezuro_configuration_id, @metric_configuration_id), notice: 'Range was successfully edited.' }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
-      end    
+      end
     end
   end
 
@@ -56,7 +56,7 @@ class MezuroRangesController < ApplicationController
   def create_and_redir(format)
     if @mezuro_range.save
       format.html { redirect_to mezuro_configuration_metric_configuration_path(
-          @mezuro_configuration_id, @metric_configuration_id), notice: 'The range was successfully created.' }
+          @mezuro_configuration_id, @metric_configuration_id), notice: 'Range was successfully created.' }
     else
       failed_action(format, 'new')
     end

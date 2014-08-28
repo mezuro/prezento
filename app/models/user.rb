@@ -9,16 +9,14 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :project_ownerships
-  
   has_many :reading_group_ownerships
-
   has_many :mezuro_configuration_ownerships
   # Alert: when adding new parameters to this model, they should also be added to registrations_controller
 
   def projects
     project_ownerships.map { |project_ownership| project_ownership.project }
   end
-  
+
   def reading_groups
     reading_group_ownerships.map { |reading_group_ownership| reading_group_ownership.reading_group }
   end
