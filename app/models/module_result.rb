@@ -8,7 +8,7 @@ class ModuleResult < KalibroGatekeeperClient::Entities::ModuleResult
   def history
     self.class.history_of(@id).map { |date_module_result| DateModuleResult.new date_module_result.to_hash }
   end
-  
+
   def metric_history(name)
     grade_history = Hash.new
 

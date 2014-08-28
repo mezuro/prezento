@@ -127,5 +127,4 @@ private
       failed_action(format, 'new')
     end
   end
-
 end

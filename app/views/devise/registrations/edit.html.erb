@@ -14,7 +14,7 @@
         </div>
         <div class="help-container">
           <p>
-            Your full name!
+            Your full name.
           </p>
         </div>
       </div>
@@ -30,19 +30,19 @@
         </div>
         <div class="help-container">
           <p>
-            Your email is the form of communication we have with you, so make sure you typed it correctly!
+            Your email is our communication channel. Make sure you have typed it correctly.
           </p>
         </div>
       </div>
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: 'control-label' %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.label :password, class: 'control-label' %> <i>(leave it blank if you do not want to change it)</i><br />
           <%= f.password_field :password, :autocomplete => "off", class: 'text-field' %>
         </div>
         <div class="help-container">
           <p>
-            Your password must be at least 8 characters. Strong passwords contain characters in upper and lowercase, numbers and symbols.
+            Your password must have at least 8 characters. Strong passwords contain numbers, symbols, upper and lowercase characters.
           </p>
         </div>
       </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="help-container">
           <p>
-            Confirm your password!
+            Confirm your password.
           </p>
         </div>
       </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="help-container">
           <p>
-            We need your current password to confirm your changes!
+            Your current password is needed to confirm your changes.
           </p>
         </div>
       </div>
@@ -82,4 +82,4 @@
 
 <h2>Cancel my account</h2>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'btn btn-danger' %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Do you really want to cancel your account?" }, :method => :delete, class: 'btn btn-danger' %></p>
