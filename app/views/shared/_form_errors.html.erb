@@ -1,6 +1,6 @@
 <% if object.errors.any? || object.kalibro_errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(object.errors.count + object.kalibro_errors.count, "error") %> prohibited this <%= object.class.to_s %> from getting saved:</h2>
+    <h2><%= pluralize(object.errors.count + object.kalibro_errors.count, "error") %> prohibited this <%= object.class.to_s %> from being saved:</h2>
 
     <ul>
     <% object.errors.full_messages.each do |msg| %>
