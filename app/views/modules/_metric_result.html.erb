@@ -1,10 +1,10 @@
 <% metric_configuration_snapshot = metric_result.metric_configuration_snapshot %>
 <% unless metric_configuration_snapshot.range_snapshot.nil? %>
-  <% range_snapshot = find_range_snapshot(metric_result) 
+  <% range_snapshot = find_range_snapshot(metric_result)
      metric_name = metric_configuration_snapshot.metric.name
   %>
   <tr>
-    <td><%= link_to "<i class='icon-align-left'></i> #{metric_name}".html_safe, "", 
+    <td><%= link_to "<i class='icon-align-left'></i> #{metric_name}".html_safe, "",
               onclick: "new Module.Graphic('container#{metric_result.id}', '#{metric_name}', '#{module_result.id}')",
               id: "metric_#{module_result.id}",
               remote: true %>
@@ -17,7 +17,7 @@
     <td colspan="4">
       <span id="loader_container<%= metric_result.id %>"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</span>
       <canvas id="container<%= metric_result.id %>" class="graphic_container" style="display: none"></canvas>
-      <span id="container<%= metric_result.id %>" style="display: none">There is just a point and it should not be printed into a chart.</span>
+      <span id="container<%= metric_result.id %>" style="display: none">There is just a point and it will not be printed into a chart.</span>
     </td>
   </tr>
 <% end %>

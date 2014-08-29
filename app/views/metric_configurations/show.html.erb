@@ -75,7 +75,7 @@
  <%= link_to 'Back', mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
 <% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
       <%= link_to 'Destroy Metric Configuration', mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
-      @metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this metric configuration?' }, 
+      @metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' }, 
       class: 'btn btn-danger' %>
  <% end %>
 </p>
