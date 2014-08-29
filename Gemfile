@@ -57,6 +57,9 @@ gem 'sdoc', require: false
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', group: :development
 
+# Sends a email whenever there is a unexpected exception
+gem 'exception_notification', '~> 4.0.1'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.6.1'

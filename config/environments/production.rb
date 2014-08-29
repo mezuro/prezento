@@ -86,4 +86,23 @@ Rails.application.configure do
 
   # Kalibro URL
   KalibroGatekeeperClient.configure_with(Rails.root.join('config', 'kalibro_gatekeeper.yml'))
+
+  # ActionMailer SMTP
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'mezuro.org',
+    user_name:            "<%= ENV['SMTP_USERNAME'] %>", # Configure these as a environment vars on the production server
+    password:             "<%= ENV['SMTP_PASSWORD'] %>",
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
+  # Exception Notification
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Prezento Error] ",
+    :sender_address => %{"mezurometrics" <mezurometrics@gmail.com>},
+    :exception_recipients => %w{mezuro-core@lists.ime.usp.br}
+  }
 end
