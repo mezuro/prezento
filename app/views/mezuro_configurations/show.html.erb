@@ -27,7 +27,7 @@
     <% if @mezuro_configuration_metric_configurations.empty? %>
       <%= render partial: 'no_metric_configurations' %>
     <% else %>
-      <%= render partial: 'metric_configurations', collection: @mezuro_configuration_metric_configurations, as: :metric_configuration %>      
+      <%= render partial: 'metric_configurations', collection: @mezuro_configuration_metric_configurations, as: :metric_configuration %>
     <% end %>
   </tbody>
 </table>
@@ -37,6 +37,6 @@
 <p>
  <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
  <% if mezuro_configuration_owner? @mezuro_configuration.id %>
-   <%= link_to 'Destroy Configuration', mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+   <%= link_to 'Destroy Configuration', mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
  <% end %>
 </p>
