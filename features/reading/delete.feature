@@ -11,7 +11,7 @@ Feature: Reading Deletion
     And I have a sample reading within the sample reading group
     When I visit the Sample Reading Group page
     And I click the Destroy link
-    Then I should see "There are no readings yet!"
+    Then I should see "There are no Readings yet!"
 
   @kalibro_restart
   Scenario: Should not see the destroy reading link in the reading groups that I not own

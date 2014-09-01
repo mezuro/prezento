@@ -9,7 +9,7 @@ Scenario: Should not show the create, edit and destroy reading link to user that
   And I have a sample reading group
   And I have a sample reading within the sample reading group
   When I visit the Sample Reading Group page
-  Then I should be in the Sample Reading Group page 
+  Then I should be in the Sample Reading Group page
   And I should not see New Reading
   And I should not see Edit
   And I should not see Destroy
@@ -33,7 +33,7 @@ Scenario: Should show the information of the sample reading
   And I have a sample reading within the sample reading group
   When I visit the Sample Reading Group page
   Then I should be in the Sample Reading Group page
-  And I should not see There are no readings yet!
+  And I should not see There are no Readings yet!
   And I should see "Label"
   And I should see "Grade"
   And I should see "Color"
@@ -44,4 +44,4 @@ Scenario: Should show a message when there is no readings
   Given I have a sample reading group
   When I visit the Sample Reading Group page
   Then I should be in the Sample Reading Group page
-  And I should see "There are no readings yet!"
+  And I should see "There are no Readings yet!"

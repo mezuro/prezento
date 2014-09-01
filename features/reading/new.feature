@@ -27,7 +27,7 @@ Feature: New reading
     And I fill the Color field with "00000ff00"
     When I press the Save button
     Then I should be in the Sample Reading Group page
-     
+
   @kalibro_restart @javascript
   Scenario: Checking color picker existence
     Given I am a regular user
@@ -36,7 +36,7 @@ Feature: New reading
     And I am at the New Reading page
     When I press the Pick color button
     Then I should see a color picker Canvas
- 
+
   @kalibro_restart @javascript
   Scenario: Selecting a valid color with color picker
     Given I am a regular user
@@ -61,7 +61,7 @@ Feature: New reading
     And I fill the Grade field with "1"
     And I fill the Color field with "00000ff00"
     When I press the Save button
-    Then I should see "1 error prohibited this Reading from getting saved"
+    Then I should see "1 error prohibited this Reading from being saved"
     And I should be at the New Reading page
 
   # This test should get fixed with: https://github.com/mezuro/mezuro/issues/30
@@ -88,6 +88,5 @@ Feature: New reading
     And I fill the Grade field with "1"
     And I fill the Color field with "z"
     When I press the Save button
-    Then I should see "1 error prohibited this Reading from getting saved"
+    Then I should see "1 error prohibited this Reading from being saved"
     And I should be at the New Reading page
-
