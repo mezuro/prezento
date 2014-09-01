@@ -38,5 +38,5 @@ Then(/^I should be at metric configuration sample page$/) do
 end
 
 Then(/^I should be at the choose metric page$/) do
-  expect(page).to have_content("Choose a metric from a base tool:")
+  expect(page).to have_content("Choose a metric from a Base Tool:")
 end

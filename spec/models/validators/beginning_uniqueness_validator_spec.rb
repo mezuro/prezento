@@ -28,7 +28,7 @@ describe BeginningUniquenessValidator, :type => :model do
 
         it 'should contain errors' do
           @subject.save
-          expect(@subject.errors[:beginning]).to eq(["There's already a MezuroRange with beginning #{@subject.beginning}! Please, choose another one."])
+          expect(@subject.errors[:beginning]).to eq(["There is already a MezuroRange with beginning #{@subject.beginning}! Please, choose another one."])
         end
       end
     end

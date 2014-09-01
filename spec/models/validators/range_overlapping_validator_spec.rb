@@ -34,7 +34,7 @@ describe RangeOverlappingValidator, :type => :model do
 
         it 'is expected to return errors' do
           range.save
-          expect(range.errors[:beginning]).to eq(["There's already a #{range.class} within these boundaries! Please, choose another ones."])
+          expect(range.errors[:beginning]).to eq(["There is already a #{range.class} within these boundaries! Please, choose another interval."])
         end
       end
     end
