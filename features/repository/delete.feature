@@ -14,4 +14,4 @@ Feature: Project Deletion
     And I wait up for a ready processing
     When I visit the repository show page
     And I click the Destroy link
-    Then I should see "There are no repositories yet!"
+    Then I should see "There are no Repositories yet!"

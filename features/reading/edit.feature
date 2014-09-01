@@ -12,11 +12,11 @@ Feature: Reading Edit
     And I am at the Edit Reading page
     Then the field "Label" should be filled with "Good"
     And the field "Grade" should be filled with "10.5"
-    And the field "Color" should be filled with "33dd33"    
+    And the field "Color" should be filled with "33dd33"
     When I fill the Label field with "Bad"
     And I press the Save button
     Then I should see "Bad"
-    
+
   @kalibro_restart
   Scenario: editing a reading with blank fields
     Given I am a regular user
@@ -42,10 +42,10 @@ Feature: Reading Edit
     And I am at the Edit Reading page
     When I fill the Label field with "Average"
     And I press the Save button
-    Then I should see "There's already"
+    Then I should see "Label There is already a Reading with label Average! Please, choose another one."
 
-  @kalibro_restart 
-  Scenario: editing a reading with non numerical value 
+  @kalibro_restart
+  Scenario: editing a reading with non numerical value
     Given I am a regular user
     And I am signed in
     And I own a sample reading group

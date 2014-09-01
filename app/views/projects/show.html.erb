@@ -27,7 +27,7 @@
     <% if @project_repositories.size == 0 %>
       <tr>
         <% col_number = project_owner?(@project.id) ? 4 : 3 %>
-        <td colspan="<%= col_number %>">There are no repositories yet!</td>
+        <td colspan="<%= col_number %>">There are no Repositories yet!</td>
       </tr>
     <% end %>
     <% @project_repositories.each do |repository| %>
