@@ -24,7 +24,7 @@ describe CodeUniquenessValidator, :type => :model do
 
         it 'should contain errors' do
           @subject.save
-          expect(@subject.errors[:code]).to eq(["There's already a MetricConfiguration with code #{@subject.code}! Please, choose another one."])
+          expect(@subject.errors[:code]).to eq(["There is already a MetricConfiguration with code #{@subject.code}! Please, choose another one."])
         end
       end
     end
