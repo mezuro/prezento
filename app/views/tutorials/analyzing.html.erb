@@ -9,7 +9,7 @@ In order to create a Project, you must:
 <ul>
   <li>Have <%= link_to("signed up", new_user_registration_path) %> to the platform</li>
   <li>Be <%= link_to("signed in", new_user_session_path) %></li>
-  <li>And have a repository URL which you desire to analyze</li>
+  <li>And have a repository URL which you wish to analyze</li>
 </ul>
 
 <hr />
@@ -33,12 +33,12 @@ In order to create a Project, you must:
     <li>Fill in the form</li>
       <ul>
         <li>"Name" must be unique</li>
-        <li>You should choose from one of the Open Source licenses in the platform accordingly to your code</li>
-        <li>The "Type" field stands for the repository's source code management tool (Git, for example)</li>
+        <li>You should choose one of the Open Source licenses in the platform according to your code</li>
+        <li>The "Type" field stands for the Repository source code management tool (Git, for example)</li>
         <li>Fill in the "Address" with the URL from which we can download your code</li>
         <li>If you want to analyze your project periodically, set it (you can as well run it from the interface whenever you want)</li>
-        <li>Finally, the "Configuration", stands for the set of metrics and interpretation that we'll use to analyze your project</li>
-        <li>Click on "Save" and you should be at the repository page, waiting for that analysis</li>
+        <li>Finally, the "Configuration" stands for the set of metrics and interpretation that we will use to analyze your project</li>
+        <li>Click on "Save" and you should be at the repository page, waiting for the analysis</li>
       </ul>
   </ol>
 </ol>
@@ -53,18 +53,18 @@ The repository page is divided into four different sections:
   <li><b>Details</b></li>
     <ul>
       <li>Information that you provided during the creation steps</li>
-      <li>Select box so it is possible to visualize previous precessings for your repository</li>
+      <li>Select box so it is possible to visualize previous processings of your repository</li>
     </ul>
   <li><b>Processing information</b></li>
     <ul>
-      <li>Information about the time that has taken to finish each step of the processing</li>
+      <li>Information about the time it has taken to finish each step of the processing</li>
         <ol>
           <li>PREPARING: the system is reserving a folder for your repository and retrieving the configuration</li>
           <li>DOWNLOADING: retrieving the source code</li>
           <li>COLLECTING: calculating the metrics for your repository</li>
           <li>BUILDING: organizing the results into a source tree structure</li>
           <li>AGGREGATING: calculating the aggregated value for parent modules in the source tree</li>
-          <li>CALCULATING: if the choosen configuration has compound metrics, they will be calculated</li>
+          <li>CALCULATING: if the chosen configuration has compound metrics, they will be calculated</li>
           <li>INTERPRETING: with all the necessary results, the system will interpret them using reading groups (labels and colors)</li>
         </ol>
     </ul>
@@ -78,11 +78,11 @@ The repository page is divided into four different sections:
           <li>PACKAGE</li>
           <li>SOFTWARE</li>
         </ul>
-      <li>Grade of the given module accordingly to the weights of the metrics on the configuration
+      <li>Grade of the given module according to the weights of the metrics on the configuration
     </ul>
   <li><b>Metric Results</b></li>
     <ul>
       <li>Displays the individual results of each metric for the current module selected in the source tree</li>
-      <li>By clicking in the metric name, you will see a historic chart for that metric</li>
+      <li>By clicking on the metric name, you will see a historic chart for that metric</li>
     </ul>
 </ol>
