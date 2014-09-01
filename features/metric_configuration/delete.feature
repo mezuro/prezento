@@ -12,7 +12,7 @@ Feature: Metric Configuration Deletion
     And I have a sample metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
     And I click the Destroy link
-    Then I should see "There are no metric configurations yet!"
+    Then I should see "There are no Metric Configurations yet!"
 
   @kalibro_restart
   Scenario: Should not see the destroy metric configuration link in the mezuro configuration that I not own

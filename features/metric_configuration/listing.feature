@@ -4,13 +4,13 @@ Feature: Configuration listing
   I should see the metric configurations of a given configuration
 
   @kalibro_restart
-  Scenario: When there is no metric configurations
+  Scenario: When there are no metric configurations
     Given I have a sample configuration
     When I am at the Sample Configuration page
     Then I should see "Metric Name"
     And I should see "Code"
     And I should see "Weight"
-    And I should see "There are no metric configurations yet!"
+    And I should see "There are no Metric Configurations yet!"
 
   @kalibro_restart
   Scenario: When there are metric configurations

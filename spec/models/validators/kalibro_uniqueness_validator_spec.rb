@@ -24,7 +24,7 @@ describe KalibroUniquenessValidator, :type => :model do
 
         it 'should contain errors' do
           @subject.save
-          expect(@subject.errors[:name]).to eq(["There's already a Project with name #{@subject.name}! Please, choose another one."])
+          expect(@subject.errors[:name]).to eq(["There is already a Project with name #{@subject.name}! Please, choose another one."])
         end
       end
     end
