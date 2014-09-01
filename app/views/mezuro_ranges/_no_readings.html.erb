@@ -4,7 +4,7 @@
 		<% if reading_groups_owner? @reading_group_id %>
 			<br /><%= link_to 'Create New Reading', new_reading_group_reading_path(@reading_group_id), class: 'btn btn-danger' %>
 		<% else %>
-				<p> Your Metric Configurations' Reading Group belongs to another user and you are not allowed to modify it.</p>
+		  <p> The Reading Group of your Metric Configuration belongs to another user and you are not allowed to modify it.</p>
 		<% end %>
 	</p>
 </div>
