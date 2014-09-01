@@ -105,4 +105,8 @@ Rails.application.configure do
     :sender_address => %{"mezurometrics" <mezurometrics@gmail.com>},
     :exception_recipients => %w{mezuro-core@lists.ime.usp.br}
   }
+
+  # Google Analytics
+  GA.tracker = "<%= ENV['GA_TRACKER'] %>" #"UA-54363591-1"
+  GA.script_source = :doubleclick
 end
