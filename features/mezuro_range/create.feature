@@ -32,8 +32,8 @@ Feature: Create range
     And I should see "Beginning"
     And I should see "End"
     And I should see "Comments"
-    And I should see "You must have readings in your associated reading group to create a new range."
-    And I should see "Your metric configurations' reading group belongs to another user and you are not allowed to modify it."
+    And I should see "You must have Readings within your associated Reading Group to create a new Range."
+    And I should see "The Reading Group of your Metric Configuration belongs to another user and you are not allowed to modify it."
 
   @kalibro_restart
   Scenario: Visiting range creation page when the user own an empty reading group (testing link to New Reading)
@@ -48,7 +48,7 @@ Feature: Create range
     And I should see "Beginning"
     And I should see "End"
     And I should see "Comments"
-    And I should see "You must have readings in your associated reading group to create a new range."
+    And I should see "You must have Readings within your associated Reading Group to create a new Range."
     When I click the Create New Reading link
     Then I should be at the New Reading page
     And I should see "Label"
@@ -86,7 +86,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from getting saved"
+    And I should see "1 error prohibited this MezuroRange from being saved"
     And I should see "[666.0, 42.0[ is not a valid range"
 
   @kalibro_restart
@@ -104,7 +104,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from getting saved"
+    And I should see "1 error prohibited this MezuroRange from being saved"
     And I should see "Beginning is not a number"
 
   @kalibro_restart
@@ -121,7 +121,7 @@ Feature: Create range
     And I fill the Comments field with "My Comment"
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
-    Then I should see "1 error prohibited this MezuroRange from getting saved"
+    Then I should see "1 error prohibited this MezuroRange from being saved"
     And I should be at the New Range page
 
   @kalibro_restart
@@ -140,7 +140,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "Beginning There's already a MezuroRange with beginning 2.0! Please, choose another one."
+    And I should see "Beginning There is already a MezuroRange with beginning 2.0! Please, choose another one."
 
   @kalibro_restart @javascript
   Scenario: Should create range with [-INF, INF] threshold

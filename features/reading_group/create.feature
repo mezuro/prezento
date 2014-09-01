@@ -1,5 +1,5 @@
 Feature: Reading Group Creation
-  In order to create new reading groups to make my own readings 
+  In order to create new reading groups to make my own readings
   As a regular user
   I should be able to create reading groups
 
