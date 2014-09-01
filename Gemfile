@@ -36,9 +36,8 @@ gem 'kalibro_gatekeeper_client', "~> 0.3.1"
 # PostgreSQL integration
 gem "pg", "~> 0.17.0"
 
-# Twitter Bootstrap for layout
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :ref => '95de3b0' #Fixed the ref so it does not update accidentaly and breaks
-
+# Twitter Bootstrap for layout'
+gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', :ref => '95de3b0'
 # Chart generation
 gem "chart-js-rails", "~> 0.0.6"
 
