@@ -60,6 +60,9 @@ gem 'spring', group: :development
 # Sends a email whenever there is a unexpected exception
 gem 'exception_notification', '~> 4.0.1'
 
+# Google Analytics
+gem 'google-analytics-rails', '~> 0.0.6'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.6.1'
