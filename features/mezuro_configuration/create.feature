@@ -28,7 +28,7 @@ Feature: Configuration Creation
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Save button
-    Then I should see "There's already"
+    Then I should see "Name There is already a MezuroConfiguration with name Kalibro!"
 
   @kalibro_restart
   Scenario: configuration creation with blank name

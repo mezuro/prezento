@@ -60,7 +60,7 @@ Feature: Reading Group
     And I am at the sample reading group edit page
     And I fill the Name field with "A Reading"
     When I press the Save button
-    Then I should see "There's already"
+    Then I should see "Name There is already a ReadingGroup with name A Reading!"
 
   @kalibro_restart
   Scenario: Editing just the description
