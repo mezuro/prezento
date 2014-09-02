@@ -38,6 +38,9 @@
 
     <%= javascript_include_tag "application" %>
 
+    <!-- Google Analytics -->
+    <%= analytics_init if Rails.env.production? %>
+
     <%= csrf_meta_tags %>
   </head>
   <body>
