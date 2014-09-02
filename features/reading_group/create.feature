@@ -30,7 +30,7 @@ Scenario: reading group creation with already taken name
   And I fill the Name field with "Group"
   And I fill the Description field with "Same Group"
   When I press the Save button
-  Then I should see "There's already"
+  Then I should see "Name There is already a ReadingGroup with name Group!"
 
 @kalibro_restart
 Scenario: reading group creation with blank name
