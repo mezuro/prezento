@@ -25,11 +25,11 @@
 
   <tbody>
     <% if @project_repositories.size == 0 %>
-      <tr> 
+      <tr>
         <% col_number = project_owner?(@project.id) ? 4 : 3 %>
-        <td colspan="<%= col_number %>">There are no repositories yet!</td>
+        <td colspan="<%= col_number %>">There are no Repositories yet!</td>
       </tr>
-    <% end %> 
+    <% end %>
     <% @project_repositories.each do |repository| %>
       <tr>
         <td><%= repository.name %></td>
@@ -52,6 +52,6 @@
 
 <p>
   <% if project_owner? @project.id %>
-    <%= link_to 'Destroy project', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <%= link_to 'Destroy Project', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Project?' }, class: 'btn btn-danger' %>
   <% end %>
 </p>

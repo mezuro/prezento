@@ -60,7 +60,7 @@ Feature: Project
     And I am at the sample project edit page
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
-    Then I should see "There's already"
+    Then I should see "Name There is already a Project with name Qt-Calculator!"
 
   @kalibro_processor_restart
   Scenario: Editing just the description

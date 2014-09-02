@@ -50,4 +50,4 @@ Feature: Repository Edit
     And I am at repository edit page
     When I fill the Name field with "MedSquare"
     And I press the Save button
-    Then I should see "There's already"
+    Then I should see "Name There is already a Repository with name MedSquare! Please, choose another one."

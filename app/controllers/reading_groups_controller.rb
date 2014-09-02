@@ -31,7 +31,7 @@ class ReadingGroupsController < ApplicationController
 
   # GET /reading_groups/1/edit
   # GET /reading_groups/1/edit.json
-  def edit; end 
+  def edit; end
 
   def update
     if @reading_group.update(reading_group_params)
@@ -53,7 +53,7 @@ class ReadingGroupsController < ApplicationController
   end
 
   private
-  
+
   # Use callbacks to share common setup or constraints between actions.
   def set_reading_group
     @reading_group = ReadingGroup.find(params[:id])

@@ -51,4 +51,4 @@ Scenario: repository creation with name already taken
   And I set the select field "Process Period" as "1 day"
   And I set the select field "repository_configuration_id" as "Java"
   When I press the Save button
-  Then I should see "There's already"
+  Then I should see "Name There is already a Repository with name KalibroEntities! Please, choose another one."

@@ -15,7 +15,7 @@ Feature: Range Deletion
     And I am at the sample metric configuration page
     When I click the Destroy link
     Then I should be at metric configuration sample page
-    And I should see "There are no ranges yet!"
+    And I should see "There are no Ranges yet!"
 
   @kalibro_restart
   Scenario: Should not see the destroy range link in the range that I not own

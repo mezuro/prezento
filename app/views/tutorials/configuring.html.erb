@@ -16,20 +16,20 @@ In order to create a Configuration, you must:
 
 <h3>Introduction</h3>
 
-In order to process a repository, Mezuro uses configurations which you specify on the <%= link_to "repository creation", tutorials_path('analyzing') %>. Here you will be briefly introduced to all the components of a configuration and then guided through the steps to create one.
+To process a repository, Mezuro uses configurations which you specify on the <%= link_to "repository creation", tutorials_path('analyzing') %>. Here you will be briefly introduced to all the components of a configuration and then guided through the steps to create one.
 
 <h4>Configuration components</h4>
 <ul>
   <li><b>Configuration</b>: just a high level container for the remaining components association</li>
-  <li><b>Metrics</b>: specification of which metric will be collected during the processing and how to interpret its results</li>
+  <li><b>Metrics</b>: specification of which metric will be calculated during the processing and how to interpret its results</li>
     <ul>
-      <li>Weight: for each module is given a grade which is a weighted average of all the metrics collected for the module. This is the weight of this given metric on the final grade</li>
-      <li>Aggregation Form: Not all the metrics can be collected for every module. So, if this metric can't get collected for one module, it will aggregate the children values accordingly to what this field specifies</li>
+      <li>Weight: for each module it is given a grade which is a weighted average of all the metrics calculated for it. This field is the weight of the metric on the final grade</li>
+      <li>Aggregation Form: Not all the metrics can be calculated for every module. For this type of metric, we calculate the aggregation of the children values according to what this field specifies</li>
       <li>Reading Group: specifies which set of interpretations (called readings) will be available for this metric</li>
     </ul>
   <li><b>Reading Group</b>: just a high level container for the readings (interpretations)</li>
     <ul>
-      <li>Reading: interpretation for a given value providing label, grade (this is the grade used for the weighted average mentioned above) and colour</li>
+      <li>Reading: interpretation for a given value providing label, grade (this is the grade used for the weighted average mentioned above) and color</li>
     </ul>
   <li><b>Range</b>: Associates number intervals to the readings of a given metric</li>
 </ul>
@@ -42,7 +42,7 @@ In order to process a repository, Mezuro uses configurations which you specify o
   <li>Configuration creation</li>
   <ol>
     <li>Click on "Configuration" on the upper menu</li>
-    <li>Click on "New Configuration" on the upper menu</li>
+    <li>Click on "New Configuration"</li>
     <ol>
       <li>Fill in the form with a name that must be unique</li>
       <li>Fill in the form with a description which is not required</li>
@@ -53,7 +53,7 @@ In order to process a repository, Mezuro uses configurations which you specify o
   <ol>
     <li>From the configuration page</li>
     <li>Click on "Add Metric"</li>
-    <li>Select one collector from the accordions, and click on the metric that you want to add</li>
+    <li>Select one collector from the options, and click on the metric that you want to add</li>
     <ol>
       <li>Fill in the form with a "Weight", used to calculate the final grade</li>
       <li>Select the "Aggregation Form" that will be used for this metric</li>
@@ -64,13 +64,13 @@ In order to process a repository, Mezuro uses configurations which you specify o
   <li>Ranges creation</li>
   <ol>
     <li>From the configuration page</li>
-    <li>Click on "Show" for the metric which you want to create ranges to</li>
+    <li>Click on "Show" for the metric which you want to create ranges for</li>
     <li>Click on "Add Range"</li>
     <ol>
       <li>Fill in the form with the "Beginning" and "End" values for the interval</li>
       <li>Fill in the form with the "Comments" which will be displayed if the metric value matches the interval</li>
-      <li>Select the "Reading" which will be used to calculate the grade, set the label and colour for this metric</li>
-      <li>Click on "Save" and you should be at the metric page now with the new range added, congratulations!</li>
+      <li>Select the "Reading" which will be associated with this range</li>
+      <li>Click on "Save" and you should be at the metric page with the new range added, congratulations!</li>
     </ol>
   </ol>
 </ol>

@@ -5,12 +5,15 @@
 <p>
   <b>Base Tool:</b> <%= @metric_configuration.base_tool_name %>
 </p>
+
 <p>
   <b>Metric Name:</b> <%= @metric_configuration.metric.name %>
 </p>
+
 <p>
   <b>Metric Description:</b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric_configuration.metric.description %>
 </p>
+
 <p>
   <b>Language:</b> <%= @metric_configuration.metric.languages.to_s %>
 </p>
@@ -27,5 +30,4 @@
   	<%= f.submit 'Save', class: 'btn btn-primary' %>
     <%= link_to 'Back',  mezuro_configuration_choose_metric_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
 	</div>
-
 <% end %>

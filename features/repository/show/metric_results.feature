@@ -21,7 +21,7 @@ Feature: Repository metric results
     And I click on the sample metric's name
     Then I should see "Loading data. Please, wait."
     When I wait up for the ajax request
-    Then I should see "There is just a point and it should not be printed into a chart."
+    Then I should see "There is only one point and it will not be printed into a chart."
 
   # TODO: Scenario: Should show the graphic of a given metric
   #         It was getting really difficult to test this because of Poltergeist's timeouts
