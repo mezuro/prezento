@@ -60,7 +60,7 @@ Feature: Configuration
     And I am at the sample configuration edit page
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
-    Then I should see "There's already"
+    Then I should see "Name There is already a MezuroConfiguration with name Qt-Calculator!"
 
   @kalibro_restart
   Scenario: Editing just the description

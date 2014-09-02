@@ -9,7 +9,7 @@ Feature: Project listing
     Then I should see "Projects"
     And I should see "Name"
     And I should see "Description"
-    And I should see "To create new projects you must be logged in page."
+    And I should see "You must be logged in to create new Projects."
 
   @kalibro_processor_restart
   Scenario: Should list the existing projects
@@ -18,7 +18,7 @@ Feature: Project listing
     And I have a sample project
     And I am at the All Projects page
     Then the sample project should be there
-    And I should not see "To create new projects you must be logged in page."
+    And I should not see "You must be logged in to create new Projects."
 
   @kalibro_processor_restart
   Scenario: Should show the existing project

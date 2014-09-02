@@ -23,6 +23,6 @@ Feature: Project Deletion
     And I am signed in
     And I own a sample project
     And I am at the Sample Project page
-    When I click the Destroy project link
+    When I click the Destroy Project link
     Then I should be in the All Projects page
     And the sample project should not be there
