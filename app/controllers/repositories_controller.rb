@@ -116,6 +116,7 @@ private
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def repository_params
+    params[:repository][:address].strip!
     params[:repository]
   end
 
