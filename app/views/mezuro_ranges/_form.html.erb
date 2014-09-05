@@ -1,66 +1,65 @@
   <%= render :partial => 'shared/form_errors', :locals => {:object => @mezuro_range} %>
 
-<div class="row margin-left-none">
-  <div class="form-table span9">
+  <div class="row margin-left-none">
+    <div class="form-table span9">
 
-    <div class="form-row">
-      <div class="field-container" >
-        <%= f.label :beginning, class: 'control-label' %>
-        <%= f.text_field :beginning, class: 'diminished-text-field' %>
-    <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_beginning' ).val('-INF');", class: 'btn btn-default align-button' %>
-      </div>
-      <div class="help-container">
-        <p>
-          Starting value for your Range.
-        </p>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="field-container">
-        <%= f.label :end, class: 'control-label' %>
-        <%= f.text_field :end, class: 'diminished-text-field' %>
-        <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
-      </div>
-      <div class="help-container">
-        <p>
-          Ending value for your Range.
-        </p>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="field-container">
-        <%= f.label :comments, class: 'control-label' %>
-        <%= f.text_area :comments, class: 'text-area' %>
-      </div>
-      <div class="help-container">
-        <p>
-          A short description of your Range.
-        </p>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <% if @readings.size == 0 %>
+      <div class="form-row">
+        <% if @readings.size == 0 %>
         <%= render partial: 'no_readings' %>
-      <% else %>
-          <div class="field-container">
-            <%= f.label :reading_id, 'Reading', class: 'control-label' %>
-            <%= f.select( :reading_id, readings_options(@readings), {class: 'form-control'} ) %>
-          </div>
-          <div class="help-container">
-            <p>
-              The Reading associated with this Range.
-            </p>
-          </div>
-      <% end %>
+        <% else %>
+        <div class="field-container">
+          <%= f.label :reading_id, 'Reading', class: 'control-label' %>
+          <%= f.select( :reading_id, readings_options(@readings), {class: 'form-control'} ) %>
+        </div>
+        <div class="help-container">
+          <p>
+            The <%= link_to 'Reading', tutorials_path('keywords', anchor: 'reading')%> associated with this <%= link_to 'Range', tutorials_path('keywords', anchor: 'range')%>.
+          </p>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="form-row">
+        <div class="field-container" >
+          <%= f.label :beginning, class: 'control-label' %>
+          <%= f.text_field :beginning, class: 'diminished-text-field' %>
+          <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_beginning' ).val('-INF');", class: 'btn btn-default align-button' %>
+        </div>
+        <div class="help-container">
+          <p>
+            This Range's lower limit.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :end, class: 'control-label' %>
+          <%= f.text_field :end, class: 'diminished-text-field' %>
+          <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
+        </div>
+        <div class="help-container">
+          <p>
+          This Range's upper limit.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :comments, class: 'control-label' %>
+          <%= f.text_area :comments, class: 'text-area' %>
+        </div>
+        <div class="help-container">
+          <p>
+            An explanation of why you chose this interval, with that reading for this <%= link_to 'Metric', tutorials_path('keywords', anchor: 'metric')%>.
+          </p>
+        </div>
+      </div>
     </div>
-
   </div>
-</div>
 
-<div class="row margin-left-none" style="margin-top: 20px">
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Back', mezuro_configuration_metric_configuration_path(@mezuro_configuration_id, @metric_configuration_id), class: 'btn btn-default' %>
-</div>
+  <div class="row margin-left-none" style="margin-top: 20px">
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Back', mezuro_configuration_metric_configuration_path(@mezuro_configuration_id, @metric_configuration_id), class: 'btn btn-default' %>
+  </div>
