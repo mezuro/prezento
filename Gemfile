@@ -65,7 +65,7 @@ gem 'google-analytics-rails', '~> 0.0.6'
 
 group :test do
   # Easier test writing
-  gem "shoulda-matchers", '~> 2.6.1'
+  gem "shoulda-matchers", '~> 2.7.0'
 
   # Test coverage
   gem 'simplecov', require: false
