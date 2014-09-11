@@ -1,20 +1,21 @@
-== README - Prezento (old Mezuro)
+== README - Prezento
 
 {<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://coveralls.io/repos/mezuro/prezento/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/mezuro/prezento?branch=master]
 
-Mezuro is a source code tracking platform based on Noosfero social networking
-platform with Mezuro Plugin actived to access Kalibro Web Service.
+Prezento is the web interface for Mezuro.
+
+Mezuro project aims provide a platform to compare projects and metric techniques, teach how to use metrics through configurations, analyze code, avoid technical debts, and disseminate code metrics usage and understanding.
 
 === Development
 
 
-* System dependencies (Ubuntu package names)
+* System dependencies (Ubuntu 14.04 package names)
 
   * build-essential
 
   * curl
 
-  * postgresql-server-dev-9.1
+  * postgresql-server-dev-9.3
 
 * Unpacked dependecies
 
@@ -23,11 +24,11 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
   *NOTE:* Just create sym links for that
 
     cd /usr/local/share
-    wget http://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
-    tar xjf phantomjs-1.9.2-linux-x86_64.tar.bz2
-    sudo ln -s /usr/local/share/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs
-    sudo ln -s /usr/local/share/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
-    sudo ln -s /usr/local/share/phantomjs-1.9.2-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
+    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
+    tar xjf phantomjs-1.9.7-linux-x86_64.tar.bz2
+    sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs
+    sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
+    sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
 
 * Ruby version
 
@@ -71,7 +72,7 @@ platform with Mezuro Plugin actived to access Kalibro Web Service.
 
 * Deployment instructions
 
-  Deployment is made through Capistano (https://github.com/capistrano/capistrano)
+  Deployment is made through Capistrano (https://github.com/capistrano/capistrano)
 
     cap production deploy
 
