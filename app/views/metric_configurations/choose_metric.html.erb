@@ -12,7 +12,7 @@
       <h3 class="jquery-ui-accordion"><%= metric_collector.name %></h3>
       <div>
         <% metric_collector.supported_metrics.each do |code, metric| %>
-          <%= link_to metric.name, '#', onclick: "BaseTool.choose_metric(\"#{metric.name}\", \"#{metric_collector.name}\");", remote: true %><br>
+          <%= link_to metric.name, '#', onclick: "MetricCollector.choose_metric(\"#{metric.name}\", \"#{metric_collector.name}\");", remote: true %><br>
         <% end %>
       </div>
   <% end %>

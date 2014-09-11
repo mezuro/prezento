@@ -1,4 +1,4 @@
-class @BaseTool
+class @MetricCollector
 
   # Static Method
   @choose_metric: (metric_name, metric_collector_name) ->
