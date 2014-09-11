@@ -3,7 +3,7 @@ FactoryGirl.define do
     id 1
     code 'total_abstract_classes'
     metric {FactoryGirl.build(:metric)}
-    base_tool_name "Analizo"
+    metric_collector_name "Analizo"
     weight 1
     aggregation_form "AVERAGE"
     reading_group_id 1

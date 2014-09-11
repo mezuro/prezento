@@ -136,7 +136,7 @@ GEM
     jquery-ui-rails (5.0.0)
       railties (>= 3.2.16)
     json (1.8.1)
-    kalibro_gatekeeper_client (0.3.2)
+    kalibro_gatekeeper_client (1.0.0.rc2)
       activesupport (>= 2.2.1)
       faraday_middleware (~> 0.9.0)
     konacha (3.2.4)
@@ -293,7 +293,7 @@ DEPENDENCIES
   jbuilder (~> 2.1.2)
   jquery-rails
   jquery-ui-rails (~> 5.0.0)
-  kalibro_gatekeeper_client (~> 0.3.1)
+  kalibro_gatekeeper_client (~> 1.0.0.rc2)
   konacha (~> 3.2.0)
   mocha
   pg (~> 0.17.0)

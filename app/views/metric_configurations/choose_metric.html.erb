@@ -11,7 +11,7 @@
  <% @base_tools.each do |base_tool| %>
       <h3 class="jquery-ui-accordion"><%= base_tool.name %></h3>
       <div>
-        <% base_tool.supported_metrics.each do |metric| %>
+        <% base_tool.supported_metrics.each do |code, metric| %>
           <%= link_to metric.name, '#', onclick: "BaseTool.choose_metric(\"#{metric.name}\", \"#{base_tool.name}\");", remote: true %><br>
         <% end %>
       </div>
