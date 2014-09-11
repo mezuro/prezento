@@ -145,7 +145,7 @@ GEM
       colorize
       railties (>= 3.1, < 5)
       sprockets
-    libv8 (3.16.14.3)
+    libv8 (3.16.14.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
