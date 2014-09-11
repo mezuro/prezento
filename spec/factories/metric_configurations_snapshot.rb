@@ -20,7 +20,7 @@ FactoryGirl.define do
 		weight "1.0"
 		aggregation_form 'AVERAGE'
 		metric {FactoryGirl.build(:metric)}
-		base_tool_name "Analizo"
+		metric_collector_name "Analizo"
 		range {FactoryGirl.build(:range_snapshot)}
   end
 end

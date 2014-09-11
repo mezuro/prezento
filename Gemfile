@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.1.2'
 gem 'devise', '~> 3.3.0'
 
 # Kalibro integration
-gem 'kalibro_gatekeeper_client', "~> 1.0.0.rc2"
+gem 'kalibro_gatekeeper_client', github: 'mezuro/kalibro_gatekeeper_client', branch: 'refactoring_metric_collector' # FIXME: to gem 'kalibro_gatekeeper_client', "~> 1.0.0" as soon as it gets released
 
 # PostgreSQL integration
 gem "pg", "~> 0.17.0"

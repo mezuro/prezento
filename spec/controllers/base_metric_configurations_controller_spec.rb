@@ -88,7 +88,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
   describe 'create' do
     let!(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:metric_configuration).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
     let!(:metric_params) { Hash[FactoryGirl.attributes_for(:metric).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
-    let(:base_tool) { FactoryGirl.build(:base_tool) }
+    let(:metric_collector) { FactoryGirl.build(:metric_collector) }
 
     before :each do
       sign_in FactoryGirl.create(:user)
@@ -101,7 +101,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
 
       context 'with valid fields' do
         before :each do
-          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, base_tool_name: base_tool.name
+          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name
         end
 
         it { expect(subject.metric_configuration).not_to be_nil }

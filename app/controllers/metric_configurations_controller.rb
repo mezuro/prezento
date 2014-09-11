@@ -2,20 +2,20 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   def choose_metric
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
-    @base_tools = KalibroGatekeeperClient::Entities::MetricCollector.all
+    @metric_collectors = KalibroGatekeeperClient::Entities::MetricCollector.all
     @exist_metric = params[:exist_metric]
   end
 
   def new
     super
-    metric_configuration.metric_collector_name = params[:base_tool_name]
-    metric_configuration.metric = KalibroGatekeeperClient::Entities::MetricCollector.find_by_name(params[:base_tool_name]).metric params[:metric_name]
+    metric_configuration.metric_collector_name = params[:metric_collector_name]
+    metric_configuration.metric = KalibroGatekeeperClient::Entities::MetricCollector.find_by_name(params[:metric_collector_name]).metric params[:metric_name]
   end
 
   def create
     super
-    @metric_configuration.metric = KalibroGatekeeperClient::Entities::MetricCollector.find_by_name(params[:base_tool_name]).metric params[:metric_name]
-    @metric_configuration.metric_collector_name = params[:base_tool_name]
+    @metric_configuration.metric = KalibroGatekeeperClient::Entities::MetricCollector.find_by_name(params[:metric_collector_name]).metric params[:metric_name]
+    @metric_configuration.metric_collector_name = params[:metric_collector_name]
     @metric_configuration.code = @metric_configuration.metric.code
     respond_to do |format|
       create_and_redir(format)
