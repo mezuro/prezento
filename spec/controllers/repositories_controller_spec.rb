@@ -310,6 +310,20 @@ describe RepositoriesController, :type => :controller do
       it { is_expected.to respond_with(:ok) }
       it { is_expected.not_to render_with_layout }
     end
+
+    context 'with a ERROR state' do
+      let(:errored_processing) { FactoryGirl.build(:errored_processing) }
+
+      before :each do
+        repository.expects(:last_processing).returns(errored_processing)
+        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+
+        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'}
+      end
+
+      it { is_expected.to respond_with(:success) }
+      it { is_expected.to render_template(:load_error) }
+    end
   end
 
   describe 'process_repository' do
