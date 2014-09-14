@@ -5,5 +5,11 @@ FactoryGirl.define do
     state "READY"
     process_time {[FactoryGirl.build(:process_time)]}
     results_root_id "13"
+
+    trait :errored do
+      state "ERROR"
+    end
+
+    factory :errored_processing, traits: [:errored]
   end
 end
