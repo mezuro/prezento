@@ -14,7 +14,7 @@ before_script:
   - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
   # Gatekeeper
-  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b v0.1.2 kalibro_gatekeeper
+  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b v0.2.0 kalibro_gatekeeper
   - cd kalibro_gatekeeper
   - cp config/database.yml.sample config/database.yml
   - cp config/kalibro_processor.yml.sample config/kalibro_processor.yml
@@ -24,7 +24,7 @@ before_script:
   - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   # Processor
-  - git clone https://github.com/mezuro/kalibro_processor.git -b v0.1.0 kalibro_processor
+  - git clone https://github.com/mezuro/kalibro_processor.git -b v0.2.0 kalibro_processor
   - cd kalibro_processor
   - psql -c "create role kalibro_processor with createdb login password 'kalibro_processor'" -U postgres
   - cp config/database.yml.postgresql_sample config/database.yml
