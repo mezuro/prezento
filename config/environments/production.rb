@@ -93,8 +93,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'mezuro.org',
-    user_name:            "<%= ENV['SMTP_USERNAME'] %>", # Configure these as a environment vars on the production server
-    password:             "<%= ENV['SMTP_PASSWORD'] %>",
+    user_name:            ENV['SMTP_USERNAME'], # Configure these as a environment vars on the production server
+    password:             ENV['SMTP_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true  }
 
@@ -107,6 +107,6 @@ Rails.application.configure do
   }
 
   # Google Analytics
-  GA.tracker = "<%= ENV['GA_TRACKER'] %>" #"UA-54363591-1"
+  GA.tracker = ENV['GA_TRACKER']
   GA.script_source = :doubleclick
 end
