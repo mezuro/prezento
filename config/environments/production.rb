@@ -100,6 +100,7 @@ Rails.application.configure do
 
   # Exception Notification
   config.middleware.use ExceptionNotification::Rack,
+  :ignore_crawlers => %w{Googlebot bingbot SeznamBot Baiduspider},
   :email => {
     :email_prefix => "[Prezento Error] ",
     :sender_address => %{"mezurometrics" <mezurometrics@gmail.com>},
