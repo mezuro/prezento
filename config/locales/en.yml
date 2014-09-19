@@ -20,7 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
+  name: "Name"
+  description: "Description"
+  show: "Show"
+  edit: "Edit"
+  about_mezuro: "About Mezuro"
+  about_mezuro_body: "<small> The Mezuro project attempts to provide a platform to compare projects and metric techniques, teaching how to use metrics through configurations and code analysis, avoid technical debts and disseminate code metrics usage and understanding.</small>"
   home_index_title: "Understanding Code Metrics"
   home_index_latest_projects: "Latest projects"
   home_index_body: "<p>This is Mezuro! A <strong>free/libre</strong> web platform for <strong>collaborative</strong> source code <strong>evaluation</strong>.</p> <p>Here you can evaluate your source code with the most popular SCMs (like Git and SVN), just by providing its URL. For now, you can evaluate <strong>C</strong>, <strong>C++</strong> and <strong>Java</strong> source codes, but we are looking forward to supporting more languages in the future.</p>"

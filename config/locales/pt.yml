@@ -1,0 +1,33 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Olá Mundo!"
+  name: "Nome"
+  description: "Descrição"
+  show: "Mostrar"
+  edit: "Editar"
+  about_mezuro: "Sobre Mezuro"
+  about_mezuro_body: "<small> O projeto Mezuro tenta prover uma plataforma para comparar técnicas de projetos e métricas, ensinando como usar métricas através de configurações e análise de código, evite débitos técnicos e dissemine o uso e entendimento de métricas de código.</small>"
+  home_index_title: "Entendendo Métricas de Código"
+  home_index_latest_projects: "Últimos projetos"
+  home_index_body: "<p>Este é o Mezuro! Uma plataforma web <strong>livre</strong> para <strong>avaliação colaborativa</strong> de código fonte.</p> <p>Aqui você pode avaliar seu código fonte com os SCMs mais populares (como Git e SVN), apenas fornecendo sua URL. Por enquanto, você pode avaliar códigos em <strong>C</strong>, <strong>C++</strong> e <strong>Java</strong>, mas nós pretendemos dar suporte a mais linguagems no futuro.</p>" 
+  home_index_body_feedback: "Mezuro está sob constante desenvolvimento. Experimente e nos dê o seu"
