@@ -1,16 +1,16 @@
 <div class="hero-unit">
-  <p><h1> <%= t('home_index_title') %>  </h1></p>
+  <p><h1> <%= t('title_home_index') %>  </h1></p>
 
-  <%= t('home_index_body').html_safe %>	
+  <%= t('body_home_index').html_safe %>	
 
   <p>
-    <%= t('home_index_body_feedback') %>	          
+    <%= t('body_feedback_home_index') %>	          
     <%= link_to 'feedback', 'https://github.com/mezuro/mezuro/issues', target: '_blank' %>.
   </p>
 
 </div>
 
-<h2> <%= t('home_index_latest_projects') %> </h2>
+<h2> <%= t('latest_projects_home_index') %> </h2>
 
 <ul>
   <% cache do %>
