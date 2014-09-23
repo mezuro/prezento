@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    get_extra_params
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
@@ -39,8 +40,10 @@ class ProjectsController < ApplicationController
   end 
 
   def update
+    get_extra_params
     set_project
     if @project.update(project_params)
+      @project.ownership.update(image_url: @image_url)
       redirect_to(project_path(@project.id))
     else
       render "edit"
@@ -70,16 +73,27 @@ class ProjectsController < ApplicationController
       params[:project]
     end
 
+    def get_extra_params
+      @image_url = params[:image_url]
+    end
+
     # Extracted code from create action
     def create_and_redir(format)
       if @project.save
-        current_user.project_ownerships.create project_id: @project.id
+        ownership = current_user.project_ownerships.new project_id: @project.id, image_url: @image_url
 
-        format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        if ownership.save
+          format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
+          return format.json { render action: 'show', status: :created, location: @project }
+        else
+          @project.destroy
+          ownership.errors.each do |attribute, msg|
+            @project.errors.add(attribute, msg)
+          end
+        end
       end
+
+      format.html { render action: 'new' }
+      format.json { render json: @project.errors, status: :unprocessable_entity }
     end
 end

@@ -14,9 +14,11 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
+    And I fill the Image URL field with "http://s3.amazonaws.com/rapgenius/Fozzy.png"
     When I press the Save button
     Then I should see "Kalibro"
     And I should see "Web Service to collect metrics"
+    And I should see the custom project image
 
   @kalibro_processor_restart
   Scenario: project creation with already taken name
@@ -26,6 +28,7 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
+    And I fill the Image URL field with "http://s3.amazonaws.com/rapgenius/Fozzy.png"
     When I press the Save button
     Then I should see "Name There is already a Project with name Kalibro!"
 
@@ -35,5 +38,18 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with " "
     And I fill the Description field with "Web Service to collect metrics"
+    And I fill the Image URL field with "http://s3.amazonaws.com/rapgenius/Fozzy.png"
     When I press the Save button
     Then I should see "Name can't be blank"
+
+  @kalibro_restart
+  Scenario: project creation with blank image url
+    Given I am a regular user
+    And I am signed in
+    And I am at the New Project page
+    And I fill the Name field with "Kalibro"
+    And I fill the Description field with "Web Service to collect metrics"
+    And I fill the Image URL field with " "
+    When I press the Save button
+    Then I should see "Image url can't be blank"
+    And I should see "Image url is invalid"

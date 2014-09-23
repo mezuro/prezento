@@ -19,6 +19,7 @@ describe ProjectsController, :type => :controller do
 
     context 'with valid fields' do
 	    let(:project) { FactoryGirl.build(:project) }
+      let(:project_ownership){ FactoryGirl.build(:project_ownership) }
 	    let(:subject_params) { Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
 
      	before :each do
@@ -29,7 +30,7 @@ describe ProjectsController, :type => :controller do
         before :each do
           Project.expects(:exists?).returns(true)
 
-          post :create, :project => subject_params
+          post :create, :project => subject_params, :image_url => project_ownership.image_url
         end
 
         it 'should redirect to the show view' do
@@ -39,10 +40,24 @@ describe ProjectsController, :type => :controller do
 
       context 'without rendering the show view' do
         before :each do
-          post :create, :project => subject_params
+          post :create, :project => subject_params, :image_url => project_ownership.image_url
         end
 
         it { is_expected.to respond_with(:redirect) }
+      end
+
+      context 'with invalid ownership' do
+        let(:ownerships) {[]}
+
+        before :each do
+          User.any_instance.expects(:project_ownerships).at_least_once.returns(ownerships)
+          ownerships.expects(:new).returns(project_ownership)
+          project_ownership.expects(:save).returns(false)
+
+          post :create, :project => subject_params, :image_url => project_ownership.image_url
+        end
+
+        it { should render_template(:new) }
       end
     end
 
@@ -159,14 +174,15 @@ describe ProjectsController, :type => :controller do
         before :each do
           Project.expects(:find).with(@subject.id.to_s).returns(@subject)
           @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-
           get :edit, :id => @subject.id
         end
 
         it { is_expected.to render_template(:edit) }
 
         it 'should assign to @project the @subject' do
+          @subject.expects(:ownership).returns(@ownership)
           expect(assigns(:project)).to eq(@subject)
+          expect(assigns(:project).ownership.image_url).to eq(@ownership.image_url)
         end
       end
 
@@ -214,15 +230,16 @@ describe ProjectsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
+            @ownership.expects(:update).with(image_url: @ownership.image_url).returns(true)
             Project.expects(:find).with(@subject.id.to_s).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(true)
+            Project.any_instance.expects(:ownership).returns(@ownership)
           end
 
           context 'rendering the show' do
             before :each do
               Project.expects(:exists?).returns(true)
-
-              post :update, :id => @subject.id, :project => @subject_params
+              post :update, :id => @subject.id, :project => @subject_params, :image_url => @ownership.image_url
             end
 
             it 'should redirect to the show view' do
@@ -232,7 +249,7 @@ describe ProjectsController, :type => :controller do
 
           context 'without rendering the show view' do
             before :each do
-              post :update, :id => @subject.id, :project => @subject_params
+              post :update, :id => @subject.id, :project => @subject_params, :image_url => @ownership.image_url
             end
 
             it { is_expected.to respond_with(:redirect) }
@@ -243,8 +260,7 @@ describe ProjectsController, :type => :controller do
           before :each do
             Project.expects(:find).with(@subject.id.to_s).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(false)
-
-            post :update, :id => @subject.id, :project => @subject_params
+            post :update, :id => @subject.id, :project => @subject_params, :image_url => @ownership.image_url
           end
 
           it { is_expected.to render_template(:edit) }

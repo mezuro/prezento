@@ -3,6 +3,7 @@
 
 <div class="row margin-left-none">
   <div class="form-table span9">
+    
     <div class="form-row">
       <div class="field-container">
         <%= f.label :name, class: 'control-label' %><br>
@@ -16,6 +17,23 @@
         <%= f.text_area :description, class: 'text-area' %>
       </div>
     </div>
+
+    <div class="form-row">
+      <div class="field-container">
+        <label class="control-label" for="image_url">Image URL</label><br>
+        <% if @project.ownership.nil? %>
+          <input id="image_url" class="text-field " type="text" name="image_url"></input>
+        <% else %>
+          <input id="image_url" class="text-field " type="text" name="image_url" value=<%= @project.ownership.image_url %>></input>
+        <% end %>
+      </div>
+      <div class="help-container">
+        <p>
+          Assign an image to your project!
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
 <div class="row margin-left-none" style="margin-top: 20px">
