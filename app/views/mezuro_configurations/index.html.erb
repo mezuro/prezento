@@ -3,7 +3,7 @@
 </div>
 
 <% if user_signed_in? %>
-  <p>
+  <p data-toggle="tooltip" data-placement="left" title="Create a new Configuration">
     <%= link_to 'New Configuration', new_mezuro_configuration_path, class: 'btn  btn-primary' %>
   </p>
 <%else%>
