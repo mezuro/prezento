@@ -23,7 +23,7 @@ en:
   hello: "Hello"
   name_shared_reading_gropus: "Name"
   description_shared_reading_groups: "Description"
-  
+
   home_layouts_application: "Home"
   project_layouts_application: "Project"
   configuration_layouts_application: "Configuration"
@@ -32,15 +32,15 @@ en:
   sign_out_layouts_application: "Sign Out"
   sign_in_layouts_application: "Sign In"
   sign_up_layouts_application: "Sign Up"
-  
+
   show_shared_reading_groups: "Show"
   edit_shared_reading_groups: "Edit"
   and_shared_short_about: "and"
   about_mezuro_shared_short_about: "About Mezuro"
-  about_mezuro_body_shared_short_about: "<small> The Mezuro project attempts to provide a platform to compare projects and metric techniques, teaching how to use metrics through configurations and code analysis, avoid technical debts and disseminate code metrics usage and understanding.</small>" 
+  about_mezuro_body_shared_short_about: "<small> The Mezuro project attempts to provide a platform to compare projects and metric techniques, teaching how to use metrics through configurations and code analysis, avoid technical debts and disseminate code metrics usage and understanding.</small>"
   about_mezuro1_shared_short_about: "Here you can try the front-end, which we call Prezento. It interacts with the"
   about_mezuro2_shared_short_about: "It is intended to be a service where you can evaluate your code quality and, if you want, define which set of metrics to use."
-  
+
   title_home_index: "Understanding Code Metrics"
   latest_projects_home_index: "Latest projects"
   body_home_index: "<p>This is Mezuro! A <strong>free/libre</strong> web platform for <strong>collaborative</strong> source code <strong>evaluation</strong>.</p> <p>Here you can evaluate your source code with the most popular SCMs (like Git and SVN), just by providing its URL. For now, you can evaluate <strong>C</strong>, <strong>C++</strong> and <strong>Java</strong> source codes, but we are looking forward to supporting more languages in the future.</p>"
@@ -56,7 +56,7 @@ en:
   name_compound_created_metrics: "Name"
   code_compound_created_metrics: "Code"
   body1_compound_form: " <p>A variable that holds the value of a metric calculation. It can be used in the script of another compound metric.</p> <p>Example: Code foo := 10 </p>"
-  body2_compound_form: " <p>It is used to calculate the weighted average of a 
+  body2_compound_form: " <p>It is used to calculate the weighted average of a
   link_module_compound_form: "Module"
   link_reading_group_compound_form: "Reading Group"
   buttom_save_compound_form: "Save"
@@ -71,3 +71,30 @@ en:
   beginning_compound_show: "Beginning"
   end_compound_show: "End"
 
+	weighted_average_metric_configurations_form:  "It is used to calculate the weighted average of a"
+	statistical_result_metric_configurations_form: "It is the calculation of statistical results for higher"
+	modules_eg_metric_configurations_form: " modules (e.g., average lines of code of the classes inside a package)."
+	the_metric_configuration_form: "The"
+	associated_metric_configuration_form: "associated with this metric."
+	range_metric_configurations_no_ranges: "There are no Ranges yet!"
+	choose_metric_configurations_choose_metric: "Choose a metric from a Base Tool:"
+	editing_metric_configurations_edit: "Editing Metric Configuration"
+	new_metric_configurations_new: "New Metric Configuration"
+	base_metric_configurations_new: "Base Tool:"
+	metric_name_metric_configuration_new: "Metric Name:"
+	metric_description_metric_configurations_new: "Metric Description:"
+	language_metric_configurations_new: "Language:"
+	scope_metric_configurations_new: "Scope:"
+	base_tool_metric_configurations_show: "Base Tool Name:"
+	code_metric_configurations_show: "Code:"
+	weight_metric_configurations_show: "Weight:"
+	language_metric_configurations_show: "Language:"
+	scope_metric_configurations_show: "Scope:"
+  aggregation_metric_configurations_show: "Aggregation Form:"
+	reading_metric_configurations_show: "Reading Group Name:"
+	description_metric_configurations_show: "Description"
+	no_description_metric_configurations_show: "There is no description available."
+	ranges_metric_configurations_show: "Ranges"
+	label_metric_configurations_show: "Label"
+	beginning_metric_configurations_show: "Beginning"
+	end_metric_configurations_show: "End"
