@@ -27,7 +27,11 @@
 <%= form_for(@metric_configuration, :url => mezuro_configuration_metric_configurations_path(@metric_configuration.configuration_id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
   <div class="row margin-left-none" style="margin-top: 20px">
-  	<%= f.submit t('save') , class: 'btn btn-primary' %>
-    <%= link_to t('back') ,  mezuro_configuration_choose_metric_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
+  	<span  data-toggle="tooltip" data-placement="left" title="Save this metric configuration">
+      <%= f.submit t('save') , class: 'btn btn-primary' %>
+    </span>
+    <span  data-toggle="tooltip" data-placement="left" title="Return to metrics list">
+      <%= link_to t('back') ,  mezuro_configuration_choose_metric_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
+    </span>
 	</div>
 <% end %>

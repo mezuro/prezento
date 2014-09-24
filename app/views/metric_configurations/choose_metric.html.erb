@@ -18,9 +18,10 @@
   <% end %>
 </div><br />
 
-<%= link_to  t('back'), mezuro_configuration_path(@mezuro_configuration_id), class: 'btn btn-default' %>
-<%= link_to t('compound_metric'), new_mezuro_configuration_compound_metric_configuration_path(@mezuro_configuration_id), class: 'btn btn-info', id: "link_to_compound" %>
-
+<span  data-toggle="tooltip" data-placement="left" title="Return to metrics configurations list">
+  <%= link_to  t('back'), mezuro_configuration_path(@mezuro_configuration_id), class: 'btn btn-default' %>
+  <%= link_to t('compound_metric'), new_mezuro_configuration_compound_metric_configuration_path(@mezuro_configuration_id), class: 'btn btn-info', id: "link_to_compound" %>
+</span>
 
 <script type="text/javascript">
   //Loads the accordion

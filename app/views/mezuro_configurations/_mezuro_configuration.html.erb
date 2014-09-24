@@ -1,10 +1,14 @@
 <tr>
   <td><%= mezuro_configuration.name %></td>
   <td><%= mezuro_configuration.description %></td>
-  <td><%= link_to t('show'), mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %></td>
+  <td data-toggle="tooltip" data-placement="left" title="Show this configuration">
+    <%= link_to t('show'), mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
+  </td>
   <td>
     <% if mezuro_configuration_owner?(mezuro_configuration.id) %>
-      <%= link_to t('edit'), edit_mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
+      <p data-toggle="tooltip" data-placement="left" title="Edit this configuration">
+        <%= link_to t('edit'), edit_mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
+      </p>
     <% end %>
   </td>
 </tr>

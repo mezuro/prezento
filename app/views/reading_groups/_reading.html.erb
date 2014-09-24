@@ -3,7 +3,7 @@
   <td><%= reading.grade %></td>
   <td style="background-color: #<%= reading.color %>; width: 20%;">&nbsp;</td>
   <% if reading_groups_owner? @reading_group.id %>
-    <td>
+    <td data-toggle="tooltip" data-placement="left" title="Edit this reading">
       <%= link_to t('edit'), edit_reading_group_reading_path(@reading_group.id, reading.id), class: 'btn btn-info' %>
     </td>
     <td>

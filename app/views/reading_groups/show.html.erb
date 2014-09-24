@@ -11,8 +11,11 @@
 
 <h2> <%= t('readings') %> </h2>
 
-<% if reading_groups_owner? @reading_group.id %><%= link_to  t('new_range') , new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
-
+<% if reading_groups_owner? @reading_group.id %>
+  <span data-toggle="tooltip" data-placement="left" title="Create a new Reading">
+    <%= link_to  t('new_range') , new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %>
+  </span>
+<% end %>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -34,7 +37,7 @@
 
 <hr />
 
-<p>
+<p  data-toggle="tooltip" data-placement="left" title="Destroy this Reading">
   <% if reading_groups_owner? @reading_group.id %>
     <%= link_to t('destroy_reading_group'), reading_group_path(@reading_group.id), method: :delete, data: { confirm:  t('want_destroy_reading') }, class: 'btn btn-danger' %>
   <% end %>

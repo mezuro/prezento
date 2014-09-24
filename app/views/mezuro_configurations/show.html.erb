@@ -11,7 +11,10 @@
 
 <h2>  <%= t('metrics') %> </h2>
 <% if mezuro_configuration_owner? @mezuro_configuration.id %>
-  <%= link_to t('add_metric'), mezuro_configuration_choose_metric_path(@mezuro_configuration.id), class: 'btn btn-info' %>
+<%  options = @mezuro_configuration_metric_configurations.empty? ? {} : {exist_metric: true}%>
+  <p data-toggle="tooltip" data-placement="left" title="Add an existing metric">
+    <%= link_to t('add_metric'), mezuro_configuration_choose_metric_path(@mezuro_configuration.id, options), class: 'btn btn-info' %>
+  </p>
 <% end %>
 
 <table class="table table-hover">
@@ -34,9 +37,11 @@
 
 <hr>
 
-<p>
- <%= link_to t('back'), mezuro_configurations_path, class: 'btn btn-default' %>
- <% if mezuro_configuration_owner? @mezuro_configuration.id %>
-   <%= link_to t('destroy_configuration'), mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm:  t('want_destroy_configuration') }, class: 'btn btn-danger' %>
+<p data-toggle="tooltip" data-placement="left" title="Return to configurations list">
+  <%= link_to t('back'), mezuro_configurations_path, class: 'btn btn-default' %>
+  <% if mezuro_configuration_owner? @mezuro_configuration.id %>
+    <span data-toggle="tooltip" data-placement="left" title="Remove this configuration">
+      <%= link_to t('destroy_configuration'), mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm:  t('want_destroy_configuration') }, class: 'btn btn-danger' %>
+    </span>
  <% end %>
 </p>

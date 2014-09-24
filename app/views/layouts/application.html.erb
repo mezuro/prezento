@@ -48,28 +48,26 @@
     <div class="navbar navbar-default">
       <div class="navbar-inner">
         <div class="container-fluid">
-           <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-target="#nav-collapse" data-toggle="collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a><%= link_to image_tag('logo.png'), root_path, class: 'navbar-brand' %></a>
-          </div>
-          <div class="collapse navbar-collapse" id="nav-collapse">
-            <ul class="nav navbar-nav">
-              <li><%= link_to t('home'), root_path %></li>
-              <li><%= link_to t('project'), projects_path %></li>
-              <li><%= link_to t('configuration'), mezuro_configurations_path %></li>
-              <li><%= link_to t('reading_group'), reading_groups_path %></li>
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <%= link_to image_tag('logo.png'), root_path, class: 'navbar-brand' %>
+          <div class="container-fluid nav-collapse">
+            <ul class="nav">
+              <li data-toggle="tooltip" data-placement="left" title="Home page" ><%= link_to t('home'), root_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="List all projects"><%= link_to t('project'), projects_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="Metrics Configurations"><%= link_to t('configuration'), mezuro_configurations_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="Reading Group"><%= link_to t('reading_group'), reading_groups_path %></li>
             </ul>
             <ul class="nav navbar-nav" style="float: right;">
               <% if user_signed_in? %>
-                <li><%= link_to  t('edit_account'), edit_user_registration_path %></li>
-                <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Edit your account"><%= link_to  t('edit_account'), edit_user_registration_path %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Sign out" ><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
               <% else %>
-                <li><%= link_to t('sign_in'), new_user_session_path %></li>
-                <li><%= link_to t('sign_up'), new_user_registration_path %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Sign in using an existing account" ><%= link_to t('sign_in'), new_user_session_path %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Create a new Mezuro account"><%= link_to t('sign_up'), new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
