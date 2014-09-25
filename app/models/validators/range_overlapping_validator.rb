@@ -21,6 +21,7 @@ class RangeOverlappingValidator < ActiveModel::Validator
   def to_float(value)
     return 1.0/0 if value=="INF"
     return -1.0/0 if value=="-INF"
+    return value.to_f if value.is_a?(String)
     return value
   end
 end

@@ -159,3 +159,27 @@ Feature: Create range
     Then I should be at metric configuration sample page
     And I should see "-INF"
     And I should see "INF"
+
+  @kalibro_restart @javascript
+  Scenario: Two valid ranges (one with INF)
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I own a sample reading group
+    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample reading within the sample reading group labeled "My Reading"
+    And I am at the New Range page
+    And I fill the Beginning field with "2"
+    And I fill the End field with "666"
+    And I fill the Comments field with "My Comment"
+    And I set the select field "Reading" as "My Reading"
+    And I press the Save button
+    And I am at the New Range page
+    And I fill the Beginning field with "666"
+    And I click the ∞ link
+    And I fill the Comments field with "My Comment"
+    And I set the select field "Reading" as "My Reading"
+    When I press the Save button
+    Then I should be at metric configuration sample page
+    And I should see "666"
+    And I should see "INF"
