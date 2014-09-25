@@ -64,8 +64,7 @@ Feature: New reading
     Then I should see "1 error prohibited this Reading from being saved"
     And I should be at the New Reading page
 
-  # This test should get fixed with: https://github.com/mezuro/mezuro/issues/30
-  @kalibro_restart @wip
+  @kalibro_restart
   Scenario: With an invalid grade
     Given I am a regular user
     And I am signed in
