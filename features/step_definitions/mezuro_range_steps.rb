@@ -37,6 +37,3 @@ Then(/^I should see the sample range$/) do
   expect(page).to have_content(@mezuro_range.beginning)
   expect(page).to have_content(@mezuro_range.end)
 end
-
-
-

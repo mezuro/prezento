@@ -1,3 +1,15 @@
+Given(/^I have a sample configuration with native metrics but without ranges$/) do
+  reading_group = FactoryGirl.create(:reading_group, id: nil)
+  reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
+  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, id: nil)
+  metric_configuration = FactoryGirl.create(:metric_configuration,
+                                            {id: nil,
+                                             metric: FactoryGirl.build(:loc),
+                                             reading_group_id: reading_group.id,
+                                             configuration_id: @mezuro_configuration.id,
+                                             code: 'loc'})
+end
+
 Given(/^I have a sample configuration with native metrics$/) do
   reading_group = FactoryGirl.create(:reading_group, id: nil)
   reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
