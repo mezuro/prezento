@@ -37,3 +37,11 @@ Feature: Project Creation
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Save button
     Then I should see "Name can't be blank"
+
+  Scenario: click on button new project on my projects page
+    Given I am a regular user
+    And I am signed in
+    And I am at the homepage
+    And I click the My projects link
+    When I click the New Project link
+    Then I should see "New Project"
