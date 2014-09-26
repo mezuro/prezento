@@ -27,3 +27,8 @@ end
 When(/^I take a picture of the page$/) do
   page.save_screenshot("/tmp/picture.png")
 end
+
+When(/^I click the "(.*?)" icon$/) do |icon|
+  find('#' + icon).click # the hashtag symbol is necessary to find the id of a HTML element
+  sleep(1) #This sleep is essential to make the popup visible when we take a picture of the page
+end
