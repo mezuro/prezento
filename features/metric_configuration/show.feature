@@ -23,6 +23,6 @@ Feature: Show Metric Configuration
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample range within the sample metric configuration
     And I am at the sample metric configuration page
-    When I click the "Comment ballon" icon
+    When I click the "comment-icon" icon
     Then I should see "Comment"
 
