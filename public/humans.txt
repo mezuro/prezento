@@ -16,6 +16,15 @@
 
 # THANKSs
 
+    UnB Software Evolution Team 2014
+    ---------------------------------------------------------
+      Beatriz Rezener (beatrizrezener at gmail.com)
+      João Gabriel (joaogabrieldebrittoesilva at gmail.com)
+      Larissa Rodrigues (larissax55 at gmail.com)
+      Rodrigo Siqueira (rodrigosiqueiramelo at gmail.com)
+      Thiago Ribeiro (thiagitosouza at hotmail.com)
+      Vinicius Franco (viniciusf.arantes at gmail.com)
+
     Actual version independent collaborators
     ---------------------------------------------------------
       Arthur del Esposte (arthurmde at gmail.com)
