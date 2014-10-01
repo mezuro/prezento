@@ -25,7 +25,7 @@
       <div class="help-container">
         <p>
           <%= t('body2_compound_form') %>
-           <%= link_to t('link_module_compound_form'),  tutorials_path("keywords", anchor: "module")%>'s grade.
+           <%= link_to t('module'),  tutorials_path("keywords", anchor: "module")%>'s grade.
         </p>
       </div>
     </div>
@@ -40,7 +40,7 @@
       </div>
       <div class="help-container">
         <p>
-          The <%= link_to t('link_reading_group_compound_form'), tutorials_path('keywords', anchor: 'reading_group') %> associated with this metric.
+          The <%= link_to t('reading_group'), tutorials_path('keywords', anchor: 'reading_group') %> associated with this metric.
         </p>
       </div>
     </div>
@@ -48,5 +48,5 @@
   </div>
 </div>
 <br>
-<%= f.submit t('buttom_save_compound_form'), class: 'btn btn-primary' %>
+<%= f.submit t('buttom_save'), class: 'btn btn-primary' %>
 <%= link_to t('link_back_compound_form'), mezuro_configuration_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
