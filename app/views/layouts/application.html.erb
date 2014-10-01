@@ -56,18 +56,18 @@
           <%= link_to image_tag('logo.png'), root_path, class: 'brand' %></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to t('home_layouts_application'), root_path %></li>
-              <li><%= link_to t('project_layouts_application'), projects_path %></li>
-              <li><%= link_to t('configuration_layouts_application'), mezuro_configurations_path %></li>
-              <li><%= link_to t('reading_group_layouts_application'), reading_groups_path %></li>
+              <li><%= link_to t('home'), root_path %></li>
+              <li><%= link_to t('project'), projects_path %></li>
+              <li><%= link_to t('configuration'), mezuro_configurations_path %></li>
+              <li><%= link_to t('reading_group'), reading_groups_path %></li>
             </ul>
             <ul class="nav" style="float: right;">
               <% if user_signed_in? %>
-                <li><%= link_to t('edit_account_layouts_application'), edit_user_registration_path %></li>
-                <li><%= link_to t('sign_out_layouts_application'), destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to t('edit_account'), edit_user_registration_path %></li>
+                <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
               <% else %>
-                <li><%= link_to t('sign_in_layouts_application'), new_user_session_path %></li>
-                <li><%= link_to t('sign_up_layouts_application'), new_user_registration_path %></li>
+                <li><%= link_to t('sign_in'), new_user_session_path %></li>
+                <li><%= link_to t('sign_up'), new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
