@@ -45,23 +45,25 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
+    <div class="navbar navbar-default">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <%= link_to image_tag('logo.png'), root_path, class: 'brand' %></a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
+           <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-target="#nav-collapse" data-toggle="collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a><%= link_to image_tag('logo.png'), root_path, class: 'navbar-brand' %></a>
+          </div>
+          <div class="collapse navbar-collapse" id="nav-collapse">
+            <ul class="nav navbar-nav">
               <li><%= link_to 'Home', root_path %></li>
               <li><%= link_to 'Project', projects_path %></li>
               <li><%= link_to 'Configuration', mezuro_configurations_path %></li>
               <li><%= link_to 'Reading Group', reading_groups_path %></li>
             </ul>
-            <ul class="nav" style="float: right;">
+            <ul class="nav navbar-nav" style="float: right;">
               <% if user_signed_in? %>
                 <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
                 <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
@@ -76,19 +78,19 @@
     </div>
 
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
+            <ul class="list-group">
               <% if user_signed_in? %>
                 <li class="nav-header">User info</li>
-                <li>Hello, <strong><%= current_user.name %></strong></li>
-                <li><%= link_to 'My projects', user_projects_path(current_user.id) %></li>
+                <li class="list-group-item">Hello, <strong><%= current_user.name %></strong></li>
+                <li class="list-group-item"><%= link_to 'My projects', user_projects_path(current_user.id) %></li>
               <% end %>
               <li class="nav-header">Tutorials</li>
-              <li><%= link_to 'Analysis', tutorials_path('analyzing') %></li>
-              <li><%= link_to 'Configuring', tutorials_path('configuring') %></li>
-              <li><%= link_to 'Keywords', tutorials_path('keywords') %></li>
+              <li class="list-group-item"><%= link_to 'Analysis', tutorials_path('analyzing') %></li>
+              <li class="list-group-item"><%= link_to 'Configuring', tutorials_path('configuring') %></li>
+              <li class="list-group-item" ><%= link_to 'Keywords', tutorials_path('keywords') %></li>
               <% if content_for?(:sidebar) %>
                 <%= yield :sidebar %>
               <% else %>
@@ -96,8 +98,8 @@
               <% end %>
             </ul>
           </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+        </div><!--/col-sm-3 col-md-3-->
+        <div class="col-sm-9 col-md-9">
           <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp&nbsp Wait an instant while we are loading the page that you have requested.</div>
 
           <%= bootstrap_flash %>
