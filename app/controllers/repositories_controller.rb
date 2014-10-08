@@ -71,9 +71,7 @@ class RepositoriesController < ApplicationController
       end
 
       respond_to do |format|
-        if @processing.nil?
-          format.js { render action: 'unprocessed' }
-        elsif @processing.state == 'READY'
+        if @processing.state == 'READY'
           format.js { render action: 'load_ready_processing' }
         elsif @processing.state == 'ERROR'
           format.js { render action: 'load_error' }
