@@ -1,3 +1,6 @@
-$('div#processing_information').html('<%= escape_javascript(render partial: "processing_information") %>');
-repository = new Module.Repository(<%= @repository.project_id %>, <%= @repository.id %>)
-repository.schedule_poll_state('<%= @processing.state %>')
+// This if prevents it from updating the repository's state after the user leaves its page
+if(document.URL == '<%= project_repository_url(@repository.project_id, @repository) %>'){
+  $('div#processing_information').html('<%= escape_javascript(render partial: "processing_information") %>');
+  repository = new Module.Repository(<%= @repository.project_id %>, <%= @repository.id %>)
+  repository.schedule_poll_state('<%= @processing.state %>')
+}
