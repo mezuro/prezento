@@ -1,7 +1,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :name, class: 'control-label' %>
-        <%= f.text_field :name, class: 'text-field', value: (metric.name unless metric.nil?) %>
+        <%= f.text_field :name, class: 'text-field form-control', value: (metric.name unless metric.nil?) %>
       </div>
       <div class="help-container">
         <p>
@@ -13,7 +13,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :description, class: 'control-label' %>
-        <%= f.text_field :description, class: 'text-field', value: (metric.description unless metric.nil?)  %>
+        <%= f.text_field :description, class: 'text-field form-control', value: (metric.description unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
@@ -25,7 +25,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :script, class: 'control-label' %>
-        <%= f.text_area :script, class: 'text-area', value: (metric.script unless metric.nil?)  %>
+        <%= f.text_area :script, class: 'text-area form-control', value: (metric.script unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
