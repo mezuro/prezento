@@ -3,44 +3,44 @@
 </div>
 
 <p>
-  <strong>Base Tool Name:</strong>
+  <strong> <%= t('base_tool_metric_configurations_show') %> </strong>
   <%= @metric_configuration.metric_collector_name %>
 </p>
 
 <p>
-  <strong>Code:</strong>
+  <strong><%= t('code_metric_configurations_show') %></strong>
   <%= @metric_configuration.code %>
 </p>
 
 <p>
-  <strong>Weight:</strong>
+  <strong> <%= t('weight_metric_configurations_show') %></strong>
   <%= @metric_configuration.weight %>
 </p>
 
 <p>
-  <strong>Language:</strong>
+  <strong><%= t('language_metric_configurations_show') %></strong>
   <%= @metric_configuration.metric.language %>
 </p>
 
 <p>
-  <strong>Scope:</strong>
+  <strong><%= t('scope') %></strong>
   <%= @metric_configuration.metric.scope %>
 </p>
 
 <p>
-  <strong>Aggregation Form:</strong>
+  <strong> <%= t('aggregation_metric_configurations_show') %> </strong>
   <%= @metric_configuration.aggregation_form %>
 </p>
 
 <p>
-  <strong>Reading Group Name:</strong>
+  <strong> <%= t('reading_metric_configurations_show') %> </strong>
   <%= @reading_group.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description_metric_configurations_show') %></strong>
   <% if @metric_configuration.metric.description.nil? %>
-    <%= "There is no description available." %>
+    <%= t('no_description_metric_configurations_show') %>
   <% else %>
     <%= @metric_configuration.metric.description %> 
   <% end %>
@@ -48,7 +48,7 @@
 </p>
 <hr>
 
-<h2> Ranges </h2>
+<h2> <%= t('ranges_metric_configurations_show') %> </h2>
 <% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
   <%= link_to 'Add Range', mezuro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, 
       @metric_configuration.id), class: 'btn btn-info' %>
@@ -57,9 +57,9 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Label</th>
-      <th>Beginning</th>
-      <th>End</th>
+      <th> <%= t('label_metric_configurations_show') %></th>
+      <th> <%= t('beginning_metric_configurations_show') %> </th>
+      <th> <%= t('end_metric_configurations_show') %> </th>
     </tr>
   </thead>
   <tbody>

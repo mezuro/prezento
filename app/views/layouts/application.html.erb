@@ -56,18 +56,18 @@
           <%= link_to image_tag('logo.png'), root_path, class: 'brand' %></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Project', projects_path %></li>
-              <li><%= link_to 'Configuration', mezuro_configurations_path %></li>
-              <li><%= link_to 'Reading Group', reading_groups_path %></li>
+              <li><%= link_to t('home'), root_path %></li>
+              <li><%= link_to t('project'), projects_path %></li>
+              <li><%= link_to t('configuration'), mezuro_configurations_path %></li>
+              <li><%= link_to t('reading_group'), reading_groups_path %></li>
             </ul>
             <ul class="nav" style="float: right;">
               <% if user_signed_in? %>
-                <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
-                <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to t('edit_account'), edit_user_registration_path %></li>
+                <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
               <% else %>
-                <li><%= link_to 'Sign In', new_user_session_path %></li>
-                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li><%= link_to t('sign_in'), new_user_session_path %></li>
+                <li><%= link_to t('sign_up'), new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
