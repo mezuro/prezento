@@ -11,7 +11,11 @@
 
 <h2>Readings</h2>
 
-<% if reading_groups_owner? @reading_group.id %><%= link_to 'New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
+<% if reading_groups_owner? @reading_group.id %>
+  <span data-toggle="tooltip" data-placement="left" title="Create a new Reading">
+    <%= link_to 'New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %>
+  </span>
+ <% end %>
 
 <table class="table table-hover">
   <thead>
@@ -34,7 +38,7 @@
 
 <hr />
 
-<p>
+<p  data-toggle="tooltip" data-placement="left" title="Destroy this Reading">
   <% if reading_groups_owner? @reading_group.id %>
     <%= link_to 'Destroy Reading Group', reading_group_path(@reading_group.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Reading Group?' }, class: 'btn btn-danger' %>
   <% end %>

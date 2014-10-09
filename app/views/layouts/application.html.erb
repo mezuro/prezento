@@ -56,18 +56,18 @@
           <%= link_to image_tag('logo.png'), root_path, class: 'brand' %></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Project', projects_path %></li>
-              <li><%= link_to 'Configuration', mezuro_configurations_path %></li>
-              <li><%= link_to 'Reading Group', reading_groups_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="Home page" ><%= link_to 'Home', root_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="List all projects"><%= link_to 'Project', projects_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="Metrics Configurations"><%= link_to 'Configuration', mezuro_configurations_path %></li>
+              <li data-toggle="tooltip" data-placement="left" title="Reading Group"><%= link_to 'Reading Group', reading_groups_path %></li>
             </ul>
             <ul class="nav" style="float: right;">
               <% if user_signed_in? %>
-                <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
-                <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Edit your account"><%= link_to 'Edit Account', edit_user_registration_path %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Sign out" ><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
               <% else %>
-                <li><%= link_to 'Sign In', new_user_session_path %></li>
-                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Sign in using an existing account" ><%= link_to 'Sign In', new_user_session_path %></li>
+                <li data-toggle="tooltip" data-placement="left" title="Create a new Mezuro account"><%= link_to 'Sign Up', new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
