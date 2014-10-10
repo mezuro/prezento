@@ -9,6 +9,6 @@ Feature: User projects list
     And I own a sample project
     And I am signed in
     And I am at the homepage
-    When I click the My projects link
+    When I click the Your projects link
     Then I should be in the User Projects page
     And the sample project should be there

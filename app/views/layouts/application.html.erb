@@ -83,9 +83,8 @@
           <div class="well sidebar-nav">
             <ul class="list-group">
               <% if user_signed_in? %>
-                <li class="nav-header">User info</li>
-                <li class="list-group-item">Hello, <strong><%= current_user.name %></strong></li>
-                <li class="list-group-item"><%= link_to 'My projects', user_projects_path(current_user.id) %></li>
+                <li class="nav-header">Hello, <strong><%= current_user.name %></strong></li>
+                <li class="list-group-item"><%= link_to 'Your projects', user_projects_path(current_user.id) %></li>
               <% end %>
               <li class="nav-header">Tutorials</li>
               <li class="list-group-item"><%= link_to 'Analysis', tutorials_path('analyzing') %></li>
