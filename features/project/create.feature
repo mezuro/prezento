@@ -42,6 +42,6 @@ Feature: Project Creation
     Given I am a regular user
     And I am signed in
     And I am at the homepage
-    And I click the My projects link
+    And I click the Your projects link
     When I click the New Project link
     Then I should see "New Project"
