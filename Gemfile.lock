@@ -139,7 +139,7 @@ GEM
     kalibro_gatekeeper_client (1.0.0)
       activesupport (>= 2.2.1)
       faraday_middleware (~> 0.9.0)
-    konacha (3.2.4)
+    konacha (3.2.5)
       actionpack (>= 3.1, < 5)
       capybara
       colorize
