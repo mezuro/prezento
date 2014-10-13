@@ -28,7 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.1.2'
 
 # For user authentication and everything else
-gem 'devise', '~> 3.3.0'
+gem 'devise', '~> 3.4.0'
 
 # Kalibro integration
 gem 'kalibro_gatekeeper_client', '~> 1.0.0'
