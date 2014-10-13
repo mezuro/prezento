@@ -22,6 +22,10 @@ When(/^I click the edit link of the Coumpound Metric$/) do
   page.find('tr', :text => @compound_metric_configuration.metric.name).click_link('Edit')
 end
 
+When(/^I click the show link of the Coumpound Metric$/) do
+  page.find('tr', :text => "My Compound Metric").click_link('Show')
+end
+
 Then(/^I should be at compound metric configuration sample page$/) do
   expect(page).to have_content(@compound_metric_configuration.metric.name)
   expect(page).to have_content("Ranges")

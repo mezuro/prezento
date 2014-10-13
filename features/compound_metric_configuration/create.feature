@@ -3,7 +3,7 @@ Feature: Compound Metric Configuration Creation
   As a regular user
   I should be able to create compound metric configurations
 
-  @wip @kalibro_restart @javascript
+  @kalibro_restart @javascript
   Scenario: compound metric configuration creation
     Given I am a regular user
     And I am signed in
@@ -24,6 +24,9 @@ Feature: Compound Metric Configuration Creation
     And I set the select field "Scope" as "Class"
     And I set the select field "Reading Group" as "Scholar"
     And I press the Save button
+    When I click the show link of the Coumpound Metric
     Then I should see "My Compound Metric"
     And I should see "mcm"
     And I should see "8"
+    And I should see "AVERAGE"
+    
