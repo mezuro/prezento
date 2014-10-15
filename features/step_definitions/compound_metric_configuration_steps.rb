@@ -22,8 +22,8 @@ When(/^I click the edit link of the Coumpound Metric$/) do
   page.find('tr', :text => @compound_metric_configuration.metric.name).click_link('Edit')
 end
 
-When(/^I click the show link of the Coumpound Metric$/) do
-  page.find('tr', :text => "My Compound Metric").click_link('Show')
+When(/^I click the show link of "(.*?)"$/) do |name|
+  page.find('tr', :text => name).click_link('Show')
 end
 
 Then(/^I should be at compound metric configuration sample page$/) do
