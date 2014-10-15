@@ -53,3 +53,8 @@
 .align-button {
   margin-bottom: 10px;
 }
+
+input:required {
+  background: #f0ffff;
+  text-shadow: none;
+}
