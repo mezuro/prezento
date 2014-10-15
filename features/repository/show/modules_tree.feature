@@ -38,7 +38,8 @@ Feature: Repository modules tree
     And I should see "Granularity"
     And I should see "Grade"
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  # This test is broken under analizo 1.17.0: https://www.pivotaltracker.com/story/show/80377258
+  @wip @kalibro_restart @kalibro_processor_restart @javascript
   Scenario: Module navigation
     Given I am a regular user
     And I am signed in
