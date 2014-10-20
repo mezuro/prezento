@@ -39,13 +39,17 @@ Feature: Compound Metric Configuration edition
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     When I visit the sample compound metric configuration edit page
+    And I fill the Name field with " "
+    And I fill the Script field with " "
     And I fill the Code field with " "
     And I fill the Weight field with " "
-    And I fill the Name field with " "
     And I press the Save button
     Then I should see "Edit Compound Metric Configuration"
+    And I should see "Name can't be blank"
+    And I should see "Script can't be blank"
     And I should see "Code can't be blank"
     And I should see "Weight can't be blank"
+
 
   @kalibro_restart
   Scenario: trying to edit with an existing code
