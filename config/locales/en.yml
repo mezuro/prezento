@@ -116,7 +116,7 @@ en:
   edit_configuration: "Edit Configuration"
   must_logged_configuration: "You must be logged in to create new Configurations."
   new_configuration: "New Configuration"
-  calculate_weighted_avange: "It is used to calculate the weighted average of a"
   measured_metric: "measured by this metric."
   change_password: "Change your password "
   no_metric_configurations: "There are no Metric Configurations yet!"
+  calculate_weighted_avange: "It is used to calculate the weighted average of a "
