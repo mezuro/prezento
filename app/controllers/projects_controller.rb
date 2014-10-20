@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @project_image = ProjectImage.new
   end
 
   # GET /projects
@@ -31,7 +32,7 @@ class ProjectsController < ApplicationController
   def show
     set_project
     @project_repositories = @project.repositories
-    @project_image = ProjectImage.find_by_project_id(@project.id).image_url
+    @project_image = ProjectImage.find_by_project_id(@project.id)
   end
 
   # GET /projects/1/edit
@@ -98,13 +99,19 @@ class ProjectsController < ApplicationController
       if url.blank?
         url = "no-image-available.png"
       end
-      ProjectImage.find_by_project_id(project_id).update(image_url: url)
+      @project_image = ProjectImage.find_by_project_id(project_id)
+      if !@project_image.blank?
+        @project_image.update(image_url: url)
+      end
     end
 
     def check_no_image project_id
-      @project_image = ProjectImage.find_by_project_id(project_id).image_url
-      if @project_image == "no-image-available.png"
-        @project_image = ""
+      @project_image = ProjectImage.find_by_project_id(project_id)
+
+      if !@project_image.blank?
+         if @project_image.image_url == "no-image-available.png"
+           @project_image.image_url = ""
+         end
       end
     end
 
