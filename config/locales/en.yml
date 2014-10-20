@@ -33,6 +33,8 @@ en:
   end: "End"
   the: "The"
   of_the: "of the"
+  end: "End"
+  the: "The"
   and: "and"
   name: "Name"
   label: "Label"
@@ -53,7 +55,6 @@ en:
   no_description: "There is no description available."
   welcome: "Welcome"
   metrics: "Metrics"
-
 
   #this pattern is type_folder_file  
 
