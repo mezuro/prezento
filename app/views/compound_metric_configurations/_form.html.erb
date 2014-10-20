@@ -13,11 +13,7 @@
       </div>
       <div class="help-container">
         <p>
-        A variable that holds the value of a metric calculation. It can be used in the script of another compound metric.
-        </p>
-        <p>
-          Example:
-          Code foo := 10
+         <%= t('body1_compound_form').html_safe %>
         </p>
       </div>
     </div>
@@ -29,7 +25,7 @@
       </div>
       <div class="help-container">
         <p>
-          It is used to calculate the weighted average of a <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%>'s grade.
+           <%= t('calculate_weighted_avange') %> <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%>  <%= t('grade') %>
         </p>
       </div>
     </div>
@@ -44,7 +40,7 @@
       </div>
       <div class="help-container">
         <p>
-          The <%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading_group') %> associated with this metric.
+           <%= t('the') %> <%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading_group') %>  <%= t('associated_metric_configuration_form') %>
         </p>
       </div>
     </div>
@@ -52,5 +48,5 @@
   </div>
 </div>
 <br>
-<%= f.submit 'Save', class: 'btn btn-primary' %>
-<%= link_to 'Back', mezuro_configuration_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
+<%= f.submit  t('buttom_save'), class: 'btn btn-primary' %>
+<%= link_to t('buttom_back'), mezuro_configuration_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
