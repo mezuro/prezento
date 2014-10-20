@@ -34,6 +34,8 @@ en:
   end: "End"
   the: "The"
   of_the: "of the"
+  end: "End"
+  the: "The"
   and: "and"
   name: "Name"
   label: "Label"
@@ -109,7 +111,6 @@ en:
 =======
   metrics: "Metrics"
 >>>>>>> Inserting variables in the translation file and modifying views
-
 
   #this pattern is type_folder_file  
 
