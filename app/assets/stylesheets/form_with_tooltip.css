@@ -58,3 +58,7 @@ input:required {
   background: #f0ffff;
   text-shadow: none;
 }
+
+textarea:required {
+  background: #f0ffff;
+}

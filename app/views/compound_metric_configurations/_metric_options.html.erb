@@ -1,8 +1,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :name, class: 'control-label' %>
-        <%-#FIXME Change the following field to "required => true" after CompoundMetrics Form Bug fix -%>
-        <%= f.text_field :name, class: 'text-field form-control', value: (metric.name unless metric.nil?) %>
+        <%= f.text_field :name, :required => true, class: 'text-field form-control', value: (metric.name unless metric.nil?) %>
       </div>
       <div class="help-container">
         <p>
@@ -26,8 +25,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :script, class: 'control-label' %>
-        <%-#FIXME Change the following field to "required => true" after CompoundMetrics Form Bug fix -%>
-        <%= f.text_area :script, class: 'text-area form-control', value: (metric.script unless metric.nil?)  %>
+        <%= f.text_area :script, :required => true, class: 'text-area form-control', value: (metric.script unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
