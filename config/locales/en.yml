@@ -31,11 +31,15 @@ en:
   edit_user: "Edit User"
   buttom_save: "Save"
   buttom_back: "Back"
+<<<<<<< HEAD
   end: "End"
   the: "The"
   of_the: "of the"
+=======
+>>>>>>> Internationalizing the package files compound_metric
   end: "End"
   the: "The"
+  of_the: "of the"
   and: "and"
   name: "Name"
   label: "Label"
