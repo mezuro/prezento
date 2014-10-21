@@ -31,7 +31,7 @@
     });
   });
 
-  <% if @exist_metric.nil? %>
+  <% if MetricConfiguration.metric_configurations_of(@mezuro_configuration_id).blank? %>
     $("#link_to_compound").css("display", "none");
   <% end %>
 </script>
