@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Forgot your password?</h1>
+  <h1> <%= t('forgot_password') %></h1>
 </div>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
@@ -14,7 +14,7 @@
         </div>
         <div class="help-container">
           <p>
-            The same email address used to sign up.
+             <%= t('email_address') %>
           </p>
         </div>
       </div>
