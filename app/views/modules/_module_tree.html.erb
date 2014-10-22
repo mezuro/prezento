@@ -1,13 +1,13 @@
 <p>
-  <strong>Name:</strong>
+  <strong>  <%= t('name') %></strong>
   <%= format_module_name(@root_module_result.module.name) %>
 </p>
 <p>
-  <strong>Granularity:</strong>
+  <strong> <%= t('granularity') %></strong>
   <%= @root_module_result.module.granularity %>
 </p>
 <p>
-  <strong>Grade:</strong>
+  <strong> <%= t('grade') %></strong>
   <%= format_grade(@root_module_result.grade) %>
 </p>
 <% unless @root_module_result.parent_id.nil? %>
@@ -19,9 +19,9 @@
   <% unless children.empty? %>
     <table class="table table-hover">
       <thead>
-        <th>Name</th>
-        <th>Granularity</th>
-        <th>Grade</th>
+        <th> <%= t('name') %></th>
+        <th>  <%= t('granularity') %></th>
+        <th> <%= t('grade') %></th>
       </thead>
       <tbody>
         <%= render partial: 'module_result', collection: children %>
