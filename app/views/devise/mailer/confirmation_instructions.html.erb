@@ -2,4 +2,4 @@
 
 <p> <%= t('confirm_account_email') %></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+<p><%= link_to t('confirm_my_account'), confirmation_url(@resource, :confirmation_token => @token) %></p>

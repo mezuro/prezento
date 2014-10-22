@@ -82,4 +82,4 @@
 
 <h2> <%= t('cancel_account') %></h2>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Do you really want to cancel your account?" }, :method => :delete, class: 'btn btn-danger' %></p>
+<p><%= t('unhappy') %> <%= button_to  t('cancel_account'), registration_path(resource_name), :data => { :confirm =>  t('really_want_cancel_account') }, :method => :delete, class: 'btn btn-danger' %></p>
