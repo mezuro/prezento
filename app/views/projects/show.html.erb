@@ -16,22 +16,22 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong>  <%= t('description') %></strong>
   <%= @project.description %>
 </p>
 
 <hr />
 
-<h2>Repositories</h2>
+<h2> <%= t('repositories') %></h2>
 
 <% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Address</th>
+      <th> <%= t('name') %> </th>
+      <th> <%= t('type') %> </th>
+      <th> <%= t('address') %></th>
       <th colspan="2"></th>
     </tr>
   </thead>
