@@ -3,7 +3,7 @@ require "validators/kalibro_uniqueness_validator.rb"
 class Project < KalibroGatekeeperClient::Entities::Project
   include KalibroRecord
 
-  attr_accessor :name
+  attr_accessor :name,:image_url
   validates :name, presence: true, kalibro_uniqueness: true
 
   def repositories
