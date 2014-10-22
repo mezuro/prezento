@@ -56,6 +56,7 @@ en:
   new_projects: "New Project"
   no_description: "There is no description available."
   welcome: "Welcome"
+<<<<<<< HEAD
   metrics: "Metrics"
   metric: "Metric"
   value: "Value"
@@ -102,6 +103,8 @@ en:
   month: "Month"
   year: "Year"
   search: "Search"
+=======
+>>>>>>> Modifying files for internationalization
 
 
   #this pattern is type_folder_file  
