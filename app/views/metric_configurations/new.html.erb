@@ -3,23 +3,23 @@
 </div>
 
 <p>
-  <b>Base Tool:</b> <%= @metric_configuration.metric_collector_name %>
+  <b>  <%= t('base_metric_configurations_new') %> </b> <%= @metric_configuration.metric_collector_name %>
 </p>
 
 <p>
-  <b>Metric Name:</b> <%= @metric_configuration.metric.name %>
+  <b> <%= t('metric_name_metric_configuration_new') %></b> <%= @metric_configuration.metric.name %>
 </p>
 
 <p>
-  <b>Metric Description:</b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric_configuration.metric.description %>
+  <b>  <%= t('metric_description_metric_configurations_new') %></b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric_configuration.metric.description %>
 </p>
 
 <p>
-  <b>Language:</b> <%= @metric_configuration.metric.languages.to_s %>
+  <b> <%= t('language') %> </b> <%= @metric_configuration.metric.languages.to_s %>
 </p>
 
 <p>
-  <b>Scope:</b> <%= @metric_configuration.metric.scope %>
+  <b> <%= t('scope') %> </b> <%= @metric_configuration.metric.scope %>
 </p>
 
 <br>
