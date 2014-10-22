@@ -51,6 +51,7 @@ en:
   language: "Language:"
   new_projects: "New Project"
   no_description: "There is no description available."
+  welcome: "Welcome"
 
 
   #this pattern is type_folder_file  
@@ -114,3 +115,4 @@ en:
   new_configuration: "New Configuration"
   calculate_weighted_avange: "It is used to calculate the weighted average of a"
   measured_metric: "measured by this metric."
+  change_password: "Change your password "
