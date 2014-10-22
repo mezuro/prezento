@@ -57,6 +57,7 @@ en:
   no_description: "There is no description available."
   welcome: "Welcome"
 <<<<<<< HEAD
+<<<<<<< HEAD
   metrics: "Metrics"
   metric: "Metric"
   value: "Value"
@@ -105,6 +106,9 @@ en:
   search: "Search"
 =======
 >>>>>>> Modifying files for internationalization
+=======
+  metrics: "Metrics"
+>>>>>>> Inserting variables in the translation file and modifying views
 
 
   #this pattern is type_folder_file  
