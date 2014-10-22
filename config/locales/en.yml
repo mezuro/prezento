@@ -66,6 +66,7 @@ en:
   repositories: "Repositories"
   type: "Type"
   address: "Address"
+<<<<<<< HEAD
   script: "Script:"
   add_range: "Add Range"
   back: "Back"
@@ -109,6 +110,8 @@ en:
 =======
   metrics: "Metrics"
 >>>>>>> Inserting variables in the translation file and modifying views
+=======
+>>>>>>> Inserting translation files
 
 
   #this pattern is type_folder_file  
