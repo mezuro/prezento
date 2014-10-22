@@ -23,7 +23,7 @@
         <div class="field-container" >
            <%= f.label :beginning, class: 'control-label' %>
            <div class="input-group">
-              <%= f.text_field :beginning, class: 'diminished-text-field form-control' %>
+              <%= f.text_field :beginning, :required => true, class: 'diminished-text-field form-control' %>
               <span class="input-group-btn">
                 <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_beginning' ).val('-INF');", class: 'btn btn-default' %>
               </span>
@@ -41,7 +41,7 @@
         <div class="field-container">
           <%= f.label :end, class: 'control-label' %>
           <div class="input-group">
-            <%= f.text_field :end, class: 'diminished-text-field form-control' %>
+            <%= f.text_field :end, :required => true, class: 'diminished-text-field form-control' %>
              <span class="input-group-btn">
                 <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
               </span>
