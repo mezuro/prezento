@@ -67,6 +67,7 @@ en:
   type: "Type"
   address: "Address"
 <<<<<<< HEAD
+<<<<<<< HEAD
   script: "Script:"
   add_range: "Add Range"
   back: "Back"
@@ -113,6 +114,11 @@ en:
 =======
 >>>>>>> Inserting translation files
 
+=======
+  script: "Script:"
+  add_range: "Add Range"
+  back: "Back"
+>>>>>>> Working on internationalization: updeted files
 
   #this pattern is type_folder_file  
 
