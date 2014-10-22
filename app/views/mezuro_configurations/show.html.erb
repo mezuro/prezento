@@ -3,13 +3,13 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description') %></strong>
   <%= @mezuro_configuration.description %>
 </p>
 
 <hr>
 
-<h2> Metrics </h2>
+<h2>  <%= t('metrics') %> </h2>
 <% if mezuro_configuration_owner? @mezuro_configuration.id %>
 <%  options = @mezuro_configuration_metric_configurations.empty? ? {} : {exist_metric: true}%>
   <%= link_to 'Add Metric', mezuro_configuration_choose_metric_path(@mezuro_configuration.id, options), class: 'btn btn-info' %>
@@ -18,9 +18,9 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Metric Name</th>
-      <th>Code</th>
-      <th>Weight</th>
+      <th> <%= t('metric_name_metric_configuration_new') %></th>
+      <th> <%= t('code') %> </th>
+      <th> <%= t('weight') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

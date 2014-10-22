@@ -10,7 +10,7 @@
       </div>
       <div class="help-container">
         <p>
-          It is used to calculate the weighted average of a <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%>'s grade.
+           <%= t('body2_compound_form') %> <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%> <%= t('grade') %>
         </p>
       </div>
     </div>
@@ -22,7 +22,7 @@
       </div>
       <div class="help-container">
         <p>
-          It is the calculation of statistical results for higher <%= link_to 'granularity', tutorials_path('keywords', anchor: 'granularity') %> modules (e.g., average lines of code of the classes inside a package).
+           <%= t('statistical_result_metric_configurations_form') %> <%= link_to 'granularity', tutorials_path('keywords', anchor: 'granularity') %>  <%= t('modules_eg_metric_configurations_form') %>
         </p>
       </div>
     </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="help-container">
             <p>
-              The <%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading-group') %> associated with this metric.
+               <%= t('the') %><%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading-group') %>  <%= t('associated_metric_configuration_form') %>
             </p>
           </div>
         </div>

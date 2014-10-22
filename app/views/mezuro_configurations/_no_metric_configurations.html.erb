@@ -1,4 +1,4 @@
 <tr>
   <% col_number = mezuro_configuration_owner?(@mezuro_configuration.id) ? 5 : 3 %>
-  <td colspan="<%= col_number %>">There are no Metric Configurations yet!</td>
+  <td colspan="<%= col_number %>"><%= t('no_metric_configurations') %></td>
 </tr>
