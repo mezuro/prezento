@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
+      add_image_url(project_params[:image_url], @project.id)
     end
   end
 
@@ -30,16 +31,19 @@ class ProjectsController < ApplicationController
   def show
     set_project
     @project_repositories = @project.repositories
+    @project_image = ProjectImage.find_by_project_id(@project.id).image_url
   end
 
   # GET /projects/1/edit
   # GET /projects/1/edit.json
   def edit
     set_project
-  end 
+    check_no_image(@project.id)
+  end
 
   def update
     set_project
+    update_image_url(project_params[:image_url], @project.id)
     if @project.update(project_params)
       redirect_to(project_path(@project.id))
     else
@@ -82,4 +86,26 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+
+    def add_image_url url,project_id
+      if url.blank?
+        url = "no-image-available.png"
+      end
+      ProjectImage.create(image_url: url,project_id: project_id )
+    end
+
+    def update_image_url url,project_id
+      if url.blank?
+        url = "no-image-available.png"
+      end
+      ProjectImage.find_by_project_id(project_id).update(image_url: url)
+    end
+
+    def check_no_image project_id
+      @project_image = ProjectImage.find_by_project_id(project_id).image_url
+      if @project_image == "no-image-available.png"
+        @project_image = ""
+      end
+    end
+
 end
