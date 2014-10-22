@@ -1,9 +1,9 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Sign In", new_session_path(resource_name), class: 'btn btn-info' %>
+  <%= link_to t('sign_in'), new_session_path(resource_name), class: 'btn btn-info' %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign Up", new_registration_path(resource_name), class: 'btn btn-info' %>
+  <%= link_to t('sign_up'), new_registration_path(resource_name), class: 'btn btn-info' %>
 <% end -%>
 
 <!-- <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
@@ -11,11 +11,11 @@
 <% end -%> -->
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Have you received confirmation instructions?", new_confirmation_path(resource_name), class: 'btn btn-info' %>
+  <%= link_to t('received_confirmation_instructions'), new_confirmation_path(resource_name), class: 'btn btn-info' %>
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Have you received unlock instructions?", new_unlock_path(resource_name), class: 'btn btn-info' %>
+  <%= link_to t('received_unlock_instructions'), new_unlock_path(resource_name), class: 'btn btn-info' %>
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
