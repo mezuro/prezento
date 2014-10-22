@@ -52,6 +52,7 @@ en:
   new_projects: "New Project"
   no_description: "There is no description available."
   welcome: "Welcome"
+  metrics: "Metrics"
 
 
   #this pattern is type_folder_file  
@@ -116,3 +117,4 @@ en:
   calculate_weighted_avange: "It is used to calculate the weighted average of a"
   measured_metric: "measured by this metric."
   change_password: "Change your password "
+  no_metric_configurations: "There are no Metric Configurations yet!"
