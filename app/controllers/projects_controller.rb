@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
-      add_image_url(project_params[:image_url], @project.id)
+      ProjectImage.create(image_url: project_params[:image_url],project_id: @project.id )
     end
   end
 
@@ -39,12 +39,18 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit.json
   def edit
     set_project
-    check_no_image(@project.id)
+    @project_image = ProjectImage.find_by_project_id(@project.id)
+    if !@project_image.nil?
+      @project_image.check_no_image
+    end
   end
 
   def update
     set_project
-    update_image_url(project_params[:image_url], @project.id)
+    @project_image = ProjectImage.find_by_project_id(@project.id)
+    if !@project_image.nil?
+      @project_image.update(project_params[:image_url])
+    end
     if @project.update(project_params)
       redirect_to(project_path(@project.id))
     else
@@ -79,7 +85,6 @@ class ProjectsController < ApplicationController
     def create_and_redir(format)
       if @project.save
         current_user.project_ownerships.create project_id: @project.id
-
         format.html { redirect_to project_path(@project.id), notice: t('successfully_created', :record => t(@project.class)) }
         format.json { render action: 'show', status: :created, location: @project }
       else
@@ -87,32 +92,4 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
-
-    def add_image_url url,project_id
-      if url.blank?
-        url = "no-image-available.png"
-      end
-      ProjectImage.create(image_url: url,project_id: project_id )
-    end
-
-    def update_image_url url,project_id
-      if url.blank?
-        url = "no-image-available.png"
-      end
-      @project_image = ProjectImage.find_by_project_id(project_id)
-      if !@project_image.blank?
-        @project_image.update(image_url: url)
-      end
-    end
-
-    def check_no_image project_id
-      @project_image = ProjectImage.find_by_project_id(project_id)
-
-      if !@project_image.blank?
-         if @project_image.image_url == "no-image-available.png"
-           @project_image.image_url = ""
-         end
-      end
-    end
-
 end
