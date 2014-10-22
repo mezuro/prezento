@@ -27,6 +27,8 @@ Scenario: repository creation blank validations
   And I own a sample project
   And I have a sample configuration with native metrics
   And I am at the New Repository page
+  And I fill the Name field with " "
+  And I fill the Address field with " "
   And I set the select field "License" as "ISC License (ISC)"
   And I set the select field "Type" as "GIT"
   And I set the select field "Process Period" as "1 day"
