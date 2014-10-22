@@ -3,26 +3,26 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description') %></strong>
   <% if @compound_metric_configuration.metric.description.nil? %>
-    <%= "There is no description available." %>
+    <%= t('no_description') %>
   <% else %>
     <%= @compound_metric_configuration.metric.description %>
   <% end %>
 </p>
 
 <p>
-  <strong>Script:</strong>
+  <strong>  <%= t('script') %></strong>
   <%= @compound_metric_configuration.metric.script %>
 </p>
 
 <p>
-  <strong>Scope:</strong>
+  <strong> <%= t('scope') %></strong>
   <%= @compound_metric_configuration.metric.scope %>
 </p>
 
 <p>
-  <strong>Code:</strong>
+  <strong> <%= t('code') %></strong>
   <%= @compound_metric_configuration.code %>
 </p>
 
@@ -45,15 +45,15 @@
 
 <h2> Ranges </h2>
 <% if mezuro_configuration_owner? @compound_metric_configuration.configuration_id %>
-  <%= link_to 'Add Range', mezuro_configuration_metric_configuration_new_mezuro_range_path(@compound_metric_configuration.configuration_id,
+  <%= link_to  t('add_range'), mezuro_configuration_metric_configuration_new_mezuro_range_path(@compound_metric_configuration.configuration_id,
       @compound_metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Label</th>
-      <th>Beginning</th>
+      <th> <%= t('label') %> </th>
+      <th> <%= t('beginning') %></th>
       <th>End</th>
     </tr>
   </thead>
@@ -69,10 +69,10 @@
 <hr>
 
 <p>
- <%= link_to 'Back', mezuro_configuration_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
+ <%= link_to t('back'), mezuro_configuration_path(@compound_metric_configuration.configuration_id), class: 'btn btn-default' %>
 <% if mezuro_configuration_owner? @compound_metric_configuration.configuration_id %>
-      <%= link_to 'Destroy Metric Configuration', mezuro_configuration_metric_configuration_path(@compound_metric_configuration.configuration_id,
-      @compound_metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' },
+      <%= link_to t('destroy_metric_configuration'), mezuro_configuration_metric_configuration_path(@compound_metric_configuration.configuration_id,
+      @compound_metric_configuration.id), method: :delete, data: { confirm:  t('sure_destroy_metric_configuration')  },
       class: 'btn btn-danger' %>
  <% end %>
 </p>
