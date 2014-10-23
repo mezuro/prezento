@@ -1,76 +1,77 @@
-<h1>Tutorial</h1>
-<h2>Setting a New Configuration</h2>
+<h1> <%= t('tutorial') %></h1>
+<h2> <%= t('setting_new_configuration') %></h2>
 
 <hr />
 
-<h3>Requisites</h3>
+<h3><%= t('requisites') %></h3>
 
-In order to create a Configuration, you must:
+ <%= t('order_create_configuration') %>
 <ul>
-  <li>Have <%= link_to("signed up", new_user_registration_path) %> to the platform</li>
-  <li>Be <%= link_to("signed in", new_user_session_path) %></li>
-  <li>Have already created at least one Reading Group</li>
+  <li> <%= t('have') %> <%= link_to( t('signed_up'), new_user_registration_path) %>  <%= t('to_platform') %> </li>
+  <li> <%= t('be') %><%= link_to( t('signed_in'), new_user_session_path) %></li>
+  <li> <%= t('already_reading_group') %></li>
 </ul>
 
 <hr />
 
-<h3>Introduction</h3>
+<h3> <%= t('instroduction') %></h3>
 
-To process a repository, Mezuro uses configurations which you specify on the <%= link_to "repository creation", tutorials_path('analyzing') %>. Here you will be briefly introduced to all the components of a configuration and then guided through the steps to create one.
-
-<h4>Configuration components</h4>
+ <%= t('repository_mezuro_configurations') %> <%= link_to t('repository_creation'), tutorials_path('analyzing') %> <%= t('briefly_components_configuration') %>
+<h4> <%= t('configuration_components') %></h4>
 <ul>
-  <li><b>Configuration</b>: just a high level container for the remaining components association</li>
-  <li><b>Metrics</b>: specification of which metric will be calculated during the processing and how to interpret its results</li>
+  <li><b> <%= t('configuration') %></b> <%= t('remaining_components_association') %></li>
+  <li><b> <%= t('metrics') %></b> <%= t('processing_interpret_results') %></li>
     <ul>
-      <li>Weight: for each module it is given a grade which is a weighted average of all the metrics calculated for it. This field is the weight of the metric on the final grade</li>
-      <li>Aggregation Form: Not all the metrics can be calculated for every module. For this type of metric, we calculate the aggregation of the children values according to what this field specifies</li>
-      <li>Reading Group: specifies which set of interpretations (called readings) will be available for this metric</li>
+      <li> <%= t('metric_final_grade') %></li>
+      <li> <%= t('according_field_specifies') %></li>
+      <li> <%= t('reading_group_specifies_interpretations') %></li>
     </ul>
-  <li><b>Reading Group</b>: just a high level container for the readings (interpretations)</li>
+  <li><b> <%= t('reading_group') %></b>  <%= t('container_readings') %></li>
     <ul>
-      <li>Reading: interpretation for a given value providing label, grade (this is the grade used for the weighted average mentioned above) and color</li>
+      <li> <%= t('interpretation_value_providing') %></li>
     </ul>
-  <li><b>Range</b>: Associates number intervals to the readings of a given metric</li>
+  <li><b> <%= t('range') %></b> <%= t('associates_number_intervals') %></li>
 </ul>
 
 <hr />
 
-<h3>Steps</h3>
+<h3> <%= t('steps') %></h3>
 
 <ol>
-  <li>Configuration creation</li>
+  <li> <%= t('configuration_creation') %></li>
   <ol>
-    <li>Click on "Configuration" on the upper menu</li>
-    <li>Click on "New Configuration"</li>
+    <li> <%= t('click_configuration') %></li>
+    <li> <%= t('click_new_configuration') %></li>
     <ol>
-      <li>Fill in the form with a name that must be unique</li>
-      <li>Fill in the form with a description which is not required</li>
-      <li>Click on "Save" and you should be at the configuration page now</li>
+      <li> <%= t('fill_name_unique') %></li>
+      <li> <%= t('description_required') %></li>
+      <li> <%= t('click_save_configuration_page') %></li>
     </ol>
   </ol>
-  <li>Metric addition</li>
+  <li> <%= t('metric_addition') %></li>
   <ol>
-    <li>From the configuration page</li>
-    <li>Click on "Add Metric"</li>
-    <li>Select one collector from the options, and click on the metric that you want to add</li>
+    <li> <%= t('configuration_page') %></li>
+    <li>  <%= t('click_add_metric') %></li>
+    <li> <%= t('collector_options') %></li>
     <ol>
-      <li>Fill in the form with a "Weight", used to calculate the final grade</li>
-      <li>Select the "Aggregation Form" that will be used for this metric</li>
-      <li>Select the "Reading Group" which will provide the interpretations for this metric</li>
-      <li>Click on "Save" and you should be at the configuration page now with the new metric added</li>
+      <li> <%= t('fill_with_calculate') %></li>
+      <li> <%= t('select_aggregation_form') %></li>
+      <li> <%= t('select_reading_group') %></li>
+      <li> <%= t('click_save_configuration_metric') %></li>
     </ol>
   </ol>
-  <li>Ranges creation</li>
+  <li> <%= t('ranges_creation') %></li>
   <ol>
-    <li>From the configuration page</li>
-    <li>Click on "Show" for the metric which you want to create ranges for</li>
-    <li>Click on "Add Range"</li>
+    <li> <%= t('configuration_page') %></li>
+    <li> <%= t('click_show_metric_crate') %></li>
+    <li> <%= t('click_add_range') %></li>
     <ol>
-      <li>Fill in the form with the "Beginning" and "End" values for the interval</li>
-      <li>Fill in the form with the "Comments" which will be displayed if the metric value matches the interval</li>
-      <li>Select the "Reading" which will be associated with this range</li>
-      <li>Click on "Save" and you should be at the metric page with the new range added, congratulations!</li>
+      <li> <%= t('fill_beginning_end_values_interval') %>
+</li>
+      <li> <%= t('fill_comments_displayed') %>
+</li>
+      <li> <%= t('select_reading_range') %></li>
+      <li> <%= t('click_save_metric_range') %></li>
     </ol>
   </ol>
 </ol>
