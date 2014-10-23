@@ -8,13 +8,13 @@
  <%= t('order_created_project') %>
 <ul>
   <li> <%= t('have') %> <%= link_to( t('signed_up'), new_user_registration_path) %> to the platform</li>
-  <li>Be <%= link_to("signed in", new_user_session_path) %></li>
-  <li>And have a repository URL which you wish to analyze</li>
+  <li> <%= t('be') %> <%= link_to( t('signed_in'), new_user_session_path) %></li>
+  <li> <%= t('repository_which_analyse') %></li>
 </ul>
 
 <hr />
 
-<h3>Steps</h3>
+<h3> <%= t('steps') %></h3>
 
 <ol>
   <li>Project creation
