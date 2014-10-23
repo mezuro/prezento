@@ -11,7 +11,7 @@
 
 <h2>  <%= t('metrics') %> </h2>
 <% if mezuro_configuration_owner? @mezuro_configuration.id %>
-  <%= link_to 'Add Metric', mezuro_configuration_choose_metric_path(@mezuro_configuration.id), class: 'btn btn-info' %>
+  <%= link_to t('add_metric'), mezuro_configuration_choose_metric_path(@mezuro_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
@@ -35,8 +35,8 @@
 <hr>
 
 <p>
- <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
+ <%= link_to t('back'), mezuro_configurations_path, class: 'btn btn-default' %>
  <% if mezuro_configuration_owner? @mezuro_configuration.id %>
-   <%= link_to 'Destroy Configuration', mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
+   <%= link_to t('destroy_configuration'), mezuro_configuration_path(@mezuro_configuration.id), method: :delete, data: { confirm:  t('want_destroy_configuration') }, class: 'btn btn-danger' %>
  <% end %>
 </p>

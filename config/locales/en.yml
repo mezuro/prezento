@@ -160,4 +160,6 @@ en:
   mezuro_team: "The Mezuro Team"
   want_destroy_range: "Are you sure that you want to destroy this Range?"
   compound_metric: "Compound Metric"
-  
+  add_metric: "Add Metric"
+  destroy_configuration: "Destroy Configuration"
+  want_destroy_configuration: "Are you sure that you want to destroy this Configuration?"
