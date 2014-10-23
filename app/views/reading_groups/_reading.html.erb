@@ -7,7 +7,7 @@
       <%= link_to 'Edit', edit_reading_group_reading_path(@reading_group.id, reading.id), class: 'btn btn-info' %>
     </td>
     <td>
-      <%= link_to 'Destroy', reading_group_reading_path(@reading_group.id, reading.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Reading?' }, class: 'btn btn-danger' %>
+      <%= link_to  t('destroy'), reading_group_reading_path(@reading_group.id, reading.id), method: :delete, data: { confirm: t('want_destroy_reading')  }, class: 'btn btn-danger' %>
     </td>
     </td>
  <% end %>

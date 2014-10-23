@@ -11,7 +11,7 @@
       </div>
       <div class="help-container">
         <p>
-          The name of your Repository.
+           <%= t('name_repository') %>
         </p>
       </div>
     </div>
@@ -23,7 +23,7 @@
       </div>
       <div class="help-container">
         <p>
-          A short description of your Repository.
+           <%= t('short_description_repository') %>
         </p>
       </div>
     </div>
@@ -35,7 +35,7 @@
       </div>
       <div class="help-container">
         <p>
-          The source code's license.
+           <%= t('code_license') %>
         </p>
       </div>
     </div>
@@ -47,7 +47,7 @@
       </div>
       <div class="help-container">
         <p>
-          The version control system the Repository uses.
+           <%= t('version_system_repository_uses') %>
         </p>
       </div>
     </div>
@@ -59,7 +59,7 @@
       </div>
       <div class="help-container">
         <p>
-          The URL where the Repository is located.
+           <%= t('URL_repository_located') %>
         </p>
       </div>
     </div>
@@ -71,7 +71,7 @@
       </div>
       <div class="help-container">
         <p>
-          Select how often the Repository will be reprocessed.
+           <%= t('select_repository_reprocessed') %>
         </p>
       </div>
     </div>
@@ -84,7 +84,7 @@
       </div>
       <div class="help-container">
         <p>
-          A <%= link_to 'Configuration', tutorials_path('keywords', anchor: 'configuration') %> defines all the metrics to be calculated in the source code. Choose your weapon!
+          <%= t('a') %> <%= link_to  t('configuration'), tutorials_path('keywords', anchor: 'configuration') %>  <%= t('define_metrics_calculated') %>
         </p>
       </div>
     </div>
@@ -92,6 +92,6 @@
   </div>
 </div>
 <div class="row margin-left-none" style="margin-top: 20px">
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Back',  project_path(@project_id), class: 'btn btn-default' %>
+  <%= f.submit  t('save'), class: 'btn btn-primary' %>
+  <%= link_to t('back'),  project_path(@project_id), class: 'btn btn-default' %>
 </div>

@@ -1,10 +1,10 @@
 <p>
-  <strong>State:</strong>
+  <strong> <%= t('state') %></strong>
   <%= @processing.state %>
 </p>
 
 <p>
-  <strong>Creation date:</strong>
+  <strong>  <%= t('creation_date') %></strong>
   <%= @processing.date.strftime("%Y/%m/%d at %Hh%M (%z)") %>
 </p>
 
