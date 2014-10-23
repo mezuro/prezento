@@ -83,7 +83,6 @@ en:
   be: "Be"
   steps: "Steps"
   details: "Details"
-<<<<<<< HEAD
   instroduction: "Introduction"
   keywords: "Keywords"
   reading: "Reading"
@@ -103,8 +102,6 @@ en:
   month: "Month"
   year: "Year"
   search: "Search"
-=======
->>>>>>> Entering translations in files
 
   #this pattern is type_folder_file  
 
