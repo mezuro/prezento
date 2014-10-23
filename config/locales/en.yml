@@ -70,7 +70,11 @@ en:
   color: "Color"
   a: "A"
   state: "State:"
-
+  license: "License:"
+  periodicity: "Periodicity:"
+  reprocess: "Reprocess"
+  tutorial: "Tutorial"
+  requisites: "Requisites"
 
   #this pattern is type_folder_file  
 
@@ -193,3 +197,7 @@ en:
   loading_data: "Loading data. Please, wait."
   editing_repository: "Editing Repository"
   new_repository: "New Repository"
+  closest_processing_information: "Retrieve the closest processing information from:"
+  want_destroy_repository: "Are you sure that you want to destroy this Repository?"
+  analyzing_repository: "Analyzing a repository"
+  order_created_project: "In order to create a Project, you must:"
