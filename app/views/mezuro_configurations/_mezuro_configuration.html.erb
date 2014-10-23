@@ -1,10 +1,10 @@
 <tr>
   <td><%= mezuro_configuration.name %></td>
   <td><%= mezuro_configuration.description %></td>
-  <td><%= link_to 'Show', mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %></td>
+  <td><%= link_to t('show'), mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %></td>
   <td>
     <% if mezuro_configuration_owner?(mezuro_configuration.id) %>
-      <%= link_to 'Edit', edit_mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
+      <%= link_to t('edit'), edit_mezuro_configuration_path(mezuro_configuration.id), class: 'btn btn-info' %>
     <% end %>
   </td>
 </tr>
