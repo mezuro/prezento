@@ -75,6 +75,11 @@ en:
   reprocess: "Reprocess"
   tutorial: "Tutorial"
   requisites: "Requisites"
+  have: "Have"
+  signed_up: "signed up"
+  signed_in: "signed in"
+  be: "Be"
+  steps: "Steps"
 
   #this pattern is type_folder_file  
 
@@ -201,3 +206,4 @@ en:
   want_destroy_repository: "Are you sure that you want to destroy this Repository?"
   analyzing_repository: "Analyzing a repository"
   order_created_project: "In order to create a Project, you must:"
+  repository_which_analyse: "And have a repository URL which you wish to analyze"
