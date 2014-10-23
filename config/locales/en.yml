@@ -65,6 +65,8 @@ en:
   script: "Script:"
   add_range: "Add Range"
   back: "Back"
+  destroy: "Destroy"
+  save: "Save"
 
   #this pattern is type_folder_file  
 
@@ -152,3 +154,10 @@ en:
   confitm_new_password: "Confirm new password"
   send_reset_password_instructions: "Send me reset password instructions"
   really_want_cancel_account: "Do you really want to cancel your account?"
+  received_confirmation_instructions: "Have you received confirmation instructions?"
+  received_unlock_instructions: "Have you received unlock instructions?"
+  your_projects: "Your projects"
+  mezuro_team: "The Mezuro Team"
+  want_destroy_range: "Are you sure that you want to destroy this Range?"
+  compound_metric: "Compound Metric"
+  
