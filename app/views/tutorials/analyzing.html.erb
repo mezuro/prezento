@@ -1,13 +1,13 @@
-<h1>Tutorial</h1>
-<h2>Analyzing a repository</h2>
+<h1> <%= t('tutorial') %></h1>
+<h2> <%= t('analyzing_repository') %></h2>
 
 <hr />
 
-<h3>Requisites</h3>
+<h3> <%= t('requisites') %></h3>
 
-In order to create a Project, you must:
+ <%= t('order_created_project') %>
 <ul>
-  <li>Have <%= link_to("signed up", new_user_registration_path) %> to the platform</li>
+  <li> <%= t('have') %> <%= link_to( t('signed_up'), new_user_registration_path) %> to the platform</li>
   <li>Be <%= link_to("signed in", new_user_session_path) %></li>
   <li>And have a repository URL which you wish to analyze</li>
 </ul>

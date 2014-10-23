@@ -3,36 +3,36 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description') %></strong>
   <%= @repository.description %>
 </p>
 
 <p>
-  <strong>License:</strong>
+  <strong> <%= t('license') %></strong>
   <%= @repository.license %>
 </p>
 
 <p>
-  <strong>Type:</strong>
+  <strong> <%= t('type') %></strong>
   <%= @repository.type %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong> <%= t('address') %></strong>
   <%= @repository.address %>
 </p>
 
 <p>
-  <strong>Periodicity:</strong>
+  <strong> <%= t('periodicity') %></strong>
   <%= periodicity_option(@repository.process_period) %>
 </p>
 
 <p>
-  <strong>Configuration:</strong>
+  <strong> <%= t('configuration') %></strong>
   <%= @mezuro_configuration.name %>
 </p>
 
-<p><strong> Retrieve the closest processing information from: </strong></p>
+<p><strong>  <%= t('closest_processing_information') %> </strong></p>
 
 <%= form_tag(project_repository_state_path(@repository.project_id, @repository.id), method: "post", remote: true) do %>
   <p>
@@ -80,8 +80,8 @@
 
 <hr/>
 
-<%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
+<%= link_to t('back'),  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
-  <%= link_to 'Reprocess', project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
-  <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Repository?' }, class: 'btn btn-danger' %>
+  <%= link_to t('reprocess'), project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
+  <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: t('want_destroy_repository') }, class: 'btn btn-danger' %>
 <% end %>
