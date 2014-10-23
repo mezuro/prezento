@@ -37,11 +37,11 @@
         <td><%= repository.address %></td>
         <td>
           <% if project_owner? @project.id %>
-            <%= link_to 'Edit', edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
+            <%= link_to t('edit'), edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
           <% end %>
         </td>
         <td>
-          <%= link_to 'Show', project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
+          <%= link_to t('show'), project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
         </td>
       </tr>
     <% end %>
@@ -52,6 +52,6 @@
 
 <p>
   <% if project_owner? @project.id %>
-    <%= link_to 'Destroy Project', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Project?' }, class: 'btn btn-danger' %>
+    <%= link_to  t('destroy_projects'), project_path(@project.id), method: :delete, data: { confirm:  t('want_destroy_project') }, class: 'btn btn-danger' %>
   <% end %>
 </p>

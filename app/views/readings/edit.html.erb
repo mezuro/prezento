@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Editing Reading</h1>
+  <h1> <%= t('editing_reading') %></h1>
 </div>
 
 <%= form_for(@reading, :url => reading_group_reading_update_url(@reading_group_id, @reading.id), method: :put) do |f| %>
