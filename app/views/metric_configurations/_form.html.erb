@@ -32,17 +32,16 @@
     <% else %>
         <div class="form-row">
           <div class="field-container">
-            <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+            <%= f.label :reading_group_id, t('reading_group'), class: 'control-label' %>
             <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
           </div>
           <div class="help-container">
             <p>
-               <%= t('the') %><%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading-group') %>  <%= t('associated_metric_configuration_form') %>
+               <%= t('the') %><%= link_to t('reading_group'), tutorials_path('keywords', anchor: 'reading-group') %>  <%= t('associated_metric_configuration_form') %>
             </p>
           </div>
         </div>
     <% end %>
-
   </div>
 </div>
 

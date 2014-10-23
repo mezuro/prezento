@@ -40,7 +40,7 @@
 <p>
   <strong> <%= t('description') %></strong>
   <% if @metric_configuration.metric.description.nil? %>
-    <%= "There is no description available." %>
+    <%= t('no_description')  %>
   <% else %>
     <%= @metric_configuration.metric.description %> 
   <% end %>
@@ -50,7 +50,7 @@
 
 <h2>  <%= t('ranges') %></h2>
 <% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
-  <%= link_to 'Add Range', mezuro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, 
+  <%= link_to t('add_range'), mezuro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, 
       @metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
@@ -74,8 +74,8 @@
 <p>
  <%= link_to 'Back', mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
 <% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
-      <%= link_to 'Destroy Metric Configuration', mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
-      @metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' }, 
+      <%= link_to t('destroy_metric_configuration'), mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
+      @metric_configuration.id), method: :delete, data: { confirm:  t('sure_destroy_metric_configuration')}, 
       class: 'btn btn-danger' %>
  <% end %>
 </p>
