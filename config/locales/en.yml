@@ -56,8 +56,6 @@ en:
   new_projects: "New Project"
   no_description: "There is no description available."
   welcome: "Welcome"
-<<<<<<< HEAD
-<<<<<<< HEAD
   metrics: "Metrics"
   metric: "Metric"
   value: "Value"
@@ -66,8 +64,6 @@ en:
   repositories: "Repositories"
   type: "Type"
   address: "Address"
-<<<<<<< HEAD
-<<<<<<< HEAD
   script: "Script:"
   add_range: "Add Range"
   back: "Back"
@@ -106,19 +102,6 @@ en:
   month: "Month"
   year: "Year"
   search: "Search"
-=======
->>>>>>> Modifying files for internationalization
-=======
-  metrics: "Metrics"
->>>>>>> Inserting variables in the translation file and modifying views
-=======
->>>>>>> Inserting translation files
-
-=======
-  script: "Script:"
-  add_range: "Add Range"
-  back: "Back"
->>>>>>> Working on internationalization: updeted files
 
   #this pattern is type_folder_file  
 
