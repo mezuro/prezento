@@ -3,7 +3,7 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description') %></strong>
   <%= @reading_group.description %>
 </p>
 
@@ -11,14 +11,14 @@
 
 <h2>Readings</h2>
 
-<% if reading_groups_owner? @reading_group.id %><%= link_to 'New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
+<% if reading_groups_owner? @reading_group.id %><%= link_to  t('new_range') , new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Label</th>
-      <th>Grade</th>
-      <th>Color</th>
+      <th> <%= t('label') %></th>
+      <th> <%= t('grade_show') %> </th>
+      <th> <%= t('color') %></th>
     </tr>
   </thead>
 
@@ -36,6 +36,6 @@
 
 <p>
   <% if reading_groups_owner? @reading_group.id %>
-    <%= link_to 'Destroy Reading Group', reading_group_path(@reading_group.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Reading Group?' }, class: 'btn btn-danger' %>
+    <%= link_to t('destroy_reading_group'), reading_group_path(@reading_group.id), method: :delete, data: { confirm:  t('want_destroy_reading') }, class: 'btn btn-danger' %>
   <% end %>
 </p>
