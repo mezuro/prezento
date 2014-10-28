@@ -28,7 +28,7 @@ class MezuroConfigurationsController < ApplicationController
   # GET /mezuro_configurations/1.json
   def show
     set_mezuro_configuration
-    Rails.cache.fetch("#{@mezuro_configuration.id}_metrics") do
+    Rails.cache.fetch("#{@mezuro_configuration.id}_metric_configurations") do
        @mezuro_configuration.metric_configurations
     end
   end
