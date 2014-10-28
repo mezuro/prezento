@@ -3,7 +3,6 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
     @metric_collectors = KalibroGatekeeperClient::Entities::MetricCollector.all
-    @exist_metric = params[:exist_metric]
   end
 
   def new
@@ -20,6 +19,8 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     respond_to do |format|
       create_and_redir(format)
     end
+    @mezuro_configuration_id = params[:mezuro_configuration_id]
+    Rails.cache.delete("#{@mezuro_configuration_id}_metrics")
   end
 
   def edit
@@ -34,6 +35,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       if @metric_configuration.update(metric_configuration_params)
         format.html { redirect_to(mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
         format.json { head :no_content }
+        Rails.cache.delete("#{@metric_configuration.configuration_id}_metrics")
       else
         failed_action(format, 'edit')
       end
@@ -43,9 +45,11 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   def destroy
     @metric_configuration.destroy
     respond_to do |format|
-      format.html { redirect_to mezuro_configuration_path(params[:mezuro_configuration_id]) }
+      @metric_configuration.configuration_id = params[:mezuro_configuration_id]
+      format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id) }
       format.json { head :no_content }
     end
+    Rails.cache.delete("#{@metric_configuration.configuration_id}_metrics")
   end
 
   protected

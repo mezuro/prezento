@@ -246,18 +246,6 @@ describe RepositoriesController, :type => :controller do
   describe 'state' do
     let(:repository) { FactoryGirl.build(:repository) }
 
-    context 'with no processing at all' do
-      before :each do
-        repository.expects(:last_processing).returns(nil)
-        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-
-        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: ''}
-      end
-
-      it { is_expected.to respond_with(:success) }
-      it { is_expected.to render_template(:unprocessed) }
-    end
-
     context 'with a READY state' do
       let(:ready_processing) { FactoryGirl.build(:processing) }
 

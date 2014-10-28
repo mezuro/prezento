@@ -1,7 +1,7 @@
   <%= render :partial => 'shared/form_errors', :locals => {:object => @mezuro_range} %>
 
   <div class="row margin-left-none">
-    <div class="form-table span9">
+    <div class="form-table col-md-9">
 
       <div class="form-row">
         <% if @readings.size == 0 %>
@@ -21,10 +21,15 @@
 
       <div class="form-row">
         <div class="field-container" >
-          <%= f.label :beginning, class: 'control-label' %>
-          <%= f.text_field :beginning, class: 'diminished-text-field' %>
-          <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_beginning' ).val('-INF');", class: 'btn btn-default align-button' %>
+           <%= f.label :beginning, class: 'control-label' %>
+           <div class="input-group">
+              <%= f.text_field :beginning, :required => true, class: 'diminished-text-field form-control' %>
+              <span class="input-group-btn">
+                <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_beginning' ).val('-INF');", class: 'btn btn-default' %>
+              </span>
+          </div>
         </div>
+
         <div class="help-container">
           <p>
             This Range's lower limit.
@@ -35,8 +40,12 @@
       <div class="form-row">
         <div class="field-container">
           <%= f.label :end, class: 'control-label' %>
-          <%= f.text_field :end, class: 'diminished-text-field' %>
-          <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
+          <div class="input-group">
+            <%= f.text_field :end, :required => true, class: 'diminished-text-field form-control' %>
+             <span class="input-group-btn">
+                <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
+              </span>
+          </div>
         </div>
         <div class="help-container">
           <p>
@@ -48,7 +57,7 @@
       <div class="form-row">
         <div class="field-container">
           <%= f.label :comments, class: 'control-label' %>
-          <%= f.text_area :comments, class: 'text-area' %>
+          <%= f.text_area :comments, class: 'text-area form-control' %>
         </div>
         <div class="help-container">
           <p>

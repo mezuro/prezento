@@ -1,12 +1,12 @@
 <%= render :partial => 'shared/form_errors', :locals => {:object => @reading} %>
 
 <div class="row margin-left-none">
-  <div class="form-table span9">
+  <div class="form-table col-md-9">
 
     <div class="form-row">
       <div class="field-container">
         <%= f.label :label, class: 'control-label' %>
-        <%= f.text_field :label, class: 'text-field' %>
+        <%= f.text_field :label, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>
@@ -21,9 +21,11 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :color, class: 'control-label' %>
-        <div class="input-append" id="color_div" >
-          <%= f.text_field :color, class: 'text-field' %>
-          <input type="button" class="btn btn-info" style="height:30px" id="pickcolor_button" value="Pick color" />
+        <div class="input-group" id="color_div" style="z-index: 1010">
+          <%= f.text_field :color, :required => true, class: 'form-control' %>
+          <span class="input-group-btn">
+            <input type="button" class="btn btn-info" id="pickcolor_button" value="Pick color" />
+          </span>
         </div>
       </div>
       <div class="help-container">
@@ -39,7 +41,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :grade, class: 'control-label' %>
-        <%= f.text_field :grade, class: 'text-field' %>
+        <%= f.text_field :grade, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>

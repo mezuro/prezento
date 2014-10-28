@@ -18,4 +18,4 @@ Feature: Homepage
     And I should see "Sign Out"
     And I should see "Latest projects"
     And I should see "Project"
-    And I should see "My projects"
+    And I should see "Your projects"
