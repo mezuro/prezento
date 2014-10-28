@@ -19,6 +19,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     respond_to do |format|
       create_and_redir(format)
     end
+    Rails.cache.delete("#{params[:mezuro_configuration_id]}_metric_configurations")
   end
 
   def edit
@@ -33,6 +34,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       if @metric_configuration.update(metric_configuration_params)
         format.html { redirect_to(mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
         format.json { head :no_content }
+        Rails.cache.delete("#{@metric_configuration.configuration_id}_metric_configurations")
       else
         failed_action(format, 'edit')
       end
@@ -45,6 +47,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       format.html { redirect_to mezuro_configuration_path(params[:mezuro_configuration_id]) }
       format.json { head :no_content }
     end
+    Rails.cache.delete("#{params[:mezuro_configuration_id]}_metric_configurations")
   end
 
   protected

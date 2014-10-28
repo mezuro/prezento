@@ -28,7 +28,9 @@ class MezuroConfigurationsController < ApplicationController
   # GET /mezuro_configurations/1.json
   def show
     set_mezuro_configuration
-    @mezuro_configuration_metric_configurations = @mezuro_configuration.metric_configurations
+    Rails.cache.fetch("#{@mezuro_configuration.id}_metric_configurations") do
+       @mezuro_configuration.metric_configurations
+    end
   end
 
   # GET /mezuro_configurations/1/edit
@@ -57,6 +59,7 @@ class MezuroConfigurationsController < ApplicationController
       format.html { redirect_to mezuro_configurations_url }
       format.json { head :no_content }
     end
+    Rails.cache.delete("#{@mezuro_configuration.id}_metrics")
   end
 
   private
