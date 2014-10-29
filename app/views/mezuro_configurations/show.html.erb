@@ -24,10 +24,10 @@
     </tr>
   </thead>
   <tbody>
-    <% if @mezuro_configuration_metric_configurations.empty? %>
+    <% if Rails.cache.read("#{@mezuro_configuration.id}_metric_configurations").empty? %>
       <%= render partial: 'no_metric_configurations' %>
     <% else %>
-      <%= render partial: 'metric_configurations', collection: @mezuro_configuration_metric_configurations, as: :metric_configuration %>
+      <%= render partial: 'metric_configurations', collection: Rails.cache.read("#{@mezuro_configuration.id}_metric_configurations"), as: :metric_configuration %>
     <% end %>
   </tbody>
 </table>

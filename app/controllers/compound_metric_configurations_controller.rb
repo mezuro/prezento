@@ -7,6 +7,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
     respond_to do |format|
       create_and_redir(format)
     end
+    Rails.cache.delete("#{params[:mezuro_configuration_id].to_i}_metric_configurations")
   end
 
   def show
@@ -28,6 +29,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
       else
         failed_action(format, 'edit')
       end
+      Rails.cache.delete("#{@compound_metric_configuration.configuration_id}_metric_configurations")
     end
   end
 
