@@ -41,7 +41,7 @@
       </div>
       <div class="help-container">
         <p>
-           <%= t('the') %> <%= link_to 'granularity', tutorials_path("keywords", anchor: "granularity")%>  <%= t('of_the') %>  <%= link_to 'modules',  tutorials_path("keywords", anchor: "module")%>  <%= t('measured_metric') %>
+           <%= t('the') %> <%= link_to 'granularity', tutorials_path(t('keywords'), anchor: "granularity")%>  <%= t('of_the') %>  <%= link_to 'modules',  tutorials_path( t('keywords'), anchor: t('module') )%>  <%= t('measured_metric') %>
         </p>
       </div>
     </div>

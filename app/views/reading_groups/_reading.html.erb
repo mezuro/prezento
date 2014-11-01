@@ -4,10 +4,10 @@
   <td style="background-color: #<%= reading.color %>; width: 20%;">&nbsp;</td>
   <% if reading_groups_owner? @reading_group.id %>
     <td>
-      <%= link_to 'Edit', edit_reading_group_reading_path(@reading_group.id, reading.id), class: 'btn btn-info' %>
+      <%= link_to t('edit'), edit_reading_group_reading_path(@reading_group.id, reading.id), class: 'btn btn-info' %>
     </td>
     <td>
-      <%= link_to  t('destroy'), reading_group_reading_path(@reading_group.id, reading.id), method: :delete, data: { confirm: t('want_destroy_reading')  }, class: 'btn btn-danger' %>
+      <%= link_to t('destroy'), reading_group_reading_path(@reading_group.id, reading.id), method: :delete, data: { confirm: t('want_destroy_reading')  }, class: 'btn btn-danger' %>
     </td>
     </td>
  <% end %>

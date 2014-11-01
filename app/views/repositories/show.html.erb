@@ -36,6 +36,7 @@
 
 <%= form_tag(project_repository_state_path(@repository.project_id, @repository.id), method: "post", remote: true) do %>
   <p>
+
     Day: <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
     Month: <%= select_tag(:month, options_for_select(month_options), :style => "width:55px; margin-top:5px") %>
     Year: <%= select_tag(:year, options_for_select(year_options), :style => "width:70px; margin-top:5px") %>
@@ -48,18 +49,18 @@
 
 <div id="repository-accordion">
   <div id="processing-accordion">
-    <h3 class="jquery-ui-accordion">Processing information</h3>
-    <div id="processing_information"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+    <h3 class="jquery-ui-accordion"><%= t('processing_information') %></h3>
+    <div id="processing_information"><%= image_tag 'loader.gif' %> <%= t('loading_data') %></div>
   </div>
 
   <div id="module-accordion">
-    <h3 class="jquery-ui-accordion">Modules Tree</h3>
-    <div id="module_tree"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+    <h3 class="jquery-ui-accordion"><%= t('modules_tree') %></h3>
+    <div id="module_tree"><%= image_tag 'loader.gif' %> <%= t('loading_data') %></div>
   </div>
 
   <div id="metric-accordion">
-    <h3 class="jquery-ui-accordion">Metric Results</h3>
-    <div id="metric_results"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+    <h3 class="jquery-ui-accordion"><%= t('metric_results') %></h3>
+    <div id="metric_results"><%= image_tag 'loader.gif' %> <%= t('loading_data') %></div>
   </div>
 </div>
 <script type="text/javascript">
@@ -83,5 +84,5 @@
 <%= link_to t('back'),  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
   <%= link_to t('reprocess'), project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
-  <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: t('want_destroy_repository') }, class: 'btn btn-danger' %>
+  <%= link_to t('destroy'), project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: t('want_destroy_repository') }, class: 'btn btn-danger' %>
 <% end %>
