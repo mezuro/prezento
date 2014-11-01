@@ -27,7 +27,7 @@
     <% if reading_group_readings.size == 0 %>
       <%= render partial: 'no_readings' %>
     <% else %>
-      <%= render partial: 'reading', collection: reading_group_readings, as: :reading %>
+      <%= render partial: t('reading'), collection: reading_group_readings, as: :reading %>
     <% end %>
   </tbody>
 </table>
