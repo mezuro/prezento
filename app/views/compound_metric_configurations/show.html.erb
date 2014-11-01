@@ -43,7 +43,7 @@
 
 <hr>
 
-<h2> Ranges </h2>
+<h2> <%= t('ranges') %> </h2>
 <% if mezuro_configuration_owner? @compound_metric_configuration.configuration_id %>
   <%= link_to  t('add_range'), mezuro_configuration_metric_configuration_new_mezuro_range_path(@compound_metric_configuration.configuration_id,
       @compound_metric_configuration.id), class: 'btn btn-info' %>
@@ -54,7 +54,7 @@
     <tr>
       <th> <%= t('label') %> </th>
       <th> <%= t('beginning') %></th>
-      <th>End</th>
+      <th> <%= t('end') %> </th>
     </tr>
   </thead>
   <tbody>
