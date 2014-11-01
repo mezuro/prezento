@@ -59,7 +59,7 @@ pt:
   value: "Valores"
   threshold: "limitar"
   granularity: "granularidade:"
-  repositories: "repositórios"
+  repositories: "Repositórios"
   type: "Tipo"
   address: "Endereço"
   script: "Script:"
@@ -85,6 +85,8 @@ pt:
   keywords: "Palavras-chave"
   reading: "Leitura"
   readings: "Leituras"
+  analysis: "Análise"
+  configuring: "Configurando"
 
   #this pattern is type_folder_file  
 

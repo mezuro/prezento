@@ -4,7 +4,7 @@
 
 <% if user_signed_in? %>
   <p>
-    <%= link_to 'New Reading Group', new_reading_group_path, class: 'btn  btn-primary' %>
+    <%= link_to t('new_reading_group'), new_reading_group_path, class: 'btn  btn-primary' %>
   </p>
 <%else%>
   <p class="alert alert-warning alert-dismissable">

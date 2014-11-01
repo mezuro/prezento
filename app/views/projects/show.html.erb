@@ -24,7 +24,7 @@
 
 <h2> <%= t('repositories') %></h2>
 
-<% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
+<% if project_owner? @project.id %><%= link_to t('new_repository'), new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
 
 <table class="table table-hover">
   <thead>

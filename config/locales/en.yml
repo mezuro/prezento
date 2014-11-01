@@ -86,6 +86,10 @@ en:
   keywords: "Keywords"
   reading: "Reading"
   readings: "readings"
+  feedback: "feedback"
+  update: "Update"
+  analysis: "Analysis"
+  configuring: "Configuring"
 
   #this pattern is type_folder_file  
 
@@ -304,3 +308,7 @@ en:
   collector_compond_metric: "It is a numerical result associated to a metric by the Collector or aggregating in the case of a Compound Metric"
   sofware_metric_quantitative: "A software metric is a quantitative measure of some property of a"
   more_details: ". For more details see"
+  kalibro_web_service: "Kalibro Web Service"
+  no_description_available: "No description available."
+  create_new_reading: "Create New Reading"
+  process_period: "Process Period"
