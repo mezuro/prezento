@@ -72,7 +72,7 @@
 </table>
 
 <p>
- <%= link_to 'Back', mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
+ <%= link_to t('back'), mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
 <% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
       <%= link_to t('destroy_metric_configuration'), mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
       @metric_configuration.id), method: :delete, data: { confirm:  t('sure_destroy_metric_configuration')}, 

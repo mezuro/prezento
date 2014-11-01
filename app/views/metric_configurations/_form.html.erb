@@ -10,19 +10,19 @@
       </div>
       <div class="help-container">
         <p>
-           <%= t('body2_compound_form') %> <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%> <%= t('grade') %>
+           <%= t('body2_compound_form') %> <%= link_to t('module'),  tutorials_path( t('keywords'), anchor: "module")%> <%= t('grade') %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
+        <%= f.label :aggregation_form, t('aggregation_metric_configurations_show'), class: 'control-label' %>
         <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
       </div>
       <div class="help-container">
         <p>
-           <%= t('statistical_result_metric_configurations_form') %> <%= link_to 'granularity', tutorials_path('keywords', anchor: 'granularity') %>  <%= t('modules_eg_metric_configurations_form') %>
+           <%= t('statistical_result_metric_configurations_form') %> <%= link_to t('granularity'), tutorials_path( t('keywords'), anchor: 'granularity') %>  <%= t('modules_eg_metric_configurations_form') %>
         </p>
       </div>
     </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="help-container">
             <p>
-               <%= t('the') %><%= link_to t('reading_group'), tutorials_path('keywords', anchor: 'reading-group') %>  <%= t('associated_metric_configuration_form') %>
+               <%= t('the') %><%= link_to t('reading_group'), tutorials_path( t('keywords'), anchor: 'reading-group') %>  <%= t('associated_metric_configuration_form') %>
             </p>
           </div>
         </div>

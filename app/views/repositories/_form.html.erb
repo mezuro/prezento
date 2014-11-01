@@ -66,7 +66,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :process_period, 'Process Period', class: 'control-label' %>
+        <%= f.label :process_period, t('process_period'), class: 'control-label' %>
         <%= f.select( :process_period, periodicity_options, class: 'tooltip-control' ) %>
       </div>
       <div class="help-container">
@@ -84,7 +84,7 @@
       </div>
       <div class="help-container">
         <p>
-          <%= t('a') %> <%= link_to  t('configuration'), tutorials_path('keywords', anchor: 'configuration') %>  <%= t('define_metrics_calculated') %>
+          <%= t('a') %> <%= link_to  t('configuration'), tutorials_path( t('keywords'), anchor:  t('configuration')) %>  <%= t('define_metrics_calculated') %>
         </p>
       </div>
     </div>

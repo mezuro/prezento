@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  <b>  <%= t('metric_description_metric_configurations_new') %></b> <%= @metric_configuration.metric.description.nil? ? "No description available." : @metric_configuration.metric.description %>
+  <b>  <%= t('metric_description_metric_configurations_new') %></b> <%= @metric_configuration.metric.description.nil? ?  t('no_description_available') : @metric_configuration.metric.description %>
 </p>
 
 <p>

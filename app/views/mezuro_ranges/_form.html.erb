@@ -13,7 +13,7 @@
         </div>
         <div class="help-container">
           <p>
-           <%= t('the') %><%= link_to 'Reading', tutorials_path('keywords', anchor: 'reading')%> associated with this <%= link_to 'Range', tutorials_path('keywords', anchor: 'range')%>.
+           <%= t('the') %><%= link_to t('reading'), tutorials_path(t('keywords'), anchor: t('reading'))%> associated with this <%= link_to  t('range'), tutorials_path('keywords', anchor: t('range'))%>.
           </p>
         </div>
         <% end %>
@@ -61,7 +61,7 @@
         </div>
         <div class="help-container">
           <p>
-             <%= t('explanation_chose_interval') %> <%= link_to 'Metric', tutorials_path('keywords', anchor: 'metric')%>.
+             <%= t('explanation_chose_interval') %> <%= link_to t('metric'), tutorials_path( t('keywords'), anchor: t('metric'))%>.
           </p>
         </div>
       </div>
@@ -69,6 +69,6 @@
   </div>
 
   <div class="row margin-left-none" style="margin-top: 20px">
-    <%= f.submit 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Back', mezuro_configuration_metric_configuration_path(@mezuro_configuration_id, @metric_configuration_id), class: 'btn btn-default' %>
+    <%= f.submit t('save'), class: 'btn btn-primary' %>
+    <%= link_to t('back'), mezuro_configuration_metric_configuration_path(@mezuro_configuration_id, @metric_configuration_id), class: 'btn btn-default' %>
   </div>
