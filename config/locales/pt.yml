@@ -90,6 +90,7 @@ pt:
   feedback: "feedback"
   update: "Atualizar"
   configuring: "Configurando"
+  tutorials: "Tutoriais"
 
   #this pattern is type_folder_file  
 
@@ -312,3 +313,4 @@ pt:
   no_description_available: "Nenhuma descrição disponível."
   create_new_reading: "Criar nova leitura"
   process_period: "Período de processo"
+  instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."

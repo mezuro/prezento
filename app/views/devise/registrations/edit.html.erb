@@ -25,7 +25,7 @@
           <%= f.email_field :email, class: 'text-field form-control' %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <div> <%= t('currently_waiting_confirmation') %> <%= resource.unconfirmed_email %></div>
           <% end %>
         </div>
         <div class="help-container">
@@ -37,7 +37,7 @@
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: 'control-label' %> <i>(leave it blank if you do not want to change it)</i><br />
+          <%= f.label :password, class: 'control-label' %> <i> <%= t('leavel_blank_want_change') %></i><br />
           <%= f.password_field :password, :autocomplete => "off", class: 'text-field form-control' %>
         </div>
         <div class="help-container">
