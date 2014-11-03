@@ -90,6 +90,7 @@ en:
   update: "Update"
   analysis: "Analysis"
   configuring: "Configuring"
+  tutorials: "Tutorials"
 
   #this pattern is type_folder_file  
 
@@ -312,3 +313,6 @@ en:
   no_description_available: "No description available."
   create_new_reading: "Create New Reading"
   process_period: "Process Period"
+  currently_waiting_confirmation: "Currently waiting confirmation for:"
+  leavel_blank_want_change: "(leave it blank if you do not want to change it)"
+  instant_loading_page: "Wait an instant while we are loading the page that you have requested."
