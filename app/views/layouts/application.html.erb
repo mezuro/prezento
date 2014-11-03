@@ -86,11 +86,7 @@
                 <li class="nav-header"> <%= t('hello') %> <strong><%= current_user.name %></strong></li>
                 <li class="list-group-item"><%= link_to  t('your_projects'), user_projects_path(current_user.id) %></li>
               <% end %>
-<<<<<<< HEAD
               <li class="nav-header"><%= t('tutorials') %> </li>
-=======
-              <li class="nav-header">Tutorials</li>
->>>>>>> Inserting corrections in translations and translating other variables
               <li class="list-group-item"><%= link_to t('analysis'), tutorials_path('analyzing') %></li>
               <li class="list-group-item"><%= link_to t('configuring'), tutorials_path('configuring') %></li>
               <li class="list-group-item" ><%= link_to t('keywords'), tutorials_path('keywords') %></li>
