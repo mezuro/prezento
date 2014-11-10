@@ -7,6 +7,7 @@ Feature: Show Project
 Scenario: Should not show the create repository link to user that doesn't own the project
   Given I am a regular user
   And I have a sample project
+  And I have a sample project_image
   And I have a sample configuration with native metrics
   And I have a sample repository within the sample project
   When I am at the Sample Project page
@@ -19,6 +20,7 @@ Scenario: Should show the create repository link the project owner
   Given I am a regular user
   And I am signed in
   And I own a sample project
+  And I have a sample project_image
   When I am at the Sample Project page
   Then I should see "New Repository"
 
@@ -26,6 +28,7 @@ Scenario: Should show the create repository link the project owner
 @kalibro_processor_restart
 Scenario: Considering the project has no repositories
   Given I have a sample project
+  And I have a sample project_image
   When I am at the Sample Project page
   Then I should see "There are no Repositories yet!"
 
@@ -40,5 +43,6 @@ Scenario: Considering the project has repositories
 @kalibro_processor_restart
 Scenario: Checking project contents
   Given I have a sample project
+  And I have a sample project_image
   When I am at the Sample Project page
   Then the sample project should be there
