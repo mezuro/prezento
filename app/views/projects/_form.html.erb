@@ -1,5 +1,6 @@
 <%= form_for(@project, :html => { role: 'form' }) do |f| %>
 <%= render :partial => 'shared/form_errors', :locals => {:object => @project} %>
+<<<<<<< HEAD
 
 <div class="row margin-left-none">
   <div class="form-table col-md-9">
@@ -20,7 +21,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label "Image url", class: 'control-label' %><br>
-        <%= f.text_field :image_url, class: 'text-area' ,value: @project_image.image_url %>
+        <%= f.text_field :image_url, class: 'text-area' ,value: @project_image.nil? ? '#' : @project_image.image_url  %>
       </div>
     </div>
 

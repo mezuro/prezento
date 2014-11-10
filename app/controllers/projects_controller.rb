@@ -40,14 +40,13 @@ class ProjectsController < ApplicationController
   def edit
     set_project
     @project_image = ProjectImage.find_by_project_id(@project.id)
-    @project_image.check_no_image
+    @project_image ? @project_image.check_no_image : ProjectImage.new
   end
 
   def update
     set_project
     @project_image = ProjectImage.find_by_project_id(@project.id)
-    if @project.update(project_params)
-      @project_image.update(image_url: project_params[:image_url])
+    if @project.update(project_params) && @project_image.update(image_url: project_params[:image_url])
       redirect_to(project_path(@project.id))
     else
       render "edit"
