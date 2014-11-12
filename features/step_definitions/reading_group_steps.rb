@@ -63,3 +63,7 @@ end
 Then(/^I should be in the Edit Reading Group page$/) do
   visit edit_reading_group_path(@reading_group.id)
 end
+
+Then(/^the Sample Reading Group should not be there$/) do
+  expect { ReadingGroup.find(@reading_group.id) }.to raise_error
+end
