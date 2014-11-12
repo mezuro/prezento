@@ -4,7 +4,7 @@ Feature: Configuration Deletion
   The system should have an interface to it
 
   @kalibro_restart
-  Scenario: Should not delete a configuration without user authetication
+  Scenario: Should not delete a configuration without user authentication
     Given I have a sample configuration
     When I am at the Sample Configuration page
     Then I should not see Destroy
