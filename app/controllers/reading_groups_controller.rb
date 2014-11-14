@@ -35,7 +35,7 @@ class ReadingGroupsController < ApplicationController
   def edit; end
 
   def update
-    if @reading_group.update(reading_group_params)
+    if @reading_group.save(reading_group_params)
       redirect_to(reading_group_path(@reading_group.id))
     else
       render "edit"

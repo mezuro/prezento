@@ -1,4 +1,4 @@
-class Reading < KalibroGatekeeperClient::Entities::Reading
+class Reading < KalibroClient::Configurations::Reading
 	include KalibroRecord
 
   attr_accessor :label, :grade, :color
