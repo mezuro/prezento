@@ -27,13 +27,11 @@ describe MezuroConfigurationsController, :type => :controller do
 
       context 'rendering the show' do
         before :each do
-          MezuroConfiguration.expects(:exists?).returns(true)
-
           post :create, :mezuro_configuration => subject_params
         end
 
         it 'should redirect to the show view' do
-          expect(response).to redirect_to mezuro_configuration_path(mezuro_configuration)
+          expect(response).to redirect_to mezuro_configuration_path(mezuro_configuration.id)
         end
       end
 
@@ -194,10 +192,8 @@ describe MezuroConfigurationsController, :type => :controller do
   end
 
   describe 'update' do
-    before do
-      @subject = FactoryGirl.build(:mezuro_configuration)
-      @subject_params = Hash[FactoryGirl.attributes_for(:mezuro_configuration).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
-    end
+    let(:mezuro_configuration) {FactoryGirl.build(:mezuro_configuration)}
+    let(:mezuro_configuration_params) {Hash[FactoryGirl.attributes_for(:mezuro_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
 
     context 'when the user is logged in' do
       before do
@@ -209,31 +205,29 @@ describe MezuroConfigurationsController, :type => :controller do
           @ownership = FactoryGirl.build(:mezuro_configuration_ownership)
           @ownerships = []
 
-          @ownerships.expects(:find_by_mezuro_configuration_id).with("#{@subject.id}").returns(@ownership)
+          @ownerships.expects(:find_by_mezuro_configuration_id).with("#{mezuro_configuration.id}").returns(@ownership)
           User.any_instance.expects(:mezuro_configuration_ownerships).at_least_once.returns(@ownerships)
         end
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(MezuroConfiguration, @subject.id).returns(@subject)
-            MezuroConfiguration.any_instance.expects(:update).with(@subject_params).returns(true)
+            subject.expects(:find_resource).with(MezuroConfiguration, mezuro_configuration.id).returns(mezuro_configuration)
+            MezuroConfiguration.any_instance.expects(:update).with(mezuro_configuration_params).returns(true)
           end
 
           context 'rendering the show' do
             before :each do
-              MezuroConfiguration.expects(:exists?).returns(true)
-
-              post :update, :id => @subject.id, :mezuro_configuration => @subject_params
+              post :update, :id => mezuro_configuration.id, :mezuro_configuration => mezuro_configuration_params
             end
 
             it 'should redirect to the show view' do
-              expect(response).to redirect_to mezuro_configuration_path(@subject)
+              expect(response).to redirect_to mezuro_configuration_path(mezuro_configuration.id)
             end
           end
 
           context 'without rendering the show view' do
             before :each do
-              post :update, :id => @subject.id, :mezuro_configuration => @subject_params
+              post :update, :id => mezuro_configuration.id, :mezuro_configuration => mezuro_configuration_params
             end
 
             it { is_expected.to respond_with(:redirect) }
@@ -242,10 +236,10 @@ describe MezuroConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(MezuroConfiguration, @subject.id).returns(@subject)
-            MezuroConfiguration.any_instance.expects(:update).with(@subject_params).returns(false)
+            subject.expects(:find_resource).with(MezuroConfiguration, mezuro_configuration.id).returns(mezuro_configuration)
+            MezuroConfiguration.any_instance.expects(:update).with(mezuro_configuration_params).returns(false)
 
-            post :update, :id => @subject.id, :mezuro_configuration => @subject_params
+            post :update, :id => mezuro_configuration.id, :mezuro_configuration => mezuro_configuration_params
           end
 
           it { is_expected.to render_template(:edit) }
@@ -254,16 +248,16 @@ describe MezuroConfigurationsController, :type => :controller do
 
       context 'when the user does not own the mezuro_configuration' do
         before :each do
-          post :update, :id => @subject.id, :mezuro_configuration => @subject_params
+          post :update, :id => mezuro_configuration.id, :mezuro_configuration => mezuro_configuration_params
         end
 
-        it { is_expected.to redirect_to mezuro_configurations_path(@subject.id) }
+        it { is_expected.to redirect_to mezuro_configurations_path(mezuro_configuration.id) }
       end
     end
 
     context 'with no user logged in' do
       before :each do
-        post :update, :id => @subject.id, :mezuro_configuration => @subject_params
+        post :update, :id => mezuro_configuration.id, :mezuro_configuration => mezuro_configuration_params
       end
 
       it { is_expected.to redirect_to new_user_session_path }
