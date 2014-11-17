@@ -75,7 +75,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
     before :each do
       ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
       subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
-      MezuroRange.expects(:ranges_of).with(compound_metric_configuration.id).returns([mezuro_range])
+      compound_metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
 
       get :show, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
     end
