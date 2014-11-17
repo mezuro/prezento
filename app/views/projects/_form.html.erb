@@ -1,25 +1,28 @@
 <%= form_for(@project, :html => { role: 'form' }) do |f| %>
 <%= render :partial => 'shared/form_errors', :locals => {:object => @project} %>
-
-<div class="row margin-left-none">
-  <div class="form-table col-md-9">
-    <div class="form-row">
-      <div class="field-container">
-        <%= f.label :name, class: 'control-label' %><br>
-        <%= f.text_field :name, :required => true, class: 'text-field form-control' %>
+  <div class="row margin-left-none">
+    <div class="form-table col-md-9">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :name, class: 'control-label' %><br>
+          <%= f.text_field :name, :required => true, class: 'text-field form-control' %>
+        </div>
+        <div class="form-row">
+          <div class="field-container">
+            <%= f.label :description, class: 'control-label' %><br>
+            <%= f.text_area :description, class: 'text-area form-control' %>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-container">
+            <%= f.label "Image url", class: 'control-label' %><br>
+            <%= f.text_field :image_url, class: 'text-area' ,value: @project_image.nil? ? '#' : @project_image.image_url  %>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="form-row">
-      <div class="field-container">
-        <%= f.label :description, class: 'control-label' %><br>
-        <%= f.text_area :description, class: 'text-area form-control' %>
-      </div>
+    <div class="row margin-left-none" style="margin-top: 20px">
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
     </div>
-  </div>
-</div>
-<div class="row margin-left-none" style="margin-top: 20px">
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
-</div>
-<% end %>
+  <% end %>

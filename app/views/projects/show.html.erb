@@ -1,13 +1,23 @@
+
 <div class="page-header">
-  <h1><%= @project.name %></h1>
+  <div class="media">
+    <a class="pull-left">
+      <% if @project_image %>
+        <%= image_tag "#{@project_image.image_url}", size:"64x64" %>
+      <% end %>
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <h1 class="col-md-1"><%= @project.name %></h1>
+      </h4>
+    </div>
+  </div>
 </div>
 
 <p>
   <strong>Description:</strong>
   <%= @project.description %>
 </p>
-
-<hr />
 
 <h2>Repositories</h2>
 
