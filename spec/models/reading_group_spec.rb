@@ -40,15 +40,13 @@ describe ReadingGroup, :type => :model do
     end
 
     describe 'readings' do
-      pending 'method readings_of' do
-        subject { FactoryGirl.build(:reading_group) }
-        let(:reading) { FactoryGirl.build(:reading) }
+      subject { FactoryGirl.build(:reading_group) }
+      let(:reading) { FactoryGirl.build(:reading) }
 
-        it 'should call readings_of on the Reading model' do
-          Reading.expects(:readings_of).with(subject.id).returns([reading])
+      it 'should call readings_of on the Reading model' do
+        subject.expects(:readings).returns([reading])
 
-          expect(subject.readings).to include(reading)
-        end
+        expect(subject.readings).to include(reading)
       end
     end
   end
