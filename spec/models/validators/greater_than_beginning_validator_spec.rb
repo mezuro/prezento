@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'validators/greater_than_beginning_validator'
 
 describe GreaterThanBeginningValidator, :type => :model do
   pending 'waiting for kalibro configurations integration' do

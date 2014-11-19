@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'validators/beginning_uniqueness_validator'
 
 describe BeginningUniquenessValidator, :type => :model do
   pending 'waiting for kalibro configurations integration' do
