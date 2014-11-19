@@ -18,7 +18,7 @@
       <div class="form-row">
         <div class="field-container">
           <%= f.label "Image url", class: 'control-label' %><br>
-          <%= f.text_field :image_url, class: 'text-area' ,value: @project_image.nil? ? '#' : @project_image.url  %>
+          <%= f.text_field :url, class: 'text-area', value: @project_image.nil? ? '#' : @project_image.url  %>
         </div>
       </div>
     </div>
