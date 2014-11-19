@@ -19,6 +19,8 @@
   <%= @project.description %>
 </p>
 
+<hr />
+
 <h2>Repositories</h2>
 
 <% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
