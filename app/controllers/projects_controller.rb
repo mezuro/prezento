@@ -32,20 +32,16 @@ class ProjectsController < ApplicationController
   def show
     set_project
     @project_repositories = @project.repositories
-    @project_image = ProjectImage.find_by_project_id(@project.id)
   end
 
   # GET /projects/1/edit
   # GET /projects/1/edit.json
   def edit
     set_project
-    @project_image = ProjectImage.find_by_project_id(@project.id)
-    #@project_image ? @project_image.check_no_image : ProjectImage.new
   end
 
   def update
     set_project
-    @project_image = ProjectImage.find_by_project_id(@project.id)
     image_url = project_params.delete(:image_url)
     if @project.update(project_params) && @project_image.update(url: image_url)
       redirect_to(project_path(@project.id))
@@ -70,6 +66,7 @@ class ProjectsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = Project.find(params[:id])
+    @project_image = ProjectImage.find_by_project_id(@project.id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
