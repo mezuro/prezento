@@ -2,8 +2,11 @@
 <div class="page-header">
   <div class="media">
     <a class="pull-left">
-      <% if @project_image %>
+      <% if @project_image && !@project_image.image_url.empty? %>
         <%= image_tag "#{@project_image.image_url}", size:"64x64" %>
+      <% else %>
+        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+        No image available
       <% end %>
     </a>
     <div class="media-body">
