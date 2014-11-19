@@ -91,6 +91,13 @@ pt:
   update: "Atualizar"
   configuring: "Configurando"
   tutorials: "Tutoriais"
+  password: "Senha"
+  password_confirmation: "Confirmar Senha"
+  remember_me: "Lembrar-me"
+  day: "Dia"
+  month: "Mês"
+  year: "Ano"
+  search: "Procurar"
 
   #this pattern is type_folder_file  
 
@@ -314,3 +321,34 @@ pt:
   create_new_reading: "Criar nova leitura"
   process_period: "Período de processo"
   instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
+  kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
+  devise:
+    failure:
+      user:
+        not_found_in_database: "Usuário não encontrado"
+    sessions:
+      user:
+        signed_in: "Login efetuado com sucesso!"
+        signed_out: "Acesso encerrado com sucesso!"
+        signed_up: "Cadastro realizado com sucesso!"
+  errors:
+    messages:
+      not_saved: "Não foi possível salvar!"
+
+  activerecord:
+    messages:
+      models:
+        project:
+          successfull: "Projeto criado com sucesso!"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "Já existe um usuário cadastrado com esse email."
+            password:
+              too_short: "A senha fornecida é muito pequena!"
+            password_confirmation:
+              confirmation: "As senhas fornecidas não são iguais."
+
+
