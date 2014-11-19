@@ -9,7 +9,7 @@
     <div class="form-table col-md-9">
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :name, class: 'control-label' %><br />
+          <%= f.label :name, t('name') ,class: 'control-label' %><br />
           <%= f.text_field :name, :autofocus => true, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
@@ -21,7 +21,7 @@
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :email, class: 'control-label' %><br />
+          <%= f.label :email, t('email'), class: 'control-label' %><br />
           <%= f.email_field :email, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
@@ -33,7 +33,7 @@
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: 'control-label' %><br />
+          <%= f.label :password, t('password'), class: 'control-label' %><br />
           <%= f.password_field :password, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
@@ -45,7 +45,7 @@
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password_confirmation, class: 'control-label' %><br />
+          <%= f.label :password_confirmation, t('password_confirmation'), class: 'control-label' %><br />
           <%= f.password_field :password_confirmation, class: 'text-field form-control' %>
         </div>
         <div class="help-container">

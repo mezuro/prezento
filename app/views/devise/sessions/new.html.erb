@@ -7,7 +7,7 @@
     <div class="form-table col-md-9">
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :email, class: "control-label " %>
+          <%= f.label :email, t('email'), class: "control-label " %>
           <%= f.email_field :email, autofocus: true, tabindex: 1, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
@@ -23,7 +23,7 @@
     <div class="form-table col-md-9">
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: "control-label" %>
+          <%= f.label :password, t('password'), class: "control-label" %>
           <%= f.password_field :password, tabindex: 2, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
@@ -42,7 +42,7 @@
         <div class="field-container">
           <div class="checkbox">
             <label>
-              <%= f.check_box :remember_me, class: "checkbox" %> <%= f.label :remember_me %>
+              <%= f.check_box :remember_me, class: "checkbox" %> <%= f.label :remember_me, t('remember_me') %>
             </label>
           </div>
         </div>
