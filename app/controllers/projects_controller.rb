@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    image_url = project_params.delete(:url)
+    image_url = project_params.delete(:image_url)
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
 
   def update
     set_project
-    image_url = project_params.delete(:url)
+    image_url = project_params.delete(:image_url)
     if @project.update(project_params) && @project_image.update(url: image_url)
       redirect_to(project_path(@project.id))
     else
