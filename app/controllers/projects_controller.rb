@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   def edit
     set_project
     @project_image = ProjectImage.find_by_project_id(@project.id)
-    @project_image ? @project_image.check_no_image : ProjectImage.new
+    #@project_image ? @project_image.check_no_image : ProjectImage.new
   end
 
   def update
