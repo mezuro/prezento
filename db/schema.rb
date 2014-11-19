@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006232631) do
+ActiveRecord::Schema.define(version: 20141119173020) do
 
   create_table "mezuro_configuration_ownerships", force: true do |t|
     t.integer  "user_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141006232631) do
 
   create_table "project_images", force: true do |t|
     t.integer  "project_id"
-    t.string   "image_url"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

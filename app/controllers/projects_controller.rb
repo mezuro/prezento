@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
-      ProjectImage.create(image_url: project_params[:image_url],project_id: @project.id )
+      ProjectImage.create(url: project_params[:url],project_id: @project.id )
     end
   end
 
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
   def update
     set_project
     @project_image = ProjectImage.find_by_project_id(@project.id)
-    if @project.update(project_params) && @project_image.update(image_url: project_params[:image_url])
+    if @project.update(project_params) && @project_image.update(url: project_params[:image_url])
       redirect_to(project_path(@project.id))
     else
       render "edit"

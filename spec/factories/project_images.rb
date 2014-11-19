@@ -3,10 +3,10 @@
 FactoryGirl.define do
   factory :project_image do
     project_id 1
-    image_url "Example"
+    url "Example"
   end
 
   factory :project_no_image, class: ProjectImage do
-    image_url nil
+    url nil
   end
 end
