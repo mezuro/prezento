@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'validators/range_overlapping_validator'
 
 describe KalibroUniquenessValidator, :type => :model do
   pending 'waiting for kalibro configurations integration' do
