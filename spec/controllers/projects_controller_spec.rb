@@ -195,10 +195,9 @@ describe ProjectsController, :type => :controller do
 
   describe 'update' do
     before do
-      @project_image = FactoryGirl.create(:project_image)
-      @subject = FactoryGirl.create(:project)
+      @project_image = FactoryGirl.build(:project_image)
+      @subject = FactoryGirl.build(:project)
       @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }]
-
     end
 
     context 'when the user is logged in' do
@@ -213,7 +212,6 @@ describe ProjectsController, :type => :controller do
           @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
           User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
           ProjectImage.expects(:find_by_project_id).with(@subject.id).returns(@project_image)
-
         end
 
         context 'with valid fields' do
@@ -244,7 +242,7 @@ describe ProjectsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            #Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+            Project.expects(:find).with(@subject.id.to_s).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :project => @subject_params
