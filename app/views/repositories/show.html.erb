@@ -20,7 +20,7 @@
 <p>
   <strong>Languages:</strong>
   <ul>
-    <% @my_hash.each do |key,value| %>
+    <% @my_hash.each_key do |key| %>
     <li><%= "#{key}" %></li>
     <% end %>
   </ul>
