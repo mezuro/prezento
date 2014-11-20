@@ -18,6 +18,15 @@
 </p>
 
 <p>
+  <strong>Languages:</strong>
+  <ul>
+    <% @my_hash.each do |key,value| %>
+    <li><%= "#{key}" %></li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @repository.address %>
 </p>

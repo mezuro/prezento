@@ -11,7 +11,23 @@ class RepositoriesController < ApplicationController
   # GET /projects/1/repositories/1/modules/1
   # GET /projects/1/repositories/1/modules/1.json
   def show
+    load_languages
     set_mezuro_configuration
+  end
+
+  def load_languages
+
+    partion1 = @repository.address.gsub('github.com','api.github.com/repos')
+    if partion1.last == '/'
+      source =  partion1 + "languages";
+    elsif partion1.last == 'git'
+      source = partion1.gsub(".git", "/languages");
+    else
+      source =  partion1 + "/languages";
+    end
+    resp = Net::HTTP.get_response(URI.parse(source))
+    data = resp.body
+    @my_hash = JSON.parse(data)
   end
 
   # GET projects/1/repositories/new
