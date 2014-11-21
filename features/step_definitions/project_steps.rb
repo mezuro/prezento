@@ -38,12 +38,11 @@ Given(/^I am at the New Project page$/) do
   visit new_project_path
 end
 
-Then(/^I should not see (.+)$/) do |text|
+Then(/^I should not see "(.+)"$/) do |text|
   expect(page).to_not have_content(text)
 end
 
-#FIXME: this is step is not matched
-Then(/^I should not see "(.+)"" within "(.+)"$/) do |text, selector|
+Then(/^I should not see (.+) within (.+)$/) do |text, selector|
   expect(page.find(selector)).to_not have_content(text)
 end
 

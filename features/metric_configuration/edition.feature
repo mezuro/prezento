@@ -11,7 +11,7 @@ Feature: Metric Configuration edition
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
-    Then I should not see "Edit"
+    Then I should not see Edit within table
 
   @kalibro_restart
   Scenario: editing a metric configuration successfully

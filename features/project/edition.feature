@@ -18,7 +18,7 @@ Feature: Project
     And I am signed in
     And I have a sample project
     And I am at the All Projects page
-    Then I should not see "Edit" within "table tr td"
+    Then I should not see Edit within table
 
   @kalibro_processor_restart
   Scenario: Should not render the edit page if the project doesn't belongs to the current user

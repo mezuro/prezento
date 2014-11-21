@@ -7,7 +7,7 @@ Feature: Reading Group Deletion
   Scenario: Should not delete a reading group without user authentication
     Given I have a sample reading group
     When I visit the Sample Reading Group page
-    Then I should not see Destroy
+    Then I should not see "Destroy"
 
   @kalibro_restart
   Scenario: Should not delete a reading group that doesn't belongs to user
@@ -15,7 +15,7 @@ Feature: Reading Group Deletion
     And I am signed in
     And I have a sample reading group
     When I visit the Sample Reading Group page
-    Then I should not see Destroy
+    Then I should not see "Destroy"
 
   @kalibro_restart
   Scenario: Should delete a reading group that I own
