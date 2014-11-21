@@ -12,7 +12,6 @@ module RepositoryHelper
     unless periodicity_label.nil?
       return periodicity_label.first
     end
-    return "Undefined"
   end
 
   def day_options

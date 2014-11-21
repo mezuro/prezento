@@ -18,10 +18,6 @@ describe RepositoryHelper, :type => :helper do
     it 'should return the periodicity option associated to the given number' do
       expect(helper.periodicity_option(1)).to eq "1 day"
     end
-
-    it 'should return Undefined when there is no periodicity value' do
-      expect(helper.periodicity_option(nil)).to eq "Undefined"
-    end
   end
 
   describe 'calendar' do
