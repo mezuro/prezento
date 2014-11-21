@@ -18,7 +18,7 @@ Feature: Reading Group
     And I am signed in
     And I have a sample reading group
     And I am at the All Reading Groups page
-    Then I should not see "Edit" within "table tr td"
+    Then I should not see Edit within table
 
   @kalibro_restart
   Scenario: Should not render the edit page if the reading group doesn't belongs to the current user

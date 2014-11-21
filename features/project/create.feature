@@ -5,7 +5,7 @@ Feature: Project Creation
 
   Scenario: Should not create project without login
     Given I am at the All Projects page
-    Then I should not see New Project
+    Then I should not see "New Project"
 
   @kalibro_processor_restart
   Scenario: project creation

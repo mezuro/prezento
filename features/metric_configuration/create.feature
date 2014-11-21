@@ -7,7 +7,7 @@ Feature: Metric Configuration Creation
   Scenario: Should not create metric configurations without login
     Given I have a sample configuration
     And I am at the Sample Configuration page
-    Then I should not see New Metric Configuration
+    Then I should not see "New Metric Configuration"
 
   @kalibro_restart @javascript
   Scenario: metric configuration creation

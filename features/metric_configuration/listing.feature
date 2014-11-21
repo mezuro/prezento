@@ -34,4 +34,4 @@ Feature: Configuration listing
     And I am signed in
     And I have a sample configuration
     When I am at the Sample Configuration page
-    Then I should not see Add Metric link
+    Then I should not see "Add Metric"
