@@ -17,10 +17,9 @@ class RepositoriesController < ApplicationController
 
   def load_languages
 
-    partion1 = @repository.address.gsub('github.com','api.github.com/repos')
+    path = @repository.address.gsub('github.com','api.github.com/repos')
 
-    partion1.scan(/api.github.com\/repos\/(.*)\/(.*).*/).each do |user, repo|
-
+    path.scan(/api.github.com\/repos\/(.*)\/(.*).*/).each do |user, repo|
       if /.git/.match(repo)
         repo_without_git = repo.gsub('.git', '')
       else
@@ -30,10 +29,9 @@ class RepositoriesController < ApplicationController
       source = "https://api.github.com/repos/" << user << "/" << repo_without_git << "/languages"
       resp = Net::HTTP.get_response(URI.parse(source))
       data = resp.body
-      @my_hash = JSON.parse(data)
+      @repository_languages = JSON.parse(data)
+      @repository_languages.has_value?("Not Found") ? @repository_languages = nil : @repository_languages
     end
-
-
   end
 
   # GET projects/1/repositories/new
