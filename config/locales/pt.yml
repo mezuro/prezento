@@ -351,7 +351,10 @@ pt:
               too_short: "A senha fornecida é muito pequena!"
             password_confirmation:
               confirmation: "As senhas fornecidas não são iguais."
-  pick_color: "Cor"
+  successfully_created: "%{record} foi criado com sucesso."
   successfully_edited: "%{record} foi editado com sucesso."
   successfully_updated: "%{record} foi atualizado com sucesso."
+  pick_color: "Cor"
+  #class names
   MetricConfiguration: "Metrica de Configuração"
+  MezuroRange: "Intervalo"
