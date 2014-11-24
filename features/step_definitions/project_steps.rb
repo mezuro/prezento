@@ -8,6 +8,10 @@ Given(/^I have a sample project$/) do
   @project = FactoryGirl.create(:project, {id: nil})
 end
 
+Given(/^I have a sample project_image$/) do
+  @project_image = FactoryGirl.create(:project_image, {id: nil})
+end
+
 Given(/^I have a project named "(.*?)"$/) do |name|
   @project = FactoryGirl.create(:project, {id: nil, name: name})
 end
