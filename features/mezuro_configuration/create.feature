@@ -6,7 +6,7 @@ Feature: Configuration Creation
   @kalibro_restart
   Scenario: Should not create configuration without login
     Given I am at the All Configurations page
-    Then I should not see New Configuration
+    Then I should not see "New Configuration"
 
   @kalibro_restart
   Scenario: configuration creation

@@ -7,7 +7,7 @@ Feature: Project Deletion
   Scenario: Should not delete a project without user authetication
     Given I have a sample project
     When I am at the Sample Project page
-    Then I should not see Destroy
+    Then I should not see "Destroy"
 
   @kalibro_processor_restart
   Scenario: Should not delete a project that doesn't belongs to user
@@ -15,7 +15,7 @@ Feature: Project Deletion
     And I am signed in
     And I have a sample project
     When I am at the Sample Project page
-    Then I should not see Destroy
+    Then I should not see "Destroy"
 
   @kalibro_processor_restart
   Scenario: Should delete a project that I own

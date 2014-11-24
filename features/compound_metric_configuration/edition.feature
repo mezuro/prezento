@@ -12,7 +12,7 @@ Feature: Compound Metric Configuration edition
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
-    Then I should not see "Edit"
+    Then I should not see Edit within table
 
   @kalibro_restart
   Scenario: editing a compound metric configuration successfully
@@ -64,4 +64,3 @@ Feature: Compound Metric Configuration edition
     And I fill the Code field with "Another_Code"
     And I press the Save button
     Then I should see "Code There is already a MetricConfiguration with code Another_Code! Please, choose another one."
-

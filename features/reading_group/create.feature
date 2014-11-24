@@ -6,7 +6,7 @@ Feature: Reading Group Creation
 @kalibro_restart
 Scenario: Should not create reading groups without login
   Given I am at the All Reading Groups page
-  Then I should not see New Reading Group
+  Then I should not see "New Reading Group"
 
 @kalibro_restart
 Scenario: Reading Group creation

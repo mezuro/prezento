@@ -18,7 +18,7 @@ Feature: Configuration
     And I am signed in
     And I have a sample configuration
     And I am at the All Configurations page
-    Then I should not see "Edit" within "table tr td"
+    Then I should not see Edit within table
 
   @kalibro_restart
   Scenario: Should not render the edit page if the configuration doesn't belongs to the current user

@@ -7,7 +7,7 @@ Feature: Configuration Deletion
   Scenario: Should not delete a configuration without user authentication
     Given I have a sample configuration
     When I am at the Sample Configuration page
-    Then I should not see Destroy
+    Then I should not see "Destroy"
 
   @kalibro_restart
   Scenario: Should not delete a configuration that doesn't belongs to user
@@ -15,7 +15,7 @@ Feature: Configuration Deletion
     And I am signed in
     And I have a sample configuration
     When I am at the Sample Configuration page
-    Then I should not see Destroy
+    Then I should not see "Destroy"
 
   @kalibro_restart
   Scenario: Should delete a configuration that I own
