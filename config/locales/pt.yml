@@ -356,6 +356,11 @@ pt:
               too_short: "A senha fornecida é muito pequena!"
             password_confirmation:
               confirmation: "As senhas fornecidas não são iguais."
+  reading_successfully_created: "A leitura foi criada com sucesso."
+  pick_color: "Cor"
+  reading_sucessfully_update: "A leitura foi atualizada com sucesso."
+  configuration_successfully_created: "Configuração foi criada com sucesso."
+  project_successfully_created: "Projeto foi criado com sucesso."
 
   successfully_created: "%{record} criado com sucesso."
   successfully_updated: "%{record} atualizado com sucesso."
