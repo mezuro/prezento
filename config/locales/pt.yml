@@ -350,5 +350,6 @@ pt:
               too_short: "A senha fornecida é muito pequena!"
             password_confirmation:
               confirmation: "As senhas fornecidas não são iguais."
-
-
+  successfully_edited: "%{record} foi editado com sucesso."
+  successfully_updated: "%{record} foi atualizado com sucesso."
+  MetricConfiguration: "Metrica de Configuração"
