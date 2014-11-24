@@ -316,3 +316,7 @@ en:
   currently_waiting_confirmation: "Currently waiting confirmation for:"
   leavel_blank_want_change: "(leave it blank if you do not want to change it)"
   instant_loading_page: "Wait an instant while we are loading the page that you have requested."
+  reading_successfully_created: "Reading was successfully created."
+  pick_color: "Pick Color"
+  reading_sucessfully_update: "Reading was successfully updated."
+  configuration_successfully_created: "Configuração foi criada com sucesso."
