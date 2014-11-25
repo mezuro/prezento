@@ -2,7 +2,7 @@
   <td><%= metric_configuration.metric.name %></td>
   <td><%= metric_configuration.code %></td>
   <td><%= metric_configuration.weight %></td>
-  <td>
+  <td  data-toggle="tooltip" data-placement="left" title="Show this configuration" >
     <%= link_to_show_page(metric_configuration, @mezuro_configuration.id) %>
   </td>
   <% if mezuro_configuration_owner? @mezuro_configuration.id %>
