@@ -16,12 +16,4 @@ class User < ActiveRecord::Base
   def projects
     project_ownerships.map { |project_ownership| project_ownership.project }
   end
-
-  def reading_groups
-    reading_group_ownerships.map { |reading_group_ownership| reading_group_ownership.reading_group }
-  end
-
-  def mezuro_configurations
-    mezuro_configuration_ownerships.map { |mezuro_configuration_ownership| mezuro_configuration_ownership.mezuro_configuration }
-  end
 end
