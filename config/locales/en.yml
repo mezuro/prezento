@@ -28,6 +28,7 @@ en:
   sign_up: "Sign Up"
   show: "Show"
   edit: "Edit"
+  edit_user: "Edit User"
   buttom_save: "Save"
   buttom_back: "Back"
   end: "End"
@@ -86,11 +87,21 @@ en:
   keywords: "Keywords"
   reading: "Reading"
   readings: "readings"
+  analysis: "Analysis"
   feedback: "feedback"
   update: "Update"
-  analysis: "Analysis"
   configuring: "Configuring"
   tutorials: "Tutorials"
+  analysis: "Analysis"
+  password: "Password"
+  configuring: "Configuring"
+  tutorials: "Tutorials"
+  password_confirmation: "Password Confirmation"
+  remember_me: "Remember me"
+  day: "Day"
+  month: "Month"
+  year: "Year"
+  search: "Search"
 
   #this pattern is type_folder_file  
 
@@ -316,6 +327,36 @@ en:
   currently_waiting_confirmation: "Currently waiting confirmation for:"
   leavel_blank_want_change: "(leave it blank if you do not want to change it)"
   instant_loading_page: "Wait an instant while we are loading the page that you have requested."
+  instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
+  kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
+  devise:
+    failure:
+      user:
+        not_found_in_database: "Usuário não encontrado"
+    sessions:
+      user:
+        signed_in: "Login efetuado com sucesso!"
+        signed_out: "Acesso encerrado com sucesso!"
+        signed_up: "Cadastro realizado com sucesso!"
+  errors:
+    messages:
+      not_saved: "Não foi possível salvar!"
+
+  activerecord:
+    messages:
+      models:
+        project:
+          successfull: "Projeto criado com sucesso!"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "Já existe um usuário cadastrado com esse email."
+            password:
+              too_short: "A senha fornecida é muito pequena!"
+            password_confirmation:
+              confirmation: "As senhas fornecidas não são iguais."
   reading_successfully_created: "Reading was successfully created."
   pick_color: "Pick Color"
   password_confirmation: "Password confirmation"
