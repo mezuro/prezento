@@ -320,3 +320,6 @@ en:
   pick_color: "Pick Color"
   reading_sucessfully_update: "Reading was successfully updated."
   configuration_successfully_created: "Configuração foi criada com sucesso."
+  password_confirmation: "Password confirmation"
+  current_password: "Current password"
+  leavel_blank: "Leavel blank want change"
