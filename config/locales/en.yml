@@ -325,7 +325,7 @@ en:
   create_new_reading: "Create New Reading"
   process_period: "Process Period"
   currently_waiting_confirmation: "Currently waiting confirmation for:"
-  leavel_blank_want_change: "(leave it blank if you do not want to change it)"
+  leave_blank_wont_change: "(leave it blank if you do not want to change it)"
   instant_loading_page: "Wait an instant while we are loading the page that you have requested."
   instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
   kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
@@ -357,10 +357,18 @@ en:
               too_short: "A senha fornecida é muito pequena!"
             password_confirmation:
               confirmation: "As senhas fornecidas não são iguais."
-  reading_successfully_created: "Reading was successfully created."
   pick_color: "Pick Color"
-  reading_sucessfully_update: "Reading was successfully updated."
-  configuration_successfully_created: "Configuração foi criada com sucesso."
   password_confirmation: "Password confirmation"
   current_password: "Current password"
-  leavel_blank: "Leavel blank want change"
+
+  successfully_created: "%{record} was successfully created."
+  successfully_updated: "%{record} was successfully updated."
+
+  #class names
+  MetricConfiguration: "Metric Configuration"
+  CompoundMetricConfiguration: "Compound Metric Configuration"
+  MezuroRange: "Range"
+  ReadingGroup: "Reading Group"
+  Repository: "Repository"
+  Project: "Project"
+  Reading: "Reading"

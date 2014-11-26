@@ -24,7 +24,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
     respond_to do |format|
       edit
       if @compound_metric_configuration.update(metric_configuration_params)
-        format.html { redirect_to mezuro_configuration_path(@compound_metric_configuration.configuration_id), notice: t('successfully_updated', :record => compound_metric_configuration.class.name) }
+        format.html { redirect_to mezuro_configuration_path(@compound_metric_configuration.configuration_id), notice: t('successfully_updated', :record => t('Compound' + compound_metric_configuration.class.name)) }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -62,7 +62,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
   #Code extracted from create action
   def create_and_redir(format)
     if @compound_metric_configuration.save
-      format.html { redirect_to mezuro_configuration_path(@compound_metric_configuration.configuration_id), notice: t('compound_metric_successfully_created') }
+      format.html { redirect_to mezuro_configuration_path(@compound_metric_configuration.configuration_id), notice: t('successfully_updated', :record => t('Compound' + compound_metric_configuration.class.name))) }
     else
       failed_action(format, 'new')
     end

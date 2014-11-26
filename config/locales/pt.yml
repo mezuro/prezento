@@ -324,7 +324,12 @@ pt:
   process_period: "Período de processo"
   instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
   kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
+  leave_blank_wont_change: "(deixe-o em branco se não quiser muda-lo.)"
+  currently_waiting_confirmation: "Atualmente esperando confirmação de:"
   devise:
+    registrations:
+      user:
+        signed_up: "Cadastro realizado com sucesso!"
     failure:
       user:
         not_found_in_database: "Usuário não encontrado"
@@ -332,7 +337,7 @@ pt:
       user:
         signed_in: "Login efetuado com sucesso!"
         signed_out: "Acesso encerrado com sucesso!"
-        signed_up: "Cadastro realizado com sucesso!"
+
   errors:
     messages:
       not_saved: "Não foi possível salvar!"
@@ -348,20 +353,23 @@ pt:
           attributes:
             email:
               taken: "Já existe um usuário cadastrado com esse email."
+              invalid: "O e-mail inserido não é valido."
             password:
               too_short: "A senha fornecida é muito pequena!"
             password_confirmation:
               confirmation: "As senhas fornecidas não são iguais."
-              
-  successfully_created: "%{record} foi criado com sucesso."
-  successfully_edited: "%{record} foi editado com sucesso."
-  successfully_updated: "%{record} foi atualizado com sucesso."
+
+  successfully_created: "%{record} criado com sucesso."
+  successfully_updated: "%{record} atualizado com sucesso."
   pick_color: "Cor"
   password_confirmation: "Confirme sua senha"
   current_password: "Senha Atual"
-  leavel_blank: "Leavel blank want change"
 
   #class names
   MetricConfiguration: "Metrica de Configuração"
+  CompoundMetricConfiguration: "Metrica Composta de Configuração"
   MezuroRange: "Intervalo"
-  
+  ReadingGroup: "Grupo de Leitura"
+  Repository: "Repositorio"
+  Project: "Projeto"
+  Reading: "Leitura"
