@@ -15,7 +15,9 @@
 <% end %>
 
 <% cache("#{@root_module_result.id}_tree") do %>
-  <% children = @root_module_result.children %>
+  <% children = @root_module_result.children.sort do %>
+      <% |a,b| (a.module.granularity == b.module.granularity) ? a.module.name <=> b.module.name : -a.module.granularity.length <=> -b.module.granularity.length %>
+  <% end %>
   <% unless children.empty? %>
     <table class="table table-hover">
       <thead>
