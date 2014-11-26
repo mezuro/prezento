@@ -78,7 +78,7 @@ class MezuroConfigurationsController < ApplicationController
     if @mezuro_configuration.save
       current_user.mezuro_configuration_ownerships.create mezuro_configuration_id: @mezuro_configuration.id
 
-      format.html { redirect_to mezuro_configuration_path(@mezuro_configuration.id), notice: t('configuration_successfully_created') }
+      format.html { redirect_to mezuro_configuration_path(@mezuro_configuration.id), notice: t('successfully_created', :record => t(mezuro_configuration.class))) }
       format.json { render action: 'show', status: :created, location: @mezuro_configuration }
     else
       format.html { render action: 'new' }
