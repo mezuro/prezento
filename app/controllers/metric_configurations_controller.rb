@@ -73,7 +73,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   #Code extracted from create action
   def create_and_redir(format)
     if @metric_configuration.save
-      format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id), notice: t('successfully_updated', :record => t(metric_configuration.class)) }
+      format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id), notice: t('successfully_created', :record => t(metric_configuration.class)) }
     else
       failed_action(format, 'new')
     end

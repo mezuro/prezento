@@ -75,11 +75,12 @@ class ProjectsController < ApplicationController
     params[:project]
   end
 
+<<<<<<< HEAD
   # Extracted code from create action
   def create_and_redir(format)
     if @project.save
       current_user.project_ownerships.create project_id: @project.id
-      format.html { redirect_to project_path(@project.id), notice: t('project_successfully_created') }
+      format.html { redirect_to project_path(@project.id), notice: t('successfully_created', :record => t(@project.class)) }
       format.json { render action: 'show', status: :created, location: @project }
     else
       format.html { render action: 'new' }
