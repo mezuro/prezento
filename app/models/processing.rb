@@ -1,3 +1,2 @@
-class Processing < KalibroGatekeeperClient::Entities::Processing
-  include KalibroRecord
+class Processing < KalibroClient::Processor::Processing
 end
