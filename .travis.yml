@@ -13,14 +13,13 @@ before_script:
   - bash install.sh
   - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  # Gatekeeper
-  - git clone https://github.com/mezuro/kalibro_gatekeeper.git -b v0.2.0 kalibro_gatekeeper
-  - cd kalibro_gatekeeper
+  # Configurations
+  - git clone https://github.com/mezuro/kalibro_configurations.git -b integrating_with_prezento kalibro_configurations
+  - cd kalibro_configurations
   - cp config/database.yml.sample config/database.yml
-  - cp config/kalibro_processor.yml.sample config/kalibro_processor.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   - bundle install
-  - RAILS_ENV=local bundle exec rails s -p 8081 -d
+  - RAILS_ENV=local bundle exec rails s -p 8083 -d
   - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   # Processor
