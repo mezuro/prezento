@@ -27,13 +27,11 @@ describe ProjectsController, :type => :controller do
 
       context 'rendering the show' do
         before :each do
-          Project.expects(:exists?).returns(true)
-
           post :create, :project => subject_params
         end
 
         it 'should redirect to the show view' do
-          expect(response).to redirect_to project_path(project)
+          expect(response).to redirect_to project_path(project.id)
         end
       end
 
@@ -234,12 +232,11 @@ describe ProjectsController, :type => :controller do
 
           context 'rendering the show' do
             before :each do
-              Project.expects(:exists?).returns(true)
               post :update, :id => @subject.id, :project => @subject_params
             end
 
             it 'should redirect to the show view' do
-              expect(response).to redirect_to project_path(@subject)
+              expect(response).to redirect_to project_path(@subject.id)
             end
           end
 
