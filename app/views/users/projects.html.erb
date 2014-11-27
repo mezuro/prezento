@@ -2,7 +2,6 @@
   <h1><%= @user.name %> Projects</h1>
 </div>
 <p>
-	<%= link_to 'New Project', new_project_path, class: 
-	'btn  btn-primary' %>
+	<%= link_to 'New Project', new_project_path, class: 'btn  btn-primary' %>
 </p>
 <%= render partial: 'shared/project_list', locals: {projects: @user.projects} %>
