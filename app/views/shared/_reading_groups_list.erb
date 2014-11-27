@@ -12,10 +12,11 @@
       <tr>
         <td><%= reading_group.name %></td>
         <td><%= reading_group.description %></td>
-        <td><%= link_to 'Show', reading_group_path(reading_group.id), class: 'btn btn-info' %></td>
+        <td data-toggle="tooltip" data-placement="left" title="Show this Reading Group"><%= link_to 'Show', reading_group_path(reading_group.id), class: 'btn btn-info' %></td>
         <td>
           <% if reading_groups_owner? reading_group.id %>
-            <%= link_to 'Edit', edit_reading_group_path(reading_group.id), class: 'btn btn-info' %>
+          <span data-toggle="tooltip" data-placement="left" title="Edit this Reading Group">
+            <%= link_to 'Edit', edit_reading_group_path(reading_group.id), class: 'btn btn-info' %></span>
           <% end %>
         </td>
       </tr>

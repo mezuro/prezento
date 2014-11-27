@@ -4,15 +4,15 @@
 <div class="row margin-left-none">
   <div class="form-table col-md-9">
 
-    <div class="form-row">
-      <div class="field-container">
+    <div class="field-container" data-toggle="tooltip" data-placement="left" title="Input configuration name">
+      <div >
         <%= f.label :name, class: 'control-label' %><br>
         <%= f.text_field :name, :required => true, class: 'text-field form-control' %>
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="field-container">
+    <div>
+      <div class="field-container" data-toggle="tooltip" data-placement="left" title="Input configuration description">
         <%= f.label :description, class: 'control-label' %><br>
         <%= f.text_area :description, class: 'text-area form-control' %>
       </div>

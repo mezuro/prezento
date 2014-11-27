@@ -3,7 +3,7 @@
 </div>
 
 <% if user_signed_in? %>
-  <p>
+  <p  data-toggle="tooltip" data-placement="left" title="Create a new Reading Group">
     <%= link_to 'New Reading Group', new_reading_group_path, class: 'btn  btn-primary' %>
   </p>
 <%else%>
