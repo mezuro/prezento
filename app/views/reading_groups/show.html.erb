@@ -11,7 +11,7 @@
 
 <h2> <%= t('readings') %> </h2>
 
-<% if reading_groups_owner? @reading_group.id %><%= link_to  t('new_range') , new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
+<% if reading_groups_owner? @reading_group.id %><%= link_to  t('new_reading') , new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
 
 <table class="table table-hover">
   <thead>
