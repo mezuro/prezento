@@ -14,7 +14,7 @@ Feature: New reading
     And I should see "Label"
     And I should see "Grade"
     And I should see "Color"
-    And I press the Pick color button
+    And I press the pickcolor_button button
 
   @kalibro_restart
   Scenario: With valid fields
@@ -34,7 +34,7 @@ Feature: New reading
     And I am signed in
     And I own a sample reading group
     And I am at the New Reading page
-    When I press the Pick color button
+    When I press the pickcolor_button button
     Then I should see a color picker Canvas
 
   @kalibro_restart @javascript
@@ -45,7 +45,7 @@ Feature: New reading
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
     And I fill the Grade field with "1"
-    When I press the Pick color button
+    When I press the pickcolor_button button
     And I click on the center of the color picker
     And I press the Save button
     Then I should be in the Sample Reading Group page
