@@ -75,7 +75,6 @@ class ProjectsController < ApplicationController
     params[:project]
   end
 
-<<<<<<< HEAD
   # Extracted code from create action
   def create_and_redir(format)
     if @project.save
