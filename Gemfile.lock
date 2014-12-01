@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_client
-  revision: cd1f8d931432a7257d0fe1abcacdaf50b8fd3976
+  revision: 1a4ef5f0ea168a6d91d1e86866f906ffccf59cad
   specs:
     kalibro_client (0.0.1)
       activeresource (~> 4.0.0)
