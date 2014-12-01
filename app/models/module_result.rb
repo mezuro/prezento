@@ -1,15 +1,7 @@
-class ModuleResult < KalibroGatekeeperClient::Entities::ModuleResult
-  include KalibroRecord
-
-  def metric_results
-    KalibroGatekeeperClient::Entities::MetricResult.metric_results_of(@id)
-  end
-
-  def history
-    self.class.history_of(@id).map { |date_module_result| DateModuleResult.new date_module_result.to_hash }
-  end
+class ModuleResult < KalibroClient::Processor::ModuleResult
 
   def metric_history(name)
+    history = self.processing.repository.module_result_history_of(self)
     grade_history = Hash.new
 
     history.each { |date_module_result| grade_history[date_module_result.date] =
