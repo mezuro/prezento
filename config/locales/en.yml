@@ -327,34 +327,7 @@ en:
   leave_blank_wont_change: "(leave it blank if you do not want to change it)"
   instant_loading_page: "Wait an instant while we are loading the page that you have requested."
   kalibro_error_message: "There is already a %{record} %{attribute} with value %{value}! Please, choose another one."
-  devise:
-    failure:
-      user:
-        not_found_in_database: "Usuário não encontrado"
-    sessions:
-      user:
-        signed_in: "Login efetuado com sucesso!"
-        signed_out: "Acesso encerrado com sucesso!"
-        signed_up: "Cadastro realizado com sucesso!"
-  errors:
-    messages:
-      not_saved: "Não foi possível salvar!"
 
-  activerecord:
-    messages:
-      models:
-        project:
-          successfull: "Projeto criado com sucesso!"
-    errors:
-      models:
-        user:
-          attributes:
-            email:
-              taken: "Já existe um usuário cadastrado com esse email."
-            password:
-              too_short: "A senha fornecida é muito pequena!"
-            password_confirmation:
-              confirmation: "As senhas fornecidas não são iguais."
   pick_color: "Pick color"
   password_confirmation: "Password confirmation"
   current_password: "Current password"
