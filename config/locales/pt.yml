@@ -29,8 +29,6 @@ pt:
   show: "Mostrar"
   edit: "Editar"
   edit_user: "Editar Usuário"
-  buttom_save: "Salvar"
-  buttom_back: "Voltar"
   end: "Fim"
   the: "a"
   of_the: "do"
@@ -53,7 +51,7 @@ pt:
   range: "Intervalo"
   ranges: "Intervarlos"
   language: "Linguagens:"
-  new_projects: "Novo Projeto"
+  new_project: "Novo Projeto"
   no_description: "Não há descrição disponível."
   welcome: "Bem-Vindo"
   metrics: "Metricas"
@@ -326,17 +324,6 @@ pt:
   kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
   leave_blank_wont_change: "(deixe-o em branco se não quiser muda-lo.)"
   currently_waiting_confirmation: "Atualmente esperando confirmação de:"
-  devise:
-    registrations:
-      user:
-        signed_up: "Cadastro realizado com sucesso!"
-    failure:
-      user:
-        not_found_in_database: "Usuário não encontrado"
-    sessions:
-      user:
-        signed_in: "Login efetuado com sucesso!"
-        signed_out: "Acesso encerrado com sucesso!"
   errors:
     messages:
       not_saved: "Não foi possível salvar!"
