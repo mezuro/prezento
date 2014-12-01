@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 FactoryGirl.define do
-  factory :metric_configuration_snapshot, class: KalibroGatekeeperClient::Entities::MetricConfigurationSnapshot do
+  factory :metric_configuration_snapshot, class: KalibroClient::Configurations::MetricSnapshot do
 		code "code"
 		weight "1.0"
 		aggregation_form 'AVERAGE'
