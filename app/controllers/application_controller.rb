@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :error, :alert
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :configure_permitted_parameters, if: :devise_controller?#, :set_locale
 
   protected
 
@@ -15,6 +15,17 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
+  end
+  #set the user locale.
+  def set_locale
+    if (params[:locale])
+      I18n.locale = params[:locale]
+    else if (current_user.signed_up?)
+        I18n.locale = current_user.user_locale.to_s
+      else
+        I18n.locale=I18n.default_locale
+      end
+    end 
   end
 end
 
