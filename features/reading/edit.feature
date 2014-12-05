@@ -3,10 +3,12 @@ Feature: Reading Edit
   As a regular user
   I should be able to edit my readings
 
-@kalibro_restart
-  Scenario: editing a reading successfully
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_restart
+  Scenario: editing a reading successfully
     And I own a sample reading group
     And I have a sample reading within the sample reading group
     And I am at the Edit Reading page
@@ -19,8 +21,6 @@ Feature: Reading Edit
 
   @kalibro_restart
   Scenario: editing a reading with blank fields
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group
     And I am at the Edit Reading page
@@ -34,8 +34,6 @@ Feature: Reading Edit
 
   @kalibro_restart
   Scenario: editing a reading with already taken name
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group labeled "Average"
     And I have a sample reading within the sample reading group labeled "Good"
@@ -46,8 +44,6 @@ Feature: Reading Edit
 
   @kalibro_restart
   Scenario: editing a reading with non numerical value
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group
     And I am at the Edit Reading page

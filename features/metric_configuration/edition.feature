@@ -3,22 +3,21 @@ Feature: Metric Configuration edition
   As a regular user
   I should edit the informations of metric configurations
 
-  @kalibro_restart
-  Scenario: the configuration is not mine
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
-    And I have a sample configuration
     And I have a sample reading group
+
+  @kalibro_restart
+  Scenario: the configuration is not mine
+    And I have a sample configuration
     And I have a sample metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
     Then I should not see Edit within table
 
   @kalibro_restart
   Scenario: editing a metric configuration successfully
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
-    And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
     When I click the Edit link
@@ -28,10 +27,7 @@ Feature: Metric Configuration edition
 
   @kalibro_restart
   Scenario: trying to edit with blank fields
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
-    And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     When I visit the sample metric configuration edit page
     And I fill the Weight field with " "
@@ -40,10 +36,7 @@ Feature: Metric Configuration edition
 
   @kalibro_restart
   Scenario: Should not edit a metric configuration with invalid weight
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
-    And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     When I visit the sample metric configuration edit page
     And I fill the Weight field with "0"

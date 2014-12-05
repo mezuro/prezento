@@ -3,10 +3,6 @@ Feature: Metric Configuration Creation
   As a regular user
   I should be able to create metric configurations
 
-  Background:
-    Given I am a regular user
-    And I am signed in
-
   @kalibro_restart
   Scenario: Should not create metric configurations without login
     Given I have a sample configuration
@@ -14,7 +10,9 @@ Feature: Metric Configuration Creation
     Then I should not see "New Metric Configuration"
 
   @kalibro_restart @javascript
-  Scenario: metric configuration creation    
+  Scenario: metric configuration creation
+    Given I am a regular user
+    And I am signed in
     And I own a sample configuration
     And I have a reading group named "Scholar"
     And I am at the Sample Configuration page
@@ -30,6 +28,8 @@ Feature: Metric Configuration Creation
 
   @kalibro_restart @javascript
   Scenario: metric configuration creation
+    Given I am a regular user
+    And I am signed in
     And I own a sample configuration
     And I have a reading group named "Scholar"
     And I am at the Sample Configuration page

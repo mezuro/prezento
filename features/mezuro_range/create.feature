@@ -3,10 +3,12 @@ Feature: Create range
   As a metric specialist
   I should be able to fill up a form with its informations and submit it
 
-  @kalibro_restart
-  Scenario: Visiting range creation page when the user own an non-empty reading group
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+ 
+  @kalibro_restart
+  Scenario: Visiting range creation page when the user own an non-empty reading group
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -21,8 +23,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: Visiting range creation page when the user don't own the reading group and this reading group is empty
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I have a reading group named "Scholar"
     And I have a sample metric configuration within the given mezuro configuration
@@ -37,8 +37,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: Visiting range creation page when the user own an empty reading group (testing link to New Reading)
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -57,8 +55,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: With valid fields and owning a non-empty reading group
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -73,8 +69,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: With invalid fields and owning a non-empty reading group (Beginning > End)
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -91,8 +85,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: With an invalid beggining (not a number)
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -109,8 +101,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: With an invalid end (not a number)
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -126,8 +116,6 @@ Feature: Create range
 
   @kalibro_restart
   Scenario: With an already taken beginning
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -144,8 +132,6 @@ Feature: Create range
 
   @kalibro_restart @javascript
   Scenario: Should create range with [-INF, INF] threshold
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -162,8 +148,6 @@ Feature: Create range
 
   @kalibro_restart @javascript
   Scenario: Two valid ranges (one with INF)
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
