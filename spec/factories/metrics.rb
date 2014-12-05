@@ -19,15 +19,13 @@ FactoryGirl.define do
     initialize_with { new(compound, name, code, scope) }
   end
 
-  factory :compound_metric, class: KalibroClient::Processor::Metric do
+  factory :compound_metric, class: KalibroClient::Processor::CompoundMetric do
     name "Compound"
     code "compound"
-    compound true
     scope "CLASS"
     description nil
     script ""
-    language ["C", "CPP", "JAVA"]
 
-    initialize_with { new(compound, name, code, scope) }
+    initialize_with { new(name, code, scope, script) }
   end
 end
