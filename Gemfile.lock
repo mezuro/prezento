@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_client
-  revision: 1a4ef5f0ea168a6d91d1e86866f906ffccf59cad
+  revision: e8367929a341a2eaf16599a858972703151a8967
   specs:
     kalibro_client (0.0.1)
       activeresource (~> 4.0.0)
@@ -165,7 +165,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
-    netrc (0.8.0)
+    netrc (0.9.0)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -195,7 +195,7 @@ GEM
       activesupport (= 4.1.6)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.4.0)
+    rake (10.4.2)
     rdoc (4.1.2)
       json (~> 1.4)
     ref (1.0.5)
