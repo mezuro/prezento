@@ -3,10 +3,12 @@ Feature: Configuration
   As a regular user
   I should be able to edit my configurations
 
-  @kalibro_configuration_restart
-  Scenario: Should go to the edit page from a configuration that I own
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_configuration_restart
+  Scenario: Should go to the edit page from a configuration that I own
     And I own a sample configuration
     And I am at the All Configurations page
     When I click the Edit link
@@ -14,16 +16,12 @@ Feature: Configuration
 
   @kalibro_configuration_restart
   Scenario: Should not show edit links from configurations that doesn't belongs to me
-    Given I am a regular user
-    And I am signed in
     And I have a sample configuration
     And I am at the All Configurations page
     Then I should not see Edit within table
 
   @kalibro_configuration_restart
   Scenario: Should not render the edit page if the configuration doesn't belongs to the current user
-    Given I am a regular user
-    And I am signed in
     And I have a sample configuration
     And I am at the All Projects page
     When I visit the sample configuration edit page
@@ -31,8 +29,6 @@ Feature: Configuration
 
   @kalibro_configuration_restart
   Scenario: Filling up the form
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I am at the All Configurations page
     When I click the Edit link
@@ -41,8 +37,6 @@ Feature: Configuration
 
   @kalibro_configuration_restart
   Scenario: With valid attributes
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I am at the sample configuration edit page
     And I fill the Name field with "Kalibro"
@@ -53,8 +47,6 @@ Feature: Configuration
 
   @kalibro_configuration_restart
   Scenario: With configuration name already taken
-    Given I am a regular user
-    And I am signed in
     And I have a configuration named "Qt-Calculator"
     And I own a configuration named "Kalibro"
     And I am at the sample configuration edit page
@@ -64,8 +56,6 @@ Feature: Configuration
 
   @kalibro_configuration_restart
   Scenario: Editing just the description
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I am at the sample configuration edit page
     And I fill the Description field with "Web Service to collect metrics"
@@ -74,8 +64,6 @@ Feature: Configuration
 
   @kalibro_configuration_restart
   Scenario: With blank configuration name
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I am at the sample configuration edit page
     And I fill the Name field with " "

@@ -3,18 +3,18 @@ Feature: Project listing
   As a regular user
   I should have various listings
 
-  Scenario: Listing projects
+  Background: Listing projects and regular user and signed in
     Given I am at the homepage
     When I click the Project link
     Then I should see "Projects"
     And I should see "Name"
     And I should see "Description"
     And I should see "You must be logged in to create projects"
+    Given I am a regular user
+    And I am signed in
 
   @kalibro_processor_restart
   Scenario: Should list the existing projects
-    Given I am a regular user
-    And I am signed in
     And I have a sample project
     And I am at the All Projects page
     Then the sample project should be there
@@ -22,8 +22,6 @@ Feature: Project listing
 
   @kalibro_processor_restart
   Scenario: Should show the existing project
-    Given I am a regular user
-    And I am signed in
     And I have a sample project
     And I have sample project_attributes
     And I am at the All Projects page

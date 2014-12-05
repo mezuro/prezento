@@ -3,12 +3,14 @@ Feature: Repository Edit
   As a regular user
   I should be able to edit my repositories
 
-  @kalibro_configuration_restart @kalibro_processor_restart
-  Scenario: editing a repository successfully
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
     And I own a sample project
     And I have a sample configuration with native metrics
+
+  @kalibro_configuration_restart @kalibro_processor_restart
+  Scenario: editing a repository successfully
     And I have a sample repository within the sample project named "QtCalculator"
     And I own that repository
     And I am at repository edit page
@@ -28,10 +30,6 @@ Feature: Repository Edit
 
   @kalibro_configuration_restart @kalibro_processor_restart
   Scenario: editing a repository with blank fields
-    Given I am a regular user
-    And I am signed in
-    And I own a sample project
-    And I have a sample configuration with native metrics
     And I have a sample repository within the sample project named "QtCalculator"
     And I own that repository
     And I am at repository edit page
@@ -43,10 +41,6 @@ Feature: Repository Edit
 
   @kalibro_configuration_restart @kalibro_processor_restart
   Scenario: editing a repository with already taken name
-    Given I am a regular user
-    And I am signed in
-    And I own a sample project
-    And I have a sample configuration with native metrics
     And I have a sample repository within the sample project named "MedSquare"
     And I own that repository
     And I have a sample repository within the sample project named "QtCalculator"
