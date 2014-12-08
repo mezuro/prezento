@@ -20,7 +20,7 @@ Feature: Reading Edit
     Then I should see "Bad"
 
   @kalibro_configuration_restart
-  Scenario: editing a reading with blank fields
+  Scenario: editing a reading with blank fields and editing a reading with already taken name
     And I own a sample reading group
     And I have a sample reading within the sample reading group
     And I am at the Edit Reading page
