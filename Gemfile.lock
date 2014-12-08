@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 3edf24de985d946f16a2781644289cfdc51ba95b
+  revision: 67f160dd2ff5cc7cd843a17866c3b6bc8e7f2794
   specs:
     twitter-bootstrap-rails (3.2.0)
       actionpack (>= 3.1)
@@ -148,7 +148,7 @@ GEM
       railties (>= 3.1, < 5)
       sprockets
     libv8 (3.16.14.7)
-    mail (2.6.1)
+    mail (2.6.3)
       mime-types (>= 1.16, < 3)
     metaclass (0.0.4)
     mime-types (2.4.3)
