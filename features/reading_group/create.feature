@@ -22,7 +22,7 @@ Feature: Reading Group Creation
     And I should see "Destroy Reading Group"
 
   @kalibro_restart
-  Scenario: reading group creation with already taken name
+  Scenario: reading group creation with already taken name and reading group creation with blank name
     Given I am a regular user
     And I am signed in
     And I have a reading group named "Group"
@@ -31,11 +31,6 @@ Feature: Reading Group Creation
     And I fill the Description field with "Same Group"
     When I press the Save button
     Then I should see "Name There is already a ReadingGroup with name Group!"
-
-  @kalibro_restart
-  Scenario: reading group creation with blank name
-    Given I am a regular user
-    And I am signed in
     And I am at the New Reading Group page
     And I fill the Name field with " "
     And I fill the Description field with "Anything"

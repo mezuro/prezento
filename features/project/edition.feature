@@ -49,7 +49,7 @@ Feature: Project
     And I should see "Web Service to collect metrics"
 
   @kalibro_processor_restart
-  Scenario: With project name already taken
+  Scenario: With project name already taken and with blank project name
     And I have a project named "Qt-Calculator"
     And I own a project named "Kalibro"
     And I am at the sample project edit page
@@ -57,6 +57,11 @@ Feature: Project
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
     Then I should see "Name There is already a Project with name Qt-Calculator!"
+    And I have a sample project_image
+    And I am at the sample project edit page
+    And I fill the Name field with " "
+    When I press the Save button
+    Then I should see "Name can't be blank"
 
   @kalibro_processor_restart
   Scenario: Editing just the description
@@ -67,11 +72,5 @@ Feature: Project
     When I press the Save button
     And I should see "Web Service to collect metrics"
 
-  @kalibro_processor_restart
-  Scenario: With blank project name
-    And I own a sample project
-    And I have a sample project_image
-    And I am at the sample project edit page
-    And I fill the Name field with " "
-    When I press the Save button
-    Then I should see "Name can't be blank"
+
+   

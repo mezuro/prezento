@@ -53,6 +53,10 @@ Feature: Configuration
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
     Then I should see "Name There is already a MezuroConfiguration with name Qt-Calculator!"
+    And I am at the sample configuration edit page
+    And I fill the Name field with " "
+    When I press the Save button
+    Then I should see "Name can't be blank"
 
   @kalibro_restart
   Scenario: Editing just the description
@@ -62,10 +66,5 @@ Feature: Configuration
     When I press the Save button
     And I should see "Web Service to collect metrics"
 
-  @kalibro_restart
-  Scenario: With blank configuration name
-    And I own a sample configuration
-    And I am at the sample configuration edit page
-    And I fill the Name field with " "
-    When I press the Save button
-    Then I should see "Name can't be blank"
+
+   
