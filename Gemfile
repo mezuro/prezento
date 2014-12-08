@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.8'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -79,16 +79,16 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
 
   # Fixtures made easy
-  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'factory_girl_rails', '~> 4.5.0'
 
   # Deployment
-  gem 'capistrano', "~>3.2.1", require: false
+  gem 'capistrano', "~>3.3.3", require: false
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm', "~>0.1.0"
 
   # JavaScript unit tests
-  gem "konacha", "~> 3.2.0"
+  gem "konacha", "~> 3.3.0"
 
   # Test coverage history
   gem 'coveralls', require: false
