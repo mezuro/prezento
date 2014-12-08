@@ -34,6 +34,11 @@ Given(/^I have a sample repository within the sample project named "(.+)"$/) do 
                                                  configuration_id: @mezuro_configuration.id, id: nil, name: name})
 end
 
+Given(/^I have a sample of an invalid repository within the sample project$/) do
+  @repository = FactoryGirl.create(:repository, {project_id: @project.id,
+                                                 configuration_id: @mezuro_configuration.id, id: nil, address: "https://invalidrepository.git"})
+end
+
 Given(/^I start to process that repository$/) do
   @repository.process
 end
@@ -42,6 +47,18 @@ Given(/^I wait up for a ready processing$/) do
   unless Processing.has_ready_processing(@repository.id)
     while(true)
       if Processing.has_ready_processing(@repository.id)
+        break
+      else
+        sleep(10)
+      end
+    end
+  end
+end
+
+Given(/^I wait up for a error processing$/) do
+  unless Processing.last_processing_state_of(@repository.id) == "ERROR"
+    while(true)
+      if Processing.last_processing_state_of(@repository.id)  == "ERROR"
         break
       else
         sleep(10)
