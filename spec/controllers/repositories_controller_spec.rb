@@ -4,29 +4,39 @@ describe RepositoriesController, :type => :controller do
   let(:project) { FactoryGirl.build(:project) }
 
   describe 'new' do
-    before :each do
-      sign_in FactoryGirl.create(:user) #TODO create a context when there's no user logged in
+    context 'with an User logged in' do
+      before :each do
+        sign_in FactoryGirl.create(:user)
+      end
+
+      context 'when the current user owns the project' do
+        before :each do
+          Repository.expects(:repository_types).returns([])
+          subject.expects(:project_owner?).returns true
+
+          get :new, project_id: project.id.to_s
+        end
+
+        it { is_expected.to respond_with(:success) }
+        it { is_expected.to render_template(:new) }
+      end
+
+      context "when the current user doesn't owns the project" do
+        before :each do
+          get :new, project_id: project.id.to_s
+        end
+
+        it { is_expected.to redirect_to(projects_url) }
+        it { is_expected.to respond_with(:redirect) }
+      end
     end
 
-    context 'when the current user owns the project' do
+    context 'with no user logged in' do
       before :each do
-        Repository.expects(:repository_types).returns([])
-        subject.expects(:project_owner?).returns true
-
         get :new, project_id: project.id.to_s
       end
 
-      it { is_expected.to respond_with(:success) }
-      it { is_expected.to render_template(:new) }
-    end
-
-    context "when the current user doesn't owns the project" do
-      before :each do
-        get :new, project_id: project.id.to_s
-      end
-
-      it { is_expected.to redirect_to(projects_url) }
-      it { is_expected.to respond_with(:redirect) }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 

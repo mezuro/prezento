@@ -38,7 +38,20 @@ Feature: Repository metric results
     When I visit the repository show page
     And I click the "Metric Results" h3
     And I see a sample metric's name
-    Then I should see "Missing range"  
+    Then I should see "Missing range"
+
+  @kalibro_restart @kalibro_processor_restart @javascript
+  Scenario: Should show the error message when the process fails
+    Given I am a regular user
+    And I am signed in
+    And I have a sample project
+    And I have a sample configuration with native metrics
+    And I have a sample of an invalid repository within the sample project
+    And I start to process that repository
+    And I wait up for a error processing
+    When I visit the repository show page
+    And I click the "Metric Results" h3
+    Then I should see "Repository process returned with error. There are no metric results."
 
   # TODO: Scenario: Should show the graphic of a given metric
   #         It was getting really difficult to test this because of Poltergeist's timeouts
