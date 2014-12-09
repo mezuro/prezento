@@ -1,17 +1,17 @@
 <div class="page-header">
-  <h1> <%= t('new_metric_configurations_new') %></h1>
+  <h1> <%= t('new_metric_configurations') %></h1>
 </div>
 
 <p>
-  <b>  <%= t('base_metric_configurations_new') %> </b> <%= @metric_configuration.metric_collector_name %>
+  <b>  <%= t('metric_configurations_base') %> </b> <%= @metric_configuration.metric_collector_name %>
 </p>
 
 <p>
-  <b> <%= t('metric_name_metric_configuration_new') %></b> <%= @metric_configuration.metric.name %>
+  <b> <%= t('metric_configuration_name') %></b> <%= @metric_configuration.metric.name %>
 </p>
 
 <p>
-  <b>  <%= t('metric_description_metric_configurations_new') %></b> <%= @metric_configuration.metric.description.nil? ?  t('no_description_available') : @metric_configuration.metric.description %>
+  <b>  <%= t('metric_configurations_description') %></b> <%= @metric_configuration.metric.description.nil? ?  t('no_description_available') : @metric_configuration.metric.description %>
 </p>
 
 <p>

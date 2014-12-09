@@ -125,13 +125,13 @@ en:
   range_metric_configurations_no_ranges: "There are no Ranges yet!"
   choose_metric: "Choose a metric from a Base Tool:"
   editing_metric_configurations_edit: "Editing Metric Configuration"
-  new_metric_configurations_new: "New Metric Configuration"
-  base_metric_configurations_new: "Base Tool:"
-  metric_name_metric_configuration_new: "Metric Name:"
-  metric_description_metric_configurations_new: "Metric Description:"
-  base_tool_metric_configurations_show: "Base Tool Name:"
-  aggregation_metric_configurations_show: "Aggregation Form:"
-  reading_metric_configurations_show: "Reading Group Name:"
+  new_metric_configurations: "New Metric Configuration"
+  metric_configurations_base: "Base Tool:"
+  metric_configuration_name: "Metric Name:"
+  metric_configurations_description: "Metric Description:"
+  metric_configurations_base_tool_name: "Base Tool Name:"
+  metric_configurations_aggregation: "Aggregation Form:"
+  metric_configurations_reading_group: "Reading Group Name:"
   created_metrics: "Created Metrics" 
   resend_instruction: "Resend confirmation instructions"
   confirm_account_email: "You can confirm your account email through the link below:"
@@ -328,6 +328,6 @@ en:
   pick_color: "Pick color"
   password_confirmation: "Password confirmation"
   current_password: "Current password"
-  
+
   #kalibro_uniquiness_validator_error
   kalibro_error_message: "There is already a %{record} %{attribute} with value %{value}! Please, choose another one."
