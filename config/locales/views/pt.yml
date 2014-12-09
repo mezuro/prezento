@@ -320,9 +320,12 @@ pt:
   create_new_reading: "Criar nova leitura"
   process_period: "Período de processo"
   instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
-  kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
   leave_blank_wont_change: "(deixe-o em branco se não quiser muda-lo.)"
   currently_waiting_confirmation: "Atualmente esperando confirmação de:"
+  pick_color: "Cor"
+  password_confirmation: "Confirme sua senha"
+  current_password: "Senha Atual"
+  #errors
   errors:
     messages:
       not_saved: "Não foi possível salvar!"
@@ -342,17 +345,4 @@ pt:
               too_short: "A senha fornecida é muito pequena!"
             password_confirmation:
               confirmation: "As senhas fornecidas não são iguais."
-  successfully_created: "%{record} criado com sucesso."
-  successfully_updated: "%{record} atualizado com sucesso."
-  pick_color: "Cor"
-  password_confirmation: "Confirme sua senha"
-  current_password: "Senha Atual"
-
-  #class names
-  MetricConfiguration: "Metrica de Configuração"
-  CompoundMetricConfiguration: "Metrica Composta de Configuração"
-  MezuroRange: "Intervalo"
-  ReadingGroup: "Grupo de Leitura"
-  Repository: "Repositorio"
-  Project: "Projeto"
-  Reading: "Leitura"
+  kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
