@@ -324,7 +324,6 @@ pt:
   kalibro_error_message: "Ja existe um %{record} com o %{attribute} %{value}! Por favor, escolha outro"
   leave_blank_wont_change: "(deixe-o em branco se não quiser muda-lo.)"
   currently_waiting_confirmation: "Atualmente esperando confirmação de:"
-  
   errors:
     messages:
       not_saved: "Não foi possível salvar!"
