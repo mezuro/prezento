@@ -10,8 +10,8 @@
       <%= link_to_edit_form(metric_configuration, @mezuro_configuration.id) %>
     </td>
     <td>
-      <%= link_to 'Destroy', mezuro_configuration_metric_configuration_path(@mezuro_configuration.id, metric_configuration.id), 
-                   method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' },
+      <%= link_to t('destroy'), mezuro_configuration_metric_configuration_path(@mezuro_configuration.id, metric_configuration.id), 
+                   method: :delete, data: { confirm:  t('sure_destroy_metric_configuration') },
                    class: 'btn btn-danger' %>
     </td>
     </td>

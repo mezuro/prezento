@@ -10,19 +10,19 @@
       </div>
       <div class="help-container">
         <p>
-          It is used to calculate the weighted average of a <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%>'s grade.
+           <%= t('body2_compound_form') %> <%= link_to t('module'),  tutorials_path( t('keywords'), anchor: "module")%> <%= t('grade') %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
+        <%= f.label :aggregation_form, t('metric_configurations_aggregation'), class: 'control-label' %>
         <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
       </div>
       <div class="help-container">
         <p>
-          It is the calculation of statistical results for higher <%= link_to 'granularity', tutorials_path('keywords', anchor: 'granularity') %> modules (e.g., average lines of code of the classes inside a package).
+           <%= t('statistical_result_metric_configurations_form') %> <%= link_to t('granularity'), tutorials_path( t('keywords'), anchor: t('granularity')) %>  <%= t('modules_eg_metric_configurations_form') %>
         </p>
       </div>
     </div>
@@ -32,17 +32,16 @@
     <% else %>
         <div class="form-row">
           <div class="field-container">
-            <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+            <%= f.label :reading_group_id, t('reading_group'), class: 'control-label' %>
             <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
           </div>
           <div class="help-container">
             <p>
-              The <%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading-group') %> associated with this metric.
+               <%= t('the') %><%= link_to t('reading_group'), tutorials_path( t('keywords'), anchor: 'reading-group') %>  <%= t('associated_metric_configuration_form') %>
             </p>
           </div>
         </div>
     <% end %>
-
   </div>
 </div>
 

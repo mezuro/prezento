@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Login into Mezuro</h1>
+  <h1> <%= t('login_mezuro') %></h1>
 </div>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => { :class => "form-inline" }) do |f| %>
@@ -7,12 +7,12 @@
     <div class="form-table col-md-9">
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :email, class: "control-label " %>
+          <%= f.label :email, t('email'), class: "control-label " %>
           <%= f.email_field :email, autofocus: true, tabindex: 1, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
           <p>
-            The same email address used to sign up.
+             <%= t('email_address') %>
           </p>
         </div>
       </div>
@@ -23,12 +23,12 @@
     <div class="form-table col-md-9">
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: "control-label" %>
+          <%= f.label :password, t('password'), class: "control-label" %>
           <%= f.password_field :password, tabindex: 2, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
           <p>
-            If you forgot your password, follow this <a href="/users/password/new">link</a> to reset it.
+             <%= t('forgot_password_follow') %> <a href="/users/password/new">link</a>  <%= t('reset_it') %>
           </p>
         </div>
       </div>
@@ -42,13 +42,13 @@
         <div class="field-container">
           <div class="checkbox">
             <label>
-              <%= f.check_box :remember_me, class: "checkbox" %> <%= f.label :remember_me %>
+              <%= f.check_box :remember_me, class: "checkbox" %> <%= f.label :remember_me, t('remember_me') %>
             </label>
           </div>
         </div>
         <div class="help-container">
           <p>
-            Stay logged in.
+             <%= t('stay_logged') %>
           </p>
         </div>
       </div>
@@ -57,7 +57,7 @@
   <% end -%>
 
   <div class="row margin-left-none" style="margin-top: 20px">
-    <%= f.submit "Sign In", class: 'btn btn-primary', :tabindex => 3 %>
+    <%= f.submit t('sign_in'), class: 'btn btn-primary', :tabindex => 3 %>
     <%= render "devise/shared/links" %>
   </div>
 <% end %>

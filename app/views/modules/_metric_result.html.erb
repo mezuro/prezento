@@ -17,7 +17,7 @@
     <td colspan="4">
       <span id="loader_container<%= metric_result.id %>"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</span>
       <canvas id="container<%= metric_result.id %>" class="graphic_container" style="display: none"></canvas>
-      <span id="container<%= metric_result.id %>" style="display: none">There is only one point and it will not be printed into a chart.</span>
+      <span id="container<%= metric_result.id %>" style="display: none">  <%= t('only_point_printed_chart') %></span>
     </td>
   </tr>
 <% end %>

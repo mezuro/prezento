@@ -16,22 +16,22 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong>  <%= t('description') %></strong>
   <%= @project.description %>
 </p>
 
 <hr />
 
-<h2>Repositories</h2>
+<h2> <%= t('repositories') %></h2>
 
-<% if project_owner? @project.id %><%= link_to 'New Repository', new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
+<% if project_owner? @project.id %><%= link_to t('new_repository'), new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Address</th>
+      <th> <%= t('name') %> </th>
+      <th> <%= t('type') %> </th>
+      <th> <%= t('address') %></th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -50,11 +50,11 @@
         <td><%= repository.address %></td>
         <td>
           <% if project_owner? @project.id %>
-            <%= link_to 'Edit', edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
+            <%= link_to t('edit'), edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
           <% end %>
         </td>
         <td>
-          <%= link_to 'Show', project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
+          <%= link_to t('show'), project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
         </td>
       </tr>
     <% end %>
@@ -65,6 +65,6 @@
 
 <p>
   <% if project_owner? @project.id %>
-    <%= link_to 'Destroy Project', project_path(@project.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Project?' }, class: 'btn btn-danger' %>
+    <%= link_to  t('destroy_projects'), project_path(@project.id), method: :delete, data: { confirm:  t('want_destroy_project') }, class: 'btn btn-danger' %>
   <% end %>
 </p>

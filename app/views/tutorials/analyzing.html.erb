@@ -1,88 +1,89 @@
-<h1>Tutorial</h1>
-<h2>Analyzing a repository</h2>
+<h1> <%= t('tutorial') %></h1>
+<h2> <%= t('analyzing_repository') %></h2>
 
 <hr />
 
-<h3>Requisites</h3>
+<h3> <%= t('requisites') %></h3>
 
-In order to create a Project, you must:
+ <%= t('order_created_project') %>
 <ul>
-  <li>Have <%= link_to("signed up", new_user_registration_path) %> to the platform</li>
-  <li>Be <%= link_to("signed in", new_user_session_path) %></li>
-  <li>And have a repository URL which you wish to analyze</li>
+  <li> <%= t('have') %> <%= link_to( t('signed_up'), new_user_registration_path) %> <%= t('to_platform') %></li>
+  <li> <%= t('be') %> <%= link_to( t('signed_in'), new_user_session_path) %></li>
+  <li> <%= t('repository_which_analyse') %></li>
 </ul>
 
 <hr />
 
-<h3>Steps</h3>
+<h3> <%= t('steps') %></h3>
 
 <ol>
-  <li>Project creation
+  <li> <%= t('project_creation') %>
   <ol>
-    <li>Click on "Project" on the upper menu</li>
-    <li>Click on "New Project"</li>
+    <li> <%= t('project_upper_menu') %></li>
+    <li> <%= t('click_new_project') %> </li>
     <ol>
-      <li>Fill in the form with a name that must be unique</li>
-      <li>Fill in the form with a description which is not required</li>
-      <li>Click on "Save" and you should be at the project page now, congratulations!</li>
+      <li> <%= t('fill_name_unique') %></li>
+      <li>  <%= t('description_required') %> </li>
+      <li> <%= t('click_save_project') %></li>
     </ol>
   </ol>
-  <li>Repository creation</li>
+  <li> <%= t('repository_creation') %></li>
   <ol>
-    <li>From the project page, click on "New Repository"</li>
-    <li>Fill in the form</li>
+    <li> <%= t('project_page_click_new_repository') %></li>
+    <li> <%= t('fill_form') %></li>
       <ul>
-        <li>"Name" must be unique</li>
-        <li>You should choose one of the Open Source licenses in the platform according to your code</li>
-        <li>The "Type" field stands for the Repository source code management tool (Git, for example)</li>
-        <li>Fill in the "Address" with the URL from which we can download your code</li>
-        <li>If you want to analyze your project periodically, set it (you can as well run it from the interface whenever you want)</li>
-        <li>Finally, the "Configuration" stands for the set of metrics and interpretation that we will use to analyze your project</li>
-        <li>Click on "Save" and you should be at the repository page, waiting for the analysis</li>
+        <li> <%= t('name_must_unique') %></li>
+        <li> <%= t('open_source_licenses') %></li>
+        <li> <%= t('repository_source_management') %></li>
+        <li>   <%= t('fill_URL_which_can_download') %></li>
+        <li> <%= t('analyse_project_periodically') %></li>
+        <li> <%= t('configuration_metric_interpretation') %></li>
+        <li> <%= t('shoud_repository_page_analysis') %></li>
       </ul>
   </ol>
 </ol>
 
 <hr />
 
-<h3>Repository page details</h3>
+<h3> <%= t('repository_details') %></h3>
 
-The repository page is divided into four different sections:
+ <%= t('repository_divided_diferent_sections') %>
 
 <ol>
-  <li><b>Details</b></li>
+  <li><b> <%= t('details') %></b></li>
     <ul>
-      <li>Information that you provided during the creation steps</li>
-      <li>Select box so it is possible to visualize previous processings of your repository</li>
+      <li> <%= t('provied_creation_steps') %></li>
+      <li> <%= t('visualize_processings_repository') %></li>
     </ul>
-  <li><b>Processing information</b></li>
+  <li><b> <%= t('processing_information') %> </b></li>
     <ul>
-      <li>Information about the time it has taken to finish each step of the processing</li>
+      <li> <%= t('time_finish_processing') %> </li>
         <ol>
-          <li>PREPARING: the system is reserving a folder for your repository and retrieving the configuration</li>
-          <li>DOWNLOADING: retrieving the source code</li>
-          <li>COLLECTING: calculating the metrics for your repository</li>
-          <li>BUILDING: organizing the results into a source tree structure</li>
-          <li>AGGREGATING: calculating the aggregated value for parent modules in the source tree</li>
-          <li>CALCULATING: if the chosen configuration has compound metrics, they will be calculated</li>
-          <li>INTERPRETING: with all the necessary results, the system will interpret them using reading groups (labels and colors)</li>
+          <li> <%= t('reserving_folder_repository') %></li>
+          <li> <%= t('retrieving_source_code') %></li>
+          <li> <%= t('calculationg_metric_repository') %> </li>
+          <li> <%= t('results_source_structure') %></li>
+          <li> <%= t('calculating_aggregated_parent') %></li>
+          <li> <%= t('chosen_configuration_compound_metrics') %></li>
+          <li> <%= t('system_interpret_reading_groups') %></li>
         </ol>
     </ul>
-  <li><b>Modules Tree</b></li>
+  <li><b> <%= t('modules_tree') %></b></li>
     <ul>
-      <li>Source tree structure where you can navigate by clicking on the names
-      <li>Information about the granularity of the module
+      <li> <%= t('tree_structure') %>
+      <li>  <%= t('information_granulary_module') %>
         <ul>
-          <li>METHOD</li>
-          <li>CLASS</li>
-          <li>PACKAGE</li>
-          <li>SOFTWARE</li>
+          <li> <%= t('method') %> </li>
+          <li> <%= t('class') %></li>
+          <li> <%= t('package') %> </li>
+          <li> <%= t('software') %></li>
         </ul>
-      <li>Grade of the given module according to the weights of the metrics on the configuration
+      <li> <%= t('given_module_weights') %>
     </ul>
-  <li><b>Metric Results</b></li>
+  <li><b> <%= t('metric_results') %></b></li>
     <ul>
-      <li>Displays the individual results of each metric for the current module selected in the source tree</li>
-      <li>By clicking on the metric name, you will see a historic chart for that metric</li>
+      <li> <%= t('metric_current_selected_tree') %>
+</li>
+      <li> <%= t('historic_chart_metric') %></li>
     </ul>
 </ol>

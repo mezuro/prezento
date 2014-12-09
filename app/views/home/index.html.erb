@@ -1,14 +1,11 @@
 <div class="jumbotron">
-  <p><h1>Understanding Code Metrics</h1></p>
+  <p><h1> <%= t('title_home_index') %></h1></p>
 
-  <p>This is Mezuro! A <strong>free/libre</strong> web platform for <strong>collaborative</strong> source code <strong>evaluation</strong>.</p>
-
-  <p>Here you can evaluate your source code with the most popular SCMs (like Git and SVN), just by providing its URL. For now, you can evaluate <strong>C</strong>, <strong>C++</strong> and <strong>Java</strong> source codes, but we are looking forward to supporting more languages in the future.</p>
-
-  <p> Mezuro is continuously under development. Try it and give us your <%= link_to 'feedback', 'https://github.com/mezuro/mezuro/issues', target: '_blank' %>.</p>
+  <%= t('body_home_index').html_safe %>   
+  <p>  <%= t('body_feedback_home_index') %> <%= link_to t('feedback'), 'https://github.com/mezuro/mezuro/issues', target: '_blank' %>.</p>
 </div>
 
-<h2>Latest projects</h2>
+<h2> <%= t('latest_projects_home_index') %></h2>
 
 <ul>
   <% cache do %>

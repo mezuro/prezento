@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Edit <%= resource_name.to_s.humanize %></h1>
+  <h1> <%= t('edit_user') %> </h1>
 </div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-inline" }) do |f| %>
@@ -14,7 +14,7 @@
         </div>
         <div class="help-container">
           <p>
-            Your full name.
+             <%= t('full_name') %>
           </p>
         </div>
       </div>
@@ -25,48 +25,48 @@
           <%= f.email_field :email, class: 'text-field form-control' %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <div> <%= t('currently_waiting_confirmation') %> <%= resource.unconfirmed_email %></div>
           <% end %>
         </div>
         <div class="help-container">
           <p>
-            Your email is our communication channel. Make sure you have typed it correctly.
+             <%= t('email_communication_channel') %>
           </p>
         </div>
       </div>
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: 'control-label' %> <i>(leave it blank if you do not want to change it)</i><br />
+          <%= f.label :password,t('password'), class: 'control-label' %> <i> <%= t('leave_blank_wont_change') %></i><br />
           <%= f.password_field :password, :autocomplete => "off", class: 'text-field form-control' %>
         </div>
         <div class="help-container">
           <p>
-            Your password must have at least 8 characters. Strong passwords contain numbers, symbols, upper and lowercase characters.
+             <%= t('password_rules') %>
           </p>
         </div>
       </div>
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password_confirmation, class: 'control-label' %><br />
+          <%= f.label :password_confirmation, t('password_confirmation'),class: 'control-label' %><br />
           <%= f.password_field :password_confirmation, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
           <p>
-            Confirm your password.
+             <%= t('confirm_password') %>
           </p>
         </div>
       </div>
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :current_password, class: 'control-label' %><br />
+          <%= f.label :current_password,t('current_password'), class: 'control-label' %><br />
           <%= f.password_field :current_password, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
           <p>
-            Your current password is needed to confirm your changes.
+            <%= t('current_password_changes') %>
           </p>
         </div>
       </div>
@@ -74,12 +74,12 @@
   </div>
 
   <div class="row margin-left-none" style="margin-top: 20px">
-    <%= f.submit "Update", class: 'btn btn-primary col-md-2' %>
+    <%= f.submit t('update'), class: 'btn btn-primary col-md-2' %>
   </div>
 <% end %>
 
 <hr />
 
-<h2>Cancel my account</h2>
+<h2> <%= t('cancel_account') %></h2>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Do you really want to cancel your account?" }, :method => :delete, class: 'btn btn-danger' %></p>
+<p><%= t('unhappy') %> <%= button_to  t('cancel_account'), registration_path(resource_name), :data => { :confirm =>  t('really_want_cancel_account') }, :method => :delete, class: 'btn btn-danger' %></p>

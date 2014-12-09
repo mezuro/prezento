@@ -5,47 +5,47 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :label, class: 'control-label' %>
+        <%= f.label :label, t('label'),class: 'control-label' %>
         <%= f.text_field :label, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>
-          It is a verbal concise form of highlighting the content of an interpretation.
+           <%= t('hinghlighting_interpretation') %>
         </p>
         <p>
-          Example values: terrible, bad, regular, good, great etc.
+           <%= t('example_values_bad') %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :color, class: 'control-label' %>
+        <%= f.label :color, t('color'),class: 'control-label' %>
         <div class="input-group" id="color_div" style="z-index: 1010">
           <%= f.text_field :color, :required => true, class: 'form-control' %>
           <span class="input-group-btn">
-            <input type="button" class="btn btn-info" id="pickcolor_button" value="Pick color" />
+            <input type="button" class="btn btn-info" id="pickcolor_button" value= <%= t('pick_color') %> />
           </span>
         </div>
       </div>
       <div class="help-container">
         <p>
-          It is a visual form of highlighting an interpretation. You can choose one by typing its hexadecimal value or by using the color picker.
+          <%= t('choose_hexadecimal_picker') %>
         </p>
         <p>
-          Example values: 000000, 00ff00 etc
+           <%= t('example_values') %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :grade, class: 'control-label' %>
+        <%= f.label :grade,t('grade1'), class: 'control-label' %>
         <%= f.text_field :grade, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>
-          A number to classify this reading.
+          <%= t('number_classify_reading') %>
         </p>
       </div>
     </div>
@@ -53,8 +53,8 @@
 </div>
 
 <div class="row margin-left-none" style="margin-top: 20px">
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Back', reading_group_path(@reading_group_id), class: 'btn btn-default' %>
+  <%= f.submit t('save'), class: 'btn btn-primary' %>
+  <%= link_to t('back'), reading_group_path(@reading_group_id), class: 'btn btn-default' %>
 </div>
 
 <script>

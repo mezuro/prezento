@@ -19,5 +19,15 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+pt:
+  successfully_created: "%{record} criado com sucesso."
+  successfully_updated: "%{record} atualizado com sucesso."
+
+  #class names
+  MetricConfiguration: "Metrica de Configuração"
+  CompoundMetricConfiguration: "Metrica Composta de Configuração"
+  MezuroRange: "Intervalo"
+  ReadingGroup: "Grupo de Leitura"
+  Repository: "Repositorio"
+  Project: "Projeto"
+  Reading: "Leitura"
