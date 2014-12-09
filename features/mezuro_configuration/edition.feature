@@ -28,16 +28,12 @@ Feature: Configuration
     Then I should see "You're not allowed to do this operation"
 
   @kalibro_restart
-  Scenario: Filling up the form
+  Scenario: Filling up the form and with valid attributes
     And I own a sample configuration
     And I am at the All Configurations page
     When I click the Edit link
     Then The field "mezuro_configuration[name]" should be filled with the sample configuration "name"
     And The field "mezuro_configuration[description]" should be filled with the sample configuration "description"
-
-  @kalibro_restart
-  Scenario: With valid attributes
-    And I own a sample configuration
     And I am at the sample configuration edit page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
