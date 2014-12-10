@@ -13,6 +13,6 @@ class ModuleResult < KalibroClient::Processor::ModuleResult
   private
 
   def find_grade_by_metric_name(metric_results, name)
-    metric_results.each { |metric_result| return metric_result.value if metric_result.metric_configuration_snapshot.metric.name == name }
+    metric_results.each { |metric_result| return metric_result.value if metric_result.metric_configuration.metric_snapshot.name == name }
   end
 end

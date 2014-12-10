@@ -17,7 +17,7 @@
 FactoryGirl.define do
   factory :metric_result, class: KalibroClient::Processor::MetricResult do
     id  "42"
-    self.configuration { FactoryGirl.build(:metric_configuration_snapshot) }
+    self.configuration { FactoryGirl.build(:metric_configuration) }
     value "10.0"
     aggregated_value "21"
   end

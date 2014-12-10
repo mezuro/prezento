@@ -8,12 +8,12 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   def new
     super
     metric_configuration.metric_collector_name = params[:metric_collector_name]
-    metric_configuration.metric = KalibroClient::Processor::MetricCollector.find_by_name(params[:metric_collector_name]).metric params[:metric_name]
+    metric_configuration.metric = KalibroClient::Processor::MetricCollector.find(params[:metric_collector_name]).metric params[:metric_name]
   end
 
   def create
     super
-    @metric_configuration.metric = KalibroClient::Processor::MetricCollector.find_by_name(params[:metric_collector_name]).metric params[:metric_name]
+    @metric_configuration.metric = KalibroClient::Processor::MetricCollector.find(params[:metric_collector_name]).metric params[:metric_name]
     @metric_configuration.metric_collector_name = params[:metric_collector_name]
     @metric_configuration.code = @metric_configuration.metric.code
     respond_to do |format|
