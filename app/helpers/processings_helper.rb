@@ -8,7 +8,7 @@ module ProcessingsHelper
   end
 
   def find_range_snapshot(metric_result)
-    range_snapshots = metric_result.metric_configuration_snapshot.range_snapshot
+    range_snapshots = metric_result.metric_configuration.kalibro_ranges
 
     range_snapshots.each do |range_snapshot|
       return range_snapshot if ((range_snapshot.beginning <= metric_result.value || range_snapshot.beginning == '-INF') && (range_snapshot.end >= metric_result.value || range_snapshot.beginning == '+INF'))

@@ -29,7 +29,7 @@ describe MetricConfigurationsController, :type => :controller do
     context 'when the current user owns the mezuro configuration' do
       before :each do
         subject.expects(:mezuro_configuration_owner?).returns true
-        KalibroClient::Processor::MetricCollector.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
+        KalibroClient::Processor::MetricCollector.expects(:find).with(metric_collector.name).returns(metric_collector)
         post :new, mezuro_configuration_id: mezuro_configuration.id, metric_name: "Lines of Code", metric_collector_name: metric_collector.name
       end
 
@@ -65,7 +65,7 @@ describe MetricConfigurationsController, :type => :controller do
       context 'with valid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(true)
-          KalibroClient::Processor::MetricCollector.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
+          KalibroClient::Processor::MetricCollector.expects(:find).with(metric_collector.name).returns(metric_collector)
           metric_collector.expects(:metric).with(metric_configuration.metric.name).returns(metric_configuration.metric)
 
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
@@ -77,7 +77,7 @@ describe MetricConfigurationsController, :type => :controller do
       context 'with invalid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
-          KalibroClient::Processor::MetricCollector.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
+          KalibroClient::Processor::MetricCollector.expects(:find).with(metric_collector.name).returns(metric_collector)
           metric_collector.expects(:metric).with(metric_configuration.metric.name).returns(metric_configuration.metric)
 
           post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name

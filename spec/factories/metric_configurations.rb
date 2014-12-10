@@ -19,4 +19,16 @@ FactoryGirl.define do
     reading_group_id 1
     configuration_id 1
   end
+
+  factory :metric_configuration_with_snapshot, class: MetricConfiguration do
+    id 1
+    code 'total_modules'
+    metric_snapshot {FactoryGirl.build(:metric)}
+    metric_collector_name "Analizo"
+    weight 1
+    aggregation_form "MEDIAN"
+    reading_group_id 1
+    configuration_id 1
+  end
+
 end
