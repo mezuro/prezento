@@ -29,18 +29,13 @@ Feature: Project
     Then I should see "You're not allowed to do this operation"
 
   @kalibro_processor_restart
-  Scenario: Filling up the form
+  Scenario: Filling up the form and with valid attributes
     And I own a sample project
     And I have sample project_attributes
     And I am at the All Projects page
     When I click the Edit link
     Then The field "project[name]" should be filled with the sample project "name"
     And The field "project[description]" should be filled with the sample project "description"
-
-  @kalibro_processor_restart
-  Scenario: With valid attributes
-    And I own a sample project
-    And I have sample project_attributes
     And I am at the sample project edit page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
