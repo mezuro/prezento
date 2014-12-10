@@ -77,11 +77,8 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-# KalibroGatekeeper hooks
-require 'kalibro_gatekeeper_client/kalibro_cucumber_helpers/hooks.rb'
-
-# Configuring the right hooks
-KalibroGatekeeperClient::KalibroCucumberHelpers.configure_from_yml("#{__dir__}/kalibro_cucumber_helpers.yml")
+# KalibroClient hooks
+require 'kalibro_client/kalibro_cucumber_helpers/hooks.rb'
 
 # Warden test helpers so the user authentication can be as fast as possible
 include Warden::Test::Helpers

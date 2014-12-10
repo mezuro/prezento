@@ -1,4 +1,4 @@
-require 'kalibro_gatekeeper_client/errors'
+require 'kalibro_client/errors'
 
 Given(/^I am at the All Reading Groups page$/) do
   visit reading_groups_path
