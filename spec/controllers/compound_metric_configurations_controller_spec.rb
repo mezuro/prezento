@@ -74,7 +74,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     before :each do
       ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
-      MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
+      subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
       MezuroRange.expects(:ranges_of).with(compound_metric_configuration.id).returns([mezuro_range])
 
       get :show, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
@@ -94,7 +94,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       context 'when the user owns the compound metric configuration' do
         before :each do
           subject.expects(:metric_configuration_owner?).returns(true)
-          MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+          subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
           MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
           get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
@@ -138,7 +138,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+            subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
 
             post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
@@ -150,7 +150,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            MetricConfiguration.expects(:find).at_least_once.with(compound_metric_configuration.id).returns(compound_metric_configuration)
+            subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
             MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
 
@@ -159,7 +159,6 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
           it { should render_template(:edit) }
         end
-        
       end
 
       context 'when the user does not own the reading' do

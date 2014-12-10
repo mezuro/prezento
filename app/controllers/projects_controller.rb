@@ -1,4 +1,5 @@
 include OwnershipAuthentication
+include ResourceFinder
 
 class ProjectsController < ApplicationController
   before_action :authenticate_user!,
@@ -32,7 +33,7 @@ class ProjectsController < ApplicationController
   # GET /project/1.json
   def show
     set_project
-    @project_repositories = @project.repositories
+    @project_repositories = @project.repositories if @project.is_a?(Project)
   end
 
   # GET /projects/1/edit
@@ -66,8 +67,8 @@ class ProjectsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = Project.find(params[:id])
-    @project_image = ProjectImage.find_by_project_id(@project.id)
+    @project = find_resource(Project, params[:id].to_i)
+    @project_image = ProjectImage.find_by_project_id(@project.id) if @project.is_a?(Project)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,4 +1,5 @@
 include OwnershipAuthentication
+include ResourceFinder
 
 class MezuroConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
@@ -65,7 +66,7 @@ class MezuroConfigurationsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_mezuro_configuration
-    @mezuro_configuration = MezuroConfiguration.find(params[:id])
+    @mezuro_configuration = find_resource(MezuroConfiguration, params[:id].to_i)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

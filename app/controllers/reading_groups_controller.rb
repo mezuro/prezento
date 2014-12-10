@@ -1,4 +1,5 @@
 include OwnershipAuthentication
+include ResourceFinder
 
 class ReadingGroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
@@ -56,7 +57,7 @@ class ReadingGroupsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_reading_group
-    @reading_group = ReadingGroup.find(params[:id])
+    @reading_group = find_resource(ReadingGroup, params[:id].to_i)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

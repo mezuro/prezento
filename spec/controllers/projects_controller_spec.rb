@@ -62,15 +62,27 @@ describe ProjectsController, :type => :controller do
   end
 
   describe 'show' do
-    subject { FactoryGirl.build(:project) }
-    let(:repository) { FactoryGirl.build(:repository) }
-    before :each do
-      Project.expects(:find).with(subject.id.to_s).returns(subject)
-      subject.expects(:repositories).returns(repository)
-      get :show, :id => subject.id
+    let(:project) { FactoryGirl.build(:project) }
+
+    context 'when the project exists' do
+      let(:repository) { FactoryGirl.build(:repository) }
+      before :each do
+        subject.expects(:find_resource).with(Project, project.id).returns(project)
+        project.expects(:repositories).returns(repository)
+        get :show, :id => project.id
+      end
+
+      it { is_expected.to render_template(:show) }
     end
 
-    it { is_expected.to render_template(:show) }
+    context 'when the project does not exists' do
+      before :each do
+        Project.expects(:find).with(project.id).raises(KalibroGatekeeperClient::Errors::RecordNotFound)
+        get :show, :id => project.id
+      end
+
+      it { is_expected.to respond_with(:not_found) }
+    end
   end
 
   describe 'destroy' do
@@ -97,7 +109,7 @@ describe ProjectsController, :type => :controller do
 
           User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
 
-          Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+          subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
         end
 
@@ -157,7 +169,7 @@ describe ProjectsController, :type => :controller do
 
       context 'when the user owns the project' do
         before :each do
-          Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+          subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
           @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
           ProjectImage.expects(:find_by_project_id).with(@subject.id).returns(@project_image)
 
@@ -216,7 +228,7 @@ describe ProjectsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+            subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(true)
           end
 
@@ -242,7 +254,7 @@ describe ProjectsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            Project.expects(:find).with(@subject.id.to_s).returns(@subject)
+            subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :project => @subject_params

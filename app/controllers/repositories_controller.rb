@@ -105,7 +105,7 @@ private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_repository
-    @repository = Repository.find(params[:id].to_i)
+    @repository = find_resource(Repository, params[:id].to_i)
   end
 
   def set_mezuro_configuration

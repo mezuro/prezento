@@ -62,12 +62,14 @@ describe MezuroConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-  	subject { FactoryGirl.build(:mezuro_configuration) }
+  	let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
   	let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+
     before :each do
-      MezuroConfiguration.expects(:find).with(subject.id.to_s).returns(subject)
-      subject.expects(:metric_configurations).returns(metric_configuration)
-      get :show, :id => subject.id
+      mezuro_configuration.expects(:metric_configurations).returns(metric_configuration)
+      subject.expects(:find_resource).with(MezuroConfiguration, mezuro_configuration.id).returns(mezuro_configuration)
+
+      get :show, :id => mezuro_configuration.id
     end
 
     it { is_expected.to render_template(:show) }
@@ -96,7 +98,7 @@ describe MezuroConfigurationsController, :type => :controller do
 
           User.any_instance.expects(:mezuro_configuration_ownerships).at_least_once.returns(@ownerships)
 
-          MezuroConfiguration.expects(:find).with(@subject.id.to_s).returns(@subject)
+          subject.expects(:find_resource).with(MezuroConfiguration, @subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
         end
 
@@ -156,7 +158,7 @@ describe MezuroConfigurationsController, :type => :controller do
 
       context 'when the user owns the mezuro_configuration' do
         before :each do
-          MezuroConfiguration.expects(:find).with(@subject.id.to_s).returns(@subject)
+          subject.expects(:find_resource).with(MezuroConfiguration, @subject.id).returns(@subject)
           @ownerships.expects(:find_by_mezuro_configuration_id).with("#{@subject.id}").returns(@ownership)
 
           get :edit, :id => @subject.id
@@ -213,7 +215,7 @@ describe MezuroConfigurationsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            MezuroConfiguration.expects(:find).with(@subject.id.to_s).returns(@subject)
+            subject.expects(:find_resource).with(MezuroConfiguration, @subject.id).returns(@subject)
             MezuroConfiguration.any_instance.expects(:update).with(@subject_params).returns(true)
           end
 
@@ -240,7 +242,7 @@ describe MezuroConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            MezuroConfiguration.expects(:find).with(@subject.id.to_s).returns(@subject)
+            subject.expects(:find_resource).with(MezuroConfiguration, @subject.id).returns(@subject)
             MezuroConfiguration.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :mezuro_configuration => @subject_params

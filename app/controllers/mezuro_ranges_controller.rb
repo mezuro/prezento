@@ -1,10 +1,11 @@
 include OwnershipAuthentication
+include ResourceFinder
 
 class MezuroRangesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :metric_configuration_owner?, only: [:new, :create, :destroy, :edit, :update]
   before_action :get_url_params, only: [:update, :create, :destroy]
-  before_action :set_mezuro_range, only: [:edit, :update]
+  before_action :set_mezuro_range, only: [:edit, :update, :destroy]
 
   def new
     @mezuro_range = MezuroRange.new
@@ -20,7 +21,6 @@ class MezuroRangesController < ApplicationController
   end
 
   def destroy
-    @mezuro_range = MezuroRange.find(params[:id].to_i)
     @mezuro_range.destroy
     respond_to do |format|
       format.html { redirect_to mezuro_configuration_metric_configuration_path(
@@ -85,6 +85,6 @@ class MezuroRangesController < ApplicationController
   end
 
   def set_mezuro_range
-    @mezuro_range = MezuroRange.find(params[:id].to_i)
+    @mezuro_range = find_resource(MezuroRange, params[:id].to_i)
   end
 end

@@ -94,7 +94,7 @@ describe RepositoriesController, :type => :controller do
         processing = FactoryGirl.build(:processing)
 
         MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
-        Repository.expects(:find).with(repository.id).returns(repository)
+        subject.expects(:find_resource).with(Repository, repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
       end
@@ -108,7 +108,7 @@ describe RepositoriesController, :type => :controller do
         processing = FactoryGirl.build(:processing)
 
         MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
-        Repository.expects(:find).with(repository.id).returns(repository)
+        subject.expects(:find_resource).with(Repository, repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
       end

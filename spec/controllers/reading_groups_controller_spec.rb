@@ -61,11 +61,11 @@ describe ReadingGroupsController, :type => :controller do
   end
 
   describe 'show' do
-  	subject { FactoryGirl.build(:reading_group) }
+  	let!(:reading_group) { FactoryGirl.build(:reading_group) }
   	let(:reading) { FactoryGirl.build(:reading) }
     before :each do
-      ReadingGroup.expects(:find).with(subject.id.to_s).returns(subject)
-      get :show, :id => subject.id
+      subject.expects(:find_resource).with(ReadingGroup, reading_group.id).returns(reading_group)
+      get :show, :id => reading_group.id
     end
 
     it { is_expected.to render_template(:show) }
@@ -95,7 +95,7 @@ describe ReadingGroupsController, :type => :controller do
 
           User.any_instance.expects(:reading_group_ownerships).at_least_once.returns(@ownerships)
 
-          ReadingGroup.expects(:find).with(@subject.id.to_s).returns(@subject)
+          subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
         end
 
@@ -155,7 +155,7 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'when the user owns the reading group' do
         before :each do
-          ReadingGroup.expects(:find).with(@subject.id.to_s).returns(@subject)
+          subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
           @ownerships.expects(:find_by_reading_group_id).with("#{@subject.id}").returns(@ownership)
 
           get :edit, :id => @subject.id
@@ -212,7 +212,7 @@ describe ReadingGroupsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            ReadingGroup.expects(:find).with(@subject.id.to_s).returns(@subject)
+            subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(true)
           end
 
@@ -239,7 +239,7 @@ describe ReadingGroupsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            ReadingGroup.expects(:find).with(@subject.id.to_s).returns(@subject)
+            subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :reading_group => @subject_params
