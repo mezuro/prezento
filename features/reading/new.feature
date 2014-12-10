@@ -59,7 +59,7 @@ Feature: New reading
     And I should be at the New Reading page
 
   @kalibro_restart
-  Scenario: With an invalid grade
+  Scenario: With an invalid grade and invalid color
     And I own a sample reading group
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
@@ -68,14 +68,11 @@ Feature: New reading
     When I press the Save button
     Then I should see "Grade is not a number"
     And I should be at the New Reading page
-
-  @kalibro_restart
-  Scenario: With an invalid color
-    And I own a sample reading group
-    And I am at the New Reading page
     And I fill the Label field with "My Reading"
     And I fill the Grade field with "1"
     And I fill the Color field with "z"
     When I press the Save button
     Then I should see "1 error prohibited this Reading from being saved"
     And I should be at the New Reading page
+
+

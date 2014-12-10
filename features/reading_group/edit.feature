@@ -46,13 +46,17 @@ Feature: Reading Group
     And I should see "New Reading Group"
 
   @kalibro_restart
-  Scenario: With reading group name already taken
+  Scenario: With reading group name already taken and with blank reading group name
     And I have a reading group named "A Reading"
     And I own a reading group named "My reading"
     And I am at the sample reading group edit page
     And I fill the Name field with "A Reading"
     When I press the Save button
     Then I should see "Name There is already a ReadingGroup with name A Reading!"
+    And I am at the sample reading group edit page
+    And I fill the Name field with " "
+    When I press the Save button
+    Then I should see "Name can't be blank"
 
   @kalibro_restart
   Scenario: Editing just the description
@@ -62,10 +66,4 @@ Feature: Reading Group
     When I press the Save button
     Then I should see "New Reading Group"
 
-  @kalibro_restart
-  Scenario: With blank reading group name
-    And I own a sample reading group
-    And I am at the sample reading group edit page
-    And I fill the Name field with " "
-    When I press the Save button
-    Then I should see "Name can't be blank"
+   

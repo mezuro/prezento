@@ -31,7 +31,7 @@ Scenario: editing a compound metric configuration successfully
     And I should see "Compound Metric Configuration was successfully updated."
 
 @kalibro_restart
-Scenario: trying to edit with blank fields
+Scenario: trying to edit with blank fields and to edit with an existing code
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -47,15 +47,10 @@ Scenario: trying to edit with blank fields
     And I should see "Script can't be blank"
     And I should see "Code can't be blank"
     And I should see "Weight can't be blank"
-
-@kalibro_restart
-Scenario: trying to edit with an existing code
-    And I own a sample configuration
-    And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
-    And I have a sample compound metric configuration within the given mezuro configuration
     And I have another compound metric configuration with code "Another_Code" within the given mezuro configuration
     When I visit the sample compound metric configuration edit page
     And I fill the Code field with "Another_Code"
     And I press the Save button
     Then I should see "Code There is already a MetricConfiguration with code Another_Code! Please, choose another one."
+
+
