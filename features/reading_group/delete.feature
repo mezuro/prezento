@@ -3,13 +3,13 @@ Feature: Reading Group Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not delete a reading group without user authentication
     Given I have a sample reading group
     When I visit the Sample Reading Group page
     Then I should not see "Destroy"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not delete a reading group that doesn't belongs to user
     Given I am a regular user
     And I am signed in
@@ -17,7 +17,7 @@ Feature: Reading Group Deletion
     When I visit the Sample Reading Group page
     Then I should not see "Destroy"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should delete a reading group that I own
     Given I am a regular user
     And I am signed in

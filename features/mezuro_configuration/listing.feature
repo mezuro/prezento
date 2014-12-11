@@ -11,7 +11,7 @@ Feature: Configuration listing
     And I should see "Description"
     And I should see "You must be logged in to create new Configurations."
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should list the existing configurations
     Given I am a regular user
     And I am signed in
@@ -20,7 +20,7 @@ Feature: Configuration listing
     Then the sample configuration should be there
     And I should not see "You must be logged in to create new Configurations."
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should show the existing configuration
     Given I am a regular user
     And I am signed in

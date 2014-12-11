@@ -3,12 +3,12 @@ Feature: Configuration Creation
   As a regular user
   I should be able to create configurations
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not create configuration without login
     Given I am at the All Configurations page
     Then I should not see "New Configuration"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: configuration creation
     Given I am a regular user
     And I am signed in
@@ -19,7 +19,7 @@ Feature: Configuration Creation
     Then I should see "Kalibro"
     And I should see "Web Service to collect metrics"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: configuration creation with already taken name
     Given I am a regular user
     And I am signed in
@@ -30,7 +30,7 @@ Feature: Configuration Creation
     When I press the Save button
     Then I should see "Name There is already a KalibroConfiguration with name Kalibro!"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: configuration creation with blank name
     Given I am a regular user
     And I am signed in

@@ -3,7 +3,7 @@ Feature: Compound Metric Configuration edition
   As a regular user
   I should edit the informations of compound metric configurations
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: the configuration is not mine
     Given I am a regular user
     And I am signed in
@@ -14,7 +14,7 @@ Feature: Compound Metric Configuration edition
     When I am at the Sample Configuration page
     Then I should not see Edit within table
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: editing a compound metric configuration successfully
     Given I am a regular user
     And I am signed in
@@ -30,7 +30,7 @@ Feature: Compound Metric Configuration edition
     Then I should see "Another_code"
     And I should see "Compound Metric Configuration was successfully updated."
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: trying to edit with blank fields
     Given I am a regular user
     And I am signed in
@@ -51,7 +51,7 @@ Feature: Compound Metric Configuration edition
     And I should see "Weight can't be blank"
 
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: trying to edit with an existing code
     Given I am a regular user
     And I am signed in

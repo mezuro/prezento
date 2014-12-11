@@ -3,7 +3,7 @@ Feature: Show Project
   As a regular user
   I should be able to see each of them
 
-@kalibro_restart @kalibro_processor_restart
+@kalibro_configuration_restart @kalibro_processor_restart
 Scenario: Should not show the create repository link to user that doesn't own the project
   Given I am a regular user
   And I have a sample project
@@ -32,7 +32,7 @@ Scenario: Considering the project has no repositories
   When I am at the Sample Project page
   Then I should see "There are no Repositories yet!"
 
-@kalibro_restart @kalibro_processor_restart
+@kalibro_configuration_restart @kalibro_processor_restart
 Scenario: Considering the project has repositories
   Given I have a sample project
   And I have a sample configuration with native metrics

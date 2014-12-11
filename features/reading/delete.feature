@@ -3,7 +3,7 @@ Feature: Reading Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should delete a reading that I own
     Given I am a regular user
     And I am signed in
@@ -13,7 +13,7 @@ Feature: Reading Deletion
     And I click the Destroy link
     Then I should see "There are no Readings yet!"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not see the destroy reading link in the reading groups that I not own
     Given I am a regular user
     And I am signed in
