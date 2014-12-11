@@ -12,8 +12,10 @@ class ApplicationController < ActionController::Base
   # We don't have how too test this unless we have the Devise controllers.
   # Since creating the controllers looks wronger than not testing this two
   # lines. I think we can live without 100% of coverage
+  # :nocov:
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
   end
+  # :nocov:
 end
