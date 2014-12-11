@@ -64,10 +64,10 @@ describe OwnershipAuthentication, type: :controller do
     end
   end
 
-  describe 'mezuro_configuration_owner?' do
-    let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+  describe 'kalibro_configuration_owner?' do
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
 
-    context 'Not MezuroConfigurationsController nor MetricConfigurationsController nor CompoundMetricConfigurationsController' do
+    context 'Not KalibroConfigurationsController nor MetricConfigurationsController nor CompoundMetricConfigurationsController' do
       let!(:projects_controller) { ProjectsController.new }
 
       before do
@@ -75,7 +75,7 @@ describe OwnershipAuthentication, type: :controller do
       end
 
       it 'should raise an exception' do
-        expect { projects_controller.mezuro_configuration_owner? }.to raise_error("Not supported")
+        expect { projects_controller.kalibro_configuration_owner? }.to raise_error("Not supported")
       end
     end
   end

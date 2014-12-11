@@ -3,14 +3,14 @@
   <td><%= metric_configuration.code %></td>
   <td><%= metric_configuration.weight %></td>
   <td>
-    <%= link_to_show_page(metric_configuration, @mezuro_configuration.id) %>
+    <%= link_to_show_page(metric_configuration, @kalibro_configuration.id) %>
   </td>
-  <% if mezuro_configuration_owner? @mezuro_configuration.id %>
+  <% if kalibro_configuration_owner? @kalibro_configuration.id %>
     <td>
-      <%= link_to_edit_form(metric_configuration, @mezuro_configuration.id) %>
+      <%= link_to_edit_form(metric_configuration, @kalibro_configuration.id) %>
     </td>
     <td>
-      <%= link_to 'Destroy', mezuro_configuration_metric_configuration_path(@mezuro_configuration.id, metric_configuration.id), 
+      <%= link_to 'Destroy', kalibro_configuration_metric_configuration_path(@kalibro_configuration.id, metric_configuration.id), 
                    method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' },
                    class: 'btn btn-danger' %>
     </td>

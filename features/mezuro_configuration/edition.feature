@@ -36,8 +36,8 @@ Feature: Configuration
     And I own a sample configuration
     And I am at the All Configurations page
     When I click the Edit link
-    Then The field "mezuro_configuration[name]" should be filled with the sample configuration "name"
-    And The field "mezuro_configuration[description]" should be filled with the sample configuration "description"
+    Then The field "kalibro_configuration[name]" should be filled with the sample configuration "name"
+    And The field "kalibro_configuration[description]" should be filled with the sample configuration "description"
 
   @kalibro_restart
   Scenario: With valid attributes
@@ -60,7 +60,7 @@ Feature: Configuration
     And I am at the sample configuration edit page
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
-    Then I should see "Name There is already a MezuroConfiguration with name Qt-Calculator!"
+    Then I should see "Name There is already a KalibroConfiguration with name Qt-Calculator!"
 
   @kalibro_restart
   Scenario: Editing just the description

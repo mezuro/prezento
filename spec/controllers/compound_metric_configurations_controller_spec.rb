@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe CompoundMetricConfigurationsController, :type => :controller do
-  let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
 
   describe 'new' do
     before :each do
@@ -11,9 +11,9 @@ describe CompoundMetricConfigurationsController, :type => :controller do
     context 'when the current user owns the mezuro configuration' do
       let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
       before :each do
-        subject.expects(:mezuro_configuration_owner?).returns true
-        MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([metric_configuration])
-        get :new, mezuro_configuration_id: mezuro_configuration.id
+        subject.expects(:kalibro_configuration_owner?).returns true
+        MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([metric_configuration])
+        get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
       it { is_expected.to respond_with(:success) }
@@ -22,10 +22,10 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     context "when the current user doesn't owns the mezuro configuration" do
       before :each do
-        get :new, mezuro_configuration_id: mezuro_configuration.id
+        get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
-      it { is_expected.to redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
+      it { is_expected.to redirect_to(kalibro_configurations_url(kalibro_configuration.id)) }
       it { is_expected.to respond_with(:redirect) }
     end
   end
@@ -42,14 +42,14 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     context 'when the current user owns the reading group' do
       before :each do
-        subject.expects(:mezuro_configuration_owner?).returns true
+        subject.expects(:kalibro_configuration_owner?).returns true
       end
 
       context 'with valid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(true)
 
-          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params
+          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -58,8 +58,8 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       context 'with invalid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
-          MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
-          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params
+          MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
+          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params
         end
 
         it { is_expected.to render_template(:new) }
@@ -77,7 +77,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
       compound_metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
 
-      get :show, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
+      get :show, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
     end
 
     it { is_expected.to render_template(:show) }
@@ -95,8 +95,8 @@ describe CompoundMetricConfigurationsController, :type => :controller do
         before :each do
           subject.expects(:metric_configuration_owner?).returns(true)
           subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
-          MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
-          get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
+          MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
+          get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
 
         it { is_expected.to render_template(:edit) }
@@ -104,10 +104,10 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
       context 'when the user does not own the compound metric configuration' do
         before do
-          get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
+          get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s
         end
 
-        it { is_expected.to redirect_to(mezuro_configurations_path(mezuro_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configurations_path(kalibro_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
         it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -115,7 +115,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     context 'with no user logged in' do
       before :each do
-        get :edit, id: compound_metric_configuration.id, mezuro_configuration_id: compound_metric_configuration.configuration_id.to_s
+        get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s
       end
 
       it { is_expected.to redirect_to new_user_session_path }
@@ -141,20 +141,20 @@ describe CompoundMetricConfigurationsController, :type => :controller do
             subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
 
-            post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+            post :update, kalibro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          it { should redirect_to(mezuro_configuration_path(compound_metric_configuration.configuration_id)) }
+          it { should redirect_to(kalibro_configuration_path(compound_metric_configuration.configuration_id)) }
           it { should respond_with(:redirect) }
         end
 
         context 'with an invalid field' do
           before :each do
             subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
-            MetricConfiguration.expects(:metric_configurations_of).with(mezuro_configuration.id).returns([compound_metric_configuration])
+            MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
 
-            post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+            post :update, kalibro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
           it { should render_template(:edit) }
@@ -163,10 +163,10 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
       context 'when the user does not own the reading' do
         before :each do
-          post :update, mezuro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+          post :update, kalibro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should redirect_to mezuro_configurations_path(compound_metric_configuration.configuration_id) }
+        it { should redirect_to kalibro_configurations_path(compound_metric_configuration.configuration_id) }
       end
     end
   end

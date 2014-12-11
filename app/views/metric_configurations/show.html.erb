@@ -49,8 +49,8 @@
 <hr>
 
 <h2> Ranges </h2>
-<% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
-  <%= link_to 'Add Range', mezuro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, 
+<% if kalibro_configuration_owner? @metric_configuration.configuration_id %>
+  <%= link_to 'Add Range', kalibro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, 
       @metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
@@ -72,9 +72,9 @@
 </table>
 
 <p>
- <%= link_to 'Back', mezuro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
-<% if mezuro_configuration_owner? @metric_configuration.configuration_id %>
-      <%= link_to 'Destroy Metric Configuration', mezuro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
+ <%= link_to 'Back', kalibro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
+<% if kalibro_configuration_owner? @metric_configuration.configuration_id %>
+      <%= link_to 'Destroy Metric Configuration', kalibro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
       @metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' }, 
       class: 'btn btn-danger' %>
  <% end %>

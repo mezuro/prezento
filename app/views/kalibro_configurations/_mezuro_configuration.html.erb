@@ -1,0 +1,10 @@
+<tr>
+  <td><%= kalibro_configuration.name %></td>
+  <td><%= kalibro_configuration.description %></td>
+  <td><%= link_to 'Show', kalibro_configuration_path(kalibro_configuration.id), class: 'btn btn-info' %></td>
+  <td>
+    <% if kalibro_configuration_owner?(kalibro_configuration.id) %>
+      <%= link_to 'Edit', edit_kalibro_configuration_path(kalibro_configuration.id), class: 'btn btn-info' %>
+    <% end %>
+  </td>
+</tr>

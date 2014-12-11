@@ -1,6 +1,6 @@
 <h1>New Range</h1>
 
-<%= form_for(@mezuro_range, :url => mezuro_configuration_metric_configuration_mezuro_ranges_path(
-             @mezuro_configuration_id, @metric_configuration_id)) do |f|  %>
+<%= form_for(@mezuro_range, :url => kalibro_configuration_metric_configuration_mezuro_ranges_path(
+             @kalibro_configuration_id, @metric_configuration_id)) do |f|  %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>

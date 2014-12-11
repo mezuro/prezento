@@ -1,6 +1,6 @@
 class MetricConfigurationsController < BaseMetricConfigurationsController
   def choose_metric
-    @mezuro_configuration_id = params[:mezuro_configuration_id].to_i
+    @kalibro_configuration_id = params[:kalibro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
     @metric_collectors = KalibroClient::Processor::MetricCollector.all
   end
@@ -19,20 +19,20 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     respond_to do |format|
       create_and_redir(format)
     end
-    Rails.cache.delete("#{params[:mezuro_configuration_id]}_metric_configurations")
+    Rails.cache.delete("#{params[:kalibro_configuration_id]}_metric_configurations")
   end
 
   def edit
     #FIXME: set the configuration id just once!
-    @mezuro_configuration_id = params[:mezuro_configuration_id]
-    @metric_configuration.configuration_id = @mezuro_configuration_id
+    @kalibro_configuration_id = params[:kalibro_configuration_id]
+    @metric_configuration.configuration_id = @kalibro_configuration_id
   end
 
   def update
     respond_to do |format|
-      @metric_configuration.configuration_id = params[:mezuro_configuration_id]
+      @metric_configuration.configuration_id = params[:kalibro_configuration_id]
       if @metric_configuration.update(metric_configuration_params)
-        format.html { redirect_to(mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
+        format.html { redirect_to(kalibro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
         format.json { head :no_content }
         Rails.cache.delete("#{@metric_configuration.configuration_id}_metric_configurations")
       else
@@ -44,10 +44,10 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   def destroy
     @metric_configuration.destroy
     respond_to do |format|
-      format.html { redirect_to mezuro_configuration_path(params[:mezuro_configuration_id]) }
+      format.html { redirect_to kalibro_configuration_path(params[:kalibro_configuration_id]) }
       format.json { head :no_content }
     end
-    Rails.cache.delete("#{params[:mezuro_configuration_id]}_metric_configurations")
+    Rails.cache.delete("#{params[:kalibro_configuration_id]}_metric_configurations")
   end
 
   protected
@@ -64,7 +64,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
-    @mezuro_configuration_id = params[:mezuro_configuration_id]
+    @kalibro_configuration_id = params[:kalibro_configuration_id]
 
     format.html { render action: destiny_action }
     format.json { render json: @metric_configuration.errors, status: :unprocessable_entity }
@@ -73,7 +73,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   #Code extracted from create action
   def create_and_redir(format)
     if @metric_configuration.save
-      format.html { redirect_to mezuro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully created.' }
+      format.html { redirect_to kalibro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully created.' }
     else
       failed_action(format, 'new')
     end

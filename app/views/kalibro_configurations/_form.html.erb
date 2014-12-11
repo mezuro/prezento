@@ -1,5 +1,5 @@
-<%= form_for(@mezuro_configuration, :html => { role: 'form' }) do |f|  %>
-  <%= render :partial => 'shared/form_errors', :locals => {:object => @mezuro_configuration} %>
+<%= form_for(@kalibro_configuration, :html => { role: 'form' }) do |f|  %>
+  <%= render :partial => 'shared/form_errors', :locals => {:object => @kalibro_configuration} %>
 
 <div class="row margin-left-none">
   <div class="form-table col-md-9">
@@ -23,7 +23,7 @@
 
 <div class="row margin-left-none" style="margin-top: 20px">
   <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Back', mezuro_configurations_path, class: 'btn btn-default' %>
+  <%= link_to 'Back', kalibro_configurations_path, class: 'btn btn-default' %>
 </div>
 
 <% end %>

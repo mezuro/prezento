@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
   end
 
-  resources :mezuro_configurations do
+  resources :kalibro_configurations do
     get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
     resources :metric_configurations, except: [:update, :new] do
       get '/mezuro_ranges/new' => 'mezuro_ranges#new', as: :new_mezuro_range

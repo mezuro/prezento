@@ -1,39 +1,39 @@
 Given(/^I am at the All Configurations page$/) do
-  visit mezuro_configurations_path
+  visit kalibro_configurations_path
 end
 
 Given(/^I am at the New Configuration page$/) do
-  visit new_mezuro_configuration_path
+  visit new_kalibro_configuration_path
 end
 
 Given(/^I have a configuration named "(.*?)"$/) do |name|
-  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil, name: name})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil, name: name})
 end
 
 Given(/^I have a sample configuration$/) do
-  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil})
 end
 
 Given(/^I own a sample configuration$/) do
-  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil})
-  FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil})
+  FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 Given(/^I am at the Sample Configuration page$/) do
-  visit mezuro_configuration_path(@mezuro_configuration.id)
+  visit kalibro_configuration_path(@kalibro_configuration.id)
 end
 
 Given(/^I am at the sample configuration edit page$/) do
-  visit edit_mezuro_configuration_path(@mezuro_configuration.id)
+  visit edit_kalibro_configuration_path(@kalibro_configuration.id)
 end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
-  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, {id: nil, name: name})
-  FactoryGirl.create(:mezuro_configuration_ownership, {id: nil, user_id: @user.id, mezuro_configuration_id: @mezuro_configuration.id})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil, name: name})
+  FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 When(/^I visit the sample configuration edit page$/) do
-  visit edit_mezuro_configuration_path(@mezuro_configuration.id)
+  visit edit_kalibro_configuration_path(@kalibro_configuration.id)
 end
 
 Then(/^I should be in the Edit Configuration page$/) do
@@ -41,7 +41,7 @@ Then(/^I should be in the Edit Configuration page$/) do
 end
 
 Then(/^The field "(.*?)" should be filled with the sample configuration "(.*?)"$/) do |field, value|
-  expect(page.find_field(field).value).to eq(@mezuro_configuration.send(value))
+  expect(page.find_field(field).value).to eq(@kalibro_configuration.send(value))
 end
 
 Then(/^I should be in the All configurations page$/) do
@@ -49,10 +49,10 @@ Then(/^I should be in the All configurations page$/) do
 end
 
 Then(/^the sample configuration should not be there$/) do
-  expect { MezuroConfiguration.find(@mezuro_configuration.id) }.to raise_error 
+  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error 
 end
 
 Then(/^the sample configuration should be there$/) do
-  expect(page).to have_content(@mezuro_configuration.name)
-  expect(page).to have_content(@mezuro_configuration.description)
+  expect(page).to have_content(@kalibro_configuration.name)
+  expect(page).to have_content(@kalibro_configuration.description)
 end

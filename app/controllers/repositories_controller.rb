@@ -11,7 +11,7 @@ class RepositoriesController < ApplicationController
   # GET /projects/1/repositories/1/modules/1
   # GET /projects/1/repositories/1/modules/1.json
   def show
-    set_mezuro_configuration
+    set_kalibro_configuration
   end
 
   # GET projects/1/repositories/new
@@ -87,7 +87,7 @@ class RepositoriesController < ApplicationController
   # GET /projects/1/repositories/1/process
   def process_repository
     @repository.process
-    set_mezuro_configuration
+    set_kalibro_configuration
     respond_to do |format|
       format.html { redirect_to project_repository_path(@repository.project_id, @repository.id) }
     end
@@ -108,8 +108,8 @@ private
     @repository = find_resource(Repository, params[:id].to_i)
   end
 
-  def set_mezuro_configuration
-    @mezuro_configuration = MezuroConfiguration.find(@repository.configuration_id)
+  def set_kalibro_configuration
+    @kalibro_configuration = KalibroConfiguration.find(@repository.configuration_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
