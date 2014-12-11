@@ -24,7 +24,7 @@ describe ResourceFinder, type: :controller do
 
     context 'when the resource does not exists' do
       before :each do
-        klass.expects(:find).with(id).raises(KalibroGatekeeperClient::Errors::RecordNotFound)
+        klass.expects(:find).with(id).raises(KalibroClient::Errors::RecordNotFound)
       end
 
       # FIXME: this is not the best test, but it it's the closest we can think of
