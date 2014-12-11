@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ModulesController, :type => :controller do
   describe "load_module_tree" do
     before :each do
-      ModuleResult.expects(:find).with(42).returns(FactoryGirl.build(:module_result))
+      subject.expects(:find_resource).with(ModuleResult, 42).returns(FactoryGirl.build(:module_result))
 
       post :load_module_tree, id: 42, format: :js
     end
@@ -20,7 +20,7 @@ describe ModulesController, :type => :controller do
     let! (:module_result){ FactoryGirl.build(:module_result) }
 
     before :each do
-      ModuleResult.expects(:find).at_least_once.with(module_result.id).returns(module_result)
+      subject.expects(:find_resource).with(ModuleResult, module_result.id).returns(module_result)
       subject.expire_fragment("#{module_result.id}_#{metric_name}")
 
       xhr :get, :metric_history, {id: module_result.id, metric_name: metric_name, module_id: module_id}

@@ -95,7 +95,7 @@ describe MetricConfigurationsController, :type => :controller do
 
     before :each do
       ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-      MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
+      subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
       MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([mezuro_range])
 
       get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
@@ -114,8 +114,8 @@ describe MetricConfigurationsController, :type => :controller do
 
       context 'when the user owns the metric configuration' do
         before :each do
-          subject.expects(:metric_configuration_owner?).returns true
-          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+          subject.expects(:metric_configuration_owner?).returns(true)
+          subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
           get :edit, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
 
@@ -158,7 +158,7 @@ describe MetricConfigurationsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+            subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
 
             post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
@@ -170,7 +170,7 @@ describe MetricConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+            subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
 
             post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
@@ -203,7 +203,7 @@ describe MetricConfigurationsController, :type => :controller do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
           metric_configuration.expects(:destroy)
-          MetricConfiguration.expects(:find).at_least_once.with(metric_configuration.id).returns(metric_configuration)
+          subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
 
           delete :destroy, id: metric_configuration.id, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end

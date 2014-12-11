@@ -1,5 +1,6 @@
 include OwnershipAuthentication
 include MetricConfigurationsConcern
+include ResourceFinder
 
 class BaseMetricConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]

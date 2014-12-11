@@ -1,4 +1,5 @@
 include OwnershipAuthentication
+include ResourceFinder
 
 class ReadingsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
@@ -73,6 +74,6 @@ class ReadingsController < ApplicationController
   end
 
   def set_reading
-    @reading = Reading.find(params[:id].to_i)
+    @reading = find_resource(Reading, params[:id].to_i)
   end
 end

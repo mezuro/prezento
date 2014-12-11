@@ -118,7 +118,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
     context 'with a valid metric_configuration' do
       before :each do
         ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-        MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
+        subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
         MezuroRange.expects(:ranges_of).with(metric_configuration.id).returns([mezuro_range])
 
         get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id

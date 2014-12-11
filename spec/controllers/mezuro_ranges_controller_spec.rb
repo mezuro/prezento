@@ -80,7 +80,7 @@ describe MezuroRangesController, :type => :controller do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
           mezuro_range.expects(:destroy)
-          MezuroRange.expects(:find).at_least_once.with(mezuro_range.id).returns(mezuro_range)
+          subject.expects(:find_resource).with(MezuroRange, mezuro_range.id).returns(mezuro_range)
 
           delete :destroy, id: mezuro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, mezuro_configuration_id: metric_configuration.configuration_id.to_s
         end
@@ -121,7 +121,7 @@ describe MezuroRangesController, :type => :controller do
       context 'when the user owns the mezuro range' do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
-          MezuroRange.expects(:find).with(mezuro_range.id).returns(mezuro_range)
+          subject.expects(:find_resource).with(MezuroRange, mezuro_range.id).returns(mezuro_range)
           MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
           Reading.expects(:readings_of).with(metric_configuration.reading_group_id).returns([reading])
           get :edit, id: mezuro_range.id, mezuro_configuration_id: metric_configuration.configuration_id, metric_configuration_id: metric_configuration.id
@@ -170,7 +170,7 @@ describe MezuroRangesController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            MezuroRange.expects(:find).with(mezuro_range.id).returns(mezuro_range)
+            subject.expects(:find_resource).with(MezuroRange, mezuro_range.id).returns(mezuro_range)
             MezuroRange.any_instance.expects(:update).with(mezuro_range_params).returns(true)
 
             post :update, mezuro_configuration_id: metric_configuration.configuration_id, id: mezuro_range.id, metric_configuration_id: metric_configuration.id, mezuro_range: mezuro_range_params
@@ -182,7 +182,7 @@ describe MezuroRangesController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            MezuroRange.expects(:find).with(mezuro_range.id).returns(mezuro_range)
+            subject.expects(:find_resource).with(MezuroRange, mezuro_range.id).returns(mezuro_range)
             MezuroRange.any_instance.expects(:update).with(mezuro_range_params).returns(false)
             MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
             Reading.expects(:readings_of).with(metric_configuration.reading_group_id).returns([reading])
