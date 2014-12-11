@@ -3,13 +3,13 @@ Feature: Metric Configuration Creation
   As a regular user
   I should be able to create metric configurations
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not create metric configurations without login
     Given I have a sample configuration
     And I am at the Sample Configuration page
     Then I should not see "New Metric Configuration"
 
-  @kalibro_restart @javascript
+  @kalibro_configuration_restart @javascript
   Scenario: metric configuration creation
     Given I am a regular user
     And I am signed in
@@ -26,7 +26,7 @@ Feature: Metric Configuration Creation
     Then I should see "Total Lines of Code"
     Then I should see "2"
 
-  @kalibro_restart @javascript
+  @kalibro_configuration_restart @javascript
   Scenario: metric configuration creation
     Given I am a regular user
     And I am signed in

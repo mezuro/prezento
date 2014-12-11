@@ -3,7 +3,7 @@ Feature: Repository metric results
   As a regular user
   I should see the metric results table with its graphics
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the message when the graphic of the given metric have only a single point
     Given I am a regular user
     And I am signed in
@@ -23,7 +23,7 @@ Feature: Repository metric results
     When I wait up for the ajax request
     Then I should see "There is only one point and it will not be printed into a chart."
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the no range message after a process without range
     Given I am a regular user
     And I am signed in
@@ -40,7 +40,7 @@ Feature: Repository metric results
     And I see a sample metric's name
     Then I should see "Missing range"
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the error message when the process fails
     Given I am a regular user
     And I am signed in

@@ -3,12 +3,12 @@ Feature: Reading Group Creation
   As a regular user
   I should be able to create reading groups
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: Should not create reading groups without login
   Given I am at the All Reading Groups page
   Then I should not see "New Reading Group"
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: Reading Group creation
   Given I am a regular user
   And I am signed in
@@ -21,7 +21,7 @@ Scenario: Reading Group creation
   And I should see "New Reading"
   And I should see "Destroy Reading Group"
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: reading group creation with already taken name
   Given I am a regular user
   And I am signed in
@@ -32,7 +32,7 @@ Scenario: reading group creation with already taken name
   When I press the Save button
   Then I should see "Name There is already a ReadingGroup with name Group!"
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: reading group creation with blank name
   Given I am a regular user
   And I am signed in

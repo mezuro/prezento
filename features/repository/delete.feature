@@ -3,7 +3,7 @@ Feature: Project Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_restart @kalibro_processor_restart
+  @kalibro_configuration_restart @kalibro_processor_restart
   Scenario: Should delete a project that I own
     Given I am a regular user
     And I am signed in

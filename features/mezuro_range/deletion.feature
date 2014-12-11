@@ -3,7 +3,7 @@ Feature: Range Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should delete a range that I own
     Given I am a regular user
     And I am signed in
@@ -17,7 +17,7 @@ Feature: Range Deletion
     Then I should be at metric configuration sample page
     And I should see "There are no Ranges yet!"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not see the destroy range link in the range that I not own
     Given I am a regular user
     And I am signed in

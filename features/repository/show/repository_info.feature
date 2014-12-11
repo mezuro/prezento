@@ -3,7 +3,7 @@ Feature: Show Repository
   As a regular user
   I should see it's informations
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Testing the repository values
     Given I have a sample project
     And I have a sample configuration with native metrics
@@ -19,7 +19,7 @@ Feature: Show Repository
     And I should see "License"
     And I should see the given repository's content
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: With a ready processing and asking to reprocess
     Given I am a regular user
     And I am signed in
@@ -50,7 +50,7 @@ Feature: Show Repository
     When I click the Reprocess link
     Then I should see "PREPARING"
 
-  @kalibro_restart @kalibro_processor_restart @javascript
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Just after start to process
     Given I am a regular user
     And I am signed in

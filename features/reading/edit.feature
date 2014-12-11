@@ -3,7 +3,7 @@ Feature: Reading Edit
   As a regular user
   I should be able to edit my readings
 
-@kalibro_restart
+@kalibro_configuration_restart
   Scenario: editing a reading successfully
     Given I am a regular user
     And I am signed in
@@ -17,7 +17,7 @@ Feature: Reading Edit
     And I press the Save button
     Then I should see "Bad"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: editing a reading with blank fields
     Given I am a regular user
     And I am signed in
@@ -32,7 +32,7 @@ Feature: Reading Edit
     And I should see "Grade can't be blank"
     And I should see "Color can't be blank"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: editing a reading with already taken name
     Given I am a regular user
     And I am signed in
@@ -44,7 +44,7 @@ Feature: Reading Edit
     And I press the Save button
     Then I should see "Label There is already a Reading with label Average! Please, choose another one."
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: editing a reading with non numerical value
     Given I am a regular user
     And I am signed in

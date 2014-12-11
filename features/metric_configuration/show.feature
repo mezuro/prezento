@@ -3,7 +3,7 @@ Feature: Show Metric Configuration
   As a regular user
   I should be able to see each of them
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Checking metric configuration show link
     Given I have a sample configuration
     And I have a sample reading group
@@ -15,7 +15,7 @@ Feature: Show Metric Configuration
     Then I should be at metric configuration sample page
     And I should see the sample range
 
-  @kalibro_restart @javascript
+  @kalibro_configuration_restart @javascript
   Scenario: When there's a range created and I want to see its comments
     Given I have a sample configuration
     And I have a sample reading group

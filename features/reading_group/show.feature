@@ -3,7 +3,7 @@ Feature: Show Reading Group
   As a regular user
   I should be able to see each of them
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: Should not show the create, edit and destroy reading link to user that doesn't own the reading group
   Given I am a regular user
   And I have a sample reading group
@@ -14,7 +14,7 @@ Scenario: Should not show the create, edit and destroy reading link to user that
   And I should not see Edit within table
   And I should not see "Destroy"
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: Should show the links for the user that owns the reading group
   Given I am a regular user
   And I am signed in
@@ -27,7 +27,7 @@ Scenario: Should show the links for the user that owns the reading group
   And I should see "Destroy"
   And I should see "Destroy Reading Group"
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: Should show the information of the sample reading
   Given I have a sample reading group
   And I have a sample reading within the sample reading group
@@ -39,7 +39,7 @@ Scenario: Should show the information of the sample reading
   And I should see "Color"
   And I should see the information of the sample reading
 
-@kalibro_restart
+@kalibro_configuration_restart
 Scenario: Should show a message when there is no readings
   Given I have a sample reading group
   When I visit the Sample Reading Group page

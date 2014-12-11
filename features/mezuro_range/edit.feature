@@ -3,7 +3,7 @@ Feature: Mezuro Range Edit
   As a regular user
   I should be able to edit my mezuro ranges
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: editing a mezuro range successfully
     Given I am a regular user
     And I am signed in
@@ -21,7 +21,7 @@ Feature: Mezuro Range Edit
     And I press the Save button
     Then I should see "2.2"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: editing a mezuro range with blank fields
     Given I am a regular user
     And I am signed in
