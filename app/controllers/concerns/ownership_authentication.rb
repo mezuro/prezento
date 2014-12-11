@@ -33,19 +33,19 @@ module OwnershipAuthentication
     check_reading_group_ownership(params[:reading_group_id])
   end
 
-  def mezuro_configuration_owner?
-    if self.kind_of?(MezuroConfigurationsController)
+  def kalibro_configuration_owner?
+    if self.kind_of?(KalibroConfigurationsController)
       id = params[:id]
     elsif (self.kind_of?(BaseMetricConfigurationsController))
-      id = params[:mezuro_configuration_id]
+      id = params[:kalibro_configuration_id]
     else
       raise "Not supported"
     end
-    check_mezuro_configuration_ownership(id)
+    check_kalibro_configuration_ownership(id)
   end
 
   def metric_configuration_owner?
-    check_mezuro_configuration_ownership(params[:mezuro_configuration_id])
+    check_kalibro_configuration_ownership(params[:kalibro_configuration_id])
   end
 
 
@@ -73,10 +73,10 @@ module OwnershipAuthentication
     return true
   end
 
-  def check_mezuro_configuration_ownership(id)
-    if current_user.mezuro_configuration_ownerships.find_by_mezuro_configuration_id(id).nil?
+  def check_kalibro_configuration_ownership(id)
+    if current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to mezuro_configurations_url(id), notice: "You're not allowed to do this operation" }
+        format.html { redirect_to kalibro_configurations_url(id), notice: "You're not allowed to do this operation" }
         format.json { head :no_content }
       end
     end

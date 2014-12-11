@@ -93,7 +93,7 @@ describe RepositoriesController, :type => :controller do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
+        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration))
         subject.expects(:find_resource).with(Repository, repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -107,7 +107,7 @@ describe RepositoriesController, :type => :controller do
       before :each do
         processing = FactoryGirl.build(:processing)
 
-        MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
+        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration))
         subject.expects(:find_resource).with(Repository, repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -331,7 +331,7 @@ describe RepositoriesController, :type => :controller do
         subject.expects(:repository_owner?).returns true
         repository.expects(:process)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-        MezuroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:mezuro_configuration))
+        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration))
         get :process_repository, project_id: project.id.to_s, id: repository.id
       end
       it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }

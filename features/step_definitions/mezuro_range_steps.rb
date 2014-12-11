@@ -4,7 +4,7 @@ Given(/^I have a sample range within the sample metric configuration with beginn
 end
 
 Given(/^I am at the Edit Mezuro Range page$/) do
-  visit edit_mezuro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id, @mezuro_range.id)
+  visit edit_kalibro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id, @mezuro_range.id)
 end
 
 Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
@@ -22,7 +22,7 @@ Given(/^I have a sample range within the sample compound metric configuration$/)
 end
 
 When(/^I am at the New Range page$/) do
-  visit mezuro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id)
+  visit kalibro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id)
 end
 
 Then(/^I should be at the New Range page$/) do

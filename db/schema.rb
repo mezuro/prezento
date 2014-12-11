@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119173020) do
+ActiveRecord::Schema.define(version: 20141211114023) do
 
-  create_table "mezuro_configuration_ownerships", force: true do |t|
+  create_table "kalibro_configuration_ownerships", force: true do |t|
     t.integer  "user_id"
-    t.integer  "mezuro_configuration_id"
+    t.integer  "kalibro_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

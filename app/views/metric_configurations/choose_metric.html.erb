@@ -2,7 +2,7 @@
   <h1>Choose a metric from a Base Tool:</h1>
 </div>
 
-<%= form_tag mezuro_configuration_new_metric_configuration_path(@mezuro_configuration_id) do %>
+<%= form_tag kalibro_configuration_new_metric_configuration_path(@kalibro_configuration_id) do %>
   <%= hidden_field_tag(:metric_collector_name,) %>
   <%= hidden_field_tag(:metric_name) %>
 <% end %>
@@ -18,8 +18,8 @@
   <% end %>
 </div><br />
 
-<%= link_to 'Back', mezuro_configuration_path(@mezuro_configuration_id), class: 'btn btn-default' %>
-<%= link_to 'Compound Metric', new_mezuro_configuration_compound_metric_configuration_path(@mezuro_configuration_id), class: 'btn btn-info', id: "link_to_compound" %>
+<%= link_to 'Back', kalibro_configuration_path(@kalibro_configuration_id), class: 'btn btn-default' %>
+<%= link_to 'Compound Metric', new_kalibro_configuration_compound_metric_configuration_path(@kalibro_configuration_id), class: 'btn btn-info', id: "link_to_compound" %>
 
 
 <script type="text/javascript">
@@ -31,7 +31,7 @@
     });
   });
 
-  <% if MetricConfiguration.metric_configurations_of(@mezuro_configuration_id).blank? %>
+  <% if MetricConfiguration.metric_configurations_of(@kalibro_configuration_id).blank? %>
     $("#link_to_compound").css("display", "none");
   <% end %>
 </script>

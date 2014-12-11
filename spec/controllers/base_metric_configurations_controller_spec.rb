@@ -41,11 +41,11 @@ end
 
 
 describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
-  let(:mezuro_configuration) { FactoryGirl.build(:mezuro_configuration) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
 
   before do
     Rails.application.routes.draw do
-      resources :mezuro_configurations do
+      resources :kalibro_configurations do
         match '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric, :via => [:get]
         resources :inherits_from_base_metric_configurations do
           match '/metric_configurations/new' => 'metric_configurations#new', as: :new_metric_configuration, :via => [:post]
@@ -67,8 +67,8 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
     context 'when the current user owns the mezuro configuration' do
       let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
       before :each do
-        subject.expects(:mezuro_configuration_owner?).returns true
-        get :new, mezuro_configuration_id: mezuro_configuration.id
+        subject.expects(:kalibro_configuration_owner?).returns true
+        get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
       it { expect(metric_configuration).not_to be_nil }
@@ -77,10 +77,10 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
 
     context "when the current user doesn't owns the mezuro configuration" do
       before :each do
-        get :new, mezuro_configuration_id: mezuro_configuration.id
+        get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
-      it { is_expected.to redirect_to(mezuro_configurations_url(mezuro_configuration.id)) }
+      it { is_expected.to redirect_to(kalibro_configurations_url(kalibro_configuration.id)) }
       it { is_expected.to respond_with(:redirect) }
     end
   end
@@ -96,12 +96,12 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
 
     context 'when the current user owns the mezuro configuration' do
       before :each do
-        subject.expects(:mezuro_configuration_owner?).returns true
+        subject.expects(:kalibro_configuration_owner?).returns true
       end
 
       context 'with valid fields' do
         before :each do
-          post :create, mezuro_configuration_id: mezuro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name
+          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name
         end
 
         it { expect(subject.metric_configuration).not_to be_nil }
@@ -121,7 +121,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
         subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
         metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
 
-        get :show, mezuro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
+        get :show, kalibro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
       end
 
       it { expect(subject.mezuro_ranges).not_to be_nil}

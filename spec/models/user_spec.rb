@@ -12,7 +12,7 @@ describe User, :type => :model do
   describe 'associations' do
     it { is_expected.to have_many(:project_ownerships) }
     it { is_expected.to have_many(:reading_group_ownerships) }
-    it { is_expected.to have_many(:mezuro_configuration_ownerships) }
+    it { is_expected.to have_many(:kalibro_configuration_ownerships) }
   end
 
   describe 'methods' do

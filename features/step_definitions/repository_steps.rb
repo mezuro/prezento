@@ -1,24 +1,24 @@
 Given(/^I have a sample configuration with native metrics but without ranges$/) do
   reading_group = FactoryGirl.create(:reading_group, id: nil)
   reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
-  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, id: nil)
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {id: nil,
                                              metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             configuration_id: @mezuro_configuration.id,
+                                             configuration_id: @kalibro_configuration.id,
                                              code: 'loc'})
 end
 
 Given(/^I have a sample configuration with native metrics$/) do
   reading_group = FactoryGirl.create(:reading_group, id: nil)
   reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
-  @mezuro_configuration = FactoryGirl.create(:mezuro_configuration, id: nil)
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {id: nil,
                                              metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             configuration_id: @mezuro_configuration.id,
+                                             configuration_id: @kalibro_configuration.id,
                                              code: 'loc'})
   range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
@@ -26,17 +26,17 @@ end
 
 Given(/^I have a sample repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @mezuro_configuration.id, id: nil})
+                                                 configuration_id: @kalibro_configuration.id, id: nil})
 end
 
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @mezuro_configuration.id, id: nil, name: name})
+                                                 configuration_id: @kalibro_configuration.id, id: nil, name: name})
 end
 
 Given(/^I have a sample of an invalid repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @mezuro_configuration.id, id: nil, address: "https://invalidrepository.git"})
+                                                 configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})
 end
 
 Given(/^I start to process that repository$/) do
@@ -144,7 +144,7 @@ Then(/^I should see the given repository's content$/) do
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.license)
   expect(page).to have_content(@repository.address)
-  expect(page).to have_content(@mezuro_configuration.name)
+  expect(page).to have_content(@kalibro_configuration.name)
   expect(page).to have_content("1 day") # The given repository periodicity
 end
 
@@ -173,7 +173,7 @@ Then(/^I should see the saved repository's content$/) do
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.license)
   expect(page).to have_content(@repository.address)
-  expect(page).to have_content(@mezuro_configuration.name)
+  expect(page).to have_content(@kalibro_configuration.name)
 end
 
 Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|
