@@ -11,7 +11,27 @@ class RepositoriesController < ApplicationController
   # GET /projects/1/repositories/1/modules/1
   # GET /projects/1/repositories/1/modules/1.json
   def show
+    load_languages
     set_mezuro_configuration
+  end
+
+  def load_languages
+
+    path = @repository.address.gsub('github.com','api.github.com/repos')
+
+    path.scan(/api.github.com\/repos\/(.*)\/(.*).*/).each do |user, repo|
+      if /.git/.match(repo)
+        repo_without_git = repo.gsub('.git', '')
+      else
+        repo_without_git = repo
+      end
+
+      source = "https://api.github.com/repos/" << user << "/" << repo_without_git << "/languages"
+      resp = Net::HTTP.get_response(URI.parse(source))
+      data = resp.body
+      @repository_languages = JSON.parse(data)
+      @repository_languages.has_value?("Not Found") ? @repository_languages = nil : @repository_languages
+    end
   end
 
   # GET projects/1/repositories/new

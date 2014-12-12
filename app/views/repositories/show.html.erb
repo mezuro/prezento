@@ -17,6 +17,17 @@
   <%= @repository.type %>
 </p>
 
+<% unless @repository_languages.blank? %>
+  <p>
+    <strong>Languages:</strong>
+    <ul>
+      <% @repository_languages.each_key do |key| %>
+      <li><%= "#{key}" %></li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
 <p>
   <strong>Address:</strong>
   <%= @repository.address %>
