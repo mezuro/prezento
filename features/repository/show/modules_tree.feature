@@ -54,4 +54,4 @@ Feature: Repository modules tree
     And I click the "Modules Tree" h3
     And I click on the sample child's name
     And I wait for "5" seconds
-    Then I should see a sample child's name
+    Then I should see a sample child's namegit s

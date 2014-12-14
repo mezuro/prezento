@@ -3,10 +3,12 @@ Feature: Range Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_restart
-  Scenario: Should delete a range that I own
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_restart
+  Scenario: Should delete a range that I own
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -19,8 +21,6 @@ Feature: Range Deletion
 
   @kalibro_restart
   Scenario: Should not see the destroy range link in the range that I not own
-    Given I am a regular user
-    And I am signed in
     And I have a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration

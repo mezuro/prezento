@@ -3,10 +3,12 @@ Feature: Mezuro Range Edit
   As a regular user
   I should be able to edit my mezuro ranges
 
-  @kalibro_restart
-  Scenario: editing a mezuro range successfully
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_restart
+  Scenario: editing a mezuro range successfully
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -23,8 +25,6 @@ Feature: Mezuro Range Edit
 
   @kalibro_restart
   Scenario: editing a mezuro range with blank fields
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I own a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
