@@ -4,7 +4,7 @@
 
 <%= form_tag kalibro_configuration_new_metric_configuration_path(@kalibro_configuration.id) do %>
   <%= hidden_field_tag(:metric_collector_name,) %>
-  <%= hidden_field_tag(:metric_name) %>
+  <%= hidden_field_tag(:metric_code) %>
 <% end %>
 
 <div id="base-tool-accordion">
@@ -12,7 +12,7 @@
       <h3 class="jquery-ui-accordion"><%= metric_collector_name %></h3>
       <div>
         <% supported_metrics_of(metric_collector_name).each do |metric| %>
-          <%= link_to metric.name, '#', onclick: "MetricCollector.choose_metric(\"#{metric.name}\", \"#{metric_collector_name}\");", remote: true %><br>
+          <%= link_to metric.name, '#', onclick: "MetricCollector.choose_metric(\"#{metric.code}\", \"#{metric_collector_name}\");", remote: true %><br>
         <% end %>
       </div>
   <% end %>
