@@ -1,8 +1,8 @@
 class MetricConfigurationsController < BaseMetricConfigurationsController
   def choose_metric
-    @kalibro_configuration_id = params[:kalibro_configuration_id].to_i
+    @kalibro_configuration = KalibroConfiguration.find(params[:kalibro_configuration_id].to_i)
     @metric_configuration_id = params[:metric_configuration_id].to_i
-    @metric_collectors = KalibroClient::Processor::MetricCollector.all
+    @metric_collectors_names = KalibroClient::Processor::MetricCollector.all_names
   end
 
   def new
