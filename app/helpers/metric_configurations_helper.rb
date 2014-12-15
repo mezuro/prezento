@@ -13,4 +13,8 @@ module MetricConfigurationsHelper
       [ metric_configuration.code, metric_configuration.metric.name ]
     end
   end
+
+  def supported_metrics_of(metric_collector_name)
+    KalibroClient::Processor::MetricCollector.find(metric_collector_name).supported_metrics
+  end
 end
