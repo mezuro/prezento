@@ -3,7 +3,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
   def create
     super
-    metric_configuration.metric.compound = true
+    metric_configuration.metric_snapshot.compound = true
     respond_to do |format|
       create_and_redir(format)
     end

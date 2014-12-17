@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mezuro/kalibro_client
-  revision: cd8c53baa30bf507e9ef7a59407ef3cfe9226cb4
+  revision: 59630ab6b9dbf7a763c6c0ee08404ec4c9acd65b
   specs:
     kalibro_client (0.0.1)
       activeresource (~> 4.0.0)
@@ -57,7 +57,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    capistrano (3.3.4)
+    capistrano (3.3.5)
       capistrano-stats (~> 1.1.0)
       i18n
       rake (>= 10.0.0)
@@ -71,7 +71,7 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano-stats (1.1.0)
+    capistrano-stats (1.1.1)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -89,7 +89,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colorize (0.7.3)
+    colorize (0.7.5)
     colorpicker (0.0.5)
     coveralls (0.7.1)
       multi_json (~> 1.3)
@@ -165,7 +165,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
-    netrc (0.9.0)
+    netrc (0.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -247,8 +247,8 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.10)
-    sshkit (1.5.1)
-      colorize
+    sshkit (1.6.1)
+      colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     term-ansicolor (1.3.0)
@@ -269,7 +269,9 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    websocket-driver (0.4.0)
+    websocket-driver (0.5.0)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
