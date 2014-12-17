@@ -1,22 +1,22 @@
 FactoryGirl.define do
-  factory :metric, class: KalibroClient::Processor::Metric do
+  factory :metric, class: KalibroClient::Processor::NativeMetric do
     name "Total Abstract Classes"
     code "total_abstract_classes"
-    compound false
     scope "SOFTWARE"
     description nil
+    languages { [:C] }
 
-    initialize_with { new(compound, name, code, scope) }
+    initialize_with { new(name, code, scope, description, languages) }
   end
 
-  factory :loc, class: KalibroClient::Processor::Metric do
+  factory :loc, class: KalibroClient::Processor::NativeMetric do
     name "Lines of Code"
     code "loc"
-    compound false
     scope "CLASS"
     description nil
+    languages { [:C] }
 
-    initialize_with { new(compound, name, code, scope) }
+    initialize_with { new(name, code, scope, description, languages) }
   end
 
   factory :compound_metric, class: KalibroClient::Processor::CompoundMetric do
@@ -26,6 +26,6 @@ FactoryGirl.define do
     description nil
     script ""
 
-    initialize_with { new(name, code, scope, script) }
+    initialize_with { new(name, code, scope, description, script) }
   end
 end

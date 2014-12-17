@@ -71,6 +71,10 @@ describe KalibroConfigurationsController, :type => :controller do
     end
 
     it { is_expected.to render_template(:show) }
+
+    after :each do
+      Rails.cache.clear
+    end
   end
 
   describe 'destroy' do

@@ -11,7 +11,8 @@ describe MetricConfigurationsController, :type => :controller do
     context 'when adding new metrics' do
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
-        KalibroClient::Processor::MetricCollector.expects(:all).returns([metric_collector])
+        KalibroClient::Processor::MetricCollector.expects(:all_names).returns([metric_collector])
+        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
         get :choose_metric, kalibro_configuration_id: kalibro_configuration.id
       end
 
@@ -21,7 +22,8 @@ describe MetricConfigurationsController, :type => :controller do
   end
 
   describe 'new' do
-    let(:metric_collector) { FactoryGirl.build(:metric_collector) }
+    let!(:metric_collector) { FactoryGirl.build(:metric_collector) }
+    let!(:native_metric) { FactoryGirl.build(:loc) }
     before :each do
       sign_in FactoryGirl.create(:user)
     end
@@ -30,7 +32,8 @@ describe MetricConfigurationsController, :type => :controller do
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Processor::MetricCollector.expects(:find).with(metric_collector.name).returns(metric_collector)
-        post :new, kalibro_configuration_id: kalibro_configuration.id, metric_name: "Lines of Code", metric_collector_name: metric_collector.name
+        metric_collector.expects(:metric).with(native_metric.code).returns(native_metric)
+        post :new, kalibro_configuration_id: kalibro_configuration.id, metric_code: native_metric.code, metric_collector_name: metric_collector.name
       end
 
       it { is_expected.to respond_with(:success) }
