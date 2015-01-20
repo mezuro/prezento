@@ -7,7 +7,7 @@ FactoryGirl.define do
     weight 1
     aggregation_form "AVERAGE"
     reading_group_id 1
-    configuration_id 1
+    kalibro_configuration_id 1
   end
 
   factory :compound_metric_configuration, class: MetricConfiguration do
@@ -17,7 +17,7 @@ FactoryGirl.define do
     weight 1
     aggregation_form "AVERAGE"
     reading_group_id 1
-    configuration_id 1
+    kalibro_configuration_id 1
   end
 
   factory :metric_configuration_with_snapshot, class: MetricConfiguration do
@@ -28,7 +28,7 @@ FactoryGirl.define do
     weight 1
     aggregation_form "MEDIAN"
     reading_group_id 1
-    configuration_id 1
+    kalibro_configuration_id 1
   end
 
 end

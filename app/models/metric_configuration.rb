@@ -1,1 +1,1 @@
-class MetricConfiguration < KalibroClient::Configurations::MetricConfiguration; end
+class MetricConfiguration < KalibroClient::Entities::Configurations::MetricConfiguration; end

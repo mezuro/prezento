@@ -1,2 +1,2 @@
-class ReadingGroup < KalibroClient::Configurations::ReadingGroup
+class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
 end

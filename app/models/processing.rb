@@ -1,2 +1,2 @@
-class Processing < KalibroClient::Processor::Processing
+class Processing < KalibroClient::Entities::Processor::Processing
 end

@@ -20,6 +20,6 @@ FactoryGirl.define do
     label "Good"
     grade 10.5
     color "33DD33" 
-    group_id 31
+    reading_group_id 31
   end  
 end

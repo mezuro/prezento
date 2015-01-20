@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :metric, class: KalibroClient::Processor::NativeMetric do
+  factory :metric, class: KalibroClient::Entities::Processor::NativeMetric do
     name "Total Abstract Classes"
     code "total_abstract_classes"
     scope "SOFTWARE"
@@ -9,7 +9,7 @@ FactoryGirl.define do
     initialize_with { new(name, code, scope, description, languages) }
   end
 
-  factory :loc, class: KalibroClient::Processor::NativeMetric do
+  factory :loc, class: KalibroClient::Entities::Processor::NativeMetric do
     name "Lines of Code"
     code "loc"
     scope "CLASS"
@@ -19,7 +19,7 @@ FactoryGirl.define do
     initialize_with { new(name, code, scope, description, languages) }
   end
 
-  factory :compound_metric, class: KalibroClient::Processor::CompoundMetric do
+  factory :compound_metric, class: KalibroClient::Entities::Processor::CompoundMetric do
     name "Compound"
     code "compound"
     scope "CLASS"

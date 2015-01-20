@@ -1,1 +1,1 @@
-class KalibroConfiguration < KalibroClient::Configurations::KalibroConfiguration; end
+class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroConfiguration; end
