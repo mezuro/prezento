@@ -1,2 +1,2 @@
-class MezuroRange < KalibroClient::Configurations::KalibroRange
+class MezuroRange < KalibroClient::Entities::Configurations::KalibroRange
 end

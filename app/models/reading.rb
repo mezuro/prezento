@@ -1,2 +1,2 @@
-class Reading < KalibroClient::Configurations::Reading
+class Reading < KalibroClient::Entities::Configurations::Reading
 end

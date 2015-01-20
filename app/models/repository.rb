@@ -1,4 +1,4 @@
-class Repository < KalibroClient::Processor::Repository
+class Repository < KalibroClient::Entities::Processor::Repository
   def last_processing_of
     if has_processing
       last_processing

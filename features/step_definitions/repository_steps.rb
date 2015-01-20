@@ -12,13 +12,17 @@ end
 
 Given(/^I have a sample configuration with native metrics$/) do
   reading_group = FactoryGirl.create(:reading_group, id: nil)
-  reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
+  reading = FactoryGirl.create(:reading, {id: nil, reading_group_id: reading_group.id})
+
+  KalibroClient::Processor::MetricCollector.find('Analizo').supported_metrics.select { |x| not x.persisted? }.save
+  
+
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
-  metric_configuration = FactoryGirl.create(:metric_configuration,
+  metric_configuration = FactoryGirl.create(:metric_configuration_with_snapshot,
                                             {id: nil,
                                              metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             configuration_id: @kalibro_configuration.id,
+                                             kalibro_configuration_id: @kalibro_configuration.id,
                                              code: 'loc'})
   range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save

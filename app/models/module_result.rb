@@ -1,4 +1,4 @@
-class ModuleResult < KalibroClient::Processor::ModuleResult
+class ModuleResult < KalibroClient::Entities::Processor::ModuleResult
 
   def metric_history(name)
     history = self.processing.repository.module_result_history_of(self)

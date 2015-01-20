@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :metric_collector, class: KalibroClient::Processor::MetricCollector do
+  factory :metric_collector, class: KalibroClient::Entities::Processor::MetricCollectorDetails do
     name 'Analizo'
     description 'A metric collector'
     supported_metrics { { "total_abstract_classes" => FactoryGirl.build(:metric), "loc" => FactoryGirl.build(:loc)} }
