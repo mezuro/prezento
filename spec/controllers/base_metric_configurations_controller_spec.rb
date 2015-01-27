@@ -111,7 +111,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
 
   describe 'show' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
-    let(:reading_group) { FactoryGirl.build(:reading_group) }
+    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
 
     context 'with a valid metric_configuration' do
