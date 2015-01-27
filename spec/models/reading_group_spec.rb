@@ -6,10 +6,6 @@ describe ReadingGroup, :type => :model do
       before :each do
         @subject = FactoryGirl.build(:reading_group)
       end
-
-      it 'should return false' do
-        expect(@subject.persisted?).to eq(false)
-      end
     end
 
     describe 'update' do
