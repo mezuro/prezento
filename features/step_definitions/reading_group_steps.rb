@@ -9,7 +9,7 @@ Given(/^I am at the New Reading Group page$/) do
 end
 
 Given(/^I have a reading group named "(.*?)"$/) do |name|
-  @reading_group = FactoryGirl.create(:reading_group, {id: nil, name: name})
+  @reading_group = FactoryGirl.create(:reading_group, {name: name})
 end
 
 Given(/^I have a sample reading within the sample reading group$/) do
@@ -17,12 +17,12 @@ Given(/^I have a sample reading within the sample reading group$/) do
 end
 
 Given(/^I own a sample reading group$/) do
-  @reading_group = FactoryGirl.create(:reading_group, {id: nil})
+  @reading_group = FactoryGirl.create(:reading_group)
   FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})
 end
 
 Given(/^I have a sample reading group$/) do
-  @reading_group = FactoryGirl.create(:reading_group, {id: nil})
+  @reading_group = FactoryGirl.create(:reading_group)
 end
 
 Given(/^I visit the Sample Reading Group page$/) do
@@ -34,7 +34,7 @@ Given(/^I am at the sample reading group edit page$/) do
 end
 
 Given(/^I own a reading group named "(.*?)"$/) do |name|
-  @reading_group = FactoryGirl.create(:reading_group, {id: nil, name: name})
+  @reading_group = FactoryGirl.create(:reading_group, {name: name})
   FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})
 end
 

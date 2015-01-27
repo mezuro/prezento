@@ -1,5 +1,5 @@
 Given(/^I have a sample configuration with native metrics but without ranges$/) do
-  reading_group = FactoryGirl.create(:reading_group, id: nil)
+  reading_group = FactoryGirl.create(:reading_group)
   reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
   metric_configuration = FactoryGirl.create(:metric_configuration,
@@ -10,7 +10,7 @@ Given(/^I have a sample configuration with native metrics but without ranges$/) 
 end
 
 Given(/^I have a sample configuration with native metrics$/) do
-  reading_group = FactoryGirl.create(:reading_group, id: nil)
+  reading_group = FactoryGirl.create(:reading_group)
   reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
 
   KalibroClient::Processor::MetricCollector.find('Analizo').supported_metrics.select { |x| not x.persisted? }.save

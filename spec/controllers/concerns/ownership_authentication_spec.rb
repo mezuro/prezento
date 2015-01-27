@@ -4,7 +4,7 @@ describe OwnershipAuthentication, type: :controller do
   #TODO: test other methods
 
   describe 'reading_group_owner?' do
-    let(:reading_group) { FactoryGirl.build(:reading_group) }
+    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
 
     context 'Not ReadingGroupsController nor ReadingsController' do
       let!(:projects_controller) { ProjectsController.new }
