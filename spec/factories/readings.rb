@@ -5,7 +5,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,10 +16,15 @@
 
 FactoryGirl.define do
   factory :reading do
-    id 42
     label "Good"
     grade 10.5
-    color "33DD33" 
+    color "33DD33"
     reading_group_id 31
-  end  
+
+    trait :with_id do
+      id 42
+    end
+
+    factory :reading_with_id, traits: [:with_id]
+  end
 end

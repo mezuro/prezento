@@ -1,10 +1,10 @@
 Given(/^I have a sample range within the sample metric configuration with beginning "(.*?)"$/) do |beginning|
-  @mezuro_range = FactoryGirl.create(:mezuro_range, {beginning: beginning, metric_configuration_id: @metric_configuration.id, 
+  @mezuro_range = FactoryGirl.create(:mezuro_range, {beginning: beginning, metric_configuration_id: @metric_configuration.id,
                                      reading_id: @reading.id, id: nil})
 end
 
 Given(/^I am at the Edit Mezuro Range page$/) do
-  visit edit_kalibro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id, @mezuro_range.id)
+  visit edit_kalibro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id, @mezuro_range.id)
 end
 
 Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
@@ -12,17 +12,17 @@ Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
 end
 
 Given(/^I have a sample range within the sample metric configuration$/) do
-  @mezuro_range = FactoryGirl.create(:mezuro_range, {metric_configuration_id: @metric_configuration.id, 
+  @mezuro_range = FactoryGirl.create(:mezuro_range, {metric_configuration_id: @metric_configuration.id,
                                      reading_id: @reading.id, id: nil})
 end
 
 Given(/^I have a sample range within the sample compound metric configuration$/) do
-  @mezuro_range = FactoryGirl.create(:mezuro_range, {metric_configuration_id: @compound_metric_configuration.id, 
+  @mezuro_range = FactoryGirl.create(:mezuro_range, {metric_configuration_id: @compound_metric_configuration.id,
                                      reading_id: @reading.id, id: nil})
 end
 
 When(/^I am at the New Range page$/) do
-  visit kalibro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.configuration_id, @metric_configuration.id)
+  visit kalibro_configuration_metric_configuration_new_mezuro_range_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id)
 end
 
 Then(/^I should be at the New Range page$/) do
