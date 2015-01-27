@@ -5,7 +5,7 @@ describe MezuroRangesController, :type => :controller do
   let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
   describe 'new' do
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
     before :each do
       sign_in FactoryGirl.create(:user)
@@ -35,7 +35,7 @@ describe MezuroRangesController, :type => :controller do
 
   describe 'create' do
     let(:mezuro_range_params) { Hash[FactoryGirl.attributes_for(:mezuro_range).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
     before do
       sign_in FactoryGirl.create(:user)

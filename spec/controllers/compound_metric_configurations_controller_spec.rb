@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe CompoundMetricConfigurationsController, :type => :controller do
-  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
   describe 'new' do
     before :each do
