@@ -41,7 +41,7 @@ end
 
 
 describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
-  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
   before do
     Rails.application.routes.draw do

@@ -65,7 +65,7 @@ describe OwnershipAuthentication, type: :controller do
   end
 
   describe 'kalibro_configuration_owner?' do
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
     context 'Not KalibroConfigurationsController nor MetricConfigurationsController nor CompoundMetricConfigurationsController' do
       let!(:projects_controller) { ProjectsController.new }

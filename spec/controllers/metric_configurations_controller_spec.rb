@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe MetricConfigurationsController, :type => :controller do
-  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+  let!(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
   describe 'choose_metric' do
     let(:metric_collector) { FactoryGirl.build(:metric_collector) }
     before :each do
@@ -53,7 +53,6 @@ describe MetricConfigurationsController, :type => :controller do
   describe 'create' do
     let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
     let(:metric_configuration_params) { metric_configuration.to_hash }
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
     let(:metric_collector) { FactoryGirl.build(:metric_collector) }
 
     before do
