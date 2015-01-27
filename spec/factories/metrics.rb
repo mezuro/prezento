@@ -1,31 +1,33 @@
 FactoryGirl.define do
-  factory :metric, class: KalibroClient::Entities::Processor::NativeMetric do
+  factory :metric, class: KalibroClient::Entities::Miscellaneous::NativeMetric do
     name "Total Abstract Classes"
     code "total_abstract_classes"
     scope "SOFTWARE"
     description nil
     languages { [:C] }
+    metric_collector_name "Analizo"
 
     initialize_with { new(name, code, scope, description, languages) }
   end
 
-  factory :loc, class: KalibroClient::Entities::Processor::NativeMetric do
+  factory :loc, class: KalibroClient::Entities::Miscellaneous::NativeMetric do
     name "Lines of Code"
     code "loc"
     scope "CLASS"
     description nil
     languages { [:C] }
+    metric_collector_name "Analizo"
 
     initialize_with { new(name, code, scope, description, languages) }
   end
 
-  factory :compound_metric, class: KalibroClient::Entities::Processor::CompoundMetric do
+  factory :compound_metric, class: KalibroClient::Entities::Miscellaneous::CompoundMetric do
     name "Compound"
     code "compound"
     scope "CLASS"
     description nil
     script ""
 
-    initialize_with { new(name, code, scope, description, script) }
+    initialize_with { new(name, code, scope, script) }
   end
 end

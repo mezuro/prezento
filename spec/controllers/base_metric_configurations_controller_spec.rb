@@ -86,8 +86,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
   end
 
   describe 'create' do
-    let!(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:metric_configuration).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
-    let!(:metric_params) { Hash[FactoryGirl.attributes_for(:metric).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
+    let!(:metric_configuration_params) { FactoryGirl.build(:metric_configuration, metric: FactoryGirl.build(:metric)).to_hash }
     let(:metric_collector) { FactoryGirl.build(:metric_collector) }
 
     before :each do
@@ -121,7 +120,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
         subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
         metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
 
-        get :show, kalibro_configuration_id: metric_configuration.configuration_id.to_s, id: metric_configuration.id
+        get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
       end
 
       it { expect(subject.mezuro_ranges).not_to be_nil}

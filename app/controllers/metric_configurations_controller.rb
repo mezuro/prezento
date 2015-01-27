@@ -2,20 +2,17 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   def choose_metric
     @kalibro_configuration = KalibroConfiguration.find(params[:kalibro_configuration_id].to_i)
     @metric_configuration_id = params[:metric_configuration_id].to_i
-    @metric_collectors_names = KalibroClient::Processor::MetricCollector.all_names
+    @metric_collectors_names = KalibroClient::Entities::Processor::MetricCollectorDetails.all_names
   end
 
   def new
     super
-    metric_configuration.metric_collector_name = params[:metric_collector_name]
-    metric_configuration.metric = KalibroClient::Processor::MetricCollector.find(params[:metric_collector_name]).metric params[:metric_code]
+    metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find(params[:metric_collector_name]).metric params[:metric_code]
   end
 
   def create
     super
-    @metric_configuration.metric = KalibroClient::Processor::MetricCollector.find(params[:metric_collector_name]).metric params[:metric_name]
-    @metric_configuration.metric_collector_name = params[:metric_collector_name]
-    @metric_configuration.code = @metric_configuration.metric.code
+    @metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find(params[:metric_collector_name]).metric params[:metric_name]
     respond_to do |format|
       create_and_redir(format)
     end
@@ -25,16 +22,16 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   def edit
     #FIXME: set the configuration id just once!
     @kalibro_configuration_id = params[:kalibro_configuration_id]
-    @metric_configuration.configuration_id = @kalibro_configuration_id
+    @metric_configuration.kalibro_configuration_id = @kalibro_configuration_id
   end
 
   def update
     respond_to do |format|
-      @metric_configuration.configuration_id = params[:kalibro_configuration_id]
+      @metric_configuration.kalibro_configuration_id = params[:kalibro_configuration_id]
       if @metric_configuration.update(metric_configuration_params)
-        format.html { redirect_to(kalibro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully updated.') }
+        format.html { redirect_to(kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: 'Metric Configuration was successfully updated.') }
         format.json { head :no_content }
-        Rails.cache.delete("#{@metric_configuration.configuration_id}_metric_configurations")
+        Rails.cache.delete("#{@metric_configuration.kalibro_configuration_id}_metric_configurations")
       else
         failed_action(format, 'edit')
       end
@@ -73,7 +70,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   #Code extracted from create action
   def create_and_redir(format)
     if @metric_configuration.save
-      format.html { redirect_to kalibro_configuration_path(@metric_configuration.configuration_id), notice: 'Metric Configuration was successfully created.' }
+      format.html { redirect_to kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: 'Metric Configuration was successfully created.' }
     else
       failed_action(format, 'new')
     end

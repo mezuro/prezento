@@ -8,13 +8,11 @@ class ReadingsController < ApplicationController
   before_action :set_reading, only: [:edit, :update, :destroy]
 
   def new
-    @reading_group_id = params[:reading_group_id]
     @reading = Reading.new
   end
 
   def create
     @reading = Reading.new(reading_params)
-    @reading.group_id = params[:reading_group_id].to_i
     respond_to do |format|
       create_and_redir(format)
     end
@@ -22,16 +20,14 @@ class ReadingsController < ApplicationController
 
   # GET /readings/1/edit
   def edit
-    @reading_group_id = params[:reading_group_id]
   end
 
   # PUT /reading_groups/1/readings/1
   # PUT /reading_groups/1/readings/1.json
   def update
-    @reading.group_id = params[:reading_group_id].to_i
     respond_to do |format|
       if @reading.update(reading_params)
-        format.html { redirect_to(reading_group_path(params[:reading_group_id].to_i), notice: 'Reading was successfully updated.') }
+        format.html { redirect_to(reading_group_path(@reading.reading_group_id), notice: 'Reading was successfully updated.') }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -58,8 +54,6 @@ class ReadingsController < ApplicationController
 
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
-    @reading_group_id = params[:reading_group_id]
-
     format.html { render action: destiny_action }
     format.json { render json: @reading.errors, status: :unprocessable_entity }
   end
@@ -67,7 +61,7 @@ class ReadingsController < ApplicationController
   # Code extracted from create action
   def create_and_redir(format)
     if @reading.save
-      format.html { redirect_to reading_group_path(@reading.group_id), notice: 'Reading was successfully created.' }
+      format.html { redirect_to reading_group_path(@reading.reading_group_id), notice: 'Reading was successfully created.' }
     else
       failed_action(format, 'new')
     end

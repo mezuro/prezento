@@ -24,11 +24,11 @@ describe MetricConfigurationsHelper, :type => :helper do
     let! (:metric_configuration) { FactoryGirl.build(:metric_configuration) }
 
     before :each do
-      MetricConfiguration.expects(:metric_configurations_of).with(metric_configuration.configuration_id).returns([metric_configuration])
+      MetricConfiguration.expects(:metric_configurations_of).with(metric_configuration.kalibro_configuration_id).returns([metric_configuration])
     end
 
     it 'should return a pair with the metric configuration code and metric name' do
-      expect(helper.native_metrics_of(metric_configuration.configuration_id)).to eq [[metric_configuration.code, metric_configuration.metric.name]]
+      expect(helper.native_metrics_of(metric_configuration.kalibro_configuration_id)).to eq [[metric_configuration.metric.code, metric_configuration.metric.name]]
     end
   end
 end

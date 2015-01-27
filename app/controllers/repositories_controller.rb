@@ -109,7 +109,7 @@ private
   end
 
   def set_kalibro_configuration
-    @kalibro_configuration = KalibroConfiguration.find(@repository.configuration_id)
+    @kalibro_configuration = KalibroConfiguration.find(@repository.kalibro_configuration_id)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

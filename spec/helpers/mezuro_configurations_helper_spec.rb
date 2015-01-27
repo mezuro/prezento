@@ -45,32 +45,32 @@ describe KalibroConfigurationsHelper, :type => :helper do
   describe 'link to edit form' do
     context 'when the metric is native' do
       let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
-      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{metric_configuration.configuration_id}/metric_configurations/#{metric_configuration.id}/edit\">Edit</a>"}
+      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{metric_configuration.kalibro_configuration_id}/metric_configurations/#{metric_configuration.id}/edit\">Edit</a>"}
 
-      it { expect(helper.link_to_edit_form(metric_configuration, metric_configuration.configuration_id)).to eq(response_link) }
+      it { expect(helper.link_to_edit_form(metric_configuration, metric_configuration.kalibro_configuration_id)).to eq(response_link) }
     end
 
     context 'when the metric is compound' do
       let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
-      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{compound_metric_configuration.configuration_id}/compound_metric_configurations/#{compound_metric_configuration.id}/edit\">Edit</a>"}
+      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{compound_metric_configuration.kalibro_configuration_id}/compound_metric_configurations/#{compound_metric_configuration.id}/edit\">Edit</a>"}
 
-      it { expect(helper.link_to_edit_form(compound_metric_configuration, compound_metric_configuration.configuration_id)).to eq(response_link) }
+      it { expect(helper.link_to_edit_form(compound_metric_configuration, compound_metric_configuration.kalibro_configuration_id)).to eq(response_link) }
     end
   end
 
   describe 'link to show page' do
     context 'when the metric is native' do
       let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
-      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{metric_configuration.configuration_id}/metric_configurations/#{metric_configuration.id}\">Show</a>"}
+      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{metric_configuration.kalibro_configuration_id}/metric_configurations/#{metric_configuration.id}\">Show</a>"}
 
-      it { expect(helper.link_to_show_page(metric_configuration, metric_configuration.configuration_id)).to eq(response_link) }
+      it { expect(helper.link_to_show_page(metric_configuration, metric_configuration.kalibro_configuration_id)).to eq(response_link) }
     end
 
     context 'when the metric is compound' do
       let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
-      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{compound_metric_configuration.configuration_id}/compound_metric_configurations/#{compound_metric_configuration.id}\">Show</a>"}
+      let(:response_link) {"<a class=\"btn btn-info\" href=\"/kalibro_configurations/#{compound_metric_configuration.kalibro_configuration_id}/compound_metric_configurations/#{compound_metric_configuration.id}\">Show</a>"}
 
-      it { expect(helper.link_to_show_page(compound_metric_configuration, compound_metric_configuration.configuration_id)).to eq(response_link) }
+      it { expect(helper.link_to_show_page(compound_metric_configuration, compound_metric_configuration.kalibro_configuration_id)).to eq(response_link) }
     end
   end
 end
