@@ -21,7 +21,7 @@ describe ProcessingsHelper, :type => :helper do
     let(:range_snapshot_10dot1_to_15) { FactoryGirl.build(:range_snapshot, {beginning: 10.1, end: 15.0}) }
 
     before :each do
-      metric_result.expects(:metric_configuration).returns(metric_result.metric_configuration)
+      metric_result.expects(:metric_configuration).returns(metric_configuration)
       metric_configuration.expects(:kalibro_ranges).
                     returns([range_snapshot_1_to_5,
                              range_snapshot_5dot1_to_10,

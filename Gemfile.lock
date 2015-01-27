@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/mezuro/kalibro_client
-  revision: 190e8b25819846b52eb1faff07f20f3a3ecad4c9
+  revision: c87d4e5b55f768ba4e59f964ac9d8dcea94216d6
   specs:
-    kalibro_client (1.0.0)
+    kalibro_client (0.0.1)
       activesupport (>= 2.2.1)
       faraday_middleware (~> 0.9.0)
 
