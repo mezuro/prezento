@@ -30,8 +30,8 @@ class InheritsFromBaseMetricConfigurationsController < BaseMetricConfigurationsC
     @metric_configuration = new_metric_configuration
   end
 
-  def mezuro_ranges
-    @mezuro_ranges
+  def kalibro_ranges
+    @kalibro_ranges
   end
 
   def reading_group
@@ -112,18 +112,18 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
   describe 'show' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
-    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
+    let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     context 'with a valid metric_configuration' do
       before :each do
         ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
         subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
-        metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
+        metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
         get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
       end
 
-      it { expect(subject.mezuro_ranges).not_to be_nil}
+      it { expect(subject.kalibro_ranges).not_to be_nil}
       it { expect(subject.reading_group).not_to be_nil }
     end
 
