@@ -64,8 +64,8 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the mezuro configuration' do
-      let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    context 'when the current user owns the kalibro configuration' do
+      let!(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
         get :new, kalibro_configuration_id: kalibro_configuration.id
@@ -75,7 +75,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       it { is_expected.to respond_with(:success) }
     end
 
-    context "when the current user doesn't owns the mezuro configuration" do
+    context "when the current user doesn't owns the kalibro configuration" do
       before :each do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
@@ -93,7 +93,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the mezuro configuration' do
+    context 'when the current user owns the kalibro configuration' do
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
       end
@@ -110,7 +110,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:reading_group) { FactoryGirl.build(:reading_group) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
 

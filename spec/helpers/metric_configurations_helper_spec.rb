@@ -21,7 +21,7 @@ describe MetricConfigurationsHelper, :type => :helper do
   end
 
   describe 'native_metrics_of' do
-    let! (:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let! (:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     before :each do
       MetricConfiguration.expects(:metric_configurations_of).with(metric_configuration.kalibro_configuration_id).returns([metric_configuration])
