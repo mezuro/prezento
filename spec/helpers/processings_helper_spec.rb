@@ -14,7 +14,7 @@ describe ProcessingsHelper, :type => :helper do
   end
 
   describe 'find_range_snapshot' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration)}
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id)}
     let(:metric_result) { FactoryGirl.build(:metric_result, {value: 6.0, metric_configuration: metric_configuration})}
     let(:range_snapshot_1_to_5) { FactoryGirl.build(:range_snapshot, {beginning: 1.0, end: 5.0}) }
     let(:range_snapshot_5dot1_to_10) { FactoryGirl.build(:range_snapshot, {beginning: 5.1, end: 10.0}) }

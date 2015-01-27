@@ -61,7 +61,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
   describe 'show' do
   	let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
-  	let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+  	let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     before :each do
       kalibro_configuration.expects(:metric_configurations).returns(metric_configuration)

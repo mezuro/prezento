@@ -28,7 +28,7 @@ describe MetricConfigurationsController, :type => :controller do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the mezuro configuration' do
+    context 'when the current user owns the kalibro configuration' do
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find).with(metric_collector.name).returns(metric_collector)
@@ -40,7 +40,7 @@ describe MetricConfigurationsController, :type => :controller do
       it { is_expected.to render_template(:new) }
     end
 
-    context "when the current user doesn't owns the mezuro configuration" do
+    context "when the current user doesn't owns the kalibro configuration" do
       before :each do
         post :new, kalibro_configuration_id: kalibro_configuration.id, metric_name: "Lines of Code", metric_collector_name: metric_collector.name
       end
@@ -92,7 +92,7 @@ describe MetricConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:reading_group) { FactoryGirl.build(:reading_group) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
 
@@ -108,7 +108,7 @@ describe MetricConfigurationsController, :type => :controller do
   end
 
   describe 'edit' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     context 'with an User logged in' do
       before do
@@ -146,8 +146,8 @@ describe MetricConfigurationsController, :type => :controller do
   end
 
   describe 'update' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
-    let(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:metric_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
+    let(:metric_configuration_params) { metric_configuration.to_hash }
 
     context 'when the user is logged in' do
       before do
@@ -195,7 +195,7 @@ describe MetricConfigurationsController, :type => :controller do
 
 
   describe 'destroy' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     context 'with an User logged in' do
       before do

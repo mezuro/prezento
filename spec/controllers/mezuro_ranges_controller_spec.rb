@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe MezuroRangesController, :type => :controller do
   let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1) }
-  let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+  let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
   describe 'new' do
     let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
@@ -109,7 +109,7 @@ describe MezuroRangesController, :type => :controller do
   end
 
   describe 'edit' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1, metric_configuration_id: metric_configuration.id) }
     let(:reading) { FactoryGirl.build(:reading, reading_group_id: metric_configuration.reading_group_id) }
 
@@ -153,7 +153,7 @@ describe MezuroRangesController, :type => :controller do
   end
 
   describe 'update' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1, metric_configuration_id: metric_configuration.id) }
     let(:mezuro_range_params) { Hash[FactoryGirl.attributes_for(:mezuro_range).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
     let(:reading) { FactoryGirl.build(:reading, reading_group_id: metric_configuration.reading_group_id) }

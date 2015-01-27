@@ -3,8 +3,7 @@ Given(/^I have a sample configuration with native metrics but without ranges$/) 
   reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
   metric_configuration = FactoryGirl.create(:metric_configuration,
-                                            {id: nil,
-                                             metric: FactoryGirl.build(:loc),
+                                            {metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
                                              configuration_id: @kalibro_configuration.id,
                                              code: 'loc'})
@@ -15,12 +14,11 @@ Given(/^I have a sample configuration with native metrics$/) do
   reading = FactoryGirl.create(:reading, {id: nil, reading_group_id: reading_group.id})
 
   KalibroClient::Processor::MetricCollector.find('Analizo').supported_metrics.select { |x| not x.persisted? }.save
-  
+
 
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
-  metric_configuration = FactoryGirl.create(:metric_configuration_with_snapshot,
-                                            {id: nil,
-                                             metric: FactoryGirl.build(:loc),
+  metric_configuration = FactoryGirl.create(:metric_configuration,
+                                            {metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
                                              kalibro_configuration_id: @kalibro_configuration.id,
                                              code: 'loc'})
