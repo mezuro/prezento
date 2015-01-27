@@ -15,7 +15,7 @@ class BaseMetricConfigurationsController < ApplicationController
   def show
     if metric_configuration
       @reading_group = ReadingGroup.find(metric_configuration.reading_group_id)
-      @mezuro_ranges = metric_configuration.kalibro_ranges
+      @kalibro_ranges = metric_configuration.kalibro_ranges
     else
       raise NotImplementedError
     end

@@ -72,12 +72,12 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   describe 'show' do
     let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
     let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
-    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
+    let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     before :each do
       ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
       subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
-      compound_metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
+      compound_metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
       get :show, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s, id: compound_metric_configuration.id
     end

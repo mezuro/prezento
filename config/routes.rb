@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   resources :kalibro_configurations do
     get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
     resources :metric_configurations, except: [:update, :new] do
-      get '/mezuro_ranges/new' => 'mezuro_ranges#new', as: :new_mezuro_range
-      resources :mezuro_ranges, except: [:update, :new]
-      put '/mezuro_ranges/:id' => 'mezuro_ranges#update', as: :mezuro_range_update
+      get '/kalibro_ranges/new' => 'kalibro_ranges#new', as: :new_kalibro_range
+      resources :kalibro_ranges, except: [:update, :new]
+      put '/kalibro_ranges/:id' => 'kalibro_ranges#update', as: :kalibro_range_update
     end
     post '/metric_configurations/new' => 'metric_configurations#new', as: :new_metric_configuration
     put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update

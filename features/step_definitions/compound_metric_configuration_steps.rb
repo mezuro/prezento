@@ -7,11 +7,11 @@ Given(/^I see the sample metric configuration code$/) do
 end
 
 Given(/^I have a sample compound metric configuration within the given mezuro configuration$/) do
-  @compound_metric_configuration = FactoryGirl.create(:compound_metric_configuration, {id: nil, configuration_id: @kalibro_configuration.id, reading_group_id: @reading_group.id})
+  @compound_metric_configuration = FactoryGirl.create(:compound_metric_configuration, {kalibro_configuration_id: @kalibro_configuration.id, reading_group_id: @reading_group.id})
 end
 
 Given(/^I have another compound metric configuration with code "(.*?)" within the given mezuro configuration$/) do |code|
-  @another_compound_metric_configuration = FactoryGirl.create(:compound_metric_configuration, {id: nil, configuration_id: @kalibro_configuration.id, code: code, reading_group_id: @reading_group.id})
+  @another_compound_metric_configuration = FactoryGirl.create(:compound_metric_configuration, {kalibro_configuration_id: @kalibro_configuration.id, code: code, reading_group_id: @reading_group.id})
 end
 
 When(/^I visit the sample compound metric configuration edit page$/) do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe MezuroRangesHelper, :type => :helper do
+describe KalibroRangesHelper, :type => :helper do
   describe 'readings_options' do
     let(:reading) { FactoryGirl.build(:reading_with_id) }
     it 'should return a pair with the reading label and id' do

@@ -22,7 +22,7 @@ Given(/^I have a sample configuration with native metrics$/) do
                                              reading_group_id: reading_group.id,
                                              kalibro_configuration_id: @kalibro_configuration.id,
                                              code: 'loc'})
-  range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
+  range = FactoryGirl.build(:kalibro_range, {reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
 end
 
