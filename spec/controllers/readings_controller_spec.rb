@@ -29,8 +29,8 @@ describe ReadingsController, :type => :controller do
   end
 
   describe 'create' do
-    let(:reading) { FactoryGirl.build(:reading) }
-    let(:reading_params) { Hash[FactoryGirl.attributes_for(:reading).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
+    let(:reading) { FactoryGirl.build(:reading_with_id) }
+    let(:reading_params) { reading.to_hash }
 
     before do
       sign_in FactoryGirl.create(:user)
@@ -64,7 +64,7 @@ describe ReadingsController, :type => :controller do
   end
 
   describe 'edit' do
-    let(:reading) { FactoryGirl.build(:reading) }
+    let(:reading) { FactoryGirl.build(:reading_with_id) }
 
     context 'with an User logged in' do
       before do
@@ -102,8 +102,8 @@ describe ReadingsController, :type => :controller do
   end
 
   describe 'update' do
-    let(:reading) { FactoryGirl.build(:reading, reading_group_id: reading_group.id) }
-    let(:reading_params) { Hash[FactoryGirl.attributes_for(:reading).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    let(:reading) { FactoryGirl.build(:reading_with_id, reading_group_id: reading_group.id) }
+    let(:reading_params) { reading.to_hash }
 
     context 'when the user is logged in' do
       before do
@@ -158,7 +158,7 @@ describe ReadingsController, :type => :controller do
   end
 
   describe 'destroy' do
-    let(:reading) { FactoryGirl.build(:reading) }
+    let(:reading) { FactoryGirl.build(:reading_with_id) }
 
     context 'with an User logged in' do
       before do

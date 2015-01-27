@@ -60,7 +60,7 @@ describe ReadingGroupsController, :type => :controller do
 
   describe 'show' do
     let!(:reading_group) { FactoryGirl.build(:reading_group) }
-    let(:reading) { FactoryGirl.build(:reading) }
+    let(:reading) { FactoryGirl.build(:reading_with_id) }
     before :each do
       subject.expects(:find_resource).with(ReadingGroup, reading_group.id).returns(reading_group)
       get :show, :id => reading_group.id

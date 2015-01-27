@@ -37,7 +37,7 @@ describe ReadingGroup, :type => :model do
 
     describe 'readings' do
       subject { FactoryGirl.build(:reading_group) }
-      let(:reading) { FactoryGirl.build(:reading) }
+      let(:reading) { FactoryGirl.build(:reading_with_id) }
 
       it 'should call readings_of on the Reading model' do
         subject.expects(:readings).returns([reading])

@@ -111,7 +111,7 @@ describe MezuroRangesController, :type => :controller do
   describe 'edit' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1, metric_configuration_id: metric_configuration.id) }
-    let(:reading) { FactoryGirl.build(:reading, reading_group_id: metric_configuration.reading_group_id) }
+    let(:reading) { FactoryGirl.build(:reading_with_id, reading_group_id: metric_configuration.reading_group_id) }
 
     context 'with an User logged in' do
       before do
@@ -156,7 +156,7 @@ describe MezuroRangesController, :type => :controller do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
     let(:mezuro_range) { FactoryGirl.build(:mezuro_range, id: 1, metric_configuration_id: metric_configuration.id) }
     let(:mezuro_range_params) { Hash[FactoryGirl.attributes_for(:mezuro_range).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
-    let(:reading) { FactoryGirl.build(:reading, reading_group_id: metric_configuration.reading_group_id) }
+    let(:reading) { FactoryGirl.build(:reading_with_id, reading_group_id: metric_configuration.reading_group_id) }
 
     context 'when the user is logged in' do
       before do
