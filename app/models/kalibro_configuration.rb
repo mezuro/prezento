@@ -1,1 +1,3 @@
-class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroConfiguration; end
+class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroConfiguration
+  include KalibroRecord
+end
