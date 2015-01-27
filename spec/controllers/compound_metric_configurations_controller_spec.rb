@@ -79,7 +79,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
       compound_metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
 
-      get :show, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s, id: compound_metric_configuration.id
+      get :show, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s, id: compound_metric_configuration.id
     end
 
     it { is_expected.to render_template(:show) }
@@ -98,7 +98,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
           subject.expects(:metric_configuration_owner?).returns(true)
           subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
           MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
-          get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s
+          get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
 
         it { is_expected.to render_template(:edit) }
@@ -106,7 +106,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
       context 'when the user does not own the compound metric configuration' do
         before do
-          get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s
+          get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
 
         it { is_expected.to redirect_to(kalibro_configurations_path(kalibro_configuration.id)) }
@@ -117,7 +117,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     context 'with no user logged in' do
       before :each do
-        get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.configuration_id.to_s
+        get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
       end
 
       it { is_expected.to redirect_to new_user_session_path }
@@ -143,10 +143,10 @@ describe CompoundMetricConfigurationsController, :type => :controller do
             subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
 
-            post :update, kalibro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+            post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          it { should redirect_to(kalibro_configuration_path(compound_metric_configuration.configuration_id)) }
+          it { should redirect_to(kalibro_configuration_path(compound_metric_configuration.kalibro_configuration_id)) }
           it { should respond_with(:redirect) }
         end
 
@@ -156,7 +156,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
             MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
 
-            post :update, kalibro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+            post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
           it { should render_template(:edit) }
@@ -165,10 +165,10 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
       context 'when the user does not own the reading' do
         before :each do
-          post :update, kalibro_configuration_id: compound_metric_configuration.configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
+          post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should redirect_to kalibro_configurations_path(compound_metric_configuration.configuration_id) }
+        it { should redirect_to kalibro_configurations_path(compound_metric_configuration.kalibro_configuration_id) }
       end
     end
   end

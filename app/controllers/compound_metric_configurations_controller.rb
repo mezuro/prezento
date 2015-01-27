@@ -17,19 +17,19 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
   def edit
     @compound_metric_configuration = @metric_configuration
-    @compound_metric_configuration.configuration_id = params[:kalibro_configuration_id].to_i
+    @compound_metric_configuration.kalibro_configuration_id = params[:kalibro_configuration_id].to_i
   end
 
   def update
     respond_to do |format|
       edit
       if @compound_metric_configuration.update(metric_configuration_params)
-        format.html { redirect_to kalibro_configuration_path(@compound_metric_configuration.configuration_id), notice: 'Compound Metric Configuration was successfully updated.' }
+        format.html { redirect_to kalibro_configuration_path(@compound_metric_configuration.kalibro_configuration_id), notice: 'Compound Metric Configuration was successfully updated.' }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
       end
-      Rails.cache.delete("#{@compound_metric_configuration.configuration_id}_metric_configurations")
+      Rails.cache.delete("#{@compound_metric_configuration.kalibro_configuration_id}_metric_configurations")
     end
   end
 
@@ -62,7 +62,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
   #Code extracted from create action
   def create_and_redir(format)
     if @compound_metric_configuration.save
-      format.html { redirect_to kalibro_configuration_path(@compound_metric_configuration.configuration_id), notice: 'Compound Metric Configuration was successfully created.' }
+      format.html { redirect_to kalibro_configuration_path(@compound_metric_configuration.kalibro_configuration_id), notice: 'Compound Metric Configuration was successfully created.' }
     else
       failed_action(format, 'new')
     end

@@ -19,10 +19,10 @@ FactoryGirl.define do
     name "SBKing"
     description "A simple calculator"
     license "GPLv3"
-    process_period 1
-    type "GIT"
+    period 1
+    scm_type "GIT"
     address "https://git.gitorious.org/sbking/sbking.git"
-    configuration_id 1
+    kalibro_configuration_id 1
     project_id 1
     send_email "test@test.com"
   end

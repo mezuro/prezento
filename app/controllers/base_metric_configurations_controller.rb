@@ -10,14 +10,12 @@ class BaseMetricConfigurationsController < ApplicationController
 
   def new
     update_metric_configuration(MetricConfiguration.new)
-    metric_configuration.configuration_id = params[:kalibro_configuration_id].to_i
   end
 
   def show
     if metric_configuration
       @reading_group = ReadingGroup.find(metric_configuration.reading_group_id)
       @mezuro_ranges = metric_configuration.kalibro_ranges
-      metric_configuration.configuration_id = params[:kalibro_configuration_id].to_i
     else
       raise NotImplementedError
     end
@@ -25,7 +23,6 @@ class BaseMetricConfigurationsController < ApplicationController
 
   def create
     update_metric_configuration(MetricConfiguration.new(metric_configuration_params))
-    metric_configuration.configuration_id = params[:kalibro_configuration_id].to_i
   end
 
   protected

@@ -102,7 +102,7 @@ describe ReadingsController, :type => :controller do
   end
 
   describe 'update' do
-    let(:reading) { FactoryGirl.build(:reading) }
+    let(:reading) { FactoryGirl.build(:reading, reading_group_id: reading_group.id) }
     let(:reading_params) { Hash[FactoryGirl.attributes_for(:reading).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
 
     context 'when the user is logged in' do
@@ -171,26 +171,26 @@ describe ReadingsController, :type => :controller do
           reading.expects(:destroy)
           subject.expects(:find_resource).with(Reading, reading.id).returns(reading)
 
-          delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
+          delete :destroy, id: reading.id, reading_group_id: reading.reading_group_id.to_s
         end
 
-        it { is_expected.to redirect_to(reading_group_path(reading.group_id)) }
+        it { is_expected.to redirect_to(reading_group_path(reading.reading_group_id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
       context "when the user doesn't own the reading group" do
         before :each do
-          delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
+          delete :destroy, id: reading.id, reading_group_id: reading.reading_group_id.to_s
         end
 
-        it { is_expected.to redirect_to(reading_group_path(reading.group_id)) }
+        it { is_expected.to redirect_to(reading_group_path(reading.reading_group_id)) }
         it { is_expected.to respond_with(:redirect) }
       end
     end
 
     context 'with no User logged in' do
       before :each do
-        delete :destroy, id: reading.id, reading_group_id: reading.group_id.to_s
+        delete :destroy, id: reading.id, reading_group_id: reading.reading_group_id.to_s
       end
 
       it { is_expected.to redirect_to new_user_session_path }

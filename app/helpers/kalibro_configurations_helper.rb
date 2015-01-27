@@ -4,7 +4,7 @@ module KalibroConfigurationsHelper
   end
 
   def link_to_edit_form(metric_configuration, kalibro_configuration_id)
-    if (metric_configuration.metric.compound)
+    if (metric_configuration.metric.is_a? KalibroClient::Entities::Miscellaneous::CompoundMetric)
       link_to('Edit', edit_kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id, metric_configuration.id), class: 'btn btn-info')
     else
       link_to('Edit', edit_kalibro_configuration_metric_configuration_path(kalibro_configuration_id, metric_configuration.id), class: 'btn btn-info')
@@ -12,7 +12,7 @@ module KalibroConfigurationsHelper
   end
 
   def link_to_show_page(metric_configuration, kalibro_configuration_id)
-    if (metric_configuration.metric.compound)
+    if (metric_configuration.metric.is_a? KalibroClient::Entities::Miscellaneous::CompoundMetric)
       link_to('Show', kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id, metric_configuration.id), class: 'btn btn-info')
     else
       link_to('Show', kalibro_configuration_metric_configuration_path(kalibro_configuration_id, metric_configuration.id), class: 'btn btn-info')
