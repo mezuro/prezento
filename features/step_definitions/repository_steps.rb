@@ -5,40 +5,35 @@ Given(/^I have a sample configuration with native metrics but without ranges$/) 
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             configuration_id: @kalibro_configuration.id,
-                                             code: 'loc'})
+                                             kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 Given(/^I have a sample configuration with native metrics$/) do
   reading_group = FactoryGirl.create(:reading_group)
   reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
 
-  KalibroClient::Processor::MetricCollector.find('Analizo').supported_metrics.select { |x| not x.persisted? }.save
-
-
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             kalibro_configuration_id: @kalibro_configuration.id,
-                                             code: 'loc'})
+                                             kalibro_configuration_id: @kalibro_configuration.id})
   range = FactoryGirl.build(:kalibro_range, {reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
 end
 
 Given(/^I have a sample repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @kalibro_configuration.id, id: nil})
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil})
 end
 
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @kalibro_configuration.id, id: nil, name: name})
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil, name: name})
 end
 
 Given(/^I have a sample of an invalid repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})
 end
 
 Given(/^I start to process that repository$/) do

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe RepositoriesController, :type => :controller do
-  let(:project) { FactoryGirl.build(:project) }
+  let(:project) { FactoryGirl.build(:project_with_id) }
 
   describe 'new' do
     context 'with an User logged in' do

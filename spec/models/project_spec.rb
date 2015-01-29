@@ -4,7 +4,7 @@ describe Project, :type => :model do
   describe 'methods' do
     describe 'latest' do
       before :each do
-        @qt      = FactoryGirl.build(:project)
+        @qt      = FactoryGirl.build(:project_with_id)
         @kalibro = FactoryGirl.build(:another_project)
 
         Project.expects(:all).returns([@qt, @kalibro])
