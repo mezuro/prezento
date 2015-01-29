@@ -18,7 +18,7 @@ describe User, :type => :model do
   describe 'methods' do
     describe 'projects' do
       subject { FactoryGirl.build(:user) }
-      let(:project) {FactoryGirl.build(:project)}
+      let(:project) {FactoryGirl.build(:project_with_id)}
       let(:project_ownership) {FactoryGirl.build(:project_ownership)}
 
       before :each do

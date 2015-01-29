@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :project_image do
     project_id 1
-    url "Example"
+    url "logo.png"
   end
 
   factory :project_no_image, class: ProjectImage do

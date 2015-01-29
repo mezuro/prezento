@@ -81,7 +81,7 @@ describe OwnershipAuthentication, type: :controller do
   end
 
   describe 'project_owner?' do
-    let(:project) { FactoryGirl.build(:project) }
+    let(:project) { FactoryGirl.build(:project_with_id) }
 
     context 'Not ProjectsController nor RepositoriesController' do
       let!(:reading_group_controller) { ReadingGroupsController.new }

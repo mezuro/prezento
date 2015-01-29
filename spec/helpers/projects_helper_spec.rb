@@ -4,7 +4,7 @@ describe ProjectsHelper, :type => :helper do
 
   describe 'project_owner?' do
     before :each do
-      @subject = FactoryGirl.build(:project)
+      @subject = FactoryGirl.build(:project_with_id)
     end
 
     context 'returns false if not logged in' do

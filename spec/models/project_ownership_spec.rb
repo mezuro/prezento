@@ -8,7 +8,7 @@ describe ProjectOwnership, :type => :model do
   describe 'methods' do
     describe 'project' do
       subject {FactoryGirl.build(:project_ownership)}
-      let(:project) {FactoryGirl.build(:project)}
+      let(:project) {FactoryGirl.build(:project_with_id)}
 
       before :each do
         Project.expects(:find).with(subject.project_id).returns(project)
