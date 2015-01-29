@@ -4,7 +4,7 @@ describe OwnershipAuthentication, type: :controller do
   #TODO: test other methods
 
   describe 'reading_group_owner?' do
-    let(:reading_group) { FactoryGirl.build(:reading_group) }
+    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
 
     context 'Not ReadingGroupsController nor ReadingsController' do
       let!(:projects_controller) { ProjectsController.new }
@@ -65,7 +65,7 @@ describe OwnershipAuthentication, type: :controller do
   end
 
   describe 'kalibro_configuration_owner?' do
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
     context 'Not KalibroConfigurationsController nor MetricConfigurationsController nor CompoundMetricConfigurationsController' do
       let!(:projects_controller) { ProjectsController.new }

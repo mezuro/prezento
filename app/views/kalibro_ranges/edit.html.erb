@@ -1,0 +1,6 @@
+<h1>Edit Range</h1>
+
+<%= form_for(@kalibro_range, :url => kalibro_configuration_metric_configuration_kalibro_range_update_url(
+             @kalibro_configuration_id, @metric_configuration_id, @kalibro_range.id), method: :put) do |f|  %>
+  <%= render partial: 'form', locals: {f: f} %>
+<% end %>

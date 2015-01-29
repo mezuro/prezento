@@ -7,15 +7,15 @@ Given(/^I am at the New Configuration page$/) do
 end
 
 Given(/^I have a configuration named "(.*?)"$/) do |name|
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil, name: name})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {name: name})
 end
 
 Given(/^I have a sample configuration$/) do
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
 end
 
 Given(/^I own a sample configuration$/) do
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
   FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
@@ -28,7 +28,7 @@ Given(/^I am at the sample configuration edit page$/) do
 end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {id: nil, name: name})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {name: name})
   FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
@@ -49,7 +49,7 @@ Then(/^I should be in the All configurations page$/) do
 end
 
 Then(/^the sample configuration should not be there$/) do
-  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error 
+  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error
 end
 
 Then(/^the sample configuration should be there$/) do

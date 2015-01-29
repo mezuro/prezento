@@ -1,4 +1,4 @@
-  <%= render :partial => 'shared/form_errors', :locals => {:object => @mezuro_range} %>
+  <%= render :partial => 'shared/form_errors', :locals => {:object => @kalibro_range} %>
 
   <div class="row margin-left-none">
     <div class="form-table col-md-9">
@@ -25,7 +25,7 @@
            <div class="input-group">
               <%= f.text_field :beginning, :required => true, class: 'diminished-text-field form-control' %>
               <span class="input-group-btn">
-                <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_beginning' ).val('-INF');", class: 'btn btn-default' %>
+                <%= link_to '-&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#kalibro_range_beginning' ).val('-INF');", class: 'btn btn-default' %>
               </span>
           </div>
         </div>
@@ -43,7 +43,7 @@
           <div class="input-group">
             <%= f.text_field :end, :required => true, class: 'diminished-text-field form-control' %>
              <span class="input-group-btn">
-                <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#mezuro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
+                <%= link_to '&#8734'.html_safe, 'javascript:void(0)', :onClick => "jQuery( '#kalibro_range_end' ).val('INF');", class: 'btn btn-default align-button' %>
               </span>
           </div>
         </div>

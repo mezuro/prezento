@@ -4,7 +4,7 @@ describe ReadingGroupsHelper, :type => :helper do
 
   describe 'reading_group_owner?' do
     before :each do
-      @subject = FactoryGirl.build(:reading_group)
+      @subject = FactoryGirl.build(:reading_group_with_id)
     end
 
     context 'returns false if not logged in' do

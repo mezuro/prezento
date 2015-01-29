@@ -1,18 +1,18 @@
 <tr>
   <td>
     <div>
-      <a class="popover_element" rel="popover" data-placement="left" data-original-title="Comments" data-content="<%= mezuro_range.comments %>"><span id="comment-icon" class="fa fa-comment"></span></a>
-      <span style="color: #<%= mezuro_range.color %>"><%= mezuro_range.label %></span>
+      <a class="popover_element" rel="popover" data-placement="left" data-original-title="Comments" data-content="<%= kalibro_range.comments %>"><span id="comment-icon" class="fa fa-comment"></span></a>
+      <span style="color: #<%= kalibro_range.color %>"><%= kalibro_range.label %></span>
     </div>
   </td>
-  <td><%= mezuro_range.beginning %></td>
-  <td><%= mezuro_range.end %></td>
+  <td><%= kalibro_range.beginning %></td>
+  <td><%= kalibro_range.end %></td>
   <td>
     <% if kalibro_configuration_owner? @metric_configuration.configuration_id %>
-      <%= link_to 'Edit', edit_kalibro_configuration_metric_configuration_mezuro_range_path(
-                  @metric_configuration.configuration_id, @metric_configuration.id, mezuro_range.id), class: 'btn btn-info' %>
-      <%= link_to 'Destroy', kalibro_configuration_metric_configuration_mezuro_range_path(@metric_configuration.configuration_id,
-      @metric_configuration.id, mezuro_range.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Range?' },
+      <%= link_to 'Edit', edit_kalibro_configuration_metric_configuration_kalibro_range_path(
+                  @metric_configuration.configuration_id, @metric_configuration.id, kalibro_range.id), class: 'btn btn-info' %>
+      <%= link_to 'Destroy', kalibro_configuration_metric_configuration_kalibro_range_path(@metric_configuration.configuration_id,
+      @metric_configuration.id, kalibro_range.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Range?' },
       class: 'btn btn-danger' %>
     <% end %>
   </td>

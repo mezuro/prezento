@@ -86,7 +86,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from being saved"
+    And I should see "1 error prohibited this KalibroRange from being saved"
     And I should see "[666.0, 42.0[ is not a valid range"
 
   @kalibro_configuration_restart
@@ -104,7 +104,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from being saved"
+    And I should see "1 error prohibited this KalibroRange from being saved"
     And I should see "Beginning is not a number"
 
   @kalibro_configuration_restart
@@ -121,7 +121,7 @@ Feature: Create range
     And I fill the Comments field with "My Comment"
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
-    Then I should see "1 error prohibited this MezuroRange from being saved"
+    Then I should see "1 error prohibited this KalibroRange from being saved"
     And I should be at the New Range page
 
   @kalibro_configuration_restart
@@ -140,7 +140,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "Beginning There is already a MezuroRange with beginning 2.0! Please, choose another one."
+    And I should see "Beginning There is already a KalibroRange with beginning 2.0! Please, choose another one."
 
   @kalibro_configuration_restart @javascript
   Scenario: Should create range with [-INF, INF] threshold

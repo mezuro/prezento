@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe CompoundMetricConfigurationsController, :type => :controller do
-  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
   describe 'new' do
     before :each do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the mezuro configuration' do
+    context 'when the current user owns the kalibro configuration' do
       let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
@@ -20,7 +20,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       it { is_expected.to render_template(:new) }
     end
 
-    context "when the current user doesn't owns the mezuro configuration" do
+    context "when the current user doesn't owns the kalibro configuration" do
       before :each do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
@@ -70,14 +70,14 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
-    let(:reading_group) { FactoryGirl.build(:reading_group) }
-    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+    let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     before :each do
       ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
       subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
-      compound_metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
+      compound_metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
       get :show, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s, id: compound_metric_configuration.id
     end
@@ -86,7 +86,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'edit' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
 
     context 'with an User logged in' do
       before do
@@ -125,8 +125,8 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'update' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration) }
-    let(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:compound_metric_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+    let(:metric_configuration_params) { Hash[FactoryGirl.attributes_for(:compound_metric_configuration_with_id).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
 
     context 'when the user is logged in' do
       before do

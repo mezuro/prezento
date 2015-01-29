@@ -30,8 +30,8 @@ class InheritsFromBaseMetricConfigurationsController < BaseMetricConfigurationsC
     @metric_configuration = new_metric_configuration
   end
 
-  def mezuro_ranges
-    @mezuro_ranges
+  def kalibro_ranges
+    @kalibro_ranges
   end
 
   def reading_group
@@ -41,7 +41,7 @@ end
 
 
 describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
-  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
 
   before do
     Rails.application.routes.draw do
@@ -64,8 +64,8 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the mezuro configuration' do
-      let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    context 'when the current user owns the kalibro configuration' do
+      let!(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
         get :new, kalibro_configuration_id: kalibro_configuration.id
@@ -75,7 +75,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       it { is_expected.to respond_with(:success) }
     end
 
-    context "when the current user doesn't owns the mezuro configuration" do
+    context "when the current user doesn't owns the kalibro configuration" do
       before :each do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
@@ -93,7 +93,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       sign_in FactoryGirl.create(:user)
     end
 
-    context 'when the current user owns the mezuro configuration' do
+    context 'when the current user owns the kalibro configuration' do
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
       end
@@ -110,20 +110,20 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
-    let(:reading_group) { FactoryGirl.build(:reading_group) }
-    let(:mezuro_range) { FactoryGirl.build(:mezuro_range) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
+    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+    let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     context 'with a valid metric_configuration' do
       before :each do
         ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
         subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
-        metric_configuration.expects(:kalibro_ranges).returns([mezuro_range])
+        metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
         get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
       end
 
-      it { expect(subject.mezuro_ranges).not_to be_nil}
+      it { expect(subject.kalibro_ranges).not_to be_nil}
       it { expect(subject.reading_group).not_to be_nil }
     end
 

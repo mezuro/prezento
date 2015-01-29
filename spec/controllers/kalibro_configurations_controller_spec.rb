@@ -18,8 +18,8 @@ describe KalibroConfigurationsController, :type => :controller do
     end
 
     context 'with valid fields' do
-	    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
-	    let(:subject_params) { Hash[FactoryGirl.attributes_for(:kalibro_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+	    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+	    let(:subject_params) { kalibro_configuration.to_hash }
 
      	before :each do
         KalibroConfiguration.any_instance.expects(:save).returns(true)
@@ -46,8 +46,8 @@ describe KalibroConfigurationsController, :type => :controller do
 
     context 'with an invalid field' do
       before :each do
-        @subject = FactoryGirl.build(:kalibro_configuration)
-        @subject_params = Hash[FactoryGirl.attributes_for(:kalibro_configuration).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+        @subject = FactoryGirl.build(:kalibro_configuration_with_id)
+        @subject_params = @subject.to_hash
 
         KalibroConfiguration.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         KalibroConfiguration.any_instance.expects(:save).returns(false)
@@ -60,8 +60,8 @@ describe KalibroConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-  	let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration) }
-  	let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+  	let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+  	let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     before :each do
       kalibro_configuration.expects(:metric_configurations).returns(metric_configuration)
@@ -79,7 +79,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
   describe 'destroy' do
     before do
-      @subject = FactoryGirl.build(:kalibro_configuration)
+      @subject = FactoryGirl.build(:kalibro_configuration_with_id)
     end
 
     context 'with an User logged in' do
@@ -131,10 +131,10 @@ describe KalibroConfigurationsController, :type => :controller do
       it { is_expected.to redirect_to new_user_session_path }
     end
   end
-  
+
   describe 'index' do
     before :each do
-      @subject = FactoryGirl.build(:kalibro_configuration)
+      @subject = FactoryGirl.build(:kalibro_configuration_with_id)
       KalibroConfiguration.expects(:all).returns([@subject])
       get :index
     end
@@ -144,7 +144,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
   describe 'edit' do
     before do
-      @subject = FactoryGirl.build(:kalibro_configuration)
+      @subject = FactoryGirl.build(:kalibro_configuration_with_id)
     end
 
     context 'with an User logged in' do
@@ -175,7 +175,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context 'when the user does not own the kalibro_configuration' do
         before do
-          @subject = FactoryGirl.build(:another_kalibro_configuration)
+          @subject = FactoryGirl.build(:another_kalibro_configuration_with_id)
           @ownerships.expects(:find_by_kalibro_configuration_id).with("#{@subject.id}").returns(nil)
 
           get :edit, :id => @subject.id
@@ -196,8 +196,8 @@ describe KalibroConfigurationsController, :type => :controller do
   end
 
   describe 'update' do
-    let(:kalibro_configuration) {FactoryGirl.build(:kalibro_configuration)}
-    let(:kalibro_configuration_params) {Hash[FactoryGirl.attributes_for(:kalibro_configuration).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+    let(:kalibro_configuration) {FactoryGirl.build(:kalibro_configuration_with_id)}
+    let(:kalibro_configuration_params) { kalibro_configuration.to_hash }
 
     context 'when the user is logged in' do
       before do
