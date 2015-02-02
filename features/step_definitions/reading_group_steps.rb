@@ -55,7 +55,7 @@ Then(/^I should see the information of the sample reading$/) do
   expect(page).to have_content(@reading.label)
   expect(page).to have_content(@reading.grade)
   pager = page.body
-  color = @reading.color.downcase
+  color = @reading.color
   var = (pager =~ /#{color}/)
   expect(var).to_not be_nil
 end
