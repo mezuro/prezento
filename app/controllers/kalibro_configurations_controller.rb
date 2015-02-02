@@ -83,7 +83,7 @@ class KalibroConfigurationsController < ApplicationController
       format.json { render action: 'show', status: :created, location: @kalibro_configuration }
     else
       format.html { render action: 'new' }
-      format.json { render json: @kalibro_configuration.errors, status: :unprocessable_entity }
+      format.json { render json: @kalibro_configuration.kalibro_errors, status: :unprocessable_entity }
     end
   end
 end
