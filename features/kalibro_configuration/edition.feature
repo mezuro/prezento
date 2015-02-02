@@ -60,7 +60,7 @@ Feature: Configuration
     And I am at the sample configuration edit page
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
-    Then I should see "Name There is already a KalibroConfiguration with name Qt-Calculator!"
+    Then I should see "Name has already been taken"
 
   @kalibro_configuration_restart
   Scenario: Editing just the description
