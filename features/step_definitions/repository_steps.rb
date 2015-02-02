@@ -136,7 +136,7 @@ Then(/^I should see a sample child's name$/) do
 end
 
 Then(/^I should see the given repository's content$/) do
-  expect(page).to have_content(@repository.type)
+  expect(page).to have_content(@repository.scm_type)
   expect(page).to have_content(@repository.description)
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.license)
@@ -165,7 +165,7 @@ end
 
 Then(/^I should see the saved repository's content$/) do
   @repository = Repository.all.last # suposing the last repository created is the only created too.
-  expect(page).to have_content(@repository.type)
+  expect(page).to have_content(@repository.scm_type)
   expect(page).to have_content(@repository.description)
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.license)
