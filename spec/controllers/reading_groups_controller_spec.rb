@@ -211,7 +211,7 @@ describe ReadingGroupsController, :type => :controller do
         context 'with valid fields' do
           before :each do
             subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
-            ReadingGroup.any_instance.expects(:save).with(@subject_params).returns(true)
+            ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(true)
           end
 
           context 'rendering the show' do
@@ -236,7 +236,7 @@ describe ReadingGroupsController, :type => :controller do
         context 'with an invalid field' do
           before :each do
             subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
-            ReadingGroup.any_instance.expects(:save).with(@subject_params).returns(false)
+            ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :reading_group => @subject_params
           end

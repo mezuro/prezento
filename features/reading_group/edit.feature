@@ -60,7 +60,7 @@ Feature: Reading Group
     And I am at the sample reading group edit page
     And I fill the Name field with "A Reading"
     When I press the Save button
-    Then I should see "Name There is already a ReadingGroup with name A Reading!"
+    Then I should see "Name has already been taken"
 
   @kalibro_configuration_restart
   Scenario: Editing just the description

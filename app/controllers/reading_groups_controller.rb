@@ -35,7 +35,7 @@ class ReadingGroupsController < ApplicationController
   def edit; end
 
   def update
-    if @reading_group.save(reading_group_params)
+    if @reading_group.update(reading_group_params)
       redirect_to(reading_group_path(@reading_group.id))
     else
       render "edit"
@@ -74,7 +74,7 @@ class ReadingGroupsController < ApplicationController
       format.json { render action: 'show', status: :created, location: @reading_group }
     else
       format.html { render action: 'new' }
-      format.json { render json: @reading_group.errors, status: :unprocessable_entity }
+      format.json { render json: @reading_group.kalibro_errors, status: :unprocessable_entity }
     end
   end
 end
