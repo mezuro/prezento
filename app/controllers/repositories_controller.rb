@@ -1,4 +1,5 @@
 include OwnershipAuthentication
+include ResourceFinder
 
 class RepositoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :state]
