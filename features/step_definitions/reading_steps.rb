@@ -1,4 +1,4 @@
-Given(/^I have a sample reading within the module result$/) do
+Given(/^I have a sample reading within the sample reading group$/) do
   @reading = FactoryGirl.create(:reading, {reading_group_id: @reading_group.id})
 end
 
@@ -7,7 +7,7 @@ Given(/^I am at the New Reading page$/) do
 end
 
 Given(/^I am at the Edit Reading page$/) do
-  visit edit_reading_group_reading_url(@reading_group.id, @reading.id)
+  visit edit_reading_group_reading_path(@reading_group.id, @reading.id)
 end
 
 Given(/^I have a sample reading within the sample reading group labeled "(.*?)"$/) do |label|

@@ -10,9 +10,9 @@ Feature: Reading Edit
     And I own a sample reading group
     And I have a sample reading within the sample reading group
     And I am at the Edit Reading page
-    Then the field "Label" should be filled with "Good"
-    And the field "Grade" should be filled with "10.5"
-    And the field "Color" should be filled with "33dd33"
+    Then I fill the Label field with "Good"
+    And I fill the Grade field with "10.5"
+    And I fill the Color field with "33DD33"
     When I fill the Label field with "Bad"
     And I press the Save button
     Then I should see "Bad"
@@ -25,7 +25,7 @@ Feature: Reading Edit
     And I have a sample reading within the sample reading group
     And I am at the Edit Reading page
     When I fill the Label field with " "
-    And I fill the Grade field with " "
+    And I fill the Grade field with "      "
     And I fill the Color field with " "
     And I press the Save button
     Then I should see "Label can't be blank"
@@ -42,7 +42,7 @@ Feature: Reading Edit
     And I am at the Edit Reading page
     When I fill the Label field with "Average"
     And I press the Save button
-    Then I should see "Label There is already a Reading with label Average! Please, choose another one."
+    Then I should see "Label Should be unique within a Reading Group"
 
   @kalibro_configuration_restart
   Scenario: editing a reading with non numerical value
