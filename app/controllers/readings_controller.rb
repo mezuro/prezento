@@ -9,6 +9,7 @@ class ReadingsController < ApplicationController
 
   def new
     @reading = Reading.new
+    @reading_group_id = params[:reading_group_id]
   end
 
   def create
@@ -55,7 +56,7 @@ class ReadingsController < ApplicationController
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
     format.html { render action: destiny_action }
-    format.json { render json: @reading.errors, status: :unprocessable_entity }
+    format.json { render json: @reading.kalibro_errors, status: :unprocessable_entity }
   end
 
   # Code extracted from create action
@@ -63,6 +64,7 @@ class ReadingsController < ApplicationController
     if @reading.save
       format.html { redirect_to reading_group_path(@reading.reading_group_id), notice: 'Reading was successfully created.' }
     else
+      @reading_group_id = params[:reading_group_id]
       failed_action(format, 'new')
     end
   end

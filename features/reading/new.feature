@@ -24,7 +24,7 @@ Feature: New reading
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
     And I fill the Grade field with "1"
-    And I fill the Color field with "00000ff00"
+    And I fill the Color field with "00ff00"
     When I press the Save button
     Then I should be in the Sample Reading Group page
 
@@ -59,9 +59,9 @@ Feature: New reading
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
     And I fill the Grade field with "1"
-    And I fill the Color field with "00000ff00"
+    And I fill the Color field with "00ff00"
     When I press the Save button
-    Then I should see "1 error prohibited this Reading from being saved"
+    Then I should see "Label Should be unique within a Reading Group"
     And I should be at the New Reading page
 
   @kalibro_configuration_restart
@@ -72,12 +72,12 @@ Feature: New reading
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
     And I fill the Grade field with "z"
-    And I fill the Color field with "00000ff00"
+    And I fill the Color field with "000ff0"
     When I press the Save button
     Then I should see "Grade is not a number"
     And I should be at the New Reading page
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @javascript
   Scenario: With an invalid color
     Given I am a regular user
     And I am signed in
@@ -87,5 +87,5 @@ Feature: New reading
     And I fill the Grade field with "1"
     And I fill the Color field with "z"
     When I press the Save button
-    Then I should see "1 error prohibited this Reading from being saved"
+    Then I should see "Color must be hexadecimal"
     And I should be at the New Reading page

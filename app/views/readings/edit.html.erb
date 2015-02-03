@@ -2,6 +2,6 @@
   <h1>Editing Reading</h1>
 </div>
 
-<%= form_for(@reading, :url => reading_group_reading_update_url(@reading_group_id, @reading.id), method: :put) do |f| %>
+<%= form_for(@reading, :url => reading_group_reading_update_path(@reading.reading_group_id, @reading.id), method: :put) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>
