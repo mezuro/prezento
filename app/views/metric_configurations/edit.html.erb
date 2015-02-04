@@ -6,6 +6,6 @@
   <%= render partial: 'form', locals: {f: f} %>
   <div class="row margin-left-none" style="margin-top: 20px">
   	<%= f.submit 'Save', class: 'btn btn-primary' %>
-  	<%= link_to 'Back',  kalibro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
+  	<%= link_to 'Back',  kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
   </div>
 <% end %>
