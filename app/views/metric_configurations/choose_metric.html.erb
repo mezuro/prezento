@@ -11,8 +11,8 @@
  <% @metric_collectors_names.each do |metric_collector_name| %>
       <h3 class="jquery-ui-accordion"><%= metric_collector_name %></h3>
       <div>
-        <% supported_metrics_of(metric_collector_name).each do |metric| %>
-          <%= link_to metric.name, '#', onclick: "MetricCollector.choose_metric(\"#{metric.code}\", \"#{metric_collector_name}\");", remote: true %><br>
+        <% supported_metrics_of(metric_collector_name).each do |code, metric| %>
+          <%= link_to metric.name, '#', onclick: "MetricCollector.choose_metric(\"#{code}\", \"#{metric_collector_name}\");", remote: true %><br>
         <% end %>
       </div>
   <% end %>
