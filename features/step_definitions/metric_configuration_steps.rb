@@ -28,7 +28,7 @@ end
 
 Then(/^I should see the sample metric configuration content$/) do
   expect(page).to have_content(@metric_configuration.metric.name)
-  expect(page).to have_content(@metric_configuration.code)
+  expect(page).to have_content(@metric_configuration.metric.code)
   expect(page).to have_content(@metric_configuration.weight)
 end
 
