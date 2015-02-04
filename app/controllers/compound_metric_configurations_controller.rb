@@ -3,7 +3,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
   def create
     super
-    metric_configuration.metric.type = "CompoundMetricSnapshot"
+    @compound_metric_configuration.metric.type = "CompoundMetricSnapshot"
     respond_to do |format|
       create_and_redir(format)
     end
