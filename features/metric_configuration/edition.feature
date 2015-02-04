@@ -13,7 +13,7 @@ Feature: Metric Configuration edition
     When I am at the Sample Configuration page
     Then I should not see Edit within table
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @javascript
   Scenario: editing a metric configuration successfully
     Given I am a regular user
     And I am signed in
@@ -22,6 +22,7 @@ Feature: Metric Configuration edition
     And I have a sample metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
     When I click the Edit link
+    And I take a picture of the page
     And I fill the Weight field with "3.0"
     And I press the Save button
     Then I should see "3.0"
@@ -36,7 +37,7 @@ Feature: Metric Configuration edition
     When I visit the sample metric configuration edit page
     And I fill the Weight field with " "
     And I press the Save button
-    Then I should see "Weight can't be blank"
+    Then I should see "Weight must be greater than 0"
 
   @kalibro_configuration_restart
   Scenario: Should not edit a metric configuration with invalid weight

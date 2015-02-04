@@ -65,7 +65,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     @kalibro_configuration_id = params[:kalibro_configuration_id]
 
     format.html { render action: destiny_action }
-    format.json { render json: @metric_configuration.errors, status: :unprocessable_entity }
+    format.json { render json: @metric_configuration.kalibro_errors, status: :unprocessable_entity }
   end
 
   #Code extracted from create action
