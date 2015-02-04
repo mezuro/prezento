@@ -4,12 +4,12 @@
 
 <p>
   <strong>Base Tool Name:</strong>
-  <%= @metric_configuration.metric_collector_name %>
+  <%= @metric_configuration.metric.metric_collector_name %>
 </p>
 
 <p>
   <strong>Code:</strong>
-  <%= @metric_configuration.code %>
+  <%= @metric_configuration.metric.code %>
 </p>
 
 <p>
@@ -19,7 +19,7 @@
 
 <p>
   <strong>Language:</strong>
-  <%= @metric_configuration.metric.language %>
+  <%= @metric_configuration.metric.languages %>
 </p>
 
 <p>
@@ -49,8 +49,8 @@
 <hr>
 
 <h2> Ranges </h2>
-<% if kalibro_configuration_owner? @metric_configuration.configuration_id %>
-  <%= link_to 'Add Range', kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.configuration_id,
+<% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
+  <%= link_to 'Add Range', kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id,
       @metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
@@ -72,9 +72,9 @@
 </table>
 
 <p>
- <%= link_to 'Back', kalibro_configuration_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
-<% if kalibro_configuration_owner? @metric_configuration.configuration_id %>
-      <%= link_to 'Destroy Metric Configuration', kalibro_configuration_metric_configuration_path(@metric_configuration.configuration_id,
+ <%= link_to 'Back', kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
+<% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
+      <%= link_to 'Destroy Metric Configuration', kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
       @metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' },
       class: 'btn btn-danger' %>
  <% end %>
