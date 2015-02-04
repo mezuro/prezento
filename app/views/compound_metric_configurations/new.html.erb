@@ -6,7 +6,7 @@
 
 <br>
 
-<%= form_for(@compound_metric_configuration, :url => kalibro_configuration_compound_metric_configurations_path(@compound_metric_configuration.configuration_id)) do |f| %>
+<%= form_for(@compound_metric_configuration, :url => kalibro_configuration_compound_metric_configurations_path(@kalibro_configuration_id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
 <% end %>
 

@@ -3,7 +3,7 @@ Given(/^I see the sample metric configuration name$/) do
 end
 
 Given(/^I see the sample metric configuration code$/) do
-  expect(page).to have_content(@metric_configuration.code)
+  expect(page).to have_content(@metric_configuration.metric.code)
 end
 
 Given(/^I have a sample compound metric configuration within the given mezuro configuration$/) do

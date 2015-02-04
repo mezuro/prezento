@@ -3,7 +3,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
   def create
     super
-    metric_configuration.metric_snapshot.compound = true
+    metric_configuration.metric.type = "CompoundMetricSnapshot"
     respond_to do |format|
       create_and_redir(format)
     end
@@ -40,6 +40,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
   end
 
   def update_metric_configuration (new_metric_configuration)
+    @kalibro_configuration_id = params[:kalibro_configuration_id]
     @compound_metric_configuration = new_metric_configuration
   end
 
@@ -56,7 +57,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
     set_metric_configurations
     format.html { render action: destiny_action }
-    format.json { render json: @compound_metric_configuration.errors, status: :unprocessable_entity }
+    format.json { render json: @compound_metric_configuration.kalibro_errors, status: :unprocessable_entity }
   end
 
   #Code extracted from create action
