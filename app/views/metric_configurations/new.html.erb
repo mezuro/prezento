@@ -3,7 +3,7 @@
 </div>
 
 <p>
-  <b>Base Tool:</b> <%= @metric_configuration.metric_collector_name %>
+  <b>Base Tool:</b> <%= @metric_configuration.metric.metric_collector_name %>
 </p>
 
 <p>
@@ -24,10 +24,10 @@
 
 <br>
 
-<%= form_for(@metric_configuration, :url => kalibro_configuration_metric_configurations_path(@metric_configuration.configuration_id)) do |f| %>
+<%= form_for(@metric_configuration, :url => kalibro_configuration_metric_configurations_path(@kalibro_configuration_id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
   <div class="row margin-left-none" style="margin-top: 20px">
   	<%= f.submit 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Back',  kalibro_configuration_choose_metric_path(@metric_configuration.configuration_id), class: 'btn btn-default' %>
+    <%= link_to 'Back',  kalibro_configuration_choose_metric_path(@kalibro_configuration_id), class: 'btn btn-default' %>
 	</div>
 <% end %>

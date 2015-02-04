@@ -7,7 +7,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   def new
     super
-    metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find(params[:metric_collector_name]).metric params[:metric_code]
+    metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(params[:metric_collector_name]).find_metric_by_code params[:metric_code]
   end
 
   def create
@@ -54,6 +54,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   end
 
   def update_metric_configuration (new_metric_configuration)
+    @kalibro_configuration_id = params[:kalibro_configuration_id]
     @metric_configuration = new_metric_configuration
   end
 

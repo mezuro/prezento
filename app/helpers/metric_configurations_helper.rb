@@ -15,6 +15,6 @@ module MetricConfigurationsHelper
   end
 
   def supported_metrics_of(metric_collector_name)
-    KalibroClient::Processor::MetricCollectorDetails.find(metric_collector_name).supported_metrics
+    KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(metric_collector_name).supported_metrics
   end
 end

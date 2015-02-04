@@ -1,1 +1,3 @@
-class MetricConfiguration < KalibroClient::Entities::Configurations::MetricConfiguration; end
+class MetricConfiguration < KalibroClient::Entities::Configurations::MetricConfiguration
+  include KalibroRecord
+end
