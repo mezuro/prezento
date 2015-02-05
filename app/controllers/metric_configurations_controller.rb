@@ -12,7 +12,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   def create
     super
-    @metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find(params[:metric_collector_name]).metric params[:metric_name]
+    @metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(params[:metric_collector_name]).find_metric_by_name params[:metric_name]
     respond_to do |format|
       create_and_redir(format)
     end
