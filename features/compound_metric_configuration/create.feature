@@ -29,5 +29,4 @@ Feature: Compound Metric Configuration Creation
     Then I should see "My Compound Metric"
     And I should see "mcm"
     And I should see "8"
-    And I should see "AVERAGE"
 
