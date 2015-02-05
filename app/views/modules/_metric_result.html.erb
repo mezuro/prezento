@@ -1,7 +1,7 @@
-<% metric_configuration_snapshot = metric_result.metric_configuration_snapshot %>
-<% unless metric_configuration_snapshot.range_snapshot.nil? %>
+<% metric_configuration = metric_result.metric_configuration %>
+<% unless metric_configuration.kalibro_ranges.nil? %>
   <% range_snapshot = find_range_snapshot(metric_result)
-     metric_name = metric_configuration_snapshot.metric.name
+     metric_name = metric_configuration.metric.name
   %>
   <tr>
     <td><%= link_to "<i class='icon-align-left'></i> #{metric_name}".html_safe, "",
@@ -10,7 +10,7 @@
               remote: true %>
     </td>
     <td><%= format_grade(metric_result.value) %></td>
-    <td><%= metric_configuration_snapshot.weight %></td>
+    <td><%= metric_configuration.weight %></td>
     <td><% if range_snapshot.nil? %>Missing range<% else %><span style="color: #<%= range_snapshot.color %>"><%= range_snapshot.label %></span><% end %></td>
   </tr>
   <tr id="container<%= metric_result.id %>" style="display: none">

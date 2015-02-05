@@ -5,7 +5,7 @@
 
 <p>
   <strong>Creation date:</strong>
-  <%= @processing.date.strftime("%Y/%m/%d at %Hh%M (%z)") %>
+  <%= @processing.created_at.strftime("%Y/%m/%d at %Hh%M (%z)") %>
 </p>
 
 <% unless @processing.process_times.nil? %>
