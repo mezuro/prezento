@@ -17,7 +17,8 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
   def edit
     @compound_metric_configuration = @metric_configuration
-    @compound_metric_configuration.kalibro_configuration_id = params[:kalibro_configuration_id].to_i
+    @kalibro_configuration_id = params[:kalibro_configuration_id].to_i
+    @compound_metric_configuration.kalibro_configuration_id = @kalibro_configuration_id
   end
 
   def update
@@ -45,11 +46,6 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
   end
 
   private
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def metric_configuration_params
-    params[:metric_configuration]
-  end
 
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)

@@ -51,7 +51,7 @@ Feature: Compound Metric Configuration edition
     And I should see "Weight can't be blank"
 
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @javascript
   Scenario: trying to edit with an existing code
     Given I am a regular user
     And I am signed in
@@ -63,4 +63,5 @@ Feature: Compound Metric Configuration edition
     When I visit the sample compound metric configuration edit page
     And I fill the Code field with "Another_Code"
     And I press the Save button
+    And I take a picture of the page
     Then I should see "Code There is already a MetricConfiguration with code Another_Code! Please, choose another one."
