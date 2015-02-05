@@ -26,7 +26,7 @@ FactoryGirl.define do
     code "compound"
     scope "CLASS"
     description nil
-    script ""
+    script "return 2;"
 
     initialize_with { new(name, code, scope, script) }
   end
