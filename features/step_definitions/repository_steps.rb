@@ -52,6 +52,16 @@ Given(/^I wait up for a ready processing$/) do
   end
 end
 
+Given(/^I wait up for the last processing to get ready$/) do
+  while(true)
+    if Processing.last_processing_of(@repository.id).state == "READY"
+      break
+    else
+      sleep(10)
+    end
+  end
+end
+
 Given(/^I wait up for a error processing$/) do
   unless Processing.last_processing_state_of(@repository.id) == "ERROR"
     while(true)
@@ -77,7 +87,7 @@ Given(/^I ask for the last ready processing of the given repository$/) do
 end
 
 Given(/^I ask for the module result of the given processing$/) do
-  @module_result = ModuleResult.find @processing.results_root_id
+  @module_result = ModuleResult.find @processing.root_module_result_id
 end
 
 Given(/^I ask for the metric results of the given module result$/) do
@@ -85,11 +95,11 @@ Given(/^I ask for the metric results of the given module result$/) do
 end
 
 Given(/^I see a sample metric's name$/) do
-  expect(page).to have_content(@metric_results.first.metric_configuration_snapshot.metric.name)
+  expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
 end
 
 When(/^I click on the sample metric's name$/) do
-  find_link(@metric_results.first.metric_configuration_snapshot.metric.name).trigger('click')
+  find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end
 
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
@@ -101,7 +111,7 @@ When(/^I visit the repository show page$/) do
 end
 
 When(/^I click on the sample child's name$/) do
-  click_link @module_result.children.first.module.name
+  click_link @module_result.children.first.kalibro_module.name
 end
 
 When(/^I click the "(.*?)" h3$/) do |text|
@@ -128,11 +138,11 @@ Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
 end
 
 Then(/^I should see the given module result$/) do
-  expect(page).to have_content(@module_result.module.name)
+  expect(page).to have_content(@module_result.kalibro_module.name)
 end
 
 Then(/^I should see a sample child's name$/) do
-  expect(page).to have_content(@module_result.children.first.module.name)
+  expect(page).to have_content(@module_result.children.first.kalibro_module.name)
 end
 
 Then(/^I should see the given repository's content$/) do
@@ -176,5 +186,6 @@ end
 Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|
   v1 = eval "@#{arg1}"
   v2 = eval "@#{arg2}"
+
   expect(v1 < v2).to be_truthy
 end
