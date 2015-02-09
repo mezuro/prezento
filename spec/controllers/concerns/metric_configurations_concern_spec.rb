@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe MetricConfigurationsConcern, type: :controller do
   describe 'set_metric_configuration' do
-    let! (:metric_configuration){ FactoryGirl.build(:metric_configuration) }
+    let! (:metric_configuration){ FactoryGirl.build(:metric_configuration_with_id) }
     let! (:metric_configurations_controller) { MetricConfigurationsController.new }
 
     before :each do

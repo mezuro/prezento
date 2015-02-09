@@ -17,8 +17,8 @@ describe ReadingGroupsController, :type => :controller do
     end
 
     context 'with valid fields' do
-      let(:reading_group) { FactoryGirl.build(:reading_group) }
-      let(:subject_params) { Hash[FactoryGirl.attributes_for(:reading_group).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+      let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+      let(:subject_params) { reading_group.to_hash }
 
       before :each do
         ReadingGroup.any_instance.expects(:save).returns(true)
@@ -45,8 +45,8 @@ describe ReadingGroupsController, :type => :controller do
 
     context 'with an invalid field' do
       before :each do
-        @subject = FactoryGirl.build(:reading_group)
-        @subject_params = Hash[FactoryGirl.attributes_for(:reading_group).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+        @subject = FactoryGirl.build(:reading_group_with_id)
+        @subject_params = @subject.to_hash
 
         ReadingGroup.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         ReadingGroup.any_instance.expects(:save).returns(false)
@@ -59,8 +59,8 @@ describe ReadingGroupsController, :type => :controller do
   end
 
   describe 'show' do
-    let!(:reading_group) { FactoryGirl.build(:reading_group) }
-    let(:reading) { FactoryGirl.build(:reading) }
+    let!(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+    let(:reading) { FactoryGirl.build(:reading_with_id) }
     before :each do
       subject.expects(:find_resource).with(ReadingGroup, reading_group.id).returns(reading_group)
       get :show, :id => reading_group.id
@@ -71,10 +71,10 @@ describe ReadingGroupsController, :type => :controller do
 
   describe 'destroy' do
     before do
-      @subject = FactoryGirl.build(:reading_group)
+      @subject = FactoryGirl.build(:reading_group_with_id)
     end
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:reading_group_ownership)
@@ -127,7 +127,7 @@ describe ReadingGroupsController, :type => :controller do
 
   describe 'index' do
     before :each do
-      @subject = FactoryGirl.build(:reading_group)
+      @subject = FactoryGirl.build(:reading_group_with_id)
       ReadingGroup.expects(:all).returns([@subject])
       get :index
     end
@@ -137,10 +137,10 @@ describe ReadingGroupsController, :type => :controller do
 
   describe 'edit' do
     before do
-      @subject = FactoryGirl.build(:reading_group)
+      @subject = FactoryGirl.build(:reading_group_with_id)
     end
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         @user = FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:reading_group_ownership)
@@ -168,7 +168,7 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'when the user does not own the reading group' do
         before do
-          @subject = FactoryGirl.build(:another_reading_group)
+          @subject = FactoryGirl.build(:another_reading_group_with_id)
           @ownerships.expects(:find_by_reading_group_id).with("#{@subject.id}").returns(nil)
 
           get :edit, :id => @subject.id
@@ -190,8 +190,8 @@ describe ReadingGroupsController, :type => :controller do
 
   describe 'update' do
     before do
-      @subject = FactoryGirl.build(:reading_group)
-      @subject_params = Hash[FactoryGirl.attributes_for(:reading_group).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+      @subject = FactoryGirl.build(:reading_group_with_id)
+      @subject_params = @subject.to_hash
     end
 
     context 'when the user is logged in' do

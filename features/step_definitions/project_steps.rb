@@ -5,7 +5,7 @@ Given(/^I am at the All Projects page$/) do
 end
 
 Given(/^I have a sample project$/) do
-  @project = FactoryGirl.create(:project, {id: nil})
+  @project = FactoryGirl.create(:project)
 end
 
 Given(/^I have a sample project_image$/) do
@@ -13,16 +13,16 @@ Given(/^I have a sample project_image$/) do
 end
 
 Given(/^I have a project named "(.*?)"$/) do |name|
-  @project = FactoryGirl.create(:project, {id: nil, name: name})
+  @project = FactoryGirl.create(:project, {name: name})
 end
 
 Given(/^I own a sample project$/) do
-  @project = FactoryGirl.create(:project, {id: nil})
+  @project = FactoryGirl.create(:project)
   FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @project.id})
 end
 
 Given(/^I own a project named "(.*?)"$/) do |name|
-  @project = FactoryGirl.create(:project, {id: nil, name: name})
+  @project = FactoryGirl.create(:project, {name: name})
   FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @project.id})
 end
 

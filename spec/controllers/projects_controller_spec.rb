@@ -18,8 +18,8 @@ describe ProjectsController, :type => :controller do
     end
 
     context 'with valid fields' do
-      let(:project) { FactoryGirl.build(:project) }
-      let(:subject_params) { Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+      let(:project) { FactoryGirl.build(:project_with_id) }
+      let(:subject_params) { project.to_hash }
 
       before :each do
         Project.any_instance.expects(:save).returns(true)
@@ -46,8 +46,8 @@ describe ProjectsController, :type => :controller do
 
     context 'with an invalid field' do
       before :each do
-        @subject = FactoryGirl.build(:project)
-        @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }] #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
+        @subject = FactoryGirl.build(:project_with_id)
+        @subject_params = @subject.to_hash
 
         Project.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         Project.any_instance.expects(:save).returns(false)
@@ -60,7 +60,7 @@ describe ProjectsController, :type => :controller do
   end
 
   describe 'show' do
-    let(:project) { FactoryGirl.build(:project) }
+    let(:project) { FactoryGirl.build(:project_with_id) }
 
     context 'when the project exists' do
       let(:repository) { FactoryGirl.build(:repository) }
@@ -85,10 +85,10 @@ describe ProjectsController, :type => :controller do
 
   describe 'destroy' do
     before do
-      @subject = FactoryGirl.build(:project)
+      @subject = FactoryGirl.build(:project_with_id)
     end
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:project_ownership)
@@ -141,7 +141,7 @@ describe ProjectsController, :type => :controller do
 
   describe 'index' do
     before :each do
-      @subject = FactoryGirl.build(:project)
+      @subject = FactoryGirl.build(:project_with_id)
       Project.expects(:all).returns([@subject])
       get :index
     end
@@ -151,7 +151,7 @@ describe ProjectsController, :type => :controller do
 
   describe 'edit' do
     before do
-      @subject = FactoryGirl.build(:project)
+      @subject = FactoryGirl.build(:project_with_id)
       @project_image = FactoryGirl.create(:project_image)
     end
 
@@ -206,8 +206,8 @@ describe ProjectsController, :type => :controller do
   describe 'update' do
     before do
       @project_image = FactoryGirl.build(:project_image)
-      @subject = FactoryGirl.build(:project)
-      @subject_params = Hash[FactoryGirl.attributes_for(:project).map { |k,v| [k.to_s, v.to_s] }]
+      @subject = FactoryGirl.build(:project_with_id)
+      @subject_params = @subject.to_hash
     end
 
     context 'when the user is logged in' do

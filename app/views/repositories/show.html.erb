@@ -14,7 +14,7 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @repository.type %>
+  <%= @repository.scm_type %>
 </p>
 
 <p>
@@ -24,7 +24,7 @@
 
 <p>
   <strong>Periodicity:</strong>
-  <%= periodicity_option(@repository.process_period) %>
+  <%= periodicity_option(@repository.period) %>
 </p>
 
 <p>

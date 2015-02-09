@@ -84,7 +84,7 @@ class ProjectsController < ApplicationController
       format.json { render action: 'show', status: :created, location: @project }
     else
       format.html { render action: 'new' }
-      format.json { render json: @project.errors, status: :unprocessable_entity }
+      format.json { render json: @project.kalibro_errors, status: :unprocessable_entity }
     end
   end
 end

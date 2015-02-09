@@ -1,5 +1,5 @@
 Given(/^I have a sample reading within the module result$/) do
-  @reading = FactoryGirl.create(:reading, {group_id: @reading_group.id, id: nil})
+  @reading = FactoryGirl.create(:reading, {reading_group_id: @reading_group.id})
 end
 
 Given(/^I am at the New Reading page$/) do
@@ -11,11 +11,11 @@ Given(/^I am at the Edit Reading page$/) do
 end
 
 Given(/^I have a sample reading within the sample reading group labeled "(.*?)"$/) do |label|
-  @reading = FactoryGirl.create(:reading, {label: label, group_id: @reading_group.id, id: nil})
+  @reading = FactoryGirl.create(:reading, {label: label, reading_group_id: @reading_group.id})
 end
 
 When(/^I click the "(.*?)" td$/) do |text|
-  p page.find('td', text: text).methods
+  page.find('td', text: text).methods
 end
 
 When(/^I click on the center of the color picker$/) do

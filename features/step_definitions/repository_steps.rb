@@ -1,46 +1,39 @@
 Given(/^I have a sample configuration with native metrics but without ranges$/) do
-  reading_group = FactoryGirl.create(:reading_group, id: nil)
-  reading = FactoryGirl.create(:reading, {id: nil, group_id: reading_group.id})
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
+  reading_group = FactoryGirl.create(:reading_group)
+  reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
   metric_configuration = FactoryGirl.create(:metric_configuration,
-                                            {id: nil,
-                                             metric: FactoryGirl.build(:loc),
+                                            {metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             configuration_id: @kalibro_configuration.id,
-                                             code: 'loc'})
+                                             kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 Given(/^I have a sample configuration with native metrics$/) do
-  reading_group = FactoryGirl.create(:reading_group, id: nil)
-  reading = FactoryGirl.create(:reading, {id: nil, reading_group_id: reading_group.id})
+  reading_group = FactoryGirl.create(:reading_group)
+  reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
 
-  KalibroClient::Processor::MetricCollector.find('Analizo').supported_metrics.select { |x| not x.persisted? }.save
-  
-
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, id: nil)
-  metric_configuration = FactoryGirl.create(:metric_configuration_with_snapshot,
-                                            {id: nil,
-                                             metric: FactoryGirl.build(:loc),
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
+  metric_configuration = FactoryGirl.create(:metric_configuration,
+                                            {metric: FactoryGirl.build(:loc),
                                              reading_group_id: reading_group.id,
-                                             kalibro_configuration_id: @kalibro_configuration.id,
-                                             code: 'loc'})
-  range = FactoryGirl.build(:mezuro_range, {id: nil, reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
+                                             kalibro_configuration_id: @kalibro_configuration.id})
+  range = FactoryGirl.build(:kalibro_range, {reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
 end
 
 Given(/^I have a sample repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @kalibro_configuration.id, id: nil})
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil})
 end
 
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @kalibro_configuration.id, id: nil, name: name})
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil, name: name})
 end
 
 Given(/^I have a sample of an invalid repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})
 end
 
 Given(/^I start to process that repository$/) do
@@ -48,26 +41,20 @@ Given(/^I start to process that repository$/) do
 end
 
 Given(/^I wait up for a ready processing$/) do
-  unless Processing.has_ready_processing(@repository.id)
-    while(true)
-      if Processing.has_ready_processing(@repository.id)
-        break
-      else
-        sleep(10)
-      end
-    end
+  while !Processing.has_ready_processing(@repository.id)
+    sleep(10)
+  end
+end
+
+Given(/^I wait up for the last processing to get ready$/) do
+  while Processing.last_processing_of(@repository.id).state != "READY"
+    sleep(10)
   end
 end
 
 Given(/^I wait up for a error processing$/) do
-  unless Processing.last_processing_state_of(@repository.id) == "ERROR"
-    while(true)
-      if Processing.last_processing_state_of(@repository.id)  == "ERROR"
-        break
-      else
-        sleep(10)
-      end
-    end
+  while Processing.last_processing_state_of(@repository.id) != "ERROR"
+    sleep(10)
   end
 end
 
@@ -84,7 +71,7 @@ Given(/^I ask for the last ready processing of the given repository$/) do
 end
 
 Given(/^I ask for the module result of the given processing$/) do
-  @module_result = ModuleResult.find @processing.results_root_id
+  @module_result = ModuleResult.find @processing.root_module_result_id
 end
 
 Given(/^I ask for the metric results of the given module result$/) do
@@ -92,11 +79,11 @@ Given(/^I ask for the metric results of the given module result$/) do
 end
 
 Given(/^I see a sample metric's name$/) do
-  expect(page).to have_content(@metric_results.first.metric_configuration_snapshot.metric.name)
+  expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
 end
 
 When(/^I click on the sample metric's name$/) do
-  find_link(@metric_results.first.metric_configuration_snapshot.metric.name).trigger('click')
+  find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end
 
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
@@ -108,7 +95,7 @@ When(/^I visit the repository show page$/) do
 end
 
 When(/^I click on the sample child's name$/) do
-  click_link @module_result.children.first.module.name
+  click_link @module_result.children.first.kalibro_module.name
 end
 
 When(/^I click the "(.*?)" h3$/) do |text|
@@ -135,15 +122,15 @@ Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
 end
 
 Then(/^I should see the given module result$/) do
-  expect(page).to have_content(@module_result.module.name)
+  expect(page).to have_content(@module_result.kalibro_module.name)
 end
 
 Then(/^I should see a sample child's name$/) do
-  expect(page).to have_content(@module_result.children.first.module.name)
+  expect(page).to have_content(@module_result.children.first.kalibro_module.name)
 end
 
 Then(/^I should see the given repository's content$/) do
-  expect(page).to have_content(@repository.type)
+  expect(page).to have_content(@repository.scm_type)
   expect(page).to have_content(@repository.description)
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.license)
@@ -172,7 +159,7 @@ end
 
 Then(/^I should see the saved repository's content$/) do
   @repository = Repository.all.last # suposing the last repository created is the only created too.
-  expect(page).to have_content(@repository.type)
+  expect(page).to have_content(@repository.scm_type)
   expect(page).to have_content(@repository.description)
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.license)
@@ -180,8 +167,9 @@ Then(/^I should see the saved repository's content$/) do
   expect(page).to have_content(@kalibro_configuration.name)
 end
 
-Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|
+Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
   v1 = eval "@#{arg1}"
   v2 = eval "@#{arg2}"
+
   expect(v1 < v2).to be_truthy
 end

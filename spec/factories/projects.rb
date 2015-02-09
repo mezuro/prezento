@@ -2,9 +2,14 @@
 
 FactoryGirl.define do
   factory :project do
-    id 1
     name "QT Calculator"
     description "A simple calculator for us."
+
+    trait :with_id do
+      id 1
+    end
+
+    factory :project_with_id, traits: [:with_id]
   end
 
   factory :another_project, class: Project do

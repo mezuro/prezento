@@ -46,7 +46,7 @@
     <% @project_repositories.each do |repository| %>
       <tr>
         <td><%= repository.name %></td>
-        <td><%= repository.type %></td>
+        <td><%= repository.scm_type %></td>
         <td><%= repository.address %></td>
         <td>
           <% if project_owner? @project.id %>

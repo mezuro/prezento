@@ -1,10 +1,10 @@
-Feature: Create range
-  In order to be able to create new ranges
+Feature: Create Kalibro Range
+  In order to be able to create new kalibro ranges
   As a metric specialist
   I should be able to fill up a form with its informations and submit it
 
   @kalibro_configuration_restart
-  Scenario: Visiting range creation page when the user own an non-empty reading group
+  Scenario: Visiting kalibro range creation page when the user owns a non-empty reading group
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -20,7 +20,7 @@ Feature: Create range
     And I should see "Reading"
 
   @kalibro_configuration_restart
-  Scenario: Visiting range creation page when the user don't own the reading group and this reading group is empty
+  Scenario: Visiting kalibro range creation page when the user doesn't own the reading group and this reading group is empty
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -36,7 +36,7 @@ Feature: Create range
     And I should see "The Reading Group of your Metric Configuration belongs to another user and you are not allowed to modify it."
 
   @kalibro_configuration_restart
-  Scenario: Visiting range creation page when the user own an empty reading group (testing link to New Reading)
+  Scenario: Visiting kalibro range creation page when the user owns an empty reading group (testing link to New Reading)
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -86,11 +86,11 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from being saved"
+    And I should see "1 error prohibited this KalibroRange from being saved"
     And I should see "[666.0, 42.0[ is not a valid range"
 
   @kalibro_configuration_restart
-  Scenario: With an invalid beggining (not a number)
+  Scenario: With an invalid beginning (not a number)
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -104,7 +104,7 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "1 error prohibited this MezuroRange from being saved"
+    And I should see "1 error prohibited this KalibroRange from being saved"
     And I should see "Beginning is not a number"
 
   @kalibro_configuration_restart
@@ -121,7 +121,7 @@ Feature: Create range
     And I fill the Comments field with "My Comment"
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
-    Then I should see "1 error prohibited this MezuroRange from being saved"
+    Then I should see "1 error prohibited this KalibroRange from being saved"
     And I should be at the New Range page
 
   @kalibro_configuration_restart
@@ -140,10 +140,10 @@ Feature: Create range
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should be at the New Range page
-    And I should see "Beginning There is already a MezuroRange with beginning 2.0! Please, choose another one."
+    And I should see "Beginning There is already a KalibroRange with beginning 2.0! Please, choose another one."
 
   @kalibro_configuration_restart @javascript
-  Scenario: Should create range with [-INF, INF] threshold
+  Scenario: Should create a kalibro range with [-INF, INF] threshold
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -161,7 +161,7 @@ Feature: Create range
     And I should see "INF"
 
   @kalibro_configuration_restart @javascript
-  Scenario: Two valid ranges (one with INF)
+  Scenario: Two valid kalibro ranges (one with INF)
     Given I am a regular user
     And I am signed in
     And I own a sample configuration

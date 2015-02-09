@@ -1,10 +1,10 @@
-Feature: Range Deletion
-  In order to be able to remove a range
+Feature: Kalibro Range Deletion
+  In order to be able to remove a kalibro range
   As a regular user
   The system should have an interface to it
 
   @kalibro_configuration_restart
-  Scenario: Should delete a range that I own
+  Scenario: Should delete a kalibro range that I own
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -18,7 +18,7 @@ Feature: Range Deletion
     And I should see "There are no Ranges yet!"
 
   @kalibro_configuration_restart
-  Scenario: Should not see the destroy range link in the range that I not own
+  Scenario: Should not see the destroy kalibro range link in the kalibro range that I do not own
     Given I am a regular user
     And I am signed in
     And I have a sample configuration

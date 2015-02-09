@@ -27,7 +27,7 @@ Feature: Project Creation
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Save button
-    Then I should see "Name There is already a Project with name Kalibro!"
+    Then I should see "Name has already been taken"
 
   Scenario: project creation with blank name
     Given I am a regular user

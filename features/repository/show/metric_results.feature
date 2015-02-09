@@ -3,8 +3,8 @@ Feature: Repository metric results
   As a regular user
   I should see the metric results table with its graphics
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript
-  Scenario: Should show the message when the graphic of the given metric have only a single point
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  Scenario: Should show the message when the graphic of the given metric has only a single point
     Given I am a regular user
     And I am signed in
     And I have a sample project
@@ -24,7 +24,7 @@ Feature: Repository metric results
     Then I should see "There is only one point and it will not be printed into a chart."
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
-  Scenario: Should show the no range message after a process without range
+  Scenario: Should show no range message after a process without range
     Given I am a regular user
     And I am signed in
     And I have a sample project
