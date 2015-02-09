@@ -1,5 +1,5 @@
 Feature: Kalibro Range Edit
-  In Order to be able to update my kalibro range info
+  In order to be able to update my kalibro range info
   As a regular user
   I should be able to edit my kalibro ranges
 

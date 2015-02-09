@@ -74,7 +74,7 @@ describe ReadingGroupsController, :type => :controller do
       @subject = FactoryGirl.build(:reading_group_with_id)
     end
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:reading_group_ownership)
@@ -140,7 +140,7 @@ describe ReadingGroupsController, :type => :controller do
       @subject = FactoryGirl.build(:reading_group_with_id)
     end
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         @user = FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:reading_group_ownership)
