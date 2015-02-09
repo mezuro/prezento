@@ -30,7 +30,7 @@ Feature: Compound Metric Configuration edition
     Then I should see "Another_code"
     And I should see "Compound Metric Configuration was successfully updated."
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @javascript
   Scenario: trying to edit with blank fields
     Given I am a regular user
     And I am signed in
@@ -48,7 +48,7 @@ Feature: Compound Metric Configuration edition
     And I should see "Name can't be blank"
     And I should see "Script can't be blank"
     And I should see "Code can't be blank"
-    And I should see "Weight can't be blank"
+    And I should see "Weight must be greater than 0"
 
 
   @kalibro_configuration_restart @javascript
