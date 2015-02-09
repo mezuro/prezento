@@ -4,7 +4,7 @@ describe RepositoriesController, :type => :controller do
   let(:project) { FactoryGirl.build(:project_with_id) }
 
   describe 'new' do
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before :each do
         sign_in FactoryGirl.create(:user)
       end

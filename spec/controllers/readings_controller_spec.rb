@@ -66,7 +66,7 @@ describe ReadingsController, :type => :controller do
   describe 'edit' do
     let(:reading) { FactoryGirl.build(:reading_with_id) }
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
       end
@@ -160,7 +160,7 @@ describe ReadingsController, :type => :controller do
   describe 'destroy' do
     let(:reading) { FactoryGirl.build(:reading_with_id) }
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
       end

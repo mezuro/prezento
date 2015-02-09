@@ -41,36 +41,20 @@ Given(/^I start to process that repository$/) do
 end
 
 Given(/^I wait up for a ready processing$/) do
-  unless Processing.has_ready_processing(@repository.id)
-    while(true)
-      if Processing.has_ready_processing(@repository.id)
-        break
-      else
-        sleep(10)
-      end
-    end
+  while !Processing.has_ready_processing(@repository.id)
+    sleep(10)
   end
 end
 
 Given(/^I wait up for the last processing to get ready$/) do
-  while(true)
-    if Processing.last_processing_of(@repository.id).state == "READY"
-      break
-    else
-      sleep(10)
-    end
+  while Processing.last_processing_of(@repository.id).state != "READY"
+    sleep(10)
   end
 end
 
 Given(/^I wait up for a error processing$/) do
-  unless Processing.last_processing_state_of(@repository.id) == "ERROR"
-    while(true)
-      if Processing.last_processing_state_of(@repository.id)  == "ERROR"
-        break
-      else
-        sleep(10)
-      end
-    end
+  while Processing.last_processing_state_of(@repository.id) != "ERROR"
+    sleep(10)
   end
 end
 
@@ -183,7 +167,7 @@ Then(/^I should see the saved repository's content$/) do
   expect(page).to have_content(@kalibro_configuration.name)
 end
 
-Then(/^"(.*?)" should be less than "(.*?)"$/) do |arg1, arg2|
+Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
   v1 = eval "@#{arg1}"
   v2 = eval "@#{arg2}"
 

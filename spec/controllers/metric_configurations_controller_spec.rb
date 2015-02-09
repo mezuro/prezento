@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe MetricConfigurationsController, :type => :controller do
-  let!(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
   describe 'choose_metric' do
     let(:metric_collector) { FactoryGirl.build(:metric_collector) }
     before :each do
@@ -40,7 +40,7 @@ describe MetricConfigurationsController, :type => :controller do
       it { is_expected.to render_template(:new) }
     end
 
-    context "when the current user doesn't owns the kalibro configuration" do
+    context "when the current user doesn't own the kalibro configuration" do
       before :each do
         post :new, kalibro_configuration_id: kalibro_configuration.id, metric_name: "Lines of Code", metric_collector_name: metric_collector.name
       end
@@ -109,7 +109,7 @@ describe MetricConfigurationsController, :type => :controller do
   describe 'edit' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
       end
@@ -196,7 +196,7 @@ describe MetricConfigurationsController, :type => :controller do
   describe 'destroy' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
       end

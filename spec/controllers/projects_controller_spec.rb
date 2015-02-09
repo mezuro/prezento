@@ -88,7 +88,7 @@ describe ProjectsController, :type => :controller do
       @subject = FactoryGirl.build(:project_with_id)
     end
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:project_ownership)

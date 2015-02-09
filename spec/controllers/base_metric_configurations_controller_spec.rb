@@ -75,7 +75,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
       it { is_expected.to respond_with(:success) }
     end
 
-    context "when the current user doesn't owns the kalibro configuration" do
+    context "when the current user doesn't own the kalibro configuration" do
       before :each do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end

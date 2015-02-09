@@ -20,7 +20,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       it { is_expected.to render_template(:new) }
     end
 
-    context "when the current user doesn't owns the kalibro configuration" do
+    context "when the current user doesn't own the kalibro configuration" do
       before :each do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
@@ -88,7 +88,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   describe 'edit' do
     let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
 
-    context 'with an User logged in' do
+    context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
       end
