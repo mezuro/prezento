@@ -67,8 +67,8 @@ describe MetricConfigurationsController, :type => :controller do
       context 'with valid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(true)
-          KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find).with(metric_collector.name).returns(metric_collector)
-          metric_collector.expects(:metric).with(metric_configuration.metric.name).returns(metric_configuration.metric)
+          KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
+          metric_collector.expects(:find_metric_by_name).with(metric_configuration.metric.name).returns(metric_configuration.metric)
 
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
         end
@@ -79,8 +79,8 @@ describe MetricConfigurationsController, :type => :controller do
       context 'with invalid fields' do
         before :each do
           MetricConfiguration.any_instance.expects(:save).returns(false)
-          KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find).with(metric_collector.name).returns(metric_collector)
-          metric_collector.expects(:metric).with(metric_configuration.metric.name).returns(metric_configuration.metric)
+          KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
+          metric_collector.expects(:find_metric_by_name).with(metric_configuration.metric.name).returns(metric_configuration.metric)
 
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
         end
