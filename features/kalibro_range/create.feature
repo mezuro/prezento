@@ -103,7 +103,6 @@ Feature: Create Kalibro Range
     And I fill the Comments field with "My Comment"
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
-    And I take a picture of the page
     Then I should be at the New Range page
     And I should see "1 error prohibited this KalibroRange from being saved"
     And I should see "Beginning is not a number"
@@ -117,12 +116,13 @@ Feature: Create Kalibro Range
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample reading within the sample reading group labeled "My Reading"
     And I am at the New Range page
-    And I fill the Beginning field with "42"
+    And I fill the Beginning field with "-1"
     And I fill the End field with "z"
     And I fill the Comments field with "My Comment"
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
     Then I should see "1 error prohibited this KalibroRange from being saved"
+    And I should see "End is not a number"
     And I should be at the New Range page
 
   @kalibro_configuration_restart
