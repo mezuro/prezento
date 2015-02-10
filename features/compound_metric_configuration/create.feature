@@ -24,9 +24,28 @@ Feature: Compound Metric Configuration Creation
     And I set the select field "Scope" as "Class"
     And I set the select field "Reading Group" as "Scholar"
     And I press the Save button
-    And I take a picture of the page
     When I click the show link of "My Compound Metric"
     Then I should see "My Compound Metric"
     And I should see "mcm"
     And I should see "8"
+
+  @kalibro_configuration_restart @javascript
+  Scenario: compound metric configuration creation with same code
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I have a reading group named "Scholar"
+    And I have another compound metric configuration with code "Another_Code" within the given mezuro configuration
+    And I am at the Sample Configuration page
+    And I click the Add Metric link
+    And I click the Compound Metric link
+    When I fill the Name field with "My Compound Metric"
+    And I fill the Description field with "Some description"
+    And I fill the Code field with "Another_Code"
+    And I fill the Script field with "8*8;"
+    And I fill the Weight field with "8"
+    And I set the select field "Scope" as "Class"
+    And I set the select field "Reading Group" as "Scholar"
+    When I press the Save button
+    Then I should see "Code must be unique within a kalibro configuration"
 
