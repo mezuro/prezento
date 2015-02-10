@@ -1,11 +1,11 @@
 Given(/^I have a sample metric configuration within the given mezuro configuration$/) do
-  @metric_configuration = FactoryGirl.create(:metric_configuration,
+  @metric_configuration = FactoryGirl.create(:metric_configuration_with_id,
     {kalibro_configuration_id: @kalibro_configuration.id, reading_group_id: @reading_group.id} )
 end
 
-Given(/^I have another metric configuration with code "(.*?)" within the given mezuro configuration$/) do |code|
-  @another_metric_configuration = FactoryGirl.create(:metric_configuration,
-    {kalibro_configuration_id: @kalibro_configuration.id, reading_group_id: @reading_group.id, code: code} )
+Given(/^I have a metric configuration with code "(.*?)" within the given mezuro configuration$/) do |code|
+  @metric_configuration = FactoryGirl.create(:metric_configuration_with_id,
+    {kalibro_configuration_id: @kalibro_configuration.id, reading_group_id: @reading_group.id, metric: FactoryGirl.build(:metric, code: code)})
 end
 
 When(/^I visit the sample metric configuration edit page$/) do

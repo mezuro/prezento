@@ -29,6 +29,7 @@
 
     <% if @metric_configuration.persisted? %>
       <%= hidden_field_tag(:reading_group_id, @metric_configuration.reading_group_id) %>
+      <%= hidden_field_tag(:kalibro_configuration_id, @metric_configuration.kalibro_configuration_id) %>
     <% else %>
         <div class="form-row">
           <div class="field-container">
@@ -41,6 +42,7 @@
             </p>
           </div>
         </div>
+        <%= f.hidden_field(:kalibro_configuration_id, value: @kalibro_configuration_id) %>
     <% end %>
 
   </div>
