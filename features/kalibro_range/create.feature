@@ -103,6 +103,7 @@ Feature: Create Kalibro Range
     And I fill the Comments field with "My Comment"
     And I set the select field "Reading" as "My Reading"
     When I press the Save button
+    And I take a picture of the page
     Then I should be at the New Range page
     And I should see "1 error prohibited this KalibroRange from being saved"
     And I should see "Beginning is not a number"
