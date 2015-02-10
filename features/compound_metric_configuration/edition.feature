@@ -63,5 +63,4 @@ Feature: Compound Metric Configuration edition
     When I visit the sample compound metric configuration edit page
     And I fill the Code field with "Another_Code"
     And I press the Save button
-    And I take a picture of the page
-    Then I should see "Code There is already a MetricConfiguration with code Another_Code! Please, choose another one."
+    Then I should see "Code must be unique within a kalibro configuration"
