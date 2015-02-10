@@ -38,3 +38,20 @@ Feature: Metric Configuration Creation
     And I click the Total Lines of Code link
     When I click the Back link
     Then I should be at the choose metric page
+
+  @kalibro_configuration_restart @javascript
+  Scenario: compound metric configuration creation with same code
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I have a reading group named "Scholar"
+    And I have a metric configuration with code "total_abstract_classes" within the given mezuro configuration
+    And I am at the Sample Configuration page
+    And I click the Add Metric link
+    And I click the Total Abstract Classes link
+    And I take a picture of the page
+    And I fill the Weight field with "2"
+    And I set the select field "Aggregation Form" as "Average"
+    And I set the select field "Reading Group" as "Scholar"
+    When I press the Save button
+    Then I should see "Code must be unique within a kalibro configuration"
