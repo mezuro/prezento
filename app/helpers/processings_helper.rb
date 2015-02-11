@@ -11,7 +11,7 @@ module ProcessingsHelper
     range_snapshots = metric_result.metric_configuration.kalibro_ranges
 
     range_snapshots.each do |range_snapshot|
-      return range_snapshot if ((range_snapshot.beginning <= metric_result.value || range_snapshot.beginning == '-INF') && (range_snapshot.end >= metric_result.value || range_snapshot.beginning == '+INF'))
+      return range_snapshot if ((range_snapshot.beginning.to_f <= metric_result.value || range_snapshot.beginning == '-INF') && (range_snapshot.end.to_f >= metric_result.value || range_snapshot.beginning == 'INF'))
     end
 
     return nil
