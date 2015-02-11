@@ -3,38 +3,18 @@ rvm:
   - 2.1.5
 
 before_script:
-  - "cp config/database.yml.sample config/database.yml"
-  - "cp config/kalibro_processor.yml.sample config/kalibro_processor.yml"
-  - "bundle exec rake db:migrate RAILS_ENV=test"
+  - git clone https://gist.github.com/6179925.git -b v2.0 kalibro_install
+  - pushd kalibro_install
+    # Remove bugged libzmq3 package, see https://github.com/travis-ci/travis-ci/issues/982 and https://github.com/travis-ci/travis-ci/issues/1715 for details
+  - sudo apt-get remove libzmq3
+  - bash install.sh
+  - popd
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
-  # Configurations
-  - git clone https://github.com/mezuro/kalibro_configurations.git -b integrating_with_prezento kalibro_configurations
-  - cd kalibro_configurations
-  - cp config/database.yml.sample config/database.yml
-  - export BUNDLE_GEMFILE=$PWD/Gemfile
-  - bundle install
-  - RAILS_ENV=local bundle exec rails s -p 8083 -d
-  - cd ..
-  - export BUNDLE_GEMFILE=$PWD/Gemfile
-  # Processor
-  - git clone https://github.com/mezuro/kalibro_processor.git -b v0.2.1 kalibro_processor
-  - cd kalibro_processor
-  - psql -c "create role kalibro_processor with createdb login password 'kalibro_processor'" -U postgres
-  - cp config/database.yml.postgresql_sample config/database.yml
-  - cp config/repositories.yml.sample config/repositories.yml
-  - export BUNDLE_GEMFILE=$PWD/Gemfile
-  - bundle install
-  - bundle exec rake db:setup db:migrate
-  - bundle exec rails s -p 8082 -d
-  - bundle exec bin/delayed_job start
-  - cd ..
   - export BUNDLE_GEMFILE=$PWD/Gemfile
 
 script:
-  - sudo service tomcat6 stop
   - bundle exec rake spec
   - bundle exec rake konacha:run
-  - sudo service tomcat6 start
   - bundle exec rake cucumber
 
 notifications:
