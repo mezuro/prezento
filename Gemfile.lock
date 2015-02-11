@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/mezuro/kalibro_client
-  revision: 24ea5d64efd7f55515f6e062a6c050186010ff5b
-  specs:
-    kalibro_client (0.0.1)
-      activesupport (>= 2.2.1)
-      faraday_middleware (~> 0.9.0)
-
-GIT
   remote: https://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 67f160dd2ff5cc7cd843a17866c3b6bc8e7f2794
   specs:
@@ -146,6 +138,9 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
+    kalibro_client (0.0.2)
+      activesupport (>= 2.2.1)
+      faraday_middleware (~> 0.9.0)
     konacha (3.3.0)
       actionpack (>= 3.1, < 5)
       capybara
@@ -299,7 +294,7 @@ DEPENDENCIES
   jbuilder (~> 2.2.2)
   jquery-rails
   jquery-ui-rails (~> 5.0.0)
-  kalibro_client!
+  kalibro_client
   konacha (~> 3.3.0)
   mocha
   pg (~> 0.17.0)
