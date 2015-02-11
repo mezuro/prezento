@@ -9,6 +9,8 @@ before_script:
   - sudo apt-get remove libzmq3
   - bash install.sh
   - popd
+  - cp config/database.yml.sample config/database.yml
+  - bundle exec rake db:setup
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
 
