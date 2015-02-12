@@ -88,7 +88,7 @@ describe ReadingsController, :type => :controller do
 
         it { is_expected.to redirect_to(reading_group_url(reading_group.id)) }
         it { is_expected.to respond_with(:redirect) }
-        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 

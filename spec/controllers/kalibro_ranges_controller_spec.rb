@@ -139,7 +139,7 @@ describe KalibroRangesController, :type => :controller do
 
         it { is_expected.to redirect_to(kalibro_configurations_url(metric_configuration.kalibro_configuration_id)) }
         it { is_expected.to respond_with(:redirect) }
-        it { is_expected.to set_the_flash[:notice].to("You're not allowed to do this operation") }
+        it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
 
