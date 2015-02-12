@@ -34,7 +34,7 @@ gem 'devise', '~> 3.4.0'
 gem 'kalibro_client'
 
 # PostgreSQL integration
-gem "pg", "~> 0.17.0"
+gem "pg", "~> 0.18.1"
 
 # Twitter Bootstrap for layout
 gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git'
