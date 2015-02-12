@@ -31,4 +31,16 @@ describe MetricConfigurationsHelper, :type => :helper do
       expect(helper.native_metrics_of(metric_configuration.kalibro_configuration_id)).to eq [[metric_configuration.metric.code, metric_configuration.metric.name]]
     end
   end
+
+  describe 'supported_metrics_of' do
+    let(:metric_collector_details) { FactoryGirl.build(:metric_collector) }
+
+    before :each do
+      KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector_details.name).returns(metric_collector_details)
+    end
+
+    it 'should return a list of the supported metrics' do
+      expect(helper.supported_metrics_of(metric_collector_details.name)).to eq(metric_collector_details.supported_metrics)
+    end
+  end
 end
