@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 67f160dd2ff5cc7cd843a17866c3b6bc8e7f2794
+  revision: 62854e5129e1a5a24589b3a3849235ca4b794e6f
   specs:
-    twitter-bootstrap-rails (3.2.0)
+    twitter-bootstrap-rails (3.2.1)
       actionpack (>= 3.1)
-      execjs
+      execjs (>= 2.2.2, >= 2.2)
+      less-rails (>= 2.5.0)
       rails (>= 3.1)
       railties (>= 3.1)
 
@@ -80,6 +81,7 @@ GEM
     coffee-script-source (1.8.0)
     colorize (0.7.5)
     colorpicker (0.0.5)
+    commonjs (0.2.7)
     coveralls (0.7.9)
       multi_json (~> 1.10)
       rest-client (~> 1.7)
@@ -114,7 +116,7 @@ GEM
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
-    execjs (2.2.2)
+    execjs (2.3.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -147,6 +149,11 @@ GEM
       colorize
       railties (>= 3.1, < 5)
       sprockets
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.6.0)
+      actionpack (>= 3.1)
+      less (~> 2.6.0)
     libv8 (3.16.14.7)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -238,7 +245,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.2.2)
+    sprockets-rails (2.2.4)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
