@@ -225,7 +225,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    shoulda-matchers (2.7.0)
+    shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
@@ -304,7 +304,7 @@ DEPENDENCIES
   rspec-rails (~> 3.2.0)
   sass-rails (~> 4.0.1)
   sdoc
-  shoulda-matchers (~> 2.7.0)
+  shoulda-matchers (~> 2.8.0)
   simplecov
   spring
   sqlite3
