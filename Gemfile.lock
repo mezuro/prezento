@@ -78,7 +78,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.8.0)
+    coffee-script-source (1.9.0)
     colorize (0.7.5)
     colorpicker (0.0.5)
     commonjs (0.2.7)
