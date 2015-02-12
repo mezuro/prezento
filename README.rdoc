@@ -32,7 +32,7 @@ Mezuro project aims provide a platform to compare projects and metric techniques
 
 * Ruby version
 
-  2.1.2
+  2.2.0
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
@@ -57,18 +57,15 @@ Mezuro project aims provide a platform to compare projects and metric techniques
 
 * Services (job queues, cache servers, search engines, etc.)
 
-  Kalibro Web Service 1.0 r6
-  You can find a script to install it on Ubuntu at https://gist.github.com/m45t3r/0c4ad3b5700c6364abf1/f77701622ddc1d54d84757cc9ab59811e0ad6124 (if you're brave https://gist.github.com/rafamanzo/6179925/ shows a unstable script with JBoss instead of Tomcat)
-
-  Kalibro Gatekeeper
-  You can find a script to install it on any machine with Rails on https://gist.github.com/rafamanzo/9859244. After running this script, run ```unset BUNDLE_GEMFILE```.
-  By default Mezuro will expect it to be running on port 8081 at localhost.
-  In order to run it as expected, run: ```RAILS_ENV=local rails s -p 8081```.
-
   Kalibro Processor
   You can find it at https://github.com/mezuro/kalibro_processor
   By default Mezuro will expect it to be running on port 8082 at localhost.
-  In order to run it as expected, run on two different terminal instances: ```rails s -p 8082```; and ```rake jobs:work```.
+  In order to run it as expected, run on two different terminal instances: ```RAILS_ENV=local rails s -p 8082```; and ```RAILS_ENV=local rake jobs:work```.
+
+  Kalibro Configurations
+  You can find it at https://github.com/mezuro/kalibro_configurations
+  By default Mezuro will expect it to be running on port 8083 at localhost.
+  In order to run it as expected, run on two different terminal instances: ```rails s -p 8083```.
 
 * Deployment instructions
 
