@@ -3,18 +3,24 @@
 
 # TEAM
 
-    Copyright 2013-2014
+    Copyright 2013-2015
     -------------------
 
-      Alessandro Palmeira (alessandro.palmeira at gmail.com)
       Daniel Paulino Alves (danpaulalves at gmail.com)
       Diego de Araújo Martinez Camarinha (diegoamc90 at gmail.com)
       Heitor Reis Ribeiro (marcheing at gmail.com)
       Paulo Meirelles (paulo at softwarelivre.org)
       Rafael Reggiani Manzo (rr.manzo at gmail.com)
-      Renan Fichberg (rfichberg at gmail.com)
 
 # THANKSs
+
+    Former team members
+    ---------------------------------------------------------
+      Alessandro Palmeira (alessandro.palmeira at gmail.com)
+      Fellipe Souto Sampaio (fllsouto at gmail.com)
+      Guilherme Rojas (guilhermehrojas at gmail.com)
+      João M. M. Silva (jaodsilv at linux.ime.usp.br)
+      Renan Fichberg (rfichberg at gmail.com)
 
     UnB Software Evolution Team 2014
     ---------------------------------------------------------
@@ -30,12 +36,6 @@
       Arthur del Esposte (arthurmde at gmail.com)
       Renan Costa (renan2727 at hotmail.com)
       Vinicius Vieira (vvieira17 at gmail.com)
-
-    Former team members
-    ---------------------------------------------------------
-      Fellipe Souto Sampaio (fllsouto at gmail.com)
-      Guilherme Rojas (guilhermehrojas at gmail.com)
-      João M. M. Silva (jaodsilv at linux.ime.usp.br)
 
     USP Lab XP course 2014
     ---------------------------------------------------------
@@ -113,4 +113,4 @@
       Glyphicons
 
     Kalibro
-      kalibro-gem
+      kalibro_client
