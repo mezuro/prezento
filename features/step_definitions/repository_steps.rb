@@ -117,10 +117,6 @@ Then(/^I should see the sample repository name$/) do
   expect(page).to have_content(@repository.name)
 end
 
-Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
-  expect(page.find_field(field).value).to eq(value)
-end
-
 Then(/^I should see the given module result$/) do
   expect(page).to have_content(@module_result.kalibro_module.name)
 end

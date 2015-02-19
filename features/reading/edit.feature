@@ -9,10 +9,10 @@ Feature: Reading Edit
     And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group
-    And I am at the Edit Reading page
-    Then I fill the Label field with "Good"
-    And I fill the Grade field with "10.5"
-    And I fill the Color field with "33DD33"
+    When I am at the Edit Reading page
+    Then the field "Label" should be filled with "Good"
+    And the field "Grade" should be filled with "10.5"
+    And the field "Color" should be filled with "33DD33"
     When I fill the Label field with "Bad"
     And I press the Save button
     Then I should see "Bad"
@@ -33,13 +33,14 @@ Feature: Reading Edit
     And I should see "Color can't be blank"
 
   @kalibro_configuration_restart
-  Scenario: editing a reading with already taken name
+  Scenario: editing a reading with a name already taken
     Given I am a regular user
     And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group labeled "Average"
     And I have a sample reading within the sample reading group labeled "Good"
     And I am at the Edit Reading page
+    Then the field "Label" should be filled with "Good"
     When I fill the Label field with "Average"
     And I press the Save button
     Then I should see "Label Should be unique within a Reading Group"
