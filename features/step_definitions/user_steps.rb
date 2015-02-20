@@ -10,6 +10,10 @@ When(/^I fill the (.+) field with "(.+)"$/) do |field, text|
   fill_in field, :with => text
 end
 
+Then(/^the field "(.*?)" should be filled with "(.*?)"$/) do |field, value|
+  expect(page.find_field(field).value).to eq(value)
+end
+
 Then(/^my name should have changed to (.+)$/) do |text|
   @user.reload
   expect(@user.name).to eq(text)

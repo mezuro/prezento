@@ -13,48 +13,48 @@
 
 ActiveRecord::Schema.define(version: 20141211114023) do
 
-  create_table "kalibro_configuration_ownerships", force: true do |t|
+  create_table "kalibro_configuration_ownerships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "kalibro_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "project_images", force: true do |t|
+  create_table "project_images", force: :cascade do |t|
     t.integer  "project_id"
-    t.string   "url"
+    t.string   "url",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "project_ownerships", force: true do |t|
+  create_table "project_ownerships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "reading_group_ownerships", force: true do |t|
+  create_table "reading_group_ownerships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "reading_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "name",                   default: "", null: false
-    t.string   "email",                  default: "", null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                   limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

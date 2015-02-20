@@ -66,11 +66,7 @@
 <script>
   options = {
     trigger_event: "click",
-    color: {
-      r: 0,
-      g: 0,
-      b: 0
-    },
+    color: $("#reading_color").val(),
     onChange: function(colorHSB) {
       // Get first children "eq(0)" of #color_div with type "input"
       $("#color_div").children("input").eq(0).val(colorHSB.toHex());
