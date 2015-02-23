@@ -23,8 +23,7 @@ class KalibroRangesController < ApplicationController
   def destroy
     @kalibro_range.destroy
     respond_to do |format|
-      format.html { redirect_to kalibro_configuration_metric_configuration_path(
-          @kalibro_configuration_id, @metric_configuration_id) }
+      format_metric_configuration_path(format, "Range was successfully edited.")
       format.json { head :no_content }
     end
   end
@@ -37,8 +36,7 @@ class KalibroRangesController < ApplicationController
     respond_to do |format|
       @kalibro_range.metric_configuration_id = @metric_configuration_id
       if @kalibro_range.update(kalibro_range_params)
-        format.html { redirect_to kalibro_configuration_metric_configuration_path(
-            @kalibro_configuration_id, @metric_configuration_id), notice: 'Range was successfully edited.' }
+        format_metric_configuration_path(format, 'Range was successfully edited.')
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -55,10 +53,20 @@ class KalibroRangesController < ApplicationController
 
   def create_and_redir(format)
     if @kalibro_range.save
-      format.html { redirect_to kalibro_configuration_metric_configuration_path(
-          @kalibro_configuration_id, @metric_configuration_id), notice: 'Range was successfully created.' }
+      format_metric_configuration_path(format, 'Range was successfully created.')
     else
       failed_action(format, 'new')
+    end
+  end
+
+  def format_metric_configuration_path(format, notice)
+    @metric_configuration = MetricConfiguration.find @kalibro_range.metric_configuration_id
+    if(@metric_configuration.metric.is_a? KalibroClient::Entities::Miscellaneous::CompoundMetric)
+      format.html { redirect_to kalibro_configuration_compound_metric_configuration_path(
+        @kalibro_configuration_id, @metric_configuration_id), notice: notice }
+    else
+      format.html { redirect_to kalibro_configuration_metric_configuration_path(
+        @kalibro_configuration_id, @metric_configuration_id), notice: notice }
     end
   end
 
