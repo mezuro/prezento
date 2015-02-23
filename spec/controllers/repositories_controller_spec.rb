@@ -21,7 +21,7 @@ describe RepositoriesController, :type => :controller do
         it { is_expected.to render_template(:new) }
       end
 
-      context "when the current user doesn't owns the project" do
+      context "when the current user doesn't own the project" do
         before :each do
           get :new, project_id: project.id.to_s
         end
@@ -42,7 +42,7 @@ describe RepositoriesController, :type => :controller do
 
   describe 'create' do
     let (:repository) { FactoryGirl.build(:repository, project_id: project.id) }
-    let(:repository_params) { Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] }  #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with symbols and integers
+    let(:repository_params) { FactoryGirl.build(:repository).to_hash }
 
     before do
       sign_in FactoryGirl.create(:user)
@@ -76,7 +76,7 @@ describe RepositoriesController, :type => :controller do
       end
     end
 
-    context "when the current user doesn't owns the project " do
+    context "when the current user doesn't own the project " do
       before :each do
         post :create, project_id: project.id, repository: repository_params
       end

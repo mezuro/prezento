@@ -71,6 +71,7 @@ class KalibroConfigurationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def kalibro_configuration_params
+    params[:kalibro_configuration][:name].strip!
     params[:kalibro_configuration]
   end
 

@@ -62,6 +62,7 @@ class ReadingGroupsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reading_group_params
+    params[:reading_group][:name].strip!
     params[:reading_group]
   end
 
