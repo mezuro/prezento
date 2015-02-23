@@ -89,3 +89,18 @@ Feature: New reading
     When I press the Save button
     Then I should see "Color must be hexadecimal"
     And I should be at the New Reading page
+
+  @kalibro_configuration_restart
+  Scenario: Label with whitespaces
+    Given I am a regular user
+    And I am signed in
+    And I own a sample reading group
+    And I have a sample reading within the sample reading group labeled "My Reading"
+    And I am at the New Reading page
+    And I fill the Label field with "  My Reading   "
+    And I fill the Grade field with "10"
+    And I fill the Color field with "ffff00"
+    When I press the Save button
+    Then I should see "Label Should be unique within a Reading Group"
+    And I should be at the New Reading page
+

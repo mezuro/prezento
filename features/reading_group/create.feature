@@ -22,7 +22,7 @@ Scenario: Reading Group creation
   And I should see "Destroy Reading Group"
 
 @kalibro_configuration_restart
-Scenario: reading group creation with already taken name
+Scenario: Reading Group creation with already taken name
   Given I am a regular user
   And I am signed in
   And I have a reading group named "Group"
@@ -33,7 +33,7 @@ Scenario: reading group creation with already taken name
   Then I should see "Name has already been taken"
 
 @kalibro_configuration_restart
-Scenario: reading group creation with blank name
+Scenario: Reading Group creation with blank name
   Given I am a regular user
   And I am signed in
   And I am at the New Reading Group page
@@ -41,3 +41,14 @@ Scenario: reading group creation with blank name
   And I fill the Description field with "Anything"
   When I press the Save button
   Then I should see "Name can't be blank"
+
+@kalibro_configuration_restart
+Scenario: Reading Group name with whitespaces
+  Given I am a regular user
+  And I am signed in
+  And I have a reading group named "Reading Group"
+  And I am at the New Reading Group page
+  And I fill the Name field with "    Reading Group   "
+  When I press the Save button
+  Then I should see "Name has already been taken"
+

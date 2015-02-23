@@ -45,3 +45,15 @@ Feature: Project Creation
     And I click the Your projects link
     When I click the New Project link
     Then I should see "New Project"
+
+  @kalibro_processor_restart
+  Scenario: Choosing a name with whitespaces on the beginning and end
+    Given I am a regular user
+    And I am signed in
+    And I have a project named "Kalibro Metrics"
+    And I am at the New Project page
+    And I fill the Name field with "    Kalibro Metrics   "
+    And I fill the Description field with "Web Service to collect metrics"
+    When I press the Save button
+    Then I should see "Name has already been taken"
+

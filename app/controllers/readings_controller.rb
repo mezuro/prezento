@@ -50,6 +50,7 @@ class ReadingsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def reading_params
+    params[:reading][:label].strip!
     params[:reading]
   end
 
