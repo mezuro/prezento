@@ -23,7 +23,7 @@ class KalibroRangesController < ApplicationController
   def destroy
     @kalibro_range.destroy
     respond_to do |format|
-      format_metric_configuration_path(format, "Range was successfully edited.")
+      format_metric_configuration_path(format, "Range was successfully destroyed.")
       format.json { head :no_content }
     end
   end

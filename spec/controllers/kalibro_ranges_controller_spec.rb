@@ -49,8 +49,9 @@ describe KalibroRangesController, :type => :controller do
       context 'with valid fields' do
         before :each do
           KalibroRange.any_instance.expects(:save).returns(true)
+          MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
 
-          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: metric_configuration.id, kalibro_range: kalibro_range_params
+          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: kalibro_range.metric_configuration_id, kalibro_range: kalibro_range_params
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -81,6 +82,7 @@ describe KalibroRangesController, :type => :controller do
           subject.expects(:metric_configuration_owner?).returns true
           kalibro_range.expects(:destroy)
           subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
+          MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
 
           delete :destroy, id: kalibro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
         end
@@ -172,6 +174,7 @@ describe KalibroRangesController, :type => :controller do
           before :each do
             subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
             KalibroRange.any_instance.expects(:update).with(kalibro_range_params).returns(true)
+            MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
 
             post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_range: kalibro_range_params
           end

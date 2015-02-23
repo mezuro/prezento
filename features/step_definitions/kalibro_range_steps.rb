@@ -3,8 +3,17 @@ Given(/^I have a sample range within the sample metric configuration with beginn
                                      reading_id: @reading.id})
 end
 
+Given(/^I have a sample range within the sample compound metric configuration with beginning "(.*?)"$/) do |beginning|
+  @kalibro_range = FactoryGirl.create(:kalibro_range, {beginning: beginning, metric_configuration_id: @compound_metric_configuration.id,
+                                     reading_id: @reading.id})
+end
+
 Given(/^I am at the Edit Kalibro Range page$/) do
   visit edit_kalibro_configuration_metric_configuration_kalibro_range_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id, @kalibro_range.id)
+end
+
+Given(/^I am at the Edit Kalibro Range page for the compound metric configuration$/) do
+  visit edit_kalibro_configuration_metric_configuration_kalibro_range_path(@compound_metric_configuration.kalibro_configuration_id, @compound_metric_configuration.id, @kalibro_range.id)
 end
 
 Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
