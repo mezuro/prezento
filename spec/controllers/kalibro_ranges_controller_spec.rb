@@ -126,17 +126,17 @@ describe KalibroRangesController, :type => :controller do
 
       context "when the user doesn't own the metric configuration" do
         before :each do
-          delete :destroy, id: kalibro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
+          delete :destroy, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id
         end
 
-         it { is_expected.to redirect_to(kalibro_configurations_path(metric_configuration.kalibro_configuration_id)) }
-         it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to(kalibro_configurations_path(metric_configuration.kalibro_configuration_id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
     end
 
     context 'with no User logged in' do
       before :each do
-        delete :destroy, id: kalibro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
+        delete :destroy, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id
       end
 
       it { is_expected.to redirect_to new_user_session_path }
@@ -213,6 +213,22 @@ describe KalibroRangesController, :type => :controller do
           end
 
           it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(metric_configuration.kalibro_configuration_id, metric_configuration.id)) }
+          it { is_expected.to respond_with(:redirect) }
+        end
+
+        context 'with valid fields and a compound metric configuration' do
+          let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+          let(:new_kalibro_range) { FactoryGirl.build(:kalibro_range_with_id, metric_configuration_id: compound_metric_configuration.id) }
+
+          before :each do
+            subject.expects(:find_resource).with(KalibroRange, new_kalibro_range.id).returns(new_kalibro_range)
+            KalibroRange.any_instance.expects(:update).with(new_kalibro_range.to_hash).returns(true)
+            MetricConfiguration.expects(:find).with(new_kalibro_range.metric_configuration_id).returns(compound_metric_configuration)
+
+            post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: new_kalibro_range.id, metric_configuration_id: compound_metric_configuration.id, kalibro_range: new_kalibro_range.to_hash
+          end
+
+          it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(compound_metric_configuration.kalibro_configuration_id, compound_metric_configuration.id)) }
           it { is_expected.to respond_with(:redirect) }
         end
 
