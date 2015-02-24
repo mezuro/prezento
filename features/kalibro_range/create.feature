@@ -186,3 +186,23 @@ Feature: Create Kalibro Range
     Then I should be at metric configuration sample page
     And I should see "666"
     And I should see "INF"
+
+  @kalibro_configuration_restart @javascript
+  Scenario: Should create a kalibro range and redirect to the compound metric configuration page
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I own a sample reading group
+    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample compound metric configuration within the given mezuro configuration
+    And I have a sample reading within the sample reading group labeled "My Reading"
+    And I am at the New Range page for the compound metric configuration
+    And I click the -∞ link
+    And I click the ∞ link
+    And I fill the Comments field with "My Comment"
+    And I set the select field "Reading" as "My Reading"
+    When I press the Save button
+    Then I should be at compound metric configuration sample page
+    And I should see "-INF"
+    And I should see "INF"
+

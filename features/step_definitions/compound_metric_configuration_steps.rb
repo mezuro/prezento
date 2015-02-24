@@ -26,6 +26,12 @@ When(/^I click the show link of "(.*?)"$/) do |name|
   page.find('tr', :text => name).click_link('Show')
 end
 
+When(/^I am at the sample compound metric configuration page$/) do
+  visit kalibro_configuration_compound_metric_configuration_path(@compound_metric_configuration.kalibro_configuration_id, @compound_metric_configuration.id)
+  expect(page).to have_content(@compound_metric_configuration.metric.name)
+  expect(page).to have_content("Ranges")
+end
+
 Then(/^I should be at compound metric configuration sample page$/) do
   expect(page).to have_content(@compound_metric_configuration.metric.name)
   expect(page).to have_content("Ranges")
