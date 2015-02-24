@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe KalibroRangesController, :type => :controller do
-  let(:kalibro_range) { FactoryGirl.build(:kalibro_range_with_id) }
   let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
+  let(:kalibro_range) { FactoryGirl.build(:kalibro_range_with_id, metric_configuration_id: metric_configuration.id) }
 
   describe 'new' do
     let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
@@ -46,7 +46,7 @@ describe KalibroRangesController, :type => :controller do
         subject.expects(:metric_configuration_owner?).returns true
       end
 
-      context 'with valid fields' do
+      context 'with valid fields and a native metric configuration' do
         before :each do
           KalibroRange.any_instance.expects(:save).returns(true)
           MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
@@ -54,6 +54,22 @@ describe KalibroRangesController, :type => :controller do
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: kalibro_range.metric_configuration_id, kalibro_range: kalibro_range_params
         end
 
+        it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(metric_configuration.kalibro_configuration_id, metric_configuration.id)) }
+        it { is_expected.to respond_with(:redirect) }
+      end
+
+      context 'with valid fields and a compound metric configuration' do
+        let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+        let(:new_kalibro_range) { FactoryGirl.build(:kalibro_range, metric_configuration_id: compound_metric_configuration.id) }
+
+        before :each do
+          KalibroRange.any_instance.expects(:save).returns(true)
+          MetricConfiguration.expects(:find).with(new_kalibro_range.metric_configuration_id).returns(compound_metric_configuration)
+
+          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: new_kalibro_range.metric_configuration_id, kalibro_range: new_kalibro_range.to_hash
+        end
+
+        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(compound_metric_configuration.kalibro_configuration_id, compound_metric_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
