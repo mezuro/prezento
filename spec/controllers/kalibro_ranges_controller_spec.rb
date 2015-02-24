@@ -100,10 +100,27 @@ describe KalibroRangesController, :type => :controller do
           subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
           MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
 
-          delete :destroy, id: kalibro_range.id.to_s, metric_configuration_id: metric_configuration.id.to_s, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
+          delete :destroy, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id
         end
 
         it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(metric_configuration.kalibro_configuration_id, metric_configuration.id)) }
+        it { is_expected.to respond_with(:redirect) }
+      end
+
+      context 'when the user owns the compound metric configuration' do
+        let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+        let(:new_kalibro_range) { FactoryGirl.build(:kalibro_range_with_id, metric_configuration_id: compound_metric_configuration.id) }
+
+        before :each do
+          subject.expects(:metric_configuration_owner?).returns true
+          new_kalibro_range.expects(:destroy)
+          subject.expects(:find_resource).with(KalibroRange, new_kalibro_range.id).returns(new_kalibro_range)
+          MetricConfiguration.expects(:find).with(new_kalibro_range.metric_configuration_id).returns(compound_metric_configuration)
+
+          delete :destroy, id: new_kalibro_range.id, metric_configuration_id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id
+        end
+
+        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(compound_metric_configuration.kalibro_configuration_id, compound_metric_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
