@@ -1,6 +1,6 @@
 == README - Prezento
 
-{<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://coveralls.io/repos/mezuro/prezento/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/mezuro/prezento?branch=master]
+{<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://codeclimate.com/github/mezuro/prezento/badges/coverage.svg" />}[https://codeclimate.com/github/mezuro/prezento]
 
 Prezento is the web interface for Mezuro.
 

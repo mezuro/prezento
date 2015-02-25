@@ -72,6 +72,9 @@ group :test do
 
   # Simple Mocks
   gem 'mocha', require: 'mocha/api'
+
+  # Test coverage report
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :development, :test do
@@ -98,9 +101,6 @@ group :development, :test do
 
   # JavaScript unit tests
   gem "konacha", "~> 3.3.0"
-
-  # Test coverage history
-  gem 'coveralls', require: false
 
   # Better error interface
   gem 'better_errors'

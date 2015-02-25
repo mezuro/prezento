@@ -13,6 +13,7 @@ before_script:
   - bundle exec rake db:setup
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
+  - export CODECLIMATE_REPO_TOKEN=045c2433d496f108c0c6afa5516a72ddbfb1868fb34bf7a9bd095b7a0ea34a79
 
 script:
   - bundle exec rake spec
