@@ -95,7 +95,7 @@ When(/^I visit the repository show page$/) do
 end
 
 When(/^I click on the sample child's name$/) do
-  click_link @module_result.children.first.kalibro_module.name
+  click_link @module_result.children.first.kalibro_module.short_name
 end
 
 When(/^I click the "(.*?)" h3$/) do |text|
@@ -118,11 +118,11 @@ Then(/^I should see the sample repository name$/) do
 end
 
 Then(/^I should see the given module result$/) do
-  expect(page).to have_content(@module_result.kalibro_module.name)
+  expect(page).to have_content(@module_result.kalibro_module.short_name)
 end
 
 Then(/^I should see a sample child's name$/) do
-  expect(page).to have_content(@module_result.children.first.kalibro_module.name)
+  expect(page).to have_content(@module_result.children.first.kalibro_module.short_name)
 end
 
 Then(/^I should see the given repository's content$/) do
