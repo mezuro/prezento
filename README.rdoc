@@ -1,10 +1,17 @@
 == README - Prezento
 
-{<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://coveralls.io/repos/mezuro/prezento/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/mezuro/prezento?branch=master]
+{<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://codeclimate.com/github/mezuro/prezento/badges/coverage.svg" />}[https://codeclimate.com/github/mezuro/prezento]
 
 Prezento is the web interface for Mezuro.
 
 Mezuro project aims provide a platform to compare projects and metric techniques, teach how to use metrics through configurations, analyze code, avoid technical debts, and disseminate code metrics usage and understanding.
+
+=== Contributing
+
+Please, have a look the wiki pages about development workflow and code standards:
+
+* https://github.com/mezuro/mezuro/wiki/Development-workflow
+* https://github.com/mezuro/mezuro/wiki/Standards
 
 === Development
 
@@ -85,13 +92,6 @@ Mezuro project aims provide a platform to compare projects and metric techniques
   2. Also, make sure that the installation server already has rvm installed;
   3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
   4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
-
-=== Contributing
-
-Please, have a look the wiki pages about development workflow and code standards:
-
-* https://github.com/mezuro/mezuro/wiki/Development-workflow
-* https://github.com/mezuro/mezuro/wiki/Standards
 
 === License
 
