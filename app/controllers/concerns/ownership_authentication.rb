@@ -52,7 +52,7 @@ module OwnershipAuthentication
   private
 
   def check_project_ownership(id)
-    if current_user.project_ownerships.find_by_project_id(id).nil?
+    if current_user.project_attributes.find_by_project_id(id).nil?
       respond_to do |format|
         format.html { redirect_to projects_url, notice: "You're not allowed to do this operation" }
         format.json { head :no_content }

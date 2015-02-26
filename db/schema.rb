@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211114023) do
+ActiveRecord::Schema.define(version: 20150225170704) do
 
   create_table "kalibro_configuration_ownerships", force: :cascade do |t|
     t.integer  "user_id"
@@ -20,18 +20,13 @@ ActiveRecord::Schema.define(version: 20141211114023) do
     t.datetime "updated_at"
   end
 
-  create_table "project_images", force: :cascade do |t|
+  create_table "project_attributes", force: :cascade do |t|
     t.integer  "project_id"
-    t.string   "url",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "project_ownerships", force: :cascade do |t|
+    t.string   "image_url"
     t.integer  "user_id"
-    t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "hidden",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "reading_group_ownerships", force: :cascade do |t|

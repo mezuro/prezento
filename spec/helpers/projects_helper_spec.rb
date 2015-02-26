@@ -19,10 +19,10 @@ describe ProjectsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownerships = []
-        @ownerships.expects(:find_by_project_id).with(@subject.id).returns(nil)
+        @attributes = []
+        @attributes.expects(:find_by_project_id).with(@subject.id).returns(nil)
 
-        User.any_instance.expects(:project_ownerships).returns(@ownerships)
+        User.any_instance.expects(:project_attributes).returns(@attributes)
       end
 
       it { expect(helper.project_owner?(@subject.id)).to be_falsey }
@@ -33,10 +33,10 @@ describe ProjectsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownership = FactoryGirl.build(:project_ownership)
-        @ownerships = []
-        @ownerships.expects(:find_by_project_id).with(@subject.id).returns(@ownership)
-        User.any_instance.expects(:project_ownerships).returns(@ownerships)
+        @project_attributes = FactoryGirl.build(:project_attributes)
+        @attributes = []
+        @attributes.expects(:find_by_project_id).with(@subject.id).returns(@project_attributes)
+        User.any_instance.expects(:project_attributes).returns(@attributes)
       end
 
       it { expect(helper.project_owner?(@subject.id)).to be_truthy }

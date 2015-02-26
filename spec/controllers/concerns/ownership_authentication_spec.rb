@@ -111,12 +111,12 @@ describe OwnershipAuthentication, type: :controller do
         end
 
         context 'when the user owns the Repository' do
-          let!(:project_ownership) { FactoryGirl.build(:project_ownership, {user_id: current_user.id, project_id: project.id}) }
+          let!(:project_attributes) { FactoryGirl.build(:project_attributes, {user_id: current_user.id, project_id: project.id}) }
 
           before do
-            project_ownerships = Object.new
-            project_ownerships.expects(:find_by_project_id).with(project.id).returns(project_ownership)
-            current_user.expects(:project_ownerships).returns(project_ownerships)
+            project_attrs = Object.new
+            project_attrs.expects(:find_by_project_id).with(project.id).returns(project_attributes)
+            current_user.expects(:project_attributes).returns(project_attrs)
           end
 
           it 'should return true' do
@@ -126,9 +126,9 @@ describe OwnershipAuthentication, type: :controller do
 
         context 'when the user does not own the Repository' do
           before do
-            project_ownerships = Object.new
-            project_ownerships.expects(:find_by_project_id).with(project.id).returns(nil)
-            current_user.expects(:project_ownerships).returns(project_ownerships)
+            project_attrs = Object.new
+            project_attrs.expects(:find_by_project_id).with(project.id).returns(nil)
+            current_user.expects(:project_attributes).returns(project_attrs)
           end
 
           it 'should respond' do # FIXME: this is not the best test, but it it's the closest we can do I think

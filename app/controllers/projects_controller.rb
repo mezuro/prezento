@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @project_image = ProjectImage.new
   end
 
   # GET /projects
@@ -25,7 +24,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
-      ProjectImage.create(url: image_url, project_id: @project.id )
+      @project.attributes.update(image_url: image_url) unless @project.attributes.nil?
     end
   end
 
@@ -45,7 +44,7 @@ class ProjectsController < ApplicationController
   def update
     set_project
     image_url = project_params.delete(:image_url)
-    if @project.update(project_params) && @project_image.update(url: image_url)
+    if @project.update(project_params) && @project.attributes.update(image_url: image_url)
       redirect_to(project_path(@project.id))
     else
       render "edit"
@@ -56,7 +55,7 @@ class ProjectsController < ApplicationController
   # DELETE /project/1.json
   def destroy
     set_project
-    current_user.project_ownerships.find_by_project_id(@project.id).destroy
+    current_user.project_attributes.find_by_project_id(@project.id).destroy
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -68,7 +67,6 @@ class ProjectsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = find_resource(Project, params[:id].to_i)
-    @project_image = ProjectImage.find_by_project_id(@project.id) if @project.is_a?(Project)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -80,7 +78,7 @@ class ProjectsController < ApplicationController
   # Extracted code from create action
   def create_and_redir(format)
     if @project.save
-      current_user.project_ownerships.create project_id: @project.id
+      current_user.project_attributes.create(project_id: @project.id)
       format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
       format.json { render action: 'show', status: :created, location: @project }
     else
