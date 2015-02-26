@@ -14,10 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = []
-    Project.all.each do |project|
-      @projects << project unless project.attributes.hidden? && current_user != project.attributes.user
-    end
+    @projects = Project.all.select { |project| !project.attributes.hidden }
   end
 
   # POST /projects
