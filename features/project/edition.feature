@@ -8,7 +8,7 @@ Feature: Project
     Given I am a regular user
     And I am signed in
     And I own a sample project
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the All Projects page
     When I click the Edit link
     Then I should be in the Edit Project page
@@ -35,7 +35,7 @@ Feature: Project
     Given I am a regular user
     And I am signed in
     And I own a sample project
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the All Projects page
     When I click the Edit link
     Then The field "project[name]" should be filled with the sample project "name"
@@ -46,7 +46,7 @@ Feature: Project
     Given I am a regular user
     And I am signed in
     And I own a sample project
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the sample project edit page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
@@ -61,7 +61,7 @@ Feature: Project
     And I have a project named "Qt-Calculator"
     And I own a project named "Kalibro"
     And I am at the sample project edit page
-    And I have a sample project_image
+    And I have sample project_attributes
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
     Then I should see "Name has already been taken"
@@ -71,7 +71,7 @@ Feature: Project
     Given I am a regular user
     And I am signed in
     And I own a sample project
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the sample project edit page
     And I fill the Description field with "Web Service to collect metrics"
     When I press the Save button
@@ -82,7 +82,7 @@ Feature: Project
     Given I am a regular user
     And I am signed in
     And I own a sample project
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the sample project edit page
     And I fill the Name field with " "
     When I press the Save button

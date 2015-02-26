@@ -10,7 +10,7 @@ describe User, :type => :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:project_ownerships) }
+    it { is_expected.to have_many(:project_attributes) }
     it { is_expected.to have_many(:reading_group_ownerships) }
     it { is_expected.to have_many(:kalibro_configuration_ownerships) }
   end
@@ -19,11 +19,11 @@ describe User, :type => :model do
     describe 'projects' do
       subject { FactoryGirl.build(:user) }
       let(:project) {FactoryGirl.build(:project_with_id)}
-      let(:project_ownership) {FactoryGirl.build(:project_ownership)}
+      let(:project_attributes) {FactoryGirl.build(:project_attributes)}
 
       before :each do
-        project_ownership.expects(:project).returns(project)
-        subject.expects(:project_ownerships).returns([project_ownership])
+        project_attributes.expects(:project).returns(project)
+        subject.expects(:project_attributes).returns([project_attributes])
       end
 
       it 'should return a list of projects owned by the user' do

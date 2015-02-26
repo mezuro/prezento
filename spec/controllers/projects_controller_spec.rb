@@ -91,21 +91,20 @@ describe ProjectsController, :type => :controller do
     context 'with a User logged in' do
       before do
         sign_in FactoryGirl.create(:user)
-        @ownership = FactoryGirl.build(:project_ownership)
-        @ownerships = []
-
+        @project_attributes = FactoryGirl.build(:project_attributes)
+        @attributes = []
       end
 
       context 'when the user owns the project' do
         before :each do
-          @ownership.expects(:destroy)
+          @project_attributes.expects(:destroy)
           @subject.expects(:destroy)
 
           #Those two mocks looks the same but they are necessary since params[:id] is a String and @project.id is an Integer :(
-          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-          @ownerships.expects(:find_by_project_id).with(@subject.id).returns(@ownership)
+          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@project_attributes)
+          @attributes.expects(:find_by_project_id).with(@subject.id).returns(@project_attributes)
 
-          User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
+          User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
 
           subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
@@ -120,8 +119,8 @@ describe ProjectsController, :type => :controller do
 
       context "when the user doesn't own the project" do
         before :each do
-          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
-          User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
+          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
+          User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
 
           delete :destroy, :id => @subject.id
         end
@@ -140,9 +139,12 @@ describe ProjectsController, :type => :controller do
   end
 
   describe 'index' do
+    let(:project_attributes) { FactoryGirl.build(:project_attributes) }
+
     before :each do
       @subject = FactoryGirl.build(:project_with_id)
       Project.expects(:all).returns([@subject])
+      @subject.expects(:attributes).returns(project_attributes)
       get :index
     end
 
@@ -152,15 +154,14 @@ describe ProjectsController, :type => :controller do
   describe 'edit' do
     before do
       @subject = FactoryGirl.build(:project_with_id)
-      @project_image = FactoryGirl.create(:project_image)
     end
 
     context 'with an User logged in' do
       before do
         @user = FactoryGirl.create(:user)
-        @ownership = FactoryGirl.build(:project_ownership)
-        @ownerships = []
-        User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
+        @attribute = FactoryGirl.build(:project_attributes)
+        @attributes = []
+        User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
 
         sign_in @user
       end
@@ -168,8 +169,7 @@ describe ProjectsController, :type => :controller do
       context 'when the user owns the project' do
         before :each do
           subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
-          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-          ProjectImage.expects(:find_by_project_id).with(@subject.id).returns(@project_image)
+          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@attribute)
 
           get :edit, :id => @subject.id
         end
@@ -184,7 +184,7 @@ describe ProjectsController, :type => :controller do
       context 'when the user does not own the project' do
         before do
           @subject = FactoryGirl.build(:another_project)
-          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
+          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
 
           get :edit, :id => @subject.id
         end
@@ -205,7 +205,6 @@ describe ProjectsController, :type => :controller do
 
   describe 'update' do
     before do
-      @project_image = FactoryGirl.build(:project_image)
       @subject = FactoryGirl.build(:project_with_id)
       @subject_params = @subject.to_hash
     end
@@ -217,17 +216,18 @@ describe ProjectsController, :type => :controller do
 
       context 'when user owns the project' do
         before do
-          @ownership = FactoryGirl.build(:project_ownership)
-          @ownerships = []
-          @ownerships.expects(:find_by_project_id).with("#{@subject.id}").returns(@ownership)
-          User.any_instance.expects(:project_ownerships).at_least_once.returns(@ownerships)
-          ProjectImage.expects(:find_by_project_id).with(@subject.id).returns(@project_image)
+          @project_attributes = FactoryGirl.build(:project_attributes)
+          @attributes = []
+          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@project_attributes)
+          User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
         end
 
         context 'with valid fields' do
           before :each do
             subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(true)
+            @project_attributes.expects(:update).with(image_url: @subject_params[:image_url]).returns(true)
+            @subject.expects(:attributes).returns(@project_attributes)
           end
 
           context 'rendering the show' do

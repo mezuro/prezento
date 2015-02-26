@@ -1,13 +1,14 @@
 require 'rails_helper'
 
-describe ProjectOwnership, :type => :model do
+RSpec.describe ProjectAttributes, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:project) }
   end
 
   describe 'methods' do
     describe 'project' do
-      subject {FactoryGirl.build(:project_ownership)}
+      subject { FactoryGirl.build(:project_attributes) }
       let(:project) {FactoryGirl.build(:project_with_id)}
 
       before :each do
