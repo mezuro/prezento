@@ -8,8 +8,8 @@ Given(/^I have a sample project$/) do
   @project = FactoryGirl.create(:project)
 end
 
-Given(/^I have a sample project_image$/) do
-  @project_image = FactoryGirl.create(:project_image, {id: nil})
+Given(/^I have sample project_attributes$/) do
+  @project_attributes = FactoryGirl.create(:project_attributes, {id: nil})
 end
 
 Given(/^I have a project named "(.*?)"$/) do |name|
@@ -18,12 +18,12 @@ end
 
 Given(/^I own a sample project$/) do
   @project = FactoryGirl.create(:project)
-  FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @project.id})
+  FactoryGirl.create(:project_attributes, {user_id: @user.id, project_id: @project.id})
 end
 
 Given(/^I own a project named "(.*?)"$/) do |name|
   @project = FactoryGirl.create(:project, {name: name})
-  FactoryGirl.create(:project_ownership, {user_id: @user.id, project_id: @project.id})
+  FactoryGirl.create(:project_attributes, {user_id: @user.id, project_id: @project.id})
 end
 
 Given(/^I am at the Sample Project page$/) do

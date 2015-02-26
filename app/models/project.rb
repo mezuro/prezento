@@ -5,6 +5,7 @@ class Project < KalibroClient::Entities::Processor::Project
   end
 
   def attributes
-    ProjectAttributes.find_by_project_id(self.id)
+    project_attributes = ProjectAttributes.find_by_project_id(self.id)
+    project_attributes.nil? ? ProjectAttributes.new : project_attributes
   end
 end

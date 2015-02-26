@@ -25,7 +25,7 @@ Feature: Project listing
     Given I am a regular user
     And I am signed in
     And I have a sample project
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the All Projects page
     When I click the Show link
     Then the sample project should be there
