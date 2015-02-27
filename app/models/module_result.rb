@@ -1,18 +1,10 @@
 class ModuleResult < KalibroClient::Entities::Processor::ModuleResult
-
   def metric_history(name)
-    history = self.processing.repository.module_result_history_of(self)
+    history = KalibroClient::Entities::Processor::MetricResult.history_of(name, self.id, processing.repository_id)
     grade_history = Hash.new
 
-    history.each { |date_module_result| grade_history[date_module_result.date] =
-                    find_grade_by_metric_name(date_module_result.module_result.metric_results, name) }
+    history.each { |date_metric_result| grade_history[date_metric_result.date] = date_metric_result.metric_result.value }
 
     grade_history
-  end
-
-  private
-
-  def find_grade_by_metric_name(metric_results, name)
-    metric_results.each { |metric_result| return metric_result.value if metric_result.metric_configuration.metric.name == name }
   end
 end

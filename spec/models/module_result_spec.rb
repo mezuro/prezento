@@ -9,14 +9,11 @@ describe ModuleResult, :type => :model do
       let(:metric_configuration) { FactoryGirl.build(:another_metric_configuration_with_id) }
       let!(:metric_result) { FactoryGirl.build(:metric_result, metric_configuration: metric_configuration) }
       let(:processing) {FactoryGirl.build(:processing)}
-      let(:repository) {FactoryGirl.build(:repository)}
 
       before :each do
         subject.expects(:processing).returns(processing)
-        metric_result.expects(:metric_configuration).returns(metric_configuration)
-        processing.expects(:repository).returns(repository)
-        repository.expects(:module_result_history_of).with(subject).returns([date_module_result])
-        ModuleResult.any_instance.expects(:metric_results).returns([metric_result])
+        date_module_result.expects(:metric_result).returns(metric_result)
+        KalibroClient::Entities::Processor::MetricResult.expects(:history_of).with(metric_configuration.metric.name, subject.id, processing.repository_id).returns([date_module_result])
       end
 
       it 'should return the history for the given metric name' do

@@ -13,19 +13,6 @@ class Module.Graphic
   @display: (dates, values, container) ->
     opts = {bezierCurve: false}
 
-    #FIXME: Until this gets fixed https://github.com/nnnick/Chart.js/issues/76 this if is necessary
-    min_value = Math.min.apply(null, values)
-    max_value = Math.max.apply(null, values)
-
-    if min_value == max_value
-      opts = {
-              bezierCurve: false,
-              scaleOverride: true,
-              scaleStartValue: (min_value - 30),
-              scaleSteps: 3,
-              scaleStepWidth: 1
-            }
-
     data = {
       labels : dates,
       datasets : [
