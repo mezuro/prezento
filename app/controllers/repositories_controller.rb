@@ -2,10 +2,10 @@ include OwnershipAuthentication
 include ResourceFinder
 
 class RepositoriesController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :state]
+  before_action :authenticate_user!, except: [:show, :state, :state_with_date]
   before_action :project_owner?, only: [:new, :create]
   before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
-  before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :process_repository]
+  before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
 
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
@@ -64,25 +64,20 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories/1/state
   def state
     if params[:last_state] != 'READY'
-      if params[:day].nil?
-        @processing = @repository.last_processing
-      else
-        year, month, day = params[:year], params[:month], params[:day]
-        @processing = Processing.processing_with_date_of(@repository.id, "#{year}-#{month}-#{day}")
-      end
+      @processing = @repository.last_processing
 
-      respond_to do |format|
-        if @processing.state == 'READY'
-          format.js { render action: 'load_ready_processing' }
-        elsif @processing.state == 'ERROR'
-          format.js { render action: 'load_error' }
-        else
-          format.js { render action: 'reload_processing' }
-        end
-      end
+      respond_to_processing_state
     else
       head :ok, :content_type => 'text/html' # Just don't do anything
     end
+  end
+
+  # POST /projects/1/repositories/1/state_with_date
+  def state_with_date
+    year, month, day = params[:year], params[:month], params[:day]
+    @processing = Processing.processing_with_date_of(@repository.id, "#{year}-#{month}-#{day}")
+
+    respond_to_processing_state
   end
 
   # GET /projects/1/repositories/1/process
@@ -126,6 +121,18 @@ private
       format.html { redirect_to project_repository_process_path(@repository.project_id, @repository.id), notice: 'Repository was successfully created.' }
     else
       failed_action(format, 'new')
+    end
+  end
+
+  def respond_to_processing_state
+    respond_to do |format|
+      if @processing.state == 'READY'
+        format.js { render action: 'load_ready_processing' }
+      elsif @processing.state == 'ERROR'
+        format.js { render action: 'load_error' }
+      else
+        format.js { render action: 'reload_processing' }
+      end
     end
   end
 end

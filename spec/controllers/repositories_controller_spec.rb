@@ -295,19 +295,6 @@ describe RepositoriesController, :type => :controller do
       it { is_expected.not_to render_with_layout }
     end
 
-    context 'with a given date' do
-      let(:processing) { FactoryGirl.build(:processing) }
-
-      before :each do
-        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-        Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
-
-        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: '', day: '11', month: '11', year: '2013'}
-      end
-
-      it { is_expected.to respond_with(:ok) }
-      it { is_expected.not_to render_with_layout }
-    end
 
     context 'with a ERROR state' do
       let(:errored_processing) { FactoryGirl.build(:errored_processing) }
@@ -322,6 +309,21 @@ describe RepositoriesController, :type => :controller do
       it { is_expected.to respond_with(:success) }
       it { is_expected.to render_template(:load_error) }
     end
+  end
+
+  describe 'state_with_date' do
+    let(:processing) { FactoryGirl.build(:processing) }
+    let(:repository) { FactoryGirl.build(:repository) }
+
+    before :each do
+      Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+      Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
+
+      xhr :get, :state_with_date, {project_id: project.id.to_s, id: repository.id, day: '11', month: '11', year: '2013'}
+    end
+
+    it { is_expected.to respond_with(:ok) }
+    it { is_expected.not_to render_with_layout }
   end
 
   describe 'process_repository' do
