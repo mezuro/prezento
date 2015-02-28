@@ -34,12 +34,11 @@
 
 <p><strong> Retrieve the closest processing information from: </strong></p>
 
-<%= form_tag(project_repository_state_path(@repository.project_id, @repository.id), method: "post", remote: true) do %>
+<%= form_tag(project_repository_state_with_date_path(@repository.project_id, @repository.id), method: "post", remote: true) do %>
   <p>
     Day: <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
     Month: <%= select_tag(:month, options_for_select(month_options), :style => "width:55px; margin-top:5px") %>
     Year: <%= select_tag(:year, options_for_select(year_options), :style => "width:70px; margin-top:5px") %>
-    <%= hidden_field_tag(:last_state, "") %>
     <%= submit_tag("Search", class: 'btn btn-info', style: 'margin-bottom:5px', onClick: "Module.Repository.set_loader('#{image_tag 'loader.gif'} Loading data. Please, wait.')") %>
   </p>
 <% end %>

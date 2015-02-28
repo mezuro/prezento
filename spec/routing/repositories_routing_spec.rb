@@ -20,6 +20,8 @@ describe RepositoriesController, :type => :routing do
                   to(controller: :repositories, action: :index, project_id: 1) }
     it { is_expected.to route(:post, '/projects/1/repositories/1/state').
                   to(controller: :repositories, action: :state, project_id: 1, id: 1) }
+    it { is_expected.to route(:post, '/projects/1/repositories/1/state_with_date').
+                  to(controller: :repositories, action: :state_with_date, project_id: 1, id: 1) }
     it { is_expected.to route(:get, '/projects/1/repositories/1/process').
                   to(controller: :repositories, action: :process_repository, project_id: 1, id: 1) }
    end
