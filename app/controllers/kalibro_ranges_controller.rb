@@ -23,7 +23,7 @@ class KalibroRangesController < ApplicationController
   def destroy
     @kalibro_range.destroy
     respond_to do |format|
-      format_metric_configuration_path(format, "Range was successfully destroyed.")
+      format_metric_configuration_path(format, t('successfully_destroyed', :record => t(@kalibro_range.class)))
       format.json { head :no_content }
     end
   end
@@ -36,7 +36,7 @@ class KalibroRangesController < ApplicationController
     respond_to do |format|
       @kalibro_range.metric_configuration_id = @metric_configuration_id
       if @kalibro_range.update(kalibro_range_params)
-        format_metric_configuration_path(format, 'Range was successfully edited.')
+        format_metric_configuration_path(format, t('successfully_updated', :record => t(@kalibro_range.class)))
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -53,7 +53,7 @@ class KalibroRangesController < ApplicationController
 
   def create_and_redir(format)
     if @kalibro_range.save
-      format_metric_configuration_path(format, 'Range was successfully created.')
+      format_metric_configuration_path(format, t('successfully_created', :record => t(@kalibro_range.class)))
     else
       failed_action(format, 'new')
     end

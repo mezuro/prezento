@@ -28,7 +28,7 @@ class ReadingsController < ApplicationController
   def update
     respond_to do |format|
       if @reading.update(reading_params)
-        format.html { redirect_to(reading_group_path(@reading.reading_group_id), notice: 'Reading was successfully updated.') }
+        format.html { redirect_to(reading_group_path(@reading.reading_group_id), notice: t('successfully_updated', :record => t(@reading.class))) }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -63,7 +63,7 @@ class ReadingsController < ApplicationController
   # Code extracted from create action
   def create_and_redir(format)
     if @reading.save
-      format.html { redirect_to reading_group_path(@reading.reading_group_id), notice: 'Reading was successfully created.' }
+      format.html { redirect_to reading_group_path(@reading.reading_group_id), notice: t('successfully_created', :record => t(@reading.class)) }
     else
       @reading_group_id = params[:reading_group_id]
       failed_action(format, 'new')
