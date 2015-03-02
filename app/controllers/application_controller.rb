@@ -6,16 +6,21 @@ class ApplicationController < ActionController::Base
   add_flash_types :error, :alert
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_locale
 
   protected
 
-  # We don't have how too test this unless we have the Devise controllers.
-  # Since creating the controllers looks wronger than not testing this two
-  # lines. I think we can live without 100% of coverage
   # :nocov:
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
   end
-  # :nocov:
+
+  def set_locale
+    if (params[:locale])
+      I18n.locale = params[:locale]
+    else
+      I18n.locale = I18n.default_locale
+    end
+  end
 end

@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  successfully_created: "%{record} was successfully created."
+  successfully_updated: "%{record} was successfully updated."
+
+  #class names
+  MetricConfiguration: "Metric Configuration"
+  CompoundMetricConfiguration: "Compound Metric Configuration"
+  KalibroRange: "Range"
+  ReadingGroup: "Reading Group"
+  Repository: "Repository"
+  Project: "Project"
+  Reading: "Reading"
