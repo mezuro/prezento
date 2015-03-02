@@ -79,7 +79,7 @@ class ProjectsController < ApplicationController
   def create_and_redir(format)
     if @project.save
       current_user.project_attributes.create(project_id: @project.id)
-      format.html { redirect_to project_path(@project.id), notice: 'Project was successfully created.' }
+      format.html { redirect_to project_path(@project.id), notice: t('successfully_created', :record => t(@project.class.name)) }
       format.json { render action: 'show', status: :created, location: @project }
     else
       format.html { render action: 'new' }

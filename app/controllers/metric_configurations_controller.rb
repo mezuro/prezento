@@ -29,7 +29,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     respond_to do |format|
       @metric_configuration.kalibro_configuration_id = params[:kalibro_configuration_id]
       if @metric_configuration.update(metric_configuration_params)
-        format.html { redirect_to(kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: 'Metric Configuration was successfully updated.') }
+        format.html { redirect_to(kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: t('successfully_updated', :record => t(metric_configuration.class))) }
         format.json { head :no_content }
         Rails.cache.delete("#{@metric_configuration.kalibro_configuration_id}_metric_configurations")
       else
@@ -71,7 +71,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
   #Code extracted from create action
   def create_and_redir(format)
     if @metric_configuration.save
-      format.html { redirect_to kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: 'Metric Configuration was successfully created.' }
+      format.html { redirect_to kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: t('successfully_created', :record => t(metric_configuration.class)) }
     else
       failed_action(format, 'new')
     end
