@@ -13,7 +13,7 @@
       </div>
       <div class="help-container">
         <p>
-          It is used to calculate the weighted average of a <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%>'s grade.
+          <%= t('calculate_weighted_average') %> <%= link_to t('module'),  tutorials_path("keywords", anchor: "module")%> <%= t('grades_belonging_to_a_module') %>
         </p>
       </div>
     </div>
@@ -25,19 +25,19 @@
     <% else %>
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+          <%= f.label :reading_group_id, t('reading_group'), class: 'control-label' %>
           <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
         </div>
         <div class="help-container">
           <p>
-            The <%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading_group') %> associated with this metric.
+            <%= t('the') %> <%= link_to  t('reading_group'), tutorials_path('keywords', anchor: 'reading_group') %>  <%= t('associated_metric_configuration_form') %>
           </p>
         </div>
       </div>
       <%= f.hidden_field(:kalibro_configuration_id, value: @kalibro_configuration_id) %>
-      <%= link_to 'Back', kalibro_configuration_path(@kalibro_configuration_id), class: 'btn btn-default' %>
+      <%= link_to t('back'), kalibro_configuration_path(@kalibro_configuration_id), class: 'btn btn-default' %>
     <% end %>
   </div>
 </div>
 <br>
-<%= f.submit 'Save', class: 'btn btn-primary' %>
+<%= f.submit t('save'), class: 'btn btn-primary' %>
