@@ -1,10 +1,10 @@
 <div id="created-metrics-accordion">
-  <h3 class="jquery-ui-accordion"> Created Metrics </h3>
+  <h3 class="jquery-ui-accordion"> <%= t('created_metrics') %> </h3>
   <div>
   <table class="table table-hover">
     <thead>
-      <th>Name</th>
-      <th>Code</th>
+      <th> <%= t('name') %> </th>
+      <th> <%= t('code') %> </th>
     </thead>
     <tbody>
       <%= render partial: 'created_metric', collection: metric_configurations, as: 'metric_configuration' %>
