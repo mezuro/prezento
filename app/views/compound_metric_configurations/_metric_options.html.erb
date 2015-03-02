@@ -5,7 +5,7 @@
       </div>
       <div class="help-container">
         <p>
-          A custom name for your compound metric.
+          <%= t('body1_compound_metric_options') %>
         </p>
       </div>
     </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="help-container">
         <p>
-          A short description of your compound metric.
+          <%= t('body2_compound_metric_options') %>
         </p>
       </div>
     </div>
@@ -29,7 +29,7 @@
       </div>
       <div class="help-container">
         <p>
-          A mathematical expression (in javascript) to calculate your compound metric. It needs a return statement. The codes of already created metrics can be used inside the script.
+          <%= t('body3_compound_metric_options') %>
         </p>
       </div>
     </div>
@@ -41,7 +41,7 @@
       </div>
       <div class="help-container">
         <p>
-          The <%= link_to 'granularity', tutorials_path("keywords", anchor: "granularity")%> of the <%= link_to 'modules',  tutorials_path("keywords", anchor: "module")%> measured by this metric.
+          <%= t('the') %> <%= link_to t('granularity'), tutorials_path('keywords', anchor: "granularity")%>  <%= t('of_the') %>  <%= link_to t('modules'),  tutorials_path( 'keywords', anchor: 'module' )%>  <%= t('measured_metric') %>
         </p>
       </div>
     </div>
