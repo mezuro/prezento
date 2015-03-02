@@ -1,0 +1,15 @@
+en:
+  helpers:
+    actions: "Acoes"
+    links:
+      back: "Voltar"
+      cancel: "Cancelar"
+      confirm: "Tem certeza?"
+      destroy: "Destruir"
+      new: "Novo"
+      edit: "Editar"
+    titles:
+      edit: "Editar %{model}"
+      save: "Salvar %{model}"
+      new: "Novo %{model}"
+  delete: "Destruir %{model}"
