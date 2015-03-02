@@ -43,7 +43,7 @@ class RepositoriesController < ApplicationController
   def update
     respond_to do |format|
       if @repository.update(repository_params)
-        format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: 'Repository was successfully updated.') }
+        format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: t('successfully_updated', :record => t(@repository.class))) }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -118,7 +118,7 @@ private
   # Code extracted from create action
   def create_and_redir(format)
     if @repository.save
-      format.html { redirect_to project_repository_process_path(@repository.project_id, @repository.id), notice: 'Repository was successfully created.' }
+      format.html { redirect_to project_repository_process_path(@repository.project_id, @repository.id), notice: t('successfully_created', :record => t(@repository.class)) }
     else
       failed_action(format, 'new')
     end

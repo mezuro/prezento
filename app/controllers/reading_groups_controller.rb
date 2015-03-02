@@ -71,7 +71,7 @@ class ReadingGroupsController < ApplicationController
     if @reading_group.save
       current_user.reading_group_ownerships.create reading_group_id: @reading_group.id
 
-      format.html { redirect_to reading_group_path(@reading_group.id), notice: 'Reading Group was successfully created.' }
+      format.html { redirect_to reading_group_path(@reading_group.id), notice: t('successfully_created', :record => t(@reading_group.class)) }
       format.json { render action: 'show', status: :created, location: @reading_group }
     else
       format.html { render action: 'new' }
