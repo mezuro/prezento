@@ -19,15 +19,16 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-pt:
-  successfully_created: "%{record} criado(a) com sucesso."
-  successfully_updated: "%{record} atualizado(a) com sucesso."
+en:
+  successfully_created: "%{record} was successfully created."
+  successfully_updated: "%{record} was successfully updated."
 
   #class names
-  MetricConfiguration: "Configuração de Métrica"
-  CompoundMetricConfiguration: "Configuração de Métrica Composto"
-  KalibroRange: "Intervalo"
-  ReadingGroup: "Grupo de Leitura"
-  Repository: "Repositório"
-  Project: "Projeto"
-  Reading: "Leitura"
+  MetricConfiguration: "Metric Configuration"
+  KalibroRange: "Range"
+  ReadingGroup: "Reading Group"
+  Repository: "Repository"
+  Project: "Project"
+  Reading: "Reading"
+
+  compound: "Compound"
