@@ -1,0 +1,13 @@
+pt:
+  successfully_created: "%{record} criado(a) com sucesso."
+  successfully_updated: "%{record} atualizado(a) com sucesso."
+
+  #class names
+  MetricConfiguration: "Configuração de Métrica"
+  KalibroRange: "Intervalo"
+  ReadingGroup: "Grupo de Leitura"
+  Repository: "Repositório"
+  Project: "Projeto"
+  Reading: "Leitura"
+
+  compound: "Composta"
