@@ -8,12 +8,12 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :weight, class: 'control-label' %>
+        <%= f.label t('weight'), class: 'control-label' %>
         <%= f.text_field :weight, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>
-          <%= t('calculate_weighted_average') %> <%= link_to t('module'),  tutorials_path("keywords", anchor: "module")%> <%= t('grades_belonging_to_a_module') %>
+          <%= t('calculate_weighted_average_html', :href => link_to(t('module'), tutorials_path("keywords", anchor: "module"))) %>
         </p>
       </div>
     </div>
@@ -21,7 +21,7 @@
     <% if @compound_metric_configuration.persisted? %>
       <%= hidden_field_tag(:reading_group_id, @compound_metric_configuration.reading_group_id) %>
       <%= hidden_field_tag(:kalibro_configuration_id, @compound_metric_configuration.kalibro_configuration_id) %>
-      <%= link_to 'Back', kalibro_configuration_path(@compound_metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
+      <%= link_to t('back'), kalibro_configuration_path(@compound_metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
     <% else %>
       <div class="form-row">
         <div class="field-container">
@@ -30,7 +30,7 @@
         </div>
         <div class="help-container">
           <p>
-            <%= t('the') %> <%= link_to  t('reading_group'), tutorials_path('keywords', anchor: 'reading_group') %>  <%= t('associated_metric_configuration_form') %>
+            <%= t('associated_metric_configuration_form_html', :href => link_to(t('reading_group'), tutorials_path('keywords', anchor: 'reading_group'))) %>
           </p>
         </div>
       </div>
