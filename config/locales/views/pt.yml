@@ -69,9 +69,9 @@ pt:
   save: "Salvar"
   color: "Cor"
   a: "A"
-  state: "Estado:"
+  state: "Estado"
   license: "Licença"
-  periodicity: "Periodicidade:"
+  periodicity: "Periodicidade"
   reprocess: "Reprocessar"
   tutorial: "Tutorial"
   requisites: "Requisitos"
@@ -326,6 +326,9 @@ pt:
   password_confirmation: "Confirme sua senha"
   current_password: "Senha Atual"
   modules: "Módulos"
+  comments: "Comentários"
+  aggregation_form: "Forma de Agregação"
+  kalibro_configuration: "Configuração"
 
   #errors
   errors:
