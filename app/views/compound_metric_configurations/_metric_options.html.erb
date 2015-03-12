@@ -1,6 +1,6 @@
     <div class="form-row">
       <div class="field-container">
-        <%= f.label t('name'), class: 'control-label' %>
+        <%= f.label :name, t('name'), class: 'control-label' %>
         <%= f.text_field :name, :required => true, class: 'text-field form-control', value: (metric.name unless metric.nil?) %>
       </div>
       <div class="help-container">
@@ -12,7 +12,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label t('description'), class: 'control-label' %>
+        <%= f.label :description, t('description'), class: 'control-label' %>
         <%= f.text_field :description, class: 'text-field form-control', value: (metric.description unless metric.nil?)  %>
       </div>
       <div class="help-container">
@@ -24,7 +24,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label t('script'), class: 'control-label' %>
+        <%= f.label :script, t('script'), class: 'control-label' %>
         <%= f.text_area :script, :required => true, class: 'text-area form-control', value: (metric.script unless metric.nil?)  %>
       </div>
       <div class="help-container">
@@ -36,7 +36,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label t('scope'), class: 'control-label' %>
+        <%= f.label :scope, t('scope'), class: 'control-label' %>
         <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
       </div>
       <div class="help-container">
@@ -48,7 +48,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label t('code'), class: 'control-label' %>
+        <%= f.label :code, t('code'), class: 'control-label' %>
         <%= f.text_field :code, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
