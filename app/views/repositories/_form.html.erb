@@ -78,7 +78,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :configuration, 'Configuration', class: 'control-label' %>
+        <%= f.label :kalibro_configuration_id, 'Configuration', class: 'control-label' %>
         <% configuration_list = KalibroClient::Entities::Configurations::KalibroConfiguration.all.map { |conf| [conf.name, conf.id] } %>
         <%= f.select( :kalibro_configuration_id, configuration_list, class: 'tooltip-control' ) %>
       </div>
