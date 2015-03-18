@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  #commons 
+  #commons
   home: "Home"
   hello: "Hello"
   sign_out: "Sign Out"
@@ -55,7 +55,6 @@ en:
   no_description: "There is no description available."
   welcome: "Welcome"
   metrics: "Metrics"
-  metric: "Metric"
   value: "Value"
   threshold: "Threshold"
   granularity: "Granularity"
@@ -100,8 +99,12 @@ en:
   month: "Month"
   year: "Year"
   search: "Search"
-
-  #this pattern is type_folder_file  
+  new:
+    male: 'New'
+    female: 'New'
+  create: 'Create'
+  add: 'Add'
+  #this pattern is type_folder_file
 
   about_mezuro: "About Mezuro"
   about_mezuro_body: "<small> The Mezuro project attempts to provide a platform to compare projects and metric techniques, teaching how to use metrics through configurations and code analysis, avoid technical debts and disseminate code metrics usage and understanding.</small>"
@@ -133,12 +136,12 @@ en:
   metric_configurations_base_tool_name: "Base Tool Name:"
   metric_configurations_aggregation: "Aggregation Form"
   metric_configurations_reading_group: "Reading Group Name"
-  created_metrics: "Created Metrics" 
+  created_metrics: "Created Metrics"
   resend_instruction: "Resend confirmation instructions"
   confirm_account_email: "You can confirm your account email through the link below:"
   request_change_password: "Someone has requested a link to change your password. You can do this through the link below:"
   ignore_email: "If you did not request this, please ignore this email."
-  password_not_change: "Your password will not change until you access the link above and create a new one." 
+  password_not_change: "Your password will not change until you access the link above and create a new one."
   account_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
   link_unlock_account: "Click the link below to unlock your account:"
   change_password: "Change your password"
@@ -235,7 +238,7 @@ en:
   fill_name_unique: "Fill in the form with a name that must be unique"
   description_required: "Fill in the form with a description which is not required"
   click_save_project: "Click on 'Save' and you should be at the project page now, congratulations!"
-  repository_creation: "Repository creation" 
+  repository_creation: "Repository creation"
   project_page_click_new_repository: "From the project page, click on New Repository"
   fill_form: "Fill in the form"
   name_must_unique: "Name' must be unique"
@@ -249,7 +252,7 @@ en:
   repository_divided_diferent_sections: "The repository page is divided into four different sections:"
   provided_creation_steps: "Information that you provided during the creation steps"
   visualize_processings_repository: "Select box so it is possible to visualize previous processings of your repository"
-  processing_information: "Processing information" 
+  processing_information: "Processing information"
   time_finish_processing: "Information about the time it has taken to finish each step of the processing"
   reserving_folder_repository: "PREPARING: the system is reserving a folder for your repository and retrieving the configuration"
   retrieving_source_code: "DOWNLOADING: retrieving the source code"
