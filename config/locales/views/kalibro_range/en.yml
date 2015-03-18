@@ -1,0 +1,18 @@
+en:
+  activemodel:
+    models:
+      kalibro_range:
+        one: Range
+        other: Ranges
+    attributes:
+      kalibro_range:
+        reading: 'Reading'
+        beginning: 'Beginning'
+        end: 'End'
+        comments: 'Comments'
+    hints:
+      kalibro_range:
+        reading: 'The %{reading_href} associated with this %{range_href}.'
+        beginning: "This Range's lower limit."
+        end: "This Range's upper limit."
+        comments: 'An explanation of why you chose this interval, with that reading for this %{metric_href}.'
