@@ -1,4 +1,4 @@
-<h1>New Range</h1>
+<h1><%= "#{t('new.male')} #{KalibroRange.model_name.human}" %></h1>
 
 <%= form_for(@kalibro_range, :url => kalibro_configuration_metric_configuration_kalibro_ranges_path(
              @kalibro_configuration_id, @metric_configuration_id)) do |f|  %>
