@@ -30,5 +30,8 @@ en:
   Repository: "Repository"
   Project: "Project"
   Reading: "Reading"
+  metric: 'Metric'
 
   compound: "Compound"
+
+  unauthenticated: "You must be logged in to %{action}"
