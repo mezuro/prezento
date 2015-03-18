@@ -9,5 +9,8 @@ pt:
   Repository: "Repositório"
   Project: "Projeto"
   Reading: "Leitura"
+  metric: 'Métrica'
 
   compound: "Composta"
+
+  unauthenticated: "Você precisa fazer login para %{action}"

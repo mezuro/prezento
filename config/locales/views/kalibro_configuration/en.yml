@@ -1,0 +1,10 @@
+en:
+  activemodel:
+    models:
+      kalibro_configuration:
+        one: Configuration
+        other: Configurations
+    attributes:
+      kalibro_configuration:
+        name: 'Name'
+        description: 'Description'
