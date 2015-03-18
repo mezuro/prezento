@@ -20,7 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pt:
-  #commons 
+  #commons
   home: "Início"
   hello: "Olá"
   sign_out: "Sair"
@@ -55,7 +55,6 @@ pt:
   no_description: "Não há descrição disponível."
   welcome: "Bem-Vindo"
   metrics: "Métricas"
-  metric: "Metrica"
   value: "Valor"
   threshold: "limite"
   granularity: "Granularidade"
@@ -97,8 +96,13 @@ pt:
   month: "Mês"
   year: "Ano"
   search: "Procurar"
+  new:
+    male: 'Novo'
+    female: 'Nova'
+  create: 'Criar'
+  add: 'Adicionar'
 
-  #this pattern is type_folder_file  
+  #this pattern is type_folder_file
 
   about_mezuro: "Sobre Mezuro"
   about_mezuro_body: "<small> O projeto Mezuro tenta prover uma plataforma para comparar técnicas de projetos e métricas, ensinando como usar métricas através de configurações e análise de código, evitando débitos técnicos e disseminando o uso e entendimento de métricas de código.</small>"
@@ -106,7 +110,7 @@ pt:
   about_mezuro2: "A ideia é ser um serviço em que vocẽ pode avaliar a qualidade do seu código e, se você quiser, definir um conjunto de métricas a serem usadas."
   title_home_index: "Entendendo Métricas de Código"
   latest_projects_home_index: "Últimos projetos"
-  body_home_index: "<p>Este é o Mezuro! Uma plataforma web <strong>livre</strong> para <strong>avaliação colaborativa</strong> de código fonte.</p> <p>Aqui você pode avaliar seu código fonte com os SCMs mais populares (como Git e SVN), apenas fornecendo sua URL. Por enquanto, você pode avaliar códigos em <strong>C</strong>, <strong>C++</strong> e <strong>Java</strong>, mas nós pretendemos dar suporte a mais linguagems no futuro.</p>" 
+  body_home_index: "<p>Este é o Mezuro! Uma plataforma web <strong>livre</strong> para <strong>avaliação colaborativa</strong> de código fonte.</p> <p>Aqui você pode avaliar seu código fonte com os SCMs mais populares (como Git e SVN), apenas fornecendo sua URL. Por enquanto, você pode avaliar códigos em <strong>C</strong>, <strong>C++</strong> e <strong>Java</strong>, mas nós pretendemos dar suporte a mais linguagems no futuro.</p>"
   body_feedback_home_index: "Mezuro está sob constante desenvolvimento. Experimente e nos dê o seu"
   body1_compound_form: "Uma variável que contém o valor de um cálculo de métrica. Ele pode ser utilizado no script de outra métrica composta."
   body1_compound_form_example: "Exemplo: Código foo := 10"
@@ -134,7 +138,7 @@ pt:
   confirm_account_email: "Você pode confirmar a sua conta de e-mail através do link abaixo:"
   request_change_password: "Alguém pediu um link para alterar sua senha. Você pode fazer isso através do link abaixo:"
   ignore_email: "Se você não solicitou este e-mail, por favor ignore-o."
-  password_not_change: "Sua senha não será alterada até que você acesse o link acima e crie uma nova senha." 
+  password_not_change: "Sua senha não será alterada até que você acesse o link acima e crie uma nova senha."
   account_locked: "Sua conta foi bloqueada devido a um número excessivo de tentativas de login sem sucesso."
   link_unlock_account: "Clique no link abaixo para desbloquear sua conta:"
   change_password: "Mudando sua senha"
@@ -230,7 +234,7 @@ pt:
   fill_name_unique: "Preencha o formulário com um nome que deve ser único"
   description_required: "Preencha o formulário com a descrição"
   click_save_project: "Clique em Salvar. Agora você deve estar na página do projeto, parabéns!"
-  repository_creation: "Criando um repositório" 
+  repository_creation: "Criando um repositório"
   project_page_click_new_repository: "A partir da página do projeto, clique em Novo Repositório"
   fill_form: "Preencha o formulário"
   name_must_unique: "O nome deve ser exclusivo"
@@ -244,7 +248,7 @@ pt:
   repository_divided_diferent_sections: "A página de repositório é dividida em quatro seções diferentes:"
   provided_creation_steps: "A informação que você forneceu durante as etapas de criação"
   visualize_processings_repository: "Selecione a caixa de modo que seja possível visualizar processamentos anteriores do seu repositório"
-  processing_information: "Informação de processamento" 
+  processing_information: "Informação de processamento"
   time_finish_processing: "Informações sobre o tempo que cada etapa do processamento levou para concluir"
   reserving_folder_repository: "PREPARAÇÃO: o sistema está reservando uma pasta para seu repositório e recuperando a configuração"
   retrieving_source_code: "DOWNLOAD: recuperando o código-fonte"
