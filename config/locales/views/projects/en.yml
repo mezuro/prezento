@@ -1,14 +1,14 @@
 en:
   activemodel:
     models:
-      project: "Project"
+      project:
+        one: "Project"
+        other: "Projects"
     attributes:
-      name: "Name"
-      description: "Description"
-  project: "Project"
-  projects: "Projects"
+      project:
+        name: "Name"
+        description: "Description"
   new_project: "New Project"
-  must_logged_create_projects: "You must be logged in to create new Projects."
   edit_project: "Edit Project"
   your_projects: "Your projects"
   new_project: "New Project"
@@ -16,3 +16,4 @@ en:
   want_destroy_project: "Are you sure that you want to destroy this Project?"
   image_url: "Image URL"
   all_projects: "All Projects"
+  no_repositories: "There are no Repositories yet!"

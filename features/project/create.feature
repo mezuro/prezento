@@ -5,7 +5,7 @@ Feature: Project Creation
 
   Scenario: Should not create project without login
     Given I am at the All Projects page
-    Then I should not see "New Project"
+    Then I should not see "Create Project"
 
   @kalibro_processor_restart
   Scenario: project creation
@@ -44,7 +44,7 @@ Feature: Project Creation
     And I am at the homepage
     And I click the Your projects link
     When I click the New Project link
-    Then I should see "New Project"
+    Then I should see "Create Project"
 
   @kalibro_processor_restart
   Scenario: Choosing a name with whitespaces on the beginning and end

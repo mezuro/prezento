@@ -9,7 +9,7 @@
 <%else%>
   <p class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <%= t('unauthenticated', action: "#{t('create').downcase} #{KalibroConfiguration.model_name.human(count: 2).downcase}") %>.
+    <%= t('unauthenticated', action: "#{t('create', model: KalibroConfiguration.model_name.human(count: 2)).downcase}") %>.
   </p>
 <% end %>
 
