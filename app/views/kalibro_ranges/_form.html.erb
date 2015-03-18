@@ -8,12 +8,16 @@
         <%= render partial: 'no_readings' %>
         <% else %>
         <div class="field-container">
-          <%= f.label :reading_id, 'Reading', class: 'control-label' %>
+          <%= f.label :reading_id, t('reading'), class: 'control-label' %>
           <%= f.select( :reading_id, readings_options(@readings), {class: 'form-control'} ) %>
         </div>
         <div class="help-container">
           <p>
-            The <%= link_to 'Reading', tutorials_path('keywords', anchor: 'reading')%> associated with this <%= link_to 'Range', tutorials_path('keywords', anchor: 'range')%>.
+            <%= t('activemodel.hints.kalibro_range.reading',
+                  reading_href: link_to(t('reading'), tutorials_path('keywords', anchor: 'reading')),
+                  range_href: link_to(KalibroRange.model_name.human, tutorials_path('keywords', anchor: 'range'))
+                 ).html_safe
+            %>
           </p>
         </div>
         <% end %>
@@ -32,7 +36,7 @@
 
         <div class="help-container">
           <p>
-            This Range's lower limit.
+            <%= t('activemodel.hints.kalibro_range.beginning') %>
           </p>
         </div>
       </div>
@@ -49,7 +53,7 @@
         </div>
         <div class="help-container">
           <p>
-          This Range's upper limit.
+            <%= t('activemodel.hints.kalibro_range.end') %>
           </p>
         </div>
       </div>
@@ -61,7 +65,7 @@
         </div>
         <div class="help-container">
           <p>
-            An explanation of why you chose this interval, with that reading for this <%= link_to 'Metric', tutorials_path('keywords', anchor: 'metric')%>.
+            <%= t('activemodel.hints.kalibro_range.comments', metric_href: link_to(t('metric'), tutorials_path('keywords', anchor: 'metric'))).html_safe %>
           </p>
         </div>
       </div>
@@ -69,6 +73,6 @@
   </div>
 
   <div class="row margin-left-none" style="margin-top: 20px">
-    <%= f.submit 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Back', kalibro_configuration_metric_configuration_path(@kalibro_configuration_id, @metric_configuration_id), class: 'btn btn-default' %>
+    <%= f.submit t('save'), class: 'btn btn-primary' %>
+    <%= link_to t('back'), kalibro_configuration_metric_configuration_path(@kalibro_configuration_id, @metric_configuration_id), class: 'btn btn-default' %>
   </div>
