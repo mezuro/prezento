@@ -1,0 +1,19 @@
+pt:
+  activemodel:
+    models:
+      project:
+        one: "Projeto"
+        other: "Projetos"
+    attributes:
+      project:
+        name: "Nome"
+        description: "Descrição"
+  new_project: "Criar Projeto"
+  edit_project: "Editar Projeto"
+  your_projects: "Seus projetos"
+  new_project: "Novo Projeto"
+  destroy_project: "Destruir Projeto"
+  want_destroy_project: "Você tem certeza de que quer destruir este projeto?"
+  image_url: "URL da imagem"
+  all_projects: "Todos os Projetos"
+  no_repositories: "Não há repositórios ainda!"

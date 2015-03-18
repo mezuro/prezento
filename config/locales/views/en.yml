@@ -99,7 +99,7 @@ en:
   new:
     male: 'New'
     female: 'New'
-  create: 'Create'
+  create: 'Create %{model}'
   add: 'Add'
   #this pattern is type_folder_file
 

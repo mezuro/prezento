@@ -9,7 +9,7 @@ Feature: Project listing
     Then I should see "Projects"
     And I should see "Name"
     And I should see "Description"
-    And I should see "You must be logged in to create new Projects."
+    And I should see "You must be logged in to create projects"
 
   @kalibro_processor_restart
   Scenario: Should list the existing projects
