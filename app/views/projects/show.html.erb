@@ -1,4 +1,3 @@
-
 <div class="page-header">
   <div class="row">
     <div class="col-md-2">
@@ -22,7 +21,7 @@
 
 <hr />
 
-<h2><%= t("repositories") %></h2>
+<h2><%= Repository.model_name.human(count: 2) %></h2>
 
 <% if project_owner? @project.id %><%= link_to t('new_repository'), new_project_repository_path(@project,), class: 'btn btn-primary' %><% end %>
 
