@@ -27,7 +27,7 @@ pt:
   sign_in: "Entrar"
   sign_up: "Inscrever-se"
   show: "Mostrar"
-  edit: "Editar"
+  edit: "Editar %{model}"
   edit_user: "Editar Usuário"
   end: "Fim"
   the: "A"
@@ -99,7 +99,7 @@ pt:
   new:
     male: 'Novo'
     female: 'Nova'
-  create: 'Criar'
+  create: 'Criar %{model}'
   add: 'Adicionar'
 
   #this pattern is type_folder_file
