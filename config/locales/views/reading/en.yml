@@ -1,0 +1,18 @@
+en:
+  activemodel:
+    models:
+      reading:
+        one: Reading
+        other: Readings
+    attributes:
+      reading:
+        label: 'Label'
+        color: 'Color'
+        grade: 'Grade'
+    hints:
+      reading:
+        label: 'It is a verbal concise form of highlighting the content of an interpretation.'
+        label_example: 'Example values: terrible, bad, regular, good, great etc.'
+        color: "It is a visual form of highlighting an interpretation. You can choose one by typing its hexadecimal value or by using the color picker."
+        color_example: "Example values: 000000, 00ff00 etc."
+        grade: "A number to classify this reading."
