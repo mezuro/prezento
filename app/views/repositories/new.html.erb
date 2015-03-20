@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>New Repository</h1>
+  <h1><%= "#{t('new.male')} #{Repository.model_name.human}" %></h1>
 </div>
 
 <%= form_for(@repository, :url => project_repositories_url(@project_id)) do |f| %>
