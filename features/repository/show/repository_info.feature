@@ -13,7 +13,7 @@ Feature: Show Repository
     When I visit the repository show page
     Then I should see "Address"
     And I should see "Configuration"
-    And I should see "Periodicity"
+    And I should see "Period"
     And I should see "Type"
     And I should see "Description"
     And I should see "License"
@@ -31,7 +31,7 @@ Feature: Show Repository
     When I visit the repository show page
     Then I should see the sample repository name
     And I should see "State"
-    And I should see "Creation date"
+    And I should see "Creation Date"
     And I should see "PREPARING time"
     And I should see "COLLECTING time"
     And I should see "BUILDING time"
@@ -64,7 +64,7 @@ Feature: Show Repository
     And I should see "Address"
     And I should see "Configuration"
     And I should see "State"
-    And I should see "Creation date"
+    And I should see "Creation Date"
     When I click the "Metric Results" h3
     Then I should see "Loading data. Please, wait."
     When I click the "Modules Tree" h3
