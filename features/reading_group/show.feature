@@ -25,7 +25,7 @@ Scenario: Should show the links for the user that owns the reading group
   And I should see "New Reading"
   And I should see "Edit"
   And I should see "Destroy"
-  And I should see "Destroy Reading Group"
+  And I should see "Destroy"
 
 @kalibro_configuration_restart
 Scenario: Should show the information of the sample reading

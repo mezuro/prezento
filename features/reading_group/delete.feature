@@ -23,6 +23,6 @@ Feature: Reading Group Deletion
     And I am signed in
     And I own a sample reading group
     And I visit the Sample Reading Group page
-    When I click the Destroy Reading Group link
+    When I click the Destroy link
     Then I should see "New Reading Group"
     And the Sample Reading Group should not be there
