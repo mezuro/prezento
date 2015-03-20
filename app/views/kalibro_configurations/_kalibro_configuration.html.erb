@@ -4,7 +4,7 @@
   <td><%= link_to t('show'), kalibro_configuration_path(kalibro_configuration.id), class: 'btn btn-info' %></td>
   <td>
     <% if kalibro_configuration_owner?(kalibro_configuration.id) %>
-      <%= link_to t('edit'), edit_kalibro_configuration_path(kalibro_configuration.id), class: 'btn btn-info' %>
+      <%= link_to t('edit', model: ''), edit_kalibro_configuration_path(kalibro_configuration.id), class: 'btn btn-info' %>
     <% end %>
   </td>
 </tr>
