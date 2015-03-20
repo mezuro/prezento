@@ -113,9 +113,10 @@ When(/^I wait up for the ajax request$/) do
   end
 end
 
-When(/^I get the Creation date information as "(.*?)"$/) do |variable|
-  val = page.find('p', text: 'Creation date').text.match(/^Creation date:(.*)$/).captures.first
-  eval ("@#{variable} = '#{val}'")
+When(/^I get the Creation Date information as "(.*?)"$/) do |variable|
+  p page.find('p', text: 'Creation Date').text.match(/^Creation Date:(.*)$/).captures
+  val = page.find('p', text: 'Creation Date').text.match(/^Creation Date:(.*)$/).captures.first
+  eval ("@#{variable} = DateTime.parse('#{val}')")
 end
 
 Then(/^I should see the sample repository name$/) do
@@ -171,6 +172,9 @@ end
 Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
   v1 = eval "@#{arg1}"
   v2 = eval "@#{arg2}"
+
+  p v1
+  p v2
 
   expect(v1 < v2).to be_truthy
 end

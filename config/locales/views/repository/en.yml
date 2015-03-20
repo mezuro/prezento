@@ -1,0 +1,36 @@
+en:
+  activemodel:
+    models:
+      repository:
+        one: Repository
+        other: Repositories
+    attributes:
+      repository:
+        name: 'Name'
+        description: 'Description'
+        license: 'License'
+        scm_type: 'Type'
+        address: 'Address'
+        period: 'Period'
+    hints:
+      repository:
+        name: 'The name of your Repository.'
+        description: 'A short description of your Repository.'
+        license: "The source code's license."
+        scm_type: 'The version control system the Repository uses.'
+        address: 'The URL where the Repository is located.'
+        period: 'Select how often the Repository will be reprocessed.'
+        kalibro_configuration: 'A %{configuration_href} defines all the metrics to be calculated in the source code. Choose your weapon!'
+    errors:
+      repository:
+        no_metric_results: 'Repository process returned with error. There are no metric results.'
+        no_modeule_tree: 'Repository process returned with error. There is no module tree.'
+        unstarted_processing: "This Repository has no processings yet. Please, wait an instant as we start it."
+  repository:
+    show:
+      reprocess: 'Reprocess'
+      processing_information: 'Processing Information'
+      modules_tree: 'Modules Tree'
+      metric_results: 'Metric Results'
+      loading: 'Loading data. Please, wait.'
+      date_processing: 'Retrieve the closest processing information from'
