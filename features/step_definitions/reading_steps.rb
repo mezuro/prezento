@@ -29,3 +29,8 @@ end
 Then(/^I should see a color picker Canvas$/) do
   page.find('div.colorpicker')
 end
+
+When(/^I choose the destroy reading link$/) do
+  url = "/reading_groups/#{@reading_group.id}/readings/#{@reading.id}"
+  find("//a[@href='#{url}']").click
+end
