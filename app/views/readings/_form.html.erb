@@ -10,10 +10,10 @@
       </div>
       <div class="help-container">
         <p>
-          It is a verbal concise form of highlighting the content of an interpretation.
+          <%= t('activemodel.hints.reading.label') %>
         </p>
         <p>
-          Example values: terrible, bad, regular, good, great etc.
+          <%= t('activemodel.hints.reading.label_example') %>
         </p>
       </div>
     </div>
@@ -30,10 +30,10 @@
       </div>
       <div class="help-container">
         <p>
-          It is a visual form of highlighting an interpretation. You can choose one by typing its hexadecimal value or by using the color picker.
+          <%= t('activemodel.hints.reading.color') %>
         </p>
         <p>
-          Example values: 000000, 00ff00 etc
+          <%= t('activemodel.hints.reading.color_example') %>
         </p>
       </div>
     </div>
@@ -45,7 +45,7 @@
       </div>
       <div class="help-container">
         <p>
-          A number to classify this reading.
+          <%= t('activemodel.hints.reading.grade') %>
         </p>
       </div>
     </div>
@@ -53,13 +53,13 @@
 </div>
 
 <div class="row margin-left-none" style="margin-top: 20px">
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
+  <%= f.submit t('save'), class: 'btn btn-primary' %>
   <% if @reading.persisted? %>
     <%= f.hidden_field(:reading_group_id, value: @reading.reading_group_id) %>
-    <%= link_to 'Back', reading_group_path(@reading.reading_group_id), class: 'btn btn-default' %>
+    <%= link_to t('back'), reading_group_path(@reading.reading_group_id), class: 'btn btn-default' %>
   <% else %>
     <%= f.hidden_field(:reading_group_id, value: @reading_group_id) %>
-    <%= link_to 'Back', reading_group_path(@reading_group_id), class: 'btn btn-default' %>
+    <%= link_to t('back'), reading_group_path(@reading_group_id), class: 'btn btn-default' %>
   <% end %>
 </div>
 
