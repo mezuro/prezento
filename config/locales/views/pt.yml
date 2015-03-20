@@ -101,6 +101,7 @@ pt:
     female: 'Nova'
   create: 'Criar %{model}'
   add: 'Adicionar'
+  sure_destroy: 'Você tem certeza que deseja apagar este(a) %{model}?'
 
   #this pattern is type_folder_file
 

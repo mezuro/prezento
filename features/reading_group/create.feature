@@ -19,7 +19,7 @@ Scenario: Reading Group creation
   Then I should see "My reading group"
   And I should see "New reading group"
   And I should see "New Reading"
-  And I should see "Destroy Reading Group"
+  And I should see "Destroy"
 
 @kalibro_configuration_restart
 Scenario: Reading Group creation with already taken name

@@ -101,6 +101,7 @@ en:
     female: 'New'
   create: 'Create %{model}'
   add: 'Add'
+  sure_destroy: 'Are you sure that you want to destroy this %{model}?'
   #this pattern is type_folder_file
 
   about_mezuro: "About Mezuro"
