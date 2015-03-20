@@ -27,7 +27,7 @@ en:
   sign_in: "Sign In"
   sign_up: "Sign Up"
   show: "Show"
-  edit: "Edit"
+  edit: "Edit %{model}"
   edit_user: "Edit User"
   end: "End"
   the: "The"
