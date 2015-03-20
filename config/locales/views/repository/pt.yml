@@ -1,0 +1,36 @@
+pt:
+  activemodel:
+    models:
+      repository:
+        one: Repositório
+        other: Repositórios
+    attributes:
+      repository:
+        name: 'Nome'
+        description: 'Descrição'
+        license: 'Licensa'
+        scm_type: 'Tipo'
+        address: 'endereço'
+        period: 'Período'
+    hints:
+      repository:
+        name: 'O nome do seu Repositório.'
+        description: 'Uma descrição breve do seu Repositório.'
+        license: "A licensa do código-fonte."
+        scm_type: 'O controlador de versão utilizado pelo Repositório.'
+        address: 'A URL onde o respositório está acessível.'
+        period: 'Selecione o quão frequentemente o repositório será reprocessado.'
+        kalibro_configuration: 'Uma %{configuration_href} define todas as métricas a serem extraídas do códifo-fonte.'
+    errors:
+      repository:
+        no_metric_results: 'O processamento do Repósitório retornou um erro. Não há Resultados de Métrica.'
+        no_modeule_tree: 'Repository process returned with error. Não há uma Árvore de Módulos.'
+        unstarted_processing: "Este Repositório ainda não tem Processamentos. Por favor, aguarde um instante enquanto o iniciamos."
+  repository:
+    show:
+      reprocess: 'Reprocessar'
+      processing_information: 'Informação do Processamento'
+      modules_tree: 'Árvore de Módulos'
+      metric_results: 'Resultados de Métrica'
+      loading: 'Carregando os dados. Por favor, aguarde.'
+      date_processing: 'Obtenha a informação de processamento mais próxima a'
