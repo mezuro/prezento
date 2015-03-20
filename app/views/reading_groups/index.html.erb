@@ -1,15 +1,15 @@
 <div class="page-header">
-  <h1>Reading Groups</h1>
+  <h1><%= ReadingGroup.model_name.human(count: 2) %></h1>
 </div>
 
 <% if user_signed_in? %>
   <p>
-    <%= link_to 'New Reading Group', new_reading_group_path, class: 'btn  btn-primary' %>
+    <%= link_to "#{t('new.male')} #{ReadingGroup.model_name.human}", new_reading_group_path, class: 'btn  btn-primary' %>
   </p>
 <%else%>
   <p class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    You must be logged in to create new Reading Groups.
+    <%= t('unauthenticated', action: t('create', model: ReadingGroup.model_name.human)) %>
   </p>
 <% end %>
 
