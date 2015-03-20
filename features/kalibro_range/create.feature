@@ -49,7 +49,7 @@ Feature: Create Kalibro Range
     And I should see "End"
     And I should see "Comments"
     And I should see "You must have Readings within your associated Reading Group to create a new Range."
-    When I click the Create New Reading link
+    When I click the Create Reading link
     Then I should be at the New Reading page
     And I should see "Label"
     And I should see "Grade"
