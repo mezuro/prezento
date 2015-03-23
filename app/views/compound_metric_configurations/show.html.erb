@@ -72,7 +72,7 @@
  <%= link_to t('back'), kalibro_configuration_path(@compound_metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
 <% if kalibro_configuration_owner? @compound_metric_configuration.kalibro_configuration_id %>
       <%= link_to t('destroy_metric_configuration'), kalibro_configuration_metric_configuration_path(@compound_metric_configuration.kalibro_configuration_id,
-      @compound_metric_configuration.id), method: :delete, data: { confirm: t('sure_destroy_metric_configuration') },
+      @compound_metric_configuration.id), method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
       class: 'btn btn-danger' %>
  <% end %>
 </p>
