@@ -99,7 +99,6 @@ pt:
 
   #this pattern is type_folder_file
   choose_metric: "Escolha uma métrica a partir de uma ferramenta Base:"
-
   created_metrics: "Métricas Criadas"
   resend_instruction: "Reenviar instruções de confirmação"
   confirm_account_email: "Você pode confirmar a sua conta de e-mail através do link abaixo:"
@@ -130,7 +129,6 @@ pt:
   calculate_weighted_average_html: "Ele é usado para calcular a média ponderada de um %{href} através de suas Notas"
   measured_metric_html: "A %{href} dos %{href2} medidos por esta métrica."
   change_password: "Mude sua senha"
-  no_metric_configurations: "Não há configurações de métricas ainda!"
   range_lower_limit: "Limite de intervalo inferior."
   range_upper_limit: "Limite de intervalo superior."
   explanation_chose_interval: "Uma explicação do porquê você escolheu este intervalo, com que a leitura para este"
@@ -146,8 +144,7 @@ pt:
   edit_reading_group: "Edite Grupos de Leitura"
   must_logged_create_reading_groups: "Você precisa estar logado para criar novos grupos de leitura."
   new_reading_group: "Novo Grupo de Leitura"
-  destroy_metric_configuration: "Destruir Configuração de Métrica"
-  sure_destroy_metric_configuration: "Tem certeza que você quer destruir esta Configuração de Métrica?"
+
   confirm_my_account: "Confirme sua conta"
   change_my_password: "Alterar a senha"
   unlock_my_account: "Desbloquear a minha conta"
@@ -160,7 +157,6 @@ pt:
   your_projects: "Seus projetos"
   mezuro_team: "A Equipe Mezuro"
   want_destroy_range: "Tem certeza que você quer destruir este intervalo?"
-
   add_metric: "Adicionando Métrica"
   destroy_configuration: "Destruindo Configuração"
   want_destroy_configuration: "Tem certeza que você quer destruir esta configuração?"
@@ -287,7 +283,7 @@ pt:
   sofware_metric_quantitative: "Uma métrica de software é uma medida quantitativa de alguma propriedade de uma"
   more_details: ". Para mais detalhes veja"
   kalibro_web_service: "Kalibro Web Service"
-  no_description_available: "Nenhuma descrição disponível."
+  no_description_available: "Nenhuma descrição disponível"
   create_new_reading: "Criar nova leitura"
   process_period: "Período de processamento"
   currently_waiting_confirmation: "Atualmente esperando confirmação de:"

@@ -3,44 +3,47 @@
 </div>
 
 <p>
-  <strong>Base Tool Name:</strong>
+  <strong><%= t('metric_base_tool_name') %>:</strong>
   <%= @metric_configuration.metric.metric_collector_name %>
 </p>
 
 <p>
-  <strong>Code:</strong>
+  <strong><%= t('code') %>:</strong>
   <%= @metric_configuration.metric.code %>
 </p>
 
 <p>
-  <strong>Weight:</strong>
+  <strong><%= t('weight') %>:</strong>
   <%= @metric_configuration.weight %>
 </p>
 
 <p>
-  <strong>Language:</strong>
+  <strong><%= t('language') %>:</strong>
   <%= @metric_configuration.metric.languages %>
 </p>
 
 <p>
-  <strong>Scope:</strong>
-  <%= @metric_configuration.metric.scope %>
+  <strong><%= t('metric_scope') %>:</strong>
+  <%= t(@metric_configuration.metric.scope.to_s, scope: 'scopes') %>
 </p>
 
 <p>
-  <strong>Aggregation Form:</strong>
-  <%= @metric_configuration.aggregation_form %>
+  <strong><%= t('metric_aggregation_form') %>:</strong>
+  <%=
+    f = @metric_configuration.aggregation_form
+    t(f, scope: 'aggregation_forms', default: f)
+  %>
 </p>
 
 <p>
-  <strong>Reading Group Name:</strong>
+  <strong><%= t('reading_group_name') %>:</strong>
   <%= @reading_group.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <% if @metric_configuration.metric.description.nil? %>
-    <%= "There is no description available." %>
+  <strong><%= t('description') %>:</strong>
+  <% if @metric_configuration.metric.description.blank? %>
+    <%= t('no_description_available') %>
   <% else %>
     <%= @metric_configuration.metric.description %>
   <% end %>
@@ -48,18 +51,18 @@
 </p>
 <hr>
 
-<h2> Ranges </h2>
+<h2><%= KalibroRange.model_name.human(count: 2) %></h2>
 <% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
-  <%= link_to 'Add Range', kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id,
+  <%= link_to t('add_range'), kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id,
       @metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Label</th>
-      <th>Beginning</th>
-      <th>End</th>
+      <th><%= t('label') %></th>
+      <th><%= t('beginning') %></th>
+      <th><%= t('end') %></th>
     </tr>
   </thead>
   <tbody>
@@ -72,10 +75,10 @@
 </table>
 
 <p>
- <%= link_to 'Back', kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
+ <%= link_to t('back'), kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
 <% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
-      <%= link_to 'Destroy Metric Configuration', kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
-      @metric_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' },
+      <%= link_to t('destroy_metric_configuration'), kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
+      @metric_configuration.id), method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
       class: 'btn btn-danger' %>
  <% end %>
 </p>
