@@ -8,7 +8,7 @@
 </p>
 
 <hr>
-
+<div id="metrics">
 <h2><%= t('metric').pluralize %></h2>
 <% if kalibro_configuration_owner? @kalibro_configuration.id %>
   <%= link_to "#{t('add')} #{t('metric')}", kalibro_configuration_choose_metric_path(@kalibro_configuration.id), class: 'btn btn-info' %>
@@ -31,6 +31,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <hr>
 
