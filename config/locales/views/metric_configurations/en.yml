@@ -1,0 +1,23 @@
+en:
+  activemodel:
+    models:
+      metric_configuration:
+        one: Metric Configuration
+        other: Metric Configurations
+    attributes:
+      metric_configuration:
+        metric: 'Metric'
+        weight: 'Weight'
+  weighted_average_metric_configurations_form:  "It is used to calculate the weighted average of a"
+  statistical_result_metric_configurations_form: "It is the calculation of statistical results for higher"
+  modules_eg_metric_configurations_form: " modules (e.g., average lines of code of the classes inside a package)."
+  associated_metric_configuration_form_html: "The %{href} associated with this metric."
+  range_metric_configurations_no_ranges: "There are no Ranges yet!"
+  editing_metric_configurations_edit: "Editing Metric Configuration"
+  new_metric_configurations: "New Metric Configuration"
+  metric_configurations_base: "Base Tool:"
+  metric_configuration_name: "Metric Name:"
+  metric_configurations_description: "Metric Description:"
+  metric_configurations_base_tool_name: "Base Tool Name:"
+  metric_configurations_aggregation: "Aggregation Form"
+  metric_configurations_reading_group: "Reading Group Name"

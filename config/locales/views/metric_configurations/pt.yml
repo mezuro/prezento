@@ -1,0 +1,24 @@
+en:
+  activemodel:
+    models:
+      metric_configuration:
+        one: Configuração de Métrica
+        other: Configurações de Métricas
+    attributes:
+      metric_configuration:
+        metric: Métrica
+        weight: Peso
+  weighted_average_metric_configurations_form:  "Ele é usado para calcular a média ponderada de um"
+  statistical_result_metric_configurations_form: "É o cálculo dos resultados estatísticos para maior"
+  modules_eg_metric_configurations_form: "módulos (por exemplo, as linhas médias de código das classes dentro de um pacote)."
+  associated_metric_configuration_form_html: "O %{href} associado a esta métrica."
+  range_metric_configurations_no_ranges: "Ainda não existem intervalos!"
+  editing_metric_configurations_edit: "Edição de configuração da Métrica"
+  new_metric_configurations: "Nova Configuração de Métrica"
+  metric_configurations_base: "Ferramenta de Base de Dados:"
+  metric_configuration_name: "Nome da Métrica:"
+  metric_configurations_description: "Descrição da métrica:"
+  metric_configurations_base_tool_name: "Nome da ferramenta base:"
+  metric_configurations_aggregation: "Forma de Agregação"
+  metric_configurations_reading_group: "Nome do grupo"
+'
