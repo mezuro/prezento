@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h1>Editing Metric Configuration</h1>
+  <h1><%= t('editing_metric_configuration') %></h1>
 </div>
 
 <%= form_for(@metric_configuration, :url => kalibro_configuration_metric_configuration_update_url(@kalibro_configuration_id, @metric_configuration.id), method: :put) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
   <div class="row margin-left-none" style="margin-top: 20px">
-  	<%= f.submit 'Save', class: 'btn btn-primary' %>
-  	<%= link_to 'Back',  kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
+  	<%= f.submit t('save'), class: 'btn btn-primary' %>
+  	<%= link_to t('back'), kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
   </div>
 <% end %>
