@@ -1,3 +1,5 @@
+require 'http_accept_language'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -17,10 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    if (params[:locale])
-      I18n.locale = params[:locale]
-    else
-      I18n.locale = I18n.default_locale
+    compatible_locale = http_accept_language.compatible_language_from(I18n.available_locales)
+    unless compatible_locale.nil?
+      I18n.locale = compatible_locale
     end
   end
 end
