@@ -40,3 +40,7 @@ end
 Then(/^I should be at the choose metric page$/) do
   expect(page).to have_content("Choose a metric from a Base Tool:")
 end
+
+When(/^I click destroy Metric Configuration$/) do
+  find('#metrics').first(:link, "Destroy").click
+end
