@@ -1,4 +1,4 @@
-en:
+pt:
   activemodel:
     models:
       metric_configuration:
@@ -13,12 +13,32 @@ en:
   modules_eg_metric_configurations_form: "módulos (por exemplo, as linhas médias de código das classes dentro de um pacote)."
   associated_metric_configuration_form_html: "O %{href} associado a esta métrica."
   range_metric_configurations_no_ranges: "Ainda não existem intervalos!"
-  editing_metric_configurations_edit: "Edição de configuração da Métrica"
-  new_metric_configurations: "Nova Configuração de Métrica"
+  editing_metric_configuration: "Edição de configuração da Métrica"
+  new_metric_configuration: "Nova Configuração de Métrica"
   metric_configurations_base: "Ferramenta de Base de Dados:"
   metric_configuration_name: "Nome da Métrica:"
   metric_configurations_description: "Descrição da métrica:"
   metric_configurations_base_tool_name: "Nome da ferramenta base:"
   metric_configurations_aggregation: "Forma de Agregação"
   metric_configurations_reading_group: "Nome do grupo"
-'
+  no_metric_configurations: "Não há configurações de métricas ainda!"
+  destroy_metric_configuration: "Destruir Configuração de Métrica"
+  want_destroy_metric_configuration: "Tem certeza que você quer destruir esta Configuração de Métrica?"
+  metric_base_tool_name: "Coletor"
+  metric_language: "Linguagem"
+  metric_scope: "Escopo"
+  metric_aggregation_form: "Forma de Agregação"
+  reading_group_name: "Nome do Grupo de Leitura"
+  scopes:
+    METHOD: "Método"
+    CLASS: "Classe"
+    PACKAGE: "Pacote"
+    SOFTWARE: "Software"
+  aggregation_forms:
+    AVERAGE: "Média"
+    MEDIAN: "Mediana"
+    MAXIMUM: "Máxima"
+    MINIMUM: "Mínima"
+    COUNT: "Contagem"
+    STANDARD_DEVIATION: "Desvio Padrão"
+    
