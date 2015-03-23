@@ -63,6 +63,9 @@ gem 'exception_notification', '~> 4.0.1'
 # Google Analytics
 gem 'google-analytics-rails', '~> 0.0.6'
 
+# Browser language detection
+gem 'http_accept_language'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'
