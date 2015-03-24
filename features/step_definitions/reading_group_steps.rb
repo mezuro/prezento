@@ -22,11 +22,11 @@ Given(/^I have a sample reading group$/) do
 end
 
 Given(/^I visit the Sample Reading Group page$/) do
-  visit reading_group_path(@reading_group.id)
+  visit reading_group_path(id: @reading_group.id)
 end
 
 Given(/^I am at the sample reading group edit page$/) do
-  visit edit_reading_group_path(@reading_group.id)
+  visit edit_reading_group_path(id: @reading_group.id)
 end
 
 Given(/^I own a reading group named "(.*?)"$/) do |name|
@@ -35,7 +35,7 @@ Given(/^I own a reading group named "(.*?)"$/) do |name|
 end
 
 When(/^I visit the sample reading group edit page$/) do
-  visit edit_reading_group_path(@reading_group.id)
+  visit edit_reading_group_path(id: @reading_group.id)
 end
 
 Then(/^The field "(.*?)" should be filled with the sample reading group "(.*?)"$/) do |field, value|
@@ -57,7 +57,7 @@ Then(/^I should see the information of the sample reading$/) do
 end
 
 Then(/^I should be in the Edit Reading Group page$/) do
-  visit edit_reading_group_path(@reading_group.id)
+  visit edit_reading_group_path(id: @reading_group.id)
 end
 
 Then(/^the Sample Reading Group should not be there$/) do

@@ -31,7 +31,7 @@ describe KalibroConfigurationsController, :type => :controller do
         end
 
         it 'should redirect to the show view' do
-          expect(response).to redirect_to kalibro_configuration_path(kalibro_configuration.id)
+          expect(response).to redirect_to kalibro_configuration_path(id: kalibro_configuration.id)
         end
       end
 
@@ -119,7 +119,7 @@ describe KalibroConfigurationsController, :type => :controller do
           delete :destroy, :id => @subject.id
         end
 
-         it { is_expected.to redirect_to(kalibro_configurations_path(@subject.id))  }
+         it { is_expected.to redirect_to(kalibro_configurations_path(id: @subject.id))  }
       end
     end
 
@@ -181,7 +181,7 @@ describe KalibroConfigurationsController, :type => :controller do
           get :edit, :id => @subject.id
         end
 
-        it { is_expected.to redirect_to(kalibro_configurations_path(@subject.id))  }
+        it { is_expected.to redirect_to(kalibro_configurations_path(id: @subject.id))  }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
@@ -225,7 +225,7 @@ describe KalibroConfigurationsController, :type => :controller do
             end
 
             it 'should redirect to the show view' do
-              expect(response).to redirect_to kalibro_configuration_path(kalibro_configuration.id)
+              expect(response).to redirect_to kalibro_configuration_path(id: kalibro_configuration.id)
             end
           end
 
@@ -255,7 +255,7 @@ describe KalibroConfigurationsController, :type => :controller do
           post :update, :id => kalibro_configuration.id, :kalibro_configuration => kalibro_configuration_params
         end
 
-        it { is_expected.to redirect_to kalibro_configurations_path(kalibro_configuration.id) }
+        it { is_expected.to redirect_to kalibro_configurations_path(id: kalibro_configuration.id) }
       end
     end
 

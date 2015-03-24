@@ -38,6 +38,7 @@ Feature: Compound Metric Configuration Creation
     And I have another compound metric configuration with code "Another_Code" within the given mezuro configuration
     And I am at the Sample Configuration page
     And I click the Add Metric link
+    And I take a picture of the page
     And I click the Compound Metric link
     When I fill the Name field with "My Compound Metric"
     And I fill the Description field with "Some description"

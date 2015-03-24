@@ -45,7 +45,7 @@ describe MetricConfigurationsController, :type => :controller do
         post :new, kalibro_configuration_id: kalibro_configuration.id, metric_name: "Lines of Code", metric_collector_name: metric_collector.name
       end
 
-      it { is_expected.to redirect_to(kalibro_configurations_url(kalibro_configuration.id)) }
+      it { is_expected.to redirect_to(kalibro_configurations_url(id: kalibro_configuration.id)) }
       it { is_expected.to respond_with(:redirect) }
     end
   end
@@ -129,7 +129,7 @@ describe MetricConfigurationsController, :type => :controller do
           get :edit, id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
         end
 
-        it { is_expected.to redirect_to(kalibro_configurations_path(metric_configuration.kalibro_configuration_id)) }
+        it { is_expected.to redirect_to(kalibro_configurations_path(id: metric_configuration.kalibro_configuration_id)) }
         it { is_expected.to respond_with(:redirect) }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -166,7 +166,7 @@ describe MetricConfigurationsController, :type => :controller do
             post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          it { is_expected.to redirect_to(kalibro_configuration_path(metric_configuration.kalibro_configuration_id)) }
+          it { is_expected.to redirect_to(kalibro_configuration_path(id: metric_configuration.kalibro_configuration_id)) }
           it { is_expected.to respond_with(:redirect) }
         end
 
@@ -187,7 +187,7 @@ describe MetricConfigurationsController, :type => :controller do
           post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { is_expected.to redirect_to kalibro_configurations_path(metric_configuration.kalibro_configuration_id) }
+        it { is_expected.to redirect_to kalibro_configurations_path(id: metric_configuration.kalibro_configuration_id) }
       end
     end
   end
@@ -210,7 +210,7 @@ describe MetricConfigurationsController, :type => :controller do
           delete :destroy, id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
         end
 
-        it { is_expected.to redirect_to(kalibro_configuration_path(metric_configuration.kalibro_configuration_id)) }
+        it { is_expected.to redirect_to(kalibro_configuration_path(id: metric_configuration.kalibro_configuration_id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -219,7 +219,7 @@ describe MetricConfigurationsController, :type => :controller do
           delete :destroy, id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
         end
 
-         it { is_expected.to redirect_to(kalibro_configurations_path(metric_configuration.kalibro_configuration_id)) }
+         it { is_expected.to redirect_to(kalibro_configurations_path(id: metric_configuration.kalibro_configuration_id)) }
          it { is_expected.to respond_with(:redirect) }
       end
     end

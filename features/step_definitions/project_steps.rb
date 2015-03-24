@@ -27,15 +27,15 @@ Given(/^I own a project named "(.*?)"$/) do |name|
 end
 
 Given(/^I am at the Sample Project page$/) do
-  visit project_path(@project.id)
+  visit project_path(id: @project.id)
 end
 
 Given(/^I am at the sample project edit page$/) do
-  visit edit_project_path(@project.id)
+  visit edit_project_path(id: @project.id)
 end
 
 Given(/^I visit the sample project edit page$/) do
-  visit edit_project_path(@project.id)
+  visit edit_project_path(id: @project.id)
 end
 
 Given(/^I am at the New Project page$/) do
