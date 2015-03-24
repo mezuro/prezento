@@ -1,13 +1,4 @@
 en:
-  activemodel:
-    models:
-      metric_configuration:
-        one: Metric Configuration
-        other: Metric Configurations
-    attributes:
-      metric_configuration:
-        metric: 'Metric'
-        weight: 'Weight'
   weighted_average_metric_configurations_form:  "It is used to calculate the weighted average of a"
   statistical_result_metric_configurations_form: "It is the calculation of statistical results for higher"
   modules_eg_metric_configurations_form: " modules (e.g., average lines of code of the classes inside a package)."
@@ -29,6 +20,11 @@ en:
   metric_scope: "Scope"
   metric_aggregation_form: "Aggregation Form"
   reading_group_name: "Reading Group Name"
+  calculate_weighted_average_html: "It is used to calculate the weighted average of a %{href}'s grade"
+  aggregation_form_helper_html: "It is the calculation of statistical results for higher %{href} modules (e.g., average lines of code of the classes inside a package)."
+  reading_group_helper_html: "The %{href} associated with this metric."
+  no_models: "There are no %{model} yet!"
+  choose_metric: "Choose a metric from a Base Tool:"
   scopes:
     METHOD: "Method"
     CLASS: "Class"

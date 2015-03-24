@@ -1,5 +1,5 @@
 module CompoundMetricConfigurationsHelper
   def scope_options
-    [["Method","METHOD"], ["Class", "CLASS"], ["Package", "PACKAGE"], ["Software", "SOFTWARE"]]
+    [[t("scopes.METHOD"),"METHOD"], [t("scopes.CLASS"), "CLASS"], [t("scopes.PACKAGE"), "PACKAGE"], [t("scopes.SOFTWARE"), "SOFTWARE"]]
   end
 end
