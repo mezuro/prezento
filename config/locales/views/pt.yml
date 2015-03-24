@@ -21,11 +21,6 @@
 
 pt:
   #commons
-  home: "Início"
-  hello: "Olá"
-  sign_out: "Sair"
-  sign_in: "Entrar"
-  sign_up: "Inscrever-se"
   show: "Mostrar"
   edit: "Editar %{model}"
   edit_user: "Editar Usuário"
@@ -43,7 +38,6 @@ pt:
   projects: "Projetos"
   configuration: "Configuração"
   configurations: "Configurações"
-  edit_account: "Editar Conta"
   module: "Módulo"
   weight: "Peso"
   description: "Descrição"
@@ -104,11 +98,6 @@ pt:
   sure_destroy: 'Você tem certeza que deseja apagar este(a) %{model}?'
 
   #this pattern is type_folder_file
-
-  about_mezuro: "Sobre Mezuro"
-  about_mezuro_body: "<small> O projeto Mezuro tenta prover uma plataforma para comparar técnicas de projetos e métricas, ensinando como usar métricas através de configurações e análise de código, evitando débitos técnicos e disseminando o uso e entendimento de métricas de código.</small>"
-  about_mezuro1: "Aqui você pode experimentar a interface, que nós chamamos de Prezento. Ela interage com o"
-  about_mezuro2: "A ideia é ser um serviço em que vocẽ pode avaliar a qualidade do seu código e, se você quiser, definir um conjunto de métricas a serem usadas."
   body1_compound_form: "Uma variável que contém o valor de um cálculo de métrica. Ele pode ser utilizado no script de outra métrica composta."
   body1_compound_form_example: "Exemplo: Código foo := 10"
   body1_compound_metric_options: "Um nome personalizado para a sua métrica composta."
@@ -322,7 +311,6 @@ pt:
   process_period: "Período de processamento"
   currently_waiting_confirmation: "Atualmente esperando confirmação de:"
   leave_blank_wont_change: "(deixe-o em branco se não quiser mudá-lo.)"
-  instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
   pick_color: "Escolha a Cor"
   password_confirmation: "Confirme sua senha"
   current_password: "Senha Atual"
