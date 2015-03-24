@@ -28,7 +28,7 @@ describe KalibroRangesController, :type => :controller do
         get :new, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: kalibro_range.metric_configuration_id
       end
 
-      it { is_expected.to redirect_to(kalibro_configurations_path(kalibro_configuration.id)) }
+      it { is_expected.to redirect_to(kalibro_configurations_path(id: kalibro_configuration.id)) }
       it { is_expected.to respond_with(:redirect) }
     end
   end
@@ -54,7 +54,7 @@ describe KalibroRangesController, :type => :controller do
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: kalibro_range.metric_configuration_id, kalibro_range: kalibro_range_params
         end
 
-        it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(metric_configuration.kalibro_configuration_id, metric_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -69,7 +69,7 @@ describe KalibroRangesController, :type => :controller do
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: new_kalibro_range.metric_configuration_id, kalibro_range: new_kalibro_range.to_hash
         end
 
-        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(compound_metric_configuration.kalibro_configuration_id, compound_metric_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -103,7 +103,7 @@ describe KalibroRangesController, :type => :controller do
           delete :destroy, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id
         end
 
-        it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(metric_configuration.kalibro_configuration_id, metric_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -120,7 +120,7 @@ describe KalibroRangesController, :type => :controller do
           delete :destroy, id: new_kalibro_range.id, metric_configuration_id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id
         end
 
-        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(compound_metric_configuration.kalibro_configuration_id, compound_metric_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -129,7 +129,7 @@ describe KalibroRangesController, :type => :controller do
           delete :destroy, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id
         end
 
-        it { is_expected.to redirect_to(kalibro_configurations_path(metric_configuration.kalibro_configuration_id)) }
+        it { is_expected.to redirect_to(kalibro_configurations_path(id: metric_configuration.kalibro_configuration_id)) }
         it { is_expected.to respond_with(:redirect) }
       end
     end
@@ -172,7 +172,7 @@ describe KalibroRangesController, :type => :controller do
           get :edit, id: kalibro_range.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, metric_configuration_id: metric_configuration.id
         end
 
-        it { is_expected.to redirect_to(kalibro_configurations_url(metric_configuration.kalibro_configuration_id)) }
+        it { is_expected.to redirect_to(kalibro_configurations_url(id: metric_configuration.kalibro_configuration_id)) }
         it { is_expected.to respond_with(:redirect) }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -212,7 +212,7 @@ describe KalibroRangesController, :type => :controller do
             post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_range: kalibro_range_params
           end
 
-          it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(metric_configuration.kalibro_configuration_id, metric_configuration.id)) }
+          it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id)) }
           it { is_expected.to respond_with(:redirect) }
         end
 
@@ -228,7 +228,7 @@ describe KalibroRangesController, :type => :controller do
             post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: new_kalibro_range.id, metric_configuration_id: compound_metric_configuration.id, kalibro_range: new_kalibro_range.to_hash
           end
 
-          it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(compound_metric_configuration.kalibro_configuration_id, compound_metric_configuration.id)) }
+          it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id)) }
           it { is_expected.to respond_with(:redirect) }
         end
 
@@ -251,7 +251,7 @@ describe KalibroRangesController, :type => :controller do
           post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_range: kalibro_range_params
         end
 
-        it { is_expected.to redirect_to kalibro_configurations_path(metric_configuration.kalibro_configuration_id) }
+        it { is_expected.to redirect_to kalibro_configurations_path(id: metric_configuration.kalibro_configuration_id) }
       end
     end
   end

@@ -32,6 +32,10 @@ describe HomeController, :type => :controller do
           get :index
           expect(I18n.locale).to eq(:en)
         end
+
+        after do
+          I18n.locale = I18n.default_locale
+        end
       end
     end
   end
