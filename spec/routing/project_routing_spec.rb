@@ -8,6 +8,9 @@ describe ProjectsController, :type => :routing do
     it { is_expected.to route(:get, '/projects').
                   to(controller: :projects, action: :index) }
 
+    it { is_expected.to route(:get, '/pt/projects').
+                  to(controller: :projects, action: :index, locale: 'pt') }
+
     it { is_expected.to route(:post, '/projects').
                   to(controller: :projects, action: :create) }
 

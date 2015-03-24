@@ -19,3 +19,10 @@ Feature: Homepage
     And I should see "Latest projects"
     And I should see "Project"
     And I should see "Your projects"
+
+  @wip
+  Scenario: Language selection
+    Given I am at the homepage
+    When I click the Languages link
+    And I click the pt link
+    Then I should see "Entendendo Métricas de Código"
