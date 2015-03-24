@@ -19,9 +19,18 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    compatible_locale = http_accept_language.compatible_language_from(I18n.available_locales)
-    unless compatible_locale.nil?
-      I18n.locale = compatible_locale
+    unless params[:locale].nil?
+      I18n.locale = params[:locale]
+    else
+      compatible_locale = http_accept_language.compatible_language_from(I18n.available_locales)
+      unless compatible_locale.nil?
+        I18n.locale = compatible_locale
+      end
     end
+  end
+
+  # This happens after the *_url *_path helpers
+  def default_url_options(options = {})
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }.merge options
   end
 end

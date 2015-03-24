@@ -1,43 +1,47 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'users/:user_id/projects' => 'users#projects', as: :user_projects
+  scope "(:locale)", locale: /en|pt/ do
+    devise_for :users
+    get 'users/:user_id/projects' => 'users#projects', as: :user_projects
 
-  resources :projects do
-    resources :repositories, except: [:update, :index]
-    get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
-    post '/repositories/:id/state' => 'repositories#state', as: :repository_state
-    post '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
-    put '/repositories/:id' => 'repositories#update', as: :repository_update
-    get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
-  end
-
-  resources :kalibro_configurations do
-    get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
-    resources :metric_configurations, except: [:update, :new] do
-      get '/kalibro_ranges/new' => 'kalibro_ranges#new', as: :new_kalibro_range
-      resources :kalibro_ranges, except: [:update, :new]
-      put '/kalibro_ranges/:id' => 'kalibro_ranges#update', as: :kalibro_range_update
+    resources :projects do
+      resources :repositories, except: [:update, :index]
+      get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
+      post '/repositories/:id/state' => 'repositories#state', as: :repository_state
+      post '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
+      put '/repositories/:id' => 'repositories#update', as: :repository_update
+      get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
     end
-    post '/metric_configurations/new' => 'metric_configurations#new', as: :new_metric_configuration
-    put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update
 
-    resources :compound_metric_configurations, except: [:destroy, :update]
-    put '/compound_metric_configurations/:id' => 'compound_metric_configurations#update', as: :compound_metric_configuration_update
+    resources :kalibro_configurations do
+      get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
+      resources :metric_configurations, except: [:update, :new] do
+        get '/kalibro_ranges/new' => 'kalibro_ranges#new', as: :new_kalibro_range
+        resources :kalibro_ranges, except: [:update, :new]
+        put '/kalibro_ranges/:id' => 'kalibro_ranges#update', as: :kalibro_range_update
+      end
+      post '/metric_configurations/new' => 'metric_configurations#new', as: :new_metric_configuration
+      put '/metric_configurations/:id' => 'metric_configurations#update', as: :metric_configuration_update
+
+      resources :compound_metric_configurations, except: [:destroy, :update]
+      put '/compound_metric_configurations/:id' => 'compound_metric_configurations#update', as: :compound_metric_configuration_update
+    end
+
+    resources :reading_groups do
+      resources :readings, except: [:index, :update, :show]
+      put '/readings/:id' => 'readings#update', as: :reading_update
+    end
+
+    #resources :modules
+    post '/modules/:id/metric_history' => 'modules#metric_history'
+    post '/modules/:id/tree' => 'modules#load_module_tree'
+
+    # Tutorials
+    get '/tutorials/:name' => 'tutorials#view', as: 'tutorials'
+
+    root "home#index"
   end
 
-  resources :reading_groups do
-    resources :readings, except: [:index, :update, :show]
-    put '/readings/:id' => 'readings#update', as: :reading_update
-  end
-
-  #resources :modules
-  post '/modules/:id/metric_history' => 'modules#metric_history'
-  post '/modules/:id/tree' => 'modules#load_module_tree'
-
-  # Tutorials
-  get '/tutorials/:name' => 'tutorials#view', as: 'tutorials'
-
-  root "home#index"
+  get '/:locale' => 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
