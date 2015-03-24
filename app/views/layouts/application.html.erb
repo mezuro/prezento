@@ -58,18 +58,18 @@
           </div>
           <div class="collapse navbar-collapse" id="nav-collapse">
             <ul class="nav navbar-nav">
-              <li><%= link_to 'Home', root_path %></li>
-              <li><%= link_to 'Project', projects_path %></li>
-              <li><%= link_to 'Configuration', kalibro_configurations_path %></li>
-              <li><%= link_to 'Reading Group', reading_groups_path %></li>
+              <li><%= link_to t('home'), root_path %></li>
+              <li><%= link_to Project.model_name.human, projects_path %></li>
+              <li><%= link_to KalibroConfiguration.model_name.human, kalibro_configurations_path %></li>
+              <li><%= link_to ReadingGroup.model_name.human, reading_groups_path %></li>
             </ul>
             <ul class="nav navbar-nav" style="float: right;">
               <% if user_signed_in? %>
-                <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
-                <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to t('edit_account'), edit_user_registration_path %></li>
+                <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
               <% else %>
-                <li><%= link_to 'Sign In', new_user_session_path %></li>
-                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li><%= link_to t('sign_in'), new_user_session_path %></li>
+                <li><%= link_to t('sign_up'), new_user_registration_path %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
@@ -83,13 +83,13 @@
           <div class="well sidebar-nav">
             <ul class="list-group">
               <% if user_signed_in? %>
-                <li class="nav-header">Hello, <strong><%= current_user.name %></strong></li>
-                <li class="list-group-item"><%= link_to 'Your projects', user_projects_path(current_user.id) %></li>
+                <li class="nav-header"><%= t('hello_html', user: current_user.name) %></li>
+                <li class="list-group-item"><%= link_to t('your_projects'), user_projects_path(current_user.id) %></li>
               <% end %>
-              <li class="nav-header">Tutorials</li>
-              <li class="list-group-item"><%= link_to 'Analysis', tutorials_path('analyzing') %></li>
-              <li class="list-group-item"><%= link_to 'Configuring', tutorials_path('configuring') %></li>
-              <li class="list-group-item" ><%= link_to 'Keywords', tutorials_path('keywords') %></li>
+              <li class="nav-header"><%= t('tutorials') %></li>
+              <li class="list-group-item"><%= link_to t('analysis'), tutorials_path('analyzing') %></li>
+              <li class="list-group-item"><%= link_to t('configuring'), tutorials_path('configuring') %></li>
+              <li class="list-group-item" ><%= link_to t('keywords'), tutorials_path('keywords') %></li>
               <% if content_for?(:sidebar) %>
                 <%= yield :sidebar %>
               <% else %>
@@ -99,7 +99,7 @@
           </div><!--/.well -->
         </div><!--/col-sm-3 col-md-3-->
         <div class="col-sm-9 col-md-9">
-          <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp&nbsp Wait an instant while we are loading the page that you have requested.</div>
+        <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp&nbsp <%= t('instant_loading_page') %></div>
 
           <%= bootstrap_flash %>
           <%= yield %>
