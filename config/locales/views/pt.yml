@@ -22,7 +22,8 @@
 pt:
   #commons
   show: "Mostrar"
-  edit: "Editar %{model}"
+  edit_model: "Editar %{model}"
+  edit: "Editar"
   edit_user: "Editar Usuário"
   end: "Fim"
   the: "A"
@@ -126,7 +127,6 @@ pt:
   edit_configuration: "Editar configurações"
   must_logged_configuration: "Você precisa estar logado para criar novas configurações."
   new_configuration: "Nova Configuração"
-  calculate_weighted_average_html: "Ele é usado para calcular a média ponderada de um %{href} através de suas Notas"
   measured_metric_html: "A %{href} dos %{href2} medidos por esta métrica."
   change_password: "Mude sua senha"
   range_lower_limit: "Limite de intervalo inferior."
@@ -156,7 +156,7 @@ pt:
   received_unlock_instructions: "Você recebeu instruções de desbloqueio?"
   your_projects: "Seus projetos"
   mezuro_team: "A Equipe Mezuro"
-  want_destroy_range: "Tem certeza que você quer destruir este intervalo?"
+  want_destroy_range: "Tem certeza que você quer destruir este Intervalo?"
   add_metric: "Adicionando Métrica"
   destroy_configuration: "Destruindo Configuração"
   want_destroy_configuration: "Tem certeza que você quer destruir esta configuração?"

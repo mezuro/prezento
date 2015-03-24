@@ -8,6 +8,8 @@ pt:
       metric_configuration:
         metric: Métrica
         weight: Peso
+        aggregation_form: Forma de Agregação
+        reading_group_id: Grupo de Leitura
   weighted_average_metric_configurations_form:  "Ele é usado para calcular a média ponderada de um"
   statistical_result_metric_configurations_form: "É o cálculo dos resultados estatísticos para maior"
   modules_eg_metric_configurations_form: "módulos (por exemplo, as linhas médias de código das classes dentro de um pacote)."
@@ -29,6 +31,11 @@ pt:
   metric_scope: "Escopo"
   metric_aggregation_form: "Forma de Agregação"
   reading_group_name: "Nome do Grupo de Leitura"
+  calculate_weighted_average_html: "É usado para calcular a média ponderada das notas de um %{href}"
+  aggregation_form_helper_html: "É o cálculo dos resultados estatísticos para módulos de maior %{href} (por exemplo número médio de linhas das classes dentro de um pacote)"
+  reading_group_helper_html: "O %{href} associado com esta métrica."
+  no_models: "Não há %{model} ainda!"
+  choose_metric: "Escolha uma métrica de um Coletor:"
   scopes:
     METHOD: "Método"
     CLASS: "Classe"
