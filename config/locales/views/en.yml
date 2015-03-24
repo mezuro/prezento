@@ -22,7 +22,8 @@
 en:
   #commons
   show: "Show"
-  edit: "Edit %{model}"
+  edit_model: "Edit %{model}"
+  edit: "Edit"
   edit_user: "Edit User"
   end: "End"
   the: "The"
@@ -129,7 +130,6 @@ en:
   new_configuration: "New Configuration"
   measured_metric_html: "The %{href} of the %{href2} measured by this metric."
   change_password: "Change your password "
-  calculate_weighted_average: "It is used to calculate the weighted average of the "
   range_lower_limit: "This Range's lower limit."
   range_upper_limit: "This Range's upper limit."
   explanation_chose_interval: "An explanation of why you chose this interval, with that reading for this"
