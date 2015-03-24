@@ -20,19 +20,19 @@ Given(/^I have a sample configuration with MetricFu metrics$/) do
 end
 
 When(/^I visit the sample metric configuration edit page$/) do
-  visit edit_kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id)
+  visit edit_kalibro_configuration_metric_configuration_path(kalibro_configuration_id: @metric_configuration.kalibro_configuration_id, id: @metric_configuration.id)
 end
 
 When(/^I visit the sample metric configuration page$/) do
-  visit kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id)
+  visit kalibro_configuration_metric_configuration_path(kalibro_configuration_id: @metric_configuration.kalibro_configuration_id, id: @metric_configuration.id)
 end
 
 When(/^I visit the sample metric configuration page$/) do
-  visit edit_kalibro_configuration_path(@kalibro_configuration.id)
+  visit edit_kalibro_configuration_path(id: @kalibro_configuration.id)
 end
 
 Then(/^I am at the sample metric configuration page$/) do
-  visit kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id)
+  visit kalibro_configuration_metric_configuration_path(kalibro_configuration_id: @metric_configuration.kalibro_configuration_id, id: @metric_configuration.id)
   expect(page).to have_content(@metric_configuration.metric.name)
   expect(page).to have_content("Ranges")
 end

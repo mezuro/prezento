@@ -60,7 +60,7 @@ describe RepositoriesController, :type => :controller do
           post :create, project_id: project.id, repository: repository_params
         end
 
-        it { is_expected.to redirect_to(project_repository_process_path(repository.project_id, repository.id)) }
+        it { is_expected.to redirect_to(project_repository_process_path(project_id: repository.project_id, id: repository.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
