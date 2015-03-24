@@ -21,11 +21,6 @@
 
 en:
   #commons
-  home: "Home"
-  hello: "Hello"
-  sign_out: "Sign Out"
-  sign_in: "Sign In"
-  sign_up: "Sign Up"
   show: "Show"
   edit: "Edit %{model}"
   edit_user: "Edit User"
@@ -41,7 +36,6 @@ en:
   reading_groups: "Reading Groups"
   configuration: "Configuration"
   configurations: "Configurations"
-  edit_account: "Edit Account"
   module: "Module"
   weight: "Weight"
   description: "Description"
@@ -104,10 +98,6 @@ en:
   sure_destroy: 'Are you sure that you want to destroy this %{model}?'
   #this pattern is type_folder_file
 
-  about_mezuro: "About Mezuro"
-  about_mezuro_body: "<small> The Mezuro project attempts to provide a platform to compare projects and metric techniques, teaching how to use metrics through configurations and code analysis, avoid technical debts and disseminate code metrics usage and understanding.</small>"
-  about_mezuro1: "Here you can try the front-end, which we call Prezento. It interacts with the"
-  about_mezuro2: "It is intended to be a service where you can evaluate your code quality and, if you want, define which set of metrics to use."
   body1_compound_form: "A variable that holds the value of a metric calculation. It can be used in the script of another compound metric."
   body1_compound_form_example: "Example: Code foo := 10"
   body2_compound_form: " It is used to calculate the weighted average of a"
@@ -317,7 +307,6 @@ en:
   process_period: "Process Period"
   currently_waiting_confirmation: "Currently waiting confirmation for:"
   leave_blank_wont_change: "(leave it blank if you do not want to change it)"
-  instant_loading_page: "Wait an instant while we are loading the page that you have requested."
   pick_color: "Pick color"
   password_confirmation: "Password confirmation"
   current_password: "Current password"
