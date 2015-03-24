@@ -25,7 +25,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
-      it { is_expected.to redirect_to(kalibro_configurations_url(kalibro_configuration.id)) }
+      it { is_expected.to redirect_to(kalibro_configurations_url(id: kalibro_configuration.id)) }
       it { is_expected.to respond_with(:redirect) }
     end
   end
@@ -107,7 +107,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
           get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
 
-        it { is_expected.to redirect_to(kalibro_configurations_path(kalibro_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configurations_path(id: kalibro_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -144,7 +144,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
             post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          it { should redirect_to(kalibro_configuration_path(compound_metric_configuration.kalibro_configuration_id)) }
+          it { should redirect_to(kalibro_configuration_path(id: compound_metric_configuration.kalibro_configuration_id)) }
           it { should respond_with(:redirect) }
         end
 
@@ -166,7 +166,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
           post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
         end
 
-        it { should redirect_to kalibro_configurations_path(compound_metric_configuration.kalibro_configuration_id) }
+        it { should redirect_to kalibro_configurations_path(id: compound_metric_configuration.kalibro_configuration_id) }
       end
     end
   end

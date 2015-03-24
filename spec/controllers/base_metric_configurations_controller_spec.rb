@@ -80,7 +80,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
-      it { is_expected.to redirect_to(kalibro_configurations_url(kalibro_configuration.id)) }
+      it { is_expected.to redirect_to(kalibro_configurations_url(id: kalibro_configuration.id)) }
       it { is_expected.to respond_with(:redirect) }
     end
   end
