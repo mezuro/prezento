@@ -1,0 +1,3 @@
+en:
+  about_mezuro: "About Mezuro"
+  about_mezuro_body_html: "The Mezuro project attempts to provide a platform to compare projects and metric techniques, teaching how to use metrics through configurations and code analysis, avoid technical debts and disseminate code metrics usage and understanding.<br>Here you can try the front-end, which we call Prezento. It interacts with the %{href} and %{href2}. It is intended to be a service where you can evaluate your code quality and, if you want, define which set of metrics to use."
