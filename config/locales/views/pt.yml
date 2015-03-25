@@ -295,6 +295,7 @@ pt:
   comments: "Comentários"
   aggregation_form: "Forma de Agregação"
   kalibro_configuration: "Configuração"
+  idiom: 'Idioma'
 
   #errors
   errors:
