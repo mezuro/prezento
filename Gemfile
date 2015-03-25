@@ -111,9 +111,9 @@ end
 group :cucumber do
   gem 'cucumber-rails', '~> 1.4.0'
   # cleans the database
-  # Version fixed at 1.3. See:
+  # Version must be grater than 1.4.1. See:
   # https://github.com/DatabaseCleaner/database_cleaner/issues/317
-  gem 'database_cleaner', '~> 1.3.0'
+  gem 'database_cleaner', '~> 1.4.1'
   gem 'poltergeist', '~> 1.6.0'
 end
 
