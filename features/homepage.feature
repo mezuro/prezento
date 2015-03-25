@@ -22,6 +22,6 @@ Feature: Homepage
 
   Scenario: Language selection
     Given I am at the homepage
-    When I click the Languages link
+    When I click the Idiom link
     And I click the pt link
     Then I should see "Entendendo Métricas de Código"
