@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -78,10 +78,10 @@ group :test do
 end
 
 group :development, :test do
-  # Call 'debugger' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Access an IRB console on exceptions page and /console in development
+  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -94,7 +94,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
 
   # Deployment
-  gem 'capistrano', "~>3.3.3", require: false
+  gem 'capistrano', "~>3.4.0", require: false
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rvm', "~>0.1.0"
@@ -111,9 +111,9 @@ end
 group :cucumber do
   gem 'cucumber-rails', '~> 1.4.0'
   # cleans the database
-  # Version fixed at 1.3. See:
+  # Version must be grater than 1.4.1. See:
   # https://github.com/DatabaseCleaner/database_cleaner/issues/317
-  gem 'database_cleaner', '~> 1.3.0'
+  gem 'database_cleaner', '~> 1.4.1'
   gem 'poltergeist', '~> 1.6.0'
 end
 
