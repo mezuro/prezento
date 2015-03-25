@@ -20,7 +20,6 @@ Feature: Homepage
     And I should see "Project"
     And I should see "Your projects"
 
-  @wip
   Scenario: Language selection
     Given I am at the homepage
     When I click the Languages link
