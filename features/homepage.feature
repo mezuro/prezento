@@ -25,3 +25,5 @@ Feature: Homepage
     When I click the Idiom link
     And I click the pt link
     Then I should see "Entendendo Métricas de Código"
+    When I click the Idioma link
+    And I click the en link
