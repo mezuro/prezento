@@ -78,7 +78,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                   <% I18n.available_locales.each do |locale| %>
-                    <li><a href="#"><%= locale.to_s %></a></li>
+                    <li><%= link_to(locale.to_s, url_for(locale: locale)) %></li>
                   <% end %>
                 </ul>
               </li>
