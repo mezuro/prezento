@@ -9,11 +9,11 @@ Given(/^I have a sample range within the sample compound metric configuration wi
 end
 
 Given(/^I am at the Edit Kalibro Range page$/) do
-  visit edit_kalibro_configuration_metric_configuration_kalibro_range_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id, @kalibro_range.id)
+  visit edit_kalibro_configuration_metric_configuration_kalibro_range_path(kalibro_configuration_id: @metric_configuration.kalibro_configuration_id, metric_configuration_id: @metric_configuration.id, id: @kalibro_range.id)
 end
 
 Given(/^I am at the Edit Kalibro Range page for the compound metric configuration$/) do
-  visit edit_kalibro_configuration_metric_configuration_kalibro_range_path(@compound_metric_configuration.kalibro_configuration_id, @compound_metric_configuration.id, @kalibro_range.id)
+  visit edit_kalibro_configuration_metric_configuration_kalibro_range_path(kalibro_configuration_id: @compound_metric_configuration.kalibro_configuration_id, metric_configuration_id: @compound_metric_configuration.id, id: @kalibro_range.id)
 end
 
 Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
@@ -31,11 +31,11 @@ Given(/^I have a sample range within the sample compound metric configuration$/)
 end
 
 When(/^I am at the New Range page$/) do
-  visit kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id)
+  visit kalibro_configuration_metric_configuration_new_kalibro_range_path(kalibro_configuration_id: @metric_configuration.kalibro_configuration_id, metric_configuration_id: @metric_configuration.id)
 end
 
 Given(/^I am at the New Range page for the compound metric configuration$/) do
-  visit kalibro_configuration_metric_configuration_new_kalibro_range_path(@compound_metric_configuration.kalibro_configuration_id, @compound_metric_configuration.id)
+  visit kalibro_configuration_metric_configuration_new_kalibro_range_path(kalibro_configuration_id: @compound_metric_configuration.kalibro_configuration_id, metric_configuration_id: @compound_metric_configuration.id)
 end
 
 

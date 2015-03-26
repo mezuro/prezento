@@ -59,11 +59,11 @@ Given(/^I wait up for a error processing$/) do
 end
 
 Given(/^I am at the New Repository page$/) do
-  visit new_project_repository_path(@project.id)
+  visit new_project_repository_path(project_id: @project.id)
 end
 
 Given(/^I am at repository edit page$/) do
-  visit edit_project_repository_path(@repository.project_id, @repository.id)
+  visit edit_project_repository_path(project_id: @repository.project_id, id: @repository.id)
 end
 
 Given(/^I ask for the last ready processing of the given repository$/) do
@@ -91,7 +91,7 @@ When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
 end
 
 When(/^I visit the repository show page$/) do
-  visit project_repository_path(@project.id, @repository.id)
+  visit project_repository_path(project_id: @project.id, id: @repository.id)
 end
 
 When(/^I click on the sample child's name$/) do
