@@ -8,7 +8,7 @@
 </p>
 
 <hr>
-
+<div id="metrics">
 <h2><%= t('metric').pluralize %></h2>
 <% if kalibro_configuration_owner? @kalibro_configuration.id %>
   <%= link_to "#{t('add')} #{t('metric')}", kalibro_configuration_choose_metric_path(@kalibro_configuration.id), class: 'btn btn-info' %>
@@ -17,7 +17,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= "#{t('metric')} #{t('name')}" %></th>
+      <th><%= t('metric') %></th>
       <th><%= t('code') %></th>
       <th><%= t('weight') %></th>
       <th colspan="3"></th>
@@ -31,12 +31,13 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <hr>
 
 <p>
  <%= link_to t('back'), kalibro_configurations_path, class: 'btn btn-default' %>
  <% if kalibro_configuration_owner? @kalibro_configuration.id %>
-   <%= link_to "#{t('destroy')} #{KalibroConfiguration.model_name.human}", kalibro_configuration_path(@kalibro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
+   <%= link_to t('destroy_configuration'), kalibro_configuration_path(@kalibro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
  <% end %>
 </p>

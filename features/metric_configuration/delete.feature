@@ -11,7 +11,7 @@ Feature: Metric Configuration Deletion
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
-    And I click the Destroy link
+    And I click destroy Metric Configuration
     Then I should see "There are no Metric Configurations yet!"
 
   @kalibro_configuration_restart
