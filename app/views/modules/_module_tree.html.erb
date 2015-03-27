@@ -11,7 +11,7 @@
   <%= format_grade(@root_module_result.grade) %>
 </p>
 <% unless @root_module_result.parent_id.nil? %>
-  <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} Loading data. Please, wait.', #{@root_module_result.parent_id});" %></p>
+  <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} #{escape_javascript(t('loading_data'))}', #{@root_module_result.parent_id});" %></p>
 <% end %>
 
 <% cache("#{@root_module_result.id}_tree") do %>
