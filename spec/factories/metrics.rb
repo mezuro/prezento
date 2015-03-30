@@ -23,8 +23,8 @@ FactoryGirl.define do
 
   factory :pain, class: KalibroClient::Entities::Miscellaneous::NativeMetric do
     name "Code Pain"
-    code "pain"
-    scope "CLASS"
+    code "flog"
+    scope "METHOD"
     description nil
     languages { [:ruby] }
     metric_collector_name "MetricFu"
