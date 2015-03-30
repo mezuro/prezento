@@ -27,6 +27,19 @@ FactoryGirl.define do
     send_email "test@test.com"
   end
 
+  factory :ruby_repository, class: Repository do
+    id 2
+    name "KalibroConfigurations"
+    description "Kalibro Configurations"
+    license "GPLv3"
+    period 1
+    scm_type "GIT"
+    address "https://github.com/mezuro/kalibro_processor.git"
+    kalibro_configuration_id 1
+    project_id 1
+    send_email "test@test.com"
+  end
+
   factory :another_repository, parent: :repository do
     id 2
   end

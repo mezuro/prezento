@@ -8,6 +8,17 @@ Given(/^I have a metric configuration with code "(.*?)" within the given mezuro 
     {kalibro_configuration_id: @kalibro_configuration.id, reading_group_id: @reading_group.id, metric: FactoryGirl.build(:metric, code: code)})
 end
 
+Given(/^I have a sample configuration with MetricFu metrics$/) do
+  reading_group = FactoryGirl.create(:reading_group)
+  reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
+
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
+  metric_configuration = FactoryGirl.create(:metric_configuration,
+                                            {metric: FactoryGirl.build(:pain),
+                                             reading_group_id: reading_group.id,
+                                             kalibro_configuration_id: @kalibro_configuration.id})
+end
+
 When(/^I visit the sample metric configuration edit page$/) do
   visit edit_kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id, @metric_configuration.id)
 end
@@ -40,3 +51,4 @@ end
 Then(/^I should be at the choose metric page$/) do
   expect(page).to have_content("Choose a metric from a Base Tool:")
 end
+
