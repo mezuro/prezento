@@ -1,0 +1,90 @@
+<h1>Tutorial</h1>
+<h2>Analyzing a repository</h2>
+
+<hr />
+
+<h3>Requisites</h3>
+
+In order to create a Project, you must:
+<ul>
+  <li>Have <%= link_to(t('signed_up'), new_user_registration_path) %> to the platform</li>
+  <li>Be <%= link_to(t('signed_in'), new_user_session_path) %></li>
+  <li>And have a repository URL which you wish to analyze</li>
+</ul>
+
+<hr />
+
+<h3>Steps</h3>
+
+<h4>Project creation</h4>
+
+<ol>
+  <li>Click on "Project" on the upper menu</li>
+  <li>Click on "New Project"</li>
+  <li>Fill in the form with a name that must be unique</li>
+  <li>Fill in the form with a description which is not required</li>
+  <li>Click on "Save" and you should be at the project page now, congratulations!</li>
+</ol>
+
+<h4>Repository creation</h4>
+
+<ol>
+  <li>From the project page, click on "New Repository"</li>
+  <li>Fill in the form, making sure that:
+    <ul>
+      <li>"Name" must be unique</li>
+      <li>You should choose one of the Open Source licenses in the platform according to your code</li>
+      <li>The "Type" field stands for the Repository source code management tool (Git, for example)</li>
+      <li>Fill in the "Address" with the URL from which we can download your code</li>
+      <li>If you want to analyze your project periodically, set it (you can as well run it from the interface whenever you want)</li>
+      <li>Finally, the "Configuration" stands for the set of metrics and interpretation that we will use to analyze your project</li>
+    </ul>
+  </li>
+  <li>Click on "Save" and you should be at the repository page, waiting for the analysis</li>
+</ol>
+
+<hr />
+
+<h4>Repository page details</h4>
+
+The repository page is divided into four different sections:
+
+<h5><b>Details</b></h5>
+<ul>
+  <li>Information that you provided during the creation steps</li>
+  <li>Select box so it is possible to visualize previous processings of your repository</li>
+</ul>
+
+<h5><b>Processing information</b></h5>
+
+<ul>
+  <li>Information about the time it has taken to finish each step of the processing
+    <ul>
+      <li>PREPARING: the system is reserving a folder for your repository and retrieving the configuration</li>
+      <li>DOWNLOADING: retrieving the source code</li>
+      <li>COLLECTING: calculating the metrics for your repository</li>
+      <li>BUILDING: organizing the results into a source tree structure</li>
+      <li>AGGREGATING: calculating the aggregated value for parent modules in the source tree</li>
+      <li>CALCULATING: if the chosen configuration has compound metrics, they will be calculated</li>
+      <li>INTERPRETING: with all the necessary results, the system will interpret them using reading groups (labels and colors)</li>
+    </ul>
+  </li>
+</ul>
+<h5><b>Modules Tree</b></h5>
+<ul>
+  <li>Source tree structure where you can navigate by clicking on the names
+  <li>Information about the granularity of the module
+    <ul>
+      <li>METHOD</li>
+      <li>CLASS</li>
+      <li>PACKAGE</li>
+      <li>SOFTWARE</li>
+    </ul>
+  <li>Grade of the given module according to the weights of the metrics on the configuration
+</ul>
+
+<h5><b>Metric Results</b></h5>
+<ul>
+  <li>Displays the individual results of each metric for the current module selected in the source tree</li>
+  <li>By clicking on the metric name, you will see a historic chart for that metric</li>
+</ul>
