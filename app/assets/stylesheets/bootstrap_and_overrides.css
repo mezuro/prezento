@@ -55,3 +55,7 @@ footer div {
     color: #999999;
     text-transform: uppercase;
 }
+
+dd {
+    margin-left: 40px !important;
+}
