@@ -1,7 +1,7 @@
 module MetricConfigurationsHelper
   def aggregation_options
     [["Average","AVERAGE"], ["Median", "MEDIAN"], ["Maximum", "MAXIMUM"], ["Minimum", "MINIMUM"],
-      ["Standard Deviation", "STANDARD_DEVIATION"]]
+      ["Standard Deviation", "STANDARD_DEVIATION"], ["Count", "COUNT"]]
   end
 
   def reading_group_options
