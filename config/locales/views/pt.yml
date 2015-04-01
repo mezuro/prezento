@@ -71,7 +71,7 @@ pt:
   requisites: "Requisitos"
   have: "Ter"
   signed_up: "inscrever-se"
-  signed_in: "assinado em"
+  signed_in: "logado"
   be: "ser"
   steps: "Passos"
   details: "Detalhes"
