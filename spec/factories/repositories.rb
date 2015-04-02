@@ -21,7 +21,7 @@ FactoryGirl.define do
     license "GPLv3"
     period 1
     scm_type "GIT"
-    address "https://git.gitorious.org/sbking/sbking.git"
+    address "https://github.com/rafamanzo/runge-kutta-vtk.git"
     kalibro_configuration_id 1
     project_id 1
     send_email "test@test.com"
