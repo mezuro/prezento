@@ -13,7 +13,7 @@ Feature: Repository Edit
     And I am at repository edit page
     Then the field "Name" should be filled with "QtCalculator"
     And the field "Type" should be filled with "GIT"
-    And the field "Address" should be filled with "https://git.gitorious.org/sbking/sbking.git"
+    And the field "Address" should be filled with "https://github.com/rafamanzo/runge-kutta-vtk.git"
     And I set the select field "Process Period" as "Weekly"
     And I set the select field "License" as "EU DataGrid Software License (EUDatagrid)"
     When I fill the Name field with "MedSquare"
