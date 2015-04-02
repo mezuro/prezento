@@ -22,7 +22,7 @@ Please, have a look the wiki pages about development workflow and code standards
 
   * curl
 
-  * postgresql-server-dev-9.3
+  * postgresql-server-dev-9.4
 
 * Unpacked dependecies
 
@@ -39,7 +39,7 @@ Please, have a look the wiki pages about development workflow and code standards
 
 * Ruby version
 
-  2.2.0
+  2.2.1p85 
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
@@ -64,15 +64,29 @@ Please, have a look the wiki pages about development workflow and code standards
 
 * Services (job queues, cache servers, search engines, etc.)
 
-  Kalibro Processor
+  Kalibro Processor, Kalibro Configurations and Analizo are necessary to set up properly your environment.
+
+  The clones of Kalibro processor and Kalibro configurations must be in the same directory of the Prezento.
+  something like +mezuro/prezento+, +mezuro/kalibro_configurations+, +mezuro/kalibro_processor+.
+
+  <b>Kalibro Processor</b>
+  
   You can find it at https://github.com/mezuro/kalibro_processor
   By default Mezuro will expect it to be running on port 8082 at localhost.
   In order to run it as expected, run on two different terminal instances: ```RAILS_ENV=local rails s -p 8082```; and ```RAILS_ENV=local rake jobs:work```.
 
-  Kalibro Configurations
+  <b>Kalibro Configurations</b>
+  
   You can find it at https://github.com/mezuro/kalibro_configurations
   By default Mezuro will expect it to be running on port 8083 at localhost.
   In order to run it as expected, run on two different terminal instances: ```rails s -p 8083```.
+
+  <b>Analizo</b>
+  
+  You can find it at https://github.com/analizo/analizo
+  You have follow the steps of the INSTALL.md
+  https://github.com/analizo/analizo/blob/master/INSTALL.md
+
 
 * Deployment instructions
 
