@@ -121,7 +121,7 @@ describe ReadingGroupsController, :type => :controller do
         delete :destroy, :id => @subject.id
       end
 
-      it { is_expected.to redirect_to new_user_session_path }
+      it { is_expected.to redirect_to new_user_session_url }
     end
   end
 
