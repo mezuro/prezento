@@ -10,7 +10,21 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale
 
+  # This is necessary for correct devise routing with locales: https://github.com/plataformatec/devise/wiki/How-To:--Redirect-with-locale-after-authentication-failure
+  def self.default_url_options
+    merge_locale_to_options(super())
+  end
+
+  # This happens after the *_url *_path helpers
+  def default_url_options(options = {})
+    self.class.merge_locale_to_options(options)
+  end
+
   protected
+
+  def self.merge_locale_to_options(options)
+    { locale: I18n.locale }.merge options
+  end
 
   # :nocov:
   def configure_permitted_parameters
@@ -29,8 +43,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # This happens after the *_url *_path helpers
-  def default_url_options(options = {})
-    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }.merge options
-  end
 end
