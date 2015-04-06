@@ -31,6 +31,6 @@ Then(/^I should see a color picker Canvas$/) do
 end
 
 When(/^I choose the destroy reading link$/) do
-  url = "/reading_groups/#{@reading_group.id}/readings/#{@reading.id}"
+  url = reading_group_reading_path(reading_group_id: @reading_group.id, id: @reading.id, locale: :en)
   find("//a[@href='#{url}']").click
 end
