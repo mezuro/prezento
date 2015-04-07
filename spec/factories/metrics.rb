@@ -21,6 +21,17 @@ FactoryGirl.define do
     initialize_with { new(name, code, scope, description, languages) }
   end
 
+  factory :pain, class: KalibroClient::Entities::Miscellaneous::NativeMetric do
+    name "Code Pain"
+    code "flog"
+    scope "METHOD"
+    description nil
+    languages { [:ruby] }
+    metric_collector_name "MetricFu"
+
+    initialize_with { new(name, code, scope, description, languages) }
+  end
+
   factory :compound_metric, class: KalibroClient::Entities::Miscellaneous::CompoundMetric do
     name "Compound"
     code "compound"

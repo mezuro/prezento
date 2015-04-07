@@ -38,7 +38,7 @@ Feature: Repository modules tree
     And I should see "Granularity"
     And I should see "Grade"
 
-  # This test is broken under analizo 1.17.0: https://www.pivotaltracker.com/story/show/80377258
+    # This test is broken under analizo 1.17.0: https://www.pivotaltracker.com/story/show/80377258
   @wip @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Module navigation
     Given I am a regular user
@@ -55,3 +55,19 @@ Feature: Repository modules tree
     And I click on the sample child's name
     And I wait for "5" seconds
     Then I should see a sample child's name
+
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  Scenario: Should show modules directories root when the process has been finished
+    Given I am a regular user
+    And I am signed in
+    And I have a sample project
+    And I have a sample configuration with MetricFu metrics
+    And I have a sample ruby repository within the sample project
+    And I start to process that repository
+    And I wait up for a ready processing
+    And I ask for the last ready processing of the given repository
+    And I ask for the module result of the given processing
+    When I visit the repository show page
+    And I click the "Modules Tree" h3
+    And I wait for "5" seconds
+    Then I should see the given module result

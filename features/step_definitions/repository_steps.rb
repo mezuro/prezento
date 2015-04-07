@@ -26,6 +26,11 @@ Given(/^I have a sample repository within the sample project$/) do
                                                  kalibro_configuration_id: @kalibro_configuration.id, id: nil})
 end
 
+Given(/^I have a sample ruby repository within the sample project$/) do
+  @repository = FactoryGirl.create(:ruby_repository, {project_id: @project.id,
+                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil})
+end
+
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
                                                  kalibro_configuration_id: @kalibro_configuration.id, id: nil, name: name})
@@ -169,3 +174,4 @@ Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
 
   expect(v1 < v2).to be_truthy
 end
+
