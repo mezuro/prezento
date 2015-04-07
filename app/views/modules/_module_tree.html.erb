@@ -15,7 +15,7 @@
 <% end %>
 
 <% cache("#{@root_module_result.id}_tree") do %>
-  <% children = @root_module_result.children %>
+  <% children = sort_by_granularity_and_name(@root_module_result.children) %>
   <% unless children.empty? %>
     <table class="table table-hover">
       <thead>
