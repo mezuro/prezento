@@ -108,6 +108,9 @@ group :development, :test do
   # Better error interface
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # Localization assistance
+  gem 'i18n_generators'
 end
 
 # Acceptance tests
