@@ -4,7 +4,7 @@ describe MetricConfigurationsHelper, :type => :helper do
   describe 'aggregation_form_options' do
     it 'should return an array with the supported aggregation forms' do
       expect(helper.aggregation_options).to eq [["Average","AVERAGE"], ["Median", "MEDIAN"], ["Maximum", "MAXIMUM"], ["Minimum", "MINIMUM"],
-      ["Standard Deviation", "STANDARD_DEVIATION"]]
+      ["Standard Deviation", "STANDARD_DEVIATION"], ["Count", "COUNT"]]
     end
   end
 
