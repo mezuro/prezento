@@ -16,7 +16,6 @@ Feature: Repository modules tree
     And I ask for the module result of the given processing
     When I visit the repository show page
     And I click the "Modules Tree" h3
-    And I wait for "5" seconds
     Then I should see the given module result
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
@@ -32,7 +31,6 @@ Feature: Repository modules tree
     And I ask for the module result of the given processing
     When I visit the repository show page
     And I click the "Modules Tree" h3
-    And I wait for "5" seconds
     Then I should see a sample child's name
     And I should see "Name"
     And I should see "Granularity"
@@ -53,7 +51,6 @@ Feature: Repository modules tree
     When I visit the repository show page
     And I click the "Modules Tree" h3
     And I click on the sample child's name
-    And I wait for "5" seconds
     Then I should see a sample child's name
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
@@ -69,5 +66,4 @@ Feature: Repository modules tree
     And I ask for the module result of the given processing
     When I visit the repository show page
     And I click the "Modules Tree" h3
-    And I wait for "5" seconds
     Then I should see the given module result
