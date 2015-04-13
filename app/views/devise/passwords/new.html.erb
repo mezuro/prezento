@@ -1,12 +1,28 @@
-<h2><%= t('.forgot_your_password', :default => 'Forgot your password?') %></h2>
+<div class="page-header">
+  <h1><%= t('.forgot_your_password', :default => 'Forgot your password?') %></h1>
+</div>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="row margin-left-none">
+    <div class="form-table col-md-9">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :email, class: "control-label" %>
+          <%= f.email_field :email, autofocus: true, class: 'text-field form-control' %>
+        </div>
+        <div class="help-container">
+          <p>
+            The same email address used to sign up.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div><%= f.submit t('.send_me_reset_password_instructions', :default => "Send me reset password instructions") %></div>
+  <div class="row margin-left-none" style="margin-top: 20px">
+    <%= f.submit t('.send_me_reset_password_instructions', :default => "Send me reset password instructions"), class: 'btn btn-warning' %>
+    <%= render "devise/shared/links" %>
+  </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
