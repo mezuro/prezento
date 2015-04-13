@@ -77,7 +77,7 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                  <% I18n.available_locales.each do |locale| %>
+                  <% [:en, :pt].each do |locale| %>
                     <li><%= link_to(locale.to_s, url_for(locale: locale), data: { no_turbolink: true }) %></li>
                   <% end %>
                 </ul>
