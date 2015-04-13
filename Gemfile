@@ -66,6 +66,10 @@ gem 'google-analytics-rails', '~> 0.0.6'
 # Browser language detection
 gem 'http_accept_language'
 
+# Devise translations
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'
