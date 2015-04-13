@@ -1,30 +1,83 @@
-<h2><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h2>
+<div class="page-header">
+  <h1><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h1>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="row margin-left-none">
+    <div class="form-table col-md-9">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :name, class: 'control-label' %><br />
+          <%= f.email_field :name, :autofocus => true, class: 'text-field form-control' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Your full name.
+          </p>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :email, class: 'control-label' %><br />
+          <%= f.email_field :email, class: 'text-field form-control' %>
+          <%- if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
+            <p>
+              <%= t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}") %>
+            </p>
+          <%- end -%>
+        </div>
+        <div class="help-container">
+          <p>
+            Your email is our communication channel. Make sure you have typed it correctly.
+          </p>
+        </div>
+      </div>
 
-  <%- if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
-    <p>
-      <%= t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}") %>
-    </p>
-  <%- end -%>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :password, class: 'control-label' %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br />
+          <%= f.password_field :password, :autocomplete => "off", class: 'text-field form-control' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Your password must have at least 8 characters. Strong passwords contain numbers, symbols, upper and lowercase characters.
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :password_confirmation, class: 'control-label' %><br />
+          <%= f.password_field :password_confirmation, class: 'text-field form-control' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Confirm your password.
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :current_password, class: 'control-label' %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes') %>)</i><br />
+          <%= f.password_field :current_password, class: 'text-field form-control' %>
+        </div>
+        <div class="help-container">
+          <p>
+            Your current password is needed to confirm your changes.
+          </p>
+        </div>
+      </div>
 
-  <div><%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes') %>)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit t('.update', :default => "Update") %></div>
+      <div class="row margin-left-none" style="margin-top: 20px">
+        <%= f.submit t('.update', :default => "Update"), class: 'btn btn-primary col-md-2' %>
+      </div>
+    </div>
+  </div>
 <% end %>
 
-<h3><%= t('.cancel_my_account', :default => 'Cancel my account') %></h3>
+<h2><%= t('.cancel_my_account', :default => 'Cancel my account') %></h2>
 
 <p><%= t('.unhappy', :default => 'Unhappy') %>? <%= link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete %>.</p>
 
