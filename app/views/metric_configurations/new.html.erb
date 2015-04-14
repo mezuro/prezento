@@ -22,6 +22,10 @@
   <b><%= t('metric_scope') %>:</b> <%= t(@metric_configuration.metric.scope.to_s, scope: 'scopes') %>
 </p>
 
+<p>
+  <b><%= t('percentage_of_use') %>:</b> <%= @statistic%>%
+</p>
+
 <br>
 
 <%= form_for(@metric_configuration, :url => kalibro_configuration_metric_configurations_path(@kalibro_configuration_id)) do |f| %>

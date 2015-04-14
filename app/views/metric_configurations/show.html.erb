@@ -41,6 +41,11 @@
 </p>
 
 <p>
+<strong><%=t('percentage_of_use') %>:</strong>
+    <%= "#{@statistic} %" %>
+</p>
+
+<p>
   <strong><%= t('description') %>:</strong>
   <% if @metric_configuration.metric.description.blank? %>
     <%= t('no_description_available') %>

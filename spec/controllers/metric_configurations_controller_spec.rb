@@ -37,6 +37,8 @@ describe MetricConfigurationsController, :type => :controller do
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
         metric_collector.expects(:find_metric_by_code).with(native_metric.code).returns(native_metric)
+        Statistic.expects(:metric_percentage).with(native_metric.code).returns({"metric_percentage" => 0})
+
         post :new, kalibro_configuration_id: kalibro_configuration.id, metric_code: native_metric.code, metric_collector_name: metric_collector.name
       end
 
