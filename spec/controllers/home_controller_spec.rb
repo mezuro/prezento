@@ -18,7 +18,7 @@ describe HomeController, :type => :controller do
         it 'should automatically use the language specified in the request headers' do
           request.env['HTTP_ACCEPT_LANGUAGE'] = 'pt-BR'
           get :index
-          expect(I18n.locale).to eq(:"pt-BR")
+          expect(I18n.locale).to eq(:pt)
         end
 
         it 'should use a different region if still the best match' do
@@ -28,7 +28,7 @@ describe HomeController, :type => :controller do
         end
 
         it 'should use the default language if no available language matches the requested one' do
-          request.env['HTTP_ACCEPT_LANGUAGE'] = 'la'
+          request.env['HTTP_ACCEPT_LANGUAGE'] = 'de'
           get :index
           expect(I18n.locale).to eq(:en)
         end
