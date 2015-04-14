@@ -1,4 +1,10 @@
 pt:
+  dictionary:
+    same_email: &same_email O mesmo endereço de email usado para registrar.
+    your_full_name: &your_full_name Seu nome completo.
+    your_email_is_our_communication_channel: &your_email_is_our_communication_channel Seu email é o nosso canal de comunicação. Assegure-se de que tenha o digitado corretamente.
+    password_instructions: &password_instructions Sua senha precisa ter pelo menos 8 caracteres. Senhas fortes contêm números, símbolos e letras maiúsculas e minúsculas.
+    confirm_your_password: &confirm_your_password Confirme sua senha.
   activerecord:
     attributes:
       user:
@@ -36,6 +42,7 @@ pt:
         confirm_new_password: Confirme sua nova senha
         new_password: Nova senha
       new:
+        same_email: *same_email
         forgot_your_password: Esqueceu sua senha?
         send_me_reset_password_instructions: Enviar instruções para redefinição da senha
     registrations:
@@ -48,11 +55,23 @@ pt:
         unhappy: Não está contente
         update: Atualizar
         we_need_your_current_password_to_confirm_your_changes: precisamos da sua senha atual para confirmar suas mudanças
+        current_password_required: Sua senha atual é necessária para confirmar as mudanças.
+        your_full_name: *your_full_name
+        your_email_is_our_communication_channel: *your_email_is_our_communication_channel
+        password_instructions: *password_instructions
+        confirm_your_password: *confirm_your_password
       new:
         sign_up: Inscrever-se
+        your_full_name: *your_full_name
+        your_email_is_our_communication_channel: *your_email_is_our_communication_channel
+        password_instructions: *password_instructions
+        confirm_your_password: *confirm_your_password
     sessions:
       new:
         sign_in: Login
+        same_email: *same_email
+        forgot_password_link_html: Se você esqueceu sua senha, clique neste %{link} para redefini-la.
+        stay_logged_in: Continuar logado.
     shared:
       links:
         back: Voltar

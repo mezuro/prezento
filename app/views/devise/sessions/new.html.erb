@@ -12,7 +12,7 @@
         </div>
         <div class="help-container">
           <p>
-            The same email address used to sign up.
+            <%= t('.same_email') %>
           </p>
         </div>
       </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="help-container">
           <p>
-            If you forgot your password, follow this <a href="/users/password/new">link</a> to reset it.
+            <%= t('.forgot_password_link_html', link: link_to("link", "/users/password/new")) %>
           </p>
         </div>
       </div>
@@ -36,7 +36,7 @@
           </div>
           <div class="help-container">
             <p>
-              Stay logged in.
+              <%= t('.stay_logged_in')%>
             </p>
           </div>
         </div>
