@@ -6,10 +6,11 @@
     Copyright 2013-2015
     -------------------
 
-      Daniel Paulino Alves (danpaulalves at gmail.com)
+      Daniel Quadros de Miranda (danielkza2 at gmail.com)
       Diego de Araújo Martinez Camarinha (diegoamc90 at gmail.com)
       Heitor Reis Ribeiro (marcheing at gmail.com)
       Paulo Meirelles (paulo at softwarelivre.org)
+      Pedro Scocco (pedroscocco at gmail.com)
       Rafael Reggiani Manzo (rr.manzo at gmail.com)
 
 # THANKSs
@@ -17,10 +18,20 @@
     Former team members
     ---------------------------------------------------------
       Alessandro Palmeira (alessandro.palmeira at gmail.com)
+      Daniel Paulino Alves (danpaulalves at gmail.com)
       Fellipe Souto Sampaio (fllsouto at gmail.com)
       Guilherme Rojas (guilhermehrojas at gmail.com)
       João M. M. Silva (jaodsilv at linux.ime.usp.br)
       Renan Fichberg (rfichberg at gmail.com)
+
+    UnB Software Evolution Team 2015
+    ---------------------------------------------------------
+      Álvaro Fernando Souza (alvarofernandoms at gmail.com)
+      Eduardo Brasil (brasil.eduardo1 at gmail.com)
+      Lucas dos Santos (lucas.srl8 at gmail.com)
+      Maria Luciene (marialucienefelix at gmail.com)
+      Maxwell Almeida (llewxam150 at gmail.com)
+      Parley Pacheco Martins (parleypachecomartins at gmail.com)
 
     UnB Software Evolution Team 2014
     ---------------------------------------------------------
