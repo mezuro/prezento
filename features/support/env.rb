@@ -24,7 +24,7 @@ require 'cucumber/rails'
 require 'capybara/poltergeist'
 #Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
-Capybara.default_wait_time = 5 # default is 2 seconds
+Capybara.default_wait_time = 10 # default is 2 seconds
 
 #require 'kalibro_gem/kalibro_cucumber_helpers/hooks'
 
