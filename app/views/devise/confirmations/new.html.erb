@@ -6,7 +6,7 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :emaill, :autofocus => true %></div>
+  <%= f.email_field :email, :autofocus => true %></div>
 
   <div><%= f.submit t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions'), class: 'btn btn-default' %></div>
 <% end %>
