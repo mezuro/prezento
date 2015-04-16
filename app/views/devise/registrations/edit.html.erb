@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h1>
-
+</div>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-inline" }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -77,6 +77,7 @@
   </div>
 <% end %>
 
+<hr />
 <h2><%= t('.cancel_my_account', :default => 'Cancel my account') %></h2>
 
 <p><%= t('.unhappy', :default => 'Unhappy') %>? <%= link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete, class: 'btn btn-warning' %>.</p>
