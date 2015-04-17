@@ -1,0 +1,8 @@
+pt:
+  hello_html: "Olá, %{user}"
+  instant_loading_page: "Espere um instante enquanto estamos carregando a página que você solicitou."
+  home: "Início"
+  edit_account: "Editar Conta"
+  sign_out: "Sair"
+  sign_in: "Entrar"
+  sign_up: "Inscrever-se"

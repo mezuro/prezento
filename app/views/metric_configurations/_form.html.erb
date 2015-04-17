@@ -10,19 +10,19 @@
       </div>
       <div class="help-container">
         <p>
-          It is used to calculate the weighted average of a <%= link_to 'module',  tutorials_path("keywords", anchor: "module")%>'s grade.
+          <%= t('calculate_weighted_average_html', href: link_to(KalibroModule.model_name.human, tutorials_path("keywords", anchor: "module"))) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :aggregation_form, 'Aggregation Form', class: 'control-label' %>
+        <%= f.label :aggregation_form, class: 'control-label' %>
         <%= f.select( :aggregation_form, aggregation_options, {class: 'form-control'} ) %>
       </div>
       <div class="help-container">
         <p>
-          It is the calculation of statistical results for higher <%= link_to 'granularity', tutorials_path('keywords', anchor: 'granularity') %> modules (e.g., average lines of code of the classes inside a package).
+          <%= t('aggregation_form_helper_html', href: link_to(t('granularity'), tutorials_path('keywords', anchor: 'granularity'))) %>
         </p>
       </div>
     </div>
@@ -33,12 +33,12 @@
     <% else %>
         <div class="form-row">
           <div class="field-container">
-            <%= f.label :reading_group_id, 'Reading Group', class: 'control-label' %>
+            <%= f.label :reading_group_id, class: 'control-label' %>
             <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
           </div>
           <div class="help-container">
             <p>
-              The <%= link_to 'Reading Group', tutorials_path('keywords', anchor: 'reading-group') %> associated with this metric.
+              <%= t('reading_group_helper_html', href: link_to(ReadingGroup.model_name.human, tutorials_path('keywords', anchor: 'reading-group'))) %>
             </p>
           </div>
         </div>

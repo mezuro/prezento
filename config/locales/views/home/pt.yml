@@ -1,0 +1,5 @@
+pt:
+  title_home_index: "Entendendo Métricas de Código"
+  body_home_index_html: "<p>Este é o Mezuro! Uma plataforma web <strong>livre</strong> para <strong>avaliação colaborativa</strong> de código fonte.</p> <p>Aqui você pode avaliar seu código fonte com os SCMs mais populares (como Git e SVN), apenas fornecendo sua URL. Por enquanto, você pode avaliar códigos em <strong>C</strong>, <strong>C++</strong> e <strong>Java</strong>, mas nós pretendemos dar suporte a mais linguagems no futuro.</p>"
+  body_feedback_home_index_html: "Mezuro está sob constante desenvolvimento. Experimente e nos dê o seu %{href}."
+  latest_projects: "Últimos projetos"

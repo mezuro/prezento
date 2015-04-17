@@ -3,23 +3,23 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= t('description') %>:</strong>
   <%= @kalibro_configuration.description %>
 </p>
 
 <hr>
-
-<h2> Metrics </h2>
+<div id="metrics">
+<h2><%= t('metric').pluralize %></h2>
 <% if kalibro_configuration_owner? @kalibro_configuration.id %>
-  <%= link_to 'Add Metric', kalibro_configuration_choose_metric_path(@kalibro_configuration.id), class: 'btn btn-info' %>
+  <%= link_to "#{t('add')} #{t('metric')}", kalibro_configuration_choose_metric_path(@kalibro_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Metric Name</th>
-      <th>Code</th>
-      <th>Weight</th>
+      <th><%= t('metric') %></th>
+      <th><%= t('code') %></th>
+      <th><%= t('weight') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,12 +31,13 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <hr>
 
 <p>
- <%= link_to 'Back', kalibro_configurations_path, class: 'btn btn-default' %>
+ <%= link_to t('back'), kalibro_configurations_path, class: 'btn btn-default' %>
  <% if kalibro_configuration_owner? @kalibro_configuration.id %>
-   <%= link_to 'Destroy Configuration', kalibro_configuration_path(@kalibro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
+   <%= link_to t('destroy_configuration'), kalibro_configuration_path(@kalibro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
  <% end %>
 </p>

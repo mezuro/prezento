@@ -3,43 +3,46 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= Repository.human_attribute_name('description') %>:</strong>
   <%= @repository.description %>
 </p>
 
 <p>
-  <strong>License:</strong>
+  <strong><%= Repository.human_attribute_name('license') %>:</strong>
   <%= @repository.license %>
 </p>
 
 <p>
-  <strong>Type:</strong>
+  <strong><%= Repository.human_attribute_name('type') %>:</strong>
   <%= @repository.scm_type %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong><%= Repository.human_attribute_name('address') %>:</strong>
   <%= @repository.address %>
 </p>
 
 <p>
-  <strong>Periodicity:</strong>
+  <strong><%= Repository.human_attribute_name('period') %>:</strong>
   <%= periodicity_option(@repository.period) %>
 </p>
 
 <p>
-  <strong>Configuration:</strong>
+  <strong><%= KalibroConfiguration.model_name.human %>:</strong>
   <%= @kalibro_configuration.name %>
 </p>
 
-<p><strong> Retrieve the closest processing information from: </strong></p>
+<p><strong> <%= t('repository.show.date_processing') %>: </strong></p>
 
 <%= form_tag(project_repository_state_with_date_path(@repository.project_id, @repository.id), method: "post", remote: true) do %>
   <p>
-    Day: <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
-    Month: <%= select_tag(:month, options_for_select(month_options), :style => "width:55px; margin-top:5px") %>
-    Year: <%= select_tag(:year, options_for_select(year_options), :style => "width:70px; margin-top:5px") %>
-    <%= submit_tag("Search", class: 'btn btn-info', style: 'margin-bottom:5px', onClick: "Module.Repository.set_loader('#{image_tag 'loader.gif'} Loading data. Please, wait.')") %>
+    <%= label_tag :day, t("day") %>:
+    <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
+    <%= label_tag :month, t("month") %>:
+    <%= select_tag(:month, options_for_select(month_options), :style => "width:55px; margin-top:5px") %>
+    <%= label_tag :year, t("year") %>:
+    <%= select_tag(:year, options_for_select(year_options), :style => "width:70px; margin-top:5px") %>
+    <%= submit_tag(t('search'), class: 'btn btn-info', style: 'margin-bottom:5px', onClick: "Module.Repository.set_loader('#{image_tag 'loader.gif'} Loading data. Please, wait.')") %>
   </p>
 <% end %>
 
@@ -47,18 +50,18 @@
 
 <div id="repository-accordion">
   <div id="processing-accordion">
-    <h3 class="jquery-ui-accordion">Processing information</h3>
-    <div id="processing_information"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+    <h3 class="jquery-ui-accordion"><%= t('repository.show.processing_information') %></h3>
+    <div id="processing_information"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
   </div>
 
   <div id="module-accordion">
-    <h3 class="jquery-ui-accordion">Modules Tree</h3>
-    <div id="module_tree"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+    <h3 class="jquery-ui-accordion"><%= t('repository.show.modules_tree') %></h3>
+    <div id="module_tree"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
   </div>
 
   <div id="metric-accordion">
-    <h3 class="jquery-ui-accordion">Metric Results</h3>
-    <div id="metric_results"><%= image_tag 'loader.gif' %> Loading data. Please, wait.</div>
+    <h3 class="jquery-ui-accordion"><%= t('repository.show.metric_results') %></h3>
+    <div id="metric_results"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
   </div>
 </div>
 <script type="text/javascript">
@@ -79,8 +82,8 @@
 
 <hr/>
 
-<%= link_to 'Back',  project_path(@repository.project_id), class: 'btn btn-default' %>
+<%= link_to t('back'),  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
-  <%= link_to 'Reprocess', project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
-  <%= link_to 'Destroy', project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Repository?' }, class: 'btn btn-danger' %>
+  <%= link_to t('repository.show.reprocess'), project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
+  <%= link_to t('destroy'), project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: t('sure_destroy', model: Repository.model_name.human) }, class: 'btn btn-danger' %>
 <% end %>

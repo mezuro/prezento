@@ -3,22 +3,22 @@
 </div>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= ReadingGroup.human_attribute_name('description') %></strong>
   <%= @reading_group.description %>
 </p>
 
 <hr />
 
-<h2>Readings</h2>
+<h2><%= Reading.model_name.human(count: 2) %></h2>
 
-<% if reading_groups_owner? @reading_group.id %><%= link_to 'New Reading', new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
+<% if reading_groups_owner? @reading_group.id %><%= link_to "#{t('new.female')} #{Reading.model_name.human}", new_reading_group_reading_path(@reading_group,), class: 'btn btn-primary' %><% end %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Label</th>
-      <th>Grade</th>
-      <th>Color</th>
+      <th><%= Reading.human_attribute_name('label') %></th>
+      <th><%= Reading.human_attribute_name('grade') %></th>
+      <th><%= Reading.human_attribute_name('color') %></th>
     </tr>
   </thead>
 
@@ -36,6 +36,6 @@
 
 <p>
   <% if reading_groups_owner? @reading_group.id %>
-    <%= link_to 'Destroy Reading Group', reading_group_path(@reading_group.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Reading Group?' }, class: 'btn btn-danger' %>
+    <%= link_to t('destroy'), reading_group_path(@reading_group.id), method: :delete, data: { confirm: t('sure_destroy', model: ReadingGroup.model_name.human) }, class: 'btn btn-danger' %>
   <% end %>
 </p>

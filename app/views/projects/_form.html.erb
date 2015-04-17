@@ -16,14 +16,14 @@
       </div>
       <div class="form-row">
         <div class="field-container">
-          <%= f.label "Image url", class: 'control-label' %><br>
+          <%= f.label t("image_url"), class: 'control-label' %><br>
           <%= f.text_field :image_url, class: 'text-area', value: @project.attributes.nil? || @project.attributes.image_url.nil? ? '#' : @project.attributes.image_url  %>
         </div>
       </div>
     </div>
   </div>
   <div class="row margin-left-none" style="margin-top: 20px">
-    <%= f.submit 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'All Projects', projects_path, class: 'btn btn-default'%>
+    <%= f.submit t('save'), class: 'btn btn-primary' %>
+    <%= link_to t('all_projects'), projects_path, class: 'btn btn-default'%>
   </div>
 <% end %>

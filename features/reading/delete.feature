@@ -10,7 +10,7 @@ Feature: Reading Deletion
     And I own a sample reading group
     And I have a sample reading within the sample reading group
     When I visit the Sample Reading Group page
-    And I click the Destroy link
+    And I choose the destroy reading link
     Then I should see "There are no Readings yet!"
 
   @kalibro_configuration_restart

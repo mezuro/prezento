@@ -1,0 +1,93 @@
+<h1>Tutorial</h1>
+<h2>Analisando um repositório</h2>
+
+<hr>
+
+<h3>Requisitos</h3>
+
+A fim de criar um projeto, você deve:
+<ul>
+  <li><%= link_to(t('signed_up'), new_user_registration_path) %> na plataforma</li>
+  <li>Estar <%= link_to(t('signed_in'), new_user_session_path) %></li>
+  <li>E ter uma URL do repositório que você deseja analisar</li>
+</ul>
+
+<hr>
+
+<h3>Passos</h3>
+
+<h4>Criando um Projeto</h4>
+
+<ol>
+  <li>Clique em "Projeto" no menu superior</li>
+  <li>Clique em "Novo Projeto"</li>
+  <li>Preencha o formulário com um "Nome", que deve ser único</li>
+  <li>Preencha o formulário com uma "Descrição"</li>
+  <li>Clique em "Salvar". Agora você deve estar na página do projeto, parabéns!</li>
+</ol>
+
+<h4>Criando um Repositório</h4>
+
+<ol>
+  <li>A partir da página do projeto, clique em "Novo Repositório"</li>
+  <li>Preencha o formulário:
+    <ul>
+      <li>O "Nome" deve ser único</li>
+      <li>Você deve escolher uma "Licença" Open Source na plataforma de acordo com o seu código</li>
+      <li>O campo "Tipo" está relacionado com a ferramenta de controle de versão do código (Git, por exemplo)</li>
+      <li>Preencha o "Endereço" com a URL a partir da qual podemos fazer o download do código</li>
+      <li>Se você quiser analisar seu projeto periodicamente, configure-o (você pode também executá-lo a partir da interface sempre que quiser)</li>
+      <li>Por fim, a "Configuração" representa o conjunto de métricas e interpretações que vamos usar para analisar o seu projeto</li>
+    </ul>
+  </li>
+  <li>Clique em "Salvar" e você deve estar na página de repositório, esperando a análise</li>
+</ol>
+
+<hr>
+
+<h4>Detalhes da página do repositório</h4>
+
+A página de repositório é dividida em quatro seções diferentes:
+
+<h5><b>Detalhes</b></h5>
+<ul>
+  <li>A informação que você forneceu durante as etapas de criação</li>
+  <li>Selecione a caixa de modo que seja possível visualizar processamentos anteriores do seu repositório</li>
+</ul>
+
+<h5><b>Informação de processamento</b></h5>
+
+<ul>
+  <li>Informações sobre o tempo que cada etapa do processamento levou para concluir
+    <ul>
+      <li>PREPARAÇÃO: o sistema está reservando uma pasta para seu repositório e selecionando a configuração</li>
+      <li>DOWNLOAD: descarregando o código-fonte</li>
+      <li>COLETA: cálculo das métricas para o repositório</li>
+      <li>CONSTRUÇÂO: organiza os resultados em uma estrutura de árvore</li>
+      <li>AGREGAÇÂO: cálculo do valor agregado para os módulos pai presentes na árvore do código de origem</li>
+      <li>CÁLCULO: se a configuração escolhida tem métricas compostas, elas serão calculadas</li>
+      <li>INTERPRETAÇÃO: com todos os resultados necessários, o sistema irá interpretá-los utilizando grupos de leitura (rótulos e cores)</li>
+    </ul>
+  </li>
+</ul>
+<h5><b>Árvore de Módulos</b></h5>
+<ul>
+  <li>Estrutura de árvore do código em que você pode navegar, clicando nos nomes
+  </li>
+<li>Informação sobre a granularidade do módulo
+    <ul>
+      <li>MÉTODO</li>
+      <li>CLASSE</li>
+      <li>PACOTE</li>
+      <li>SOFTWARE</li>
+    </ul>
+  </li>
+<li>Nota do módulo de acordo com os pesos das métricas dados na sua configuração
+</li>
+</ul>
+
+<h5><b>Resultado das Métricas</b></h5>
+<ul>
+  <li>Exibe os resultados individuais de cada métrica para o módulo atual, selecionado na árvore de código</li>
+  <li>Ao clicar sobre o nome da métrica, você vai ver um gráfico do histórico dessa métrica</li>
+</ul>

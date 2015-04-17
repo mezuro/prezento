@@ -20,11 +20,11 @@ Given(/^I own a sample configuration$/) do
 end
 
 Given(/^I am at the Sample Configuration page$/) do
-  visit kalibro_configuration_path(@kalibro_configuration.id)
+  visit kalibro_configuration_path(id: @kalibro_configuration.id)
 end
 
 Given(/^I am at the sample configuration edit page$/) do
-  visit edit_kalibro_configuration_path(@kalibro_configuration.id)
+  visit edit_kalibro_configuration_path(id: @kalibro_configuration.id)
 end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
@@ -33,7 +33,7 @@ Given(/^I own a configuration named "(.*?)"$/) do |name|
 end
 
 When(/^I visit the sample configuration edit page$/) do
-  visit edit_kalibro_configuration_path(@kalibro_configuration.id)
+  visit edit_kalibro_configuration_path(id: @kalibro_configuration.id)
 end
 
 Then(/^I should be in the Edit Configuration page$/) do

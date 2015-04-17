@@ -64,11 +64,11 @@ Given(/^I wait up for a error processing$/) do
 end
 
 Given(/^I am at the New Repository page$/) do
-  visit new_project_repository_path(@project.id)
+  visit new_project_repository_path(project_id: @project.id)
 end
 
 Given(/^I am at repository edit page$/) do
-  visit edit_project_repository_path(@repository.project_id, @repository.id)
+  visit edit_project_repository_path(project_id: @repository.project_id, id: @repository.id)
 end
 
 Given(/^I ask for the last ready processing of the given repository$/) do
@@ -92,11 +92,11 @@ When(/^I click on the sample metric's name$/) do
 end
 
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
-  select text, from: field
+  select text, from: I18n.t(field.gsub(" ", "_").downcase)
 end
 
 When(/^I visit the repository show page$/) do
-  visit project_repository_path(@project.id, @repository.id)
+  visit project_repository_path(project_id: @project.id, id: @repository.id)
 end
 
 When(/^I click on the sample child's name$/) do
@@ -113,9 +113,9 @@ When(/^I wait up for the ajax request$/) do
   end
 end
 
-When(/^I get the Creation date information as "(.*?)"$/) do |variable|
-  val = page.find('p', text: 'Creation date').text.match(/^Creation date:(.*)$/).captures.first
-  eval ("@#{variable} = '#{val}'")
+When(/^I get the Creation Date information as "(.*?)"$/) do |variable|
+  val = page.find('p', text: 'Creation Date').text.match(/^Creation Date:(.*)$/).captures.first
+  eval ("@#{variable} = DateTime.parse('#{val}')")
 end
 
 Then(/^I should see the sample repository name$/) do
@@ -171,7 +171,5 @@ end
 Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
   v1 = eval "@#{arg1}"
   v2 = eval "@#{arg2}"
-
   expect(v1 < v2).to be_truthy
 end
-

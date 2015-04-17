@@ -7,7 +7,7 @@ Feature: Configuration listing
   Scenario: When there are no metric configurations
     Given I have a sample configuration
     When I am at the Sample Configuration page
-    Then I should see "Metric Name"
+    Then I should see "Metric"
     And I should see "Code"
     And I should see "Weight"
     And I should see "There are no Metric Configurations yet!"

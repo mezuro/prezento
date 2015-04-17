@@ -1,10 +1,10 @@
 <p>
-  <strong>State:</strong>
+  <strong><%= t('activemodel.attributes.processing.state') %>:</strong>
   <%= @processing.state %>
 </p>
 
 <p>
-  <strong>Creation date:</strong>
+  <strong><%= t('activemodel.attributes.processing.creation_date') %>:</strong>
   <%= @processing.created_at.strftime("%Y/%m/%d at %Hh%M (%z)") %>
 </p>
 

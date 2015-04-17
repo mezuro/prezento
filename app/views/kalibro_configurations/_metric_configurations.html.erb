@@ -10,10 +10,9 @@
       <%= link_to_edit_form(metric_configuration, @kalibro_configuration.id) %>
     </td>
     <td>
-      <%= link_to 'Destroy', kalibro_configuration_metric_configuration_path(@kalibro_configuration.id, metric_configuration.id), 
-                   method: :delete, data: { confirm: 'Are you sure that you want to destroy this Metric Configuration?' },
+      <%= link_to t('destroy_metric_configuration'), kalibro_configuration_metric_configuration_path(@kalibro_configuration.id, metric_configuration.id),
+                   method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
                    class: 'btn btn-danger' %>
     </td>
-    </td>
- <% end %>
+  <% end %>
 </tr>

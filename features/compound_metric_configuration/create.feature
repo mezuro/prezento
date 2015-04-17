@@ -13,18 +13,18 @@ Feature: Compound Metric Configuration Creation
     And I am at the Sample Configuration page
     And I click the Add Metric link
     And I click the Compound Metric link
-    When I click the "Created Metrics" h3
     Then I see the sample metric configuration name
     And I see the sample metric configuration code
     When I fill the Name field with "My Compound Metric"
     And I fill the Description field with "Some description"
     And I fill the Code field with "mcm"
-    And I fill the Script field with "8*8;"
+    And I fill the Script field with "return 8*8;"
     And I fill the Weight field with "8"
     And I set the select field "Scope" as "Class"
     And I set the select field "Reading Group" as "Scholar"
     And I press the Save button
-    When I click the show link of "My Compound Metric"
+    Then I should see "Compound Metric Configuration was successfully created."
+    And I click the show link of "My Compound Metric"
     Then I should see "My Compound Metric"
     And I should see "mcm"
     And I should see "8"
@@ -38,6 +38,7 @@ Feature: Compound Metric Configuration Creation
     And I have another compound metric configuration with code "Another_Code" within the given mezuro configuration
     And I am at the Sample Configuration page
     And I click the Add Metric link
+    And I take a picture of the page
     And I click the Compound Metric link
     When I fill the Name field with "My Compound Metric"
     And I fill the Description field with "Some description"

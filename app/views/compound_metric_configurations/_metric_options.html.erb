@@ -1,64 +1,64 @@
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :name, class: 'control-label' %>
+        <%= f.label :name, compound_metric_human_attribute_name('name'), class: 'control-label' %>
         <%= f.text_field :name, :required => true, class: 'text-field form-control', value: (metric.name unless metric.nil?) %>
       </div>
       <div class="help-container">
         <p>
-          A custom name for your compound metric.
+          <%= t_hint(:name) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :description, class: 'control-label' %>
+        <%= f.label :description, compound_metric_human_attribute_name('description'), class: 'control-label' %>
         <%= f.text_field :description, class: 'text-field form-control', value: (metric.description unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
-          A short description of your compound metric.
+          <%= t_hint(:description) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :script, class: 'control-label' %>
+        <%= f.label :script, compound_metric_human_attribute_name('script'), class: 'control-label' %>
         <%= f.text_area :script, :required => true, class: 'text-area form-control', value: (metric.script unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
-          A mathematical expression (in javascript) to calculate your compound metric. It needs a return statement. The codes of already created metrics can be used inside the script.
+          <%= t_hint(:script) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :scope, 'Scope', class: 'control-label' %>
+        <%= f.label :scope, compound_metric_human_attribute_name('scope'), class: 'control-label' %>
         <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
       </div>
       <div class="help-container">
         <p>
-          The <%= link_to 'granularity', tutorials_path("keywords", anchor: "granularity")%> of the <%= link_to 'modules',  tutorials_path("keywords", anchor: "module")%> measured by this metric.
+          <%= t('measured_metric_html', :href => link_to(t('granularity'), tutorials_path('keywords', anchor: "granularity")), :href2 => link_to(t('modules'), tutorials_path( 'keywords', anchor: 'module' ))) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :code, class: 'control-label' %>
+        <%= f.label :code, compound_metric_human_attribute_name('code'), class: 'control-label' %>
         <%= f.text_field :code, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>
-        A variable that holds the value of a metric calculation. It can be used in the script of another compound metric.
+          <%= t_hint('code.description') %>
         </p>
-        <p>
-          Example:
-          Code foo := 10
-        </p>
+          <br>
+          <p>
+          <%= t_hint('code.example') %>
+          </p>
       </div>
     </div>
 <%= f.hidden_field(:compound, { value: "true"}) %>

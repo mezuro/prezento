@@ -1,8 +1,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
+      <th><%= ReadingGroup.human_attribute_name('name') %></th>
+      <th><%= ReadingGroup.human_attribute_name('description') %></th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -12,10 +12,10 @@
       <tr>
         <td><%= reading_group.name %></td>
         <td><%= reading_group.description %></td>
-        <td><%= link_to 'Show', reading_group_path(reading_group.id), class: 'btn btn-info' %></td>
+        <td><%= link_to t('show'), reading_group_path(reading_group.id), class: 'btn btn-info' %></td>
         <td>
           <% if reading_groups_owner? reading_group.id %>
-            <%= link_to 'Edit', edit_reading_group_path(reading_group.id), class: 'btn btn-info' %>
+            <%= link_to t('edit', model: ''), edit_reading_group_path(reading_group.id), class: 'btn btn-info' %>
           <% end %>
         </td>
       </tr>

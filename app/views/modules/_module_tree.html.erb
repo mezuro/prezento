@@ -1,17 +1,17 @@
 <p>
-  <strong>Name:</strong>
+  <strong><%= KalibroModule.human_attribute_name('name') %>:</strong>
   <%= format_module_name(@root_module_result.kalibro_module.name) %>
 </p>
 <p>
-  <strong>Granularity:</strong>
+  <strong><%= KalibroModule.human_attribute_name('granularity') %>:</strong>
   <%= @root_module_result.kalibro_module.granularity %>
 </p>
 <p>
-  <strong>Grade:</strong>
+  <strong><%= KalibroModule.human_attribute_name('grade') %>:</strong>
   <%= format_grade(@root_module_result.grade) %>
 </p>
 <% unless @root_module_result.parent_id.nil? %>
-  <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} Loading data. Please, wait.', #{@root_module_result.parent_id});" %></p>
+  <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} #{escape_javascript(t('loading_data'))}', #{@root_module_result.parent_id});" %></p>
 <% end %>
 
 <% cache("#{@root_module_result.id}_tree") do %>
@@ -19,9 +19,9 @@
   <% unless children.empty? %>
     <table class="table table-hover">
       <thead>
-        <th>Name</th>
-        <th>Granularity</th>
-        <th>Grade</th>
+        <th><%= KalibroModule.human_attribute_name('name') %></th>
+        <th><%= KalibroModule.human_attribute_name('granularity') %></th>
+        <th><%= KalibroModule.human_attribute_name('grade') %></th>
       </thead>
       <tbody>
         <%= render partial: 'module_result', collection: children %>

@@ -1,15 +1,15 @@
 <div class="page-header">
-  <h1>Configurations</h1>
+  <h1><%= KalibroConfiguration.model_name.human(count: 2) %></h1>
 </div>
 
 <% if user_signed_in? %>
   <p>
-    <%= link_to 'New Configuration', new_kalibro_configuration_path, class: 'btn  btn-primary' %>
+    <%= link_to "#{t('new.female')} #{KalibroConfiguration.model_name.human}", new_kalibro_configuration_path, class: 'btn  btn-primary' %>
   </p>
 <%else%>
   <p class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    You must be logged in to create new Configurations.
+    <%= t('unauthenticated', action: "#{t('create', model: KalibroConfiguration.model_name.human(count: 2)).downcase}") %>.
   </p>
 <% end %>
 

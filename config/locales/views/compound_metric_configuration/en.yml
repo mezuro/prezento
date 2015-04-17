@@ -1,0 +1,23 @@
+en:
+  activemodel:
+    models:
+      compound_metric_configuration:
+        one: "Compound Metric Configuration"
+        other: "Compound Metric Configurations"
+    attributes:
+      compound_metric_configuration:
+        name: "Name"
+        description: "Description"
+        script: "Script"
+        scope: "Scope"
+        code: "Code"
+        weight: "Weight"
+    hints:
+      compound_metric_configuration:
+        name: "A custom name for your compound metric."
+        description: "A short description of your compound metric."
+        script: "A mathematical expression (in javascript) to calculate your compound metric. It needs a return statement. The codes of already created metrics can be used inside the script."
+        code:
+          description: "A variable that holds the value of a metric calculation. It can be used in the script of another compound metric."
+          example: "Example: Code foo := 10"
+        weight: "It is used to calculate the weighted average of a"

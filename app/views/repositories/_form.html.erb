@@ -11,7 +11,7 @@
       </div>
       <div class="help-container">
         <p>
-          The name of your Repository.
+          <%= t('activemodel.hints.repository.name') %>
         </p>
       </div>
     </div>
@@ -23,7 +23,7 @@
       </div>
       <div class="help-container">
         <p>
-          A short description of your Repository.
+          <%= t('activemodel.hints.repository.description') %>
         </p>
       </div>
     </div>
@@ -35,7 +35,7 @@
       </div>
       <div class="help-container">
         <p>
-          The source code's license.
+          <%= t('activemodel.hints.repository.license') %>
         </p>
       </div>
     </div>
@@ -47,7 +47,7 @@
       </div>
       <div class="help-container">
         <p>
-          The version control system the Repository uses.
+          <%= t('activemodel.hints.repository.scm_type') %>
         </p>
       </div>
     </div>
@@ -59,7 +59,7 @@
       </div>
       <div class="help-container">
         <p>
-          The URL where the Repository is located.
+          <%= t('activemodel.hints.repository.address') %>
         </p>
       </div>
     </div>
@@ -71,20 +71,20 @@
       </div>
       <div class="help-container">
         <p>
-          Select how often the Repository will be reprocessed.
+          <%= t('activemodel.hints.repository.period') %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :configuration, 'Configuration', class: 'control-label' %>
+        <%= f.label :kalibro_configuration_id, KalibroConfiguration.model_name.human, class: 'control-label' %>
         <% configuration_list = KalibroClient::Entities::Configurations::KalibroConfiguration.all.map { |conf| [conf.name, conf.id] } %>
         <%= f.select( :kalibro_configuration_id, configuration_list, class: 'tooltip-control' ) %>
       </div>
       <div class="help-container">
         <p>
-          A <%= link_to 'Configuration', tutorials_path('keywords', anchor: 'configuration') %> defines all the metrics to be calculated in the source code. Choose your weapon!
+          <%= t('activemodel.hints.repository.kalibro_configuration', configuration_href: link_to(KalibroConfiguration.model_name.human, tutorials_path('keywords', anchor: 'configuration'))).html_safe %>
         </p>
       </div>
     </div>
