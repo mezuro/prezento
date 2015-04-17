@@ -7,8 +7,8 @@
     <div class="form-table col-md-9">
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :email, class: 'control-label' %><br />
-          <%= f.email_field :email, :autofocus => true, class: 'text-field form-control' %>
+          <%= f.label :email, class: 'control-label' %>
+          <%= f.email_field :email, :autofocus => true, tabindex: 1, class: 'text-field form-control' %>
         </div>
         <div class="help-container">
           <p>
@@ -19,8 +19,8 @@
 
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :password, class: 'control-label' %><br />
-          <%= f.password_field :password, class: 'text-field form-control' %>
+          <%= f.label :password, class: 'control-label' %>
+          <%= f.password_field :password, class: 'text-field form-control', tabindex: 2 %>
         </div>
         <div class="help-container">
           <p>
