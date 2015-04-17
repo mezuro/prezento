@@ -9,7 +9,7 @@ describe ApplicationHelper, :type => :helper do
       let!(:translation) { "translated test" }
 
       before :each do
-        helper.expects(:t).with("activemodel.hints.#{helper.controller_name}.#{attribute_key}").returns(translation)
+        helper.expects(:t).with("activemodel.hints.#{helper.controller_name}.#{attribute_key}", {}).returns(translation)
       end
 
       it 'is expected to return the hint for the given attribute' do

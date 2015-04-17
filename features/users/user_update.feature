@@ -3,7 +3,6 @@ Feature: User update
   As a regular user
   I want to have an edit page
 
-  @javascript
   Scenario: with current password
     Given I am a regular user
     And I am signed in
