@@ -13,7 +13,7 @@
         </div>
         <div class="help-container">
           <p>
-            <%= t('activemodel.hints.kalibro_range.reading',
+            <%= t_hint('reading', 'kalibro_range',
                   reading_href: link_to(t('reading'), tutorials_path('keywords', anchor: 'reading')),
                   range_href: link_to(KalibroRange.model_name.human, tutorials_path('keywords', anchor: 'range'))
                  ).html_safe
@@ -36,7 +36,7 @@
 
         <div class="help-container">
           <p>
-            <%= t('activemodel.hints.kalibro_range.beginning') %>
+            <%= t_hint('beginning', 'kalibro_range') %>
           </p>
         </div>
       </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="help-container">
           <p>
-            <%= t('activemodel.hints.kalibro_range.end') %>
+            <%= t_hint('end', 'kalibro_range') %>
           </p>
         </div>
       </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="help-container">
           <p>
-            <%= t('activemodel.hints.kalibro_range.comments', metric_href: link_to(t('metric'), tutorials_path('keywords', anchor: 'metric'))).html_safe %>
+            <%= t_hint('comments', 'kalibro_range', metric_href: link_to(t('metric'), tutorials_path('keywords', anchor: 'metric'))).html_safe %>
           </p>
         </div>
       </div>

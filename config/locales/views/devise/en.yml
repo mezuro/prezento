@@ -8,6 +8,7 @@ en:
   activerecord:
     attributes:
       user:
+        name: Name
         current_password: Current password
         email: Email
         password: Password
@@ -72,6 +73,9 @@ en:
         same_email: *same_email
         forgot_password_link_html: If you forgot your password, follow this %{link} to reset it.
         stay_logged_in: Stay logged in.
+      user:
+        signed_in: Signed in successfully.
+        signed_out: Signed out successfully.
     shared:
       links:
         back: Back

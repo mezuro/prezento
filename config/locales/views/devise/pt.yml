@@ -8,6 +8,7 @@ pt:
   activerecord:
     attributes:
       user:
+        name: Nome
         current_password: Senha atual
         email: Email
         password: Senha
@@ -16,6 +17,9 @@ pt:
     models:
       user: Usuário
   devise:
+    failure:
+      user:
+        invalid: Email ou senha inválidos.
     confirmations:
       new:
         resend_confirmation_instructions: Reenviar instruções de confirmação
@@ -72,6 +76,9 @@ pt:
         same_email: *same_email
         forgot_password_link_html: Se você esqueceu sua senha, clique neste %{link} para redefini-la.
         stay_logged_in: Continuar logado.
+      user:
+        signed_in: Entrou com sucesso.
+        signed_out: Saiu com sucesso.
     shared:
       links:
         back: Voltar
