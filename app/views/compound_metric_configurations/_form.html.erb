@@ -8,7 +8,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :weight, t('weight'), class: 'control-label' %>
+        <%= f.label :weight, compound_metric_human_attribute_name('weight'), class: 'control-label' %>
         <%= f.text_field :weight, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
@@ -25,7 +25,7 @@
     <% else %>
       <div class="form-row">
         <div class="field-container">
-          <%= f.label :reading_group_id, t('reading_group'), class: 'control-label' %>
+          <%= f.label :reading_group_id, ReadingGroup.model_name.human, class: 'control-label' %>
           <%= f.select( :reading_group_id, reading_group_options, {class: 'form-control'} ) %>
         </div>
         <div class="help-container">

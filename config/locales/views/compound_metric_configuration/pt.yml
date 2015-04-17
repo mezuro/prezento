@@ -1,9 +1,23 @@
 pt:
-  body1_compound_form: "Uma variável que contém o valor de um cálculo de métrica. Ele pode ser utilizado no script de outra métrica composta."
-  body1_compound_form_example: "Exemplo: Código foo := 10"
-  body1_compound_metric_options: "Um nome personalizado para a sua métrica composta."
-  body2_compound_metric_options: "Uma breve descrição de sua métrica composta."
-  body3_compound_metric_options: "A expressão matemática (em javascript) para calcular a sua métrica composta. Ela precisa de uma instrução de retorno (por exemplo, 'return resultado;'). Os códigos de métricas já criadas podem ser usados dentro do script."
-  title_compound_edit: "Editar Configuração de Métrica Composta"
-  title_compound_new: "Nova Configuração de Métrica Composta"
-  compound_metric: "Métrica Composta"
+  activemodel:
+    models:
+      compound_metric_configuration:
+        one: "Configuração de Métrica Composta"
+        other: "Configurações de Métricas Compostas"
+    attributes:
+      compound_metric_configuration:
+        name: "Nome"
+        description: "Descrição"
+        script: "Script"
+        scope: "Escopo"
+        code: "Código"
+        weight: "Peso"
+    hints:
+      compound_metric_configuration:
+        name: "Um nome personalizado para sua métrica composta."
+        description: "Uma descrição curta de sua métrica composta."
+        script: "Uma expressão matemática (em JavaScript) para calcular sua métrica composta. Ela precisa de uma cláusula de retorno. O código de suas demais métricas pode ser utilizado dentro deste script."
+        code:
+          description: "Uma variável que contém o valor do cálculo da métrica. Ela pode ser usada no script de outra métrica composa."
+          example: "Examplo: Código foo := 10"
+        weight: "ele é usado para o cálculo de uma média ponderada de um"

@@ -1,42 +1,42 @@
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :name, t('name'), class: 'control-label' %>
+        <%= f.label :name, compound_metric_human_attribute_name('name'), class: 'control-label' %>
         <%= f.text_field :name, :required => true, class: 'text-field form-control', value: (metric.name unless metric.nil?) %>
       </div>
       <div class="help-container">
         <p>
-          <%= t('body1_compound_metric_options') %>
+          <%= t_hint(:name) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :description, t('description'), class: 'control-label' %>
+        <%= f.label :description, compound_metric_human_attribute_name('description'), class: 'control-label' %>
         <%= f.text_field :description, class: 'text-field form-control', value: (metric.description unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
-          <%= t('body2_compound_metric_options') %>
+          <%= t_hint(:description) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :script, t('script'), class: 'control-label' %>
+        <%= f.label :script, compound_metric_human_attribute_name('script'), class: 'control-label' %>
         <%= f.text_area :script, :required => true, class: 'text-area form-control', value: (metric.script unless metric.nil?)  %>
       </div>
       <div class="help-container">
         <p>
-          <%= t('body3_compound_metric_options') %>
+          <%= t_hint(:script) %>
         </p>
       </div>
     </div>
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :scope, t('scope'), class: 'control-label' %>
+        <%= f.label :scope, compound_metric_human_attribute_name('scope'), class: 'control-label' %>
         <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
       </div>
       <div class="help-container">
@@ -48,16 +48,16 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :code, t('code'), class: 'control-label' %>
+        <%= f.label :code, compound_metric_human_attribute_name('code'), class: 'control-label' %>
         <%= f.text_field :code, :required => true, class: 'text-field form-control' %>
       </div>
       <div class="help-container">
         <p>
-          <%= t('body1_compound_form') %>
+          <%= t_hint('code.description') %>
         </p>
           <br>
           <p>
-          <%= t('body1_compound_form_example') %>
+          <%= t_hint('code.example') %>
           </p>
       </div>
     </div>

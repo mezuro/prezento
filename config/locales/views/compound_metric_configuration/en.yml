@@ -1,11 +1,23 @@
 en:
-  body1_compound_form: "A variable that holds the value of a metric calculation. It can be used in the script of another compound metric."
-  body2_compound_form: " It is used to calculate the weighted average of a"
-  body1_compound_form_example: "Example: Code foo := 10"
-  body1_compound_metric_options: "A custom name for your compound metric."
-  body2_compound_metric_options: "A short description of your compound metric."
-  body3_compound_metric_options: "A mathematical expression (in javascript) to calculate your compound metric. It needs a return statement. The codes of already created metrics can be used inside the script."
-  title_compound_edit: "Edit Compound Metric Configuration"
-  title_compound_new: "New Compound Metric Configuration"
-  compound_metric: "Compound Metric"
-
+  activemodel:
+    models:
+      compound_metric_configuration:
+        one: "Compound Metric Configuration"
+        other: "Compound Metric Configurations"
+    attributes:
+      compound_metric_configuration:
+        name: "Name"
+        description: "Description"
+        script: "Script"
+        scope: "Scope"
+        code: "Code"
+        weight: "Weight"
+    hints:
+      compound_metric_configuration:
+        name: "A custom name for your compound metric."
+        description: "A short description of your compound metric."
+        script: "A mathematical expression (in javascript) to calculate your compound metric. It needs a return statement. The codes of already created metrics can be used inside the script."
+        code:
+          description: "A variable that holds the value of a metric calculation. It can be used in the script of another compound metric."
+          example: "Example: Code foo := 10"
+        weight: "It is used to calculate the weighted average of a"
