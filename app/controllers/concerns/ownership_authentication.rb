@@ -54,7 +54,7 @@ module OwnershipAuthentication
   def check_project_ownership(id)
     if current_user.project_attributes.find_by_project_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to projects_url, notice: "You're not allowed to do this operation" }
+        format.html { redirect_to projects_url, notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end
@@ -65,7 +65,7 @@ module OwnershipAuthentication
   def check_reading_group_ownership(id)
     if current_user.reading_group_ownerships.find_by_reading_group_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to reading_group_url(id: id), notice: "You're not allowed to do this operation" }
+        format.html { redirect_to reading_group_url(id: id), notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end
@@ -76,7 +76,7 @@ module OwnershipAuthentication
   def check_kalibro_configuration_ownership(id)
     if current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to kalibro_configurations_url(id: id), notice: "You're not allowed to do this operation" }
+        format.html { redirect_to kalibro_configurations_url(id: id), notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end
