@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_locale
 
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from KalibroClient::Errors::RecordNotFound, with: :not_found
+
   class << self
     # This is necessary for correct devise routing with locales: https://github.com/plataformatec/devise/wiki/How-To:--Redirect-with-locale-after-authentication-failure
     def default_url_options
@@ -27,6 +30,13 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def not_found(exception)
+    respond_to do |format|
+      format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
+      format.json { head :not_found }
+    end
+  end
 
   # We don't have a way to test this unless we have the Devise controllers among our code.
   # Since creating the controllers looks wronger than not testing this two

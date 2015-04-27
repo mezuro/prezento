@@ -14,6 +14,7 @@ module MetricConfigurationsHelper
   end
 
   def supported_metrics_of(metric_collector_name)
+    # find_by_name throws an exception instead of returning nil, unlike ActiveRecord's API
     KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(metric_collector_name).supported_metrics
   end
 end

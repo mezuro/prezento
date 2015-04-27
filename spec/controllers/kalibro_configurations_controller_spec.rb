@@ -65,7 +65,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
     before :each do
       kalibro_configuration.expects(:metric_configurations).returns(metric_configuration)
-      subject.expects(:find_resource).with(KalibroConfiguration, kalibro_configuration.id).returns(kalibro_configuration)
+      KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
 
       get :show, :id => kalibro_configuration.id
     end
@@ -96,11 +96,11 @@ describe KalibroConfigurationsController, :type => :controller do
 
           #Those two mocks looks the same but they are necessary since params[:id] is a String and @configuration.id is an Integer :(
           @ownerships.expects(:find_by_kalibro_configuration_id).with("#{@subject.id}").returns(@ownership)
-          @ownerships.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(@ownership)
+          @ownerships.expects(:find_by_kalibro_configuration_id!).with(@subject.id).returns(@ownership)
 
           User.any_instance.expects(:kalibro_configuration_ownerships).at_least_once.returns(@ownerships)
 
-          subject.expects(:find_resource).with(KalibroConfiguration, @subject.id).returns(@subject)
+          KalibroConfiguration.expects(:find).with(@subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
         end
 
@@ -160,7 +160,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context 'when the user owns the kalibro_configuration' do
         before :each do
-          subject.expects(:find_resource).with(KalibroConfiguration, @subject.id).returns(@subject)
+          KalibroConfiguration.expects(:find).with(@subject.id).returns(@subject)
           @ownerships.expects(:find_by_kalibro_configuration_id).with("#{@subject.id}").returns(@ownership)
 
           get :edit, :id => @subject.id
@@ -215,7 +215,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(KalibroConfiguration, kalibro_configuration.id).returns(kalibro_configuration)
+            KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
             KalibroConfiguration.any_instance.expects(:update).with(kalibro_configuration_params).returns(true)
           end
 
@@ -240,7 +240,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(KalibroConfiguration, kalibro_configuration.id).returns(kalibro_configuration)
+            KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
             KalibroConfiguration.any_instance.expects(:update).with(kalibro_configuration_params).returns(false)
 
             post :update, :id => kalibro_configuration.id, :kalibro_configuration => kalibro_configuration_params

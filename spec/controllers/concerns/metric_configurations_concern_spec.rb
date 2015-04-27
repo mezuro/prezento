@@ -6,7 +6,7 @@ describe MetricConfigurationsConcern, type: :controller do
     let! (:metric_configurations_controller) { MetricConfigurationsController.new }
 
     before :each do
-      metric_configurations_controller.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+      MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
       metric_configurations_controller.params = {id: metric_configuration.id}
     end
 

@@ -65,7 +65,7 @@ describe ProjectsController, :type => :controller do
     context 'when the project exists' do
       let(:repository) { FactoryGirl.build(:repository) }
       before :each do
-        subject.expects(:find_resource).with(Project, project.id).returns(project)
+        Project.expects(:find).with(project.id).returns(project)
         project.expects(:repositories).returns(repository)
         get :show, :id => project.id
       end
@@ -102,11 +102,11 @@ describe ProjectsController, :type => :controller do
 
           #Those two mocks looks the same but they are necessary since params[:id] is a String and @project.id is an Integer :(
           @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@project_attributes)
-          @attributes.expects(:find_by_project_id).with(@subject.id).returns(@project_attributes)
+          @attributes.expects(:find_by_project_id!).with(@subject.id).returns(@project_attributes)
 
           User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
 
-          subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
+          Project.expects(:find).with(@subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
         end
 
@@ -168,7 +168,7 @@ describe ProjectsController, :type => :controller do
 
       context 'when the user owns the project' do
         before :each do
-          subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
+          Project.expects(:find).with(@subject.id).returns(@subject)
           @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@attribute)
 
           get :edit, :id => @subject.id
@@ -224,7 +224,7 @@ describe ProjectsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
+            Project.expects(:find).with(@subject.id).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(true)
             @project_attributes.expects(:update).with(image_url: @subject_params[:image_url]).returns(true)
             @subject.expects(:attributes).returns(@project_attributes)
@@ -251,7 +251,7 @@ describe ProjectsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(Project, @subject.id).returns(@subject)
+            Project.expects(:find).with(@subject.id).returns(@subject)
             Project.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :project => @subject_params

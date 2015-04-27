@@ -62,7 +62,7 @@ describe ReadingGroupsController, :type => :controller do
     let!(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
     let(:reading) { FactoryGirl.build(:reading_with_id) }
     before :each do
-      subject.expects(:find_resource).with(ReadingGroup, reading_group.id).returns(reading_group)
+      ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
       get :show, :id => reading_group.id
     end
 
@@ -89,11 +89,11 @@ describe ReadingGroupsController, :type => :controller do
 
           #Those two mocks looks the same but they are necessary since params[:id] is a String and @ReadingGroup.id is an Integer :(
           @ownerships.expects(:find_by_reading_group_id).with("#{@subject.id}").returns(@ownership)
-          @ownerships.expects(:find_by_reading_group_id).with(@subject.id).returns(@ownership)
+          @ownerships.expects(:find_by_reading_group_id!).with(@subject.id).returns(@ownership)
 
           User.any_instance.expects(:reading_group_ownerships).at_least_once.returns(@ownerships)
 
-          subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
+          ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
           delete :destroy, :id => @subject.id
         end
 
@@ -153,7 +153,7 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'when the user owns the reading group' do
         before :each do
-          subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
+          ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
           @ownerships.expects(:find_by_reading_group_id).with("#{@subject.id}").returns(@ownership)
 
           get :edit, :id => @subject.id
@@ -210,7 +210,7 @@ describe ReadingGroupsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
+            ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(true)
           end
 
@@ -235,7 +235,7 @@ describe ReadingGroupsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(ReadingGroup, @subject.id).returns(@subject)
+            ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(false)
 
             post :update, :id => @subject.id, :reading_group => @subject_params

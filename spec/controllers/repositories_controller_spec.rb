@@ -94,7 +94,7 @@ describe RepositoriesController, :type => :controller do
         processing = FactoryGirl.build(:processing)
 
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration_with_id))
-        subject.expects(:find_resource).with(Repository, repository.id).returns(repository)
+        Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
       end
@@ -108,7 +108,7 @@ describe RepositoriesController, :type => :controller do
         processing = FactoryGirl.build(:processing)
 
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration_with_id))
-        subject.expects(:find_resource).with(Repository, repository.id).returns(repository)
+        Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
       end

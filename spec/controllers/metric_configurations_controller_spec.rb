@@ -97,7 +97,7 @@ describe MetricConfigurationsController, :type => :controller do
 
     before :each do
       ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-      subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+      MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
       metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
       get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
@@ -117,7 +117,7 @@ describe MetricConfigurationsController, :type => :controller do
       context 'when the user owns the metric configuration' do
         before :each do
           subject.expects(:metric_configuration_owner?).returns(true)
-          subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+          MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
           get :edit, id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
         end
 
@@ -160,7 +160,7 @@ describe MetricConfigurationsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+            MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
 
             post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
@@ -172,7 +172,7 @@ describe MetricConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+            MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
 
             post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
@@ -205,7 +205,7 @@ describe MetricConfigurationsController, :type => :controller do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
           metric_configuration.expects(:destroy)
-          subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+          MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
 
           delete :destroy, id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
         end

@@ -1,5 +1,4 @@
 include OwnershipAuthentication
-include ResourceFinder
 
 class ReadingGroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
@@ -45,7 +44,7 @@ class ReadingGroupsController < ApplicationController
   # DELETE /reading_group/1
   # DELETE /reading_group/1.json
   def destroy
-    current_user.reading_group_ownerships.find_by_reading_group_id(@reading_group.id).destroy
+    current_user.reading_group_ownerships.find_by_reading_group_id!(@reading_group.id).destroy
     @reading_group.destroy
     respond_to do |format|
       format.html { redirect_to reading_groups_url }
@@ -57,7 +56,7 @@ class ReadingGroupsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_reading_group
-    @reading_group = find_resource(ReadingGroup, params[:id].to_i)
+    @reading_group = ReadingGroup.find(params[:id].to_i)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

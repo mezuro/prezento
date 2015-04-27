@@ -7,6 +7,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   def new
     super
+    # find_by_name throws an exception instead of returning nil, unlike ActiveRecord's API
     metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(params[:metric_collector_name]).find_metric_by_code params[:metric_code]
   end
 

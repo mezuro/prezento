@@ -1,5 +1,4 @@
 include OwnershipAuthentication
-include ResourceFinder
 
 class KalibroConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
@@ -54,7 +53,7 @@ class KalibroConfigurationsController < ApplicationController
   # DELETE /kalibro_configurations/1.json
   def destroy
     set_kalibro_configuration
-    current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id(@kalibro_configuration.id).destroy
+    current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id!(@kalibro_configuration.id).destroy
     @kalibro_configuration.destroy
     respond_to do |format|
       format.html { redirect_to kalibro_configurations_url }
@@ -66,7 +65,7 @@ class KalibroConfigurationsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_kalibro_configuration
-    @kalibro_configuration = find_resource(KalibroConfiguration, params[:id].to_i)
+    @kalibro_configuration = KalibroConfiguration.find(params[:id].to_i)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

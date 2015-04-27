@@ -74,7 +74,7 @@ describe ReadingsController, :type => :controller do
       context 'when the user owns the reading' do
         before :each do
           subject.expects(:reading_owner?).returns true
-          subject.expects(:find_resource).with(Reading, reading.id).returns(reading)
+          Reading.expects(:find).with(reading.id).returns(reading)
           get :edit, id: reading.id, reading_group_id: reading_group.id.to_s
         end
 
@@ -117,7 +117,7 @@ describe ReadingsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(Reading, reading.id).returns(reading)
+            Reading.expects(:find).with(reading.id).returns(reading)
             Reading.any_instance.expects(:update).with(reading_params).returns(true)
 
             post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
@@ -129,7 +129,7 @@ describe ReadingsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(Reading, reading.id).returns(reading)
+            Reading.expects(:find).with(reading.id).returns(reading)
             Reading.any_instance.expects(:update).with(reading_params).returns(false)
 
             post :update, reading_group_id: reading_group.id, id: reading.id, reading: reading_params
@@ -169,7 +169,7 @@ describe ReadingsController, :type => :controller do
         before :each do
           subject.expects(:reading_owner?).returns true
           reading.expects(:destroy)
-          subject.expects(:find_resource).with(Reading, reading.id).returns(reading)
+          Reading.expects(:find).with(reading.id).returns(reading)
 
           delete :destroy, id: reading.id, reading_group_id: reading.reading_group_id.to_s
         end

@@ -1,5 +1,4 @@
 include OwnershipAuthentication
-include ResourceFinder
 
 class ProjectsController < ApplicationController
   before_action :authenticate_user!,
@@ -55,7 +54,7 @@ class ProjectsController < ApplicationController
   # DELETE /project/1.json
   def destroy
     set_project
-    current_user.project_attributes.find_by_project_id(@project.id).destroy
+    current_user.project_attributes.find_by_project_id!(@project.id).destroy
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -66,7 +65,7 @@ class ProjectsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = find_resource(Project, params[:id].to_i)
+    @project = Project.find(params[:id].to_i)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
