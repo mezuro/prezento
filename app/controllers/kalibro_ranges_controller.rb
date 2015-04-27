@@ -1,5 +1,4 @@
 include OwnershipAuthentication
-include ResourceFinder
 
 class KalibroRangesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
@@ -60,7 +59,8 @@ class KalibroRangesController < ApplicationController
   end
 
   def format_metric_configuration_path(format, notice)
-    @metric_configuration = MetricConfiguration.find @kalibro_range.metric_configuration_id
+    @metric_configuration = MetricConfiguration.find(@kalibro_range.metric_configuration_id)
+
     if(@metric_configuration.metric.is_a? KalibroClient::Entities::Miscellaneous::CompoundMetric)
       format.html { redirect_to kalibro_configuration_compound_metric_configuration_path(
         @kalibro_configuration_id, @metric_configuration_id), notice: notice }
@@ -93,6 +93,6 @@ class KalibroRangesController < ApplicationController
   end
 
   def set_kalibro_range
-    @kalibro_range = find_resource(KalibroRange, params[:id].to_i)
+    @kalibro_range = KalibroRange.find(params[:id].to_i)
   end
 end

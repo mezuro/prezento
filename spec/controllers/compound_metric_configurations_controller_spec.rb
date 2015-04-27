@@ -74,7 +74,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     before :each do
       ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
-      subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
+      MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
       compound_metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
       get :show, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s, id: compound_metric_configuration.id
@@ -94,7 +94,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       context 'when the user owns the compound metric configuration' do
         before :each do
           subject.expects(:metric_configuration_owner?).returns(true)
-          subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
+          MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
           MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
           get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
@@ -138,7 +138,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
+            MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
 
             post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
@@ -150,7 +150,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(MetricConfiguration, compound_metric_configuration.id).returns(compound_metric_configuration)
+            MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
             MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
             MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
 

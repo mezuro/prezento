@@ -117,7 +117,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
     context 'with a valid metric_configuration' do
       before :each do
         ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-        subject.expects(:find_resource).with(MetricConfiguration, metric_configuration.id).returns(metric_configuration)
+        MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
         metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
         get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id

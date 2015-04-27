@@ -1,5 +1,4 @@
 include OwnershipAuthentication
-include ResourceFinder
 
 class RepositoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :state, :state_with_date]
@@ -101,11 +100,13 @@ private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_repository
-    @repository = find_resource(Repository, params[:id].to_i)
+    @repository = Repository.find(params[:id].to_i)
   end
 
   def set_kalibro_configuration
-    @kalibro_configuration = KalibroConfiguration.find(@repository.kalibro_configuration_id)
+    if @repository
+      @kalibro_configuration = KalibroConfiguration.find(@repository.kalibro_configuration_id)
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

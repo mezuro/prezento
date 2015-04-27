@@ -97,7 +97,7 @@ describe KalibroRangesController, :type => :controller do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
           kalibro_range.expects(:destroy)
-          subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
+          KalibroRange.expects(:find).with(kalibro_range.id).returns(kalibro_range)
           MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
 
           delete :destroy, id: kalibro_range.id, metric_configuration_id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id
@@ -114,7 +114,7 @@ describe KalibroRangesController, :type => :controller do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
           new_kalibro_range.expects(:destroy)
-          subject.expects(:find_resource).with(KalibroRange, new_kalibro_range.id).returns(new_kalibro_range)
+          KalibroRange.expects(:find).with(new_kalibro_range.id).returns(new_kalibro_range)
           MetricConfiguration.expects(:find).with(new_kalibro_range.metric_configuration_id).returns(compound_metric_configuration)
 
           delete :destroy, id: new_kalibro_range.id, metric_configuration_id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id
@@ -156,7 +156,7 @@ describe KalibroRangesController, :type => :controller do
       context 'when the user owns the kalibro range' do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
-          subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
+          KalibroRange.expects(:find).with(kalibro_range.id).returns(kalibro_range)
           MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
           Reading.expects(:readings_of).with(metric_configuration.reading_group_id).returns([reading])
           get :edit, id: kalibro_range.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, metric_configuration_id: metric_configuration.id
@@ -205,7 +205,7 @@ describe KalibroRangesController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
+            KalibroRange.expects(:find).with(kalibro_range.id).returns(kalibro_range)
             KalibroRange.any_instance.expects(:update).with(kalibro_range_params).returns(true)
             MetricConfiguration.expects(:find).with(kalibro_range.metric_configuration_id).returns(metric_configuration)
 
@@ -221,7 +221,7 @@ describe KalibroRangesController, :type => :controller do
           let(:new_kalibro_range) { FactoryGirl.build(:kalibro_range_with_id, metric_configuration_id: compound_metric_configuration.id) }
 
           before :each do
-            subject.expects(:find_resource).with(KalibroRange, new_kalibro_range.id).returns(new_kalibro_range)
+            KalibroRange.expects(:find).with(new_kalibro_range.id).returns(new_kalibro_range)
             KalibroRange.any_instance.expects(:update).with(new_kalibro_range.to_hash).returns(true)
             MetricConfiguration.expects(:find).with(new_kalibro_range.metric_configuration_id).returns(compound_metric_configuration)
 
@@ -234,7 +234,7 @@ describe KalibroRangesController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
-            subject.expects(:find_resource).with(KalibroRange, kalibro_range.id).returns(kalibro_range)
+            KalibroRange.expects(:find).with(kalibro_range.id).returns(kalibro_range)
             KalibroRange.any_instance.expects(:update).with(kalibro_range_params).returns(false)
             MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
             Reading.expects(:readings_of).with(metric_configuration.reading_group_id).returns([reading])
