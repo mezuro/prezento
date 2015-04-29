@@ -2,3 +2,23 @@ en:
   value: "Valor"
   threshold: "Limite"
   only_point_printed_chart: "Há apenas um ponto e não vai ser impresso em um gráfico."
+  activemodel:
+    models:
+      kalibro_module:
+        one: "Módulo"
+        other: "Módulos"
+      reading_group:
+        one: "Grupo de Leitura"
+        other: "Grupos de Leitura"
+      kalibro_range:
+        one: "Intervalo"
+        other: "Intervalos"
+      metric_configuration:
+        one: "Configuração de Métrica"
+        other: "Configurações de Métricas"
+    attributes:
+      metric_configuration:
+        metric: "Métrica"
+        weight: "Peso"
+        aggregation_form: "Forma de Agregação"
+        reading_group_id: "Grupo de Leitura"

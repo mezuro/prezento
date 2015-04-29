@@ -1,22 +1,10 @@
 pt:
   activemodel:
     models:
-      kalibro_range:
-        one: "Intervalo"
-        other: "Intervalos"
+      processing:
+        one: "Processamento"
+        other: "Processamentos"
     attributes:
-      kalibro_range:
-        reading: "Leitura"
-        beginning: "Início"
-        end: "Fim"
-        comments: "Comentários"
-    hints:
-      kalibro_range:
-        reading: "A %{reading_href} associada a este %{range_href}."
-        beginning: "Limite inferior de um Intervalo."
-        end: "Limite superior de um Intervalo."
-        comments: "Uma explicação do porquê você escolheu este Intervalo, com esta Leitura para esta %{metric_href}."
-    errors:
-      kalibro_range:
-        no_readings: "Você deve ter Leituras associadas ao Grupo de Leitura para criar um novo intervalo."
-        reading_group_belongs_to_another: "O Grupo de Leitura da sua Configuração de Métrica pertence a outro usuário e você não tem permissão para modificá-lo."
+      processing:
+        state: "Estado"
+        creation_date: "Data de Criação"

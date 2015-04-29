@@ -2,3 +2,23 @@ en:
   value: "Value"
   threshold: "Threshold"
   only_point_printed_chart: "There is only one point and it will not be printed into a chart."
+  activemodel:
+    models:
+      kalibro_module:
+        one: "Module"
+        other: "Modules"
+      reading_group:
+        one: "Reading Group"
+        other: "Reading Groups"
+      kalibro_range:
+        one: "Range"
+        other: "Ranges"
+      metric_configuration:
+        one: "Metric Configuration"
+        other: "Metric Configurations"
+    attributes:
+      metric_configuration:
+        metric: "Metric"
+        weight: "Weight"
+        aggregation_form: "Aggregation Form"
+        reading_group_id: "Reading Group"
