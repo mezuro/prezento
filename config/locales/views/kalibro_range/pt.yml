@@ -20,3 +20,4 @@ pt:
       kalibro_range:
         no_readings: "Você deve ter Leituras associadas ao Grupo de Leitura para criar um novo intervalo."
         reading_group_belongs_to_another: "O Grupo de Leitura da sua Configuração de Métrica pertence a outro usuário e você não tem permissão para modificá-lo."
+  want_destroy_range: "Tem certeza que você quer destruir este Intervalo?"

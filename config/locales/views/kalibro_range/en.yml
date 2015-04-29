@@ -20,3 +20,4 @@ en:
       kalibro_range:
         no_readings: "You must have Readings within your associated Reading Group to create a new Range."
         reading_group_belongs_to_another: "The Reading Group of your Metric Configuration belongs to another user and you are not allowed to modify it."
+  want_destroy_range: "Are you sure that you want to destroy this Range?"
