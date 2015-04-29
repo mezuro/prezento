@@ -1,12 +1,7 @@
 <div class="page-header">
   <div class="row">
     <div class="col-md-2">
-      <% if @project_image && !@project_image.url.empty? %>
-        <%= image_tag "#{@project_image.url}", size:"128x128" %>
-      <% else %>
-        <center><i class="fa fa-file-image-o fa-5x"></i></center><br />
-        <%= t("no_image_available") %>
-      <% end %>
+      <%= project_image_html(@project) %>
     </div>
     <div class="col-md-10">
       <h1><%= @project.name %></h1>

@@ -17,3 +17,4 @@ pt:
   image_url: "URL da imagem"
   all_projects: "Todos os Projetos"
   no_repositories: "Não há repositórios ainda!"
+  no_image_available: "Imagem indisponível"

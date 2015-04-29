@@ -43,4 +43,32 @@ describe ProjectsHelper, :type => :helper do
     end
   end
 
+  describe 'project_image_html' do
+    let(:project) { FactoryGirl.build(:project) }
+    let(:project_attributes) { FactoryGirl.build(:project_attributes) }
+
+    context 'when the project has an image' do
+      before :each do
+        project.expects(:attributes).twice.returns(project_attributes)
+      end
+
+      it 'is expect to return an image tag with the project attribute URL' do
+        expect(helper.project_image_html(project)).to include("<img")
+        expect(helper.project_image_html(project)).to include(project_attributes.image_url)
+      end
+    end
+
+    context 'when the project does not has an image' do
+      before :each do
+        project_attributes.image_url = ""
+        project.expects(:attributes).twice.returns(project_attributes)
+      end
+
+      it 'is expect to return a default image icon with a message' do
+        expect(helper.project_image_html(project)).to include("<i class")
+        expect(helper.project_image_html(project)).to include(I18n.t('no_image_available'))
+      end
+    end
+  end
+
 end
