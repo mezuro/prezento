@@ -36,8 +36,7 @@
       </div>
       <%= f.hidden_field(:kalibro_configuration_id, value: @kalibro_configuration_id) %>
       <%= link_to t('back'), kalibro_configuration_path(@kalibro_configuration_id), class: 'btn btn-default' %>
+      <%= f.submit t('save'), class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
-<br>
-<%= f.submit t('save'), class: 'btn btn-primary' %>
