@@ -2,14 +2,14 @@ pt:
   activemodel:
     models:
       metric_configuration:
-        one: Configuração de Métrica
-        other: Configurações de Métricas
+        one: "Configuração de Métrica"
+        other: "Configurações de Métricas"
     attributes:
       metric_configuration:
-        metric: Métrica
-        weight: Peso
-        aggregation_form: Forma de Agregação
-        reading_group_id: Grupo de Leitura
+        metric: "Métrica"
+        weight: "Peso"
+        aggregation_form: "Forma de Agregação"
+        reading_group_id: "Grupo de Leitura"
   weighted_average_metric_configurations_form:  "Ele é usado para calcular a média ponderada de um"
   statistical_result_metric_configurations_form: "É o cálculo dos resultados estatísticos para maior"
   modules_eg_metric_configurations_form: "módulos (por exemplo, as linhas médias de código das classes dentro de um pacote)."

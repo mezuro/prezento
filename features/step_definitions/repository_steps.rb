@@ -92,7 +92,7 @@ When(/^I click on the sample metric's name$/) do
 end
 
 When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
-  select text, from: I18n.t(field.gsub(" ", "_").downcase)
+  select text, from: field
 end
 
 When(/^I visit the repository show page$/) do
