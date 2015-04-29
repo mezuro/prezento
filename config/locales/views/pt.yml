@@ -97,3 +97,4 @@ pt:
   create: "Criar %{model}"
   add: "Adicionar"
   sure_destroy: "Você tem certeza que deseja apagar este(a) %{model}?"
+  idiom: "Idioma"
