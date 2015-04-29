@@ -10,7 +10,7 @@ module ProjectsHelper
       image_tag url, size:"128x128"
     else
       "<center><i class='fa fa-file-image-o fa-5x'></i></center><br />
-       #{t('no_image_available')}"
+       #{t('no_image_available')}".html_safe
     end
   end
 end
