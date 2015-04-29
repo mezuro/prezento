@@ -92,8 +92,8 @@ pt:
   year: "Ano"
   search: "Procurar"
   new:
-    male: 'Novo'
-    female: 'Nova'
-  create: 'Criar %{model}'
-  add: 'Adicionar'
-  sure_destroy: 'Você tem certeza que deseja apagar este(a) %{model}?'
+    male: "Novo"
+    female: "Nova"
+  create: "Criar %{model}"
+  add: "Adicionar"
+  sure_destroy: "Você tem certeza que deseja apagar este(a) %{model}?"

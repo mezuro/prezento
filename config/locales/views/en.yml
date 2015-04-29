@@ -92,8 +92,8 @@ en:
   year: "Year"
   search: "Search"
   new:
-    male: 'New'
-    female: 'New'
-  create: 'Create %{model}'
-  add: 'Add'
-  sure_destroy: 'Are you sure that you want to destroy this %{model}?'
+    male: "New"
+    female: "New"
+  create: "Create %{model}"
+  add: "Add"
+  sure_destroy: "Are you sure that you want to destroy this %{model}?"

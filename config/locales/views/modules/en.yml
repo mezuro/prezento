@@ -1,6 +1,4 @@
----
 en:
-  value: Value
-  threshold: Threshold
-  only_point_printed_chart: There is only one point and it will not be printed into
-    a chart.
+  value: "Value"
+  threshold: "Threshold"
+  only_point_printed_chart: "There is only one point and it will not be printed into a chart."

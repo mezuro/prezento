@@ -2,12 +2,12 @@ en:
   activemodel:
     models:
       reading_group:
-        one: Reading Group
-        other: Reading Groups
+        one: "Reading Group"
+        other: "Reading Groups"
     attributes:
       reading_group:
-        name: 'Name'
-        description: 'Description'
+        name: "Name"
+        description: "Description"
     errors:
       reading_group:
-        no_readings: 'There are no Readings yet!'
+        no_readings: "There are no Readings yet!"
