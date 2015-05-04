@@ -1,0 +1,10 @@
+en:
+  helpers:
+    submit:
+      create: "Create %{model}"
+      update: "Update %{model}"
+      submit: "Save %{model}"
+      new: "New %{model}"
+      destroy: "Destroy %{model}"
+      edit: "Edit %{model}"
+      add: "Add %{model}"

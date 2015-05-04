@@ -16,3 +16,7 @@ pt:
         color: "É uma forma visual de destacar uma interpretação. Você pode escolher seu valor hexadecimal ou pela caixa de seleção."
         color_example: "Valores de exemplo: 000000, 00ff00 etc."
         grade: "Um número para classificar esta leitura."
+  helpers:
+    submit:
+      reading:
+        new: "Nova %{model}"

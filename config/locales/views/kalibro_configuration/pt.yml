@@ -8,3 +8,7 @@ pt:
       kalibro_configuration:
         name: "Nome"
         description: "Descrição"
+  helpers:
+    submit:
+      kalibro_configuration:
+        new: "Nova %{model}"
