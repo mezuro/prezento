@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= "#{t('new.female')} #{Reading.model_name.human}" %></h1>
+  <h1><%= t_action(:new, Reading) %></h1>
 </div>
 
 <%= form_for(@reading, :url => reading_group_readings_path(@reading_group_id)) do |f| %>
