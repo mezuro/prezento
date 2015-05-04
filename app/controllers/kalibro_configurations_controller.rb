@@ -79,7 +79,7 @@ class KalibroConfigurationsController < ApplicationController
     if @kalibro_configuration.save
       current_user.kalibro_configuration_ownerships.create kalibro_configuration_id: @kalibro_configuration.id
 
-      format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id), notice: t('successfully_created', :record => t(@kalibro_configuration.model_name.human)) }
+      format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id), notice: t('successfully_created', :record => @kalibro_configuration.model_name.human) }
       format.json { render action: 'show', status: :created, location: @kalibro_configuration }
     else
       format.html { render action: 'new' }
