@@ -17,9 +17,6 @@ pt:
     models:
       user: Usuário
   devise:
-    failure:
-      user:
-        invalid: Email ou senha inválidos.
     confirmations:
       new:
         resend_confirmation_instructions: Reenviar instruções de confirmação
