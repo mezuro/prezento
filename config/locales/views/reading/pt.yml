@@ -2,17 +2,21 @@ pt:
   activemodel:
     models:
       reading:
-        one: Leitura
-        other: Leituras
+        one: "Leitura"
+        other: "Leituras"
     attributes:
       reading:
-        label: 'Rótulo'
-        color: 'Cor'
-        grade: 'Nota'
+        label: "Rótulo"
+        color: "Cor"
+        grade: "Nota"
     hints:
       reading:
-        label: 'É uma forma concisa de descrever o conteúdo de uma avaliação.'
-        label_example: 'Valores de exemplo: terrível, ruim, regular, bom, ótimo etc.'
+        label: "É uma forma concisa de descrever o conteúdo de uma avaliação."
+        label_example: "Valores de exemplo: terrível, ruim, regular, bom, ótimo etc."
         color: "É uma forma visual de destacar uma interpretação. Você pode escolher seu valor hexadecimal ou pela caixa de seleção."
         color_example: "Valores de exemplo: 000000, 00ff00 etc."
         grade: "Um número para classificar esta leitura."
+  helpers:
+    submit:
+      reading:
+        new: "Nova %{model}"

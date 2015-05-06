@@ -2,12 +2,12 @@ pt:
   activemodel:
     models:
       reading_group:
-        one: Grupo de Leitura
-        other: Grupos de Leitura
+        one: "Grupo de Leitura"
+        other: "Grupos de Leitura"
     attributes:
       reading_group:
-        name: 'Nome'
-        description: 'Descrição'
+        name: "Nome"
+        description: "Descrição"
     errors:
       reading_group:
-        no_readings: 'Ainda não existem Leituras!'
+        no_readings: "Ainda não existem Leituras!"

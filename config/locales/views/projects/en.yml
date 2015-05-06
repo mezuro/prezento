@@ -17,3 +17,4 @@ en:
   image_url: "Image URL"
   all_projects: "All Projects"
   no_repositories: "There are no Repositories yet!"
+  no_image_available: "No Image Available"

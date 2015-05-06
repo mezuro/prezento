@@ -1,4 +1,15 @@
 en:
+  activemodel:
+    models:
+      metric_configuration:
+        one: "Metric Configuration"
+        other: "Metric Configurations"
+    attributes:
+      metric_configuration:
+        metric: "Metric"
+        weight: "Weight"
+        aggregation_form: "Aggregation Form"
+        reading_group_id: "Reading Group"
   weighted_average_metric_configurations_form:  "It is used to calculate the weighted average of a"
   statistical_result_metric_configurations_form: "It is the calculation of statistical results for higher"
   modules_eg_metric_configurations_form: " modules (e.g., average lines of code of the classes inside a package)."

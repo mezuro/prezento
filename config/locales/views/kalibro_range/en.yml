@@ -2,21 +2,22 @@ en:
   activemodel:
     models:
       kalibro_range:
-        one: Range
-        other: Ranges
+        one: "Range"
+        other: "Ranges"
     attributes:
       kalibro_range:
-        reading: 'Reading'
-        beginning: 'Beginning'
-        end: 'End'
-        comments: 'Comments'
+        reading: "Reading"
+        beginning: "Beginning"
+        end: "End"
+        comments: "Comments"
     hints:
       kalibro_range:
-        reading: 'The %{reading_href} associated with this %{range_href}.'
+        reading: "The %{reading_href} associated with this %{range_href}."
         beginning: "This Range's lower limit."
         end: "This Range's upper limit."
-        comments: 'An explanation of why you chose this interval, with that reading for this %{metric_href}.'
+        comments: "An explanation of why you chose this interval, with that reading for this %{metric_href}."
     errors:
       kalibro_range:
-        no_readings: 'You must have Readings within your associated Reading Group to create a new Range.'
-        reading_group_belongs_to_another: 'The Reading Group of your Metric Configuration belongs to another user and you are not allowed to modify it.'
+        no_readings: "You must have Readings within your associated Reading Group to create a new Range."
+        reading_group_belongs_to_another: "The Reading Group of your Metric Configuration belongs to another user and you are not allowed to modify it."
+  want_destroy_range: "Are you sure that you want to destroy this Range?"

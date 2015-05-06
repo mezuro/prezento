@@ -1,0 +1,19 @@
+en:
+  activemodel:
+    models:
+      metric_result:
+        one: "Metric Result"
+        other: "Metric Results"
+      module:
+        one: "Module"
+        other: "Modules"
+    attributes:
+      metric_result:
+        metric: "Metric"
+        value: "Value"
+        weight: "Weight"
+        threshold: "Threshold"
+      module:
+        name: "Name"
+        granularity: "Granularity"
+        grade: "Grade"

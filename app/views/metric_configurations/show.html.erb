@@ -53,7 +53,7 @@
 
 <h2><%= KalibroRange.model_name.human(count: 2) %></h2>
 <% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
-  <%= link_to t('add_range'), kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id,
+  <%= link_to t_action(:add, KalibroRange), kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id,
       @metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
@@ -77,7 +77,7 @@
 <p>
  <%= link_to t('back'), kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
 <% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
-      <%= link_to t('destroy_metric_configuration'), kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
+      <%= link_to t_action(:destroy, MetricConfiguration), kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
       @metric_configuration.id), method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
       class: 'btn btn-danger' %>
  <% end %>

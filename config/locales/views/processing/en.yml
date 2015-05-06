@@ -2,9 +2,9 @@ en:
   activemodel:
     models:
       processing:
-        one: Processing
-        other: Processings
+        one: "Processing"
+        other: "Processings"
     attributes:
       processing:
-        state: 'State'
-        creation_date: 'Creation Date'
+        state: "State"
+        creation_date: "Creation Date"

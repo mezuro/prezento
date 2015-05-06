@@ -15,7 +15,7 @@
         <td><%= link_to t('show'), reading_group_path(reading_group.id), class: 'btn btn-info' %></td>
         <td>
           <% if reading_groups_owner? reading_group.id %>
-            <%= link_to t('edit', model: ''), edit_reading_group_path(reading_group.id), class: 'btn btn-info' %>
+            <%= link_to t('edit'), edit_reading_group_path(reading_group.id), class: 'btn btn-info' %>
           <% end %>
         </td>
       </tr>

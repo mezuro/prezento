@@ -2,9 +2,13 @@ pt:
   activemodel:
     models:
       kalibro_configuration:
-        one: Configuração
-        other: Configurações
+        one: "Configuração"
+        other: "Configurações"
     attributes:
       kalibro_configuration:
-        name: 'Nome'
-        description: 'Descrição'
+        name: "Nome"
+        description: "Descrição"
+  helpers:
+    submit:
+      kalibro_configuration:
+        new: "Nova %{model}"
