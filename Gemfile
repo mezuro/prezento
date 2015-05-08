@@ -111,6 +111,8 @@ group :development, :test do
 
   # Localization assistance
   gem 'i18n_generators'
+
+  gem 'sprockets', '~>2.12.3' # spckets 3.0.3 breaks konacha
 end
 
 # Acceptance tests
@@ -122,6 +124,7 @@ group :cucumber do
   gem 'database_cleaner', '~> 1.4.1'
   gem 'poltergeist', '~> 1.6.0'
 end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
