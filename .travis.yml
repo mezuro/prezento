@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.2.1
+  - 2.2.2
 
 before_script:
   - git clone https://gist.github.com/6179925.git -b v2.1 kalibro_install
