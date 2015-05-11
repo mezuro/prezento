@@ -49,6 +49,15 @@ describe ProcessingsHelper, :type => :helper do
         expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[0])
       end
     end
+
+    context 'with incomplete ranges' do
+      let!(:range_snapshots) { [make_range('-INF', 6.0), make_range(6.1, 'INF')] }
+
+      it 'should return nil' do
+        expect(helper.find_range_snapshot(metric_result)).to be_nil
+      end
+    end
+
   end
 
   describe 'format_module_name' do

@@ -13,7 +13,8 @@ module ProcessingsHelper
     range_snapshots.each do |range_snapshot|
       range = Range.new(
         range_snapshot.beginning == '-INF' ? -Float::INFINITY : range_snapshot.beginning.to_f,
-        range_snapshot.end == 'INF' ? Float::INFINITY : range_snapshot.end.to_f
+        range_snapshot.end == 'INF' ? Float::INFINITY : range_snapshot.end.to_f,
+        exclude_end: true
       )
       return range_snapshot if range === metric_result.value
     end
