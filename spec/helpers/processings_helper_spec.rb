@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+def make_range(b, e)
+  FactoryGirl.build(:range_snapshot, beginning: b, end: e)
+end
+
 describe ProcessingsHelper, :type => :helper do
   describe 'humanize_eplased_time' do
     it 'should convert it to readable words' do
@@ -16,21 +20,44 @@ describe ProcessingsHelper, :type => :helper do
   describe 'find_range_snapshot' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id)}
     let(:metric_result) { FactoryGirl.build(:metric_result, {value: 6.0, metric_configuration: metric_configuration})}
-    let(:range_snapshot_1_to_5) { FactoryGirl.build(:range_snapshot, {beginning: 1.0, end: 5.0}) }
-    let(:range_snapshot_5dot1_to_10) { FactoryGirl.build(:range_snapshot, {beginning: 5.1, end: 10.0}) }
-    let(:range_snapshot_10dot1_to_15) { FactoryGirl.build(:range_snapshot, {beginning: 10.1, end: 15.0}) }
 
     before :each do
       metric_result.expects(:metric_configuration).returns(metric_configuration)
-      metric_configuration.expects(:kalibro_ranges).
-                    returns([range_snapshot_1_to_5,
-                             range_snapshot_5dot1_to_10,
-                             range_snapshot_10dot1_to_15])
+      metric_configuration.expects(:kalibro_ranges).returns(range_snapshots)
     end
 
-    it 'should return the range snapshot in which the value was in between' do
-      expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshot_5dot1_to_10)
+    context 'with two finite boundaries' do
+      let!(:range_snapshots) { [make_range(1.0, 5.0), make_range(5.1, 10.0), make_range(10.1, 15.0)] }
+
+      it 'should return the range snapshot which contains the value' do
+        expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[1])
+      end
     end
+
+    context 'with unbounded ranges' do
+      let!(:range_snapshots) { [make_range('-INF', 0.0), make_range(0, 'INF')] }
+
+      it 'should return the range snapshot which contains the value' do
+        expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[1])
+      end
+    end
+
+    context 'with an universal range' do
+      let!(:range_snapshots) { [make_range('-INF', 'INF')] }
+
+      it 'should return the range snapshot which contains the value' do
+        expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[0])
+      end
+    end
+
+    context 'with incomplete ranges' do
+      let!(:range_snapshots) { [make_range('-INF', 6.0), make_range(6.1, 'INF')] }
+
+      it 'should return nil' do
+        expect(helper.find_range_snapshot(metric_result)).to be_nil
+      end
+    end
+
   end
 
   describe 'format_module_name' do
