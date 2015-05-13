@@ -12,7 +12,9 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations
   # GET /kalibro_configurations.json
   def index
-    @kalibro_configurations = KalibroConfiguration.all
+    @kalibro_configurations = KalibroConfigurationAttributes.where(hidden: false).map { |cfg_attr|
+      KalibroConfiguration.find(cfg_attr.kalibro_configuration_id)
+    }.compact
   end
 
   # POST /kalibro_configurations
@@ -53,7 +55,7 @@ class KalibroConfigurationsController < ApplicationController
   # DELETE /kalibro_configurations/1.json
   def destroy
     set_kalibro_configuration
-    current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id!(@kalibro_configuration.id).destroy
+    current_user.kalibro_configuration_attributes.find_by_kalibro_configuration_id!(@kalibro_configuration.id).destroy
     @kalibro_configuration.destroy
     respond_to do |format|
       format.html { redirect_to kalibro_configurations_url }
@@ -77,7 +79,7 @@ class KalibroConfigurationsController < ApplicationController
   # Extracted code from create action
   def create_and_redir(format)
     if @kalibro_configuration.save
-      current_user.kalibro_configuration_ownerships.create kalibro_configuration_id: @kalibro_configuration.id
+      current_user.kalibro_configuration_attributes.create kalibro_configuration_id: @kalibro_configuration.id
 
       format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id), notice: t('successfully_created', :record => @kalibro_configuration.model_name.human) }
       format.json { render action: 'show', status: :created, location: @kalibro_configuration }

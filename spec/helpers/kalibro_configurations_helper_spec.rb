@@ -3,7 +3,7 @@ require 'rails_helper'
 describe KalibroConfigurationsHelper, :type => :helper do
   describe 'kalibro_configuration_owner?' do
     before :each do
-      @subject = FactoryGirl.build(:kalibro_configuration_with_id)
+      @subject = FactoryGirl.build(:kalibro_configuration, :with_id)
     end
 
     context 'returns false if not logged in' do

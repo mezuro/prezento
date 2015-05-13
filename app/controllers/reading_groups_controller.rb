@@ -13,7 +13,7 @@ class ReadingGroupsController < ApplicationController
   # GET /reading_groups
   # GET /reading_groups.json
   def index
-    @reading_groups = ReadingGroup.all
+    @reading_groups = ReadingGroup.visible
   end
 
   # POST /reading_groups
@@ -44,7 +44,7 @@ class ReadingGroupsController < ApplicationController
   # DELETE /reading_group/1
   # DELETE /reading_group/1.json
   def destroy
-    current_user.reading_group_ownerships.find_by_reading_group_id!(@reading_group.id).destroy
+    current_user.reading_group_attributess.find_by_reading_group_id!(@reading_group.id).destroy
     @reading_group.destroy
     respond_to do |format|
       format.html { redirect_to reading_groups_url }
@@ -68,7 +68,7 @@ class ReadingGroupsController < ApplicationController
   # Extracted code from create action
   def create_and_redir(format)
     if @reading_group.save
-      current_user.reading_group_ownerships.create reading_group_id: @reading_group.id
+      current_user.reading_group_attributess.create reading_group_id: @reading_group.id
 
       format.html { redirect_to reading_group_path(@reading_group.id), notice: t('successfully_created', :record => t(@reading_group.class)) }
       format.json { render action: 'show', status: :created, location: @reading_group }

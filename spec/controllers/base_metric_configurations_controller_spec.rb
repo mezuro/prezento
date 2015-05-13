@@ -41,7 +41,7 @@ end
 
 
 describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
-  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+  let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
 
   before do
     Rails.application.routes.draw do
@@ -111,7 +111,7 @@ describe InheritsFromBaseMetricConfigurationsController, :type => :controller do
 
   describe 'show' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
-    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+    let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
     let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     context 'with a valid metric_configuration' do

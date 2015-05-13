@@ -9,7 +9,7 @@ describe MetricConfigurationsHelper, :type => :helper do
   end
 
   describe 'reading_group_options' do
-    let! (:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+    let! (:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
 
     before :each do
       ReadingGroup.expects(:all).returns([reading_group])

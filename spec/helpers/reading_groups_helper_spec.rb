@@ -4,7 +4,7 @@ describe ReadingGroupsHelper, :type => :helper do
 
   describe 'reading_group_owner?' do
     before :each do
-      @subject = FactoryGirl.build(:reading_group_with_id)
+      @subject = FactoryGirl.build(:reading_group, :with_id)
     end
 
     context 'returns false if not logged in' do
@@ -22,7 +22,7 @@ describe ReadingGroupsHelper, :type => :helper do
         @ownerships = []
         @ownerships.expects(:find_by_reading_group_id).with(@subject.id).returns(nil)
 
-        User.any_instance.expects(:reading_group_ownerships).returns(@ownerships)
+        User.any_instance.expects(:reading_group_attributess).returns(@ownerships)
       end
 
       it { expect(helper.reading_groups_owner?(@subject.id)).to be_falsey }
@@ -33,10 +33,10 @@ describe ReadingGroupsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownership = FactoryGirl.build(:reading_group_ownership)
+        @ownership = FactoryGirl.build(:reading_group_attributes)
         @ownerships = []
         @ownerships.expects(:find_by_reading_group_id).with(@subject.id).returns(@ownership)
-        User.any_instance.expects(:reading_group_ownerships).returns(@ownerships)
+        User.any_instance.expects(:reading_group_attributess).returns(@ownerships)
       end
 
       it { expect(helper.reading_groups_owner?(@subject.id)).to be_truthy }

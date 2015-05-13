@@ -4,7 +4,7 @@ describe OwnershipAuthentication, type: :controller do
   #TODO: test other methods
 
   describe 'reading_group_owner?' do
-    let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+    let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
 
     context 'Not ReadingGroupsController nor ReadingsController' do
       let!(:projects_controller) { ProjectsController.new }
@@ -34,12 +34,12 @@ describe OwnershipAuthentication, type: :controller do
         end
 
         context 'when the user owns the ReadingGroup' do
-          let!(:reading_group_ownership) { FactoryGirl.build(:reading_group_ownership, {user_id: current_user.id, reading_group_id: reading_group.id}) }
+          let!(:reading_group_attributes) { FactoryGirl.build(:reading_group_attributes, {user_id: current_user.id, reading_group_id: reading_group.id}) }
 
           before do
-            reading_group_ownerships = Object.new
-            reading_group_ownerships.expects(:find_by_reading_group_id).with(reading_group.id).returns(reading_group_ownership)
-            current_user.expects(:reading_group_ownerships).returns(reading_group_ownerships)
+            reading_group_attributess = Object.new
+            reading_group_attributess.expects(:find_by_reading_group_id).with(reading_group.id).returns(reading_group_attributes)
+            current_user.expects(:reading_group_attributess).returns(reading_group_attributess)
           end
 
           it 'should return true' do
@@ -49,9 +49,9 @@ describe OwnershipAuthentication, type: :controller do
 
         context 'when the user does not own the ReadingGroup' do
           before do
-            reading_group_ownerships = Object.new
-            reading_group_ownerships.expects(:find_by_reading_group_id).with(reading_group.id).returns(nil)
-            current_user.expects(:reading_group_ownerships).returns(reading_group_ownerships)
+            reading_group_attributess = Object.new
+            reading_group_attributess.expects(:find_by_reading_group_id).with(reading_group.id).returns(nil)
+            current_user.expects(:reading_group_attributess).returns(reading_group_attributess)
           end
 
           it 'should respond' do # FIXME: this is not the best test, but it it's the closest we can do I think
@@ -65,7 +65,7 @@ describe OwnershipAuthentication, type: :controller do
   end
 
   describe 'kalibro_configuration_owner?' do
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
 
     context 'Not KalibroConfigurationsController nor MetricConfigurationsController nor CompoundMetricConfigurationsController' do
       let!(:projects_controller) { ProjectsController.new }
