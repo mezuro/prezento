@@ -40,7 +40,7 @@ pt:
   reading_group_helper_html: "O %{href} associado com esta métrica."
   no_models: "Não há %{model} ainda!"
   choose_metric: "Escolha uma métrica de um Coletor:"
-  percentage_of_use: "Porcentagem de uso"
+  usage_percentage: "Porcentagem de uso"
   scopes:
     METHOD: "Método"
     CLASS: "Classe"

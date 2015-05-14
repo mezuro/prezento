@@ -45,7 +45,6 @@ Then(/^I should see the sample metric configuration content$/) do
   expect(page).to have_content(@metric_configuration.metric.name)
   expect(page).to have_content(@metric_configuration.metric.code)
   expect(page).to have_content(@metric_configuration.weight)
-  expect(page).to have_content("Percentage of use")
 end
 
 Then(/^I should be at metric configuration sample page$/) do

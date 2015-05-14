@@ -105,6 +105,7 @@ describe MetricConfigurationsController, :type => :controller do
       ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
       MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
       metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
+      Statistic.expects(:metric_percentage).with(metric_configuration.metric.code).returns({"metric_percentage" => 0})
 
       get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
     end
