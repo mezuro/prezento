@@ -53,7 +53,7 @@ Feature: Repository modules tree
     And I click on the sample child's name
     Then I should see a sample child's name
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show modules directories root when the process has been finished
     Given I am a regular user
     And I am signed in
