@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515193445) do
+ActiveRecord::Schema.define(version: 20150515195059) do
 
   create_table "kalibro_configuration_attributes", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150515193445) do
     t.integer  "reading_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "public",           default: false
+    t.boolean  "public",           default: true
   end
 
   create_table "users", force: :cascade do |t|
