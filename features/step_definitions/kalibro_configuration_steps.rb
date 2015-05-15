@@ -12,11 +12,12 @@ end
 
 Given(/^I have a sample configuration$/) do
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: nil, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 Given(/^I own a sample configuration$/) do
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
-  FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 Given(/^I am at the Sample Configuration page$/) do
@@ -29,7 +30,7 @@ end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {name: name})
-  FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 When(/^I visit the sample configuration edit page$/) do

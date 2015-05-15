@@ -4,10 +4,9 @@ FactoryGirl.define do
   factory :kalibro_configuration_attributes, class: KalibroConfigurationAttributes do
     association :user, strategy: :build
     association :kalibro_configuration, :with_id, strategy: :build
-    self.public false
 
-    trait :public do
-      self.public true
+    trait :private do
+      self.public false
     end
   end
 end
