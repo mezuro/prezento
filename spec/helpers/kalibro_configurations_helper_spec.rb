@@ -24,7 +24,7 @@ describe KalibroConfigurationsHelper, :type => :helper do
         User.any_instance.expects(:kalibro_configuration_ownerships).returns(@ownerships)
       end
 
-      it { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_falsey }
+      xit { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_falsey }
     end
 
     context 'returns true if user is the kalibro_configuration owner' do
@@ -38,7 +38,7 @@ describe KalibroConfigurationsHelper, :type => :helper do
         User.any_instance.expects(:kalibro_configuration_ownerships).returns(@ownerships)
       end
 
-      it { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_truthy }
+      xit { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_truthy }
     end
   end
 

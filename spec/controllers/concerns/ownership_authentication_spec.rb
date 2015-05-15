@@ -37,9 +37,9 @@ describe OwnershipAuthentication, type: :controller do
           let!(:reading_group_attributes) { FactoryGirl.build(:reading_group_attributes, {user_id: current_user.id, reading_group_id: reading_group.id}) }
 
           before do
-            reading_group_attributess = Object.new
-            reading_group_attributess.expects(:find_by_reading_group_id).with(reading_group.id).returns(reading_group_attributes)
-            current_user.expects(:reading_group_attributess).returns(reading_group_attributess)
+            reading_group_attributes = Object.new
+            reading_group_attributes.expects(:find_by_reading_group_id).with(reading_group.id).returns(reading_group_attributes)
+            current_user.expects(:reading_group_attributes).returns(reading_group_attributes)
           end
 
           it 'should return true' do
@@ -49,9 +49,9 @@ describe OwnershipAuthentication, type: :controller do
 
         context 'when the user does not own the ReadingGroup' do
           before do
-            reading_group_attributess = Object.new
-            reading_group_attributess.expects(:find_by_reading_group_id).with(reading_group.id).returns(nil)
-            current_user.expects(:reading_group_attributess).returns(reading_group_attributess)
+            reading_group_attributes = Object.new
+            reading_group_attributes.expects(:find_by_reading_group_id).with(reading_group.id).returns(nil)
+            current_user.expects(:reading_group_attributes).returns(reading_group_attributes)
           end
 
           it 'should respond' do # FIXME: this is not the best test, but it it's the closest we can do I think
