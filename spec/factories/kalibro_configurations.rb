@@ -4,7 +4,7 @@ FactoryGirl.define do
     description "Code metrics for Java."
 
     trait :with_id do
-      sequence(:id, 1)
+      id 1
     end
 
     factory :another_kalibro_configuration do

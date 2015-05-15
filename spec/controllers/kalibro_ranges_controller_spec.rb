@@ -54,8 +54,8 @@ describe KalibroRangesController, :type => :controller do
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: kalibro_range.metric_configuration_id, kalibro_range: kalibro_range_params
         end
 
-        xit { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id)) }
-        xit { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to(kalibro_configuration_metric_configuration_path(kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context 'with valid fields and a compound metric configuration' do
@@ -69,8 +69,8 @@ describe KalibroRangesController, :type => :controller do
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration_id: new_kalibro_range.metric_configuration_id, kalibro_range: new_kalibro_range.to_hash
         end
 
-        xit { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id)) }
-        xit { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to(kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id)) }
+        it { is_expected.to respond_with(:redirect) }
       end
 
       context 'with invalid fields' do

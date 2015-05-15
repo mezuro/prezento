@@ -132,13 +132,15 @@ describe KalibroConfigurationsController, :type => :controller do
   end
 
   describe 'index' do
+    let!(:kalibro_configuration_attribute) { FactoryGirl.build(:kalibro_configuration_attributes) }
     before :each do
       @subject = FactoryGirl.build(:kalibro_configuration, :with_id)
-      KalibroConfiguration.expects(:all).returns([@subject])
+      KalibroConfigurationAttributes.expects(:where).with(public: true).returns([kalibro_configuration_attribute])
+      KalibroConfiguration.expects(:find).with(kalibro_configuration_attribute.kalibro_configuration_id).returns(@subject)
       get :index
     end
 
-    xit { is_expected.to render_template(:index) }
+    it { is_expected.to render_template(:index) }
   end
 
   describe 'edit' do

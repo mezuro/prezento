@@ -13,7 +13,7 @@ class ReadingGroupsController < ApplicationController
   # GET /reading_groups
   # GET /reading_groups.json
   def index
-    @reading_groups = ReadingGroup.visible
+    @reading_groups = ReadingGroup.public
   end
 
   # POST /reading_groups

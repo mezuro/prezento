@@ -126,13 +126,15 @@ describe ReadingGroupsController, :type => :controller do
   end
 
   describe 'index' do
+    let!(:reading_group_attribute) { FactoryGirl.build(:reading_group_attributes) }
     before :each do
       @subject = FactoryGirl.build(:reading_group, :with_id)
-      ReadingGroup.expects(:all).returns([@subject])
+      ReadingGroupAttributes.expects(:where).with(public: true).returns([reading_group_attribute])
+      ReadingGroup.expects(:find).with(reading_group_attribute.reading_group_id).returns([@subject])
       get :index
     end
 
-    xit { is_expected.to render_template(:index) }
+    it { is_expected.to render_template(:index) }
   end
 
   describe 'edit' do

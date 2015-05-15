@@ -12,7 +12,7 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations
   # GET /kalibro_configurations.json
   def index
-    @kalibro_configurations = KalibroConfigurationAttributes.where(hidden: false).map { |cfg_attr|
+    @kalibro_configurations = KalibroConfigurationAttributes.where(public: true).map { |cfg_attr|
       KalibroConfiguration.find(cfg_attr.kalibro_configuration_id)
     }.compact
   end

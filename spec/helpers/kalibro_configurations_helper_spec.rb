@@ -18,13 +18,13 @@ describe KalibroConfigurationsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownerships = []
-        @ownerships.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(nil)
+        @attributes = []
+        @attributes.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(nil)
 
-        User.any_instance.expects(:kalibro_configuration_ownerships).returns(@ownerships)
+        User.any_instance.expects(:kalibro_configuration_attributes).returns(@attributes)
       end
 
-      xit { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_falsey }
+      it { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_falsey }
     end
 
     context 'returns true if user is the kalibro_configuration owner' do
@@ -32,13 +32,13 @@ describe KalibroConfigurationsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownership = FactoryGirl.build(:kalibro_configuration_ownership)
-        @ownerships = []
-        @ownerships.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(@ownership)
-        User.any_instance.expects(:kalibro_configuration_ownerships).returns(@ownerships)
+        @ownership = FactoryGirl.build(:kalibro_configuration_attributes)
+        @attributes = []
+        @attributes.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(@ownership)
+        User.any_instance.expects(:kalibro_configuration_attributes).returns(@attributes)
       end
 
-      xit { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_truthy }
+      it { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_truthy }
     end
   end
 

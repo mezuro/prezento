@@ -99,7 +99,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
           get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
 
-        xit { is_expected.to render_template(:edit) }
+        it { is_expected.to render_template(:edit) }
       end
 
       context 'when the user does not own the compound metric configuration' do
@@ -107,7 +107,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
           get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
 
-        xit { is_expected.to redirect_to(kalibro_configurations_path(id: kalibro_configuration.id)) }
+        it { is_expected.to redirect_to(kalibro_configurations_path(id: kalibro_configuration.id)) }
         it { is_expected.to respond_with(:redirect) }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
@@ -157,7 +157,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
             post :update, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id, id: compound_metric_configuration.id, metric_configuration: metric_configuration_params
           end
 
-          xit { should render_template(:edit) }
+          it { should render_template(:edit) }
         end
       end
 
