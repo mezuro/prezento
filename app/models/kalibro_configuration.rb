@@ -14,7 +14,7 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
   end
 
   def self.public
-    self.public_or_owned_by_user(nil)
+    self.public_or_owned_by_user
   end
 
   def attributes
