@@ -50,7 +50,10 @@ describe ReadingGroup, :type => :model do
   describe 'class methods' do
     describe 'public_or_owned_by_user' do
       def build_attrs(rg_iter, *traits, **params)
-        FactoryGirl.build(:reading_group_attributes, :with_id, *traits, params.merge(reading_group: rg_iter.next))
+        reading_group = rg_iter.next
+        attr = FactoryGirl.build(:reading_group_attributes, *traits, params.merge(reading_group: reading_group))
+        reading_group.stubs(:attributes).returns(attr)
+        attr
       end
 
       let!(:reading_groups) { FactoryGirl.build_list(:reading_group, 4, :with_id) }
@@ -59,10 +62,10 @@ describe ReadingGroup, :type => :model do
       let!(:one_user) { FactoryGirl.build(:user) }
       let!(:other_user) { FactoryGirl.build(:another_user) }
 
-      let!(:ones_private_attrs) { build_attrs(rgs_iter, user: one_user) }
-      let!(:others_private_attrs) { build_attrs(rgs_iter, user: other_user) }
-      let!(:ones_public_attrs) { build_attrs(rgs_iter, :public, user: one_user) }
-      let!(:others_public_attrs) { build_attrs(rgs_iter, :public, user: other_user) }
+      let!(:ones_private_attrs) { build_attrs(rgs_iter, :private, user: one_user) }
+      let!(:others_private_attrs) { build_attrs(rgs_iter, :private, user: other_user) }
+      let!(:ones_public_attrs) { build_attrs(rgs_iter, user: one_user) }
+      let!(:others_public_attrs) { build_attrs(rgs_iter, user: other_user) }
 
       let!(:public_attrs) { [ones_public_attrs, others_public_attrs] }
       let(:public_reading_groups) { public_attrs.map(&:reading_group) }
@@ -72,18 +75,28 @@ describe ReadingGroup, :type => :model do
 
       before :each do
         # Map the reading group attributes to the corresponding Reading Group
-        ReadingGroup.expects(:find).with(kind_of(Integer)) do |id|
-          reading_groups.find { |rg| rg.id == id }
+        reading_groups.each do |rg|
+          ReadingGroup.stubs(:find).with(rg.id).returns(rg)
         end
       end
 
-      context 'when user is nil' do
+      context 'when user is not provided' do
         before do
           ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
         end
 
-        xit 'should find all public reading groups' do
-          expect(ReadingGroupAttributes.public_or_owned_by_user(nil)).to eq(public_reading_groups)
+        it 'should find all public reading groups' do
+          expect(ReadingGroup.public).to eq(public_reading_groups)
+        end
+      end
+
+      context 'when user is provided' do
+        before do
+          ReadingGroupAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
+        end
+
+        it 'should find all public and owned reading groups' do
+          expect(ReadingGroup.public_or_owned_by_user(one_user)).to eq(ones_or_public_reading_groups)
         end
       end
     end
