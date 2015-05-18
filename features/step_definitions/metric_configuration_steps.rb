@@ -10,11 +10,15 @@ end
 
 Given(/^I have a sample configuration with MetricFu metrics$/) do
   reading_group = FactoryGirl.create(:reading_group)
-  reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
+  FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
 
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
-  metric_configuration = FactoryGirl.create(:metric_configuration,
+  FactoryGirl.create(:metric_configuration,
                                             {metric: FactoryGirl.build(:pain),
+                                             reading_group_id: reading_group.id,
+                                             kalibro_configuration_id: @kalibro_configuration.id})
+  FactoryGirl.create(:metric_configuration,
+                                            {metric: FactoryGirl.build(:saikuro),
                                              reading_group_id: reading_group.id,
                                              kalibro_configuration_id: @kalibro_configuration.id})
 end
