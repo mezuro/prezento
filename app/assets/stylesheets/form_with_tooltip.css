@@ -1,5 +1,6 @@
 .form-table {
   margin: 0 !important;
+  padding: 20px;
   background: #fff;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
@@ -13,11 +14,29 @@
   display: inline-flex;
 }
 
+.form-row:first-child {
+  border-top: none;
+}
+
+.form-row:last-child {
+  border-bottom: none;
+}
+
 .field-container {
   position: relative;
   float: left;
   width: 100%;
-  padding: 20px;
+  padding: 20px 0 20px 0;
+}
+
+.form-row:first-child .field-container {
+  padding-top: 0;
+}
+
+.form-row:last-child .field-container {
+  padding-bottom: 0;
+}
+
 .field-container.checkbox, .field-container.radio {
   padding-top: 0;
   padding-bottom: 0;
