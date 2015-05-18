@@ -19,12 +19,18 @@ class RepositoriesController < ApplicationController
     @project_id = params[:project_id]
     @repository = Repository.new
     @repository_types = Repository.repository_types
+    @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
+      [conf.name, conf.id]
+    }
   end
 
   # GET /repositories/1/edit
   def edit
     @project_id = params[:project_id]
     @repository_types = Repository.repository_types
+    @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
+      [conf.name, conf.id]
+    }
   end
 
   # POST /projects/1/repositories

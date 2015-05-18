@@ -8,12 +8,13 @@ class ReadingGroupsController < ApplicationController
   # GET /reading_groups/new
   def new
     @reading_group = ReadingGroup.new
+    @attributes = @reading_group.attributes
   end
 
   # GET /reading_groups
   # GET /reading_groups.json
   def index
-    @reading_groups = ReadingGroup.public
+    @reading_groups = ReadingGroup.public_or_owned_by_user(current_user)
   end
 
   # POST /reading_groups
@@ -31,7 +32,9 @@ class ReadingGroupsController < ApplicationController
 
   # GET /reading_groups/1/edit
   # GET /reading_groups/1/edit.json
-  def edit; end
+  def edit
+    @attributes = @reading_group.attributes
+  end
 
   def update
     if @reading_group.update(reading_group_params)

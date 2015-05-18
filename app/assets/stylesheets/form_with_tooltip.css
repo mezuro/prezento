@@ -18,6 +18,9 @@
   float: left;
   width: 100%;
   padding: 20px;
+.field-container.checkbox, .field-container.radio {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .help-container {

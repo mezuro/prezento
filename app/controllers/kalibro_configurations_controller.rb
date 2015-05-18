@@ -7,14 +7,13 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations/new
   def new
     @kalibro_configuration = KalibroConfiguration.new
+    @attributes = @kalibro_configuration.attributes
   end
 
   # GET /kalibro_configurations
   # GET /kalibro_configurations.json
   def index
-    @kalibro_configurations = KalibroConfigurationAttributes.where(public: true).map { |cfg_attr|
-      KalibroConfiguration.find(cfg_attr.kalibro_configuration_id)
-    }.compact
+    @kalibro_configurations = KalibroConfiguration.public_or_owned_by_user(current_user)
   end
 
   # POST /kalibro_configurations
@@ -39,6 +38,7 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations/1/edit.json
   def edit
     set_kalibro_configuration
+    @attributes = @kalibro_configuration.attributes
   end
 
 

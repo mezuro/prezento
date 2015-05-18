@@ -3,7 +3,6 @@
 
 <div class="row margin-left-none">
   <div class="form-table col-md-9">
-
     <div class="form-row">
       <div class="field-container">
         <%= f.label :name, class: 'control-label' %>
@@ -15,6 +14,13 @@
       <div class="field-container">
         <%= f.label :description, class: 'control-label' %>
         <%= f.text_area :description, class: 'text-area form-control' %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field-container checkbox">
+        <label>
+          <%= check_box :attributes, :public %> Visible to everyone?
+        </label>
       </div>
     </div>
   </div>
