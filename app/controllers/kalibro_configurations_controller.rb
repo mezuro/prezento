@@ -7,7 +7,6 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations/new
   def new
     @kalibro_configuration = KalibroConfiguration.new
-    @attributes = @kalibro_configuration.attributes
   end
 
   # GET /kalibro_configurations
@@ -41,10 +40,10 @@ class KalibroConfigurationsController < ApplicationController
     @attributes = @kalibro_configuration.attributes
   end
 
-
   def update
     set_kalibro_configuration
     if @kalibro_configuration.update(kalibro_configuration_params)
+      @kalibro_configuration.attributes.update(public: attributes_params)
       redirect_to(kalibro_configuration_path(@kalibro_configuration.id))
     else
       render "edit"
@@ -76,10 +75,14 @@ class KalibroConfigurationsController < ApplicationController
     params[:kalibro_configuration]
   end
 
+  def attributes_params
+    params[:attributes][:public] == "1"
+  end
+
   # Extracted code from create action
   def create_and_redir(format)
     if @kalibro_configuration.save
-      current_user.kalibro_configuration_attributes.create kalibro_configuration_id: @kalibro_configuration.id
+      current_user.kalibro_configuration_attributes.create(kalibro_configuration_id: @kalibro_configuration.id, public: attributes_params)
 
       format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id), notice: t('successfully_created', :record => @kalibro_configuration.model_name.human) }
       format.json { render action: 'show', status: :created, location: @kalibro_configuration }

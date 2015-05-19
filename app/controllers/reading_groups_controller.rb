@@ -38,6 +38,7 @@ class ReadingGroupsController < ApplicationController
 
   def update
     if @reading_group.update(reading_group_params)
+      @reading_group.attributes.update(public: attributes_params)
       redirect_to(reading_group_path(@reading_group.id))
     else
       render "edit"
@@ -67,11 +68,15 @@ class ReadingGroupsController < ApplicationController
     params[:reading_group][:name].strip!
     params[:reading_group]
   end
+  
+  def attributes_params
+    params[:attributes][:public] == "1"
+  end
 
   # Extracted code from create action
   def create_and_redir(format)
     if @reading_group.save
-      current_user.reading_group_attributes.create reading_group_id: @reading_group.id
+      current_user.reading_group_attributes.create(reading_group_id: @reading_group.id, public: attributes_params)
 
       format.html { redirect_to reading_group_path(@reading_group.id), notice: t('successfully_created', :record => t(@reading_group.class)) }
       format.json { render action: 'show', status: :created, location: @reading_group }
