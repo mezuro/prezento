@@ -12,6 +12,7 @@ describe ReadingGroupsController, :type => :controller do
   end
 
   describe 'create' do
+    let(:attributes) { {public: "1"} }
     before do
       sign_in FactoryGirl.create(:user)
     end
@@ -26,7 +27,8 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'rendering the show' do
         before :each do
-          post :create, :reading_group => subject_params
+          post :create, :reading_group => subject_params, :attributes => attributes
+
         end
 
         it 'should redirect to the show view' do
@@ -36,7 +38,8 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'without rendering the show view' do
         before :each do
-          post :create, :reading_group => subject_params
+          post :create, :reading_group => subject_params, :attributes => attributes
+
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -51,7 +54,8 @@ describe ReadingGroupsController, :type => :controller do
         ReadingGroup.expects(:new).at_least_once.with(@subject_params).returns(@subject)
         ReadingGroup.any_instance.expects(:save).returns(false)
 
-        post :create, :reading_group => @subject_params
+        post :create, :reading_group => @subject_params, :attributes => attributes
+
       end
 
       it { is_expected.to render_template(:new) }
@@ -194,6 +198,7 @@ describe ReadingGroupsController, :type => :controller do
     before do
       @subject = FactoryGirl.build(:reading_group, :with_id)
       @subject_params = @subject.to_hash
+      @ownership = FactoryGirl.build(:reading_group_attributes, reading_group_id: @subject.id)
     end
 
     context 'when the user is logged in' do
@@ -203,7 +208,6 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'when user owns the reading group' do
         before do
-          @ownership = FactoryGirl.build(:reading_group_attributes)
           @ownerships = []
 
           @ownerships.expects(:find_by_reading_group_id).with("#{@subject.id}").returns(@ownership)
@@ -212,13 +216,14 @@ describe ReadingGroupsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
+            @subject.expects(:attributes).returns(@ownership)
             ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(true)
           end
 
           context 'rendering the show' do
             before :each do
-              post :update, :id => @subject.id, :reading_group => @subject_params
+              post :update, :id => @subject.id, :reading_group => @subject_params, :attributes => {public: @ownership.public}
             end
 
             it 'should redirect to the show view' do
@@ -228,7 +233,8 @@ describe ReadingGroupsController, :type => :controller do
 
           context 'without rendering the show view' do
             before :each do
-              post :update, :id => @subject.id, :reading_group => @subject_params
+              post :update, :id => @subject.id, :reading_group => @subject_params, :attributes => {public: @ownership.public}
+
             end
 
             it { is_expected.to respond_with(:redirect) }
@@ -240,7 +246,8 @@ describe ReadingGroupsController, :type => :controller do
             ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(false)
 
-            post :update, :id => @subject.id, :reading_group => @subject_params
+            post :update, :id => @subject.id, :reading_group => @subject_params, :attributes => {public: @ownership.public}
+
           end
 
           it { is_expected.to render_template(:edit) }
@@ -249,7 +256,8 @@ describe ReadingGroupsController, :type => :controller do
 
       context 'when the user does not own the reading group' do
         before :each do
-          post :update, :id => @subject.id, :reading_group => @subject_params
+          post :update, :id => @subject.id, :reading_group => @subject_params, :attributes => {public: @ownership.public}
+
         end
 
         it { is_expected.to redirect_to reading_group_path }
@@ -258,7 +266,8 @@ describe ReadingGroupsController, :type => :controller do
 
     context 'with no user logged in' do
       before :each do
-        post :update, :id => @subject.id, :reading_group => @subject_params
+        post :update, :id => @subject.id, :reading_group => @subject_params, :attributes => {public: @ownership.public}
+
       end
 
       it { is_expected.to redirect_to new_user_session_path }
