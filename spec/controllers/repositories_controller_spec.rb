@@ -5,12 +5,15 @@ describe RepositoriesController, :type => :controller do
 
   describe 'new' do
     context 'with a User logged in' do
+      let!(:user) { FactoryGirl.create(:user) }
+      let!(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
       before :each do
-        sign_in FactoryGirl.create(:user)
+        sign_in user
       end
 
       context 'when the current user owns the project' do
         before :each do
+          KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
           Repository.expects(:repository_types).returns([])
           subject.expects(:project_owner?).returns true
 
@@ -91,8 +94,6 @@ describe RepositoriesController, :type => :controller do
 
     context 'without a specific module_result' do
       before :each do
-        processing = FactoryGirl.build(:processing)
-
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
 
@@ -105,8 +106,6 @@ describe RepositoriesController, :type => :controller do
     context 'for an specific module_result' do
 
       before :each do
-        processing = FactoryGirl.build(:processing)
-
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
 
@@ -161,12 +160,15 @@ describe RepositoriesController, :type => :controller do
     let(:repository) { FactoryGirl.build(:repository) }
 
     context 'with an User logged in' do
+      let!(:user) { FactoryGirl.create(:user) }
+      let!(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
       before do
-        sign_in FactoryGirl.create(:user)
+        sign_in user
       end
 
       context 'when the user owns the repository' do
         before :each do
+          KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
           subject.expects(:repository_owner?).returns true
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
           Repository.expects(:repository_types).returns(["SUBVERSION"])

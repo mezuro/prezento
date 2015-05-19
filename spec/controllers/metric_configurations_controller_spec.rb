@@ -24,12 +24,16 @@ describe MetricConfigurationsController, :type => :controller do
   describe 'new' do
     let!(:metric_collector) { FactoryGirl.build(:metric_collector) }
     let!(:native_metric) { FactoryGirl.build(:loc) }
+    let!(:reading_groups) { [FactoryGirl.build(:reading_group)] }
+    let!(:user) { FactoryGirl.create(:user) }
+
     before :each do
-      sign_in FactoryGirl.create(:user)
+      sign_in user
     end
 
     context 'when the current user owns the kalibro configuration' do
       before :each do
+        ReadingGroup.expects(:public_or_owned_by_user).with(user).returns(reading_groups)
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
         metric_collector.expects(:find_metric_by_code).with(native_metric.code).returns(native_metric)
@@ -108,14 +112,17 @@ describe MetricConfigurationsController, :type => :controller do
 
   describe 'edit' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
+    let!(:reading_groups) { [FactoryGirl.build(:reading_group)] }
+    let!(:user) { FactoryGirl.create(:user) }
 
     context 'with a User logged in' do
       before do
-        sign_in FactoryGirl.create(:user)
+        sign_in user
       end
 
       context 'when the user owns the metric configuration' do
         before :each do
+          ReadingGroup.expects(:public_or_owned_by_user).with(user).returns(reading_groups)
           subject.expects(:metric_configuration_owner?).returns(true)
           MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
           get :edit, id: metric_configuration.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s
