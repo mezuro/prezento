@@ -30,7 +30,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :license, 'License', class: 'control-label' %>
+        <%= f.label :license, class: 'control-label' %>
         <%= f.select( :license, license_options, class: 'text-area form-control' ) %>
       </div>
       <div class="help-container">
@@ -42,7 +42,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :scm_type, 'Type', class: 'control-label' %>
+        <%= f.label :scm_type, class: 'control-label' %>
         <%= f.select( :scm_type, @repository_types, class: 'tooltip-control' ) %>
       </div>
       <div class="help-container">
@@ -66,7 +66,7 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :period, 'Process Period', class: 'control-label' %>
+        <%= f.label :period, class: 'control-label' %>
         <%= f.select( :period, periodicity_options, class: 'tooltip-control' ) %>
       </div>
       <div class="help-container">
@@ -92,6 +92,6 @@
   </div>
 </div>
 <div class="row margin-left-none" style="margin-top: 20px">
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-  <%= link_to 'Back',  project_path(@project_id), class: 'btn btn-default' %>
+  <%= f.submit t('save'), class: 'btn btn-primary' %>
+  <%= link_to t('back'),  project_path(@project_id), class: 'btn btn-default' %>
 </div>
