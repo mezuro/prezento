@@ -73,30 +73,47 @@ describe ReadingGroup, :type => :model do
       let(:ones_or_public_attrs) { public_attrs + [ones_private_attrs] }
       let(:ones_or_public_reading_groups) { ones_or_public_attrs.map(&:reading_group) }
 
-      before :each do
-        # Map the reading group attributes to the corresponding Reading Group
-        reading_groups.each do |rg|
-          ReadingGroup.stubs(:find).with(rg.id).returns(rg)
+      context 'when the reading group exists' do
+        before :each do
+          # Map the reading group attributes to the corresponding Reading Group
+          reading_groups.each do |rg|
+            ReadingGroup.stubs(:find).with(rg.id).returns(rg)
+          end
+        end
+
+        context 'when user is not provided' do
+          before do
+            ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
+          end
+
+          it 'should find all public reading groups' do
+            expect(ReadingGroup.public).to eq(public_reading_groups)
+          end
+        end
+
+        context 'when user is provided' do
+          before do
+            ReadingGroupAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
+          end
+
+          it 'should find all public and owned reading groups' do
+            expect(ReadingGroup.public_or_owned_by_user(one_user)).to eq(ones_or_public_reading_groups)
+          end
         end
       end
 
-      context 'when user is not provided' do
-        before do
+      context 'when the reading group does not' do
+        before :each do
+          # Map the reading group attributes to the corresponding Reading Group
+          reading_groups.each do |rg|
+            ReadingGroup.stubs(:find).with(rg.id).raises(KalibroClient::Errors::RecordNotFound)
+          end
+
           ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
         end
 
-        it 'should find all public reading groups' do
-          expect(ReadingGroup.public).to eq(public_reading_groups)
-        end
-      end
-
-      context 'when user is provided' do
-        before do
-          ReadingGroupAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
-        end
-
-        it 'should find all public and owned reading groups' do
-          expect(ReadingGroup.public_or_owned_by_user(one_user)).to eq(ones_or_public_reading_groups)
+        it 'is expected to be empty' do
+          expect(ReadingGroup.public).to be_empty
         end
       end
     end

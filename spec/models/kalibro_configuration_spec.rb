@@ -28,30 +28,47 @@ describe KalibroConfiguration, :type => :model do
         let(:ones_or_public_attrs) { public_attrs + [ones_private_attrs] }
         let(:ones_or_public_kalibro_configurations) { ones_or_public_attrs.map(&:kalibro_configuration) }
 
-        before :each do
-          # Map the reading group attributes to the corresponding Reading Group
-          kalibro_configurations.each do |kc|
-            KalibroConfiguration.stubs(:find).with(kc.id).returns(kc)
+        context 'when the kalibro configuration exists' do
+          before :each do
+            # Map the kalibro_configuration attributes to the corresponding Kalibro Configuration
+            kalibro_configurations.each do |kc|
+              KalibroConfiguration.stubs(:find).with(kc.id).returns(kc)
+            end
+          end
+
+          context 'when user is not provided' do
+            before do
+              KalibroConfigurationAttributes.expects(:where).with(public: true).returns(public_attrs)
+            end
+
+            it 'should find all public reading groups' do
+              expect(KalibroConfiguration.public).to eq(public_kalibro_configurations)
+            end
+          end
+
+          context 'when user is provided' do
+            before do
+              KalibroConfigurationAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
+            end
+
+            it 'should find all public and owned reading groups' do
+              expect(KalibroConfiguration.public_or_owned_by_user(one_user)).to eq(ones_or_public_kalibro_configurations)
+            end
           end
         end
 
-        context 'when user is not provided' do
-          before do
+        context 'when the kalibro configuration does not' do
+          before :each do
+            # Map the kalibro_configuration attributes to the corresponding Kalibro Configuration
+            kalibro_configurations.each do |kc|
+              KalibroConfiguration.stubs(:find).with(kc.id).raises(KalibroClient::Errors::RecordNotFound)
+            end
+
             KalibroConfigurationAttributes.expects(:where).with(public: true).returns(public_attrs)
           end
 
-          it 'should find all public reading groups' do
-            expect(KalibroConfiguration.public).to eq(public_kalibro_configurations)
-          end
-        end
-
-        context 'when user is provided' do
-          before do
-            KalibroConfigurationAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
-          end
-
-          it 'should find all public and owned reading groups' do
-            expect(KalibroConfiguration.public_or_owned_by_user(one_user)).to eq(ones_or_public_kalibro_configurations)
+          it 'is expected to be empty' do
+            expect(KalibroConfiguration.public).to be_empty
           end
         end
       end
