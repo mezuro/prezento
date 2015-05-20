@@ -34,13 +34,11 @@ describe KalibroConfiguration, :type => :model do
             kalibro_configurations.each do |kc|
               KalibroConfiguration.stubs(:find).with(kc.id).returns(kc)
             end
+
+            KalibroConfigurationAttributes.expects(:where).with(public: true).returns(public_attrs)
           end
 
           context 'when user is not provided' do
-            before do
-              KalibroConfigurationAttributes.expects(:where).with(public: true).returns(public_attrs)
-            end
-
             it 'should find all public reading groups' do
               expect(KalibroConfiguration.public).to eq(public_kalibro_configurations)
             end
@@ -48,7 +46,7 @@ describe KalibroConfiguration, :type => :model do
 
           context 'when user is provided' do
             before do
-              KalibroConfigurationAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
+              KalibroConfigurationAttributes.expects(:where).with(user_id: one_user.id, public: false).returns([ones_private_attrs])
             end
 
             it 'should find all public and owned reading groups' do

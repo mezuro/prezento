@@ -13,6 +13,7 @@ end
 Given(/^I have a sample configuration$/) do
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
   FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: nil, kalibro_configuration_id: @kalibro_configuration.id})
+
 end
 
 Given(/^I own a sample configuration$/) do

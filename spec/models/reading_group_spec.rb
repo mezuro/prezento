@@ -79,13 +79,11 @@ describe ReadingGroup, :type => :model do
           reading_groups.each do |rg|
             ReadingGroup.stubs(:find).with(rg.id).returns(rg)
           end
+
+          ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
         end
 
         context 'when user is not provided' do
-          before do
-            ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
-          end
-
           it 'should find all public reading groups' do
             expect(ReadingGroup.public).to eq(public_reading_groups)
           end
@@ -93,7 +91,7 @@ describe ReadingGroup, :type => :model do
 
         context 'when user is provided' do
           before do
-            ReadingGroupAttributes.expects(:where).with(kind_of(String), one_user.id).returns(ones_or_public_attrs)
+            ReadingGroupAttributes.expects(:where).with(user_id: one_user.id, public: false).returns([ones_private_attrs])
           end
 
           it 'should find all public and owned reading groups' do

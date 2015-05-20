@@ -2,15 +2,12 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
   include KalibroRecord
 
   def self.public_or_owned_by_user(user=nil)
-    query = if user
-      KalibroConfigurationAttributes.where("user_id == ? OR public", user.id)
-    else
-      KalibroConfigurationAttributes.where(public: true)
-    end
+    kalibro_configuration_attributes = KalibroConfigurationAttributes.where(public: true)
+    kalibro_configuration_attributes += KalibroConfigurationAttributes.where(user_id: user.id, public: false) if user
 
-    query.map { |cfg_attr|
+    kalibro_configuration_attributes.map { |kalibro_configuration_attribute|
       begin
-        self.find(cfg_attr.kalibro_configuration_id)
+        self.find(kalibro_configuration_attribute.kalibro_configuration_id)
       rescue KalibroClient::Errors::RecordNotFound
         nil
       end
