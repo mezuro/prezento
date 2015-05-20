@@ -99,6 +99,9 @@ private
   def failed_action(format, destiny_action)
     @project_id = params[:project_id]
     @repository_types = Repository.repository_types
+    @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
+      [conf.name, conf.id]
+    }
 
     format.html { render action: destiny_action }
     format.json { render json: @repository.errors, status: :unprocessable_entity }
