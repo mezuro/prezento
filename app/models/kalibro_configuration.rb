@@ -9,7 +9,11 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
     end
 
     query.map { |cfg_attr|
-      self.find(cfg_attr.kalibro_configuration_id)
+      begin
+        self.find(cfg_attr.kalibro_configuration_id)
+      rescue KalibroClient::Errors::RecordNotFound
+        nil
+      end
     }.compact
   end
 
@@ -19,5 +23,11 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
 
   def attributes
     KalibroConfigurationAttributes.find_by(kalibro_configuration_id: self.id)
+  end
+
+  def destroy
+    attrs = attributes
+    attrs.destroy unless attrs.nil?
+    super
   end
 end

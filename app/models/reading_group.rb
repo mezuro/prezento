@@ -8,8 +8,12 @@ class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
       ReadingGroupAttributes.where(public: true)
     end
 
-    query.map { |cfg_attr|
-      self.find(cfg_attr.reading_group_id)
+    query.map { |rg_attr|
+      begin
+        self.find(rg_attr.reading_group_id)
+      rescue KalibroClient::Errors::RecordNotFound
+        nil
+      end
     }.compact
   end
 

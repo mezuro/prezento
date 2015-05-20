@@ -1,7 +1,0 @@
-en:
-  activemodel:
-    attributes:
-      kalibro_configuration_attributes:
-        public: "Public"
-      kalibro_configuration_attributes_label:
-        public: "Visible to everyone?"

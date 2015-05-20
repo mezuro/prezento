@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe KalibroConfiguration, :type => :model do
   describe 'methods' do
-
     describe 'class methods' do
       describe 'public_or_owned_by_user' do
         def build_attrs(kc_iter, *traits, **params)
@@ -54,6 +53,22 @@ describe KalibroConfiguration, :type => :model do
           it 'should find all public and owned reading groups' do
             expect(KalibroConfiguration.public_or_owned_by_user(one_user)).to eq(ones_or_public_kalibro_configurations)
           end
+        end
+      end
+    end
+
+    describe 'destroy' do
+      context 'when attributes exist' do
+        let!(:kalibro_configuration_attributes) { FactoryGirl.build(:kalibro_configuration_attributes) }
+        let!(:kalibro_configuration) { kalibro_configuration_attributes.kalibro_configuration }
+        before do
+          kalibro_configuration.expects(:attributes).returns(kalibro_configuration_attributes)
+        end
+
+        it 'should be destroyed' do
+          kalibro_configuration_attributes.expects(:destroy)
+          KalibroClient::Entities::Configurations::KalibroConfiguration.any_instance.expects(:destroy).returns(kalibro_configuration)
+          kalibro_configuration.destroy
         end
       end
     end
