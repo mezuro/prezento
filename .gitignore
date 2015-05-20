@@ -29,3 +29,4 @@ db_bootstrap.sql
 install.sh
 kalibro_gatekeeper.yml
 .capistrano
+rerun.txt
