@@ -11,7 +11,7 @@ en:
         license: "License"
         scm_type: "Type"
         address: "Address"
-        period: "Period"
+        period: "Process Period"
     hints:
       repository:
         name: "The name of your Repository."
