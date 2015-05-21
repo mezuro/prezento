@@ -28,3 +28,15 @@ Feature: Configuration listing
     And I am at the All Configurations page
     When I click the Show link
     Then the sample configuration should be there
+
+  @kalibro_configuration_restart
+  Scenario: Should show only the public or owned configurations
+    Given I am a regular user
+    And I am signed in
+    And I have a sample configuration
+    And there is a public configuration created
+    And there is a private configuration created
+    When I am at the All Configurations page
+    Then the sample configuration should be there
+    And the public configuration should be there
+    And the private configuration should not be there
