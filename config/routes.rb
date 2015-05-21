@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /en|pt/ do
     devise_for :users
     get 'users/:user_id/projects' => 'users#projects', as: :user_projects
