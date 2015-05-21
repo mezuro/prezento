@@ -34,10 +34,3 @@ en:
       metric_results: "Metric Results"
       loading: "Loading data. Please, wait."
       date_processing: "Retrieve the closest processing information from"
-  periodicity:
-      NOT_PERIODICALLY: "Not Periodically"
-      1_DAY: "1 day"
-      2_DAYS: "2 days"
-      WEEKLY: "Weekly"
-      BIWEEKLY: "Biweekly"
-      MONTHLY: "Monthly"
