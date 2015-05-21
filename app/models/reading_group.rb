@@ -1,5 +1,6 @@
 class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
   include KalibroRecord
+  attr_writer :attributes
 
   def self.public_or_owned_by_user(user=nil)
     reading_group_attributes = ReadingGroupAttributes.where(public: true)
@@ -19,6 +20,11 @@ class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
   end
 
   def attributes
-    ReadingGroupAttributes.find_by(reading_group_id: self.id)
+    @attributes ||= ReadingGroupAttributes.find_by(reading_group_id: self.id)
+  end
+
+  def destroy
+    attributes.destroy unless attributes.nil?
+    super
   end
 end
