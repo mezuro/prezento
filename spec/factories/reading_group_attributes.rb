@@ -10,10 +10,5 @@ FactoryGirl.define do
     trait :private do
       self.public false
     end
-
-
-    after(:build) do |reading_group_attributes|
-      reading_group_attributes.reading_group.attributes = reading_group_attributes
-    end
   end
 end

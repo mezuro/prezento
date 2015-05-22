@@ -10,10 +10,5 @@ FactoryGirl.define do
     trait :private do
       self.public false
     end
-
-    after(:build) do |kalibro_configuration_attributes|
-      kalibro_configuration_attributes.kalibro_configuration.attributes = kalibro_configuration_attributes
-    end
-
   end
 end
