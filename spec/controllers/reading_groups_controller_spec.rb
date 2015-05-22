@@ -209,7 +209,6 @@ describe ReadingGroupsController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
-            @subject.expects(:attributes).returns(@ownership)
             ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
             ReadingGroup.any_instance.expects(:update).with(@subject_params).returns(true)
           end

@@ -216,7 +216,6 @@ describe KalibroConfigurationsController, :type => :controller do
           before :each do
             KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
             KalibroConfiguration.any_instance.expects(:update).with(kalibro_configuration_params).returns(true)
-            kalibro_configuration.expects(:attributes).returns(kalibro_configuration_attribute)
           end
 
           context 'rendering the show' do
