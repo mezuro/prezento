@@ -1,8 +1,8 @@
-class CreateKalibroConfigurationOwnerships < ActiveRecord::Migration
+class CreateMezuroConfigurationOwnerships < ActiveRecord::Migration
   def change
-    create_table :kalibro_configuration_ownerships do |t|
+    create_table :mezuro_configuration_ownerships do |t|
       t.integer :user_id
-      t.integer :kalibro_configuration_id
+      t.integer :mezuro_configuration_id
 
       t.timestamps
     end

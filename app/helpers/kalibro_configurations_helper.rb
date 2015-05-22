@@ -1,6 +1,6 @@
 module KalibroConfigurationsHelper
   def kalibro_configuration_owner?(kalibro_configuration_id)
-    user_signed_in? && !current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id(kalibro_configuration_id).nil?
+    user_signed_in? && !current_user.kalibro_configuration_attributes.find_by_kalibro_configuration_id(kalibro_configuration_id).nil?
   end
 
   def link_to_edit_form(metric_configuration, kalibro_configuration_id)

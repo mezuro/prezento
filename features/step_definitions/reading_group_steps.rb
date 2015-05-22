@@ -14,7 +14,7 @@ end
 
 Given(/^I own a sample reading group$/) do
   @reading_group = FactoryGirl.create(:reading_group)
-  FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})
+  FactoryGirl.create(:reading_group_attributes, user_id: @user.id, reading_group_id: @reading_group.id)
 end
 
 Given(/^I have a sample reading group$/) do
@@ -31,7 +31,7 @@ end
 
 Given(/^I own a reading group named "(.*?)"$/) do |name|
   @reading_group = FactoryGirl.create(:reading_group, {name: name})
-  FactoryGirl.create(:reading_group_ownership, {user_id: @user.id, reading_group_id: @reading_group.id})
+  FactoryGirl.create(:reading_group_attributes, {user_id: @user.id, reading_group_id: @reading_group.id})
 end
 
 When(/^I visit the sample reading group edit page$/) do
@@ -61,5 +61,31 @@ Then(/^I should be in the Edit Reading Group page$/) do
 end
 
 Then(/^the Sample Reading Group should not be there$/) do
+  expect(@reading_group.attributes).to be_nil
   expect { ReadingGroup.find(@reading_group.id) }.to raise_error
+end
+
+Then(/^the sample reading group should be there$/) do
+  expect(page).to have_content(@reading_group.name)
+  expect(page).to have_content(@reading_group.description)
+end
+
+Given(/^there is a public reading group created$/) do
+  @public_rg = FactoryGirl.create(:public_reading_group)
+  FactoryGirl.create(:reading_group_attributes, reading_group_id: @public_rg.id)
+end
+
+Given(/^there is a private reading group created$/) do
+  @private_rg = FactoryGirl.create(:another_reading_group)
+  FactoryGirl.create(:reading_group_attributes, :private, reading_group_id: @private_rg.id, user: FactoryGirl.create(:another_user))
+end
+
+Then(/^the public reading group should be there$/) do
+  expect(page).to have_content(@public_rg.name)
+  expect(page).to have_content(@public_rg.description)
+end
+
+Then(/^the private reading group should not be there$/) do
+  expect(page).to have_no_content(@private_rg.name)
+  expect(page).to have_no_content(@private_rg.description)
 end

@@ -9,6 +9,9 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     super
     # find_by_name throws an exception instead of returning nil, unlike ActiveRecord's API
     metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(params[:metric_collector_name]).find_metric_by_code params[:metric_code]
+    @reading_groups = ReadingGroup.public_or_owned_by_user(current_user).map { |reading_group|
+      [reading_group.name, reading_group.id]
+    }
   end
 
   def create
@@ -24,6 +27,9 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     #FIXME: set the configuration id just once!
     @kalibro_configuration_id = params[:kalibro_configuration_id]
     @metric_configuration.kalibro_configuration_id = @kalibro_configuration_id
+    @reading_groups = ReadingGroup.public_or_owned_by_user(current_user).map { |reading_group|
+      [reading_group.name, reading_group.id]
+    }
   end
 
   def update

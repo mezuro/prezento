@@ -5,12 +5,15 @@ describe RepositoriesController, :type => :controller do
 
   describe 'new' do
     context 'with a User logged in' do
+      let!(:user) { FactoryGirl.create(:user) }
+      let!(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
       before :each do
-        sign_in FactoryGirl.create(:user)
+        sign_in user
       end
 
       context 'when the current user owns the project' do
         before :each do
+          KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
           Repository.expects(:repository_types).returns([])
           subject.expects(:project_owner?).returns true
 
@@ -41,11 +44,13 @@ describe RepositoriesController, :type => :controller do
   end
 
   describe 'create' do
+    let!(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
+    let!(:user) { FactoryGirl.create(:user) }
     let (:repository) { FactoryGirl.build(:repository, project_id: project.id) }
     let(:repository_params) { FactoryGirl.build(:repository).to_hash }
 
     before do
-      sign_in FactoryGirl.create(:user)
+      sign_in user
     end
 
     context 'when the current user owns the project' do
@@ -66,6 +71,7 @@ describe RepositoriesController, :type => :controller do
 
       context 'with an invalid field' do
         before :each do
+          KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
           Repository.any_instance.expects(:save).returns(false)
           Repository.expects(:repository_types).returns([])
 
@@ -91,9 +97,7 @@ describe RepositoriesController, :type => :controller do
 
     context 'without a specific module_result' do
       before :each do
-        processing = FactoryGirl.build(:processing)
-
-        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration_with_id))
+        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -105,9 +109,7 @@ describe RepositoriesController, :type => :controller do
     context 'for an specific module_result' do
 
       before :each do
-        processing = FactoryGirl.build(:processing)
-
-        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration_with_id))
+        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
 
         get :show, id: repository.id.to_s, project_id: project.id.to_s
@@ -161,12 +163,15 @@ describe RepositoriesController, :type => :controller do
     let(:repository) { FactoryGirl.build(:repository) }
 
     context 'with an User logged in' do
+      let!(:user) { FactoryGirl.create(:user) }
+      let!(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
       before do
-        sign_in FactoryGirl.create(:user)
+        sign_in user
       end
 
       context 'when the user owns the repository' do
         before :each do
+          KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
           subject.expects(:repository_owner?).returns true
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
           Repository.expects(:repository_types).returns(["SUBVERSION"])
@@ -197,12 +202,15 @@ describe RepositoriesController, :type => :controller do
   end
 
   describe 'update' do
+    let(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
     let(:repository) { FactoryGirl.build(:repository) }
     let(:repository_params) { Hash[FactoryGirl.attributes_for(:repository).map { |k,v| [k.to_s, v.to_s] }] } #FIXME: Mocha is creating the expectations with strings, but FactoryGirl returns everything with sybols and integers
 
     context 'when the user is logged in' do
+      let!(:user) { FactoryGirl.create(:user) }
+
       before do
-        sign_in FactoryGirl.create(:user)
+        sign_in user
       end
 
       context 'when user owns the repository' do
@@ -224,6 +232,7 @@ describe RepositoriesController, :type => :controller do
 
         context 'with an invalid field' do
           before :each do
+            KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
             Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
             Repository.any_instance.expects(:update).with(repository_params).returns(false)
             Repository.expects(:repository_types).returns([])
@@ -333,7 +342,7 @@ describe RepositoriesController, :type => :controller do
         subject.expects(:repository_owner?).returns true
         repository.expects(:process)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration_with_id))
+        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         get :process_repository, project_id: project.id.to_s, id: repository.id
       end
       it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }

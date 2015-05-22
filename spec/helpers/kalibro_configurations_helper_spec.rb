@@ -3,7 +3,7 @@ require 'rails_helper'
 describe KalibroConfigurationsHelper, :type => :helper do
   describe 'kalibro_configuration_owner?' do
     before :each do
-      @subject = FactoryGirl.build(:kalibro_configuration_with_id)
+      @subject = FactoryGirl.build(:kalibro_configuration, :with_id)
     end
 
     context 'returns false if not logged in' do
@@ -18,10 +18,10 @@ describe KalibroConfigurationsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownerships = []
-        @ownerships.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(nil)
+        @attributes = []
+        @attributes.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(nil)
 
-        User.any_instance.expects(:kalibro_configuration_ownerships).returns(@ownerships)
+        User.any_instance.expects(:kalibro_configuration_attributes).returns(@attributes)
       end
 
       it { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_falsey }
@@ -32,10 +32,10 @@ describe KalibroConfigurationsHelper, :type => :helper do
         helper.expects(:user_signed_in?).returns(true)
         helper.expects(:current_user).returns(FactoryGirl.build(:user))
 
-        @ownership = FactoryGirl.build(:kalibro_configuration_ownership)
-        @ownerships = []
-        @ownerships.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(@ownership)
-        User.any_instance.expects(:kalibro_configuration_ownerships).returns(@ownerships)
+        @ownership = FactoryGirl.build(:kalibro_configuration_attributes)
+        @attributes = []
+        @attributes.expects(:find_by_kalibro_configuration_id).with(@subject.id).returns(@ownership)
+        User.any_instance.expects(:kalibro_configuration_attributes).returns(@attributes)
       end
 
       it { expect(helper.kalibro_configuration_owner?(@subject.id)).to be_truthy }

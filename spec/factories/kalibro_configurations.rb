@@ -1,5 +1,5 @@
-  FactoryGirl.define do
-  factory :kalibro_configuration, class: KalibroConfiguration do
+FactoryGirl.define do
+  factory :kalibro_configuration do
     name "Java"
     description "Code metrics for Java."
 
@@ -7,17 +7,18 @@
       id 1
     end
 
-    factory :kalibro_configuration_with_id, traits: [:with_id]
-  end
-
-  factory :another_kalibro_configuration, class: KalibroConfiguration do
-    name "Perl"
-    description "Code metrics for Perl."
-
-    trait :with_id do
-      id 12
+    trait :with_sequential_id do
+      sequence(:id, 1)
     end
 
-    factory :another_kalibro_configuration_with_id, traits: [:with_id]
+    factory :another_kalibro_configuration do
+      name "Perl"
+      description "Code metrics for Perl."
+    end
+
+    factory :public_kalibro_configuration do
+      name "Public Kalibro Configuration"
+      description "Public Configuration."
+    end
   end
 end

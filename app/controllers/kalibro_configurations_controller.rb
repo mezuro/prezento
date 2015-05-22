@@ -3,6 +3,7 @@ include OwnershipAuthentication
 class KalibroConfigurationsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :kalibro_configuration_owner?, only: [:edit, :update, :destroy]
+  before_action :set_kalibro_configuration, only: [:show, :edit, :update, :destroy]
 
   # GET /kalibro_configurations/new
   def new
@@ -12,7 +13,7 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations
   # GET /kalibro_configurations.json
   def index
-    @kalibro_configurations = KalibroConfiguration.all
+    @kalibro_configurations = KalibroConfiguration.public_or_owned_by_user(current_user)
   end
 
   # POST /kalibro_configurations
@@ -27,7 +28,6 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations/1
   # GET /kalibro_configurations/1.json
   def show
-    set_kalibro_configuration
     Rails.cache.fetch("#{@kalibro_configuration.id}_metric_configurations") do
        @kalibro_configuration.metric_configurations
     end
@@ -35,13 +35,9 @@ class KalibroConfigurationsController < ApplicationController
 
   # GET /kalibro_configurations/1/edit
   # GET /kalibro_configurations/1/edit.json
-  def edit
-    set_kalibro_configuration
-  end
-
+  def edit; end
 
   def update
-    set_kalibro_configuration
     if @kalibro_configuration.update(kalibro_configuration_params)
       redirect_to(kalibro_configuration_path(@kalibro_configuration.id))
     else
@@ -52,13 +48,13 @@ class KalibroConfigurationsController < ApplicationController
   # DELETE /kalibro_configurations/1
   # DELETE /kalibro_configurations/1.json
   def destroy
-    set_kalibro_configuration
-    current_user.kalibro_configuration_ownerships.find_by_kalibro_configuration_id!(@kalibro_configuration.id).destroy
     @kalibro_configuration.destroy
+
     respond_to do |format|
       format.html { redirect_to kalibro_configurations_url }
       format.json { head :no_content }
     end
+
     Rails.cache.delete("#{@kalibro_configuration.id}_metrics")
   end
 
@@ -77,7 +73,7 @@ class KalibroConfigurationsController < ApplicationController
   # Extracted code from create action
   def create_and_redir(format)
     if @kalibro_configuration.save
-      current_user.kalibro_configuration_ownerships.create kalibro_configuration_id: @kalibro_configuration.id
+      current_user.kalibro_configuration_attributes.create(kalibro_configuration_id: @kalibro_configuration.id)
 
       format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id), notice: t('successfully_created', :record => @kalibro_configuration.model_name.human) }
       format.json { render action: 'show', status: :created, location: @kalibro_configuration }

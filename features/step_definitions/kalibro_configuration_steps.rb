@@ -12,11 +12,13 @@ end
 
 Given(/^I have a sample configuration$/) do
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
+  FactoryGirl.create(:kalibro_configuration_attributes, user_id: FactoryGirl.create(:another_user).id, kalibro_configuration_id: @kalibro_configuration.id)
+
 end
 
 Given(/^I own a sample configuration$/) do
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
-  FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 Given(/^I am at the Sample Configuration page$/) do
@@ -29,7 +31,7 @@ end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {name: name})
-  FactoryGirl.create(:kalibro_configuration_ownership, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
 When(/^I visit the sample configuration edit page$/) do
@@ -49,6 +51,7 @@ Then(/^I should be in the All configurations page$/) do
 end
 
 Then(/^the sample configuration should not be there$/) do
+  expect(@kalibro_configuration.attributes).to be_nil
   expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error
 end
 
@@ -56,3 +59,24 @@ Then(/^the sample configuration should be there$/) do
   expect(page).to have_content(@kalibro_configuration.name)
   expect(page).to have_content(@kalibro_configuration.description)
 end
+
+Given(/^there is a public configuration created$/) do
+  @public_kc = FactoryGirl.create(:public_kalibro_configuration)
+  FactoryGirl.create(:kalibro_configuration_attributes, kalibro_configuration_id: @public_kc.id)
+end
+
+Given(/^there is a private configuration created$/) do
+  @private_kc = FactoryGirl.create(:another_kalibro_configuration)
+  FactoryGirl.create(:kalibro_configuration_attributes, :private, kalibro_configuration_id: @private_kc.id, user: FactoryGirl.create(:another_user, id: nil, email: "private@email.com"))
+end
+
+Then(/^the public configuration should be there$/) do
+  expect(page).to have_content(@public_kc.name)
+  expect(page).to have_content(@public_kc.description)
+end
+
+Then(/^the private configuration should not be there$/) do
+  expect(page).to have_no_content(@private_kc.name)
+  expect(page).to have_no_content(@private_kc.description)
+end
+

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ReadingsController, :type => :controller do
-  let(:reading_group) { FactoryGirl.build(:reading_group_with_id) }
+  let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
 
   describe 'new' do
     before :each do

@@ -5,7 +5,7 @@ describe KalibroRangesController, :type => :controller do
   let(:kalibro_range) { FactoryGirl.build(:kalibro_range_with_id, metric_configuration_id: metric_configuration.id) }
 
   describe 'new' do
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
 
     before :each do
       sign_in FactoryGirl.create(:user)
@@ -35,7 +35,7 @@ describe KalibroRangesController, :type => :controller do
 
   describe 'create' do
     let(:kalibro_range_params) { kalibro_range.to_hash }
-    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration_with_id) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
 
     before do
       sign_in FactoryGirl.create(:user)
