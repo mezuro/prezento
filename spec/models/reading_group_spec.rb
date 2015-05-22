@@ -49,35 +49,26 @@ describe ReadingGroup, :type => :model do
 
   describe 'class methods' do
     describe 'public_or_owned_by_user' do
-      def build_attrs(rg_iter, *traits, **params)
-        reading_group = rg_iter.next
-        attr = FactoryGirl.build(:reading_group_attributes, *traits, params.merge(reading_group: reading_group))
-        reading_group.stubs(:attributes).returns(attr)
-        attr
-      end
+      let!(:user) { FactoryGirl.build(:user) }
 
-      let!(:reading_groups) { FactoryGirl.build_list(:reading_group, 4, :with_id) }
-      let!(:rgs_iter) { reading_groups.each }
+      let!(:owned_private_attrs)     { FactoryGirl.build(:reading_group_attributes, :private, user_id: user.id) }
+      let!(:owned_public_attrs)      { FactoryGirl.build(:reading_group_attributes,           user_id: user.id) }
+      let!(:not_owned_private_attrs) { FactoryGirl.build(:reading_group_attributes, :private, user_id: user.id+1) }
+      let!(:not_owned_public_attrs)  { FactoryGirl.build(:reading_group_attributes,           user_id: user.id+1) }
 
-      let!(:one_user) { FactoryGirl.build(:user) }
-      let!(:other_user) { FactoryGirl.build(:another_user) }
-
-      let!(:ones_private_attrs) { build_attrs(rgs_iter, :private, user: one_user) }
-      let!(:others_private_attrs) { build_attrs(rgs_iter, :private, user: other_user) }
-      let!(:ones_public_attrs) { build_attrs(rgs_iter, user: one_user) }
-      let!(:others_public_attrs) { build_attrs(rgs_iter, user: other_user) }
-
-      let!(:public_attrs) { [ones_public_attrs, others_public_attrs] }
+      let!(:public_attrs) { [owned_public_attrs, not_owned_public_attrs] }
       let(:public_reading_groups) { public_attrs.map(&:reading_group) }
 
-      let(:ones_or_public_attrs) { public_attrs + [ones_private_attrs] }
-      let(:ones_or_public_reading_groups) { ones_or_public_attrs.map(&:reading_group) }
+      let!(:owned_or_public_attrs) { public_attrs + [owned_private_attrs] }
+      let!(:owned_or_public_reading_groups) { owned_or_public_attrs.map(&:reading_group) }
 
-      context 'when the reading group exists' do
+      let(:all_reading_groups) { owned_or_public_reading_groups + [not_owned_private_attrs.reading_group] }
+
+      context 'when reading groups exist' do
         before :each do
-          # Map the reading group attributes to the corresponding Reading Group
-          reading_groups.each do |rg|
-            ReadingGroup.stubs(:find).with(rg.id).returns(rg)
+          # Make sure the reading groups are found when looked up by the Attributes by their id
+          all_reading_groups.each do |reading_group|
+            ReadingGroup.stubs(:find).with(reading_group.id).returns(reading_group)
           end
 
           ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
@@ -91,20 +82,22 @@ describe ReadingGroup, :type => :model do
 
         context 'when user is provided' do
           before do
-            ReadingGroupAttributes.expects(:where).with(user_id: one_user.id, public: false).returns([ones_private_attrs])
+            ReadingGroupAttributes.expects(:where).with(user_id: user.id, public: false).returns([owned_private_attrs])
           end
 
           it 'should find all public and owned reading groups' do
-            expect(ReadingGroup.public_or_owned_by_user(one_user)).to eq(ones_or_public_reading_groups)
+            p all_reading_groups
+
+            expect(ReadingGroup.public_or_owned_by_user(user)).to eq(owned_or_public_reading_groups)
           end
         end
       end
 
-      context 'when the reading group does not' do
+      context 'when no reading groups exist' do
         before :each do
           # Map the reading group attributes to the corresponding Reading Group
-          reading_groups.each do |rg|
-            ReadingGroup.stubs(:find).with(rg.id).raises(KalibroClient::Errors::RecordNotFound)
+          all_reading_groups.each do |reading_group|
+            ReadingGroup.stubs(:find).with(reading_group.id).raises(KalibroClient::Errors::RecordNotFound)
           end
 
           ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)
