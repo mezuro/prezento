@@ -48,7 +48,6 @@ class ReadingGroupsController < ApplicationController
   # DELETE /reading_group/1
   # DELETE /reading_group/1.json
   def destroy
-    current_user.reading_group_attributes.find_by_reading_group_id!(@reading_group.id).destroy
     @reading_group.destroy
     respond_to do |format|
       format.html { redirect_to reading_groups_url }

@@ -97,14 +97,9 @@ describe ProjectsController, :type => :controller do
 
       context 'when the user owns the project' do
         before :each do
-          @project_attributes.expects(:destroy)
           @subject.expects(:destroy)
 
-          #Those two mocks looks the same but they are necessary since params[:id] is a String and @project.id is an Integer :(
-          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@project_attributes)
-          @attributes.expects(:find_by_project_id!).with(@subject.id).returns(@project_attributes)
-
-          User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
+          subject.expects(:project_owner?)
 
           Project.expects(:find).with(@subject.id).returns(@subject)
           delete :destroy, :id => @subject.id

@@ -83,19 +83,12 @@ describe ReadingGroupsController, :type => :controller do
         sign_in FactoryGirl.create(:user)
         @ownership = FactoryGirl.build(:reading_group_attributes)
         @ownerships = []
-
       end
 
       context 'when the user owns the reading group' do
         before :each do
-          @ownership.expects(:destroy)
           @subject.expects(:destroy)
-
-          #Those two mocks looks the same but they are necessary since params[:id] is a String and @ReadingGroup.id is an Integer :(
-          @ownerships.expects(:find_by_reading_group_id).with("#{@subject.id}").returns(@ownership)
-          @ownerships.expects(:find_by_reading_group_id!).with(@subject.id).returns(@ownership)
-
-          User.any_instance.expects(:reading_group_attributes).at_least_once.returns(@ownerships)
+          subject.expects(:reading_group_owner?)
 
           ReadingGroup.expects(:find).with(@subject.id).returns(@subject)
           delete :destroy, :id => @subject.id

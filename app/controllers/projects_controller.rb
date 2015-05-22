@@ -54,7 +54,6 @@ class ProjectsController < ApplicationController
   # DELETE /project/1.json
   def destroy
     set_project
-    current_user.project_attributes.find_by_project_id!(@project.id).destroy
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url }
