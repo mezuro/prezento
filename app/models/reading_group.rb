@@ -25,6 +25,7 @@ class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
 
   def destroy
     attributes.destroy unless attributes.nil?
+    @attributes = nil
     super
   end
 end

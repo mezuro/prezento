@@ -61,6 +61,7 @@ Then(/^I should be in the Edit Reading Group page$/) do
 end
 
 Then(/^the Sample Reading Group should not be there$/) do
+  expects(@reading_group.attributes).to be_nil
   expect { ReadingGroup.find(@reading_group.id) }.to raise_error
 end
 

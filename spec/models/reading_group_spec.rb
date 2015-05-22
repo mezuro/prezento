@@ -45,6 +45,33 @@ describe ReadingGroup, :type => :model do
         expect(subject.readings).to include(reading)
       end
     end
+
+    describe 'destroy' do
+      context 'when attributes exist' do
+        let!(:reading_group_attributes) { FactoryGirl.build(:reading_group_attributes) }
+        let!(:reading_group) { reading_group_attributes.reading_group }
+
+        it 'should be destroyed' do
+          reading_group.expects(:attributes).twice.returns(reading_group_attributes)
+          reading_group_attributes.expects(:destroy)
+          KalibroClient::Entities::Configurations::ReadingGroup.any_instance.expects(:destroy).returns(reading_group)
+          reading_group.destroy
+        end
+
+        it 'is expected to clean the attributes memoization' do
+          # Call attributes once so it memoizes
+          ReadingGroupAttributes.expects(:find_by).with(reading_group_id: reading_group.id).returns(reading_group_attributes)
+          expect(reading_group.attributes).to eq(reading_group_attributes)
+
+          # Destroying
+          reading_group.destroy
+
+          # The expectation call will try to find the attributes on the database which should be nil since it was destroyed
+          ReadingGroupAttributes.expects(:find_by).with(reading_group_id: reading_group.id).returns(nil)
+          expect(reading_group.attributes).to be_nil
+        end
+      end
+    end
   end
 
   describe 'class methods' do
@@ -86,8 +113,6 @@ describe ReadingGroup, :type => :model do
           end
 
           it 'should find all public and owned reading groups' do
-            p all_reading_groups
-
             expect(ReadingGroup.public_or_owned_by_user(user)).to eq(owned_or_public_reading_groups)
           end
         end
