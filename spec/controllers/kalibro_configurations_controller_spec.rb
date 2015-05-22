@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe KalibroConfigurationsController, :type => :controller do
 
-  def post_method(method)
-    unless method == :create
+  def call_action(method)
+    if method == :update
       post method, :id => kalibro_configuration.id, :kalibro_configuration => kalibro_configuration_params, :attributes => attributes
-    else
-      post method, :kalibro_configuration => kalibro_configuration_params, :attributes => attributes
+    elsif method == :create
+      put method, :kalibro_configuration => kalibro_configuration_params, :attributes => attributes
     end
   end
 
@@ -36,7 +36,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context 'rendering the show' do
         before :each do
-          post_method :create
+          call_action :create
         end
 
         it 'should redirect to the show view' do
@@ -46,7 +46,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context 'without rendering the show view' do
         before :each do
-          post_method :create
+          call_action :create
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -231,7 +231,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
           context 'rendering the show' do
             before :each do
-              post_method :update
+              call_action :update
             end
 
             it 'should redirect to the show view' do
@@ -241,7 +241,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
           context 'without rendering the show view' do
             before :each do
-              post_method :update
+              call_action :update
             end
 
             it { is_expected.to respond_with(:redirect) }
@@ -253,7 +253,7 @@ describe KalibroConfigurationsController, :type => :controller do
             KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
             KalibroConfiguration.any_instance.expects(:update).with(kalibro_configuration_params).returns(false)
 
-            post_method :update
+            call_action :update
           end
 
           it { is_expected.to render_template(:edit) }
@@ -262,7 +262,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context 'when the user does not own the kalibro_configuration' do
         before :each do
-          post_method :update
+          call_action :update
         end
 
         it { is_expected.to redirect_to kalibro_configurations_path(id: kalibro_configuration.id) }
@@ -271,7 +271,7 @@ describe KalibroConfigurationsController, :type => :controller do
 
     context 'with no user logged in' do
       before :each do
-        post_method :update
+        call_action :update
       end
 
       it { is_expected.to redirect_to new_user_session_path }
