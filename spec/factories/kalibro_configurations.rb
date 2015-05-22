@@ -15,5 +15,10 @@ FactoryGirl.define do
       name "Perl"
       description "Code metrics for Perl."
     end
+
+    factory :public_kalibro_configuration do
+      name "Public Kalibro Configuration"
+      description "Public Configuration."
+    end
   end
 end
