@@ -54,12 +54,14 @@ class KalibroConfigurationsController < ApplicationController
   # DELETE /kalibro_configurations/1.json
   def destroy
     set_kalibro_configuration
-    current_user.kalibro_configuration_attributes.find_by_kalibro_configuration_id!(@kalibro_configuration.id).destroy
+
     @kalibro_configuration.destroy
+
     respond_to do |format|
       format.html { redirect_to kalibro_configurations_url }
       format.json { head :no_content }
     end
+
     Rails.cache.delete("#{@kalibro_configuration.id}_metrics")
   end
 

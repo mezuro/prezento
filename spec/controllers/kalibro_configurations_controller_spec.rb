@@ -91,7 +91,6 @@ describe KalibroConfigurationsController, :type => :controller do
 
     context 'with an User logged in' do
       let(:kalibro_configuration_attribute) { FactoryGirl.build(:kalibro_configuration_attributes) }
-      let(:kalibro_configuration_attributes) { mock('kalibro_configuration_attributes') }
 
       before do
         sign_in FactoryGirl.create(:user)
@@ -99,16 +98,10 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context 'when the user owns the kalibro_configuration' do
         before :each do
-          kalibro_configuration_attribute.expects(:destroy)
           kalibro_configuration.expects(:destroy)
-
-          #Those two mocks looks the same but they are necessary since params[:id] is a String and @configuration.id is an Integer :(
-          kalibro_configuration_attributes.expects(:find_by_kalibro_configuration_id).with("#{kalibro_configuration.id}").returns(kalibro_configuration_attribute)
-          kalibro_configuration_attributes.expects(:find_by_kalibro_configuration_id!).with(kalibro_configuration.id).returns(kalibro_configuration_attribute)
-
-          User.any_instance.expects(:kalibro_configuration_attributes).at_least_once.returns(kalibro_configuration_attributes)
-
           KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
+          subject.expects(:kalibro_configuration_owner?)
+
           delete :destroy, :id => kalibro_configuration.id
         end
 
@@ -121,9 +114,6 @@ describe KalibroConfigurationsController, :type => :controller do
 
       context "when the user doesn't own the kalibro_configuration" do
         before :each do
-          kalibro_configuration_attributes.expects(:find_by_kalibro_configuration_id).with("#{kalibro_configuration.id}").returns(nil)
-          User.any_instance.expects(:kalibro_configuration_attributes).at_least_once.returns(kalibro_configuration_attributes)
-
           delete :destroy, :id => kalibro_configuration.id
         end
 

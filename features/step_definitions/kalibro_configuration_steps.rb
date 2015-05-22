@@ -51,6 +51,7 @@ Then(/^I should be in the All configurations page$/) do
 end
 
 Then(/^the sample configuration should not be there$/) do
+  expect(@kalibro_configuration.attributes).to be_nil
   expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error
 end
 
