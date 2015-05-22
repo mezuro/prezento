@@ -5,6 +5,7 @@ class RepositoriesController < ApplicationController
   before_action :project_owner?, only: [:new, :create]
   before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
+  before_action :set_project_id_repository_types_and_configurations, only: [:new, :edit]
 
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
@@ -16,22 +17,11 @@ class RepositoriesController < ApplicationController
 
   # GET projects/1/repositories/new
   def new
-    @project_id = params[:project_id]
     @repository = Repository.new
-    @repository_types = Repository.repository_types
-    @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
-      [conf.name, conf.id]
-    }
   end
 
   # GET /repositories/1/edit
-  def edit
-    @project_id = params[:project_id]
-    @repository_types = Repository.repository_types
-    @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
-      [conf.name, conf.id]
-    }
-  end
+  def edit; end
 
   # POST /projects/1/repositories
   # POST /projects/1/repositories.json
@@ -95,13 +85,17 @@ class RepositoriesController < ApplicationController
   end
 
 private
-  # Duplicated code on create and update actions extracted here
-  def failed_action(format, destiny_action)
+  def set_project_id_repository_types_and_configurations
     @project_id = params[:project_id]
     @repository_types = Repository.repository_types
     @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
       [conf.name, conf.id]
     }
+  end
+
+  # Duplicated code on create and update actions extracted here
+  def failed_action(format, destiny_action)
+    set_project_id_repository_types_and_configurations
 
     format.html { render action: destiny_action }
     format.json { render json: @repository.errors, status: :unprocessable_entity }
