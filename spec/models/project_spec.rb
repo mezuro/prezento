@@ -38,5 +38,32 @@ describe Project, :type => :model do
         expect(subject.attributes).to eq(project_attributes)
       end
     end
+
+    describe 'destroy' do
+      context 'when attributes exist' do
+        let!(:project) { FactoryGirl.build(:project) }
+        let!(:project_attributes) { FactoryGirl.build(:project_attributes, project_id: project.id) }
+
+        it 'should be destroyed' do
+          project.expects(:attributes).twice.returns(project_attributes)
+          project_attributes.expects(:destroy)
+          KalibroClient::Entities::Processor::Project.any_instance.expects(:destroy).returns(project)
+          project.destroy
+        end
+
+        it 'is expected to clean the attributes memoization' do
+          # Call attributes once so it memoizes
+          ProjectAttributes.expects(:find_by).with(project_id: project.id).returns(project_attributes)
+          expect(project.attributes).to eq(project_attributes)
+
+          # Destroying
+          project.destroy
+
+          # The expectation call will try to find the attributes on the database which should be nil since it was destroyed
+          ProjectAttributes.expects(:find_by).with(project_id: project.id).returns(nil)
+          expect(project.attributes).to_not eq(project_attributes)
+        end
+      end
+    end
   end
 end
