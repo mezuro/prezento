@@ -11,5 +11,10 @@ FactoryGirl.define do
       name "My Reading Group"
       description "The best one"
     end
+
+    factory :public_reading_group do
+      name "Public Reading Group"
+      description "Public"
+    end
   end
 end
