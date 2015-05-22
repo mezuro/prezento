@@ -76,8 +76,9 @@ describe KalibroConfiguration, :type => :model do
       context 'when attributes exist' do
         let!(:kalibro_configuration_attributes) { FactoryGirl.build(:kalibro_configuration_attributes) }
         let!(:kalibro_configuration) { kalibro_configuration_attributes.kalibro_configuration }
+
         before do
-          kalibro_configuration.expects(:attributes).returns(kalibro_configuration_attributes)
+          kalibro_configuration.expects(:attributes).twice.returns(kalibro_configuration_attributes)
         end
 
         it 'should be destroyed' do
