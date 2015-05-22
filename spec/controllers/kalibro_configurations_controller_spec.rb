@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe KalibroConfigurationsController, :type => :controller do
-  
+
   def post_method(method)
     unless method == :create
       post method, :id => kalibro_configuration.id, :kalibro_configuration => kalibro_configuration_params, :attributes => attributes
@@ -26,11 +26,11 @@ describe KalibroConfigurationsController, :type => :controller do
     end
 
     context 'with valid fields' do
-	    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
-	    let(:kalibro_configuration_params) { kalibro_configuration.to_hash }
-      let(:attributes) { {public: "1"} } 
+      let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
+      let(:kalibro_configuration_params) { kalibro_configuration.to_hash }
+      let(:attributes) { {public: "1"} }
 
-     	before :each do
+      before :each do
         KalibroConfiguration.any_instance.expects(:save).returns(true)
       end
 
@@ -69,8 +69,8 @@ describe KalibroConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-  	let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
-  	let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
+    let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     before :each do
       kalibro_configuration.expects(:metric_configurations).returns(metric_configuration)
