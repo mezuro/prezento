@@ -25,6 +25,7 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
 
   def destroy
     attributes.destroy unless attributes.nil?
+    @attributes = nil
     super
   end
 end

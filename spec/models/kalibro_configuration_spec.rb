@@ -77,14 +77,24 @@ describe KalibroConfiguration, :type => :model do
         let!(:kalibro_configuration_attributes) { FactoryGirl.build(:kalibro_configuration_attributes) }
         let!(:kalibro_configuration) { kalibro_configuration_attributes.kalibro_configuration }
 
-        before do
-          kalibro_configuration.expects(:attributes).twice.returns(kalibro_configuration_attributes)
-        end
-
         it 'should be destroyed' do
+          kalibro_configuration.expects(:attributes).twice.returns(kalibro_configuration_attributes)
           kalibro_configuration_attributes.expects(:destroy)
           KalibroClient::Entities::Configurations::KalibroConfiguration.any_instance.expects(:destroy).returns(kalibro_configuration)
           kalibro_configuration.destroy
+        end
+
+        it 'is expected to clean the attributes memoization' do
+          # Call attributes once so it memoizes
+          KalibroConfigurationAttributes.expects(:find_by).with(kalibro_configuration_id: kalibro_configuration.id).returns(kalibro_configuration_attributes)
+          expect(kalibro_configuration.attributes).to eq(kalibro_configuration_attributes)
+
+          # Destroying
+          kalibro_configuration.destroy
+
+          # The expectation call will try to find the attributes on the database which should be nil since it was destroyed
+          KalibroConfigurationAttributes.expects(:find_by).with(kalibro_configuration_id: kalibro_configuration.id).returns(nil)
+          expect(kalibro_configuration.attributes).to be_nil
         end
       end
     end
