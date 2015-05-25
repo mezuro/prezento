@@ -8,9 +8,9 @@ pt:
       repository:
         name: "Nome"
         description: "Descrição"
-        license: "Licensa"
+        license: "Licença"
         scm_type: "Tipo"
-        address: "endereço"
+        address: "Endereço"
         period: "Período"
     hints:
       repository:
