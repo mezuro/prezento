@@ -67,7 +67,7 @@ gem 'google-analytics-rails', '~> 0.0.6'
 gem 'http_accept_language'
 
 # Use RailsAdmin for an easy-to-use interface managing data
-gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin'
+gem 'rails_admin', '~> 0.6.7'
 
 group :test do
   # Easier test writing

@@ -8,3 +8,4 @@ en:
       destroy: "Destroy %{model}"
       edit: "Edit %{model}"
       add: "Add %{model}"
+    unauthorized: Access denied! You are not an administrator.
