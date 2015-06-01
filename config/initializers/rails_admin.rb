@@ -6,7 +6,10 @@ RailsAdmin.config do |config|
     end
   end
   config.main_app_name = ["Mezuro", "Administrative Interface"]
-  config.included_models = ["User", "Project", "ReadingGroup", "MetricConfiguration"]
+  config.included_models = ["KalibroConfiguration", "KalibroConfigurationAttributes",
+    "KalibroModule", "KalibroRange", "MetricConfiguration", "ModuleResult",
+    "Processing", "Project", "ProjectAttributes", "Reading",
+    "ReadingGroup", "ReadingGroupAttributes", "Repository", "User"]
 
   ### Popular gems integration
 
