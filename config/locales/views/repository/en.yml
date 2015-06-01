@@ -12,6 +12,7 @@ en:
         scm_type: "Type"
         address: "Address"
         period: "Process Period"
+        branch: "Branch"
     hints:
       repository:
         name: "The name of your Repository."
@@ -21,6 +22,7 @@ en:
         address: "The URL where the Repository is located."
         period: "Select how often the Repository will be reprocessed."
         kalibro_configuration: "A %{configuration_href} defines all the metrics to be calculated in the source code. Choose your weapon!"
+        branch: "The branch to be analyzed."
     errors:
       repository:
         no_metric_results: "Repository process returned with error. There are no metric results."

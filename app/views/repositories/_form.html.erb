@@ -66,6 +66,18 @@
 
     <div class="form-row">
       <div class="field-container">
+        <%= f.label :branch, class: 'control-label' %>
+        <%= f.text_field :branch, class: 'text-field form-control' %>
+      </div>
+      <div class="help-container">
+        <p>
+          <%= t('activemodel.hints.repository.branch') %>
+        </p>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="field-container">
         <%= f.label :period, class: 'control-label' %>
         <%= f.select( :period, periodicity_options, class: 'tooltip-control' ) %>
       </div>

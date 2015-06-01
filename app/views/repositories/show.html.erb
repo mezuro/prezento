@@ -23,6 +23,11 @@
 </p>
 
 <p>
+  <strong><%= Repository.human_attribute_name('branch') %>:</strong>
+  <%= @repository.branch %>
+</p>
+
+<p>
   <strong><%= Repository.human_attribute_name('period') %>:</strong>
   <%= periodicity_option(@repository.period) %>
 </p>
