@@ -1,6 +1,19 @@
 RailsAdmin.config do |config|
   config.included_models = ["User", "Project"]
 
+  config.authorize_with do |controller|
+    unless current_user.admin == true
+      redirect_to main_app.root_path
+      flash[:error] = t(:unauthorized)
+    end
+  end
+
+  config.main_app_name = ["Mezuro", "Administrative Interface"]
+  config.included_models = ["KalibroConfiguration", "KalibroConfigurationAttributes",
+    "KalibroModule", "KalibroRange", "MetricConfiguration", "ModuleResult",
+    "Processing", "Project", "ProjectAttributes", "Reading",
+    "ReadingGroup", "ReadingGroupAttributes", "Repository", "User"]
+
   ### Popular gems integration
 
   ## == Devise ==
