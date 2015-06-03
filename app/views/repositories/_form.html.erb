@@ -43,7 +43,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :scm_type, class: 'control-label' %>
-        <%= f.select( :scm_type, @repository_types, class: 'tooltip-control' ) %>
+        <%= f.select( :scm_type, @repository_types, {}, class: 'tooltip-control', onchange: "show_branches(this);" ) %>
       </div>
       <div class="help-container">
         <p>
@@ -55,7 +55,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :address, class: 'control-label' %>
-        <%= f.text_field :address, :required => true, class: 'text-field form-control' %>
+        <%= f.text_field :address, :required => true, class: 'text-field form-control', onchange: "fetch_branches(this);" %>
       </div>
       <div class="help-container">
         <p>
@@ -64,15 +64,17 @@
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="field-container">
-        <%= f.label :branch, class: 'control-label' %>
-        <%= f.text_field :branch, class: 'text-field form-control' %>
-      </div>
-      <div class="help-container">
-        <p>
-          <%= t('activemodel.hints.repository.branch') %>
-        </p>
+    <div id="branches">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :branch, class: 'control-label' %>
+          <%= f.select :branch, []%>
+        </div>
+        <div class="help-container">
+          <p>
+            <%= t('activemodel.hints.repository.address') %>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -106,3 +108,43 @@
   <%= f.submit t('save'), class: 'btn btn-primary' %>
   <%= link_to t('back'),  project_path(@project_id), class: 'btn btn-default' %>
 </div>
+
+
+<script>
+  function show_branches (scm_type_field) {
+    var index = scm_type_field.selectedIndex;
+    var option = scm_type_field.options[index];
+
+    if(option.value != "SVN" ) {
+      $("#branches").show();
+      fetch_branches (document.getElementById("repository_address"));
+    }
+    else
+      $("#branches").hide();
+  }
+</script>
+
+<script>
+  function fetch_branches (address_field) {
+    var address = address_field.value;
+    console.log(address);
+    var scm_type = $("#repository_scm_type option:selected").text();
+
+    var $el = $("#repository_branch");
+    $el.empty(); // remove old options
+
+    $.ajax({
+      url: "<%= repository_branches_path() %>",
+      data: {'url': address, 'scm_type': scm_type},
+      type: 'GET',
+      complete: function (data){
+        var newOptions = JSON.parse(data["responseText"])["branches"];
+
+        $.each(newOptions, function(index, value) {
+          $el.append($("<option></option>")
+             .attr("value", value).text(value));
+        });
+      }
+    })
+  }
+</script>

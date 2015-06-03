@@ -24,5 +24,7 @@ describe RepositoriesController, :type => :routing do
                   to(controller: :repositories, action: :state_with_date, project_id: 1, id: 1) }
     it { is_expected.to route(:get, '/projects/1/repositories/1/process').
                   to(controller: :repositories, action: :process_repository, project_id: 1, id: 1) }
+    it { is_expected.to route(:get, '/repository_branches').
+                  to(controller: :repositories, action: :branches) }
    end
 end

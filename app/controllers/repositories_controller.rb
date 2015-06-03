@@ -84,6 +84,14 @@ class RepositoriesController < ApplicationController
     end
   end
 
+  def branches
+    branches_list = Repository.branches(params[:url], params[:scm_type])
+
+    respond_to do |format|
+      format.json { render json: branches_list }
+    end
+  end
+
 private
   def set_project_id_repository_types_and_configurations
     @project_id = params[:project_id]

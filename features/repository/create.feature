@@ -3,7 +3,7 @@ Feature: Repository Creation
   As a regular user
   I should be able to create repositories
 
-@kalibro_configuration_restart @kalibro_processor_restart @javascript
+@kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
 Scenario: repository creation
   Given I am a regular user
   And I am signed in
@@ -13,14 +13,14 @@ Scenario: repository creation
   And I fill the Name field with "Kalibro"
   And I fill the Description field with "Description"
   And I set the select field "License" as "ISC License (ISC)"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button
   Then I should see the saved repository's content
 
-@kalibro_configuration_restart @kalibro_processor_restart @javascript
+@kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
 Scenario: repository creation blank validations
   Given I am a regular user
   And I am signed in
@@ -37,7 +37,7 @@ Scenario: repository creation blank validations
   Then I should see "Name can't be blank"
   And I should see "Address can't be blank"
 
-@kalibro_configuration_restart @kalibro_processor_restart @javascript
+@kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
 Scenario: repository creation with name already taken
   Given I am a regular user
   And I am signed in
@@ -48,14 +48,14 @@ Scenario: repository creation with name already taken
   And I fill the Name field with "KalibroEntities"
   And I fill the Description field with "Description"
   And I set the select field "License" as "ISC License (ISC)"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button
   Then I should see "Name should be unique within project"
 
-@kalibro_configuration_restart @kalibro_processor_restart @javascript
+@kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
 Scenario: Repository name with whitespaces
   Given I am a regular user
   And I am signed in
@@ -65,8 +65,8 @@ Scenario: Repository name with whitespaces
   And I am at the New Repository page
   And I fill the Name field with "   Kalibro Entities  "
   And I set the select field "License" as "ISC License (ISC)"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button

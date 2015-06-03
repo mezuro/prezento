@@ -347,4 +347,39 @@ describe RepositoriesController, :type => :controller do
       end
       it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }
   end
+
+  describe 'branches' do
+    let(:url) { "dummy-url" }
+    let(:scm_type) { "GIT" }
+
+    context 'valid parameters' do
+      let!(:branches) { ['branch1', 'branch2'] }
+
+      before :each do
+        sign_in FactoryGirl.create(:user)
+        Repository.expects(:branches).with(url, scm_type).returns(branches: branches)
+        get :branches, url: url, scm_type: scm_type, format: :json
+      end
+
+      it 'is expected to return a list of branches' do
+        expect(JSON.parse(response.body)).to eq(JSON.parse({branches: branches}.to_json))
+      end
+
+      it { is_expected.to respond_with(:success) }
+    end
+
+    context 'invalid parameters' do
+      before :each do
+        sign_in FactoryGirl.create(:user)
+        Repository.expects(:branches).with(url, scm_type).returns(errors: ['Error'])
+        get :branches, url: url, scm_type: scm_type, format: :json
+      end
+
+      it 'is expected to return an empty list' do
+        expect(JSON.parse(response.body)).to eq(JSON.parse({errors: ['Error']}.to_json))
+      end
+
+      it { is_expected.to respond_with(:success) }
+    end
+  end
 end

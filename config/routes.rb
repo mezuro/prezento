@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
     end
 
+    get '/repository_branches' => 'repositories#branches', as: :repository_branches
+
     resources :kalibro_configurations do
       get '/metric_configurations/choose_metric' => 'metric_configurations#choose_metric', as: :choose_metric
       resources :metric_configurations, except: [:update, :new] do
