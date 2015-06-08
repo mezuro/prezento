@@ -32,9 +32,13 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_found
-    respond_to do |format|
-      format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
-      format.json { head :not_found }
+    begin
+      respond_to do |format|
+        format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
+        format.json { head :not_found }
+      end
+    rescue ActionController::UnknownFormat
+      render status: 404, text: "The page you were looking for doesn't exist (404)"
     end
   end
 

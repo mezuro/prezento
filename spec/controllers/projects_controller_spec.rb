@@ -61,9 +61,9 @@ describe ProjectsController, :type => :controller do
 
   describe 'show' do
     let(:project) { FactoryGirl.build(:project_with_id) }
+    let(:repository) { FactoryGirl.build(:repository) }
 
     context 'when the project exists' do
-      let(:repository) { FactoryGirl.build(:repository) }
       before :each do
         Project.expects(:find).with(project.id).returns(project)
         project.expects(:repositories).returns(repository)
@@ -76,11 +76,25 @@ describe ProjectsController, :type => :controller do
     context 'when the project does not exists' do
       before :each do
         Project.expects(:find).with(project.id).raises(KalibroClient::Errors::RecordNotFound)
-        get :show, :id => project.id
       end
 
-      it { is_expected.to respond_with(:not_found) }
+      context 'when the request format is known' do
+        before :each do
+          get :show, :id => project.id
+        end
+
+        it { is_expected.to respond_with(:not_found) }
+      end
+
+      context 'when the request format is unknown' do
+        before :each do
+          get :show, id: project.id, format: :txt
+        end
+
+        it { is_expected.to respond_with(:not_found) }
+      end
     end
+
   end
 
   describe 'destroy' do
