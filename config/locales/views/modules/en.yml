@@ -7,15 +7,6 @@ en:
       kalibro_module:
         one: "Module"
         other: "Modules"
-      reading_group:
-        one: "Reading Group"
-        other: "Reading Groups"
-      kalibro_range:
-        one: "Range"
-        other: "Ranges"
-      metric_configuration:
-        one: "Metric Configuration"
-        other: "Metric Configurations"
     attributes:
       metric_configuration:
         metric: "Metric"
