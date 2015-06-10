@@ -18,3 +18,12 @@ class Repository.Branch
     if @request != null
       @request.abort()
       @request = null
+
+  # private method
+  #fill_options = (options, el) ->
+  fill_options: (options, el) ->
+    for option in options
+      do ->
+        el.append($("<option></option>")
+          .attr("value", option)
+          .text(option))

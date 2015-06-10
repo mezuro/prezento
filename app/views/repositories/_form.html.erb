@@ -125,7 +125,7 @@
     el.empty(); // remove old options
 
     if(repository_branch.names[address] != null) {
-      fill_options(repository_branch.names[address], el);
+      repository_branch.fill_options(repository_branch.names[address], el);
       return;
     }
 
@@ -140,16 +140,10 @@
         options = data["branches"];
         if (options != null) {
           repository_branch.names[address] = options;
-          fill_options(options, el);
+          repository_branch.fill_options(options, el);
         }
        }
     }));
   }
 
-  function fill_options (options, el) {
-    $.each(options, function(index, value) {
-      el.append($("<option></option>")
-          .attr("value", value).text(value));
-    });
-  }
 </script>
