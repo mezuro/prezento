@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require modules
+//= require repository
 //= require Chart
 //= require_tree .
 //= require colorpicker
