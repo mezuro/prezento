@@ -109,22 +109,6 @@
   <%= link_to t('back'),  project_path(@project_id), class: 'btn btn-default' %>
 </div>
 
-
-<script>
-  function show_branches () {
-    var scm_type_field = document.getElementById("repository_scm_type");
-    var index = scm_type_field.selectedIndex;
-    var option = scm_type_field.options[index];
-
-    if(option.value != "SVN" ) {
-      $("#branches").show();
-      fetch_branches (document.getElementById("repository_address"));
-    }
-    else
-      $("#branches").hide();
-  }
-</script>
-
 <script>
   $(document).on('page:load ready', function() {
     Repository.Branch.toggle();
