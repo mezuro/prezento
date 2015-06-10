@@ -13,3 +13,8 @@ class Repository.Branch
       fetch_branches (document.getElementById("repository_address"))
     else
       $("#branches").hide()
+
+  cancel_request: ->
+    if @request != null
+      @request.abort()
+      @request = null

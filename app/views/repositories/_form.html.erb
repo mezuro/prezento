@@ -134,7 +134,7 @@
 <script>
   var repository_branch = new Repository.Branch;
   function fetch_branches (address_field) {
-    cancel_previous_request();
+    repository_branch.cancel_request();
     var address = address_field.value;
 
     var el = $("#repository_branch");
@@ -160,13 +160,6 @@
         }
        }
     }));
-
-    function cancel_previous_request() {
-      if (repository_branch.request != null) {
-        repository_branch.request.abort();
-        repository_branch.request = null;
-      }
-    }
   }
 
   function fill_options (options, el) {
