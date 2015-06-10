@@ -43,7 +43,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :scm_type, class: 'control-label' %>
-        <%= f.select( :scm_type, @repository_types, {}, class: 'tooltip-control', onchange: "Repository.Branch.toggle();" ) %>
+        <%= f.select( :scm_type, @repository_types, {}, class: 'tooltip-control', onchange: "_repository_branch.toggle();" ) %>
       </div>
       <div class="help-container">
         <p>
@@ -55,7 +55,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :address, class: 'control-label' %>
-        <%= f.text_field :address, :required => true, class: 'text-field form-control', onchange: "fetch_branches(this);" %>
+        <%= f.text_field :address, :required => true, class: 'text-field form-control', onchange: "_repository_branch.fetch_branches(this);" %>
       </div>
       <div class="help-container">
         <p>
@@ -109,41 +109,10 @@
   <%= link_to t('back'),  project_path(@project_id), class: 'btn btn-default' %>
 </div>
 
-<script>
+<script type="text/javascript">
+  var _repository_branch = new Repository.Branch;
+
   $(document).on('page:load ready', function() {
-    Repository.Branch.toggle();
+    _repository_branch.toggle();
   });
-</script>
-
-<script>
-  var repository_branch = new Repository.Branch;
-  function fetch_branches (address_field) {
-    repository_branch.cancel_request();
-    var address = address_field.value;
-
-    var el = $("#repository_branch");
-    el.empty(); // remove old options
-
-    if(repository_branch.names[address] != null) {
-      repository_branch.fill_options(repository_branch.names[address], el);
-      return;
-    }
-
-    var scm_type = $("#repository_scm_type option:selected").text();
-
-    repository_branch.request = ($.ajax({
-      url: "<%= repository_branches_path() %>",
-      data: {'url': address, 'scm_type': scm_type},
-      type: 'GET',
-      timeout: 30000,
-      success: function (data){
-        options = data["branches"];
-        if (options != null) {
-          repository_branch.names[address] = options;
-          repository_branch.fill_options(options, el);
-        }
-       }
-    }));
-  }
-
 </script>
