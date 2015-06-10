@@ -132,8 +132,7 @@
 </script>
 
 <script>
-  var branches = {};
-  var request = null;
+  var repository_branch = new Repository.Branch;
   function fetch_branches (address_field) {
     cancel_previous_request();
     var address = address_field.value;
@@ -141,15 +140,14 @@
     var el = $("#repository_branch");
     el.empty(); // remove old options
 
-    console.log(address);
-    if(branches[address] != null) {
-      fill_options(branches[address], el);
+    if(repository_branch.names[address] != null) {
+      fill_options(repository_branch.names[address], el);
       return;
     }
 
     var scm_type = $("#repository_scm_type option:selected").text();
 
-    request = ($.ajax({
+    repository_branch.request = ($.ajax({
       url: "<%= repository_branches_path() %>",
       data: {'url': address, 'scm_type': scm_type},
       type: 'GET',
@@ -157,16 +155,16 @@
       success: function (data){
         options = data["branches"];
         if (options != null) {
-          branches[address] = options;
+          repository_branch.names[address] = options;
           fill_options(options, el);
         }
        }
     }));
 
     function cancel_previous_request() {
-      if (request != null) {
-        request.abort();
-        request = null;
+      if (repository_branch.request != null) {
+        repository_branch.request.abort();
+        repository_branch.request = null;
       }
     }
   }

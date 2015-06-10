@@ -1,4 +1,8 @@
 class Repository.Branch
+  constructor: ->
+    @names = {}
+    @request = null
+
   @toggle: ->
     scm_type_field = document.getElementById("repository_scm_type")
     index = scm_type_field.selectedIndex
