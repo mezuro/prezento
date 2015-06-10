@@ -43,7 +43,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :scm_type, class: 'control-label' %>
-        <%= f.select( :scm_type, @repository_types, {}, class: 'tooltip-control', onchange: "show_branches();" ) %>
+        <%= f.select( :scm_type, @repository_types, {}, class: 'tooltip-control', onchange: "Repository.Branch.toggle();" ) %>
       </div>
       <div class="help-container">
         <p>
@@ -127,7 +127,7 @@
 
 <script>
   $(document).on('page:load ready', function() {
-    show_branches();
+    Repository.Branch.toggle();
   });
 </script>
 
