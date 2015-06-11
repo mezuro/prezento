@@ -85,7 +85,8 @@ class RepositoriesController < ApplicationController
   end
 
   def branches
-    branches_list = Repository.branches(params[:url], params[:scm_type])
+    branch_params = branches_params
+    branches_list = Repository.branches(branch_params[:url], branch_params[:scm_type])
 
     respond_to do |format|
       format.json { render json: branches_list }
@@ -125,6 +126,10 @@ private
     params[:repository][:name].strip!
     params[:repository][:address].strip!
     params[:repository]
+  end
+
+  def branches_params
+    params.permit(:scm_type, :url)
   end
 
   # Code extracted from create action
