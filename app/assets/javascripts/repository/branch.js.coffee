@@ -10,7 +10,7 @@ class Repository.Branch
 
     if option.value != "SVN"
       $("#branches").show()
-      @fetch_branches(document.getElementById("repository_address"))
+      @fetch(document.getElementById("repository_address"))
     else
       $("#branches").hide()
 
@@ -20,15 +20,19 @@ class Repository.Branch
       @request = null
 
   # private method
-  #fill_options = (options, el) ->
   fill_options: (options, el) ->
+    default_branch = "master"
+    if default_branch in options
+      index = options.indexOf(default_branch)
+      options.splice(index, 1)
+      options.unshift(default_branch)
     for option in options
       do ->
         el.append($("<option></option>")
           .attr("value", option)
           .text(option))
 
-  fetch_branches: (address_field) ->
+  fetch: (address_field) ->
     @cancel_request()
     address = address_field.value
 
@@ -49,7 +53,8 @@ class Repository.Branch
     @request = $.get '/repository_branches',
       {'url': address, 'scm_type': scm_type},
       (data) ->
-        options = data["branches"]
-        if options != null
-          context.names[address] = options
-          context.fill_options(options, el)
+        unless data["errors"]
+          options = data["branches"]
+          if options != null
+            context.names[address] = options
+            context.fill_options(options, el)
