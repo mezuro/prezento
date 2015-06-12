@@ -37,11 +37,11 @@ class Repository.Branch
     if address == ""
       return
 
-    el = $("#repository_branch")
-    el.empty() # remove old options
+    branches_select_box = $("#repository_branch")
+    branches_select_box.empty() # remove old options
 
     if @names[address]?
-      @fill_options(@names[address], el)
+      @fill_options(@names[address], branches_select_box)
       return
 
     scm_type = $("#repository_scm_type").val()
@@ -54,4 +54,4 @@ class Repository.Branch
           options = data["branches"]
           if options != null
             context.names[address] = options
-            context.fill_options(options, el)
+            context.fill_options(options, branches_select_box)
