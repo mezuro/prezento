@@ -382,4 +382,32 @@ describe RepositoriesController, :type => :controller do
       it { is_expected.to respond_with(:success) }
     end
   end
+
+  describe 'branches_params' do
+    let!(:url) { 'dummy-url' }
+    let!(:scm_type) { 'GIT' }
+    let(:parameters) { ActionController::Parameters.new(scm_type: scm_type, url: url) }
+
+    context 'valid parameters' do
+      it 'should return a hash with the permitted parameters' do
+        subject.params = parameters
+        expect(subject.params.permitted?).to be_falsey
+        result = subject.send(:branches_params)
+        expect(result).to eq(parameters)
+        expect(result.permitted?).to be_truthy
+      end
+    end
+
+    context 'invalid parameters' do
+      let(:invalid_parameters) { ActionController::Parameters.new(scm_type: scm_type, url: url, something_evil: 'fizzbuzz') }
+
+      it 'should return a valid parameters hash' do
+        subject.params = invalid_parameters
+        expect(subject.params.permitted?).to be_falsey
+        result = subject.send(:branches_params)
+        expect(result).to eq(parameters)
+        expect(result.permitted?).to be_truthy
+      end
+    end
+  end
 end
