@@ -4,13 +4,9 @@ class Repository.Branch
     @request = null
 
   toggle: ->
-    scm_type_field = document.getElementById("repository_scm_type")
-    index = scm_type_field.selectedIndex
-    option = scm_type_field.options[index]
-
-    if option.value != "SVN"
+    if $("#repository_scm_type").val() != "SVN"
       $("#branches").show()
-      @fetch(document.getElementById("repository_address"))
+      @fetch($("#repository_address").val())
     else
       $("#branches").hide()
 
@@ -32,9 +28,8 @@ class Repository.Branch
           .attr("value", option)
           .text(option))
 
-  fetch: (address_field) ->
+  fetch: (address) ->
     @cancel_request()
-    address = address_field.value
 
     # Prevent a call with blank address
     if address == ""
@@ -47,7 +42,7 @@ class Repository.Branch
       @fill_options(@names[address], el)
       return
 
-    scm_type = $("#repository_scm_type option:selected").text()
+    scm_type = $("#repository_scm_type").val()
 
     context = this
     @request = $.get '/repository_branches',
