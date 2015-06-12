@@ -15,10 +15,12 @@ class Repository.Branch
       @request.abort()
       @request = null
 
-  # private method
   fill_options: (options, el) ->
+    # FIXME: this works only if master is the default branch
+    #        it can be improved by moving it into KalibroProcessor
     default_branch = "master"
     if default_branch in options
+      # Brings the default branch as the first option
       index = options.indexOf(default_branch)
       options.splice(index, 1)
       options.unshift(default_branch)
