@@ -1,7 +1,10 @@
 #= require application
 
-describe "Branch#constructor", ->
-  it "should construct a branch", ->
-    a = new Repository.Branch()
-    a.names.should.deep.equal({})
-    assert.isNull(a.request)
+describe "Repository.Branch", ->
+  beforeEach ->
+    @repository_branch = new Repository.Branch()
+
+  describe "Branch#constructor", ->
+    it "should construct a branch", ->
+      @repository_branch.names.should.deep.equal({})
+      assert.isNull(@repository_branch.request)
