@@ -1,7 +1,11 @@
 class Module.Graphic
   constructor: (@container, @metric_name, @module_id) ->
-    $('tr#'+@container).slideToggle('slow')
-    this.load()
+    drawer = $('tr#'+@container)
+    if drawer.is(":hidden")
+      drawer.slideDown('slow')
+      this.load()
+    else
+      drawer.slideUp('slow')
 
   load: ->
     $.post '/modules/' + @module_id + '/metric_history',
@@ -11,7 +15,13 @@ class Module.Graphic
           }
 
   @display: (dates, values, container) ->
-    opts = {bezierCurve: false}
+    canvas = $('canvas#'+container).get(0)
+
+    opts = {
+      bezierCurve: false,
+      responsive: true,
+      maintainAspectRatio: false
+    }
 
     data = {
       labels : dates,
@@ -26,4 +36,8 @@ class Module.Graphic
       ]
     }
 
-    graphic = new Chart($('canvas#'+container).get(0).getContext("2d")).Line(data, opts)
+    if canvas.hasOwnProperty("chart") && canvas.chart != null
+      canvas.chart.destroy()
+      canvas.chart = null
+
+    canvas.chart = new Chart(canvas.getContext("2d")).Line(data, opts)

@@ -10,11 +10,6 @@
   <% end %>
 
   $("#loader_<%= @container %>").hide();
-  if (dates.length > 1) {
-  	$("canvas#<%= @container %>").show();
-  	Module.Graphic.display(dates, values, '<%= @container %>');
-  }
-  else {
-  	$('span#<%= @container %>').show();
-  }
+  $("canvas#<%= @container %>").show();
+  Module.Graphic.display(dates, values, '<%= @container %>');
 <% end %>
