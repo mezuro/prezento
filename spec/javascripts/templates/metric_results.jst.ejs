@@ -1,0 +1,27 @@
+<table class="table table-hover metric_results">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+      <th>Weight</th>
+      <th>Threshold</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><a onclick="new Module.Graphic('<%= container %>', '<%= metric_name %>', '<%= module_id %>')" id="metric_<%= module_id %>" data-remote="true" href=""><i class="icon-align-left"></i> Pain</a>
+      </td>
+      <td>4.20</td>
+      <td>3.0</td>
+      <td><span style="color: #00FF00">Excellent</span></td>
+    </tr>
+    <tr id="<%= container %>" style="">
+      <td colspan="4">
+        <span style="display: none;" id="loader_<%= container %>">Loading Data</span>
+        <canvas height="150" width="300" id="<%= container %>" class="graphic_container" style="width: 300px; height: 150px;"></canvas>
+        <span id="<%= container %>" style="display: none">There is only one point that should not generate a chart.</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
