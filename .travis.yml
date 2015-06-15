@@ -5,7 +5,7 @@ addons:
   postgresql: "9.3"
 
 before_script:
-  - git clone https://gist.github.com/6179925.git -b v2.3 kalibro_install
+  - git clone https://github.com/mezuro/kalibro_install.git -b v2.3 kalibro_install
   - pushd kalibro_install
     # Remove bugged libzmq3 package, see https://github.com/travis-ci/travis-ci/issues/982 and https://github.com/travis-ci/travis-ci/issues/1715 for details
   - sudo apt-get remove libzmq3
