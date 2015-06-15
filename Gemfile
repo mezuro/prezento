@@ -113,6 +113,9 @@ group :development, :test do
   gem 'i18n_generators'
 
   gem 'sprockets', '~>2.12.3' # spckets 3.0.3 breaks konacha
+
+  # Mocks and stubs for javascript tests
+  gem 'sinon-rails'
 end
 
 # Acceptance tests
