@@ -1,4 +1,6 @@
-#= require application
+#= require jquery
+#= require repository
+#= require repository/branch
 #= require sinon
 
 describe "Branch#constructor", ->
