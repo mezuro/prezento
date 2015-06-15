@@ -1,5 +1,5 @@
 #= require application
-#= require 'sinon'
+#= require sinon
 
 describe "Branch#constructor", ->
   it "should construct a branch", ->
@@ -8,23 +8,29 @@ describe "Branch#constructor", ->
     assert.isNull(subject.request)
 
 describe "toggle", ->
-  @subject = new Repository.Branch()
-  beforeEach ->
+  before ->
+    @subject = new Repository.Branch()
+
     @combo_box = sinon.stub()
     $ = sinon.stub(window, "$")
     $.withArgs("#branches").returns(@combo_box)
+
   context "scm_type = SVN", ->
-    @combo_box.hide = sinon.spy()
-    it "should hide the branches combo box", ->
+    before ->
+      @combo_box.hide = sinon.spy()
       $.withArgs("#repository_scm_type").returns({val: -> "SVN"})
+
+    it "should hide the branches combo box", ->
       @subject.toggle()
       assert.isTrue(@combo_box.hide.calledOnce)
+
   context "scm_type != SVN", ->
-    @combo_box.show = sinon.spy()
+    before ->
+      @combo_box.show = sinon.spy()
       $.withArgs("#repository_address").returns({val: -> "https://github.com/mezuro/prezento.git"})
-    sinon.stub(@subject, "fetch").withArgs("https://github.com/mezuro/prezento.git")
-    @subject.stub = sinon.spy()
-    it "should show the branches combo box", ->
       $.withArgs("#repository_scm_type").returns({val: -> "GIT"})
+      sinon.stub(@subject, "fetch").withArgs("https://github.com/mezuro/prezento.git")
+
+    it "should show the branches combo box", ->
       @subject.toggle()
       assert.isTrue(@combo_box.show.calledOnce)
