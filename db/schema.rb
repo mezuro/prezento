@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515195059) do
+ActiveRecord::Schema.define(version: 20150616164352) do
 
   create_table "kalibro_configuration_attributes", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20150515195059) do
     t.datetime "updated_at"
     t.boolean  "public",           default: true
   end
+
+  create_table "repository_attributes", force: :cascade do |t|
+    t.integer  "repository_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "repository_attributes", ["user_id"], name: "index_repository_attributes_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255, default: "", null: false
