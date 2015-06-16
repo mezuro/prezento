@@ -7,6 +7,6 @@ current_path = current_path_splited.join("/");
 // This if prevents it from updating the repository's state after the user leaves its page
 if(current_path == '<%= project_repository_path(project_id: @repository.project_id, id: @repository, locale: nil) %>'){
   $('div#processing_information').html('<%= escape_javascript(render partial: "processing_information") %>');
-  repository = new Module.Repository(<%= @repository.project_id %>, <%= @repository.id %>)
+  repository = new Repository.State(<%= @repository.project_id %>, <%= @repository.id %>)
   repository.schedule_poll_state('<%= @processing.state %>')
 }

@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.2.2'
 gem 'devise', '~> 3.4.0'
 
 # Kalibro integration
-gem 'kalibro_client'
+gem 'kalibro_client', '~> 0.3.0'
 
 # PostgreSQL integration
 gem "pg", "~> 0.18.1"
@@ -113,6 +113,9 @@ group :development, :test do
   gem 'i18n_generators'
 
   gem 'sprockets', '~>2.12.3' # spckets 3.0.3 breaks konacha
+
+  # Mocks and stubs for javascript tests
+  gem 'sinon-rails'
 end
 
 # Acceptance tests

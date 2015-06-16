@@ -13,8 +13,12 @@ Scenario: repository creation
   And I fill the Name field with "Kalibro"
   And I fill the Description field with "Description"
   And I set the select field "License" as "ISC License (ISC)"
-  And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
+  When I set the select field "Type" as "SVN"
+  Then I should not see "Branch"
+  When I set the select field "Type" as "GIT"
+  Then I should see "Branch"
+  Given I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
+  And I set the select field "Branch" as "master"
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button
@@ -48,8 +52,8 @@ Scenario: repository creation with name already taken
   And I fill the Name field with "KalibroEntities"
   And I fill the Description field with "Description"
   And I set the select field "License" as "ISC License (ISC)"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button
@@ -65,8 +69,8 @@ Scenario: Repository name with whitespaces
   And I am at the New Repository page
   And I fill the Name field with "   Kalibro Entities  "
   And I set the select field "License" as "ISC License (ISC)"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
   And I set the select field "Type" as "GIT"
-  And I fill the Address field with "https://github.com/mezuro/kalibro_gem.git"
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button

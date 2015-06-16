@@ -43,7 +43,7 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :scm_type, class: 'control-label' %>
-        <%= f.select( :scm_type, @repository_types, class: 'tooltip-control' ) %>
+        <%= f.select( :scm_type, @repository_types, {}, class: 'tooltip-control', onchange: "_repository_branch.toggle();" ) %>
       </div>
       <div class="help-container">
         <p>
@@ -55,12 +55,26 @@
     <div class="form-row">
       <div class="field-container">
         <%= f.label :address, class: 'control-label' %>
-        <%= f.text_field :address, :required => true, class: 'text-field form-control' %>
+        <%= f.text_field :address, :required => true, class: 'text-field form-control', onchange: "_repository_branch.fetch(this.value);" %>
       </div>
       <div class="help-container">
         <p>
           <%= t('activemodel.hints.repository.address') %>
         </p>
+      </div>
+    </div>
+
+    <div id="branches">
+      <div class="form-row">
+        <div class="field-container">
+          <%= f.label :branch, class: 'control-label' %>
+          <%= f.select :branch, []%>
+        </div>
+        <div class="help-container">
+          <p>
+            <%= t('activemodel.hints.repository.address') %>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -94,3 +108,11 @@
   <%= f.submit t('save'), class: 'btn btn-primary' %>
   <%= link_to t('back'),  project_path(@project_id), class: 'btn btn-default' %>
 </div>
+
+<script type="text/javascript">
+  var _repository_branch = new Repository.Branch;
+
+  $(document).on('page:load ready', function() {
+    _repository_branch.toggle();
+  });
+</script>

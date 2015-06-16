@@ -12,6 +12,7 @@ pt:
         scm_type: "Tipo"
         address: "Endereço"
         period: "Período"
+        branch: "Ramo"
     hints:
       repository:
         name: "O nome do seu Repositório."
@@ -21,6 +22,7 @@ pt:
         address: "A URL onde o respositório está acessível."
         period: "Selecione o quão frequentemente o repositório será reprocessado."
         kalibro_configuration: "Uma %{configuration_href} define todas as métricas a serem extraídas do códifo-fonte."
+        branch: "O ramo que será analisado."
     errors:
       repository:
         no_metric_results: "O processamento do Repósitório retornou um erro. Não há Resultados de Métrica."
