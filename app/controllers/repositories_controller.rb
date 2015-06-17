@@ -38,7 +38,7 @@ class RepositoriesController < ApplicationController
   def update
     respond_to do |format|
       if @repository.update(repository_params)
-        format.html { redirect_to(project_repository_path(params[:project_id], @repository.id), notice: t('successfully_updated', :record => t(@repository.class))) }
+        format.html { redirect_to(repository_path(@repository.id), notice: t('successfully_updated', :record => t(@repository.class))) }
         format.json { head :no_content }
       else
         failed_action(format, 'edit')
@@ -51,7 +51,7 @@ class RepositoriesController < ApplicationController
   def destroy
     @repository.destroy
     respond_to do |format|
-      format.html { redirect_to project_path(params[:project_id]) }
+      format.html { redirect_to projects_path }
       format.json { head :no_content }
     end
   end
@@ -80,7 +80,7 @@ class RepositoriesController < ApplicationController
     @repository.process
     set_kalibro_configuration
     respond_to do |format|
-      format.html { redirect_to project_repository_path(@repository.project_id, @repository.id) }
+      format.html { redirect_to repository_path(@repository.id) }
     end
   end
 
@@ -135,7 +135,8 @@ private
   # Code extracted from create action
   def create_and_redir(format)
     if @repository.save
-      format.html { redirect_to project_repository_process_path(@repository.project_id, @repository.id), notice: t('successfully_created', :record => t(@repository.class)) }
+      current_user.repository_attributes.create(repository_id: @repository.id)
+      format.html { redirect_to repository_process_path(@repository.id), notice: t('successfully_created', :record => t(@repository.class)) }
     else
       failed_action(format, 'new')
     end

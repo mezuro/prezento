@@ -65,7 +65,7 @@ describe RepositoriesController, :type => :controller do
           post :create, project_id: project.id, repository: repository_params
         end
 
-        it { is_expected.to redirect_to(project_repository_process_path(project_id: repository.project_id, id: repository.id)) }
+        it { is_expected.to redirect_to(repository_process_path(id: repository.id)) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -136,7 +136,7 @@ describe RepositoriesController, :type => :controller do
           delete :destroy, id: repository.id, project_id: project.id.to_s
         end
 
-        it { is_expected.to redirect_to(project_path(repository.project_id)) }
+        it { is_expected.to redirect_to(projects_path) }
         it { is_expected.to respond_with(:redirect) }
       end
 
@@ -226,7 +226,7 @@ describe RepositoriesController, :type => :controller do
             post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
           end
 
-          it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }
+          it { is_expected.to redirect_to(repository_path(repository.id)) }
           it { is_expected.to respond_with(:redirect) }
         end
 
@@ -345,7 +345,7 @@ describe RepositoriesController, :type => :controller do
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         get :process_repository, project_id: project.id.to_s, id: repository.id
       end
-      it { is_expected.to redirect_to(project_repository_path(repository.project_id, repository.id)) }
+      it { is_expected.to redirect_to(repository_path(repository.id)) }
   end
 
   describe 'branches' do

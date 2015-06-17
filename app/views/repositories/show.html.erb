@@ -39,7 +39,7 @@
 
 <p><strong> <%= t('repository.show.date_processing') %>: </strong></p>
 
-<%= form_tag(project_repository_state_with_date_path(@repository.project_id, @repository.id), method: "post", remote: true) do %>
+<%= form_tag(repository_state_with_date_path(@repository.id), method: "post", remote: true) do %>
   <p>
     <%= label_tag :day, t("day") %>:
     <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
@@ -71,7 +71,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-      (new Repository.State(<%= @repository.project_id %>, <%= @repository.id %>)).poll_state('')
+      (new Repository.State(<%= @repository.id %>)).poll_state('')
     });
 
   //Loads the accordion
@@ -89,6 +89,6 @@
 
 <%= link_to t('back'),  project_path(@repository.project_id), class: 'btn btn-default' %>
 <% if project_owner? @repository.project_id %>
-  <%= link_to t('repository.show.reprocess'), project_repository_process_path(@repository.project_id, @repository.id),  class: 'btn btn-info' %>
-  <%= link_to t('destroy'), project_repository_path(@repository.project_id, @repository.id), method: :delete, data: { confirm: t('sure_destroy', model: Repository.model_name.human) }, class: 'btn btn-danger' %>
+  <%= link_to t('repository.show.reprocess'), repository_process_path(@repository.id),  class: 'btn btn-info' %>
+  <%= link_to t('destroy'), repository_path(@repository.id), method: :delete, data: { confirm: t('sure_destroy', model: Repository.model_name.human) }, class: 'btn btn-danger' %>
 <% end %>

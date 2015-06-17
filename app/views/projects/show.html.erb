@@ -44,11 +44,11 @@
         <td><%= repository.address %></td>
         <td>
           <% if project_owner? @project.id %>
-            <%= link_to t('edit'), edit_project_repository_path(@project, repository.id), class: 'btn btn-info' %>
+            <%= link_to t('edit'), edit_repository_path(repository.id), class: 'btn btn-info' %>
           <% end %>
         </td>
         <td>
-          <%= link_to t('show'), project_repository_path(@project, repository.id), class: 'btn btn-info' %></td>
+          <%= link_to t('show'), repository_path(repository.id), class: 'btn btn-info' %></td>
         </td>
       </tr>
     <% end %>
