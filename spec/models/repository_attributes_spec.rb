@@ -9,4 +9,16 @@ RSpec.describe RepositoryAttributes, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
   end
+
+  describe 'methods' do
+    describe 'repository' do
+      subject { FactoryGirl.build(:repository_attributes) }
+
+      it 'is expected to find the repository by id' do
+        Repository.expects(:find).with(subject.repository_id).returns(subject)
+
+        subject.repository
+      end
+    end
+  end
 end
