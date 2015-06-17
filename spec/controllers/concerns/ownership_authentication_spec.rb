@@ -140,4 +140,53 @@ describe OwnershipAuthentication, type: :controller do
       end
     end
   end
+
+  describe 'repository_owner?' do
+    let(:repository) { FactoryGirl.build(:repository) }
+
+    context 'within RepositoriesController' do
+      let! (:repositories_controller) { RepositoriesController.new }
+
+      before do
+        repositories_controller.params = {}
+        repositories_controller.params[:id] = repository.id
+      end
+
+      context 'with a user logged in' do
+        let! (:current_user) { FactoryGirl.build(:user) }
+
+        before do
+          repositories_controller.expects(:current_user).returns(current_user)
+        end
+
+        context 'when the user owns the Repository' do
+          let!(:repository_attributes) { FactoryGirl.build(:repository_attributes, {user_id: current_user.id, repository_id: repository.id}) }
+
+          before do
+            repository_attrs = mock('repository_attributes')
+            repository_attrs.expects(:find_by_repository_id).with(repository.id).returns(repository_attributes)
+            current_user.expects(:repository_attributes).returns(repository_attrs)
+          end
+
+          it 'should return true' do
+            expect(repositories_controller.repository_owner?).to be_truthy
+          end
+        end
+
+        context 'when the user does not own the Repository' do
+          before do
+            repository_attrs = mock('repository_attributes')
+            repository_attrs.expects(:find_by_repository_id).with(repository.id).returns(nil)
+            current_user.expects(:repository_attributes).returns(repository_attrs)
+          end
+
+          it 'should respond' do # FIXME: this is not the best test, but it it's the closest we can do I think
+            repositories_controller.expects(:respond_to)
+
+            repositories_controller.repository_owner?
+          end
+        end
+      end
+    end
+  end
 end
