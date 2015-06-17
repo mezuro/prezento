@@ -4,6 +4,11 @@ class RepositoryAttributes < ActiveRecord::Base
   validates :user, presence: true
 
   def repository
-    Repository.find(repository_id)
+    @repository ||= Repository.find(repository_id)
+  end
+
+  def repository=(repository)
+    @repository = repository
+    self.repository_id = @repository ? @repository.id : nil
   end
 end
