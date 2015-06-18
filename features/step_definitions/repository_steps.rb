@@ -70,7 +70,7 @@ Given(/^I am at the New Repository page$/) do
 end
 
 Given(/^I am at repository edit page$/) do
-  visit edit_project_repository_path(project_id: @repository.project_id, id: @repository.id)
+  visit edit_repository_path(id: @repository.id)
 end
 
 Given(/^I ask for the last ready processing of the given repository$/) do
@@ -89,6 +89,10 @@ Given(/^I see a sample metric's name$/) do
   expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
 end
 
+Given(/^I own that repository$/) do
+  FactoryGirl.create(:repository_attributes, {repository_id: @repository.id, user_id: @user.id})
+end
+
 When(/^I click on the sample metric's name$/) do
   find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end
@@ -98,7 +102,7 @@ When(/^I set the select field "(.+)" as "(.+)"$/) do |field, text|
 end
 
 When(/^I visit the repository show page$/) do
-  visit project_repository_path(project_id: @project.id, id: @repository.id)
+  visit repository_path(id: @repository.id)
 end
 
 When(/^I click on the sample child's name$/) do

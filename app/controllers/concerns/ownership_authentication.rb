@@ -14,7 +14,7 @@ module OwnershipAuthentication
   end
 
   def repository_owner?
-    check_project_ownership(params[:project_id])
+    check_repository_ownership(params[:id])
   end
 
   def reading_group_owner?
@@ -48,8 +48,19 @@ module OwnershipAuthentication
     check_kalibro_configuration_ownership(params[:kalibro_configuration_id])
   end
 
-
   private
+
+  def check_repository_ownership(id)
+    if current_user.repository_attributes.find_by_repository_id(id).nil?
+      respond_to do |format|
+        format.html { redirect_to projects_url, notice: t('not_allowed') }
+        format.json { head :no_content }
+      end
+    end
+
+    return true
+  end
+
 
   def check_project_ownership(id)
     if current_user.project_attributes.find_by_project_id(id).nil?

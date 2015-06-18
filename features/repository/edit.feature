@@ -10,6 +10,7 @@ Feature: Repository Edit
     And I own a sample project
     And I have a sample configuration with native metrics
     And I have a sample repository within the sample project named "QtCalculator"
+    And I own that repository
     And I am at repository edit page
     Then the field "Name" should be filled with "QtCalculator"
     And the field "Type" should be filled with "GIT"
@@ -32,6 +33,7 @@ Feature: Repository Edit
     And I own a sample project
     And I have a sample configuration with native metrics
     And I have a sample repository within the sample project named "QtCalculator"
+    And I own that repository
     And I am at repository edit page
     When I fill the Name field with " "
     And I fill the Address field with " "
@@ -46,7 +48,9 @@ Feature: Repository Edit
     And I own a sample project
     And I have a sample configuration with native metrics
     And I have a sample repository within the sample project named "MedSquare"
+    And I own that repository
     And I have a sample repository within the sample project named "QtCalculator"
+    And I own that repository
     And I am at repository edit page
     When I fill the Name field with "MedSquare"
     And I press the Save button

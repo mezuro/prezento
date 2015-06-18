@@ -1,12 +1,12 @@
 current_path_splited = window.location.pathname.split("/");
-if(current_path_splited[1] != "projects"){
+if(current_path_splited[1] != "repositories"){
   current_path_splited.splice(1,1); // Removes the locale
 }
 current_path = current_path_splited.join("/");
 
 // This if prevents it from updating the repository's state after the user leaves its page
-if(current_path == '<%= project_repository_path(project_id: @repository.project_id, id: @repository, locale: nil) %>'){
+if(current_path == '<%= repository_path(id: @repository, locale: nil) %>'){
   $('div#processing_information').html('<%= escape_javascript(render partial: "processing_information") %>');
-  repository = new Repository.State(<%= @repository.project_id %>, <%= @repository.id %>)
+  repository = new Repository.State(<%= @repository.id %>)
   repository.schedule_poll_state('<%= @processing.state %>')
 }

@@ -4,13 +4,15 @@ Rails.application.routes.draw do
     get 'users/:user_id/projects' => 'users#projects', as: :user_projects
 
     resources :projects do
-      resources :repositories, except: [:update, :index]
-      get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
-      post '/repositories/:id/state' => 'repositories#state', as: :repository_state
-      post '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
-      put '/repositories/:id' => 'repositories#update', as: :repository_update
-      get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
+      resources :repositories, only: [:new, :create]
     end
+
+    resources :repositories, except: [:update, :index]
+    get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
+    post '/repositories/:id/state' => 'repositories#state', as: :repository_state
+    post '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
+    put '/repositories/:id' => 'repositories#update', as: :repository_update
+    get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
 
     get '/repository_branches' => 'repositories#branches', as: :repository_branches
 

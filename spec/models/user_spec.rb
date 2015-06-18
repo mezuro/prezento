@@ -13,6 +13,7 @@ describe User, :type => :model do
     it { is_expected.to have_many(:project_attributes) }
     it { is_expected.to have_many(:reading_group_attributes) }
     it { is_expected.to have_many(:kalibro_configuration_attributes) }
+    it { is_expected.to have_many(:repository_attributes) }
   end
 
   describe 'methods' do
