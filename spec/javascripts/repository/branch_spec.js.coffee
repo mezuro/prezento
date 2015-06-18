@@ -79,42 +79,31 @@ describe "Repository.Branch", ->
 
   describe '#fetch', ->
     beforeEach ->
-      @subject.cancel_request = sinon.spy()
+      @subject.cancel_request = sinon.stub()
 
     context 'with valid address', ->
       beforeEach ->
-        @subject.fill_options = sinon.spy()
-#           @subject.names = {'https://github.com/mezuro/prezento.git': ['master', 'dev']}
+        sinon.stub(@subject, "fill_options")
+
+      afterEach ->
+        @subject.fill_options.restore()
 
       context 'with new address', ->
         beforeEach ->
           @subject.names = {}
-
           @address = 'https://github.com/mezuro/kalibro_processor.git'
 
-          @select = sinon.stub()
-          # Stub just the selector and not the whole jQuery object
-          find_stub = sinon.stub($, "find")
-          find_stub.withArgs("#repository_branch").returns(@select)
-          find_stub.withArgs("#repository_scm_type").returns({val: -> "SVN"})
-
-          @server = sinon.fakeServer.create()
-          @server.respondImmediately = true
-
-          address_url_encoded = encodeURI(@address)
-          @server.respondWith('GET', '/repository_branches&url=' + address_url_encoded + '&scm_type=' + 'GIT',
-            [200, { "Content-Type": "application/json" }, JSON.stringify({
-              "branches": ["stable", "dev", "master"]
-            })]
-          )
+          @select = {empty: sinon.stub()}
+          $ = sinon.stub(window, "$")
+          $.withArgs("#repository_branch").returns(@select)
+          $.withArgs("#repository_scm_type").returns({val: -> "GIT"})
+          $.get = sinon.stub().withArgs('/repository_branches', {'url': @address, 'scm_type': 'GIT'}).returns().yields({
+            'branches': ['stable', 'dev', 'master']
+          })
 
         afterEach ->
-          @server.restore()
-          $.find.restore()
+          $.restore()
 
         it 'should fetch the branches and fill the options', ->
           @subject.fetch(@address)
-          @server.respond()
-          console.log(@server.requests[0])
-          debugger
-          assert.isTrue(@subject.fill_options.calledWith(['stable', 'dev', 'master'], @select))
+          sinon.assert.calledWith(@subject.fill_options, ['stable', 'dev', 'master'], @select)
