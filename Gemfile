@@ -116,9 +116,6 @@ group :development, :test do
 
   # Mocks and stubs for javascript tests
   gem 'sinon-rails'
-
-  # JS templates for testing
-  gem 'ejs'
 end
 
 # Acceptance tests
