@@ -1,7 +1,5 @@
-#= require jquery
-#= require repository
+#= require spec_helper
 #= require repository/branch
-#= require sinon
 
 describe "Repository.Branch", ->
   beforeEach ->

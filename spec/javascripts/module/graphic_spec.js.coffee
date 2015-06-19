@@ -1,8 +1,5 @@
-#= require jquery
 #= require spec_helper
-#= require modules
 #= require module/graphic
-#= require sinon
 
 describe "Module.Graphic", ->
   describe "constructor", ->
