@@ -39,8 +39,6 @@ describe "Module.Graphic", ->
 
         assert.isTrue(@drawer.slideUp.calledOnce)
 
-      after ->
-
   describe 'load', ->
     before ->
       @graphic = new Module.Graphic(@container, @metric_name, @module_id)
@@ -50,7 +48,7 @@ describe "Module.Graphic", ->
 
       @graphic.load()
 
-      sinon.assert.calledOnce($.post)
+      sinon.assert.calledOnce($.post, '/modules/' + @module_id + '/metric_history', {metric_name: @metric_name, container: @container})
 
   describe 'display', ->
     beforeEach ->
