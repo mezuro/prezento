@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
     resources :repositories, except: [:update, :index]
     get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
-    post '/repositories/:id/state' => 'repositories#state', as: :repository_state
-    post '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
+    get '/repositories/:id/state' => 'repositories#state', as: :repository_state
+    get '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
     put '/repositories/:id' => 'repositories#update', as: :repository_update
+    # This route should be a POST to be semantically correct. But, RepositoriesController#create relies on a redirect to it which is not possible with a POST
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
 
     get '/repository_branches' => 'repositories#branches', as: :repository_branches
@@ -35,7 +36,7 @@ Rails.application.routes.draw do
       put '/readings/:id' => 'readings#update', as: :reading_update
     end
 
-    #resources :modules
+    # Modules
     post '/modules/:id/metric_history' => 'modules#metric_history'
     post '/modules/:id/tree' => 'modules#load_module_tree'
 

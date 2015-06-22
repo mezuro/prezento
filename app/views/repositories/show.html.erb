@@ -39,7 +39,7 @@
 
 <p><strong> <%= t('repository.show.date_processing') %>: </strong></p>
 
-<%= form_tag(repository_state_with_date_path(@repository.id), method: "post", remote: true) do %>
+<%= form_tag(repository_state_with_date_path(@repository.id), method: "get", remote: true) do %>
   <p>
     <%= label_tag :day, t("day") %>:
     <%= select_tag(:day, options_for_select(day_options), :style => "width:55px; margin-top:5px") %>
