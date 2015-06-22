@@ -103,7 +103,7 @@ group :development, :test do
   gem 'capistrano-rvm', "~>0.1.0"
 
   # JavaScript unit tests
-  gem "konacha", "~> 3.3.0"
+  gem "konacha"
 
   # Better error interface
   gem 'better_errors'
@@ -112,7 +112,7 @@ group :development, :test do
   # Localization assistance
   gem 'i18n_generators'
 
-  gem 'sprockets', '~>2.12.3' # spckets 3.0.3 breaks konacha
+  gem 'sprockets'
 
   # Mocks and stubs for javascript tests
   gem 'sinon-rails'
