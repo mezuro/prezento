@@ -5,6 +5,11 @@ RSpec.describe ProjectAttributes, type: :model do
     it { is_expected.to belong_to(:user) }
   end
 
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:project_id) }
+    it { is_expected.to validate_presence_of(:user) }
+  end
+
   describe 'methods' do
     describe 'project' do
       subject { FactoryGirl.build(:project_attributes) }
