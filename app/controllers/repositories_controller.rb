@@ -2,7 +2,7 @@ include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :state, :state_with_date]
-  before_action :project_owner?, only: [:new, :create]
+  before_action :project_owner?, only: [:new, :create], if: "!params[:project_id].nil?"
   before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
   before_action :set_project_id_repository_types_and_configurations, only: [:new, :edit]

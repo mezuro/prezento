@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe RepositoriesController, :type => :controller do
-  let(:project) { FactoryGirl.build(:project_with_id) }
-
   describe 'new' do
     context 'with a User logged in' do
       let!(:user) { FactoryGirl.create(:user) }
@@ -11,30 +9,48 @@ describe RepositoriesController, :type => :controller do
         sign_in user
       end
 
-      context 'when the current user owns the project' do
+      context 'when a project_id is provided' do
+        let(:project) { FactoryGirl.build(:project_with_id) }
+
+        context 'and the current user owns the project' do
+          before :each do
+            KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
+            Repository.expects(:repository_types).returns([])
+            subject.expects(:project_owner?).returns true
+
+            get :new, project_id: project.id.to_json
+          end
+
+          it { is_expected.to respond_with(:success) }
+          it { is_expected.to render_template(:new) }
+        end
+
+        context "and the current user doesn't own the project" do
+          before :each do
+            get :new, project_id: project.id.to_s
+          end
+
+          it { is_expected.to redirect_to(projects_url) }
+          it { is_expected.to respond_with(:redirect) }
+        end
+      end
+
+      context 'when no project_id is provided' do
         before :each do
           KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
           Repository.expects(:repository_types).returns([])
-          subject.expects(:project_owner?).returns true
 
-          get :new, project_id: project.id.to_s
+          get :new
         end
 
         it { is_expected.to respond_with(:success) }
         it { is_expected.to render_template(:new) }
       end
-
-      context "when the current user doesn't own the project" do
-        before :each do
-          get :new, project_id: project.id.to_s
-        end
-
-        it { is_expected.to redirect_to(projects_url) }
-        it { is_expected.to respond_with(:redirect) }
-      end
     end
 
     context 'with no user logged in' do
+      let(:project) { FactoryGirl.build(:project_with_id) }
+
       before :each do
         get :new, project_id: project.id.to_s
       end
@@ -46,23 +62,63 @@ describe RepositoriesController, :type => :controller do
   describe 'create' do
     let!(:kalibro_configurations) { [FactoryGirl.build(:kalibro_configuration)] }
     let!(:user) { FactoryGirl.create(:user) }
-    let (:repository) { FactoryGirl.build(:repository, project_id: project.id) }
     let(:repository_params) { FactoryGirl.build(:repository).to_hash }
 
     before do
       sign_in user
     end
 
-    context 'when the current user owns the project' do
-      before :each do
-        subject.expects(:project_owner?).returns true
+    context 'when a project_id is provided' do
+      let(:project) { FactoryGirl.build(:project_with_id) }
+      let(:repository) { FactoryGirl.build(:repository, project_id: project.id) }
+
+      context 'and the current user owns the project' do
+        before :each do
+          subject.expects(:project_owner?).returns true
+        end
+
+        context 'with valid fields' do
+          before :each do
+            Repository.any_instance.expects(:save).returns(true)
+
+            post :create, project_id: project.id, repository: repository_params
+          end
+
+          it { is_expected.to redirect_to(repository_process_path(id: repository.id)) }
+          it { is_expected.to respond_with(:redirect) }
+        end
+
+        context 'with an invalid field' do
+          before :each do
+            KalibroConfiguration.expects(:public_or_owned_by_user).with(user).returns(kalibro_configurations)
+            Repository.any_instance.expects(:save).returns(false)
+            Repository.expects(:repository_types).returns([])
+
+            post :create, project_id: project.id.to_s, repository: repository_params
+          end
+
+          it { is_expected.to render_template(:new) }
+        end
       end
+
+      context "and the current user doesn't own the project " do
+        before :each do
+          post :create, project_id: project.id, repository: repository_params
+        end
+
+        it { is_expected.to redirect_to(projects_url) }
+        it { is_expected.to respond_with(:redirect) }
+      end
+    end
+
+    context 'when no project_id is provided' do
+      let(:repository) { FactoryGirl.build(:repository) }
 
       context 'with valid fields' do
         before :each do
           Repository.any_instance.expects(:save).returns(true)
 
-          post :create, project_id: project.id, repository: repository_params
+          post :create, repository: repository_params
         end
 
         it { is_expected.to redirect_to(repository_process_path(id: repository.id)) }
@@ -75,20 +131,11 @@ describe RepositoriesController, :type => :controller do
           Repository.any_instance.expects(:save).returns(false)
           Repository.expects(:repository_types).returns([])
 
-          post :create, project_id: project.id.to_s, repository: repository_params
+          post :create.to_s, repository: repository_params
         end
 
         it { is_expected.to render_template(:new) }
       end
-    end
-
-    context "when the current user doesn't own the project " do
-      before :each do
-        post :create, project_id: project.id, repository: repository_params
-      end
-
-      it { is_expected.to redirect_to(projects_url) }
-      it { is_expected.to respond_with(:redirect) }
     end
   end
 
@@ -100,7 +147,7 @@ describe RepositoriesController, :type => :controller do
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
 
-        get :show, id: repository.id.to_s, project_id: project.id.to_s
+        get :show, id: repository.id.to_s
       end
 
       it { is_expected.to render_template(:show) }
@@ -112,7 +159,7 @@ describe RepositoriesController, :type => :controller do
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
 
-        get :show, id: repository.id.to_s, project_id: project.id.to_s
+        get :show, id: repository.id.to_s
       end
 
       it { is_expected.to render_template(:show) }
@@ -133,7 +180,7 @@ describe RepositoriesController, :type => :controller do
           repository.expects(:destroy)
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-          delete :destroy, id: repository.id, project_id: project.id.to_s
+          delete :destroy, id: repository.id
         end
 
         it { is_expected.to redirect_to(projects_path) }
@@ -142,7 +189,7 @@ describe RepositoriesController, :type => :controller do
 
       context "when the user doesn't own the project" do
         before :each do
-          delete :destroy, id: repository.id, project_id: project.id.to_s
+          delete :destroy, id: repository.id
         end
 
          it { is_expected.to redirect_to(projects_url) }
@@ -152,7 +199,7 @@ describe RepositoriesController, :type => :controller do
 
     context 'with no User logged in' do
       before :each do
-        delete :destroy, id: repository.id, project_id: project.id.to_s
+        delete :destroy, id: repository.id
       end
 
       it { is_expected.to redirect_to new_user_session_path }
@@ -175,7 +222,7 @@ describe RepositoriesController, :type => :controller do
           subject.expects(:repository_owner?).returns true
           Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
           Repository.expects(:repository_types).returns(["SUBVERSION"])
-          get :edit, id: repository.id, project_id: project.id.to_s
+          get :edit, id: repository.id
         end
 
         it { is_expected.to render_template(:edit) }
@@ -183,7 +230,7 @@ describe RepositoriesController, :type => :controller do
 
       context 'when the user does not own the repository' do
         before do
-          get :edit, id: repository.id, project_id: project.id.to_s
+          get :edit, id: repository.id
         end
 
         it { is_expected.to redirect_to(projects_url) }
@@ -194,7 +241,7 @@ describe RepositoriesController, :type => :controller do
 
     context 'with no user logged in' do
       before :each do
-        get :edit, id: repository.id, project_id: project.id.to_s
+        get :edit, id: repository.id
       end
 
       it { is_expected.to redirect_to new_user_session_path }
@@ -223,7 +270,7 @@ describe RepositoriesController, :type => :controller do
             Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
             Repository.any_instance.expects(:update).with(repository_params).returns(true)
 
-            post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
+            post :update, id: repository.id, repository: repository_params
           end
 
           it { is_expected.to redirect_to(repository_path(repository.id)) }
@@ -237,7 +284,7 @@ describe RepositoriesController, :type => :controller do
             Repository.any_instance.expects(:update).with(repository_params).returns(false)
             Repository.expects(:repository_types).returns([])
 
-            post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
+            post :update, id: repository.id, repository: repository_params
           end
 
           it { is_expected.to render_template(:edit) }
@@ -246,7 +293,7 @@ describe RepositoriesController, :type => :controller do
 
       context 'when the user does not own the repository' do
         before :each do
-          post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
+          post :update, id: repository.id, repository: repository_params
         end
 
         it { is_expected.to redirect_to projects_path }
@@ -255,7 +302,7 @@ describe RepositoriesController, :type => :controller do
 
     context 'with no user logged in' do
       before :each do
-        post :update, project_id: project.id.to_s, id: repository.id, repository: repository_params
+        post :update, id: repository.id, repository: repository_params
       end
 
       it { is_expected.to redirect_to new_user_session_path }
@@ -272,7 +319,7 @@ describe RepositoriesController, :type => :controller do
         repository.expects(:last_processing).returns(ready_processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'}
+        xhr :get, :state, {id: repository.id, last_state: 'ANALYZING'}
       end
 
       it { is_expected.to respond_with(:success) }
@@ -286,7 +333,7 @@ describe RepositoriesController, :type => :controller do
         repository.expects(:last_processing).returns(processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'LOADING'}
+        xhr :get, :state, {id: repository.id, last_state: 'LOADING'}
       end
 
       it { is_expected.to respond_with(:success) }
@@ -297,7 +344,7 @@ describe RepositoriesController, :type => :controller do
       before :each do
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'READY'}
+        xhr :get, :state, {id: repository.id, last_state: 'READY'}
       end
 
       it { is_expected.to respond_with(:ok) }
@@ -312,7 +359,7 @@ describe RepositoriesController, :type => :controller do
         repository.expects(:last_processing).returns(errored_processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
-        xhr :get, :state, {project_id: project.id.to_s, id: repository.id, last_state: 'ANALYZING'}
+        xhr :get, :state, {id: repository.id, last_state: 'ANALYZING'}
       end
 
       it { is_expected.to respond_with(:success) }
@@ -328,7 +375,7 @@ describe RepositoriesController, :type => :controller do
       Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
       Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
 
-      xhr :get, :state_with_date, {project_id: project.id.to_s, id: repository.id, day: '11', month: '11', year: '2013'}
+      xhr :get, :state_with_date, {id: repository.id, day: '11', month: '11', year: '2013'}
     end
 
     it { is_expected.to respond_with(:ok) }
@@ -343,7 +390,7 @@ describe RepositoriesController, :type => :controller do
         repository.expects(:process)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
-        get :process_repository, project_id: project.id.to_s, id: repository.id
+        get :process_repository, id: repository.id
       end
       it { is_expected.to redirect_to(repository_path(repository.id)) }
   end
