@@ -26,7 +26,7 @@ describe "Repository.Branch", ->
 
       it "should hide the branches combo box", ->
         @subject.toggle()
-        assert.isTrue(@combo_box.hide.calledOnce)
+        sinon.assert.calledOnce(@combo_box.hide)
 
     context "scm_type != SVN", ->
       beforeEach ->
@@ -37,7 +37,7 @@ describe "Repository.Branch", ->
 
       it "should show the branches combo box", ->
         @subject.toggle()
-        assert.isTrue(@combo_box.show.calledOnce)
+        sinon.assert.calledOnce(@combo_box.show)
 
   describe "#cancel_request", ->
     context 'request is not null', ->
@@ -48,7 +48,7 @@ describe "Repository.Branch", ->
 
       it 'should abort the request', ->
         @subject.cancel_request()
-        assert.isTrue(@request.abort.calledOnce)
+        sinon.assert.calledOnce(@request.abort)
         assert.isNull(@subject.request)
 
   describe "#fill_options", ->

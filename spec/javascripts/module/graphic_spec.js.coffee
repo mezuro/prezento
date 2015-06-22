@@ -25,8 +25,8 @@ describe "Module.Graphic", ->
       it "should show the drawer and start to load a graphic", ->
         @graphic = new Module.Graphic(@container, @metric_name, @module_id)
 
-        assert.isTrue(@drawer.slideDown.calledOnce)
-        assert.isTrue(@graphic.load.calledOnce)
+        sinon.assert.calledOnce(@drawer.slideDown)
+        sinon.assert.calledOnce(@graphic.load)
 
       after ->
         @drawer.is = sinon.stub().withArgs(':hidden').returns(false)
@@ -37,7 +37,7 @@ describe "Module.Graphic", ->
       it 'should hide the drawer', ->
         @graphic = new Module.Graphic(@container, @metric_name, @module_id)
 
-        assert.isTrue(@drawer.slideUp.calledOnce)
+        sinon.assert.calledOnce(@drawer.slideUp)
 
   describe 'load', ->
     before ->
