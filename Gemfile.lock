@@ -205,7 +205,7 @@ GEM
       mini_portile (~> 0.6.0)
     ntlm-http (0.1.1)
     orm_adapter (0.5.0)
-    pg (0.18.1)
+    pg (0.18.2)
     poltergeist (1.6.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
