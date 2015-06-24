@@ -5,7 +5,8 @@ Feature: Show Repository
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Testing the repository values
-    Given I have a sample project
+    Given I am a regular user
+    And I have a sample project
     And I have a sample configuration with native metrics
     And I have a sample repository within the sample project
     And I start to process that repository

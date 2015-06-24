@@ -13,7 +13,7 @@ Given(/^I have a sample configuration with native metrics$/) do
   reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
 
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
-  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: nil, kalibro_configuration_id: @kalibro_configuration.id})
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {metric: FactoryGirl.build(:loc),

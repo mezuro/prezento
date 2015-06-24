@@ -9,7 +9,7 @@ Given(/^I have a sample project$/) do
 end
 
 Given(/^I have sample project_attributes$/) do
-  @project_attributes = FactoryGirl.create(:project_attributes, {id: nil})
+  @project_attributes = FactoryGirl.create(:project_attributes, {id: nil, user_id: @user.id})
 end
 
 Given(/^I have a project named "(.*?)"$/) do |name|

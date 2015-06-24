@@ -5,7 +5,8 @@ Feature: Date Select
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: With a specific date selected
-    Given I have a sample project
+    Given I am a regular user
+    And I have a sample project
     And I have a sample configuration with native metrics
     And I have a sample repository within the sample project
     And I start to process that repository
