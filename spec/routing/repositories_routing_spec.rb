@@ -18,9 +18,9 @@ describe RepositoriesController, :type => :routing do
                   to(controller: :repositories, action: :update, id: 1) }
     it { is_expected.not_to route(:get, '/repositories').
                   to(controller: :repositories, action: :index) }
-    it { is_expected.to route(:post, '/repositories/1/state').
+    it { is_expected.to route(:get, '/repositories/1/state').
                   to(controller: :repositories, action: :state, id: 1) }
-    it { is_expected.to route(:post, '/repositories/1/state_with_date').
+    it { is_expected.to route(:get, '/repositories/1/state_with_date').
                   to(controller: :repositories, action: :state_with_date, id: 1) }
     it { is_expected.to route(:get, '/repositories/1/process').
                   to(controller: :repositories, action: :process_repository, id: 1) }
