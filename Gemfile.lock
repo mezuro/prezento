@@ -121,7 +121,7 @@ GEM
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    exception_notification (4.0.1)
+    exception_notification (4.1.1)
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
     execjs (2.5.2)
@@ -340,7 +340,7 @@ DEPENDENCIES
   dalli (~> 2.7.0)
   database_cleaner (~> 1.4.1)
   devise (~> 3.5.1)
-  exception_notification (~> 4.0.1)
+  exception_notification (~> 4.1.1)
   factory_girl_rails (~> 4.5.0)
   google-analytics-rails (~> 0.0.6)
   http_accept_language

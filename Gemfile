@@ -58,7 +58,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails-html-sanitizer', '~> 1.0'
 
 # Sends a email whenever there is a unexpected exception
-gem 'exception_notification', '~> 4.0.1'
+gem 'exception_notification', '~> 4.1.1'
 
 # Google Analytics
 gem 'google-analytics-rails', '~> 0.0.6'
