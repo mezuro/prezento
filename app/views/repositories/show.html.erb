@@ -47,7 +47,7 @@
     <%= select_tag(:month, options_for_select(month_options), :style => "width:55px; margin-top:5px") %>
     <%= label_tag :year, t("year") %>:
     <%= select_tag(:year, options_for_select(year_options), :style => "width:70px; margin-top:5px") %>
-    <%= submit_tag(t('search'), class: 'btn btn-info', style: 'margin-bottom:5px', onClick: "Repository.State.set_loader('#{image_tag 'loader.gif'} Loading data. Please, wait.')") %>
+    <%= submit_tag(t('search'), class: 'btn btn-info', style: 'margin-bottom:5px', onClick: "Repository.State.set_loader('#{image_tag 'loader.gif'} #{j(t('repository.show.loading'))}')") %>
   </p>
 <% end %>
 
