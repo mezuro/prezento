@@ -77,7 +77,10 @@ group :test do
   gem 'mocha', require: 'mocha/api'
 
   # Test coverage report
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
+
+  # For Konacha
+  gem 'thin'
 end
 
 group :development, :test do
