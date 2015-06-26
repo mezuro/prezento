@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.2'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -25,10 +25,10 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.2.2'
+gem 'jbuilder', '~> 2.0'
 
 # For user authentication and everything else
-gem 'devise', '~> 3.4.0'
+gem 'devise', '~> 3.5.1'
 
 # Kalibro integration
 gem 'kalibro_client', '~> 0.3.0'
@@ -58,7 +58,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails-html-sanitizer', '~> 1.0'
 
 # Sends a email whenever there is a unexpected exception
-gem 'exception_notification', '~> 4.0.1'
+gem 'exception_notification', '~> 4.1.1'
 
 # Google Analytics
 gem 'google-analytics-rails', '~> 0.0.6'
@@ -91,7 +91,7 @@ group :development, :test do
   gem 'spring'
 
   # Test framework
-  gem 'rspec-rails', '~> 3.2.0'
+  gem 'rspec-rails', '~> 3.3.2'
 
   # Fixtures made easy
   gem 'factory_girl_rails', '~> 4.5.0'
