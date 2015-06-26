@@ -4,6 +4,12 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+== v0.6.0 - 26/06/2015
+
+General updates and bug fixes
+Specific repository branches
+Error handling for pages non existent or formats unsupported
+
 == v0.5.0 - 29/05/2015
 
 KalibroConfiguration hidding
