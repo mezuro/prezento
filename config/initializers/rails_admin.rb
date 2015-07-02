@@ -8,7 +8,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.main_app_name = ["Mezuro", "Administrative Interface"]
+  config.main_app_name = ["Mezuro", "Rails Admin"]
   config.included_models = ["KalibroConfiguration", "KalibroConfigurationAttributes",
     "KalibroModule", "KalibroRange", "MetricConfiguration", "ModuleResult",
     "Processing", "Project", "ProjectAttributes", "Reading",
