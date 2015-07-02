@@ -8,8 +8,6 @@ en:
       destroy: "Destroy %{model}"
       edit: "Edit %{model}"
       add: "Add %{model}"
-      add: "Add %{model}"
-  unauthorized: Access denied! You are not an administrator.
   unauthorized: Access denied! You are not an administrator.
 
 #locale RailsAdmin
