@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1><%= "#{Repository.model_name.human(count: 2)}" %></h1>
+</div>
+
+<% if user_signed_in? %>
+  <p>
+    <%= link_to t_action(:create, Repository), new_repository_path, class: 'btn  btn-primary' %>
+  </p>
+<%else%>
+  <p class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= t('unauthenticated', action: t_action(:create, Repository, count: 2).downcase) %>
+  </p>
+<% end %>
+
+<%= render partial: 'shared/repository_list', locals: {repositories: @repositories} %>

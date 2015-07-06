@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 describe RepositoriesController, :type => :controller do
+  describe 'index' do
+    let!(:repository) { FactoryGirl.build(:repository) }
+
+    before :each do
+      Repository.expects(:all).returns([repository])
+      get :index
+    end
+
+    it { is_expected.to render_template(:index) }
+  end
+
   describe 'new' do
     context 'with a User logged in' do
       let!(:user) { FactoryGirl.create(:user) }
