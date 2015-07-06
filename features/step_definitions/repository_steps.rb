@@ -98,7 +98,7 @@ Given(/^I own that independent repository$/) do
 end
 
 Given(/^I have a sample repository$/) do
-  @independent_repository = FactoryGirl.create(:ruby_repository)
+  @independent_repository = FactoryGirl.create(:ruby_repository, kalibro_configuration_id: @kalibro_configuration.id)
 end
 
 Given(/^I am at the All Repositories page$/) do

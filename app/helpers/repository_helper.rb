@@ -23,6 +23,11 @@ module RepositoryHelper
   end
 
   def year_options
+    # FIXME: this will not work some years from now
     (2013..2020).to_a.map {|year| [year, year]}
+  end
+
+  def repository_owner? repository_id
+    user_signed_in? && !current_user.repository_attributes.find_by_repository_id(repository_id).nil?
   end
 end

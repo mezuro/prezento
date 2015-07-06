@@ -1,6 +1,46 @@
 require 'rails_helper'
 
 describe RepositoryHelper, :type => :helper do
+  describe 'repository_owner?' do
+    subject { FactoryGirl.build(:repository) }
+
+    context 'returns false if not logged in' do
+      before :each do
+        helper.expects(:user_signed_in?).returns(false)
+      end
+      it { expect(helper.repository_owner?(subject.id)).to be_falsey }
+    end
+
+    context 'returns false if is not the owner' do
+      let!(:attributes) { [] }
+
+      before :each do
+        helper.expects(:user_signed_in?).returns(true)
+        helper.expects(:current_user).returns(FactoryGirl.build(:user))
+
+        attributes.expects(:find_by_repository_id).with(subject.id).returns(nil)
+
+        User.any_instance.expects(:repository_attributes).returns(attributes)
+      end
+
+      it { expect(helper.repository_owner?(subject.id)).to be_falsey }
+    end
+
+    context 'returns true if user is the repository owner' do
+      let!(:repository_attributes) { FactoryGirl.build(:repository_attributes) }
+      let!(:attributes) { [] }
+
+      before :each do
+        helper.expects(:user_signed_in?).returns(true)
+        helper.expects(:current_user).returns(FactoryGirl.build(:user))
+
+        attributes.expects(:find_by_repository_id).with(subject.id).returns(repository_attributes)
+        User.any_instance.expects(:repository_attributes).returns(attributes)
+      end
+
+      it { expect(helper.repository_owner?(subject.id)).to be_truthy }
+    end
+  end
 
   describe 'periodicity_options' do
     it 'should return an array with some sample periods' do

@@ -3,32 +3,32 @@ Feature: Repository listing
   As a regular user
   I should have various listings
 
-  @wip
   Scenario: Listing repositories
     Given I am at the homepage
     When I click the Repository link
     Then I should see "Repositories"
     And I should see "Name"
     And I should see "Description"
-    And I should see "You must be logged in to create Repositories"
+    And I should see "You must be logged in to create repositories"
 
-  @kalibro_processor_restart @kalibro_configuration_restart @wip
+  @kalibro_processor_restart @kalibro_configuration_restart
   Scenario: Should list the existing repositories
     Given I am a regular user
     And I am signed in
+    And I have a sample configuration
     And I have a sample repository
     And I have a sample project
-    And I have a sample configuration
     And I have a sample repository within the sample project
     And I am at the All Repositories page
     Then the sample repository should be there
     And the project repository should be there
     And I should not see "You must be logged in to create new Repositories."
 
-  @kalibro_processor_restart @wip
+  @kalibro_processor_restart @kalibro_configuration_restart
   Scenario: Should show the existing repository
     Given I am a regular user
     And I am signed in
+    And I have a sample configuration
     And I have a sample repository
     And I own that independent repository
     And I am at the All Repositories page
