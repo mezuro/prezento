@@ -24,6 +24,15 @@ Scenario: Should show the create repository link the project owner
   When I am at the Sample Project page
   Then I should see "New Repository"
 
+@kalibro_processor_restart
+Scenario: Should not show the independent repositories for a project
+  Given I am a regular user
+  And I am signed in
+  And I own a sample project
+  And I have sample project_attributes
+  And I have a sample repository
+  When I am at the Sample Project page
+  Then I should see "There are no Repositories yet!"
 
 @kalibro_processor_restart
 Scenario: Considering the project has no repositories

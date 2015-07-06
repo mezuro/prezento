@@ -93,6 +93,18 @@ Given(/^I own that repository$/) do
   FactoryGirl.create(:repository_attributes, {repository_id: @repository.id, user_id: @user.id})
 end
 
+Given(/^I own that independent repository$/) do
+  FactoryGirl.create(:repository_attributes, {repository_id: @independent_repository.id, user_id: @user.id})
+end
+
+Given(/^I have a sample repository$/) do
+  @independent_repository = FactoryGirl.create(:ruby_repository)
+end
+
+Given(/^I am at the All Repositories page$/) do
+  visit repositories_path
+end
+
 When(/^I click on the sample metric's name$/) do
   find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end
@@ -179,3 +191,14 @@ Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
   v2 = eval "@#{arg2}"
   expect(v1 < v2).to be_truthy
 end
+
+Then(/^the sample repository should be there$/) do
+  expect(page).to have_content(@independent_repository.name)
+  expect(page).to have_content(@independent_repository.description)
+end
+
+Then(/^the project repository should be there$/) do
+  expect(page).to have_content(@repository.name)
+  expect(page).to have_content(@repository.description)
+end
+
