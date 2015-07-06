@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :repositories, only: [:new, :create]
     end
 
-    resources :repositories, except: [:update, :index]
+    resources :repositories, except: [:update]
     get '/repositories/:id/modules/:module_result_id' => 'repositories#show', as: :repository_module
     get '/repositories/:id/state' => 'repositories#state', as: :repository_state
     get '/repositories/:id/state_with_date' => 'repositories#state_with_date', as: :repository_state_with_date
