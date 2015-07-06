@@ -23,7 +23,6 @@ FactoryGirl.define do
     scm_type "GIT"
     address "https://github.com/rafamanzo/runge-kutta-vtk.git"
     kalibro_configuration_id 1
-    send_email "test@test.com"
   end
 
   factory :ruby_repository, class: Repository do
@@ -35,7 +34,6 @@ FactoryGirl.define do
     scm_type "GIT"
     address "https://github.com/mezuro/kalibro_processor.git"
     kalibro_configuration_id 1
-    send_email "test@test.com"
   end
 
   factory :another_repository, parent: :repository do
