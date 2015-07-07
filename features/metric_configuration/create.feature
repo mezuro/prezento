@@ -99,4 +99,4 @@ Feature: Metric Configuration Creation
     And I click the Add Metric link
     And I click the "MetricFu" h3
     And I click the Pain link
-    Then I should see "Percentage of use"
+    Then I should see "Usage percentage"

@@ -22,9 +22,11 @@
   <b><%= t('metric_scope') %>:</b> <%= t(@metric_configuration.metric.scope.to_s, scope: 'scopes') %>
 </p>
 
-<p>
-  <b><%= t('usage_percentage') %>:</b> <%= @statistic%>%
-</p>
+<% cache("#{@metric_configuration.metric.metric_collector_name}_#{@metric_configuration.metric.name}_statistic", :expires_in => 20.minutes) do %>
+  <p>
+    <strong><%=t('usage_percentage') %>:</strong> <%= "#{@statistic} %" %>
+  </p>
+<% end %>
 
 <br>
 

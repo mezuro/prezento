@@ -40,10 +40,11 @@
   <%= @reading_group.name %>
 </p>
 
-<p>
-<strong><%=t('usage_percentage') %>:</strong>
-    <%= "#{@statistic} %" %>
-</p>
+<% cache("#{@metric_configuration.metric.metric_collector_name}_#{@metric_configuration.metric.name}_statistic", :expires_in => 20.minutes) do %>
+  <p>
+    <strong><%=t('usage_percentage') %>:</strong> <%= "#{@statistic} %" %>
+  </p>
+<% end %>
 
 <p>
   <strong><%= t('description') %>:</strong>
