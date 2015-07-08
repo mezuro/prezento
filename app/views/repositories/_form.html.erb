@@ -110,17 +110,4 @@
 
 <script type="text/javascript">
   var _repository_branch = new Repository.Branch;
-
-  $(document).on('page:load ready', function() {
-    _repository_branch.toggle();
-
-    var checkbox = $("#no_project_checkbox");
-
-    function toggle() {
-      $("#repository_project_id").prop('disabled', checkbox.prop('checked'));
-    };
-
-    checkbox.on('click', toggle);
-    toggle();
-  });
 </script>
