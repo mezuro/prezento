@@ -1,0 +1,24 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= Repository.human_attribute_name('name') %></th>
+      <th><%= Repository.human_attribute_name('description') %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% repositories.each do |repository| %>
+      <tr>
+        <td><%= repository.name %></td>
+        <td><%= repository.description %></td>
+        <td><%= link_to t('show'), repository_path(repository.id), class: 'btn btn-info' %></td>
+        <td>
+          <% if repository_owner? repository.id %>
+            <%= link_to t('edit'), edit_repository_path(repository.id), class: 'btn btn-info' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

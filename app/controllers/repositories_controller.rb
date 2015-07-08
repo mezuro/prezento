@@ -1,11 +1,15 @@
 include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :state, :state_with_date]
+  before_action :authenticate_user!, except: [:show, :state, :state_with_date, :index]
   before_action :project_owner?, only: [:new, :create], unless: Proc.new { params[:project_id].nil? }
   before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
   before_action :set_project_id_repository_types_and_configurations, only: [:new, :edit]
+
+  def index
+    @repositories = Repository.all
+  end
 
   # GET /projects/1/repositories/1
   # GET /projects/1/repositories/1.json
@@ -27,7 +31,6 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories.json
   def create
     @repository = Repository.new(repository_params)
-    @repository.project_id = params[:project_id]
     respond_to do |format|
       create_and_redir(format)
     end
@@ -125,6 +128,7 @@ private
   def repository_params
     params[:repository][:name].strip!
     params[:repository][:address].strip!
+    params[:repository][:project_id] = params[:project_id] if params.key? :project_id
     params[:repository]
   end
 

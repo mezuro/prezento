@@ -45,7 +45,7 @@ describe ProjectsHelper, :type => :helper do
 
   describe 'project_image_html' do
     let(:project) { FactoryGirl.build(:project) }
-    let(:project_attributes) { FactoryGirl.build(:project_attributes) }
+    let(:project_attributes) { FactoryGirl.build(:project_attributes, :with_image) }
 
     context 'when the project has an image' do
       before :each do

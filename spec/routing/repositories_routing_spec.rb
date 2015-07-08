@@ -4,6 +4,8 @@ describe RepositoriesController, :type => :routing do
   describe "routing" do
     it { is_expected.to route(:post, '/repositories').
                   to(controller: :repositories, action: :create) }
+    it { is_expected.to route(:get, '/repositories').
+                  to(controller: :repositories, action: :index) }
     it { is_expected.to route(:get, '/repositories/new').
                   to(controller: :repositories, action: :new) }
     it { is_expected.to route(:get, '/repositories/1/edit').
@@ -16,8 +18,6 @@ describe RepositoriesController, :type => :routing do
                   to(controller: :repositories, action: :destroy, id: 1) }
     it { is_expected.to route(:put, '/repositories/1').
                   to(controller: :repositories, action: :update, id: 1) }
-    it { is_expected.not_to route(:get, '/repositories').
-                  to(controller: :repositories, action: :index) }
     it { is_expected.to route(:get, '/repositories/1/state').
                   to(controller: :repositories, action: :state, id: 1) }
     it { is_expected.to route(:get, '/repositories/1/state_with_date').

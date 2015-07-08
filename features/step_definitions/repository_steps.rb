@@ -38,6 +38,15 @@ Given(/^I have a sample repository within the sample project named "(.+)"$/) do 
                                                  kalibro_configuration_id: @kalibro_configuration.id, id: nil, name: name})
 end
 
+Given(/^I have a sample repository named "(.+)"$/) do |name|
+  @repository = FactoryGirl.create(:repository,
+                                   project_id: nil,
+                                   kalibro_configuration_id: @kalibro_configuration.id,
+                                   id: nil,
+                                   name: name)
+end
+
+
 Given(/^I have a sample of an invalid repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
                                                  kalibro_configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})
@@ -66,7 +75,11 @@ Given(/^I wait up for a error processing$/) do
 end
 
 Given(/^I am at the New Repository page$/) do
-  visit new_project_repository_path(project_id: @project.id)
+  if @project
+    visit new_project_repository_path(project_id: @project.id)
+  else
+    visit new_repository_path
+  end
 end
 
 Given(/^I am at repository edit page$/) do
@@ -91,6 +104,18 @@ end
 
 Given(/^I own that repository$/) do
   FactoryGirl.create(:repository_attributes, {repository_id: @repository.id, user_id: @user.id})
+end
+
+Given(/^I own that independent repository$/) do
+  FactoryGirl.create(:repository_attributes, {repository_id: @independent_repository.id, user_id: @user.id})
+end
+
+Given(/^I have a sample repository$/) do
+  @independent_repository = FactoryGirl.create(:ruby_repository, kalibro_configuration_id: @kalibro_configuration.id)
+end
+
+Given(/^I am at the All Repositories page$/) do
+  visit repositories_path
 end
 
 When(/^I click on the sample metric's name$/) do
@@ -179,3 +204,14 @@ Then(/^"(.*?)" should be lesser than "(.*?)"$/) do |arg1, arg2|
   v2 = eval "@#{arg2}"
   expect(v1 < v2).to be_truthy
 end
+
+Then(/^the sample repository should be there$/) do
+  expect(page).to have_content(@independent_repository.name)
+  expect(page).to have_content(@independent_repository.description)
+end
+
+Then(/^the project repository should be there$/) do
+  expect(page).to have_content(@repository.name)
+  expect(page).to have_content(@repository.description)
+end
+

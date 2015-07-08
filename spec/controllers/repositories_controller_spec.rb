@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 describe RepositoriesController, :type => :controller do
+  describe 'index' do
+    let!(:repository) { FactoryGirl.build(:repository) }
+
+    before :each do
+      Repository.expects(:all).returns([repository])
+      get :index
+    end
+
+    it { is_expected.to render_template(:index) }
+  end
+
   describe 'new' do
     context 'with a User logged in' do
       let!(:user) { FactoryGirl.create(:user) }
@@ -86,6 +97,9 @@ describe RepositoriesController, :type => :controller do
 
           it { is_expected.to redirect_to(repository_process_path(id: repository.id)) }
           it { is_expected.to respond_with(:redirect) }
+          it "is expected to set the project_id" do
+            expect(assigns(:repository).project_id).to be > 0
+          end
         end
 
         context 'with an invalid field' do
@@ -123,6 +137,9 @@ describe RepositoriesController, :type => :controller do
 
         it { is_expected.to redirect_to(repository_process_path(id: repository.id)) }
         it { is_expected.to respond_with(:redirect) }
+        it "is expected to not set the project_id" do
+          expect(assigns(:repository).project_id).to be_nil
+        end
       end
 
       context 'with an invalid field' do
