@@ -38,6 +38,15 @@ Given(/^I have a sample repository within the sample project named "(.+)"$/) do 
                                                  kalibro_configuration_id: @kalibro_configuration.id, id: nil, name: name})
 end
 
+Given(/^I have a sample repository named "(.+)"$/) do |name|
+  @repository = FactoryGirl.create(:repository,
+                                   project_id: nil,
+                                   kalibro_configuration_id: @kalibro_configuration.id,
+                                   id: nil,
+                                   name: name)
+end
+
+
 Given(/^I have a sample of an invalid repository within the sample project$/) do
   @repository = FactoryGirl.create(:repository, {project_id: @project.id,
                                                  kalibro_configuration_id: @kalibro_configuration.id, id: nil, address: "https://invalidrepository.git"})

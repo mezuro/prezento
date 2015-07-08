@@ -48,9 +48,8 @@ Scenario: repository creation blank validations
 Scenario: repository creation with name already taken
   Given I am a regular user
   And I am signed in
-  And I own a sample project
   And I have a sample configuration with native metrics
-  And I have a sample repository within the sample project named "KalibroEntities"
+  And I have a sample repository named "KalibroEntities"
   And I am at the New Repository page
   And I fill the Name field with "KalibroEntities"
   And I fill the Description field with "Description"
@@ -60,7 +59,7 @@ Scenario: repository creation with name already taken
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button
-  Then I should see "Name should be unique within project"
+  Then I should see "Name has already been taken"
 
 @kalibro_configuration_restart @kalibro_processor_restart @javascript
 Scenario: Repository name with whitespaces
@@ -77,7 +76,7 @@ Scenario: Repository name with whitespaces
   And I set the select field "Process Period" as "1 day"
   And I set the select field "Configuration" as "Java"
   When I press the Save button
-  Then I should see "Name should be unique within project"
+  Then I should see "Name has already been taken"
 
 @kalibro_configuration_restart @kalibro_processor_restart @javascript
 Scenario: Create repository without project
