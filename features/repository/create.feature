@@ -75,3 +75,19 @@ Scenario: Repository name with whitespaces
   And I set the select field "Configuration" as "Java"
   When I press the Save button
   Then I should see "Name should be unique within project"
+
+@kalibro_configuration_restart @kalibro_processor_restart @javascript
+Scenario: Create repository without project
+  Given I am a regular user
+  And I am signed in
+  And I have a sample configuration with native metrics
+  And I am at the New Repository page
+  And I fill the Name field with "Kalibro Client"
+  And I set the select field "License" as "ISC License (ISC)"
+  And I fill the Address field with "https://github.com/mezuro/kalibro_client.git"
+  And I set the select field "Type" as "GIT"
+  And I set the select field "Process Period" as "1 day"
+  And I set the select field "Configuration" as "Java"
+  And I set the select field "Project" as "No Project"
+  When I press the Save button
+  Then I should see the saved repository's content

@@ -30,8 +30,11 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories
   # POST /projects/1/repositories.json
   def create
-    @repository = Repository.new(repository_params)
-    @repository.project_id = params[:project_id]
+    r_params = repository_params
+    r_params.require(:project_id)
+    r_params[:project_id] = nil if r_params[:project_id].to_i == 0
+
+    @repository = Repository.new(r_params)
     respond_to do |format|
       create_and_redir(format)
     end
@@ -104,6 +107,9 @@ private
     @configurations = KalibroConfiguration.public_or_owned_by_user(current_user).map { |conf|
       [conf.name, conf.id]
     }
+    @projects = current_user.projects.map do |proj|
+      [proj.name, proj.id]
+    end if @project_id.nil?
   end
 
   # Duplicated code on create and update actions extracted here

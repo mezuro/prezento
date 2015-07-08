@@ -102,6 +102,23 @@
       </div>
     </div>
 
+    <div class="form-row">
+      <div class="field-container">
+        <%= f.label :project_id, Project.model_name.human, class: 'control-label' %>
+        <%= f.select( :project_id, @projects, class: 'tooltip-control' ) %>
+
+        <div class="form-inline">
+          <%= f.check_box :project_id, {id: "no_project_checkbox", class: "checkbox"}, "0", nil  %>
+          <%= f.label "no_project" %>
+        </div>
+      </div>
+      <div class="help-container">
+        <p>
+          <%= t('activemodel.hints.repository.project').html_safe %>
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
 <div class="row margin-left-none" style="margin-top: 20px">
@@ -114,5 +131,14 @@
 
   $(document).on('page:load ready', function() {
     _repository_branch.toggle();
+
+    var checkbox = $("#no_project_checkbox");
+
+    function toggle() {
+      $("#repository_project_id").prop('disabled', checkbox.prop('checked'));
+    };
+
+    checkbox.on('click', toggle);
+    toggle();
   });
 </script>

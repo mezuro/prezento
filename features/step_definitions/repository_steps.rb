@@ -66,7 +66,11 @@ Given(/^I wait up for a error processing$/) do
 end
 
 Given(/^I am at the New Repository page$/) do
-  visit new_project_repository_path(project_id: @project.id)
+  if @project
+    visit new_project_repository_path(project_id: @project.id)
+  else
+    visit new_repository_path
+  end
 end
 
 Given(/^I am at repository edit page$/) do
