@@ -54,4 +54,4 @@ Feature: Repository Edit
     And I am at repository edit page
     When I fill the Name field with "MedSquare"
     And I press the Save button
-    Then I should see "Name should be unique within project"
+    Then I should see "Name has already been taken"
