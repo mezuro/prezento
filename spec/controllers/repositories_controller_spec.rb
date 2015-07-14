@@ -389,8 +389,8 @@ describe RepositoriesController, :type => :controller do
     let(:repository) { FactoryGirl.build(:repository) }
 
     before :each do
+      repository.expects(:processing_with_date).with("2013-11-11").returns(processing)
       Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-      Processing.expects(:processing_with_date_of).with(repository.id, "2013-11-11").returns(processing)
 
       xhr :get, :state_with_date, {id: repository.id, day: '11', month: '11', year: '2013'}
     end
