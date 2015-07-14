@@ -1,5 +1,5 @@
 module ProcessingsHelper
-  def humanize_eplased_time duration_in_seconds
+  def humanize_elapsed_time duration_in_seconds
     distance_of_time_in_words(Time.now, duration_in_seconds.seconds.from_now)
   end
 
