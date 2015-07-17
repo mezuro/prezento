@@ -65,6 +65,7 @@ Feature: Metric Configuration Creation
     And I have a metric configuration with code "total_abstract_classes" within the given mezuro configuration
     And I am at the Sample Configuration page
     And I click the Add Metric link
+    And I click the "Analizo" h3
     And I click the Total Abstract Classes link
     And I fill the Weight field with "2"
     And I set the select field "Aggregation Form" as "Average"
