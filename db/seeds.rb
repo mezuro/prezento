@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Default mezuro user, the owner of the public kalibro configurations
-default_user = FactoryGirl.create(:mezuro_user)
+default_user = FactoryGirl.create(:mezuro_user, id: nil)
 default_user.save
 
 # The database should have only the default public

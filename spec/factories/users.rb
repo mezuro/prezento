@@ -2,13 +2,12 @@
 
 FactoryGirl.define do
   factory :user do
-    id 1
+    sequence(:id, 5)
     name "Diego Martinez"
     email "diego@email.com"
     password "password"
 
     factory :another_user do
-      id 2
       name "Heitor Reis"
       email "hr@email.com"
       password "password"
