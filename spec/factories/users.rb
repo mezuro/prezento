@@ -17,6 +17,7 @@ FactoryGirl.define do
     factory :mezuro_user do
       name "Mezuro Default user"
       email "mezuro@librelist.com"
+      password Devise.friendly_token.first(10)
     end
   end
 end
