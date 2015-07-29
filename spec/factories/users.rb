@@ -13,5 +13,10 @@ FactoryGirl.define do
       email "hr@email.com"
       password "password"
     end
+    
+    factory :mezuro_user do
+      name "Mezuro Default user"
+      email "mezuro@librelist.com"
+    end
   end
 end
