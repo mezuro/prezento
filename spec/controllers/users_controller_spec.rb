@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe UsersController, :type => :controller do
   describe 'projects' do
-    let(:user) { FactoryGirl.build(:user, :with_id) }
+    let(:user) { FactoryGirl.build(:user) }
 
     before :each do
       User.expects(:find).with(user.id).returns(user)
