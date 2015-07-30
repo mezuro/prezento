@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :user do
-    sequence(:id, 5)
     name "Diego Martinez"
     email "diego@email.com"
     password "password"
@@ -16,7 +15,10 @@ FactoryGirl.define do
     factory :mezuro_user do
       name "Mezuro Default user"
       email "mezuro@librelist.com"
-      password Devise.friendly_token.first(10)
+    end
+
+    trait :with_id do
+      sequence(:id, 1)
     end
   end
 end
