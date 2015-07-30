@@ -7,8 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Default mezuro user, the owner of the public kalibro configurations
-default_user = FactoryGirl.create(:mezuro_user, id: nil)
-default_user.save
+password = Devise.friendly_token
+default_user = FactoryGirl.create(:mezuro_user, password: password)
+
+puts "-- Default user created:"
+puts "   Email:    #{default_user.email}"
+puts "   Password: #{password}"
 
 # The database should have only the default public
 # configurations when this file is executed
