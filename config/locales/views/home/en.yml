@@ -1,5 +1,5 @@
 en:
   title_home_index: "Understanding Code Metrics"
-  body_home_index_html: "This is Mezuro! A <strong>free/libre</strong> web platform for <strong>collaborative</strong> source code <strong>evaluation</strong>.</p> <p>Here you can evaluate your source code with the most popular SCMs (like Git and SVN), just by providing its URL. For now, you can evaluate <strong>C</strong>, <strong>C++</strong>, <strong>Java</strong> and <strong>Ruby</strong> source codes, but we are looking forward to supporting more languages in the future (Python is coming soon)."
+  body_home_index_html: "This is Mezuro! A <strong>free/libre</strong> web platform for <strong>collaborative</strong> source code <strong>evaluation</strong>.</p> <p>Here you can evaluate your source code with the most popular SCMs (like Git and SVN), just by providing its URL. For now, you can evaluate <strong>C</strong>, <strong>C++</strong>, <strong>Java</strong> and <strong>Ruby</strong> source codes, but we are looking forward to supporting more languages in the future (Python is coming soon).</p>"
   body_feedback_home_index_html: "Mezuro is continuously under development. Try it and give us your %{href}."
   latest_projects: "Latest projects"
