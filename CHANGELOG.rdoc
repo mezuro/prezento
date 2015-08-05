@@ -4,6 +4,13 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+== v0.8.0 - 05/08/2015
+
+Travis build reliability improved by disabling jQuery on acceptance tests
+Metric's list collapsed by default
+Seed script creates default user who owns the default KalibroConfigurationAttributes and ReadingGroupAttributes
+Updated Home to include new features and an apology message
+
 == v0.7.0 - 08/07/2015
 
 All repositories list with a link at the top menu
