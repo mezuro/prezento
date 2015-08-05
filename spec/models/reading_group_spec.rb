@@ -76,7 +76,7 @@ describe ReadingGroup, :type => :model do
 
   describe 'class methods' do
     describe 'public_or_owned_by_user' do
-      let!(:user) { FactoryGirl.build(:user) }
+      let!(:user) { FactoryGirl.build(:user, :with_id) }
 
       let!(:owned_private_attrs)     { FactoryGirl.build(:reading_group_attributes, :private, user_id: user.id) }
       let!(:owned_public_attrs)      { FactoryGirl.build(:reading_group_attributes,           user_id: user.id) }
