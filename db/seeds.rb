@@ -24,3 +24,13 @@ kalibro_configurations.each do |configuration|
   attributes.user_id = default_user.id
   attributes.save
 end
+
+# The same restrictions apply to the default reading group
+reading_groups = ReadingGroup.all
+reading_groups.each do |reading_group|
+  attributes = ReadingGroupAttributes.new
+  attributes.reading_group_id = reading_group.id
+  attributes.user_id = default_user.id
+  attributes.public = true
+  attributes.save
+end
