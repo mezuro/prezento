@@ -20,8 +20,11 @@ describe ProjectsController, :type => :controller do
     context 'with valid fields' do
       let(:project) { FactoryGirl.build(:project_with_id) }
       let(:subject_params) { project.to_hash }
+      let(:project_attributes) { mock('project_attributes') }
 
       before :each do
+        User.any_instance.expects(:project_attributes).returns(project_attributes)
+        project_attributes.expects(:create).with(project_id: project.id)
         Project.any_instance.expects(:save).returns(true)
       end
 
