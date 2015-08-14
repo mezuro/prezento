@@ -13,16 +13,17 @@ describe ProjectsController, :type => :controller do
   end
 
   describe 'create' do
+    let(:project) { FactoryGirl.build(:project_with_id) }
+    let(:project_params) { project.to_hash }
+    let(:project_attributes) { mock('project_attributes') }
     before do
       sign_in FactoryGirl.create(:user)
     end
 
     context 'with valid fields' do
-      let(:project) { FactoryGirl.build(:project_with_id) }
-      let(:subject_params) { project.to_hash }
-      let(:project_attributes) { mock('project_attributes') }
-
       before :each do
+        project_attributes.expects(:update).with(image_url: nil)
+        ProjectAttributes.expects(:find_by_project_id).with(project.id).returns(project_attributes)
         User.any_instance.expects(:project_attributes).returns(project_attributes)
         project_attributes.expects(:create).with(project_id: project.id)
         Project.any_instance.expects(:save).returns(true)
@@ -30,7 +31,7 @@ describe ProjectsController, :type => :controller do
 
       context 'rendering the show' do
         before :each do
-          post :create, :project => subject_params
+          post :create, :project => project_params
         end
 
         it 'should redirect to the show view' do
@@ -40,7 +41,7 @@ describe ProjectsController, :type => :controller do
 
       context 'without rendering the show view' do
         before :each do
-          post :create, :project => subject_params
+          post :create, :project => project_params
         end
 
         it { is_expected.to respond_with(:redirect) }
@@ -49,13 +50,12 @@ describe ProjectsController, :type => :controller do
 
     context 'with an invalid field' do
       before :each do
-        @subject = FactoryGirl.build(:project_with_id)
-        @subject_params = @subject.to_hash
-
-        Project.expects(:new).at_least_once.with(@subject_params).returns(@subject)
+        project_attributes.expects(:update).with(image_url: nil)
+        ProjectAttributes.expects(:find_by_project_id).with(project.id).returns(project_attributes)
+        Project.expects(:new).at_least_once.with(project_params).returns(project)
         Project.any_instance.expects(:save).returns(false)
 
-        post :create, :project => @subject_params
+        post :create, :project => project_params
       end
 
       it { is_expected.to render_template(:new) }
@@ -223,15 +223,15 @@ describe ProjectsController, :type => :controller do
 
     context 'when the user is logged in' do
       before do
+        @project_attributes = FactoryGirl.build(:project_attributes)
+        @attributes = []
+        User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
         sign_in FactoryGirl.create(:user)
       end
 
       context 'when user owns the project' do
         before do
-          @project_attributes = FactoryGirl.build(:project_attributes)
-          @attributes = []
           @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(@project_attributes)
-          User.any_instance.expects(:project_attributes).at_least_once.returns(@attributes)
         end
 
         context 'with valid fields' do
@@ -275,6 +275,7 @@ describe ProjectsController, :type => :controller do
 
       context 'when the user does not own the project' do
         before :each do
+          @attributes.expects(:find_by_project_id).with("#{@subject.id}").returns(nil)
           post :update, :id => @subject.id, :project => @subject_params
         end
 
