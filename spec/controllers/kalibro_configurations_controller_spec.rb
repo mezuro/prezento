@@ -29,8 +29,11 @@ describe KalibroConfigurationsController, :type => :controller do
       let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
       let(:kalibro_configuration_params) { kalibro_configuration.to_hash }
       let(:attributes) { {public: "1"} }
+      let(:kalibro_configuration_attributes) { mock('kalibro_configuration_attributes') }
 
       before :each do
+        User.any_instance.expects(:kalibro_configuration_attributes).returns(kalibro_configuration_attributes)
+        kalibro_configuration_attributes.expects(:create).with(kalibro_configuration_id: kalibro_configuration.id)
         KalibroConfiguration.any_instance.expects(:save).returns(true)
       end
 
