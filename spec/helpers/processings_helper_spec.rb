@@ -5,9 +5,9 @@ def make_range(b, e)
 end
 
 describe ProcessingsHelper, :type => :helper do
-  describe 'humanize_eplased_time' do
+  describe 'humanize_elapsed_time' do
     it 'should convert it to readable words' do
-      expect(helper.humanize_eplased_time(6)).to eq('less than a minute')
+      expect(helper.humanize_elapsed_time(6)).to eq('less than a minute')
     end
   end
 

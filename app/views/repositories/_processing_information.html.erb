@@ -12,7 +12,7 @@
   <% @processing.process_times.each do |process_time| %>
     <p>
       <strong><%= process_time.state %> time:</strong>
-      <%= humanize_eplased_time(process_time.time) %>
+      <%= humanize_elapsed_time(process_time.time) %>
     </p>
   <% end %>
 <% end %>
