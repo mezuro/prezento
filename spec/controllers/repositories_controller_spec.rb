@@ -82,6 +82,7 @@ describe RepositoriesController, :type => :controller do
     context 'when a project_id is provided' do
       let(:project) { FactoryGirl.build(:project_with_id) }
       let(:repository) { FactoryGirl.build(:repository, project_id: project.id) }
+      let(:repository_attributes) { mock('repository_attributes') }
 
       context 'and the current user owns the project' do
         before :each do
@@ -90,6 +91,8 @@ describe RepositoriesController, :type => :controller do
 
         context 'with valid fields' do
           before :each do
+            User.any_instance.expects(:repository_attributes).returns(repository_attributes)
+            repository_attributes.expects(:create).with(repository_id: repository.id)
             Repository.any_instance.expects(:save).returns(true)
 
             post :create, project_id: project.id, repository: repository_params
@@ -127,9 +130,12 @@ describe RepositoriesController, :type => :controller do
 
     context 'when no project_id is provided' do
       let(:repository) { FactoryGirl.build(:repository) }
+      let(:repository_attributes) { mock('repository_attributes') }
 
       context 'with valid fields' do
         before :each do
+          User.any_instance.expects(:repository_attributes).returns(repository_attributes)
+          repository_attributes.expects(:create).with(repository_id: repository.id)
           Repository.any_instance.expects(:save).returns(true)
 
           post :create, repository: repository_params
