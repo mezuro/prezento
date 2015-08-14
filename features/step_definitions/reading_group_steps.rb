@@ -62,7 +62,7 @@ end
 
 Then(/^the Sample Reading Group should not be there$/) do
   expect(@reading_group.attributes).to be_nil
-  expect { ReadingGroup.find(@reading_group.id) }.to raise_error
+  expect { ReadingGroup.find(@reading_group.id) }.to raise_error(KalibroClient::Errors::RecordNotFound)
 end
 
 Then(/^the sample reading group should be there$/) do

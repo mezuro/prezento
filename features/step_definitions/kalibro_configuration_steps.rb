@@ -51,7 +51,7 @@ end
 
 Then(/^the sample configuration should not be there$/) do
   expect(@kalibro_configuration.attributes).to be_nil
-  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error
+  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error(KalibroClient::Errors::RecordNotFound)
 end
 
 Then(/^the sample configuration should be there$/) do

@@ -73,7 +73,7 @@ Then(/^I should be in the Login page$/) do
 end
 
 Then(/^the sample project should not be there$/) do
-  expect { Project.find(@project.id) }.to raise_error
+  expect { Project.find(@project.id) }.to raise_error(KalibroClient::Errors::RecordNotFound)
 end
 
 Then(/^The field "(.*?)" should be filled with the sample project "(.*?)"$/) do |field, value|
