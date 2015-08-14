@@ -20,8 +20,11 @@ describe ReadingGroupsController, :type => :controller do
     context 'with valid fields' do
       let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
       let(:subject_params) { reading_group.to_hash }
+      let(:reading_group_attributes) { mock('reading_group_attributes') }
 
       before :each do
+        User.any_instance.expects(:reading_group_attributes).returns(reading_group_attributes)
+        reading_group_attributes.expects(:create).with(reading_group_id: reading_group.id)
         ReadingGroup.any_instance.expects(:save).returns(true)
       end
 
