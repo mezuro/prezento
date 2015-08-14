@@ -25,6 +25,12 @@ Feature: Metric Configuration Creation
     When I press the Save button
     Then I should see "Total Lines of Code"
     Then I should see "2"
+    And I click the Add Metric link
+    And I click the "Analizo" h3
+    And I click the Total Lines of Code link
+    When I click the Back link
+    Then I should be at the choose metric page
+
   @kalibro_configuration_restart @javascript
   Scenario: ruby metric configuration creation
     Given I am a regular user
@@ -41,13 +47,6 @@ Feature: Metric Configuration Creation
     When I press the Save button
     Then I should see "Pain"
     Then I should see "2"
-
-  @kalibro_configuration_restart @javascript
-    And I click the Add Metric link
-    And I click the "Analizo" h3
-    And I click the Total Lines of Code link
-    When I click the Back link
-    Then I should be at the choose metric page
 
   @kalibro_configuration_restart @javascript
   Scenario: compound metric configuration creation with same code

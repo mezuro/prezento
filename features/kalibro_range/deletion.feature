@@ -21,8 +21,6 @@ Feature: Kalibro Range Deletion
 
   @kalibro_configuration_restart
   Scenario: Should delete a kalibro range I own which belongs to a compound metric configuration
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample compound metric configuration within the given mezuro configuration

@@ -43,7 +43,6 @@ Scenario: repository creation blank validations
 
 @kalibro_configuration_restart @kalibro_processor_restart @javascript
 Scenario: repository creation with name already taken
-  And I have a sample configuration with native metrics
   And I have a sample repository named "KalibroEntities"
   And I am at the New Repository page
   And I fill the Name field with "KalibroEntities"
@@ -58,8 +57,6 @@ Scenario: repository creation with name already taken
 
 @kalibro_configuration_restart @kalibro_processor_restart @javascript
 Scenario: Repository name with whitespaces
-  Given I am a regular user
-  And I am signed in
   And I have a sample repository within the sample project named "Kalibro Entities"
   And I fill the Name field with "   Kalibro Entities  "
   And I set the select field "License" as "ISC License (ISC)"
@@ -72,9 +69,6 @@ Scenario: Repository name with whitespaces
 
 @kalibro_configuration_restart @kalibro_processor_restart @javascript
 Scenario: Create repository without project
-  Given I am a regular user
-  And I am signed in
-  And I have a sample configuration with native metrics
   And I am at the New Repository page
   And I fill the Name field with "Kalibro Client"
   And I set the select field "License" as "ISC License (ISC)"

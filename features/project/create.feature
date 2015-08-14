@@ -38,8 +38,6 @@ Feature: Project Creation
 
   @kalibro_processor_restart
   Scenario: Choosing a name with whitespaces on the beginning and end
-    Given I am a regular user
-    And I am signed in
     And I have a project named "Kalibro Metrics"
     And I am at the New Project page
     And I fill the Name field with "    Kalibro Metrics   "

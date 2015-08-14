@@ -3,7 +3,7 @@ Feature: Metric Configuration Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should delete a metric configuration that I own
     Given I am a regular user
     And I am signed in
@@ -14,7 +14,7 @@ Feature: Metric Configuration Deletion
     And I click destroy Metric Configuration
     Then I should see "There are no Metric Configurations yet!"
 
-  @kalibro_restart
+  @kalibro_configuration_restart
   Scenario: Should not see the destroy metric configuration link in the mezuro configuration that I not own
     Given I am a regular user
     And I am signed in

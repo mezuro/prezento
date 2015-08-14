@@ -34,15 +34,14 @@ Given(/^I have a sample ruby repository within the sample project$/) do
 end
 
 Given(/^I have a sample repository within the sample project named "(.+)"$/) do |name|
-  @repository = FactoryGirl.create(:repository, {project_id: @project.id,
-                                                 kalibro_configuration_id: @kalibro_configuration.id, id: nil, name: name})
+  @repository = FactoryGirl.create(:repository, project_id: @project.id,
+                                                kalibro_configuration_id: @kalibro_configuration.id, name: name)
 end
 
 Given(/^I have a sample repository named "(.+)"$/) do |name|
   @repository = FactoryGirl.create(:repository,
                                    project_id: nil,
                                    kalibro_configuration_id: @kalibro_configuration.id,
-                                   id: nil,
                                    name: name)
 end
 

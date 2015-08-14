@@ -52,7 +52,7 @@ Feature: Project
     And I fill the Name field with "Qt-Calculator"
     When I press the Save button
     Then I should see "Name has already been taken"
-    And I have a sample project_image
+    And I have sample project_attributes
     And I am at the sample project edit page
     And I fill the Name field with " "
     When I press the Save button
