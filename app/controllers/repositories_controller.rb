@@ -73,7 +73,7 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories/1/state_with_date
   def state_with_date
     year, month, day = params[:year], params[:month], params[:day]
-    @processing = Processing.processing_with_date_of(@repository.id, "#{year}-#{month}-#{day}")
+    @processing = @repository.processing_with_date("#{year}-#{month}-#{day}")
 
     respond_to_processing_state
   end

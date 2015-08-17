@@ -4,6 +4,8 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+kalibro_client major update to version 1
+
 == v0.8.0 - 05/08/2015
 
 Travis build reliability improved by disabling jQuery on acceptance tests

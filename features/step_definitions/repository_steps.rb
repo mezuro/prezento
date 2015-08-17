@@ -57,19 +57,19 @@ Given(/^I start to process that repository$/) do
 end
 
 Given(/^I wait up for a ready processing$/) do
-  while !Processing.has_ready_processing(@repository.id)
+  while !@repository.has_ready_processing
     sleep(10)
   end
 end
 
 Given(/^I wait up for the last processing to get ready$/) do
-  while Processing.last_processing_of(@repository.id).state != "READY"
+  while @repository.last_processing.state != "READY"
     sleep(10)
   end
 end
 
 Given(/^I wait up for a error processing$/) do
-  while Processing.last_processing_state_of(@repository.id) != "ERROR"
+  while @repository.last_processing_state != "ERROR"
     sleep(10)
   end
 end
@@ -87,7 +87,7 @@ Given(/^I am at repository edit page$/) do
 end
 
 Given(/^I ask for the last ready processing of the given repository$/) do
-  @processing = Processing.last_ready_processing_of @repository.id
+  @processing = @repository.last_ready_processing
 end
 
 Given(/^I ask for the module result of the given processing$/) do
