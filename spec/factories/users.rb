@@ -12,11 +12,6 @@ FactoryGirl.define do
       password "password"
     end
     
-    factory :mezuro_user do
-      name "Mezuro Default user"
-      email "mezuro@librelist.com"
-    end
-
     trait :with_id do
       sequence(:id, 1)
     end

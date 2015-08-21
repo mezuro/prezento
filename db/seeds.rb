@@ -8,7 +8,7 @@
 
 # Default mezuro user, the owner of the public kalibro configurations
 password = Devise.friendly_token
-default_user = FactoryGirl.create(:mezuro_user, password: password)
+default_user = User.create(name: "Mezuro Default user", email: "mezuro@librelist.com", password: password)
 
 puts "-- Default user created:"
 puts "   Email:    #{default_user.email}"
