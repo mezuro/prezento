@@ -53,6 +53,7 @@ Given(/^I have a sample of an invalid repository within the sample project$/) do
 end
 
 Given(/^I start to process that repository$/) do
+  @repository = @independent_repository if @repository.nil?
   @repository.process
 end
 
@@ -214,4 +215,9 @@ Then(/^the project repository should be there$/) do
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.description)
 end
+
+Then(/^I should be at the Repositories index$/) do
+  expect(page.current_path).to end_with(repositories_path) # We use end_with in order to avoid the language route
+end
+
 
