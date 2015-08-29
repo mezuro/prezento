@@ -66,6 +66,9 @@ gem 'google-analytics-rails', '~> 0.0.6'
 # Browser language detection
 gem 'http_accept_language'
 
+# Use RailsAdmin for an easy-to-use interface managing data
+gem 'rails_admin', '~> 0.6.7'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'
