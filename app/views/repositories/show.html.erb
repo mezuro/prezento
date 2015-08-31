@@ -87,8 +87,8 @@
 
 <hr/>
 
-<%= link_to t('back'),  project_path(@repository.project_id), class: 'btn btn-default' %>
-<% if project_owner? @repository.project_id %>
+<%= link_to t('back'),  repositories_path, class: 'btn btn-default' %>
+<% if repository_owner? @repository.id %>
   <%= link_to t('repository.show.reprocess'), repository_process_path(@repository.id),  class: 'btn btn-info' %>
   <%= link_to t('destroy'), repository_path(@repository.id), method: :delete, data: { confirm: t('sure_destroy', model: Repository.model_name.human) }, class: 'btn btn-danger' %>
 <% end %>

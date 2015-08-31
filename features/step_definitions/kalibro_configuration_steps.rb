@@ -34,6 +34,21 @@ Given(/^I own a configuration named "(.*?)"$/) do |name|
   FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 end
 
+Given(/^I have a sample configuration with ruby native metrics$/) do
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, name: 'Sample Ruby Configuration')
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+
+  reading_group = FactoryGirl.create(:reading_group)
+  reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
+
+  metric_configuration = FactoryGirl.create(:metric_configuration,
+                                            {metric: FactoryGirl.build(:pain),
+                                             reading_group_id: reading_group.id,
+                                             kalibro_configuration_id: @kalibro_configuration.id})
+  range = FactoryGirl.build(:kalibro_range, {reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
+  range.save
+end
+
 When(/^I visit the sample configuration edit page$/) do
   visit edit_kalibro_configuration_path(id: @kalibro_configuration.id)
 end
