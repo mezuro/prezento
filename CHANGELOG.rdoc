@@ -4,7 +4,16 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+
+== v0.8.1 - 01/09/2015
+
+README and humans.txt updated
+Gem updates and dependancy review on Gemfile
+Home text updated
+Fixes bug for showing independent repositories
+FactoryGirl is no longer used by seeds
 kalibro_client major update to version 1
+Translations fixes
 
 == v0.8.0 - 05/08/2015
 
