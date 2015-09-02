@@ -18,5 +18,6 @@
 //= require modules
 //= require repository
 //= require Chart
+//= require js-routes
 //= require_tree .
 //= require colorpicker

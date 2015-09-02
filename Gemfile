@@ -63,6 +63,9 @@ gem 'google-analytics-rails', '~> 0.0.6'
 # Browser language detection
 gem 'http_accept_language'
 
+# Routes for JS files
+gem 'js-routes', '~> 1.1.0'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'

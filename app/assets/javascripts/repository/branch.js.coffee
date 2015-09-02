@@ -47,7 +47,7 @@ class Repository.Branch
     scm_type = $("#repository_scm_type").val()
 
     context = this
-    @request = $.get '/repository_branches',
+    @request = $.get Routes.repository_branches_path(),
       {'url': address, 'scm_type': scm_type},
       (data) ->
         unless data["errors"]

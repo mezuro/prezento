@@ -8,7 +8,7 @@ class Module.Graphic
       drawer.slideUp('slow')
 
   load: ->
-    $.post '/modules/' + @module_id + '/metric_history',
+    $.post Routes.module_metric_history_path(@module_id),
           {
             metric_name: @metric_name,
             container: @container

@@ -2,7 +2,7 @@ class Repository.State
   constructor: (@repository_id) ->
 
   poll_state: (last_state) ->
-    $.get('/repositories/' + @repository_id + '/state',
+    $.get(Routes.repository_state_path(@repository_id),
            last_state: last_state)
 
   schedule_poll_state: (last_state) ->
