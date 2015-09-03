@@ -4,6 +4,9 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+== v0.8.3 - 03/09/2015
+
+Using railsstrap instead of twitter-bootstrap-rails
 
 == v0.8.2 - 03/09/2015
 
