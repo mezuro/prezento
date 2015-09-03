@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/dist/js/bootstrap
 //= require jquery-ui
-//= require twitter/bootstrap
 //= require turbolinks
 //= require modules
 //= require repository

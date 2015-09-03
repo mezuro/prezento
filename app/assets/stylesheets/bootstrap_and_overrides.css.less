@@ -1,0 +1,95 @@
+/*
+ Bootstrap
+ This line imports bootstrap, modified to use glyphicons from Cloudflare CDN.
+*/
+@import "bootstrap";
+
+/*
+ Glyphicons - included by default in bootstrap.
+ If for any reason you prefer to have them as part of the asset pipeline, uncomment this.
+ If you choose to use this, open config/initializers/assets.rb (rails 4) and add this line:
+ Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg )
+*/
+
+// @import "glyphicons";
+
+/*
+  FontAwesome is hosted via CDN as well. If you prefer to have them included in the asset
+  pipeline, comment this out and see the next section.
+*/
+@import 'fontawesome';
+
+/*
+ Font Awesome
+ If for some reason you want fontawesome as part of the asset pipeline, comment out
+ the above refererence and uncomment the following lines. If you choose to use this, open
+ config/initializers/assets.rb (rails 4) and add this line:
+ Rails.application.config.assets.precompile += %w( *.eot *.woff *.ttf *.svg )
+*/
+
+//@import 'fontawesome-local';
+
+//If you want exotic placement features, animations, and more, import this:
+@import "railsstrap";
+
+/*
+ Date and Time Picker (https://github.com/toadkicker/railsstrap/wiki/Date-and-Time-Picker)
+ To enable the date and time picker, uncomment this line:
+ Don't forget to include the javascript library as well.
+*/
+
+//@import "datepicker/datepicker";
+
+footer div {
+  width: 50%;
+}
+
+.footer-right {
+  float: right;
+  text-align: right;
+}
+
+.footer-left {
+  float: left;
+}
+
+#error_explanation {
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+  color: #B94A48;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 20px;
+  padding: 8px 35px 8px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.field_with_errors .control-label{
+  color: #B94A48;
+}
+
+.field_with_errors .form-control{
+  border-color: #B94A48;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+.popover-title{
+  font-weight: bolder;
+}
+
+.jquery-ui-accordion{
+  line-height: normal; /*overrides h3 line-height specifically for the accordion ones*/
+}
+
+.nav-header{
+    display: block;
+    padding: 3px 15px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #999999;
+    text-transform: uppercase;
+}
+
+dd {
+    margin-left: 40px !important;
+}
