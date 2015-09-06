@@ -10,10 +10,10 @@ describe User, :type => :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_many(:project_attributes) }
-    it { is_expected.to have_many(:reading_group_attributes) }
-    it { is_expected.to have_many(:kalibro_configuration_attributes) }
-    it { is_expected.to have_many(:repository_attributes) }
+    it { is_expected.to have_many(:project_attributes).dependent(:destroy) }
+    it { is_expected.to have_many(:reading_group_attributes).dependent(:destroy) }
+    it { is_expected.to have_many(:kalibro_configuration_attributes).dependent(:destroy) }
+    it { is_expected.to have_many(:repository_attributes).dependent(:destroy) }
   end
 
   describe 'methods' do
