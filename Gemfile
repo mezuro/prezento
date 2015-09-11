@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 3.5.1'
 
 # Kalibro integration
-gem 'kalibro_client', git: 'https://github.com/mezuro/kalibro_client.git', branch: 'create_kalibro_range_range'
+gem 'kalibro_client', '~> 1.4'
 
 # PostgreSQL integration
 gem "pg", "~> 0.18.1"
