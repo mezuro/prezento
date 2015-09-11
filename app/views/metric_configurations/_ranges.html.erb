@@ -5,8 +5,8 @@
       <span style="color: #<%= kalibro_range.color %>"><%= kalibro_range.label %></span>
     </div>
   </td>
-  <td><%= kalibro_range.beginning %></td>
-  <td><%= kalibro_range.end %></td>
+  <td><%= format_boundary(kalibro_range.beginning) %></td>
+  <td><%= format_boundary(kalibro_range.end) %></td>
   <td>
     <% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
       <%= link_to t('edit'), edit_kalibro_configuration_metric_configuration_kalibro_range_path(

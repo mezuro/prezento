@@ -46,7 +46,6 @@ class KalibroRangesController < ApplicationController
   private
 
   def kalibro_range_params
-    params[:kalibro_range][:beginning] = params[:kalibro_range][:beginning].to_f.to_s if numeric?(params[:kalibro_range][:beginning]) # this is necessary for the beginning validator
     params[:kalibro_range]
   end
 
@@ -85,11 +84,6 @@ class KalibroRangesController < ApplicationController
   def get_url_params
     @kalibro_configuration_id = params[:kalibro_configuration_id].to_i
     @metric_configuration_id = params[:metric_configuration_id].to_i
-  end
-
-  # used on kalibro_range_params
-  def numeric?(text)
-    Float(text) != nil rescue false
   end
 
   def set_kalibro_range
