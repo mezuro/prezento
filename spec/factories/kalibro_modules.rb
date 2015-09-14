@@ -11,7 +11,17 @@ FactoryGirl.define do
       granlrty 'CLASS'
     end
 
+    trait :function do
+      granlrty 'FUNCTION'
+    end
+
+    trait :method do
+      granlrty 'METHOD'
+    end
+
     factory :kalibro_module_package, traits: [:package]
     factory :kalibro_module_class, traits: [:class]
+    factory :kalibro_module_function, traits: [:function]
+    factory :kalibro_module_method, traits: [:method]
   end
 end
