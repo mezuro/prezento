@@ -202,7 +202,7 @@ GEM
     ntlm-http (0.1.1)
     orm_adapter (0.5.0)
     pg (0.18.3)
-    poltergeist (1.6.0)
+    poltergeist (1.7.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
@@ -358,7 +358,7 @@ DEPENDENCIES
   less-rails (~> 2.7.0)
   mocha
   pg (~> 0.18.1)
-  poltergeist (~> 1.6.0)
+  poltergeist (~> 1.7.0)
   rails (= 4.2.4)
   rails-html-sanitizer (~> 1.0)
   railsstrap (~> 3.3.4)
