@@ -139,7 +139,7 @@ GEM
     i18n_generators (2.0.0)
       mechanize
       rails (>= 3.0.0)
-    jbuilder (2.3.1)
+    jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (4.0.5)
