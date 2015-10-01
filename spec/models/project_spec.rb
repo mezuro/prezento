@@ -52,9 +52,9 @@ describe Project, :type => :model do
         end
 
         it 'is expected to clean the attributes memoization' do
-          pending 'broke after kalibro client major update'
           # Call attributes once so it memoizes
           ProjectAttributes.expects(:find_by).with(project_id: project.id).returns(project_attributes)
+          KalibroClient::Entities::Processor::Project.any_instance.expects(:destroy).returns(project)
           expect(project.attributes).to eq(project_attributes)
 
           # Destroying

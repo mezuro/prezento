@@ -85,9 +85,9 @@ describe KalibroConfiguration, :type => :model do
         end
 
         it 'is expected to clean the attributes memoization' do
-          pending 'broke after kalibro client major update'
           # Call attributes once so it memoizes
           KalibroConfigurationAttributes.expects(:find_by).with(kalibro_configuration_id: kalibro_configuration.id).returns(kalibro_configuration_attributes)
+          KalibroClient::Entities::Configurations::KalibroConfiguration.any_instance.expects(:destroy).returns(kalibro_configuration)
           expect(kalibro_configuration.attributes).to eq(kalibro_configuration_attributes)
 
           # Destroying
