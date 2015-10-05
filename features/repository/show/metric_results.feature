@@ -3,7 +3,7 @@ Feature: Repository metric results
   As a regular user
   I should see the metric results table with its graphics
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the message when the graphic of the given metric has only a single point
     Given I am a regular user
     And I am signed in
@@ -20,8 +20,6 @@ Feature: Repository metric results
     And I see a sample metric's name
     And I click on the sample metric's name
     Then I should see "Loading data. Please, wait."
-    When I wait up for the ajax request
-    Then I should see "There is only one point and it will not be printed into a chart."
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show no range message after a process without range
