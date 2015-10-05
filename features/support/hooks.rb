@@ -15,3 +15,8 @@ Before do |scenario|
 
   I18n.locale = I18n.default_locale
 end
+
+AfterConfiguration do |config|
+  KalibroClient::KalibroCucumberHelpers.clean_configurations
+  KalibroClient::KalibroCucumberHelpers.clean_processor
+end
