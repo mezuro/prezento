@@ -23,7 +23,7 @@ Feature: Repository metric results
     When I wait up for the ajax request
     Then I should see "There is only one point and it will not be printed into a chart."
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show no range message after a process without range
     Given I am a regular user
     And I am signed in
