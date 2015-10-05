@@ -3,7 +3,7 @@ Feature: Date Select
   As a regular user
   I should be able to navigate within it
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: With a idenpendent repository
     Given I am a regular user
     And I am signed in
