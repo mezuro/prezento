@@ -26,6 +26,7 @@ pt:
     errors:
       repository:
         no_metric_results: "O processamento do Repósitório retornou um erro. Não há Resultados de Métrica."
+        no_hotspot_metric_results: "O processamento do Repósitório retornou um erro. Não há Resultados de Métricas de Hotspot."
         no_modeule_tree: "Repository process returned with error. Não há uma Árvore de Módulos."
         unstarted_processing: "Este Repositório ainda não tem Processamentos. Por favor, aguarde um instante enquanto o iniciamos."
   repository:
@@ -33,6 +34,7 @@ pt:
       reprocess: "Reprocessar"
       processing_information: "Informação do Processamento"
       modules_tree: "Árvore de Módulos"
+      hotspot_metric_results: "Resultados de Métricas de Hotspot"
       metric_results: "Resultados de Métrica"
       loading: "Carregando os dados. Por favor, aguarde."
       date_processing: "Obtenha a informação de processamento mais próxima a"

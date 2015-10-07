@@ -64,6 +64,11 @@
     <div id="module_tree"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
   </div>
 
+  <div id="hotspot-metric-accordion">
+    <h3 class="jquery-ui-accordion"><%= t('repository.show.hotspot_metric_results') %></h3>
+    <div id="hotspot_metric_results"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
+  </div>
+
   <div id="metric-accordion">
     <h3 class="jquery-ui-accordion"><%= t('repository.show.metric_results') %></h3>
     <div id="metric_results"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
@@ -81,6 +86,7 @@
       collapsible: true,
     });
     $("#module-accordion").accordion({active: false})
+    $("#hotspot-metric-accordion").accordion({active: false})
     $("#metric-accordion").accordion({active: false})
   });
 </script>

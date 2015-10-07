@@ -25,7 +25,8 @@ en:
         branch: "The branch to be analyzed."
     errors:
       repository:
-        no_metric_results: "Repository process returned with error. There are no metric results."
+        no_metric_results: "Repository process returned with error. There are no tree metric results."
+        no_hotspot_metric_results: "Repository process returned with error. There are no hotspot metric results."
         no_modeule_tree: "Repository process returned with error. There is no module tree."
         unstarted_processing: "This Repository has no processings yet. Please, wait an instant as we start it."
   repository:
@@ -33,6 +34,7 @@ en:
       reprocess: "Reprocess"
       processing_information: "Processing Information"
       modules_tree: "Modules Tree"
-      metric_results: "Metric Results"
+      hotspot_metric_results: "Hotspot Metric Results"
+      metric_results: "Tree Metric Results"
       loading: "Loading data. Please, wait."
       date_processing: "Retrieve the closest processing information from"

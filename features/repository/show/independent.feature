@@ -22,7 +22,7 @@ Feature: Date Select
     And I should see "AGGREGATING time"
     And I should see "CALCULATING time"
     And I should see "INTERPRETING time"
-    When I click the "Metric Results" h3
+    When I click the "Tree Metric Results" h3
     And I click the "Modules Tree" h3
     Then I should see "Metric"
     And I should see "Value"
