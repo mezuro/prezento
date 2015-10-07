@@ -35,4 +35,8 @@ FactoryGirl.define do
     kalibro_configuration_id 1
   end
 
+  factory :hotspot_metric_configuration, class: MetricConfiguration do
+    metric { FactoryGirl.build(:hotspot_metric) }
+    kalibro_configuration_id 1
+  end
 end

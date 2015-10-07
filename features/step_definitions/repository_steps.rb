@@ -99,6 +99,10 @@ Given(/^I ask for the metric results of the given module result$/) do
   @metric_results = @module_result.tree_metric_results
 end
 
+Given(/^I ask for the hotspot metric results of the given module result$/) do
+  @metric_results = @module_result.hotspot_metric_results
+end
+
 Given(/^I see a sample metric's name$/) do
   expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
 end
@@ -219,5 +223,3 @@ end
 Then(/^I should be at the Repositories index$/) do
   expect(page.current_path).to end_with(repositories_path) # We use end_with in order to avoid the language route
 end
-
-

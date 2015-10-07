@@ -17,3 +17,6 @@ en:
         name: "Name"
         granularity: "Granularity"
         grade: "Grade"
+      hotspot_metric_result:
+        line: "Line"
+        message: "Message"
