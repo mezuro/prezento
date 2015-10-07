@@ -11,7 +11,6 @@
       Eduardo Silva Araújo (duduktamg at hotmail.com>)
       Heitor Reis Ribeiro (marcheing at gmail.com)
       Paulo Meirelles (paulo at softwarelivre.org)
-      Pedro Scocco (pedroscocco at gmail.com)
       Rafael Reggiani Manzo (rr.manzo at gmail.com)
 
 # THANKSs
@@ -23,6 +22,7 @@
       Fellipe Souto Sampaio (fllsouto at gmail.com)
       Guilherme Rojas (guilhermehrojas at gmail.com)
       João M. M. Silva (jaodsilv at linux.ime.usp.br)
+      Pedro Scocco (pedroscocco at gmail.com)
       Renan Fichberg (rfichberg at gmail.com)
 
     UnB Software Evolution Team 2015
