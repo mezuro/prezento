@@ -37,6 +37,8 @@ describe MetricConfigurationsController, :type => :controller do
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
         metric_collector.expects(:find_metric_by_code).with(native_metric.code).returns(native_metric)
+        Statistic.expects(:metric_percentage).with(native_metric.code).returns({"metric_percentage" => 0})
+
         post :new, kalibro_configuration_id: kalibro_configuration.id, metric_code: native_metric.code, metric_collector_name: metric_collector.name
       end
 
@@ -103,6 +105,7 @@ describe MetricConfigurationsController, :type => :controller do
       ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
       MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
       metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
+      Statistic.expects(:metric_percentage).with(metric_configuration.metric.code).returns({"metric_percentage" => 0})
 
       get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
     end

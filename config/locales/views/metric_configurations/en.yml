@@ -36,6 +36,7 @@ en:
   reading_group_helper_html: "The %{href} associated with this metric."
   no_models: "There are no %{model} yet!"
   choose_metric: "Choose a metric from a Base Tool:"
+  usage_percentage: "Usage percentage"
   scopes:
     METHOD: "Method"
     CLASS: "Class"

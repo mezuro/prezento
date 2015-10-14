@@ -89,3 +89,15 @@ Feature: Metric Configuration Creation
     When I press the Save button
     Then I should see "Lines of Code"
     Then I should see "100"
+
+  @kalibro_configuration_restart @javascript
+  Scenario: I should see percentage of use of the metric
+    Given I am a regular user
+    And I am signed in
+    And I own a sample configuration
+    And I have a reading group named "Scholar"
+    And I am at the Sample Configuration page
+    And I click the Add Metric link
+    And I click the "MetricFu" h3
+    And I click the Pain link
+    Then I should see "Usage percentage"

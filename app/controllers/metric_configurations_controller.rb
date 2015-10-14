@@ -12,6 +12,12 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     @reading_groups = ReadingGroup.public_or_owned_by_user(current_user).map { |reading_group|
       [reading_group.name, reading_group.id]
     }
+    usage_percentage(params[:metric_code])
+  end
+
+  def show
+    super
+    usage_percentage(metric_configuration.metric.code)
   end
 
   def create
@@ -82,5 +88,10 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     else
       failed_action(format, 'new')
     end
+  end
+
+  # Show statistics on new and show methods
+  def usage_percentage(metric_code)
+    @statistic = Statistic.metric_percentage(metric_code)["metric_percentage"]
   end
 end
