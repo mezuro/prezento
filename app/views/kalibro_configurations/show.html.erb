@@ -8,11 +8,11 @@
 </p>
 
 <hr>
-<div id="metrics">
-<h2><%= t('metric').pluralize %></h2>
 <% if kalibro_configuration_owner? @kalibro_configuration.id %>
   <%= link_to t_action(:add, MetricConfiguration), kalibro_configuration_choose_metric_path(@kalibro_configuration.id), class: 'btn btn-info' %>
 <% end %>
+<div id="tree_metrics">
+<h2><%= t('tree_metric').pluralize %></h2>
 
 <table class="table table-hover">
   <thead>
@@ -24,10 +24,10 @@
     </tr>
   </thead>
   <tbody>
-    <% if Rails.cache.read("#{@kalibro_configuration.id}_metric_configurations").empty? %>
+    <% if Rails.cache.read("#{@kalibro_configuration.id}_tree_metric_configurations").empty? %>
       <%= render partial: 'no_metric_configurations' %>
     <% else %>
-      <%= render partial: 'metric_configurations', collection: Rails.cache.read("#{@kalibro_configuration.id}_metric_configurations"), as: :metric_configuration %>
+      <%= render partial: 'metric_configurations', collection: Rails.cache.read("#{@kalibro_configuration.id}_tree_metric_configurations"), as: :metric_configuration %>
     <% end %>
   </tbody>
 </table>
@@ -35,6 +35,27 @@
 
 <hr>
 
+<div id="hotspot_metrics">
+<h2><%= t('hotspot_metric').pluralize %></h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= t('metric') %></th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if Rails.cache.read("#{@kalibro_configuration.id}_hotspot_metric_configurations").empty? %>
+      <%= render partial: 'no_metric_configurations' %>
+    <% else %>
+      <%= render partial: 'metric_configurations', collection: Rails.cache.read("#{@kalibro_configuration.id}_hotspot_metric_configurations"), as: :metric_configuration %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<hr>
 <p>
  <%= link_to t('back'), kalibro_configurations_path, class: 'btn btn-default' %>
  <% if kalibro_configuration_owner? @kalibro_configuration.id %>

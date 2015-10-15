@@ -28,8 +28,11 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations/1
   # GET /kalibro_configurations/1.json
   def show
-    Rails.cache.fetch("#{@kalibro_configuration.id}_metric_configurations") do
-       @kalibro_configuration.metric_configurations
+    Rails.cache.fetch("#{@kalibro_configuration.id}_tree_metric_configurations") do
+      @kalibro_configuration.tree_metric_configurations
+    end
+    Rails.cache.fetch("#{@kalibro_configuration.id}_hotspot_metric_configurations") do
+      @kalibro_configuration.hotspot_metric_configurations
     end
   end
 
