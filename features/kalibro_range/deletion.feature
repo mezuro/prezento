@@ -3,10 +3,12 @@ Feature: Kalibro Range Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_configuration_restart
-  Scenario: Should delete a kalibro range I own which belongs to a metric configuration
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_configuration_restart
+  Scenario: Should delete a range that I own
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -19,8 +21,6 @@ Feature: Kalibro Range Deletion
 
   @kalibro_configuration_restart
   Scenario: Should delete a kalibro range I own which belongs to a compound metric configuration
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample compound metric configuration within the given mezuro configuration
@@ -33,8 +33,6 @@ Feature: Kalibro Range Deletion
 
   @kalibro_configuration_restart
   Scenario: Should not see the destroy kalibro range link in the kalibro range that I do not own
-    Given I am a regular user
-    And I am signed in
     And I have a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration

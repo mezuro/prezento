@@ -3,10 +3,12 @@ Feature: Metric Configuration edition
   As a regular user
   I should edit the informations of metric configurations
 
-  @kalibro_configuration_restart
-  Scenario: the configuration is not mine
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_configuration_restart
+  Scenario: the configuration is not mine
     And I have a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -15,8 +17,6 @@ Feature: Metric Configuration edition
 
   @kalibro_configuration_restart
   Scenario: editing a metric configuration successfully
-    Given I am a regular user
-    And I am signed in
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -27,9 +27,7 @@ Feature: Metric Configuration edition
     Then I should see "3.0"
 
   @kalibro_configuration_restart
-  Scenario: trying to edit with blank fields
-    Given I am a regular user
-    And I am signed in
+  Scenario: trying to edit with blank fields and should not edit a metric configuration with invalid weight
     And I own a sample configuration
     And I have a sample reading group
     And I have a sample metric configuration within the given mezuro configuration
@@ -37,16 +35,9 @@ Feature: Metric Configuration edition
     And I fill the Weight field with " "
     And I press the Save button
     Then I should see "Weight must be greater than 0"
-
-  @kalibro_configuration_restart
-  Scenario: Should not edit a metric configuration with invalid weight
-    Given I am a regular user
-    And I am signed in
-    And I own a sample configuration
-    And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
     When I visit the sample metric configuration edit page
     And I fill the Weight field with "0"
     And I set the select field "Aggregation Form" as "Median"
     When I press the Save button
     Then I should see "Weight must be greater than 0"
+

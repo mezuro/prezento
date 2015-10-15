@@ -21,17 +21,12 @@ Feature: Configuration listing
     Then I should see the sample metric configuration content
 
   @kalibro_configuration_restart
-  Scenario: I should see the add metric link when I am the owner of the given configuration
+  Scenario: I should see the add metric link when I am the owner of the given configuration and not see the add metric link
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
     When I am at the Sample Configuration page
     Then I should see "Add Metric"
-
-  @kalibro_configuration_restart
-  Scenario: I should not see the add metric link when I am at a given configuration page
-    Given I am a regular user
-    And I am signed in
     And I have a sample configuration
     When I am at the Sample Configuration page
     Then I should not see "Add Metric"

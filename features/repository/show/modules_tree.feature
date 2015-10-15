@@ -51,7 +51,7 @@ Feature: Repository modules tree
     When I visit the repository show page
     And I click the "Modules Tree" h3
     And I click on the sample child's name
-    Then I should see a sample child's name
+    Then I should see a sample child's namegit s
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show modules directories root when the process has been finished

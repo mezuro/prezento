@@ -4,7 +4,7 @@ Feature: Create Kalibro Range
   I should be able to fill up a form with its informations and submit it
 
   @kalibro_configuration_restart
-  Scenario: Visiting kalibro range creation page when the user owns a non-empty reading group
+  Scenario: Visiting range creation page when the user own an non-empty reading group
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
@@ -205,4 +205,3 @@ Feature: Create Kalibro Range
     Then I should be at compound metric configuration sample page
     And I should see "-INF"
     And I should see "INF"
-

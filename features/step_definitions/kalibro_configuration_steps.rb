@@ -11,14 +11,13 @@ Given(/^I have a configuration named "(.*?)"$/) do |name|
 end
 
 Given(/^I have a sample configuration$/) do
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, name: "Sample Configuration")
   FactoryGirl.create(:kalibro_configuration_attributes, user_id: FactoryGirl.create(:another_user).id, kalibro_configuration_id: @kalibro_configuration.id)
-
 end
 
 Given(/^I own a sample configuration$/) do
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
-  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, name: "Owned Sample Configuration")
+  FactoryGirl.create(:kalibro_configuration_attributes, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id)
 end
 
 Given(/^I am at the Sample Configuration page$/) do
@@ -30,8 +29,8 @@ Given(/^I am at the sample configuration edit page$/) do
 end
 
 Given(/^I own a configuration named "(.*?)"$/) do |name|
-  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, {name: name})
-  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, name: name)
+  FactoryGirl.create(:kalibro_configuration_attributes, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id)
 end
 
 Given(/^I have a sample configuration with ruby native metrics$/) do
@@ -67,7 +66,7 @@ end
 
 Then(/^the sample configuration should not be there$/) do
   expect(@kalibro_configuration.attributes).to be_nil
-  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error
+  expect { KalibroConfiguration.find(@kalibro_configuration.id) }.to raise_error(KalibroClient::Errors::RecordNotFound)
 end
 
 Then(/^the sample configuration should be there$/) do

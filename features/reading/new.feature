@@ -3,10 +3,12 @@ Feature: New reading
   As a metric specialist
   I should be able to fill up a form with its informations and submit it
 
-  @kalibro_configuration_restart
-  Scenario: Visiting reading creation page
+  Background: Regular user and signed in
     Given I am a regular user
     And I am signed in
+
+  @kalibro_configuration_restart
+  Scenario: Visiting reading creation page
     And I own a sample reading group
     And I visit the Sample Reading Group page
     When I click the New Reading link
@@ -18,8 +20,6 @@ Feature: New reading
 
   @kalibro_configuration_restart
   Scenario: With valid fields
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
@@ -30,8 +30,6 @@ Feature: New reading
 
   @kalibro_configuration_restart @javascript
   Scenario: Checking color picker existence
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I am at the New Reading page
     When I press the Pick color button
@@ -39,8 +37,6 @@ Feature: New reading
 
   @kalibro_configuration_restart @javascript
   Scenario: Selecting a valid color with color picker
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
@@ -52,8 +48,6 @@ Feature: New reading
 
   @kalibro_configuration_restart
   Scenario: With an existing label (Label uniqueness test)
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group labeled "My Reading"
     And I am at the New Reading page
@@ -65,9 +59,7 @@ Feature: New reading
     And I should be at the New Reading page
 
   @kalibro_configuration_restart
-  Scenario: With an invalid grade
-    Given I am a regular user
-    And I am signed in
+  Scenario: With an invalid grade and invalid color
     And I own a sample reading group
     And I am at the New Reading page
     And I fill the Label field with "My Reading"
@@ -76,13 +68,6 @@ Feature: New reading
     When I press the Save button
     Then I should see "Grade is not a number"
     And I should be at the New Reading page
-
-  @kalibro_configuration_restart @javascript
-  Scenario: With an invalid color
-    Given I am a regular user
-    And I am signed in
-    And I own a sample reading group
-    And I am at the New Reading page
     And I fill the Label field with "My Reading"
     And I fill the Grade field with "1"
     And I fill the Color field with "z"
@@ -92,8 +77,6 @@ Feature: New reading
 
   @kalibro_configuration_restart
   Scenario: Label with whitespaces
-    Given I am a regular user
-    And I am signed in
     And I own a sample reading group
     And I have a sample reading within the sample reading group labeled "My Reading"
     And I am at the New Reading page
