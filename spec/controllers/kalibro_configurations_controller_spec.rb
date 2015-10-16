@@ -73,7 +73,8 @@ describe KalibroConfigurationsController, :type => :controller do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
     before :each do
-      kalibro_configuration.expects(:metric_configurations).returns(metric_configuration)
+      kalibro_configuration.expects(:tree_metric_configurations).returns([metric_configuration])
+      kalibro_configuration.expects(:hotspot_metric_configurations).returns([])
       KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
 
       get :show, :id => kalibro_configuration.id
