@@ -23,6 +23,16 @@ Given(/^I have a sample configuration with MetricFu metrics$/) do
                                              kalibro_configuration_id: @kalibro_configuration.id})
 end
 
+Given(/^I have a tree metric configuration$/) do
+  @tree_metric_configuration = FactoryGirl.create(:metric_configuration_with_id,
+    {kalibro_configuration_id: @kalibro_configuration.id, metric: FactoryGirl.build(:hotspot_metric)})
+end
+
+Given(/^I have a hotspot metric configuration$/) do
+  @hotspot_metric_configuration = FactoryGirl.create(:metric_configuration_with_id,
+    {kalibro_configuration_id: @kalibro_configuration.id, metric: FactoryGirl.build(:pain)})
+end
+
 When(/^I visit the sample metric configuration edit page$/) do
   visit edit_kalibro_configuration_metric_configuration_path(kalibro_configuration_id: @metric_configuration.kalibro_configuration_id, id: @metric_configuration.id)
 end
@@ -54,6 +64,16 @@ end
 
 Then(/^I should be at the choose metric page$/) do
   expect(page).to have_content("Choose a metric from a Base Tool:")
+end
+
+Then(/^the tree configuration should be there$/) do
+  expect(page).to have_content(@tree_metric_configuration.metric.name)
+  expect(page).to have_content(@tree_metric_configuration.metric.code)
+end
+
+Then(/^the hotspot configuration should be there$/) do
+  expect(page).to have_content(@hotspot_metric_configuration.metric.name)
+  expect(page).to have_content(@hotspot_metric_configuration.metric.code)
 end
 
 When(/^I click destroy Metric Configuration$/) do
