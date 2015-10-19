@@ -14,7 +14,7 @@ Feature: Compound Metric Configuration edition
     When I am at the Sample Configuration page
     Then I should not see Edit within table
 
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: editing a compound metric configuration successfully
     Given I am a regular user
     And I am signed in
@@ -30,7 +30,7 @@ Feature: Compound Metric Configuration edition
     Then I should see "Another_code"
     And I should see "Compound Metric Configuration was successfully updated."
 
-  @kalibro_configuration_restart@javascript
+  @kalibro_configuration_restart @javascript
   Scenario: trying to edit with blank fields
     Given I am a regular user
     And I am signed in

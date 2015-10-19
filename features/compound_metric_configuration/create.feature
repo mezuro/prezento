@@ -29,7 +29,7 @@ Feature: Compound Metric Configuration Creation
     And I should see "mcm"
     And I should see "8"
 
-  @kalibro_configuration_restart @javascript @wip
+  @kalibro_configuration_restart @javascript
   Scenario: compound metric configuration creation with same code
     Given I am a regular user
     And I am signed in
