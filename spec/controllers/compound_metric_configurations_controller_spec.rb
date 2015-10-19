@@ -43,6 +43,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
     context 'when the current user owns the reading group' do
       before :each do
         subject.expects(:kalibro_configuration_owner?).returns true
+        Rails.cache.expects(:delete).with("#{kalibro_configuration.id}_tree_metric_configurations")
       end
 
       context 'with valid fields' do
@@ -134,6 +135,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       context 'when user owns the metric configuration' do
         before :each do
           subject.expects(:metric_configuration_owner?).returns true
+          Rails.cache.expects(:delete).with("#{kalibro_configuration.id}_tree_metric_configurations")
         end
 
         context 'with valid fields' do
@@ -170,5 +172,4 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       end
     end
   end
-
 end
