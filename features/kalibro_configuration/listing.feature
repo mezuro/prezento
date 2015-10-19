@@ -20,7 +20,7 @@ Feature: Configuration listing
     Then the sample configuration should be there
     And I should not see "You must be logged in to create configurations."
 
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: Should show the existing configuration
     Given I am a regular user
     And I am signed in

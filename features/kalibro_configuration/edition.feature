@@ -39,7 +39,7 @@ Feature: Configuration
     Then The field "kalibro_configuration[name]" should be filled with the sample configuration "name"
     And The field "kalibro_configuration[description]" should be filled with the sample configuration "description"
 
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: With valid attributes
     Given I am a regular user
     And I am signed in
@@ -62,7 +62,7 @@ Feature: Configuration
     When I press the Save button
     Then I should see "Name has already been taken"
 
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: Editing just the description
     Given I am a regular user
     And I am signed in
