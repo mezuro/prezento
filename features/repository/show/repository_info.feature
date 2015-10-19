@@ -20,7 +20,7 @@ Feature: Show Repository
     And I should see "License"
     And I should see the given repository's content
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: With a ready processing and asking to reprocess
     Given I am a regular user
     And I am signed in
