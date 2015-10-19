@@ -3,7 +3,7 @@ Feature: Repository hotspot metric results
   As a regular user
   I should see the hotspot metric results list
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the message when the graphic of the given metric has only a single point
     Given I am a regular user
     And I am signed in
@@ -17,7 +17,8 @@ Feature: Repository hotspot metric results
     And I ask for the hotspot metric results of the given module result
     When I visit the repository show page
     And I click the "Hotspot Metric Results" h3
-    Then I should see a list of hotspot metric results
+    Then I should have at least one hotspot metric result
+    And I should see the hotspot metric results messages
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the error message when the process fails

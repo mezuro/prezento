@@ -223,3 +223,14 @@ end
 Then(/^I should be at the Repositories index$/) do
   expect(page.current_path).to end_with(repositories_path) # We use end_with in order to avoid the language route
 end
+
+Then(/^I should have at least one hotspot metric result$/) do
+  expect(@metric_results.count).to be > 0
+end
+
+Then(/^I should see the hotspot metric results messages$/) do
+  @metric_results.each do |metric_result|
+    expect(page).to have_content(metric_result.message)
+  end
+end
+
