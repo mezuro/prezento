@@ -3,7 +3,7 @@ Feature: Compound Metric Configuration edition
   As a regular user
   I should edit the informations of compound metric configurations
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @wip
   Scenario: the configuration is not mine
     Given I am a regular user
     And I am signed in
@@ -14,7 +14,7 @@ Feature: Compound Metric Configuration edition
     When I am at the Sample Configuration page
     Then I should not see Edit within table
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @wip
   Scenario: editing a compound metric configuration successfully
     Given I am a regular user
     And I am signed in

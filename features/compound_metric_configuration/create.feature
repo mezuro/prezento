@@ -3,7 +3,7 @@ Feature: Compound Metric Configuration Creation
   As a regular user
   I should be able to create compound metric configurations
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: compound metric configuration creation
     Given I am a regular user
     And I am signed in
@@ -29,7 +29,7 @@ Feature: Compound Metric Configuration Creation
     And I should see "mcm"
     And I should see "8"
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: compound metric configuration creation with same code
     Given I am a regular user
     And I am signed in

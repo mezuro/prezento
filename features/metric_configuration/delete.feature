@@ -3,7 +3,7 @@ Feature: Metric Configuration Deletion
   As a regular user
   The system should have an interface to it
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @wip
   Scenario: Should delete a metric configuration that I own
     Given I am a regular user
     And I am signed in

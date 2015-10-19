@@ -17,7 +17,7 @@ Feature: Configuration Deletion
     When I am at the Sample Configuration page
     Then I should not see "Destroy"
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @wip
   Scenario: Should delete a configuration that I own
     Given I am a regular user
     And I am signed in

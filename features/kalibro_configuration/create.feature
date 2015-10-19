@@ -8,7 +8,7 @@ Feature: Configuration Creation
     Given I am at the All Configurations page
     Then I should not see "New Configuration"
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @wip
   Scenario: configuration creation
     Given I am a regular user
     And I am signed in

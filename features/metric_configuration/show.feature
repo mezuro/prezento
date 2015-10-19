@@ -3,7 +3,7 @@ Feature: Show Metric Configuration
   As a regular user
   I should be able to see each of them
 
-  @kalibro_configuration_restart
+  @kalibro_configuration_restart @wip
   Scenario: Checking metric configuration show link
     Given I have a sample configuration
     And I have a sample reading group

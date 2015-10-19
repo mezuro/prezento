@@ -9,7 +9,7 @@ Feature: Metric Configuration Creation
     And I am at the Sample Configuration page
     Then I should not see "New Metric Configuration"
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: metric configuration creation
     Given I am a regular user
     And I am signed in
@@ -26,7 +26,7 @@ Feature: Metric Configuration Creation
     Then I should see "Total Lines of Code"
     Then I should see "2"
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: ruby metric configuration creation
     Given I am a regular user
     And I am signed in
@@ -43,7 +43,7 @@ Feature: Metric Configuration Creation
     Then I should see "Pain"
     Then I should see "2"
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: metric configuration creation
     Given I am a regular user
     And I am signed in
@@ -56,7 +56,7 @@ Feature: Metric Configuration Creation
     When I click the Back link
     Then I should be at the choose metric page
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: compound metric configuration creation with same code
     Given I am a regular user
     And I am signed in
@@ -73,7 +73,7 @@ Feature: Metric Configuration Creation
     When I press the Save button
     Then I should see "Code must be unique within a kalibro configuration"
 
-  @kalibro_configuration_restart @javascript
+  @kalibro_configuration_restart @javascript @wip
   Scenario: metric configuration creation with count aggregation form
     Given I am a regular user
     And I am signed in
