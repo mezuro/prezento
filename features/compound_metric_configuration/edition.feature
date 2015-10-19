@@ -3,7 +3,7 @@ Feature: Compound Metric Configuration edition
   As a regular user
   I should edit the informations of compound metric configurations
 
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: the configuration is not mine
     Given I am a regular user
     And I am signed in
@@ -12,7 +12,7 @@ Feature: Compound Metric Configuration edition
     And I have a sample metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
-    Then I should not see Edit within table
+    Then I should not find "Edit" within "table#tree_metric_configurations"
 
   @kalibro_configuration_restart
   Scenario: editing a compound metric configuration successfully
