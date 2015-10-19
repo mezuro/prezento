@@ -51,7 +51,7 @@ Feature: Repository modules tree
     And I click on the sample child's name
     Then I should see a sample child's name
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show modules directories root when the process has been finished
     Given I am a regular user
     And I am signed in
@@ -64,4 +64,5 @@ Feature: Repository modules tree
     And I ask for the module result of the given processing
     When I visit the repository show page
     And I click the "Modules Tree" h3
+    And I take a picture of the page
     Then I should see the given module result
