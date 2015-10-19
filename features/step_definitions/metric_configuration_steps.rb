@@ -77,5 +77,5 @@ Then(/^the hotspot configuration should be there$/) do
 end
 
 When(/^I click destroy Metric Configuration$/) do
-  find('#metrics').first(:link, "Destroy").click
+  find('#tree_metrics').first(:link, "Destroy").click
 end
