@@ -12,7 +12,7 @@ Feature: Metric Configuration listing
     And I should see "Weight"
     And I should see "There are no Tree Metric Configurations yet!"
 
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: When there are tree metric configurations and no hotspot metric configurations
     Given I have a sample configuration
     And I have a sample reading group

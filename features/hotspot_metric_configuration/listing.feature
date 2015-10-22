@@ -3,17 +3,16 @@ Feature: Hotspot Configuration listing
   As a regular user
   I should see the hotspot metric configurations of a given kalibro configuration
 
-  @kalibro_configuration_restart @javascript @wip
+  @kalibro_configuration_restart
   Scenario: When there are hotspot metric configurations and no tree metric configurations
     Given I have a sample configuration
     And I have a sample hotspot metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
     Then I should see the sample hotspot metric configuration content
-    And I take a picture of the page
     And I should see "There are no Tree Metric Configurations yet!"
   
   
-  @kalibro_configuration_restart @wip
+  @kalibro_configuration_restart
   Scenario: When there are hotspot metric configurations and tree metric configurations
     Given I have a sample configuration
     And I have a sample hotspot metric configuration within the given mezuro configuration
