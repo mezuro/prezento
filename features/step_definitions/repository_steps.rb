@@ -234,3 +234,8 @@ Then(/^I should see the hotspot metric results messages$/) do
   end
 end
 
+Then(/^I should see the hotspot metric results file names$/) do
+  @metric_results.each do |metric_result|
+    expect(page).to have_content(metric_result.module_result.kalibro_module.short_name)
+  end
+end

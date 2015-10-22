@@ -18,6 +18,7 @@ Feature: Repository hotspot metric results
     When I visit the repository show page
     And I click the "Hotspot Metric Results" h3
     Then I should have at least one hotspot metric result
+    And I should see the hotspot metric results file names
     And I should see the hotspot metric results messages
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
