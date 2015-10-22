@@ -1,4 +1,4 @@
-Given(/^I have a sample range within the sample metric configuration with beginning "(.*?)"$/) do |beginning|
+Given(/^I have a sample range within the sample tree metric configuration with beginning "(.*?)"$/) do |beginning|
   @kalibro_range = FactoryGirl.create(:kalibro_range, {beginning: beginning, metric_configuration_id: @metric_configuration.id,
                                      reading_id: @reading.id})
 end
@@ -20,7 +20,7 @@ Given(/^the select field "(.*?)" is set as "(.*?)"$/) do |field, text|
   select text, from: field
 end
 
-Given(/^I have a sample range within the sample metric configuration$/) do
+Given(/^I have a sample range within the sample tree metric configuration$/) do
   @kalibro_range = FactoryGirl.create(:kalibro_range, {metric_configuration_id: @metric_configuration.id,
                                      reading_id: @reading.id})
 end

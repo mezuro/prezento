@@ -1,4 +1,6 @@
 <tr>
   <% col_number = kalibro_configuration_owner?(@kalibro_configuration.id) ? 5 : 3 %>
-  <td colspan="<%= col_number %>"><%= t('no_metric_configurations') %></td>
+  <td colspan="<%= col_number %>">
+    <%= t(message) %>
+  </td>
 </tr>

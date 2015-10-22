@@ -1,7 +1,7 @@
 <tr>
   <td><%= metric_configuration.metric.name %></td>
+  <td><%= metric_configuration.metric.code %></td>
   <% unless metric_configuration.metric.is_a? KalibroClient::Entities::Miscellaneous::HotspotMetric %>
-    <td><%= metric_configuration.metric.code %></td>
     <td><%= metric_configuration.weight %></td>
   <% end %>
   <td>
