@@ -27,7 +27,7 @@ en:
       repository:
         no_metric_results: "Repository process returned with error. There are no tree metric results."
         no_hotspot_metric_results: "Repository process returned with error. There are no hotspot metric results."
-        no_modeule_tree: "Repository process returned with error. There is no module tree."
+        no_module_tree: "Repository process returned with error. There is no module tree."
         unstarted_processing: "This Repository has no processings yet. Please, wait an instant as we start it."
   repository:
     show:
