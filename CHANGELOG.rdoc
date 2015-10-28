@@ -4,6 +4,10 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+== v0.8.6 - 16/09/2015
+
+Fixes module tree ordering with FUNCTION granularity
+
 == v0.8.5 - 14/09/2015
 
 Update kalibro_client - fixes MetricResult retrieval
