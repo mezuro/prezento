@@ -20,7 +20,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     respond_to do |format|
       create_and_redir(format)
     end
-    update_caches
+    clear_caches
   end
 
   def edit
@@ -38,7 +38,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       if @metric_configuration.update(metric_configuration_params)
         format.html { redirect_to(kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: t('successfully_updated', :record => t(metric_configuration.class))) }
         format.json { head :no_content }
-        update_caches
+        clear_caches
       else
         failed_action(format, 'edit')
       end
@@ -51,7 +51,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       format.html { redirect_to kalibro_configuration_path(params[:kalibro_configuration_id]) }
       format.json { head :no_content }
     end
-    update_caches
+    clear_caches
   end
 
   protected
@@ -67,7 +67,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   private
 
-  def update_caches
+  def clear_caches
     Rails.cache.delete("#{params[:kalibro_configuration_id]}_tree_metric_configurations")
     Rails.cache.delete("#{params[:kalibro_configuration_id]}_hotspot_metric_configurations")
   end
