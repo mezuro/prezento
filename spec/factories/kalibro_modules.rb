@@ -1,22 +1,22 @@
 FactoryGirl.define do
   factory :kalibro_module, class: KalibroClient::Entities::Processor::KalibroModule do
     name 'Qt-Calculator'
-    granlrty 'SOFTWARE'
+    granularity 'SOFTWARE'
 
     trait :package do
-      granlrty 'PACKAGE'
+      granularity 'PACKAGE'
     end
 
     trait :class do
-      granlrty 'CLASS'
+      granularity 'CLASS'
     end
 
     trait :function do
-      granlrty 'FUNCTION'
+      granularity 'FUNCTION'
     end
 
     trait :method do
-      granlrty 'METHOD'
+      granularity 'METHOD'
     end
 
     factory :kalibro_module_package, traits: [:package]

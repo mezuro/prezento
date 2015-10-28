@@ -9,9 +9,9 @@ Feature: Metric Configuration edition
     And I am signed in
     And I have a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
-    Then I should not see Edit within table
+    Then I should not see Edit within table#tree_metric_configurations
 
   @kalibro_configuration_restart
   Scenario: editing a metric configuration successfully
@@ -19,7 +19,7 @@ Feature: Metric Configuration edition
     And I am signed in
     And I own a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
     When I click the Edit link
     And I fill the Weight field with "3.0"
@@ -32,7 +32,7 @@ Feature: Metric Configuration edition
     And I am signed in
     And I own a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     When I visit the sample metric configuration edit page
     And I fill the Weight field with " "
     And I press the Save button
@@ -44,7 +44,7 @@ Feature: Metric Configuration edition
     And I am signed in
     And I own a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     When I visit the sample metric configuration edit page
     And I fill the Weight field with "0"
     And I set the select field "Aggregation Form" as "Median"

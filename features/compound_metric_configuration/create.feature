@@ -9,7 +9,7 @@ Feature: Compound Metric Configuration Creation
     And I am signed in
     And I own a sample configuration
     And I have a reading group named "Scholar"
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
     And I click the Add Metric link
     And I click the Compound Metric link

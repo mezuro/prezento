@@ -19,10 +19,10 @@ describe ProcessingsHelper, :type => :helper do
 
   describe 'find_range_snapshot' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id)}
-    let(:metric_result) { FactoryGirl.build(:metric_result, {value: 6.0, metric_configuration: metric_configuration})}
+    let(:tree_metric_result) { FactoryGirl.build(:tree_metric_result, {value: 6.0, metric_configuration: metric_configuration})}
 
     before :each do
-      metric_result.expects(:metric_configuration).returns(metric_configuration)
+      tree_metric_result.expects(:metric_configuration).returns(metric_configuration)
       metric_configuration.expects(:kalibro_ranges).returns(range_snapshots)
     end
 
@@ -30,7 +30,7 @@ describe ProcessingsHelper, :type => :helper do
       let!(:range_snapshots) { [make_range(1.0, 5.0), make_range(5.1, 10.0), make_range(10.1, 15.0)] }
 
       it 'should return the range snapshot which contains the value' do
-        expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[1])
+        expect(helper.find_range_snapshot(tree_metric_result)).to eq(range_snapshots[1])
       end
     end
 
@@ -38,7 +38,7 @@ describe ProcessingsHelper, :type => :helper do
       let!(:range_snapshots) { [make_range('-INF', 0.0), make_range(0, 'INF')] }
 
       it 'should return the range snapshot which contains the value' do
-        expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[1])
+        expect(helper.find_range_snapshot(tree_metric_result)).to eq(range_snapshots[1])
       end
     end
 
@@ -46,7 +46,7 @@ describe ProcessingsHelper, :type => :helper do
       let!(:range_snapshots) { [make_range('-INF', 'INF')] }
 
       it 'should return the range snapshot which contains the value' do
-        expect(helper.find_range_snapshot(metric_result)).to eq(range_snapshots[0])
+        expect(helper.find_range_snapshot(tree_metric_result)).to eq(range_snapshots[0])
       end
     end
 
@@ -54,7 +54,7 @@ describe ProcessingsHelper, :type => :helper do
       let!(:range_snapshots) { [make_range('-INF', 6.0), make_range(6.1, 'INF')] }
 
       it 'should return nil' do
-        expect(helper.find_range_snapshot(metric_result)).to be_nil
+        expect(helper.find_range_snapshot(tree_metric_result)).to be_nil
       end
     end
 

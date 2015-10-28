@@ -40,7 +40,7 @@ Feature: Show Repository
     And I should see "AGGREGATING time"
     And I should see "CALCULATING time"
     And I should see "INTERPRETING time"
-    When I click the "Metric Results" h3
+    When I click the "Tree Metric Results" h3
     And I click the "Modules Tree" h3
     Then I should see "Metric"
     And I should see "Value"
@@ -67,7 +67,7 @@ Feature: Show Repository
     And I should see "Configuration"
     And I should see "State"
     And I should see "Creation Date"
-    When I click the "Metric Results" h3
+    When I click the "Tree Metric Results" h3
     Then I should see "Loading data. Please, wait."
     When I click the "Modules Tree" h3
     Then I should see "Loading data. Please, wait."

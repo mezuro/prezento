@@ -96,7 +96,11 @@ Given(/^I ask for the module result of the given processing$/) do
 end
 
 Given(/^I ask for the metric results of the given module result$/) do
-  @metric_results = @module_result.metric_results
+  @metric_results = @module_result.tree_metric_results
+end
+
+Given(/^I ask for the hotspot metric results of the given module result$/) do
+  @metric_results = @module_result.hotspot_metric_results
 end
 
 Given(/^I see a sample metric's name$/) do
@@ -220,4 +224,18 @@ Then(/^I should be at the Repositories index$/) do
   expect(page.current_path).to end_with(repositories_path) # We use end_with in order to avoid the language route
 end
 
+Then(/^I should have at least one hotspot metric result$/) do
+  expect(@metric_results.count).to be > 0
+end
 
+Then(/^I should see the hotspot metric results messages$/) do
+  @metric_results.each do |metric_result|
+    expect(page).to have_content(metric_result.message)
+  end
+end
+
+Then(/^I should see the hotspot metric results file names$/) do
+  @metric_results.each do |metric_result|
+    expect(page).to have_content(metric_result.module_result.kalibro_module.short_name)
+  end
+end

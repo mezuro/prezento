@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :metric_configuration, class: MetricConfiguration do
     metric {FactoryGirl.build(:metric, code: 'total_abstract_classes')}
     weight 1
-    aggregation_form "AVERAGE"
+    aggregation_form "MEAN"
     reading_group_id 1
     kalibro_configuration_id 1
 
@@ -35,4 +35,8 @@ FactoryGirl.define do
     kalibro_configuration_id 1
   end
 
+  factory :hotspot_metric_configuration, class: MetricConfiguration do
+    metric { FactoryGirl.build(:hotspot_metric) }
+    kalibro_configuration_id 1
+  end
 end

@@ -9,10 +9,10 @@ Feature: Compound Metric Configuration edition
     And I am signed in
     And I have a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     When I am at the Sample Configuration page
-    Then I should not see Edit within table
+    Then I should not find "Edit" within "table#tree_metric_configurations"
 
   @kalibro_configuration_restart
   Scenario: editing a compound metric configuration successfully
@@ -20,7 +20,7 @@ Feature: Compound Metric Configuration edition
     And I am signed in
     And I own a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
     When I click the edit link of the Coumpound Metric
@@ -30,13 +30,13 @@ Feature: Compound Metric Configuration edition
     Then I should see "Another_code"
     And I should see "Compound Metric Configuration was successfully updated."
 
-  @kalibro_configuration_restart@javascript
+  @kalibro_configuration_restart @javascript
   Scenario: trying to edit with blank fields
     Given I am a regular user
     And I am signed in
     And I own a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     When I visit the sample compound metric configuration edit page
     And I fill the Name field with " "
@@ -57,7 +57,7 @@ Feature: Compound Metric Configuration edition
     And I am signed in
     And I own a sample configuration
     And I have a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     And I have another compound metric configuration with code "Another_Code" within the given mezuro configuration
     When I visit the sample compound metric configuration edit page

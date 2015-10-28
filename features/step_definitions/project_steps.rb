@@ -50,6 +50,10 @@ Then(/^I should not see (.+) within (.+)$/) do |text, selector|
   expect(page.find(selector)).to_not have_content(text)
 end
 
+Then(/^I should not find "(.+)" within "(.+)"$/) do |text, selector|
+  step "I should not see #{text} within #{selector}"
+end
+
 Then(/^the sample project should be there$/) do
   expect(page).to have_content(@project.name)
   expect(page).to have_content(@project.description)

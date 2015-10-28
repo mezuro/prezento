@@ -9,9 +9,9 @@ Feature: Kalibro Range Edit
     And I am signed in
     And I own a sample configuration
     And I own a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample reading within the sample reading group labeled "My Reading"
-    And I have a sample range within the sample metric configuration with beginning "1.1"
+    And I have a sample range within the sample tree metric configuration with beginning "1.1"
     And I am at the Edit Kalibro Range page
     And the select field "Reading" is set as "My Reading"
     And the field "Beginning" should be filled with "1.1"
@@ -45,9 +45,9 @@ Feature: Kalibro Range Edit
     And I am signed in
     And I own a sample configuration
     And I own a sample reading group
-    And I have a sample metric configuration within the given mezuro configuration
+    And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample reading within the sample reading group labeled "My Reading"
-    And I have a sample range within the sample metric configuration with beginning "1"
+    And I have a sample range within the sample tree metric configuration with beginning "1"
     And I am at the Edit Kalibro Range page
     When I fill the Beginning field with " "
     And I press the Save button

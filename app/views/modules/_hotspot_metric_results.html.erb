@@ -1,0 +1,15 @@
+<table class="table table-hover metric_results">
+  <thead>
+    <tr>
+      <th><%= t('activemodel.attributes.hotspot_metric_result.module_result.module.name') %></th>
+      <th><%= t('activemodel.attributes.hotspot_metric_result.line') %></th>
+      <th><%= t('activemodel.attributes.hotspot_metric_result.message') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% cache("#{@root_module_result.id}_hotspot_results") do %>
+      <%= render partial: 'hotspot_metric_result', collection: @root_module_result.hotspot_metric_results, locals: {module_result: @root_module_result} %>
+    <% end %>
+  </tbody>
+</table>

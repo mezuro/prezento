@@ -52,4 +52,14 @@ FactoryGirl.define do
 
     initialize_with { new(name, code, scope, script) }
   end
+
+  factory :hotspot_metric, class: KalibroClient::Entities::Miscellaneous::HotspotMetric do
+    name "Flay"
+    code "flay"
+    description ""
+    metric_collector_name "MetricFu"
+    languages nil
+
+    initialize_with { new(name, code, languages, metric_collector_name) }
+  end
 end

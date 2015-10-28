@@ -17,3 +17,6 @@ pt:
         name: "Nome"
         granularity: "Granularidade"
         grade: "Nota"
+      hotspot_metric_result:
+        line: "Linha"
+        message: "Mensagem"

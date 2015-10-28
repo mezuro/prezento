@@ -13,7 +13,14 @@ end
 Given(/^I have a sample configuration$/) do
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
   FactoryGirl.create(:kalibro_configuration_attributes, user_id: FactoryGirl.create(:another_user).id, kalibro_configuration_id: @kalibro_configuration.id)
+end
 
+Given(/^I have a sample configuration with hotspot metrics$/) do
+  @kalibro_configuration = FactoryGirl.create(:kalibro_configuration, name: 'Sample Ruby Configuration')
+  FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
+
+  metric_configuration = FactoryGirl.create(:hotspot_metric_configuration,
+                                            { kalibro_configuration_id: @kalibro_configuration.id} )
 end
 
 Given(/^I own a sample configuration$/) do
@@ -94,4 +101,3 @@ Then(/^the private configuration should not be there$/) do
   expect(page).to have_no_content(@private_kc.name)
   expect(page).to have_no_content(@private_kc.description)
 end
-

@@ -7,7 +7,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   def new
     super
-    # find_by_name throws an exception instead of returning nil, unlike ActiveRecord's API
+    # FIXME: find_by_name throws an exception instead of returning nil, unlike ActiveRecord's API
     metric_configuration.metric = KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(params[:metric_collector_name]).find_metric_by_code params[:metric_code]
     @reading_groups = ReadingGroup.public_or_owned_by_user(current_user).map { |reading_group|
       [reading_group.name, reading_group.id]
@@ -20,11 +20,11 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     respond_to do |format|
       create_and_redir(format)
     end
-    Rails.cache.delete("#{params[:kalibro_configuration_id]}_metric_configurations")
+    clear_caches
   end
 
   def edit
-    #FIXME: set the configuration id just once!
+    # FIXME: set the configuration id just once!
     @kalibro_configuration_id = params[:kalibro_configuration_id]
     @metric_configuration.kalibro_configuration_id = @kalibro_configuration_id
     @reading_groups = ReadingGroup.public_or_owned_by_user(current_user).map { |reading_group|
@@ -38,7 +38,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       if @metric_configuration.update(metric_configuration_params)
         format.html { redirect_to(kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: t('successfully_updated', :record => t(metric_configuration.class))) }
         format.json { head :no_content }
-        Rails.cache.delete("#{@metric_configuration.kalibro_configuration_id}_metric_configurations")
+        clear_caches
       else
         failed_action(format, 'edit')
       end
@@ -51,7 +51,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
       format.html { redirect_to kalibro_configuration_path(params[:kalibro_configuration_id]) }
       format.json { head :no_content }
     end
-    Rails.cache.delete("#{params[:kalibro_configuration_id]}_metric_configurations")
+    clear_caches
   end
 
   protected
@@ -67,7 +67,12 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   private
 
-  # Duplicated code on create and update actions extracted here
+  def clear_caches
+    Rails.cache.delete("#{params[:kalibro_configuration_id]}_tree_metric_configurations")
+    Rails.cache.delete("#{params[:kalibro_configuration_id]}_hotspot_metric_configurations")
+  end
+
+  # FIXME: Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
     @kalibro_configuration_id = params[:kalibro_configuration_id]
 
@@ -75,7 +80,7 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
     format.json { render json: @metric_configuration.kalibro_errors, status: :unprocessable_entity }
   end
 
-  #Code extracted from create action
+  # Code extracted from create action
   def create_and_redir(format)
     if @metric_configuration.save
       format.html { redirect_to kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), notice: t('successfully_created', :record => t(metric_configuration.class)) }

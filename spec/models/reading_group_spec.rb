@@ -61,6 +61,7 @@ describe ReadingGroup, :type => :model do
         it 'is expected to clean the attributes memoization' do
           # Call attributes once so it memoizes
           ReadingGroupAttributes.expects(:find_by).with(reading_group_id: reading_group.id).returns(reading_group_attributes)
+          KalibroClient::Entities::Configurations::ReadingGroup.any_instance.expects(:destroy).returns(reading_group)
           expect(reading_group.attributes).to eq(reading_group_attributes)
 
           # Destroying

@@ -54,6 +54,7 @@ describe Project, :type => :model do
         it 'is expected to clean the attributes memoization' do
           # Call attributes once so it memoizes
           ProjectAttributes.expects(:find_by).with(project_id: project.id).returns(project_attributes)
+          KalibroClient::Entities::Processor::Project.any_instance.expects(:destroy).returns(project)
           expect(project.attributes).to eq(project_attributes)
 
           # Destroying

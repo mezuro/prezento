@@ -1,4 +1,4 @@
-Feature: Metric Configuration Creation
+Feature: Tree Metric Configuration Creation
   In order to register my metric configurations
   As a regular user
   I should be able to create metric configurations
