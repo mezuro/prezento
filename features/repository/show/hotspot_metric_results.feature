@@ -3,7 +3,7 @@ Feature: Repository hotspot metric results
   As a regular user
   I should see the hotspot metric results list
 
-  @kalibro_configuration_restart @kalibro_processor_restart @javascript @wip
+  @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the message when the graphic of the given metric has only a single point
     Given I am a regular user
     And I am signed in
@@ -26,6 +26,8 @@ Feature: Repository hotspot metric results
     Then I should have at least one hotspot metric result
     And I should see the hotspot metric results file names
     And I should see the hotspot metric results messages
+    When I click the "Tree Metric Results" h3
+    Then I should not see "Duplicate Code"
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: Should show the error message when the process fails

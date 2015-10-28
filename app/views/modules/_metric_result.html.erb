@@ -1,5 +1,5 @@
 <% metric_configuration = metric_result.metric_configuration %>
-<% unless metric_configuration.kalibro_ranges.nil? %>
+<% unless metric_configuration.metric.type == "HotspotMetricSnapshot" %>
   <% range_snapshot = find_range_snapshot(metric_result)
      metric_name = metric_configuration.metric.name
   %>
