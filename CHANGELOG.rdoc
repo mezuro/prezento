@@ -4,6 +4,16 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+== v0.9.0 - 28/10/2015
+
+Gem updates
+Update home page information
+Update humans.txt
+Fix test that use external connections
+Add after configuration hook to cucumber
+Use Ruby metrics for module navigation feature
+List hotspot metric configurations
+
 == v0.8.6 - 16/09/2015
 
 Fixes module tree ordering with FUNCTION granularity
