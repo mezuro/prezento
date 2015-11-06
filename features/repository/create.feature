@@ -8,7 +8,6 @@ Scenario: repository creation associated with a project
   Given I am a regular user
   And I am signed in
   And I own a sample project
-  And I have sample project_attributes
   And I have a sample configuration with native metrics
   And I am at the New Repository page
   And I fill the Name field with "Kalibro"

@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all.select { |project| !project.attributes.hidden }
+    @projects = Project.public_or_owned_by_user(current_user)
   end
 
   # POST /projects

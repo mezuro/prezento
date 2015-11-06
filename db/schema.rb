@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616164352) do
+ActiveRecord::Schema.define(version: 20151106182639) do
 
   create_table "kalibro_configuration_attributes", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20150616164352) do
     t.integer  "project_id"
     t.string   "image_url"
     t.integer  "user_id"
-    t.boolean  "hidden",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "public",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "reading_group_attributes", force: :cascade do |t|
@@ -48,19 +48,19 @@ ActiveRecord::Schema.define(version: 20150616164352) do
   add_index "repository_attributes", ["user_id"], name: "index_repository_attributes_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   limit: 255, default: "", null: false
-    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "name",                   default: "", null: false
+    t.string   "email",                  default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

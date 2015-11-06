@@ -6,14 +6,12 @@ end
 
 Given(/^I have a sample project$/) do
   @project = FactoryGirl.create(:project)
-end
-
-Given(/^I have sample project_attributes$/) do
-  @project_attributes = FactoryGirl.create(:project_attributes, {id: nil, user_id: @user.id})
+  @project.attributes = FactoryGirl.create(:project_attributes, project: @project)
 end
 
 Given(/^I have a project named "(.*?)"$/) do |name|
   @project = FactoryGirl.create(:project, {name: name})
+  @project.attributes = FactoryGirl.create(:project_attributes, project: @project)
 end
 
 Given(/^I own a sample project$/) do
