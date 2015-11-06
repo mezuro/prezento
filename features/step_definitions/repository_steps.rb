@@ -103,10 +103,6 @@ Given(/^I ask for the hotspot metric results of the given module result$/) do
   @metric_results = @module_result.hotspot_metric_results
 end
 
-Given(/^I should see the sample metric's name$/) do
-  expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
-end
-
 Given(/^I own that repository$/) do
   FactoryGirl.create(:repository_attributes, {repository_id: @repository.id, user_id: @user.id})
 end
@@ -152,6 +148,16 @@ end
 When(/^I get the Creation Date information as "(.*?)"$/) do |variable|
   val = page.find('p', text: 'Creation Date').text.match(/^Creation Date:(.*)$/).captures.first
   eval ("@#{variable} = DateTime.parse('#{val}')")
+end
+
+Then(/^I should see the sample metric's name$/) do
+  expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
+end
+
+Then(/^I should see the ruby metric results$/) do
+  @metric_results.each do |metric_result|
+    expect(find('#metric_results')).to have_content(format('%.2f', metric_result.value))
+  end
 end
 
 Then(/^I should see the sample repository name$/) do

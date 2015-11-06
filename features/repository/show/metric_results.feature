@@ -65,6 +65,7 @@ Feature: Repository metric results
     When I visit the repository show page
     And I click the "Tree Metric Results" h3
     Then I should see the sample metric's name
+    And I should see the ruby metric results
 
   # TODO: Scenario: Should show the graphic of a given metric
   #         It was getting really difficult to test this because of Poltergeist's timeouts
