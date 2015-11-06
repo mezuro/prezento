@@ -1,7 +1,7 @@
 set :application, 'mezuro'
 set :repo_url, 'https://github.com/mezuro/mezuro.git'
 
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+set :branch, 'stable'
 
 set :deploy_to, "/home/mezuro/app"
 # set :scm, :git
