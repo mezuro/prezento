@@ -103,7 +103,7 @@ Given(/^I ask for the hotspot metric results of the given module result$/) do
   @metric_results = @module_result.hotspot_metric_results
 end
 
-Given(/^I see a sample metric's name$/) do
+Given(/^I should see the sample metric's name$/) do
   expect(page).to have_content(@metric_results.first.metric_configuration.metric.name)
 end
 

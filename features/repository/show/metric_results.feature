@@ -17,7 +17,7 @@ Feature: Repository metric results
     And I ask for the metric results of the given module result
     When I visit the repository show page
     And I click the "Tree Metric Results" h3
-    And I see a sample metric's name
+    And I should see the sample metric's name
     And I click on the sample metric's name
     Then I should see "Loading data. Please, wait."
 
@@ -35,7 +35,7 @@ Feature: Repository metric results
     And I ask for the metric results of the given module result
     When I visit the repository show page
     And I click the "Tree Metric Results" h3
-    And I see a sample metric's name
+    And I should see the sample metric's name
     Then I should see "Missing range"
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
@@ -50,6 +50,21 @@ Feature: Repository metric results
     When I visit the repository show page
     And I click the "Tree Metric Results" h3
     Then I should see "Repository process returned with error. There are no tree metric results."
+
+  @kalibro_processor_restart @kalibro_configuration_restart @javascript
+  Scenario: Should show the metric results after processing with a ruby metric configuration
+    Given I am a regular user
+    And I am signed in
+    And I have a sample configuration with ruby native metrics
+    And I have a sample repository
+    And I start to process that repository
+    And I wait up for a ready processing
+    And I ask for the last ready processing of the given repository
+    And I ask for the module result of the given processing
+    And I ask for the metric results of the given module result
+    When I visit the repository show page
+    And I click the "Tree Metric Results" h3
+    Then I should see the sample metric's name
 
   # TODO: Scenario: Should show the graphic of a given metric
   #         It was getting really difficult to test this because of Poltergeist's timeouts
