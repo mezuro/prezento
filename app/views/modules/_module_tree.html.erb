@@ -10,7 +10,8 @@
   <strong><%= KalibroModule.human_attribute_name('grade') %>:</strong>
   <%= format_grade(@root_module_result.grade) %>
 </p>
-<% unless @root_module_result.parent_id.nil? %>
+
+<% unless @root_module_result.parent_id == 0 %>
   <p id="parent"><i class="icon-arrow-up"></i><%= link_to '../', '#parent', onClick: "Module.Tree.load('#{escape_javascript(image_tag 'loader.gif')} #{escape_javascript(t('loading_data'))}', #{@root_module_result.parent_id});" %></p>
 <% end %>
 
