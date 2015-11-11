@@ -22,7 +22,6 @@ Feature: Project Deletion
     Given I am a regular user
     And I am signed in
     And I own a sample project
-    And I have sample project_attributes
     And I am at the Sample Project page
     When I click the Destroy Project link
     Then I should be in the All Projects page

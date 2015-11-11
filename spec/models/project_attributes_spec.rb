@@ -11,16 +11,31 @@ RSpec.describe ProjectAttributes, type: :model do
   end
 
   describe 'methods' do
+    let(:project) { FactoryGirl.build(:project_with_id) }
     describe 'project' do
-      subject { FactoryGirl.build(:project_attributes) }
-      let(:project) {FactoryGirl.build(:project_with_id)}
-
+      subject { FactoryGirl.build(:project_attributes, :bare, project_id: project.id) }
       before :each do
         Project.expects(:find).with(subject.project_id).returns(project)
       end
 
       it 'should return the project' do
         expect(subject.project).to eq(project)
+      end
+    end
+
+    describe 'project=' do
+      subject { FactoryGirl.build(:project_attributes, :bare) }
+
+      before do
+        subject.project = project
+      end
+
+      it 'is expected to set the project' do
+        expect(subject.project).to eq project
+      end
+
+      it 'is expected to set the project_id' do
+        expect(subject.project_id).to eq project.id
       end
     end
   end

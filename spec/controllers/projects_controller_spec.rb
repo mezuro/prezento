@@ -148,12 +148,10 @@ describe ProjectsController, :type => :controller do
   end
 
   describe 'index' do
-    let(:project_attributes) { FactoryGirl.build(:project_attributes) }
+    subject { FactoryGirl.build(:project_with_id) }
 
     before :each do
-      @subject = FactoryGirl.build(:project_with_id)
-      Project.expects(:all).returns([@subject])
-      @subject.expects(:attributes).returns(project_attributes)
+      Project.expects(:public_or_owned_by_user).returns([subject])
       get :index
     end
 

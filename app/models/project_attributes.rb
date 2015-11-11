@@ -4,6 +4,11 @@ class ProjectAttributes < ActiveRecord::Base
   validates :user, presence: true
 
   def project
-    Project.find(self.project_id)
+    @project ||= Project.find(project_id)
+  end
+
+  def project=(project)
+    @project = project
+    self.project_id = project.id
   end
 end

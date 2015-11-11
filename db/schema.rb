@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616164352) do
+ActiveRecord::Schema.define(version: 20151106182639) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "kalibro_configuration_attributes", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,9 +28,9 @@ ActiveRecord::Schema.define(version: 20150616164352) do
     t.integer  "project_id"
     t.string   "image_url"
     t.integer  "user_id"
-    t.boolean  "hidden",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "public",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "reading_group_attributes", force: :cascade do |t|
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150616164352) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "repository_attributes", ["user_id"], name: "index_repository_attributes_on_user_id"
+  add_index "repository_attributes", ["user_id"], name: "index_repository_attributes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255, default: "", null: false
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 20150616164352) do
     t.string   "last_sign_in_ip",        limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
