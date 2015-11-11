@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151106182639) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "kalibro_configuration_attributes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "kalibro_configuration_id"
@@ -45,25 +48,25 @@ ActiveRecord::Schema.define(version: 20151106182639) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "repository_attributes", ["user_id"], name: "index_repository_attributes_on_user_id"
+  add_index "repository_attributes", ["user_id"], name: "index_repository_attributes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   default: "", null: false
-    t.string   "email",                  default: "", null: false
+    t.string   "name",                   limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
