@@ -126,6 +126,9 @@ group :development, :test do
 
   # Automatized gem update
   gem 'gisdatigo'
+
+  # Startup script generation (server process manager)
+  gem 'foreman', '~>0.78.0'
 end
 
 # Acceptance tests
