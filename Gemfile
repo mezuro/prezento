@@ -84,6 +84,9 @@ group :test do
   gem 'thin'
 end
 
+# Startup script generation (server process manager)
+gem 'foreman', '~>0.78.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -126,9 +129,6 @@ group :development, :test do
 
   # Automatized gem update
   gem 'gisdatigo'
-
-  # Startup script generation (server process manager)
-  gem 'foreman', '~>0.78.0'
 end
 
 # Acceptance tests
