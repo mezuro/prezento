@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     put '/repositories/:id' => 'repositories#update', as: :repository_update
     # This route should be a POST to be semantically correct. But, RepositoriesController#create relies on a redirect to it which is not possible with a POST
     get '/repositories/:id/process' => 'repositories#process_repository', as: :repository_process
+    post '/repositories/:id/notify_push' => 'repositories#notify_push', as: :repository_notify_push
 
     get '/repository_branches' => 'repositories#branches', as: :repository_branches
 
