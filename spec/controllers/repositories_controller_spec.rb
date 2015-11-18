@@ -171,7 +171,6 @@ describe RepositoriesController, :type => :controller do
     end
 
     context 'for an specific module_result' do
-
       before :each do
         KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
         Repository.expects(:find).with(repository.id).returns(repository)
@@ -209,8 +208,8 @@ describe RepositoriesController, :type => :controller do
           delete :destroy, id: repository.id
         end
 
-         it { is_expected.to redirect_to(projects_url) }
-         it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to(projects_url) }
+        it { is_expected.to respond_with(:redirect) }
       end
     end
 
@@ -346,7 +345,7 @@ describe RepositoriesController, :type => :controller do
     context 'with another state then READY' do
       let(:processing) { FactoryGirl.build(:processing, state: 'ANALYZING') }
 
-       before :each do
+      before :each do
         repository.expects(:last_processing).returns(processing)
         Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
 
@@ -400,16 +399,16 @@ describe RepositoriesController, :type => :controller do
   end
 
   describe 'process_repository' do
-      let(:repository) { FactoryGirl.build(:repository) }
-      before :each do
-        sign_in FactoryGirl.create(:user)
-        subject.expects(:repository_owner?).returns true
-        repository.expects(:process)
-        Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
-        KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
-        get :process_repository, id: repository.id
-      end
-      it { is_expected.to redirect_to(repository_path(repository.id)) }
+    let(:repository) { FactoryGirl.build(:repository) }
+    before :each do
+      sign_in FactoryGirl.create(:user)
+      subject.expects(:repository_owner?).returns true
+      repository.expects(:process)
+      Repository.expects(:find).at_least_once.with(repository.id).returns(repository)
+      KalibroConfiguration.expects(:find).with(repository.id).returns(FactoryGirl.build(:kalibro_configuration, :with_id))
+      get :process_repository, id: repository.id
+    end
+    it { is_expected.to redirect_to(repository_path(repository.id)) }
   end
 
   describe 'branches' do
@@ -472,6 +471,56 @@ describe RepositoriesController, :type => :controller do
         expect(result).to eq(parameters)
         expect(result.permitted?).to be_truthy
       end
+    end
+  end
+
+  describe 'notify_push' do
+    context 'with a valid repository' do
+      let(:repository) { FactoryGirl.build(:repository) }
+
+      before :each do
+        Repository.expects(:find).with(repository.id).raises(KalibroClient::Errors::RecordNotFound)
+        post :notify_push, id: repository.id, format: :json
+      end
+
+      context 'when the repository is being processed' do
+        before do
+          repository.expects(:last_processing_state).returns('INTERPRETING')
+          repository.expects(:cancel_processing_of_repository).once
+          repository.expects(:process).once
+        end
+
+        it { is_expected.to respond_with(:accepted) }
+      end
+
+      context "when the repository's processing resulted in an error" do
+        before do
+          repository.expects(:last_processing_state).returns('ERROR')
+          repository.expects(:process).once
+        end
+
+        it { is_expected.to respond_with(:ok) }
+      end
+
+      context 'when the repository is not being processed' do
+        before do
+          repository.expects(:last_processing_state).returns('READY')
+          repository.expects(:process).once
+        end
+
+        it { is_expected.to respond_with(:ok) }
+      end
+    end
+
+    context 'with an invalid repository' do
+      let(:repository_id) { 1 }
+
+      before :each do
+        Repository.expects(:find).with(repository_id).raises(KalibroClient::Errors::RecordNotFound)
+        post :notify_push, id: repository_id, format: :json
+      end
+
+      it { is_expected.to respond_with(:not_found) }
     end
   end
 end
