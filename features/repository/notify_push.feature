@@ -6,7 +6,7 @@ Feature: Notify push to repository
   @kalibro_configuration_restart @kalibro_processor_restart
   Scenario: Valid repository
     Given I am a regular user
-    And I have a sample configuration with native metrics
+    And I have a sample configuration with hotspot metrics
     And I have a sample repository
     And I start to process that repository
     And I wait up for a ready processing
