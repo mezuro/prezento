@@ -1,7 +1,7 @@
 include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :state, :state_with_date, :index]
+  before_action :authenticate_user!, except: [:show, :state, :state_with_date, :index, :notify_push]
   before_action :project_owner?, only: [:new, :create], unless: Proc.new { params[:project_id].nil? }
   before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
@@ -94,6 +94,13 @@ class RepositoriesController < ApplicationController
     respond_to do |format|
       format.json { render json: branches_list }
     end
+  end
+
+  def notify_push
+    set_repository
+    @repository.cancel_processing_of_repository if @repository.last_processing_state.end_with? 'ING'
+    @repository.process
+    render :nothing => true, :status => :ok
   end
 
 private

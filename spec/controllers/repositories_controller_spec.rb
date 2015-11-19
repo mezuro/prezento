@@ -479,8 +479,7 @@ describe RepositoriesController, :type => :controller do
       let(:repository) { FactoryGirl.build(:repository) }
 
       before :each do
-        Repository.expects(:find).with(repository.id).raises(KalibroClient::Errors::RecordNotFound)
-        post :notify_push, id: repository.id, format: :json
+        Repository.expects(:find).with(repository.id).returns(repository)
       end
 
       context 'when the repository is being processed' do
@@ -488,15 +487,17 @@ describe RepositoriesController, :type => :controller do
           repository.expects(:last_processing_state).returns('INTERPRETING')
           repository.expects(:cancel_processing_of_repository).once
           repository.expects(:process).once
+          post :notify_push, id: repository.id
         end
 
-        it { is_expected.to respond_with(:accepted) }
+        it { is_expected.to respond_with(:ok) }
       end
 
       context "when the repository's processing resulted in an error" do
         before do
           repository.expects(:last_processing_state).returns('ERROR')
           repository.expects(:process).once
+          post :notify_push, id: repository.id
         end
 
         it { is_expected.to respond_with(:ok) }
@@ -506,6 +507,7 @@ describe RepositoriesController, :type => :controller do
         before do
           repository.expects(:last_processing_state).returns('READY')
           repository.expects(:process).once
+          post :notify_push, id: repository.id
         end
 
         it { is_expected.to respond_with(:ok) }
@@ -517,7 +519,7 @@ describe RepositoriesController, :type => :controller do
 
       before :each do
         Repository.expects(:find).with(repository_id).raises(KalibroClient::Errors::RecordNotFound)
-        post :notify_push, id: repository_id, format: :json
+        post :notify_push, id: repository_id
       end
 
       it { is_expected.to respond_with(:not_found) }
