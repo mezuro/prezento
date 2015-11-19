@@ -22,7 +22,8 @@ Feature: Notify push to repository
   @kalibro_configuration_restart @kalibro_processor_restart
   Scenario: Repository with an errored processing
     Given I am a regular user
-    And I have a sample configuration with native metrics
+    And I have a sample reading group
+    And I have a sample configuration with the Saikuro native metric
     And I have a compound metric configuration with script "rtrnaqdfwqefwqr213r2145211234ed a = b=2" within the given mezuro configuration
     And I have a sample repository
     And I start to process that repository

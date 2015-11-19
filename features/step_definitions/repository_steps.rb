@@ -119,6 +119,17 @@ Given(/^I am at the All Repositories page$/) do
   visit repositories_path
 end
 
+Given(/^I have a sample configuration with the (\w+) native metric$/) do |metric|
+  metric_configuration_factory = (metric + "_metric_configuration").downcase
+  metric_factory = metric.downcase
+  @kalibro_configuration = FactoryGirl.create(:ruby_configuration)
+  metric_configuration = FactoryGirl.create(metric_configuration_factory.to_sym,
+                                            {id: 4,
+                                             metric: FactoryGirl.build(metric_factory.to_sym),
+                                             reading_group_id: @reading_group.id,
+                                             kalibro_configuration_id: @kalibro_configuration.id})
+end
+
 When(/^I click on the sample metric's name$/) do
   find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end

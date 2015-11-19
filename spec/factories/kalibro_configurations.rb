@@ -20,5 +20,10 @@ FactoryGirl.define do
       name "Public Kalibro Configuration"
       description "Public Configuration."
     end
+
+    factory :ruby_configuration do
+      name "Ruby"
+      description "Code metrics for Ruby."
+    end
   end
 end
