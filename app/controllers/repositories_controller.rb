@@ -97,13 +97,17 @@ class RepositoriesController < ApplicationController
   end
 
   def notify_push
+    gitlab_event = request.headers['X-Gitlab-Event']
+    if gitlab_event.nil? || !gitlab_event.end_with?('Push Hook')
+      return render nothing: true, status: :unprocessable_entity
+    end
     set_repository
-    @repository.cancel_processing_of_repository if @repository.last_processing_state.end_with? 'ING'
+    @repository.cancel_processing_of_repository unless %w(READY, ERROR).include? @repository.last_processing_state
     @repository.process
-    render :nothing => true, :status => :ok
+    render nothing: true, status: :ok
   end
 
-private
+  private
   def set_project_id_repository_types_and_configurations
     @project_id = params[:project_id]
     @repository_types = Repository.repository_types

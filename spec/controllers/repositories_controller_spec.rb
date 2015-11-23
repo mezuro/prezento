@@ -475,9 +475,14 @@ describe RepositoriesController, :type => :controller do
   end
 
   describe 'notify_push' do
-    context 'with a valid repository' do
-      let(:repository) { FactoryGirl.build(:repository) }
+    let(:repository) { FactoryGirl.build(:repository) }
 
+    def post_push
+      @request.env['HTTP_X_GITLAB_EVENT'] = ['Push Hook', 'Tag Push Hook'].sample
+      post :notify_push, id: repository.id
+    end
+
+    context 'with a valid repository' do
       before :each do
         Repository.expects(:find).with(repository.id).returns(repository)
       end
@@ -487,7 +492,7 @@ describe RepositoriesController, :type => :controller do
           repository.expects(:last_processing_state).returns('INTERPRETING')
           repository.expects(:cancel_processing_of_repository).once
           repository.expects(:process).once
-          post :notify_push, id: repository.id
+          post_push
         end
 
         it { is_expected.to respond_with(:ok) }
@@ -497,7 +502,7 @@ describe RepositoriesController, :type => :controller do
         before do
           repository.expects(:last_processing_state).returns('ERROR')
           repository.expects(:process).once
-          post :notify_push, id: repository.id
+          post_push
         end
 
         it { is_expected.to respond_with(:ok) }
@@ -507,7 +512,7 @@ describe RepositoriesController, :type => :controller do
         before do
           repository.expects(:last_processing_state).returns('READY')
           repository.expects(:process).once
-          post :notify_push, id: repository.id
+          post_push
         end
 
         it { is_expected.to respond_with(:ok) }
@@ -515,14 +520,20 @@ describe RepositoriesController, :type => :controller do
     end
 
     context 'with an invalid repository' do
-      let(:repository_id) { 1 }
-
       before :each do
-        Repository.expects(:find).with(repository_id).raises(KalibroClient::Errors::RecordNotFound)
-        post :notify_push, id: repository_id
+        Repository.expects(:find).with(repository.id).raises(KalibroClient::Errors::RecordNotFound)
+        post_push
       end
 
       it { is_expected.to respond_with(:not_found) }
+    end
+
+    context 'with an invalid header' do
+      before :each do
+        post :notify_push, id: repository.id
+      end
+
+      it { is_expected.to respond_with(:unprocessable_entity) }
     end
   end
 end
