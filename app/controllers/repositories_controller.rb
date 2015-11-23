@@ -102,7 +102,7 @@ class RepositoriesController < ApplicationController
       return render nothing: true, status: :unprocessable_entity
     end
     set_repository
-    @repository.cancel_processing_of_repository unless %w(READY, ERROR).include? @repository.last_processing_state
+    @repository.cancel_processing_of_repository unless %w(READY ERROR).include? @repository.last_processing_state
     @repository.process
     render nothing: true, status: :ok
   end

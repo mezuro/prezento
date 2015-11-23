@@ -479,7 +479,7 @@ describe RepositoriesController, :type => :controller do
 
     def post_push
       @request.env['HTTP_X_GITLAB_EVENT'] = ['Push Hook', 'Tag Push Hook'].sample
-      post :notify_push, id: repository.id
+      post :notify_push, id: repository.id, format: :json
     end
 
     context 'with a valid repository' do
@@ -530,7 +530,7 @@ describe RepositoriesController, :type => :controller do
 
     context 'with an invalid header' do
       before :each do
-        post :notify_push, id: repository.id
+        post :notify_push, id: repository.id, format: :json
       end
 
       it { is_expected.to respond_with(:unprocessable_entity) }
