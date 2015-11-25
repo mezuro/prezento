@@ -162,11 +162,11 @@ When(/^I get the Creation Date information as "(.*?)"$/) do |variable|
 end
 
 When(/^I push some commits to the repository$/) do
-  post repository_notify_push_path(id: @repository.id)
+  post repository_notify_push_path(id: @repository.id), {}, {'HTTP_X_GITLAB_EVENT' => 'Push Hook'}
 end
 
 When(/^I push some commits to an invalid repository$/) do
-  @response = post repository_notify_push_path(id: 0)
+  @response = post repository_notify_push_path(id: 0), {}, {'HTTP_X_GITLAB_EVENT' => 'Push Hook'}
 end
 
 Then(/^I should see the sample metric's name$/) do
