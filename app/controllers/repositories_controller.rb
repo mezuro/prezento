@@ -1,7 +1,7 @@
 include OwnershipAuthentication
 
 class RepositoriesController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :state, :state_with_date, :index]
+  before_action :authenticate_user!, except: [:show, :state, :state_with_date, :index, :notify_push]
   before_action :project_owner?, only: [:new, :create], unless: Proc.new { params[:project_id].nil? }
   before_action :repository_owner?, only: [:edit, :update, :destroy, :process_repository]
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
@@ -96,7 +96,18 @@ class RepositoriesController < ApplicationController
     end
   end
 
-private
+  def notify_push
+    gitlab_event = request.headers['X-Gitlab-Event']
+    if gitlab_event.nil? || !gitlab_event.end_with?('Push Hook')
+      return render nothing: true, status: :unprocessable_entity
+    end
+    set_repository
+    @repository.cancel_processing_of_repository unless %w(READY ERROR).include? @repository.last_processing_state
+    @repository.process
+    render nothing: true, status: :ok
+  end
+
+  private
   def set_project_id_repository_types_and_configurations
     @project_id = params[:project_id]
     @repository_types = Repository.repository_types

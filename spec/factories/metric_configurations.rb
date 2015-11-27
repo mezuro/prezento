@@ -39,4 +39,10 @@ FactoryGirl.define do
     metric { FactoryGirl.build(:hotspot_metric) }
     kalibro_configuration_id 1
   end
+
+  factory :saikuro_metric_configuration, class: MetricConfiguration do
+    metric { FactoryGirl.build(:saikuro) }
+    weight 1
+    aggregation_form "MEAN"
+  end
 end

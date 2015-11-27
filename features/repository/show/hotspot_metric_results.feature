@@ -37,7 +37,7 @@ Feature: Repository hotspot metric results
     And I have a sample configuration with native metrics
     And I have a sample of an invalid repository within the sample project
     And I start to process that repository
-    And I wait up for a error processing
+    And I wait up for an error processing
     When I visit the repository show page
     And I click the "Hotspot Metric Results" h3
     Then I should see "Repository process returned with error. There are no hotspot metric results."

@@ -30,5 +30,8 @@ describe RepositoriesController, :type => :routing do
                   to(controller: :repositories, action: :new, project_id: 1) }
     it { is_expected.to route(:post, '/projects/1/repositories').
                   to(controller: :repositories, action: :create, project_id: 1) }
-   end
+    it { is_expected.to route(:post, '/repositories/1/notify_push').
+                  to(controller: :repositories, action: :notify_push, id: 1) }
+    it { expect(post: '/repositories/1/notify_push.html').not_to be_routable }
+  end
 end

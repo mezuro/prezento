@@ -14,6 +14,10 @@ Given(/^I have another compound metric configuration with code "(.*?)" within th
   @another_compound_metric_configuration = FactoryGirl.create(:compound_metric_configuration, {kalibro_configuration_id: @kalibro_configuration.id, metric: FactoryGirl.build(:compound_metric, code: code), reading_group_id: @reading_group.id})
 end
 
+Given(/^I have a compound metric configuration with script "(.+)" within the given mezuro configuration$/) do |script|
+  @another_compound_metric_configuration = FactoryGirl.create(:compound_metric_configuration, kalibro_configuration_id: @kalibro_configuration.id, metric: FactoryGirl.build(:compound_metric, script: script), reading_group_id: @reading_group.id)
+end
+
 When(/^I visit the sample compound metric configuration edit page$/) do
   visit edit_kalibro_configuration_compound_metric_configuration_path(kalibro_configuration_id: @compound_metric_configuration.kalibro_configuration_id, id: @compound_metric_configuration.id)
 end

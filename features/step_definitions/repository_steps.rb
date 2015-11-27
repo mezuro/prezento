@@ -9,15 +9,15 @@ Given(/^I have a sample configuration with native metrics but without ranges$/) 
 end
 
 Given(/^I have a sample configuration with native metrics$/) do
-  reading_group = FactoryGirl.create(:reading_group)
-  reading = FactoryGirl.create(:reading, {reading_group_id: reading_group.id})
+  @reading_group = FactoryGirl.create(:reading_group)
+  reading = FactoryGirl.create(:reading, {reading_group_id: @reading_group.id})
 
   @kalibro_configuration = FactoryGirl.create(:kalibro_configuration)
   FactoryGirl.create(:kalibro_configuration_attributes, {id: nil, user_id: @user.id, kalibro_configuration_id: @kalibro_configuration.id})
 
   metric_configuration = FactoryGirl.create(:metric_configuration,
                                             {metric: FactoryGirl.build(:loc),
-                                             reading_group_id: reading_group.id,
+                                             reading_group_id: @reading_group.id,
                                              kalibro_configuration_id: @kalibro_configuration.id})
   range = FactoryGirl.build(:kalibro_range, {reading_id: reading.id, beginning: '-INF', :end => 'INF', metric_configuration_id: metric_configuration.id})
   range.save
@@ -69,7 +69,7 @@ Given(/^I wait up for the last processing to get ready$/) do
   end
 end
 
-Given(/^I wait up for a error processing$/) do
+Given(/^I wait up for an error processing$/) do
   while @repository.last_processing_state != "ERROR"
     sleep(10)
   end
@@ -119,6 +119,17 @@ Given(/^I am at the All Repositories page$/) do
   visit repositories_path
 end
 
+Given(/^I have a sample configuration with the (\w+) native metric$/) do |metric|
+  metric_configuration_factory = (metric + "_metric_configuration").downcase
+  metric_factory = metric.downcase
+  @kalibro_configuration = FactoryGirl.create(:ruby_configuration)
+  metric_configuration = FactoryGirl.create(metric_configuration_factory.to_sym,
+                                            {id: 4,
+                                             metric: FactoryGirl.build(metric_factory.to_sym),
+                                             reading_group_id: @reading_group.id,
+                                             kalibro_configuration_id: @kalibro_configuration.id})
+end
+
 When(/^I click on the sample metric's name$/) do
   find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end
@@ -148,6 +159,14 @@ end
 When(/^I get the Creation Date information as "(.*?)"$/) do |variable|
   val = page.find('p', text: 'Creation Date').text.match(/^Creation Date:(.*)$/).captures.first
   eval ("@#{variable} = DateTime.parse('#{val}')")
+end
+
+When(/^I push some commits to the repository$/) do
+  post repository_notify_push_path(id: @repository.id), {}, {'HTTP_X_GITLAB_EVENT' => 'Push Hook'}
+end
+
+When(/^I push some commits to an invalid repository$/) do
+  @response = post repository_notify_push_path(id: 0), {}, {'HTTP_X_GITLAB_EVENT' => 'Push Hook'}
 end
 
 Then(/^I should see the sample metric's name$/) do
@@ -244,4 +263,12 @@ Then(/^I should see the hotspot metric results file names$/) do
   @metric_results.each do |metric_result|
     expect(page).to have_content(metric_result.module_result.kalibro_module.short_name)
   end
+end
+
+Then(/^Mezuro should process the repository again$/) do
+  expect(@repository.last_processing).not_to eq(@repository.first_processing)
+end
+
+Then(/^I should get a not found error$/) do
+  expect(@response.status).to eq(404)
 end
