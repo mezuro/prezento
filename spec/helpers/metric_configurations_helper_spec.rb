@@ -43,4 +43,24 @@ describe MetricConfigurationsHelper, :type => :helper do
       expect(helper.supported_metrics_of(metric_collector_details.name)).to eq(metric_collector_details.supported_metrics)
     end
   end
+
+  describe 'choose_metric_path' do
+    let(:kalibro_configuration_id) { 1 }
+
+    context 'with a tree metric' do
+      let(:metric) { FactoryGirl.build(:loc) }
+
+      it 'is expected to generate the path for MetricConfigurationsController' do
+        expect(helper.choose_metric_path(metric, kalibro_configuration_id)).to eq(helper.kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id))
+      end
+    end
+
+    context 'with a hotspot metric' do
+      let(:metric) { FactoryGirl.build(:hotspot_metric) }
+
+      it 'is expected to generate the path for HotspotMetricConfigurationsController' do
+        expect(helper.choose_metric_path(metric, kalibro_configuration_id)).to eq(helper.kalibro_configuration_hotspot_metric_configurations_path(kalibro_configuration_id: kalibro_configuration_id))
+      end
+    end
+  end
 end
