@@ -13,9 +13,8 @@
       <div>
         <% supported_metrics_of(metric_collector_name).each do |code, metric| %>
           <%= metric.type %>
-          <% link_attributes = choose_metric_path(metric, @kalibro_configuration.id) %>
           <%= link_to metric.name, "#",
-            onclick: "MetricCollector.choose_metric(\"#{code}\", \"#{metric_collector_name}\", \"#{link_attributes[:path]}\");",
+            onclick: "MetricCollector.choose_metric(\"#{code}\", \"#{metric_collector_name}\", \"#{choose_metric_path(metric, @kalibro_configuration.id)}\");",
               remote: true %><br>
         <% end %>
       </div>

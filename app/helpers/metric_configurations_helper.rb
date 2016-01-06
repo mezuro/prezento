@@ -20,9 +20,9 @@ module MetricConfigurationsHelper
 
   def choose_metric_path(metric, kalibro_configuration_id)
     if metric.type == 'HotspotMetricSnapshot'
-      { path: kalibro_configuration_hotspot_metric_configurations_path(kalibro_configuration_id: kalibro_configuration_id), method: :post }
+      kalibro_configuration_hotspot_metric_configurations_path(kalibro_configuration_id: kalibro_configuration_id)
     else
-      { path: kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id), method: :get }
+      kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id)
     end
   end
 end
