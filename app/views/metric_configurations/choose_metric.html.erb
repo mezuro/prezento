@@ -12,7 +12,10 @@
       <h3 class="jquery-ui-accordion"><%= metric_collector_name %></h3>
       <div>
         <% supported_metrics_of(metric_collector_name).each do |code, metric| %>
-          <%= link_to metric.name, '#', onclick: "MetricCollector.choose_metric(\"#{code}\", \"#{metric_collector_name}\");", remote: true %><br>
+          <%= metric.type %>
+          <%= link_to metric.name, "#",
+            onclick: "MetricCollector.choose_metric(\"#{code}\", \"#{metric_collector_name}\", \"#{choose_metric_path(metric, @kalibro_configuration.id)}\");",
+              remote: true %><br>
         <% end %>
       </div>
   <% end %>
