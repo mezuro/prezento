@@ -51,7 +51,9 @@ describe MetricConfigurationsHelper, :type => :helper do
       let(:metric) { FactoryGirl.build(:loc) }
 
       it 'is expected to generate the path for MetricConfigurationsController' do
-        expect(helper.choose_metric_path(metric, kalibro_configuration_id)).to eq(helper.kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id))
+        response = helper.choose_metric_path(metric, kalibro_configuration_id)
+        expect(response[:path]).to eq(helper.kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id))
+        expect(response[:method]).to eq(:get)
       end
     end
 
@@ -59,7 +61,9 @@ describe MetricConfigurationsHelper, :type => :helper do
       let(:metric) { FactoryGirl.build(:hotspot_metric) }
 
       it 'is expected to generate the path for HotspotMetricConfigurationsController' do
-        expect(helper.choose_metric_path(metric, kalibro_configuration_id)).to eq(helper.kalibro_configuration_hotspot_metric_configurations_path(kalibro_configuration_id: kalibro_configuration_id))
+        response = helper.choose_metric_path(metric, kalibro_configuration_id)
+        expect(response[:path]).to eq(helper.kalibro_configuration_hotspot_metric_configurations_path(kalibro_configuration_id: kalibro_configuration_id))
+        expect(response[:method]).to eq(:post)
       end
     end
   end
