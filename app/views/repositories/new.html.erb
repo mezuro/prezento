@@ -3,11 +3,11 @@
 </div>
 
 <% unless @project_id.nil? %>
-  <%= form_for(@repository, :url => project_repositories_url(@project_id)) do |f| %>
+  <%= form_for(@repository, :url => project_repositories_path(@project_id)) do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
   <% end %>
 <% else %>
-  <%= form_for(@repository, :url => repositories_url) do |f| %>
+  <%= form_for(@repository, :url => repositories_path) do |f| %>
     <%= render partial: 'form', locals: {f: f} %>
   <% end %>
 <% end %>

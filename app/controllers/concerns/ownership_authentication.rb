@@ -76,7 +76,7 @@ module OwnershipAuthentication
   def check_reading_group_ownership(id)
     if current_user.reading_group_attributes.find_by_reading_group_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to reading_group_url(id: id), notice: t('not_allowed') }
+        format.html { redirect_to reading_group_path(id: id), notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end
@@ -87,7 +87,7 @@ module OwnershipAuthentication
   def check_kalibro_configuration_ownership(id)
     if current_user.kalibro_configuration_attributes.find_by_kalibro_configuration_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to kalibro_configurations_url(id: id), notice: t('not_allowed') }
+        format.html { redirect_to kalibro_configurations_path(id: id), notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end
