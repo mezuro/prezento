@@ -23,7 +23,7 @@ Feature: Compound Metric Configuration Creation
     And I set the select field "Scope" as "Class"
     And I set the select field "Reading Group" as "Scholar"
     And I press the Save button
-    Then I should see "Compound Metric Configuration was successfully created."
+    Then I should see "Metric Configuration was successfully created."
     And I click the show link of "My Compound Metric"
     Then I should see "My Compound Metric"
     And I should see "mcm"
@@ -38,7 +38,6 @@ Feature: Compound Metric Configuration Creation
     And I have another compound metric configuration with code "Another_Code" within the given mezuro configuration
     And I am at the Sample Configuration page
     And I click the Add Metric link
-    And I take a picture of the page
     And I click the Compound Metric link
     When I fill the Name field with "My Compound Metric"
     And I fill the Description field with "Some description"
