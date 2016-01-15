@@ -65,5 +65,4 @@ Feature: Repository modules tree
     And I ask for the module result of the given processing
     When I visit the repository show page
     And I click the "Modules Tree" h3
-    And I take a picture of the page
     Then I should see the given module result
