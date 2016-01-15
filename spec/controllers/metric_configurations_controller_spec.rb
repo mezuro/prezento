@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe MetricConfigurationsController, :type => :controller do
   let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
+
   describe 'choose_metric' do
     let(:metric_collector) { FactoryGirl.build(:metric_collector) }
     before :each do
@@ -10,9 +11,9 @@ describe MetricConfigurationsController, :type => :controller do
 
     context 'when adding new metrics' do
       before :each do
+        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:all_names).returns([metric_collector])
-        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
         get :choose_metric, kalibro_configuration_id: kalibro_configuration.id
       end
 
@@ -33,11 +34,12 @@ describe MetricConfigurationsController, :type => :controller do
 
     context 'when the current user owns the kalibro configuration' do
       before :each do
+        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         ReadingGroup.expects(:public_or_owned_by_user).with(user).returns(reading_groups)
         subject.expects(:kalibro_configuration_owner?).returns true
         KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
-        metric_collector.expects(:find_metric_by_code).with(native_metric.code).returns(native_metric)
-        post :new, kalibro_configuration_id: kalibro_configuration.id, metric_code: native_metric.code, metric_collector_name: metric_collector.name
+        metric_collector.expects(:find_metric_by_name).with(native_metric.name).returns(native_metric)
+        get :new, kalibro_configuration_id: kalibro_configuration.id, metric_name: native_metric.name, metric_collector_name: metric_collector.name
       end
 
       it { is_expected.to respond_with(:success) }
@@ -65,6 +67,7 @@ describe MetricConfigurationsController, :type => :controller do
 
     context 'when the current user owns the metric configuration' do
       before :each do
+        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
       end
 
@@ -100,6 +103,7 @@ describe MetricConfigurationsController, :type => :controller do
     let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     before :each do
+      KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
       ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
       MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
       metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
@@ -122,6 +126,7 @@ describe MetricConfigurationsController, :type => :controller do
 
       context 'when the user owns the metric configuration' do
         before :each do
+          KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
           ReadingGroup.expects(:public_or_owned_by_user).with(user).returns(reading_groups)
           subject.expects(:metric_configuration_owner?).returns(true)
           MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
@@ -137,7 +142,6 @@ describe MetricConfigurationsController, :type => :controller do
         end
 
         it { is_expected.to redirect_to(kalibro_configurations_path(id: metric_configuration.kalibro_configuration_id)) }
-        it { is_expected.to respond_with(:redirect) }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
@@ -153,7 +157,8 @@ describe MetricConfigurationsController, :type => :controller do
 
   describe 'update' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
-    let(:metric_configuration_params) { metric_configuration.to_hash }
+    let(:metric_configuration_params) { metric_configuration.to_hash.except('id', 'metric')  }
+    let(:update_params) { metric_configuration_params.except('kalibro_configuration_id', 'reading_group_id') }
 
     context 'when the user is logged in' do
       before do
@@ -162,15 +167,20 @@ describe MetricConfigurationsController, :type => :controller do
 
       context 'when user owns the metric configuration' do
         before :each do
+          KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
           subject.expects(:metric_configuration_owner?).returns true
         end
 
         context 'with valid fields' do
           before :each do
             MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
-            MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(true)
+            MetricConfiguration.any_instance.expects(:update).with(update_params).returns(true)
 
-            post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
+            post :update,
+              kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id,
+              metric_configuration: metric_configuration_params,
+              metric_collector_name: metric_configuration.metric.metric_collector_name,
+              metric_code: metric_configuration.metric.code
           end
 
           it { is_expected.to redirect_to(kalibro_configuration_path(id: metric_configuration.kalibro_configuration_id)) }
@@ -180,9 +190,13 @@ describe MetricConfigurationsController, :type => :controller do
         context 'with an invalid field' do
           before :each do
             MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
-            MetricConfiguration.any_instance.expects(:update).with(metric_configuration_params).returns(false)
+            MetricConfiguration.any_instance.expects(:update).with(update_params).returns(false)
 
-            post :update, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id, metric_configuration: metric_configuration_params
+            post :update,
+              kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id,
+              metric_configuration: metric_configuration_params,
+              metric_collector_name: metric_configuration.metric.metric_collector_name,
+              metric_code: metric_configuration.metric.code
           end
 
           it { is_expected.to render_template(:edit) }
@@ -199,7 +213,6 @@ describe MetricConfigurationsController, :type => :controller do
     end
   end
 
-
   describe 'destroy' do
     let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
@@ -210,6 +223,7 @@ describe MetricConfigurationsController, :type => :controller do
 
       context 'when the user owns the configuration' do
         before :each do
+          KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
           subject.expects(:metric_configuration_owner?).returns true
           metric_configuration.expects(:destroy)
           MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)

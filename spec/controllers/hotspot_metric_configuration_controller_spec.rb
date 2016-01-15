@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe HotspotMetricConfigurationsController, :type => :controller do
   let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
+
   describe 'create' do
     let!(:metric_configuration) { FactoryGirl.build(:hotspot_metric_configuration) }
     let(:metric_configuration_params) { metric_configuration.to_hash }
@@ -13,6 +14,7 @@ describe HotspotMetricConfigurationsController, :type => :controller do
 
     context 'when the current user owns the metric configuration' do
       before :each do
+        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
       end
 
