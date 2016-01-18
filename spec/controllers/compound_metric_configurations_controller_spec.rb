@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe CompoundMetricConfigurationsController, :type => :controller do
+  let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
   let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
 
   describe 'new' do
@@ -9,11 +10,12 @@ describe CompoundMetricConfigurationsController, :type => :controller do
     end
 
     context 'when the current user owns the kalibro configuration' do
-      let!(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+      let!(:metric_configuration) { FactoryGirl.build(:metric_configuration, reading_group_id: reading_group.id) }
       before :each do
         KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
         MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([metric_configuration])
+
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
@@ -32,7 +34,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'create' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration, reading_group_id: 1) }
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration, reading_group_id: reading_group.id) }
     let!(:metric_configuration_params) { compound_metric_configuration.to_hash }
 
     before do
@@ -43,6 +45,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       before :each do
         KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
+        ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
       end
 
       context 'with valid fields' do
@@ -69,13 +72,12 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'show' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
-    let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration, :with_id, reading_group_id: reading_group.id) }
     let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     before :each do
       KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
-      ReadingGroup.expects(:find).with(compound_metric_configuration.reading_group_id).returns(reading_group)
+      ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
       MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
       compound_metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
@@ -86,7 +88,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'edit' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration, :with_id, reading_group_id: reading_group.id) }
 
     context 'with a User logged in' do
       before do
@@ -97,8 +99,10 @@ describe CompoundMetricConfigurationsController, :type => :controller do
         before :each do
           KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
           subject.expects(:metric_configuration_owner?).returns(true)
+          ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
           MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
           MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([compound_metric_configuration])
+
           get :edit, id: compound_metric_configuration.id, kalibro_configuration_id: compound_metric_configuration.kalibro_configuration_id.to_s
         end
 
@@ -126,13 +130,13 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   end
 
   describe 'update' do
-    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration_with_id) }
+    let(:compound_metric_configuration) { FactoryGirl.build(:compound_metric_configuration, :with_id, reading_group_id: reading_group.id) }
     # Exclude the parameters that come in the URL (as the ones in the body will always be ignored)
     let(:metric_configuration_params) { compound_metric_configuration.to_hash.except('id', 'kalibro_configuration_id', 'type') }
     # Exclude the reading group id since it is set beforehand and not in the update params
     let(:update_params) do
-      params = metric_configuration_params.except('reading_group_id')
-      params['metric'].except!('type')
+      params = metric_configuration_params.dup
+      params['metric'] = params['metric'].except('type')
       params
     end
 
@@ -144,6 +148,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
       context 'when user owns the metric configuration' do
         before :each do
           KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
+          ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
           MetricConfiguration.expects(:find).with(compound_metric_configuration.id).returns(compound_metric_configuration)
           subject.expects(:metric_configuration_owner?).returns true
         end
