@@ -2,16 +2,16 @@ class BaseMetricConfigurationsController < ApplicationController
   include OwnershipAuthentication
   include MetricConfigurationsConcern
 
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show]
   before_action :metric_configuration_owner?, only: [:edit, :update, :destroy]
   before_action :kalibro_configuration_owner?, only: [:new, :create, :choose_metric]
   before_action :set_kalibro_configuration!
   before_action :find_metric_configuration!, only: [:show, :edit, :update, :destroy]
   before_action :new_metric_configuration!, only: [:create]
   before_action :set_metric!, only: [:create, :update]
+  before_action :set_reading_group!, only: [:show, :edit, :create, :update]
 
   def show
-    @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
     @kalibro_ranges = @metric_configuration.kalibro_ranges
   end
 
@@ -19,14 +19,16 @@ class BaseMetricConfigurationsController < ApplicationController
     @metric_configuration = MetricConfiguration.new
   end
 
+  def edit
+  end
+
   def create
-    respond_to { |format| save_and_redir format }
+    respond_to { |format| save_and_redir(format) }
   end
 
   def update
     respond_to do |format|
       save_and_redir(format) do |metric_configuration|
-        metric_configuration.reading_group_id = params[:reading_group_id].to_i
         metric_configuration.update(metric_configuration_params)
       end
     end
@@ -58,14 +60,28 @@ class BaseMetricConfigurationsController < ApplicationController
       end
       format.json { render json: @metric_configuration, status: new_record ? :created : :ok }
     else
-      failed_action(format, new_record ? :new : :edit)
+      failed_action(format)
     end
   end
 
-  # FIXME: This action should render with an error message on rendering the html
-  def failed_action(format, action)
-    format.html { render action }
-    format.json { render json: @metric_configuration.kalibro_errors, status: :unprocessable_entity }
+  def failed_action(format, error = nil)
+    errors = @metric_configuration.kalibro_errors
+    errors << error unless error.nil?
+
+    flash[:notice] = errors.join(', ')
+
+    format.json { render json: { errors: errors }, status: :unprocessable_entity }
+    render_failure_html(format)
+  end
+
+  def render_failure_html(format)
+    if action_name == 'create'
+      format.html { render 'new' }
+    elsif action_name == 'update'
+      format.html { render 'edit' }
+    else
+      format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id) }
+    end
   end
 
   def clear_caches
@@ -84,7 +100,6 @@ class BaseMetricConfigurationsController < ApplicationController
   def new_metric_configuration!
     @metric_configuration = MetricConfiguration.new metric_configuration_params
     @metric_configuration.kalibro_configuration_id = @kalibro_configuration.id
-    @metric_configuration.reading_group_id = params[:reading_group_id].to_i
   end
 
   def find_metric_configuration!
@@ -111,9 +126,19 @@ class BaseMetricConfigurationsController < ApplicationController
         return
       end
     end
+
     respond_to do |format|
-      format.html { redirect_to kalibro_configurations_path(@kalibro_configuration.id) }
-      format.json { render json: { errors: 'Invalid metric type' }, status: :unprocessable_entity }
+      failed_action(format, 'Invalid combination of metric collector, name/code and type')
+    end
+  end
+
+  def set_reading_group!
+    begin
+      @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
+    rescue KalibroClient::Errors::RecordNotFound
+      respond_to do |format|
+        failed_action(format, 'Invalid reading group')
+      end
     end
   end
 end
