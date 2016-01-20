@@ -71,26 +71,42 @@ describe MetricConfigurationsController, :type => :controller do
       before :each do
         KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
-        ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
       end
 
-      context 'with valid fields' do
+      context 'with valid metric' do
         before :each do
-          MetricConfiguration.any_instance.expects(:save).returns(true)
           KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
           metric_collector.expects(:find_metric_by_name).with(metric_configuration.metric.name).returns(metric_configuration.metric)
-
-          post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
+          ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
         end
 
-        it { is_expected.to respond_with(:redirect) }
+        context 'with valid fields' do
+          before :each do
+            MetricConfiguration.any_instance.expects(:save).returns(true)
+
+            post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
+          end
+
+          it { is_expected.to respond_with(:redirect) }
+        end
+
+        context 'with invalid fields' do
+          before :each do
+            MetricConfiguration.any_instance.expects(:save).returns(false)
+
+            post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
+          end
+
+          it { is_expected.to render_template(:new) }
+        end
       end
 
-      context 'with invalid fields' do
+      context 'with invalid metric collector, metric or metric type' do
+        let(:invalid_metric) { FactoryGirl.build(:hotspot_metric) }
+
         before :each do
-          MetricConfiguration.any_instance.expects(:save).returns(false)
           KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).with(metric_collector.name).returns(metric_collector)
-          metric_collector.expects(:find_metric_by_name).with(metric_configuration.metric.name).returns(metric_configuration.metric)
+          metric_collector.expects(:find_metric_by_name).with(metric_configuration.metric.name).returns(invalid_metric)
 
           post :create, kalibro_configuration_id: kalibro_configuration.id, metric_configuration: metric_configuration_params, metric_collector_name: metric_collector.name, metric_name: metric_configuration.metric.name
         end
