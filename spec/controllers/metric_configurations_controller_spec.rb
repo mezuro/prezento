@@ -105,29 +105,50 @@ describe MetricConfigurationsController, :type => :controller do
     let(:kalibro_range) { FactoryGirl.build(:kalibro_range) }
 
     before :each do
-        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
+      KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
+    end
+
+    context 'with a valid metric configuration instance' do
+      before :each do
         MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
-    end
-
-    context 'with valid parameters' do
-      before :each do
-        ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-        metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
-
-        get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
       end
 
-      it { is_expected.to render_template(:show) }
-    end
+      context 'with valid parameters' do
+        before :each do
+          ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
+          metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
-    context 'with invalid parameters' do
-      before :each do
-        ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).raises(KalibroClient::Errors::RecordNotFound)
+          get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
+        end
 
-        get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
+        it { is_expected.to render_template(:show) }
       end
 
-      it { is_expected.to redirect_to(kalibro_configuration_path(kalibro_configuration.id)) }
+      context 'with invalid parameters' do
+        before :each do
+          ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).raises(KalibroClient::Errors::RecordNotFound)
+
+          get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
+        end
+
+        it { is_expected.to redirect_to(kalibro_configuration_path(kalibro_configuration.id)) }
+      end
+    end
+
+    context 'with an invalid metric configuration instance' do
+      let!(:invalid_metric_configuration) { FactoryGirl.build(:metric_configuration, reading_group_id: reading_group.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id + 1) }
+
+      before :each do
+        MetricConfiguration.expects(:find).with(metric_configuration.id).returns(invalid_metric_configuration)
+      end
+
+      context 'with valid parameters' do
+        before :each do
+          get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
+        end
+
+        it { is_expected.to respond_with(:not_found) }
+      end
     end
   end
 
