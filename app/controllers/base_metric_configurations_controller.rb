@@ -89,9 +89,12 @@ class BaseMetricConfigurationsController < ApplicationController
     Rails.cache.delete("#{@kalibro_configuration.id}_hotspot_metric_configurations")
   end
 
+  # Notice: If you add some logic to this method, remove the :nocov: below
+  # :nocov:
   def metric_configuration_params
     raise NotImplementedError
   end
+  # :nocov:
 
   def set_kalibro_configuration!
     @kalibro_configuration = KalibroConfiguration.find params[:kalibro_configuration_id].to_i
