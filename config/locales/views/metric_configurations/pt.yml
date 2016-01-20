@@ -41,6 +41,8 @@ pt:
   reading_group_helper_html: "O %{href} associado com esta métrica."
   no_models: "Não há %{model} ainda!"
   choose_metric: "Escolha uma métrica de um Coletor:"
+  invalid_metric_or_collector: "Combinação inválida de coletor de métricas, nome/código e tipo"
+  invalid_model: "%{model} inválido"
   scopes:
     METHOD: "Método"
     CLASS: "Classe"

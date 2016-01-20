@@ -131,7 +131,7 @@ class BaseMetricConfigurationsController < ApplicationController
     end
 
     respond_to do |format|
-      failed_action(format, 'Invalid combination of metric collector, name/code and type')
+      failed_action(format, t('invalid_metric_or_collector'))
     end
   end
 
@@ -140,7 +140,7 @@ class BaseMetricConfigurationsController < ApplicationController
       @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
     rescue KalibroClient::Errors::RecordNotFound
       respond_to do |format|
-        failed_action(format, 'Invalid reading group')
+        failed_action(format, t('invalid_model', model: ReadingGroup.model_name.human))
       end
     end
   end
