@@ -169,42 +169,54 @@ describe MetricConfigurationsController, :type => :controller do
         sign_in FactoryGirl.create(:user)
       end
 
-      context 'when user owns the metric configuration' do
+      context 'when the given metric exists' do
+        let!(:metric_collector) { mock('metric_collector') }
+
         before :each do
-          KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
-          subject.expects(:metric_configuration_owner?).returns true
-          ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
+          metric_collector.expects(:find_metric_by_code).with(metric_configuration.metric.code).returns(metric_configuration.metric)
+
+          KalibroClient::Entities::Processor::MetricCollectorDetails.expects(:find_by_name).
+            with(metric_configuration.metric.metric_collector_name).
+            returns(metric_collector)
         end
 
-        context 'with valid fields' do
+        context 'and the user owns the metric configuration' do
           before :each do
-            MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
-            MetricConfiguration.any_instance.expects(:update).with(update_params).returns(true)
-
-            post :update,
-              kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id,
-              metric_configuration: metric_configuration_params,
-              metric_collector_name: metric_configuration.metric.metric_collector_name,
-              metric_code: metric_configuration.metric.code
+            KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
+            subject.expects(:metric_configuration_owner?).returns true
+            ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
           end
 
-          it { is_expected.to redirect_to(kalibro_configuration_path(id: metric_configuration.kalibro_configuration_id)) }
-          it { is_expected.to respond_with(:redirect) }
-        end
+          context 'with valid fields' do
+            before :each do
+              MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
+              MetricConfiguration.any_instance.expects(:update).with(update_params).returns(true)
 
-        context 'with an invalid field' do
-          before :each do
-            MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
-            MetricConfiguration.any_instance.expects(:update).with(update_params).returns(false)
+              post :update,
+                kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id,
+                metric_configuration: metric_configuration_params,
+                metric_collector_name: metric_configuration.metric.metric_collector_name,
+                metric_code: metric_configuration.metric.code
+            end
 
-            post :update,
-              kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id,
-              metric_configuration: metric_configuration_params,
-              metric_collector_name: metric_configuration.metric.metric_collector_name,
-              metric_code: metric_configuration.metric.code
+            it { is_expected.to redirect_to(kalibro_configuration_path(id: metric_configuration.kalibro_configuration_id)) }
+            it { is_expected.to respond_with(:redirect) }
           end
 
-          it { is_expected.to render_template(:edit) }
+          context 'with an invalid field' do
+            before :each do
+              MetricConfiguration.expects(:find).with(metric_configuration.id).returns(metric_configuration)
+              MetricConfiguration.any_instance.expects(:update).with(update_params).returns(false)
+
+              post :update,
+                kalibro_configuration_id: metric_configuration.kalibro_configuration_id, id: metric_configuration.id,
+                metric_configuration: metric_configuration_params,
+                metric_collector_name: metric_configuration.metric.metric_collector_name,
+                metric_code: metric_configuration.metric.code
+            end
+
+            it { is_expected.to render_template(:edit) }
+          end
         end
       end
 
