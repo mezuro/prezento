@@ -116,18 +116,16 @@ class BaseMetricConfigurationsController < ApplicationController
 
   def set_metric!
     collector = KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(params[:metric_collector_name])
-    unless collector.nil?
-      # FIXME: Some view pass metric code as a parameter instead of metric name
-      if params.key?(:metric_code)
-        metric = collector.find_metric_by_code(params[:metric_code])
-      else
-        metric = collector.find_metric_by_name(params[:metric_name])
-      end
+    # FIXME: Some view pass metric code as a parameter instead of metric name
+    if params.key?(:metric_code)
+      metric = collector.find_metric_by_code(params[:metric_code])
+    else
+      metric = collector.find_metric_by_name(params[:metric_name])
+    end
 
-      if !metric.nil? && metric.type == metric_type
-        @metric_configuration.metric = metric
-        return
-      end
+    if !metric.nil? && metric.type == metric_type
+      @metric_configuration.metric = metric
+      return
     end
 
     respond_to do |format|
