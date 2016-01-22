@@ -4,7 +4,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
   protected
 
   def set_metric!
-    @metric_configuration.metric.type = metric_type
+    @metric_configuration.metric.type = self.metric_type
   end
 
   def metric_configuration_params

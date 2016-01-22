@@ -123,7 +123,7 @@ class BaseMetricConfigurationsController < ApplicationController
       metric = collector.find_metric_by_name(params[:metric_name])
     end
 
-    if !metric.nil? && metric.type == metric_type
+    if !metric.nil? && metric.type == self.metric_type
       @metric_configuration.metric = metric
       return
     end
