@@ -1,39 +1,39 @@
 <div class="page-header">
-  <h1><%=@compound_metric_configuration.metric.name %></h1>
+  <h1><%=@metric_configuration.metric.name %></h1>
 </div>
 
 <p>
   <strong> <%= t('description') %>:</strong>
-  <% if @compound_metric_configuration.metric.description.nil? %>
+  <% if @metric_configuration.metric.description.nil? %>
     <%= t('no_description') %>
   <% else %>
-    <%= @compound_metric_configuration.metric.description %>
+    <%= @metric_configuration.metric.description %>
   <% end %>
 </p>
 
 <p>
   <strong> <%= t('script') %>:</strong>
-  <%= @compound_metric_configuration.metric.script %>
+  <%= @metric_configuration.metric.script %>
 </p>
 
 <p>
   <strong> <%= t('scope') %>:</strong>
-  <%= @compound_metric_configuration.metric.scope %>
+  <%= @metric_configuration.metric.scope %>
 </p>
 
 <p>
   <strong> <%= t('code') %>:</strong>
-  <%= @compound_metric_configuration.metric.code %>
+  <%= @metric_configuration.metric.code %>
 </p>
 
 <p>
   <strong> <%= t('weight') %>:</strong>
-  <%= @compound_metric_configuration.weight %>
+  <%= @metric_configuration.weight %>
 </p>
 
 <p>
   <strong> <%= t('metric_configurations_aggregation') %>:</strong>
-  <%= @compound_metric_configuration.aggregation_form %>
+  <%= @metric_configuration.aggregation_form %>
 </p>
 
 <p>
@@ -44,9 +44,9 @@
 <hr>
 
 <h2>  <%= t('ranges') %> </h2>
-<% if kalibro_configuration_owner? @compound_metric_configuration.kalibro_configuration_id %>
-  <%= link_to t_action(:add, KalibroRange), kalibro_configuration_metric_configuration_new_kalibro_range_path(@compound_metric_configuration.kalibro_configuration_id,
-      @compound_metric_configuration.id), class: 'btn btn-info' %>
+<% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
+  <%= link_to t_action(:add, KalibroRange), kalibro_configuration_metric_configuration_new_kalibro_range_path(@metric_configuration.kalibro_configuration_id,
+      @metric_configuration.id), class: 'btn btn-info' %>
 <% end %>
 
 <table class="table table-hover">
@@ -69,10 +69,10 @@
 <hr>
 
 <p>
- <%= link_to t('back'), kalibro_configuration_path(@compound_metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
-<% if kalibro_configuration_owner? @compound_metric_configuration.kalibro_configuration_id %>
-      <%= link_to t_action(:destroy, MetricConfiguration), kalibro_configuration_metric_configuration_path(@compound_metric_configuration.kalibro_configuration_id,
-      @compound_metric_configuration.id), method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
+ <%= link_to t('back'), kalibro_configuration_path(@metric_configuration.kalibro_configuration_id), class: 'btn btn-default' %>
+<% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
+      <%= link_to t_action(:destroy, MetricConfiguration), kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
+      @metric_configuration.id), method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
       class: 'btn btn-danger' %>
  <% end %>
 </p>

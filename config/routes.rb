@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
       resources :compound_metric_configurations, except: [:destroy, :update]
       put '/compound_metric_configurations/:id' => 'compound_metric_configurations#update', as: :compound_metric_configuration_update
+
+      resources :hotspot_metric_configurations, only: [:create]
     end
 
     resources :reading_groups do

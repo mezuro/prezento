@@ -23,12 +23,12 @@ Feature: Compound Metric Configuration edition
     And I have a sample tree metric configuration within the given mezuro configuration
     And I have a sample compound metric configuration within the given mezuro configuration
     And I am at the Sample Configuration page
-    When I click the edit link of the Coumpound Metric
+    When I click the edit link of the Compound Metric
     And I fill the Script field with "Another javascript"
     And I fill the Code field with "Another_code"
     And I press the Save button
     Then I should see "Another_code"
-    And I should see "Compound Metric Configuration was successfully updated."
+    And I should see "Metric Configuration was successfully updated."
 
   @kalibro_configuration_restart @javascript
   Scenario: trying to edit with blank fields

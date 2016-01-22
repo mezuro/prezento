@@ -12,8 +12,6 @@ Feature: Repository hotspot metric results
     And I click the Add Metric link
     And I click the "MetricFu" h3
     And I click the Duplicate Code link
-    When I fill the Weight field with "2"
-    And I press the Save button
     Given I have a sample project
     And I have a sample ruby repository within the sample project
     And I start to process that repository

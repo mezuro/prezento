@@ -17,4 +17,16 @@ module MetricConfigurationsHelper
     # find_by_name throws an exception instead of returning nil, unlike ActiveRecord's API
     KalibroClient::Entities::Processor::MetricCollectorDetails.find_by_name(metric_collector_name).supported_metrics
   end
+
+  def choose_metric_path(metric, kalibro_configuration_id)
+    if metric.type == 'HotspotMetricSnapshot'
+      kalibro_configuration_hotspot_metric_configurations_path(kalibro_configuration_id: kalibro_configuration_id)
+    else
+      kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id)
+    end
+  end
+
+  def hotspot_metric_configuration?(metric_configuration)
+    metric_configuration.metric.type == 'HotspotMetricSnapshot'
+  end
 end

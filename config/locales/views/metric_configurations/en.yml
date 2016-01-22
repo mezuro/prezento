@@ -37,6 +37,8 @@ en:
   reading_group_helper_html: "The %{href} associated with this metric."
   no_models: "There are no %{model} yet!"
   choose_metric: "Choose a metric from a Base Tool:"
+  invalid_metric_or_collector: "Invalid combination of metric collector, name/code and type"
+  invalid_model: "Invalid %{model}"
   scopes:
     METHOD: "Method"
     CLASS: "Class"
