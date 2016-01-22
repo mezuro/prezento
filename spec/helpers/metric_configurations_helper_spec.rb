@@ -63,4 +63,20 @@ describe MetricConfigurationsHelper, :type => :helper do
       end
     end
   end
+
+  describe 'hotspot_metric_configuration?' do
+    let(:metric_configuration) { FactoryGirl.build(:metric_configuration) }
+    let(:hotspot_type) { 'HotspotMetricSnapshot' }
+    let(:other_type) { 'NativeMetricSnapshot' }
+
+    it 'is expected to return true for a HotspotMetricSnapshot' do
+      metric_configuration.metric.expects(:type).returns(hotspot_type)
+      expect(helper.hotspot_metric_configuration?(metric_configuration)).to eq true
+    end
+
+    it 'is expected to return false for every other type of metric' do
+      metric_configuration.metric.expects(:type).returns(other_type)
+      expect(helper.hotspot_metric_configuration?(metric_configuration)).to eq false
+    end
+  end
 end

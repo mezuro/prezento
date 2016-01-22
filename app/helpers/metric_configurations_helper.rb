@@ -25,4 +25,8 @@ module MetricConfigurationsHelper
       kalibro_configuration_new_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id)
     end
   end
+
+  def hotspot_metric_configuration?(metric_configuration)
+    metric_configuration.metric.type == 'HotspotMetricSnapshot'
+  end
 end
