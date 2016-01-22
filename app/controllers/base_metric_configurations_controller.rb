@@ -124,7 +124,7 @@ class BaseMetricConfigurationsController < ApplicationController
         metric = collector.find_metric_by_name(params[:metric_name])
       end
 
-      if !metric.nil? && metric.type == self.class::METRIC_TYPE
+      if !metric.nil? && metric.type == metric_type
         @metric_configuration.metric = metric
         return
       end
@@ -144,4 +144,11 @@ class BaseMetricConfigurationsController < ApplicationController
       end
     end
   end
+
+  # Notice: If you add some logic to this method, remove the :nocov: below
+  # :nocov:
+  def metric_type
+    raise NotImplementedError
+  end
+  # :nocov:
 end

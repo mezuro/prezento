@@ -1,6 +1,4 @@
 class HotspotMetricConfigurationsController < BaseMetricConfigurationsController
-  METRIC_TYPE = 'HotspotMetricSnapshot'
-
   skip_before_action :set_reading_group!
 
   def metric_configuration_params
@@ -11,5 +9,11 @@ class HotspotMetricConfigurationsController < BaseMetricConfigurationsController
 
   def render_failure_html(format)
     format.html { redirect_to kalibro_configuration_path(@kalibro_configuration.id) }
+  end
+
+  protected
+
+  def metric_type
+    'HotspotMetricSnapshot'
   end
 end

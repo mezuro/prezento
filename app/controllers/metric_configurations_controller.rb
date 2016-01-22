@@ -1,6 +1,4 @@
 class MetricConfigurationsController < BaseMetricConfigurationsController
-  METRIC_TYPE = 'NativeMetricSnapshot'
-
   before_action :set_reading_groups!, only: [:new, :edit]
 
   def new
@@ -17,6 +15,10 @@ class MetricConfigurationsController < BaseMetricConfigurationsController
 
   def metric_configuration_params
     params.require(:metric_configuration).permit(:reading_group_id, :weight, :aggregation_form)
+  end
+
+  def metric_type
+    'NativeMetricSnapshot'
   end
 
   private

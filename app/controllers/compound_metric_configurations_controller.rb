@@ -1,12 +1,10 @@
 class CompoundMetricConfigurationsController < BaseMetricConfigurationsController
-  METRIC_TYPE = 'CompoundMetricSnapshot'
-
   before_action :set_metric_configurations, only: [:new, :edit]
 
   protected
 
   def set_metric!
-    @metric_configuration.metric.type = 'CompoundMetricSnapshot'
+    @metric_configuration.metric.type = metric_type
   end
 
   def metric_configuration_params
@@ -15,5 +13,9 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
 
   def set_metric_configurations
     @metric_configurations = MetricConfiguration.metric_configurations_of(@kalibro_configuration.id)
+  end
+
+  def metric_type
+    'CompoundMetricSnapshot'
   end
 end
