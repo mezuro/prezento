@@ -119,11 +119,7 @@ describe ProjectsController, :type => :controller do
           delete :destroy, :id => @subject.id
         end
 
-        it 'should redirect to the projects page' do
-          expect(response).to redirect_to projects_url
-        end
-
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to projects_path }
       end
 
       context "when the user doesn't own the project" do

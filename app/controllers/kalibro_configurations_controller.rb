@@ -54,7 +54,7 @@ class KalibroConfigurationsController < ApplicationController
     @kalibro_configuration.destroy
 
     respond_to do |format|
-      format.html { redirect_to kalibro_configurations_url }
+      format.html { redirect_to kalibro_configurations_path }
       format.json { head :no_content }
     end
 

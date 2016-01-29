@@ -172,8 +172,7 @@ describe KalibroRangesController, :type => :controller do
           get :edit, id: kalibro_range.id, kalibro_configuration_id: metric_configuration.kalibro_configuration_id, metric_configuration_id: metric_configuration.id
         end
 
-        it { is_expected.to redirect_to(kalibro_configurations_url(id: metric_configuration.kalibro_configuration_id)) }
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to kalibro_configurations_path id: metric_configuration.kalibro_configuration_id }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end

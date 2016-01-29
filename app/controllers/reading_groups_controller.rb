@@ -46,7 +46,7 @@ class ReadingGroupsController < ApplicationController
   def destroy
     @reading_group.destroy
     respond_to do |format|
-      format.html { redirect_to reading_groups_url }
+      format.html { redirect_to reading_groups_path }
       format.json { head :no_content }
     end
   end

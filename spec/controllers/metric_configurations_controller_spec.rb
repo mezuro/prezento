@@ -53,8 +53,7 @@ describe MetricConfigurationsController, :type => :controller do
         post :new, kalibro_configuration_id: kalibro_configuration.id, metric_name: "Lines of Code", metric_collector_name: metric_collector.name
       end
 
-      it { is_expected.to redirect_to(kalibro_configurations_url(id: kalibro_configuration.id)) }
-      it { is_expected.to respond_with(:redirect) }
+      it { is_expected.to redirect_to kalibro_configurations_path id: kalibro_configuration.id }
     end
   end
 

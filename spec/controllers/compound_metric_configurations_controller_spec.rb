@@ -28,8 +28,7 @@ describe CompoundMetricConfigurationsController, :type => :controller do
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end
 
-      it { is_expected.to redirect_to(kalibro_configurations_url(id: kalibro_configuration.id)) }
-      it { is_expected.to respond_with(:redirect) }
+      it { is_expected.to redirect_to kalibro_configurations_path id: kalibro_configuration.id }
     end
   end
 
