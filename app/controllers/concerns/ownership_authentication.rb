@@ -53,7 +53,7 @@ module OwnershipAuthentication
   def check_repository_ownership(id)
     if current_user.repository_attributes.find_by_repository_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to projects_url, notice: t('not_allowed') }
+        format.html { redirect_to projects_path, notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end
@@ -65,7 +65,7 @@ module OwnershipAuthentication
   def check_project_ownership(id)
     if current_user.project_attributes.find_by_project_id(id).nil?
       respond_to do |format|
-        format.html { redirect_to projects_url, notice: t('not_allowed') }
+        format.html { redirect_to projects_path, notice: t('not_allowed') }
         format.json { head :no_content }
       end
     end

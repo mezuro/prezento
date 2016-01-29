@@ -23,8 +23,7 @@ describe ReadingsController, :type => :controller do
         get :new, reading_group_id: reading_group.id
       end
 
-      it { is_expected.to redirect_to(reading_group_url(reading_group.id)) }
-      it { is_expected.to respond_with(:redirect) }
+      it { is_expected.to redirect_to reading_group_path reading_group.id }
     end
   end
 
@@ -86,8 +85,7 @@ describe ReadingsController, :type => :controller do
           get :edit, id: reading.id, reading_group_id: reading_group.id.to_s
         end
 
-        it { is_expected.to redirect_to(reading_group_url(reading_group.id)) }
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to reading_group_path reading_group.id }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end

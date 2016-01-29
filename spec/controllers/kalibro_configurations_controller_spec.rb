@@ -106,11 +106,7 @@ describe KalibroConfigurationsController, :type => :controller do
           delete :destroy, :id => kalibro_configuration.id
         end
 
-        it 'should redirect to the kalibro_configurations page' do
-          expect(response).to redirect_to kalibro_configurations_url
-        end
-
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to kalibro_configurations_path }
       end
 
       context "when the user doesn't own the kalibro_configuration" do

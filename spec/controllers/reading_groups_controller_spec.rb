@@ -94,11 +94,7 @@ describe ReadingGroupsController, :type => :controller do
           delete :destroy, :id => @subject.id
         end
 
-        it 'should redirect to the reading groups page' do
-          expect(response).to redirect_to reading_groups_url
-        end
-
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to reading_groups_path }
       end
 
       context "when the user doesn't own the reading group" do
@@ -118,7 +114,7 @@ describe ReadingGroupsController, :type => :controller do
         delete :destroy, :id => @subject.id
       end
 
-      it { is_expected.to redirect_to new_user_session_url }
+      it { is_expected.to redirect_to new_user_session_path }
     end
   end
 

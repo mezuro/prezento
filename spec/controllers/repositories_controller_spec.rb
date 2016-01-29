@@ -41,8 +41,7 @@ describe RepositoriesController, :type => :controller do
             get :new, project_id: project.id.to_s
           end
 
-          it { is_expected.to redirect_to(projects_url) }
-          it { is_expected.to respond_with(:redirect) }
+          it { is_expected.to redirect_to(projects_path) }
         end
       end
 
@@ -120,8 +119,7 @@ describe RepositoriesController, :type => :controller do
           post :create, project_id: project.id, repository: repository_params
         end
 
-        it { is_expected.to redirect_to(projects_url) }
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to projects_path }
       end
     end
 
@@ -208,8 +206,7 @@ describe RepositoriesController, :type => :controller do
           delete :destroy, id: repository.id
         end
 
-        it { is_expected.to redirect_to(projects_url) }
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to projects_path }
       end
     end
 
@@ -249,8 +246,7 @@ describe RepositoriesController, :type => :controller do
           get :edit, id: repository.id
         end
 
-        it { is_expected.to redirect_to(projects_url) }
-        it { is_expected.to respond_with(:redirect) }
+        it { is_expected.to redirect_to projects_path }
         it { is_expected.to set_flash[:notice].to("You're not allowed to do this operation") }
       end
     end
