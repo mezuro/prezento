@@ -3,7 +3,7 @@
 
 # TEAM
 
-    Copyright 2013-2015
+    Copyright 2013-2016
     -------------------
 
       Daniel Quadros de Miranda (danielkza2 at gmail.com)
