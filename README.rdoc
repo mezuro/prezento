@@ -54,7 +54,7 @@ Please, have a look the wiki pages about development workflow and code standards
 
     rake db:create
 
-* Database initialization
+* Database initialization (The seeds script will need the kalibro configurations service running)
 
     rake db:setup
 
