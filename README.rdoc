@@ -28,7 +28,7 @@ Please, have a look the wiki pages about development workflow and code standards
 
   * PhantomJS >= 1.9.2 (http://phantomjs.org/)
 
-  *NOTE:* Just create sym links for that
+  *NOTE:* Just create sym links for that, for example:
 
     cd /usr/local/share
     wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
@@ -54,9 +54,13 @@ Please, have a look the wiki pages about development workflow and code standards
 
     rake db:create
 
-* Database initialization
+* Database initialization (The seeds script will need the kalibro configurations service running)
 
     rake db:setup
+
+* Alternatively you can just run the setup script (Will also need the kalibro configurations service running)
+
+    bin/setup
 
 * How to run the test suite
 
@@ -64,7 +68,7 @@ Please, have a look the wiki pages about development workflow and code standards
 
 * Services (job queues, cache servers, search engines, etc.)
 
-  *Kalibro Processor* - version 0.9.2 (https://github.com/mezuro/kalibro_processor/archive/v0.9.2.tar.gz)
+  *Kalibro Processor* - version 1.1.6 (https://github.com/mezuro/kalibro_processor/archive/v1.1.6.tar.gz)
   You can find it at https://github.com/mezuro/kalibro_processor
   By default Mezuro will expect it to be running on port 8082 at localhost.
   In order to run it as expected, run on two different terminal instances:
@@ -72,7 +76,7 @@ Please, have a look the wiki pages about development workflow and code standards
       RAILS_ENV=local rails s -p 8082
       RAILS_ENV=local rake jobs:work
 
-  *Kalibro Configurations* - version 1.0.0 (https://github.com/mezuro/kalibro_configurations/archive/v1.0.0.tar.gz)
+  *Kalibro Configurations* - version 1.2.5 (https://github.com/mezuro/kalibro_configurations/archive/v1.2.5.tar.gz)
   You can find it at https://github.com/mezuro/kalibro_configurations
   By default Mezuro will expect it to be running on port 8083 at localhost.
   In order to run it as expected, run on two different terminal instances: <tt>rails s -p 8083</tt>.
@@ -98,7 +102,7 @@ Please, have a look the wiki pages about development workflow and code standards
 
 === License
 
-Copyright (c) 2013-2015 The Author developers.
+Copyright (c) 2013-2016 The Author developers.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
