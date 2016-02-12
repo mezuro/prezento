@@ -1,27 +1,29 @@
 FactoryGirl.define do
   factory :kalibro_module, class: KalibroClient::Entities::Processor::KalibroModule do
     name 'Qt-Calculator'
-    granularity 'SOFTWARE'
+    granularity { {'type' => 'SOFTWARE'} }
 
     trait :package do
-      granularity 'PACKAGE'
+      granularity { {'type' => 'PACKAGE'} }
     end
 
     trait :class do
-      granularity 'CLASS'
+      granularity { {'type' => 'CLASS'} }
     end
 
     trait :function do
-      granularity 'FUNCTION'
+      granularity { {'type' => 'FUNCTION'} }
     end
 
     trait :method do
-      granularity 'METHOD'
+      granularity { {'type' => 'METHOD'} }
     end
 
     factory :kalibro_module_package, traits: [:package]
     factory :kalibro_module_class, traits: [:class]
     factory :kalibro_module_function, traits: [:function]
     factory :kalibro_module_method, traits: [:method]
+
+    initialize_with { KalibroClient::Entities::Processor::KalibroModule.new({granularity: granularity, name: name}.stringify_keys) }
   end
 end
