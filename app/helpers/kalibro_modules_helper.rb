@@ -17,7 +17,7 @@ module KalibroModulesHelper
       if (a.kalibro_module.granularity == b.kalibro_module.granularity)
         a.kalibro_module.name <=> b.kalibro_module.name
       else
-        (ComparableGranularity.new(b.kalibro_module.granularity.to_sym) <=> ComparableGranularity.new(a.kalibro_module.granularity.to_sym))
+        (ComparableGranularity.new(b.kalibro_module.granularity.type) <=> ComparableGranularity.new(a.kalibro_module.granularity.type))
       end
     end
   end

@@ -8,7 +8,7 @@ class CompoundMetricConfigurationsController < BaseMetricConfigurationsControlle
   end
 
   def metric_configuration_params
-    params.require(:metric_configuration).permit(:reading_group_id, :weight, :metric => [:name, :description, :script, :scope, :code])
+    params.require(:metric_configuration).permit(:reading_group_id, :weight, :metric => [:name, :description, :script, :code, :scope => [:type]])
   end
 
   def set_metric_configurations

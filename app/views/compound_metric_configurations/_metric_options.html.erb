@@ -36,8 +36,10 @@
 
     <div class="form-row">
       <div class="field-container">
-        <%= f.label :scope, compound_metric_human_attribute_name('scope'), class: 'control-label' %>
-        <%= f.select( :scope, scope_options, {class: 'form-control', selected: (metric.scope unless metric.nil?)} ) %>
+        <%= f.fields_for :scope do |scope_form| %>
+          <%= scope_form.label :type, compound_metric_human_attribute_name('scope'), class: 'control-label' %>
+          <%= scope_form.select( :type, scope_options, {class: 'form-control', selected: (metric.scope.type unless metric.nil?)} ) %>
+        <% end %>
       </div>
       <div class="help-container">
         <p>
