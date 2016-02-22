@@ -51,22 +51,6 @@ Feature: Repository metric results
     And I click the "Tree Metric Results" h3
     Then I should see "Repository process returned with error. There are no tree metric results."
 
-  @kalibro_processor_restart @kalibro_configuration_restart @javascript
-  Scenario: Should show the metric results after processing with a ruby metric configuration
-    Given I am a regular user
-    And I am signed in
-    And I have a sample configuration with ruby native metrics
-    And I have a sample repository
-    And I start to process that repository
-    And I wait up for a ready processing
-    And I ask for the last ready processing of the given repository
-    And I ask for the module result of the given processing
-    And I ask for the metric results of the given module result
-    When I visit the repository show page
-    And I click the "Tree Metric Results" h3
-    Then I should see the sample metric's name
-    And I should see the ruby metric results
-
   # TODO: Scenario: Should show the graphic of a given metric
   #         It was getting really difficult to test this because of Poltergeist's timeouts
   #       so we gave up on this for now
