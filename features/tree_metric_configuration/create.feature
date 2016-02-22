@@ -20,27 +20,10 @@ Feature: Tree Metric Configuration Creation
     And I click the "Analizo" h3
     And I click the Total Lines of Code link
     And I fill the Weight field with "2"
-    And I set the select field "Aggregation Form" as "Average"
+    And I set the select field "Aggregation Form" as "Mean"
     And I set the select field "Reading Group" as "Scholar"
     When I press the Save button
     Then I should see "Total Lines of Code"
-    Then I should see "2"
-
-  @kalibro_configuration_restart @javascript
-  Scenario: ruby metric configuration creation
-    Given I am a regular user
-    And I am signed in
-    And I own a sample configuration
-    And I have a reading group named "Scholar"
-    And I am at the Sample Configuration page
-    And I click the Add Metric link
-    And I click the "MetricFu" h3
-    And I click the Pain link
-    And I fill the Weight field with "2"
-    And I set the select field "Aggregation Form" as "Average"
-    And I set the select field "Reading Group" as "Scholar"
-    When I press the Save button
-    Then I should see "Pain"
     Then I should see "2"
 
   @kalibro_configuration_restart @javascript
@@ -68,7 +51,7 @@ Feature: Tree Metric Configuration Creation
     And I click the "Analizo" h3
     And I click the Total Abstract Classes link
     And I fill the Weight field with "2"
-    And I set the select field "Aggregation Form" as "Average"
+    And I set the select field "Aggregation Form" as "Mean"
     And I set the select field "Reading Group" as "Scholar"
     When I press the Save button
     Then I should see "Code must be unique within a kalibro configuration"

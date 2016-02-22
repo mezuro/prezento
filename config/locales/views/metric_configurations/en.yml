@@ -45,10 +45,9 @@ en:
     PACKAGE: "Package"
     SOFTWARE: "Software"
   aggregation_forms:
-    AVERAGE: "Average"
+    MEAN: "Mean"
     MEDIAN: "Median"
     MAXIMUM: "Maximum"
     MINIMUM: "Minimum"
     COUNT: "Count"
     STANDARD_DEVIATION: "Standard Deviation"
-

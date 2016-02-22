@@ -49,7 +49,7 @@ pt:
     PACKAGE: "Pacote"
     SOFTWARE: "Software"
   aggregation_forms:
-    AVERAGE: "Média"
+    MEAN: "Média"
     MEDIAN: "Mediana"
     MAXIMUM: "Máxima"
     MINIMUM: "Mínima"
