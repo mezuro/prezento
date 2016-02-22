@@ -59,6 +59,7 @@ end
 
 Given(/^I wait up for a ready processing$/) do
   while !@repository.has_ready_processing
+    expect(@repository.last_processing_state).to_not eq "ERROR"
     sleep(10)
   end
 end
