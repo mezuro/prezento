@@ -4,6 +4,8 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+Set development Ruby version to 2.3.0
+
 == v0.11.1 - 26/02/2016
 
 Fix default database.yml to avoid encoding conflicts in PostgreSQL
