@@ -3,27 +3,27 @@ rvm:
   - 2.3.0
 addons:
   postgresql: "9.3"
-
-before_script:
-  - git clone https://github.com/mezuro/kalibro_install.git -b v4.0 kalibro_install
-  - pushd kalibro_install
-    # Remove bugged libzmq3 package, see https://github.com/travis-ci/travis-ci/issues/982 and https://github.com/travis-ci/travis-ci/issues/1715 for details
+  code_climate:
+    repo_token: 045c2433d496f108c0c6afa5516a72ddbfb1868fb34bf7a9bd095b7a0ea34a79
+before_install:
+  - gem update bundler
+  # Remove bugged libzmq3 package, nsee https://github.com/travis-ci/travis-ci/issues/982 and https://github.com/travis-ci/travis-ci/issues/1715 for details
   - sudo apt-get remove libzmq3
-  - export KALIBRO_PROCESSOR_VERSION=v1.1.7
-  - export KALIBRO_CONFIGURATIONS_VERSION=v2.0.0
-  - bash install.sh
-  - popd
+  - git clone https://github.com/mezuro/kalibro_install.git -b v4.1 kalibro_install
+  - export KALIBRO_PROCESSOR_VERSION=v1.1.10 KALIBRO_CONFIGURATIONS_VERSION=v2.0.1
+  - export KALIBRO_PROCESSOR_START=0 KALIBRO_CONFIGURATIONS_START=0
+  - ./kalibro_install/install.sh
+before_script:
+  - gem install foreman
   - cp config/database.yml.sample config/database.yml
-  - bundle exec rake db:setup
   - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
-  - export CODECLIMATE_REPO_TOKEN=045c2433d496f108c0c6afa5516a72ddbfb1868fb34bf7a9bd095b7a0ea34a79
-
 script:
   - bundle exec rake spec
   - bundle exec rake konacha:run
+  - foreman start -f kalibro_configurations/Procfile &
+  - foreman start -f kalibro_processor/Procfile &
   - bundle exec rake cucumber
-
 notifications:
   email:
     recipients:
