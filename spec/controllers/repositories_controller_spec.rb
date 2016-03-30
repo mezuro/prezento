@@ -517,7 +517,7 @@ describe RepositoriesController, :type => :controller do
 
     context 'with an invalid repository' do
       before :each do
-        Repository.expects(:find).with(repository.id).raises(KalibroClient::Errors::RecordNotFound)
+        Repository.expects(:find).with(repository.id).raises(Likeno::Errors::RecordNotFound)
         post_push
       end
 

@@ -75,7 +75,7 @@ describe ProjectsController, :type => :controller do
 
     context 'when the project does not exists' do
       before :each do
-        Project.expects(:find).with(project.id).raises(KalibroClient::Errors::RecordNotFound)
+        Project.expects(:find).with(project.id).raises(Likeno::Errors::RecordNotFound)
       end
 
       context 'when the request format is known' do

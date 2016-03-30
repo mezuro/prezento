@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from KalibroClient::Errors::RecordNotFound, with: :not_found
+  rescue_from Likeno::Errors::RecordNotFound, with: :not_found
 
   class << self
     # This is necessary for correct devise routing with locales: https://github.com/plataformatec/devise/wiki/How-To:--Redirect-with-locale-after-authentication-failure

@@ -10,7 +10,7 @@ class Project < KalibroClient::Entities::Processor::Project
     project_attributes.map do |attribute|
       begin
         self.find(attribute.project_id)
-      rescue KalibroClient::Errors::RecordNotFound
+      rescue Likeno::Errors::RecordNotFound
         nil
       end
     end.compact
