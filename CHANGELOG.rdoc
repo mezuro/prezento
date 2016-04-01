@@ -4,6 +4,10 @@ Prezento is the web interface for Mezuro.
 
 == Unreleased
 
+== v0.11.3 - 01/04/2016
+
+Update KalibroClient error API which now uses Likeno errors
+
 == v0.11.2 - 09/03/2016
 
 Set development Ruby version to 2.3.0
