@@ -123,7 +123,7 @@ describe ReadingGroup, :type => :model do
         before :each do
           # Map the reading group attributes to the corresponding Reading Group
           all_reading_groups.each do |reading_group|
-            ReadingGroup.stubs(:find).with(reading_group.id).raises(KalibroClient::Errors::RecordNotFound)
+            ReadingGroup.stubs(:find).with(reading_group.id).raises(Likeno::Errors::RecordNotFound)
           end
 
           ReadingGroupAttributes.expects(:where).with(public: true).returns(public_attrs)

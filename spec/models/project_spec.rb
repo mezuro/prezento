@@ -139,7 +139,7 @@ describe Project, :type => :model do
       context 'when no reading groups exist' do
         before :each do
           all_projects.each do |project|
-            described_class.stubs(:find).with(project.id).raises(KalibroClient::Errors::RecordNotFound)
+            described_class.stubs(:find).with(project.id).raises(Likeno::Errors::RecordNotFound)
           end
 
           ProjectAttributes.expects(:where).with(public: true).returns(public_attrs)

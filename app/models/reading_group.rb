@@ -9,7 +9,7 @@ class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
     reading_group_attributes.map { |reading_group_attribute|
       begin
         self.find(reading_group_attribute.reading_group_id)
-      rescue KalibroClient::Errors::RecordNotFound
+      rescue Likeno::Errors::RecordNotFound
         nil
       end
     }.compact

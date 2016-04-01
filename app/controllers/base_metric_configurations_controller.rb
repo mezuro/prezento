@@ -110,7 +110,7 @@ class BaseMetricConfigurationsController < ApplicationController
 
     # Make sure the metric configuration is really from the kalibro configuration we're being told it is
     if @metric_configuration.kalibro_configuration_id != @kalibro_configuration.id
-      raise KalibroClient::Errors::RecordNotFound
+      raise Likeno::Errors::RecordNotFound
     end
   end
 
@@ -136,7 +136,7 @@ class BaseMetricConfigurationsController < ApplicationController
   def set_reading_group!
     begin
       @reading_group = ReadingGroup.find(@metric_configuration.reading_group_id)
-    rescue KalibroClient::Errors::RecordNotFound
+    rescue Likeno::Errors::RecordNotFound
       respond_to do |format|
         failed_action(format, t('invalid_model', model: ReadingGroup.model_name.human))
       end

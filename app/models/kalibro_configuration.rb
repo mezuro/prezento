@@ -9,7 +9,7 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
     kalibro_configuration_attributes.map { |kalibro_configuration_attribute|
       begin
         self.find(kalibro_configuration_attribute.kalibro_configuration_id)
-      rescue KalibroClient::Errors::RecordNotFound
+      rescue Likeno::Errors::RecordNotFound
         nil
       end
     }.compact

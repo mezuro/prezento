@@ -141,7 +141,7 @@ describe MetricConfigurationsController, :type => :controller do
 
       context 'with invalid parameters' do
         before :each do
-          ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).raises(KalibroClient::Errors::RecordNotFound)
+          ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).raises(Likeno::Errors::RecordNotFound)
 
           get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
         end

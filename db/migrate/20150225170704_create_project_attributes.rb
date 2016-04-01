@@ -22,7 +22,7 @@ class CreateProjectAttributes < ActiveRecord::Migration
         end
 
         ProjectAttributes.create(user_id: project_ownership.user_id, project_id: project_ownership.project_id, image_url: image_url, hidden: hidden)
-      rescue KalibroClient::Errors::RecordNotFound
+      rescue Likeno::Errors::RecordNotFound
         puts "Could not find project with id #{project_ownership.project_id} owned by user with #{project_ownership.user_id} and image url #{image_url}"
       end
     end

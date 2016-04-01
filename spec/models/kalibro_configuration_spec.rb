@@ -59,7 +59,7 @@ describe KalibroConfiguration, :type => :model do
           before :each do
             # Map the kalibro_configuration attributes to the corresponding Kalibro Configuration
             kalibro_configurations.each do |kc|
-              KalibroConfiguration.stubs(:find).with(kc.id).raises(KalibroClient::Errors::RecordNotFound)
+              KalibroConfiguration.stubs(:find).with(kc.id).raises(Likeno::Errors::RecordNotFound)
             end
 
             KalibroConfigurationAttributes.expects(:where).with(public: true).returns(public_attrs)
