@@ -7,6 +7,9 @@ class RepositoriesController < ApplicationController
   before_action :set_repository, only: [:show, :edit, :update, :destroy, :state, :state_with_date, :process_repository]
   before_action :set_project_id_repository_types_and_configurations, only: [:new, :edit]
 
+  # Gitlab can't send a CSRF token, don't require one
+  skip_before_action :verify_authenticity_token, :only => [:notify_push]
+
   def index
     @repositories = Repository.all
   end
