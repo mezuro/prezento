@@ -3,7 +3,7 @@ Feature: Notify push to repository
   As a regular user
   I want to use a webhook in my repository to notify Mezuro of new pushes
 
-  @kalibro_configuration_restart @kalibro_processor_restart
+  @kalibro_configuration_restart @kalibro_processor_restart @enable_forgery_protection
   Scenario: Valid repository
     Given I am a regular user
     And I have a sample configuration with hotspot metrics
@@ -13,13 +13,13 @@ Feature: Notify push to repository
     When I push some commits to the repository
     Then Mezuro should process the repository again
 
-  @kalibro_configuration_restart @kalibro_processor_restart
+  @kalibro_configuration_restart @kalibro_processor_restart @enable_forgery_protection
   Scenario: Invalid repository
     Given I am a regular user
     When I push some commits to an invalid repository
     Then I should get a not found error
 
-  @kalibro_configuration_restart @kalibro_processor_restart
+  @kalibro_configuration_restart @kalibro_processor_restart @enable_forgery_protection
   Scenario: Repository with an errored processing
     Given I am a regular user
     And I have a sample reading group
