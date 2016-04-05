@@ -116,6 +116,10 @@ Given(/^I have a sample repository$/) do
   @independent_repository = FactoryGirl.create(:ruby_repository, kalibro_configuration_id: @kalibro_configuration.id)
 end
 
+Given(/^I have a Kalibro Client GitLab repository$/) do
+  @independent_repository = FactoryGirl.create(:kalibro_client_gitlab_repository, kalibro_configuration_id: @kalibro_configuration.id)
+end
+
 Given(/^I am at the All Repositories page$/) do
   visit repositories_path
 end
@@ -163,11 +167,19 @@ When(/^I get the Creation Date information as "(.*?)"$/) do |variable|
 end
 
 When(/^I push some commits to the repository$/) do
-  post repository_notify_push_path(id: @repository.id), {}, {'HTTP_X_GITLAB_EVENT' => 'Push Hook'}
+  request = FactoryGirl.build(:gitlab_webhook_request)
+  request.headers.each do |k, v|
+    header k, v
+  end
+  @response = post repository_notify_push_path(id: @repository.id), request.params
 end
 
 When(/^I push some commits to an invalid repository$/) do
-  @response = post repository_notify_push_path(id: 0), {}, {'HTTP_X_GITLAB_EVENT' => 'Push Hook'}
+  request = FactoryGirl.build(:gitlab_webhook_request)
+  request.headers.each do |k, v|
+    header k, v
+  end
+  @response = post repository_notify_push_path(id: 0), request.params
 end
 
 Then(/^I should see the sample metric's name$/) do
