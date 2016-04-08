@@ -4,6 +4,23 @@ describe CompoundMetricConfigurationsController, :type => :controller do
   let(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
   let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
 
+  describe 'allowed_metric_configurations' do
+    let(:metric_configurations) { [
+      FactoryGirl.build(:metric_configuration, reading_group_id: reading_group.id),
+      FactoryGirl.build(:compound_metric_configuration, reading_group_id: reading_group.id),
+      FactoryGirl.build(:hotspot_metric_configuration),
+    ] }
+    let(:allowed_metric_configurations) { metric_configurations[0..1] }
+
+    before :each do
+      MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns(metric_configurations)
+    end
+
+    it 'is expected to filter out hotspot metric configurations' do
+      expect(subject.send(:allowed_metric_configurations, kalibro_configuration.id)).to eq(allowed_metric_configurations)
+    end
+  end
+
   describe 'new' do
     before :each do
       sign_in FactoryGirl.create(:user)
@@ -11,10 +28,11 @@ describe CompoundMetricConfigurationsController, :type => :controller do
 
     context 'when the current user owns the kalibro configuration' do
       let!(:metric_configuration) { FactoryGirl.build(:metric_configuration, reading_group_id: reading_group.id) }
+      let(:metric_configurations) { [metric_configuration] }
       before :each do
         KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns kalibro_configuration
         subject.expects(:kalibro_configuration_owner?).returns true
-        MetricConfiguration.expects(:metric_configurations_of).with(kalibro_configuration.id).returns([metric_configuration])
+        subject.expects(:allowed_metric_configurations).with(kalibro_configuration.id).returns metric_configurations
 
         get :new, kalibro_configuration_id: kalibro_configuration.id
       end

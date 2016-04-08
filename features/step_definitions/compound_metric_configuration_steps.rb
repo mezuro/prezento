@@ -40,3 +40,14 @@ Then(/^I should be at compound metric configuration sample page$/) do
   expect(page).to have_content(@compound_metric_configuration.metric.name)
   expect(page).to have_content("Ranges")
 end
+
+Then(/^I should see only tree and compound metrics in the Created Metrics list$/) do
+  metrics = MetricConfiguration.metric_configurations_of(@kalibro_configuration.id).map(&:metric)
+  metrics_by_code = Hash[metrics.map { |metric| [metric.code, metric] }]
+
+  get_table_column_values('#created-metrics-accordion', 'Code') do |code|
+    metric = metrics_by_code[code]
+    expect(metric).not_to be_nil
+    expect(%w(NativeMetricSnapshot CompoundMetricSnapshot)).to include(metric.type)
+  end
+end
