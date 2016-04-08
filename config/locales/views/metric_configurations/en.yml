@@ -40,6 +40,7 @@ en:
   invalid_metric_or_collector: "Invalid combination of metric collector, name/code and type"
   invalid_model: "Invalid %{model}"
   scopes:
+    FUNCTION: "Function"
     METHOD: "Method"
     CLASS: "Class"
     PACKAGE: "Package"

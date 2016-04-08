@@ -44,6 +44,7 @@ pt:
   invalid_metric_or_collector: "Combinação inválida de coletor de métricas, nome/código e tipo"
   invalid_model: "%{model} inválido"
   scopes:
+    FUNCTION: "Função"
     METHOD: "Método"
     CLASS: "Classe"
     PACKAGE: "Pacote"
