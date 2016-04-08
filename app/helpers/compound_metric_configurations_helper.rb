@@ -1,6 +1,8 @@
 module CompoundMetricConfigurationsHelper
   def scope_options
-    [[t("scopes.METHOD"),"METHOD"], [t("scopes.CLASS"), "CLASS"], [t("scopes.PACKAGE"), "PACKAGE"], [t("scopes.SOFTWARE"), "SOFTWARE"]]
+    %w(FUNCTION METHOD CLASS PACKAGE SOFTWARE).map do |scope|
+      [t("scopes.#{scope}"), scope]
+    end
   end
 
   def compound_metric_human_name(count=1)
