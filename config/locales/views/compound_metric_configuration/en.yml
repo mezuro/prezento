@@ -21,3 +21,4 @@ en:
           description: "A variable that holds the value of a metric calculation. It can be used in the script of another compound metric."
           example: "Example: Code foo := 10"
         weight: "It is used to calculate the weighted average of a"
+        scope: "Represents the granularity level of the code fragment being measured."

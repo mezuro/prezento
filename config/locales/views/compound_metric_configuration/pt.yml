@@ -21,3 +21,4 @@ pt:
           description: "Uma variável que contém o valor do cálculo da métrica. Ela pode ser usada no script de outra métrica composa."
           example: "Examplo: Código foo := 10"
         weight: "ele é usado para o cálculo de uma média ponderada de um"
+        scope: "Representa o nível de granularidade do fragmento de código que está sendo medido."
