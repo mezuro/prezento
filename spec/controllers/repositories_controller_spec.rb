@@ -475,10 +475,7 @@ describe RepositoriesController, :type => :controller do
     let(:webhook_request) { FactoryGirl.build(:gitlab_webhook_request) }
 
     def post_push
-      webhook_request.headers.each do |k, v|
-        @request.headers[k] = v
-      end
-
+      @request.headers.merge!(webhook_request.headers)
       post :notify_push, {id: repository.id, format: :json}.merge(webhook_request.params)
     end
 

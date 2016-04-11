@@ -168,18 +168,14 @@ end
 
 When(/^I push some commits to the repository$/) do
   request = FactoryGirl.build(:gitlab_webhook_request)
-  request.headers.each do |k, v|
-    header k, v
-  end
-  @response = post repository_notify_push_path(id: @repository.id), request.params
+  set_headers(request.headers)
+  page.driver.post(repository_notify_push_path(id: @repository.id), request.params)
 end
 
 When(/^I push some commits to an invalid repository$/) do
   request = FactoryGirl.build(:gitlab_webhook_request)
-  request.headers.each do |k, v|
-    header k, v
-  end
-  @response = post repository_notify_push_path(id: 0), request.params
+  set_headers(request.headers)
+  page.driver.post(repository_notify_push_path(id: 0), request.params)
 end
 
 Then(/^I should see the sample metric's name$/) do
@@ -283,5 +279,5 @@ Then(/^Mezuro should process the repository again$/) do
 end
 
 Then(/^I should get a not found error$/) do
-  expect(@response.status).to eq(404)
+  expect(page.driver.status_code).to eq(404)
 end
