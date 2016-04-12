@@ -471,11 +471,12 @@ describe RepositoriesController, :type => :controller do
   end
 
   describe 'notify_push' do
-    let(:repository) { FactoryGirl.build(:repository) }
+    let(:repository) { FactoryGirl.build(:kalibro_client_gitlab_repository) }
+    let(:webhook_request) { FactoryGirl.build(:gitlab_webhook_request) }
 
     def post_push
-      @request.env['HTTP_X_GITLAB_EVENT'] = ['Push Hook', 'Tag Push Hook'].sample
-      post :notify_push, id: repository.id, format: :json
+      @request.headers.merge!(webhook_request.headers)
+      post :notify_push, {id: repository.id, format: :json}.merge(webhook_request.params)
     end
 
     context 'with a valid repository' do
@@ -483,35 +484,67 @@ describe RepositoriesController, :type => :controller do
         Repository.expects(:find).with(repository.id).returns(repository)
       end
 
-      context 'when the repository is being processed' do
-        before do
-          repository.expects(:last_processing_state).returns('INTERPRETING')
-          repository.expects(:cancel_processing_of_repository).once
-          repository.expects(:process).once
+      context 'without a valid address' do
+        before :each do
+          Webhooks::Base.any_instance.expects(:valid_address?).returns(false)
           post_push
         end
 
-        it { is_expected.to respond_with(:ok) }
+        it { is_expected.to respond_with(:forbidden) }
       end
 
-      context "when the repository's processing resulted in an error" do
-        before do
-          repository.expects(:last_processing_state).returns('ERROR')
-          repository.expects(:process).once
-          post_push
+      context 'with a valid address' do
+        before :each do
+          Webhooks::Base.any_instance.expects(:valid_address?).returns(true)
         end
 
-        it { is_expected.to respond_with(:ok) }
-      end
+        context 'without a matching branch' do
+          before :each do
+            Webhooks::Base.any_instance.expects(:valid_branch?).returns(false)
+            repository.expects(:cancel_processing_of_repository).never
+            repository.expects(:process).never
+            post_push
+          end
 
-      context 'when the repository is not being processed' do
-        before do
-          repository.expects(:last_processing_state).returns('READY')
-          repository.expects(:process).once
-          post_push
+          it { is_expected.to respond_with(:ok) }
         end
 
-        it { is_expected.to respond_with(:ok) }
+        context 'with a matching branch' do
+          before :each do
+            Webhooks::Base.any_instance.expects(:valid_branch?).returns(true)
+          end
+
+          context 'when the repository is being processed' do
+            before do
+              repository.expects(:last_processing_state).returns('INTERPRETING')
+              repository.expects(:cancel_processing_of_repository).once
+              repository.expects(:process).once
+              post_push
+            end
+
+            it { is_expected.to respond_with(:ok) }
+          end
+
+          context "when the repository's processing resulted in an error" do
+            before do
+              repository.expects(:last_processing_state).returns('ERROR')
+              repository.expects(:process).once
+              post_push
+            end
+
+            it { is_expected.to respond_with(:ok) }
+          end
+
+          context 'when the repository is not being processed' do
+            before do
+              repository.expects(:last_processing_state).returns('READY')
+              repository.expects(:process).once
+              post_push
+            end
+
+            it { is_expected.to respond_with(:ok) }
+          end
+        end
       end
     end
 
@@ -522,14 +555,6 @@ describe RepositoriesController, :type => :controller do
       end
 
       it { is_expected.to respond_with(:not_found) }
-    end
-
-    context 'with an invalid header' do
-      before :each do
-        post :notify_push, id: repository.id, format: :json
-      end
-
-      it { is_expected.to respond_with(:unprocessable_entity) }
     end
   end
 end

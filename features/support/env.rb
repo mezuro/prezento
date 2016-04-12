@@ -20,8 +20,11 @@ end
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'warden'
 require 'cucumber/rails'
 require 'capybara/poltergeist'
+require_relative 'header'
+
 #Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 20 # default is 2 seconds
@@ -81,5 +84,6 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 # KalibroClient hooks
 require 'kalibro_client/kalibro_cucumber_helpers/hooks.rb'
 
-# Warden test helpers so the user authentication can be as fast as possible
-include Warden::Test::Helpers
+Warden.test_mode!
+World(Warden::Test::Helpers, HeaderUtils)
+
