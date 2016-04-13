@@ -52,10 +52,6 @@
         <div class="col-sm-3 col-md-3">
           <div class="well sidebar-nav">
             <ul class="list-group">
-              <% if user_signed_in? %>
-                <li class="nav-header"><%= t('hello_html', user: current_user.name) %></li>
-                <li class="list-group-item"><%= link_to t('your_projects'), user_projects_path(current_user.id) %></li>
-              <% end %>
               <li class="nav-header"><%= t('tutorials') %></li>
               <li class="list-group-item"><%= link_to t('analysis'), tutorials_path('analyzing') %></li>
               <li class="list-group-item"><%= link_to t('configuring'), tutorials_path('configuring') %></li>
