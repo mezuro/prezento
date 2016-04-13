@@ -7,6 +7,8 @@ Prezento is the web interface for Mezuro.
 * Remove Show button for hotspot metric configurations
 * Remove side menu
 * Refactor footer as a grid
+* Add latest repositories list to the homepage
+* Add latest configurations list to the homepage
 
 == v0.11.3 - 01/04/2016
 

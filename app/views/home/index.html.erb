@@ -20,10 +20,26 @@
       </ul>
     </div>
     <div class="col-md-4">
-      <h2><%= t('latest_projects') %></h2>
+      <h2><%= t('latest_repositories') %></h2>
+
+      <ul>
+        <% cache do %>
+          <% @latest_repositories.each do |repository| %>
+            <li><%= link_to(repository.name, repository_path(repository.id)) %></li>
+          <% end %>
+        <% end %>
+      </ul>
     </div>
     <div class="col-md-4">
-      <h2><%= t('latest_projects') %></h2>
+      <h2><%= t('latest_configurations') %></h2>
+
+      <ul>
+        <% cache do %>
+          <% @latest_configurations.each do |configuration| %>
+            <li><%= link_to(configuration.name, kalibro_configuration_path(configuration.id)) %></li>
+          <% end %>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
