@@ -6,12 +6,24 @@
   </p>
 </div>
 
-<h2><%= t('latest_projects') %></h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h2><%= t('latest_projects') %></h2>
 
-<ul>
-  <% cache do %>
-    <% @latest_projects.each do |project| %>
-      <li><%= link_to(project.name, project_path(project.id)) %></li>
-    <% end %>
-  <% end %>
-</ul>
+      <ul>
+        <% cache do %>
+          <% @latest_projects.each do |project| %>
+            <li><%= link_to(project.name, project_path(project.id)) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2><%= t('latest_projects') %></h2>
+    </div>
+    <div class="col-md-4">
+      <h2><%= t('latest_projects') %></h2>
+    </div>
+  </div>
+</div>
