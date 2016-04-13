@@ -11,4 +11,10 @@ module ApplicationHelper
 
     t("helpers.submit.#{model.model_name.i18n_key}.#{action}", options)
   end
+
+  def render_if_exists(template_name)
+    render(:partial => "/#{controller_name}/#{template_name}")
+  rescue  ActionView::MissingTemplate
+    # pass
+  end
 end

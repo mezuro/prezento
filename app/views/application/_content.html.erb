@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+      <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp;&nbsp; <%= t('instant_loading_page') %></div>
+      <%= bootstrap_flash %>
+      <%= yield %>
+    </div>
+  </div><!--/row-->
+
+
+  <script type="text/javascript">
+    $(function() {
+      $( "#languages-accordion > div" ).accordion({
+        heightStyle: "content",
+        collapsible: true,
+        active: false
+      });
+    });
+  </script>
+</div> <!-- /container -->
