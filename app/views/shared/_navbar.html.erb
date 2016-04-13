@@ -21,7 +21,7 @@
           <% if user_signed_in? %>
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="true" role="button" data-toggle="dropdown" href="#">
-                <%= t('hello_html', user: current_user.name) %>
+                <%= current_user.name %>
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
