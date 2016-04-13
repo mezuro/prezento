@@ -56,20 +56,18 @@
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <%= render partial: 'shared/footer' %>
-
-      <script type="text/javascript">
-        $(function() {
-          $( "#languages-accordion > div" ).accordion({
-            heightStyle: "content",
-            collapsible: true,
-            active: false
-          });
-        });
-      </script>
-
     </div> <!-- /container -->
 
+    <%= render partial: 'shared/footer' %>
+
+    <script type="text/javascript">
+      $(function() {
+        $( "#languages-accordion > div" ).accordion({
+          heightStyle: "content",
+          collapsible: true,
+          active: false
+        });
+      });
+    </script>
   </body>
 </html>
