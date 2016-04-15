@@ -45,9 +45,6 @@ Rails.application.routes.draw do
     post '/modules/:id/metric_history' => 'modules#metric_history', as: 'module_metric_history'
     post '/modules/:id/tree' => 'modules#load_module_tree', as: 'module_tree'
 
-    # Tutorials
-    get '/tutorials/:name' => 'tutorials#view', as: 'tutorials'
-
     root "home#index"
   end
 
