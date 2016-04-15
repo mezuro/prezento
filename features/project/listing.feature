@@ -5,7 +5,7 @@ Feature: Project listing
 
   Scenario: Listing projects
     Given I am at the homepage
-    When I click the Project link
+    When I click the Projects link
     Then I should see "Projects"
     And I should see "Name"
     And I should see "Description"

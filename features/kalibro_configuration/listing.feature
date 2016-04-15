@@ -5,7 +5,7 @@ Feature: Configuration listing
 
   Scenario: Listing configurations
     Given I am at the homepage
-    When I click the Configuration link
+    When I click the Configurations link
     Then I should see "Configurations"
     And I should see "Name"
     And I should see "Description"
