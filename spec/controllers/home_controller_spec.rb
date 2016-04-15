@@ -5,6 +5,8 @@ describe HomeController, :type => :controller do
     context '#index' do
       before :each do
         Project.expects(:latest).with(5).returns([])
+        Repository.expects(:latest).with(5).returns([])
+        KalibroConfiguration.expects(:latest).with(5).returns([])
       end
 
       describe 'Rendering' do

@@ -45,95 +45,29 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-           <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-target="#nav-collapse" data-toggle="collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a><%= link_to image_tag('logo.png'), root_path, class: 'navbar-brand' %></a>
-          </div>
-          <div class="collapse navbar-collapse" id="nav-collapse">
-            <ul class="nav navbar-nav">
-              <li><%= link_to t('home'), root_path %></li>
-              <li><%= link_to Project.model_name.human, projects_path %></li>
-              <li><%= link_to Repository.model_name.human, repositories_path %></li>
-              <li><%= link_to KalibroConfiguration.model_name.human, kalibro_configurations_path %></li>
-              <li><%= link_to ReadingGroup.model_name.human, reading_groups_path %></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <% if user_signed_in? %>
-                <li><%= link_to t('edit_account'), edit_user_registration_path %></li>
-                <li><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
-              <% else %>
-                <li><%= link_to t('sign_in'), new_user_session_path %></li>
-                <li><%= link_to t('sign_up'), new_user_registration_path %></li>
-              <% end %>
-              <li class="dropdown">
-                <a class="dropdown-toggle" aria-expanded="true" role="button" data-toggle="dropdown" href="#">
-                  <%= t('language') %>
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <% I18n.available_locales.each do |locale| %>
-                    <li><%= link_to(locale.to_s, url_for(locale: locale), data: { no_turbolink: true }) %></li>
-                  <% end %>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'shared/navbar' %>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-3">
-          <div class="well sidebar-nav">
-            <ul class="list-group">
-              <% if user_signed_in? %>
-                <li class="nav-header"><%= t('hello_html', user: current_user.name) %></li>
-                <li class="list-group-item"><%= link_to t('your_projects'), user_projects_path(current_user.id) %></li>
-              <% end %>
-              <li class="nav-header"><%= t('tutorials') %></li>
-              <li class="list-group-item"><%= link_to t('analysis'), tutorials_path('analyzing') %></li>
-              <li class="list-group-item"><%= link_to t('configuring'), tutorials_path('configuring') %></li>
-              <li class="list-group-item" ><%= link_to t('keywords'), tutorials_path('keywords') %></li>
-              <% if content_for?(:sidebar) %>
-                <%= yield :sidebar %>
-              <% else %>
-                <%= render 'shared/short_about' %>
-              <% end %>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/col-sm-3 col-md-3-->
-        <div class="col-sm-9 col-md-9">
-        <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp;&nbsp; <%= t('instant_loading_page') %></div>
+        <div class="col-sm-12 col-md-12">
+          <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp;&nbsp; <%= t('instant_loading_page') %></div>
 
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-        <div class="footer-left">&copy; <%= link_to(t('mezuro_team'), '/humans.txt') %> 2013-2015</div>
-        <div class="footer-right"><%= link_to(image_tag('agplv3-88x31.png'), 'http://www.gnu.org/licenses/agpl-3.0-standalone.html') %> <%= link_to image_tag('fork-me.png'), 'https://github.com/mezuro/prezento' %> <%= image_tag 'usp-cloud-nuvem-logo.png' %> <%= link_to image_tag('banner-ccsl.png', height: '40', width: '190'), 'http://ccsl.ime.usp.br/' %></div>
-      </footer>
-
-      <script type="text/javascript">
-        $(function() {
-          $( "#languages-accordion > div" ).accordion({
-            heightStyle: "content",
-            collapsible: true,
-            active: false
-          });
-        });
-      </script>
-
     </div> <!-- /container -->
 
+    <%= render partial: 'shared/footer' %>
+
+    <script type="text/javascript">
+      $(function() {
+        $( "#languages-accordion > div" ).accordion({
+          heightStyle: "content",
+          collapsible: true,
+          active: false
+        });
+      });
+    </script>
   </body>
 </html>

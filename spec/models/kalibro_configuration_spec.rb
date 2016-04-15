@@ -70,6 +70,29 @@ describe KalibroConfiguration, :type => :model do
           end
         end
       end
+
+      describe 'latest' do
+        let!(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, id: 1) }
+        let!(:another_kalibro_configuration) { FactoryGirl.build(:another_kalibro_configuration, id: 2) }
+        let!(:kalibro_configuration_attributes) { FactoryGirl.build(:kalibro_configuration_attributes) }
+
+        before :each do
+          kalibro_configuration.expects(:attributes).returns(kalibro_configuration_attributes)
+          another_kalibro_configuration.expects(:attributes).returns(kalibro_configuration_attributes)
+
+          KalibroConfiguration.expects(:all).returns([kalibro_configuration, another_kalibro_configuration])
+        end
+
+        it 'should return the two kalibro_configurations ordered' do
+          expect(KalibroConfiguration.latest(2)).to eq([another_kalibro_configuration, kalibro_configuration])
+        end
+
+        context 'when no parameter is passed' do
+          it 'should return just the most recent kalibro_configuration' do
+            expect(KalibroConfiguration.latest).to eq([another_kalibro_configuration])
+          end
+        end
+      end
     end
 
     describe 'destroy' do

@@ -28,4 +28,8 @@ class KalibroConfiguration < KalibroClient::Entities::Configurations::KalibroCon
     @attributes = nil
     super
   end
+
+  def self.latest(count=1)
+    all.sort { |one, another| another.id <=> one.id }.select { |kalibro_configuration| kalibro_configuration.attributes.public }.first(count)
+  end
 end

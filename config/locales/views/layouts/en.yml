@@ -1,5 +1,4 @@
 en:
-  hello_html: "Hello, %{user}"
   instant_loading_page: "Wait an instant while we are loading the page that you have requested."
   home: "Home"
   edit_account: "Edit Account"

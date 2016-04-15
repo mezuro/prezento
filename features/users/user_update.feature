@@ -8,7 +8,9 @@ Feature: User update
     Given I am a regular user
     And I am signed in
     And I am at the homepage
-    When I click the Edit link
+    And I take a picture of the page
+    When I click the Diego Martinez link
+    And I click the Edit Account link
     And I fill the Name field with "Rafael Manzo"
     And I fill the Current password field with "password"
     And I press the Update button
