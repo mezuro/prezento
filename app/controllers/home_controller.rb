@@ -1,7 +1,15 @@
 class HomeController < ApplicationController
-  def index
-    @latest_projects = Project.latest(5)
-    @latest_repositories = Repository.latest(5)
-    @latest_configurations = KalibroConfiguration.latest(5)
+  helper_method :latest_projects, :latest_repositories, :latest_configurations
+
+  def latest_projects(count)
+    Project.latest(count)
+  end
+
+  def latest_repositories(count)
+    Repository.latest(count)
+  end
+
+  def latest_configurations(count)
+    KalibroConfiguration.latest(count)
   end
 end
