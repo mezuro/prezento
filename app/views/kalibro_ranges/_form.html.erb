@@ -14,8 +14,8 @@
         <div class="help-container">
           <p>
             <%= t_hint('reading', 'kalibro_range',
-                  reading_href: link_to(t('reading'), tutorials_path('keywords', anchor: 'reading')),
-                  range_href: link_to(KalibroRange.model_name.human, tutorials_path('keywords', anchor: 'range'))
+                  reading_href: link_to(t('reading'), "http://mezuro.github.io/tutorial/2016/04/04/tutorial-keywords.html#reading", target: "_blank"),
+                  range_href: link_to(KalibroRange.model_name.human, "http://mezuro.github.io/tutorial/2016/04/04/tutorial-keywords.html#range", target: "_blank")
                  ).html_safe
             %>
           </p>
@@ -65,7 +65,7 @@
         </div>
         <div class="help-container">
           <p>
-            <%= t_hint('comments', 'kalibro_range', metric_href: link_to(t('metric'), tutorials_path('keywords', anchor: 'metric'))).html_safe %>
+            <%= t_hint('comments', 'kalibro_range', metric_href: link_to(t('metric'), "http://mezuro.github.io/tutorial/2016/04/04/tutorial-keywords.html#metric", target: "_blank")).html_safe %>
           </p>
         </div>
       </div>
