@@ -5,7 +5,7 @@ Feature: Repository listing
 
   Scenario: Listing repositories
     Given I am at the homepage
-    When I click the Repository link
+    When I click the Repositories link
     Then I should see "Repositories"
     And I should see "Name"
     And I should see "Description"

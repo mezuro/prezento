@@ -3,14 +3,14 @@ Feature: Reading Group
   As a regular user
   I should be able to see the public and my own reading groups
 
-  Scenario: Not logged in and no Reading Groups 
+  Scenario: Not logged in and no Reading Groups
     Given I am at the homepage
-    When I click the Reading Group link
+    When I click the Reading Groups link
     Then I should see "Reading Groups"
     And I should see "Name"
     And I should see "Description"
     And I should see "You must be logged in to Create Reading Group"
-  
+
   @kalibro_configuration_restart @javascript
   Scenario: Logged in, should list Reading Groups
     Given I am a regular user
@@ -19,7 +19,7 @@ Feature: Reading Group
     When I am at the All Reading Groups page
     Then the sample reading group should be there
     And I should not see "You must be logged in to Create Reading Group"
-  
+
   @kalibro_configuration_restart
   Scenario: Should show only the public or owned reading groups
     Given I am a regular user
