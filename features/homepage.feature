@@ -3,7 +3,9 @@ Feature: Homepage
   As a regular user
   I want to have in one page useful links to manage my account and session
 
+  @kalibro_processor_restart
   Scenario: Before signing in
+    Given I have a project named "GCC"
     Then I am at the homepage
     And I should see "Home"
     And I should see "Project"
@@ -16,6 +18,7 @@ Feature: Homepage
     And I should see "Latest projects"
     And I should see "Latest repositories"
     And I should see "Latest configurations"
+    Then I should see "GCC" only "1" times
 
   Scenario: Signed in
     Given I am a regular user

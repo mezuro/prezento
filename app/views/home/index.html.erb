@@ -12,7 +12,7 @@
       <h2><%= t('latest_projects') %></h2>
 
       <ul>
-        <% cache do %>
+        <% cache action_suffix: 'latest_projects' do %>
           <% @latest_projects.each do |project| %>
             <li><%= link_to(project.name, project_path(project.id)) %></li>
           <% end %>
@@ -23,7 +23,7 @@
       <h2><%= t('latest_repositories') %></h2>
 
       <ul>
-        <% cache do %>
+        <% cache action_suffix: 'latest_repositories' do %>
           <% @latest_repositories.each do |repository| %>
             <li><%= link_to(repository.name, repository_path(repository.id)) %></li>
           <% end %>
@@ -34,7 +34,7 @@
       <h2><%= t('latest_configurations') %></h2>
 
       <ul>
-        <% cache do %>
+        <% cache action_suffix: 'latest_configurations' do %>
           <% @latest_configurations.each do |configuration| %>
             <li><%= link_to(configuration.name, kalibro_configuration_path(configuration.id)) %></li>
           <% end %>
