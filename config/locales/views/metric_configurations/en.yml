@@ -39,6 +39,7 @@ en:
   choose_metric: "Choose a metric from a Base Tool:"
   invalid_metric_or_collector: "Invalid combination of metric collector, name/code and type"
   invalid_model: "Invalid %{model}"
+  compound_metric: "Compound Metric"
   scopes:
     FUNCTION: "Function"
     METHOD: "Method"

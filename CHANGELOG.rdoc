@@ -11,6 +11,7 @@ Prezento is the web interface for Mezuro.
 * Add latest configurations list to the homepage
 * Move tutorials to mezuro.github.io
 * Pluralize navigation menu links
+* Add missing translation for CompoundMetric
 * Make Compound Metric Config. metric list not include Hotspot metrics
 * Fix 'Tree Metrics' and 'Hotspot Metrics' PT translations in Configuration show view  
 
