@@ -43,6 +43,7 @@ pt:
   choose_metric: "Escolha uma métrica de um Coletor:"
   invalid_metric_or_collector: "Combinação inválida de coletor de métricas, nome/código e tipo"
   invalid_model: "%{model} inválido"
+  compound_metric: "Métrica Composta"
   scopes:
     FUNCTION: "Função"
     METHOD: "Método"
