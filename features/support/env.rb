@@ -24,6 +24,7 @@ require 'warden'
 require 'cucumber/rails'
 require 'capybara/poltergeist'
 require_relative 'header'
+require_relative 'tables'
 
 #Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
@@ -85,5 +86,4 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 require 'kalibro_client/kalibro_cucumber_helpers/hooks.rb'
 
 Warden.test_mode!
-World(Warden::Test::Helpers, HeaderUtils)
-
+World(Warden::Test::Helpers, HeaderUtils, TableUtils)
