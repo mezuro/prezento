@@ -31,20 +31,43 @@ describe Repository do
 
   describe 'class method' do
     describe 'latest' do
-      let!(:repository) { FactoryGirl.build(:repository, id: 1) }
-      let!(:another_repository) { FactoryGirl.build(:another_repository, id: 2) }
+      let!(:repository) { FactoryGirl.build(:repository) }
+      let!(:another_repository) { FactoryGirl.build(:repository, id: 2) }
+      let!(:repository_attributes) { FactoryGirl.build(:repository_attributes) }
 
-      before do
-        Repository.expects(:all).returns([repository, another_repository])
+      before :each do
+        repository.expects(:attributes).returns(repository_attributes)
+        another_repository.expects(:attributes).returns(repository_attributes)
       end
 
-      it 'should return the two repositorys ordered' do
-        expect(Repository.latest(2)).to eq([another_repository, repository])
+      context 'without private repositories' do
+        before :each do
+          Repository.expects(:all).returns([repository, another_repository])
+        end
+
+        it 'is expected to return the two repositories ordered' do
+          expect(Repository.latest(2)).to eq([another_repository, repository])
+        end
+
+        context 'when no parameter is passed' do
+          it 'is expected to return just the most recent repository' do
+            expect(Repository.latest).to eq([another_repository])
+          end
+        end
       end
 
-      context 'when no parameter is passed' do
-        it 'should return just the most recent repository' do
-          expect(Repository.latest).to eq([another_repository])
+      context 'with private repositories' do
+        let(:private_repository) { FactoryGirl.build(:repository, id: 3) }
+        let(:private_attributes) { FactoryGirl.build(:repository_attributes, :private) }
+
+        before :each do
+          private_repository.expects(:attributes).returns(private_attributes)
+
+          Repository.expects(:all).returns([repository, another_repository, private_repository])
+        end
+
+        it 'is expected to return only the public ones' do
+          expect(Repository.latest(2)).to eq([another_repository, repository])
         end
       end
     end

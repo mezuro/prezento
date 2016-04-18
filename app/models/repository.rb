@@ -17,7 +17,7 @@ class Repository < KalibroClient::Entities::Processor::Repository
   end
 
   def self.latest(count=1)
-    all.sort { |one, another| another.id <=> one.id }.first(count)
+    all.sort { |one, another| another.id <=> one.id }.select { |repository| repository.attributes.public }.first(count)
   end
 
   def attributes
