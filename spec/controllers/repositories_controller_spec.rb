@@ -5,7 +5,7 @@ describe RepositoriesController, :type => :controller do
     let!(:repository) { FactoryGirl.build(:repository) }
 
     before :each do
-      Repository.expects(:all).returns([repository])
+      Repository.expects(:public_or_owned_by_user).returns([repository])
       get :index
     end
 

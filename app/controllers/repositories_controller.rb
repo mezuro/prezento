@@ -14,7 +14,7 @@ class RepositoriesController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:notify_push]
 
   def index
-    @repositories = Repository.all
+    @repositories = Repository.public_or_owned_by_user(current_user)
   end
 
   # GET /projects/1/repositories/1
