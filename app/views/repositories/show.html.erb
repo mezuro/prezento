@@ -37,6 +37,13 @@
   <%= @kalibro_configuration.name %>
 </p>
 
+<% if repository_owner? @repository.id %>
+  <p>
+    <strong><%= t('repository.show.notify_push_url') %>:</strong>
+    <%= repository_notify_push_url(@repository.id) %>
+  </p>
+<% end %>
+
 <p><strong> <%= t('repository.show.date_processing') %>: </strong></p>
 
 <%= form_tag(repository_state_with_date_path(@repository.id), method: "get", remote: true) do %>
