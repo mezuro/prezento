@@ -1,6 +1,34 @@
 require 'rails_helper'
 
 describe Repository do
+  describe 'methods' do
+    describe 'attributes' do
+      subject { FactoryGirl.build(:repository) }
+
+      context 'when there are attributes' do
+        let!(:repository_attributes) { FactoryGirl.build(:repository_attributes) }
+
+        before :each do
+          RepositoryAttributes.expects(:find_by_repository_id).returns(repository_attributes)
+        end
+
+        it 'is expected to return the repository attributes' do
+          expect(subject.attributes).to eq(repository_attributes)
+        end
+      end
+
+      context 'when there are no attributes' do
+        before :each do
+          RepositoryAttributes.expects(:find_by_repository_id).returns(nil)
+        end
+
+        it 'is expected to return the repository attributes' do
+          expect(subject.attributes).to be_nil
+        end
+      end
+    end
+  end
+
   describe 'class method' do
     describe 'latest' do
       let!(:repository) { FactoryGirl.build(:repository, id: 1) }
