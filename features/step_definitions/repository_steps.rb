@@ -281,3 +281,8 @@ end
 Then(/^I should get a not found error$/) do
   expect(page.driver.status_code).to eq(404)
 end
+
+Then(/^I should see the correct notify push url$/) do
+  step "I should see \"Notify Push Url for Gitlab\""
+  expect(page).to have_selector("input[value=\"#{repository_notify_push_url(host: Capybara.current_session.server.host, port: Capybara.current_session.server.port, locale: :en, id: @repository.id)}\"]")
+end

@@ -37,6 +37,15 @@
   <%= @kalibro_configuration.name %>
 </p>
 
+<% if repository_owner? @repository.id %>
+  <strong><%= t('repository.show.notify_push_url') %>:</strong>
+  <input id="notify_url" value="<%= repository_notify_push_url(@repository.id) %>" readonly="">
+
+  <button id="btn" data-clipboard-target="#notify_url">
+    <i class="fa fa-copy" alt="Copy to clipboard"></i>
+  </button>
+<% end %>
+
 <p><strong> <%= t('repository.show.date_processing') %>: </strong></p>
 
 <%= form_tag(repository_state_with_date_path(@repository.id), method: "get", remote: true) do %>
@@ -74,9 +83,14 @@
     <div id="metric_results"><%= image_tag 'loader.gif' %> <%= t('repository.show.loading') %></div>
   </div>
 </div>
+
+<!-- Copy to clipboard -->
+<%= javascript_include_tag "https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.10/dist/clipboard.min.js" %>
+
 <script type="text/javascript">
     $(document).ready(function () {
-      (new Repository.State(<%= @repository.id %>)).poll_state('')
+      (new Repository.State(<%= @repository.id %>)).poll_state('');
+      new Clipboard('#btn');
     });
 
   //Loads the accordion

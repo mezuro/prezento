@@ -86,4 +86,4 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 require 'kalibro_client/kalibro_cucumber_helpers/hooks.rb'
 
 Warden.test_mode!
-World(Warden::Test::Helpers, HeaderUtils, TableUtils)
+World(Warden::Test::Helpers, HeaderUtils, TableUtils, ActionView::Helpers::UrlHelper)

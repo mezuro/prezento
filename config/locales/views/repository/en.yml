@@ -38,3 +38,4 @@ en:
       metric_results: "Tree Metric Results"
       loading: "Loading data. Please, wait."
       date_processing: "Retrieve the closest processing information from"
+      notify_push_url: 'Notify Push Url for Gitlab'

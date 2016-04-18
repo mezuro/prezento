@@ -19,6 +19,7 @@ Feature: Show Repository
     And I should see "Description"
     And I should see "License"
     And I should see the given repository's content
+    And I should not see "Notify Push Url for Gitlab"
 
   @kalibro_configuration_restart @kalibro_processor_restart @javascript
   Scenario: With a ready processing and asking to reprocess
@@ -32,6 +33,7 @@ Feature: Show Repository
     And I wait up for a ready processing
     When I visit the repository show page
     Then I should see the sample repository name
+    And I should see the correct notify push url
     And I should see "State"
     And I should see "Creation Date"
     And I should see "PREPARING time"

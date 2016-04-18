@@ -556,5 +556,15 @@ describe RepositoriesController, :type => :controller do
 
       it { is_expected.to respond_with(:not_found) }
     end
+
+    context 'with an invalid request' do
+      before :each do
+        Repository.expects(:find).with(repository.id).returns(repository)
+        Webhooks::GitLab.any_instance.expects(:valid_request?).returns(false)
+        post_push
+      end
+
+      it { is_expected.to respond_with(:unprocessable_entity) }
+    end
   end
 end

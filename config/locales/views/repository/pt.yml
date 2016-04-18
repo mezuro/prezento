@@ -38,3 +38,4 @@ pt:
       metric_results: "Resultados de Métrica"
       loading: "Carregando os dados. Por favor, aguarde."
       date_processing: "Obtenha a informação de processamento mais próxima a"
+      notify_push_url: 'Url para notificações do Gitlab'
