@@ -19,8 +19,9 @@ Feature: Repository listing
     And I have a sample repository
     And I have a sample project
     And I have a sample repository within the sample project
+    And I own that repository
     And I am at the All Repositories page
-    Then the sample repository should be there
+    Then the sample repository should not be there
     And the project repository should be there
     And I should not see "You must be logged in to create new Repositories."
 
