@@ -249,6 +249,10 @@ Then(/^the sample repository should be there$/) do
   expect(page).to have_content(@independent_repository.description)
 end
 
+Then(/^the sample repository should not be there$/) do
+  expect(page).to_not have_content(@independent_repository.name)
+end
+
 Then(/^the project repository should be there$/) do
   expect(page).to have_content(@repository.name)
   expect(page).to have_content(@repository.description)
