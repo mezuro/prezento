@@ -17,7 +17,10 @@ class Project < KalibroClient::Entities::Processor::Project
   end
 
   def self.latest(count = 1)
-    all.sort { |a, b| b.id <=> a.id }.select { |project| project.attributes.public }.first(count)
+    all.sort { |one, another| another.id <=> one.id }.select { |project|
+      attributes = project.attributes
+      attributes && attributes.public
+    }.first(count)
   end
 
   def attributes
