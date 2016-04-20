@@ -135,6 +135,15 @@ Given(/^I have a sample configuration with the (\w+) native metric$/) do |metric
                                              kalibro_configuration_id: @kalibro_configuration.id})
 end
 
+Given(/^I have a public repository named "(.*?)"$/) do |name|
+  @repository = FactoryGirl.create(:repository,
+                                   project_id: nil,
+                                   kalibro_configuration_id: @kalibro_configuration.id,
+                                   id: nil,
+                                   name: name)
+  FactoryGirl.create(:repository_attributes, {repository_id: @repository.id})
+end
+
 When(/^I click on the sample metric's name$/) do
   find_link(@metric_results.first.metric_configuration.metric.name).trigger('click')
 end

@@ -16,6 +16,7 @@ Prezento is the web interface for Mezuro.
 * Fix 'Tree Metrics' and 'Hotspot Metrics' PT translations in Configuration show view  
 * Show the notify push url for the repository's owner (Gitlab only)
 * Support for hiding repositories
+* Fix home latest content caching effectiveness
 
 == v0.11.3 - 01/04/2016
 

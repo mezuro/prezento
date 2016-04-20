@@ -1,14 +1,8 @@
 require 'rails_helper'
 
 describe HomeController, :type => :controller do
-  context 'Method' do
-    context '#index' do
-      before :each do
-        Project.expects(:latest).with(5).returns([])
-        Repository.expects(:latest).with(5).returns([])
-        KalibroConfiguration.expects(:latest).with(5).returns([])
-      end
-
+  context 'actions' do
+    context 'index' do
       describe 'Rendering' do
         before :each do
           get :index
@@ -38,6 +32,35 @@ describe HomeController, :type => :controller do
         after do
           I18n.locale = I18n.default_locale
         end
+      end
+    end
+  end
+
+  context 'helpers' do
+    describe 'latest_repositories' do
+      let(:repositories) { mock }
+
+      it 'should fetch the latest content' do
+        Repository.expects(:latest).with(5).returns(repositories)
+        expect(subject.latest_repositories(5)).to be(repositories)
+      end
+    end
+
+    describe 'latest_projects' do
+      let(:projects) { mock }
+
+      it 'should fetch the latest content' do
+        Project.expects(:latest).with(5).returns(projects)
+        expect(subject.latest_projects(5)).to be(projects)
+      end
+    end
+
+    describe 'latest_configurations' do
+      let(:configurations) { mock }
+
+      it 'should fetch the latest content' do
+        KalibroConfiguration.expects(:latest).with(5).returns(configurations)
+        expect(subject.latest_configurations(5)).to be(configurations)
       end
     end
   end

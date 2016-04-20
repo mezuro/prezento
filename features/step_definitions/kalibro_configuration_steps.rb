@@ -87,6 +87,12 @@ Given(/^there is a public configuration created$/) do
   FactoryGirl.create(:kalibro_configuration_attributes, kalibro_configuration_id: @public_kc.id)
 end
 
+Given(/^there is a public configuration created named "(.*?)"$/) do |name|
+  @kalibro_configuration = FactoryGirl.create(:public_kalibro_configuration, name: name)
+  FactoryGirl.create(:kalibro_configuration_attributes, kalibro_configuration_id: @kalibro_configuration.id)
+end
+
+
 Given(/^there is a private configuration created$/) do
   @private_kc = FactoryGirl.create(:another_kalibro_configuration)
   FactoryGirl.create(:kalibro_configuration_attributes, :private, kalibro_configuration_id: @private_kc.id, user: FactoryGirl.create(:another_user, id: nil, email: "private@email.com"))
