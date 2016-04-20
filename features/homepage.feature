@@ -7,7 +7,7 @@ Feature: Homepage
   Scenario: Before signing in
     Given I have a project named "GCC"
     And there is a public configuration created named "Test Configuration"
-    And I have a sample repository named "Test Repository"
+    And I have a public repository named "Test Repository"
     Then I am at the homepage
     And I should see "Home"
     And I should see "Projects"
