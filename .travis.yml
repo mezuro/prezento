@@ -5,8 +5,7 @@ addons:
   postgresql: "9.3"
 
 before_script:
-  #FIXME: change the branch to a newly installed version
-  - git clone https://github.com/mezuro/kalibro_install.git -b do_not_start_services kalibro_install
+  - git clone https://github.com/mezuro/kalibro_install.git -b v4.2 kalibro_install
   - export KALIBRO_CONFIGURATIONS_START=0
   - export KALIBRO_PROCESSOR_START=0
   - pushd kalibro_install
