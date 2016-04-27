@@ -24,6 +24,7 @@ Dir.chdir APP_ROOT do
   puts "\n== Copying sample files ==".green
   unless File.exist?("config/database.yml")
     run "cp config/database.yml.sample config/database.yml"
+    run "cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml"
   end
 
   puts "\n== Preparing database ==".green
