@@ -1,45 +1,42 @@
-== README - Prezento
+## README - Prezento
 
-{<img src="https://codeclimate.com/github/mezuro/prezento.png" />}[https://codeclimate.com/github/mezuro/prezento] {<img src="https://travis-ci.org/mezuro/prezento.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mezuro/prezento] {<img src="https://codeclimate.com/github/mezuro/prezento/badges/coverage.svg" />}[https://codeclimate.com/github/mezuro/prezento]
+[![Code Climate](https://codeclimate.com/github/mezuro/prezento/badges/gpa.svg)](https://codeclimate.com/github/mezuro/prezento) [![Build Status](https://travis-ci.org/mezuro/prezento.svg?branch=master)](https://travis-ci.org/mezuro/prezento) [![Test Coverage](https://codeclimate.com/github/mezuro/prezento/badges/coverage.svg)](https://codeclimate.com/github/mezuro/prezento/coverage)
 
 Prezento is the web interface for Mezuro.
 
 Mezuro project aims provide a platform to compare projects and metric techniques, teach how to use metrics through configurations, analyze code, avoid technical debts, and disseminate code metrics usage and understanding.
 
-=== Contributing
+### Contributing
 
 Please, have a look the wiki pages about development workflow and code standards:
 
 * https://github.com/mezuro/mezuro/wiki/Development-workflow
 * https://github.com/mezuro/mezuro/wiki/Standards
 
-=== Development
+### Development
 
 
 * System dependencies (Ubuntu 14.04 package names)
-
   * build-essential
-
   * curl
-
   * postgresql-server-dev-9.3
 
 * Unpacked dependecies
-
   * PhantomJS >= 1.9.2 (http://phantomjs.org/)
+    * *NOTE:* Just create sym links for that, for example:
 
-  *NOTE:* Just create sym links for that, for example:
-
+    ```bash
     cd /usr/local/share
     wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
     tar xjf phantomjs-1.9.7-linux-x86_64.tar.bz2
     sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/share/phantomjs
     sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin/phantomjs
     sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
+    ```
 
 * Ruby version
 
-  2.3.0
+  `2.3.0`
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
@@ -48,23 +45,23 @@ Please, have a look the wiki pages about development workflow and code standards
 
 * Configuration
 
-    bundle install
+    `bundle install`
 
 * Database creation
 
-    rake db:create
+    `rake db:create`
 
 * Database initialization (The seeds script will need the kalibro configurations service running)
 
-    rake db:setup
+    `rake db:setup`
 
 * Alternatively you can just run the setup script (Will also need the kalibro configurations service running)
 
-    bin/setup
+    `bin/setup`
 
 * How to run the test suite
 
-    rake
+    `rake`
 
 * Services (job queues, cache servers, search engines, etc.)
 
@@ -73,8 +70,10 @@ Please, have a look the wiki pages about development workflow and code standards
   By default Mezuro will expect it to be running on port 8082 at localhost.
   In order to run it as expected, run on two different terminal instances:
 
+      ```bash
       RAILS_ENV=local rails s -p 8082
       RAILS_ENV=local rake jobs:work
+      ```
 
   *Kalibro Configurations* - version 1.2.5 (https://github.com/mezuro/kalibro_configurations/archive/v1.2.5.tar.gz)
   You can find it at https://github.com/mezuro/kalibro_configurations
@@ -85,13 +84,13 @@ Please, have a look the wiki pages about development workflow and code standards
 
   Deployment is made through Capistrano (https://github.com/capistrano/capistrano)
 
-    cap production deploy
+    `cap production deploy`
 
   In order to do this, you must have the password.
 
   Otherwise, you can also modify the deployment file at <tt>config/deploy.rb</tt>.
 
-=== Install
+### Install
 
 * First Deploy
 
@@ -100,7 +99,7 @@ Please, have a look the wiki pages about development workflow and code standards
   3. <tt>cap deploy:setup</tt> will install the ruby correct ruby version, the gemset and all the directories tree;
   4. <tt>cap deploy:migrations</tt> deploys the code and run all the migrations
 
-=== License
+### License
 
 Copyright (c) 2013-2016 The Author developers.
 
@@ -117,11 +116,11 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-=== Authors
+### Authors
 
 Please see the humans.txt (at the `public` folder) file with the authors
 
-=== Acknowledgments
+### Acknowledgments
 
 The authors have been supported by organizations:
 
