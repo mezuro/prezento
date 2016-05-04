@@ -8,6 +8,8 @@ Mezuro project aims provide a platform to compare projects and metric techniques
 
 To know how to contribute and how to setup a working environment, please refer to the [CONTRIBUTING](CONTRIBUTING.md) and [HACKING](HACKING.md) files, respectively.
 
+If you want the services running but do not wish to contribute (yet!), there's packages available for Debian Jessie and CentOS 7. For detailed information on how to install and use them, look [here](http://mezuro.github.io/installation/).
+
 ### License
 
 Copyright (c) 2013-2016 The Author developers.

@@ -20,6 +20,9 @@ Prezento is the web interface for Mezuro.
 * Update travis script
 * Support for ruby 2.0.0-p598 (CentOS 7 default) and 2.1.5 (Debian 8 default)
 * Make Travis fail if minimun unit test coverage is below 100%
+* Fix setup script
+* Update README
+* Create HACKING and CONTRIBUTING files
 
 == v0.11.3 - 01/04/2016
 
