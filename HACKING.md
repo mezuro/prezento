@@ -43,7 +43,7 @@
 
 ### How to run the test suite
 
-    `rake`
+    rake
 
 ### Services (job queues, cache servers, search engines, etc.)
 
@@ -52,25 +52,21 @@
   By default Mezuro will expect it to be running on port 8082 at localhost.
   In order to run it as expected, run on two different terminal instances:
 
-      ```bash
       RAILS_ENV=local rails s -p 8082
       RAILS_ENV=local rake jobs:work
-      ```
 
 - _Kalibro Configurations_ - [version 2.1.0](https://github.com/mezuro/kalibro_configurations/archive/v2.1.0.zip).
   You can find the latest changes directly on the [repository](https://github.com/mezuro/kalibro_configurations).
   By default Mezuro will expect it to be running on port 8083 at localhost.
   In order to run it as expected, run:
 
-      ```bash
       rails s -p 8083
-      ```
 
 ### Deployment instructions
 
   Deployment is made through Capistrano (https://github.com/capistrano/capistrano)
 
-    `cap production deploy`
+    cap production deploy
 
   In order to do this, you must have the password.
 
