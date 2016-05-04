@@ -13,10 +13,13 @@ Prezento is the web interface for Mezuro.
 * Pluralize navigation menu links
 * Add missing translation for CompoundMetric
 * Make Compound Metric Config. metric list not include Hotspot metrics
-* Fix 'Tree Metrics' and 'Hotspot Metrics' PT translations in Configuration show view  
+* Fix 'Tree Metrics' and 'Hotspot Metrics' PT translations in Configuration show view
 * Show the notify push url for the repository's owner (Gitlab only)
 * Support for hiding repositories
 * Fix home latest content caching effectiveness
+* Update travis script
+* Support for ruby 2.0.0-p598 (CentOS 7 default) and 2.1.5 (Debian 8 default)
+* Make Travis fail if minimun unit test coverage is below 100%
 
 == v0.11.3 - 01/04/2016
 
