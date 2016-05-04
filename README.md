@@ -6,6 +6,8 @@ Prezento is the web interface for Mezuro.
 
 Mezuro project aims provide a platform to compare projects and metric techniques, teach how to use metrics through configurations, analyze code, avoid technical debts, and disseminate code metrics usage and understanding.
 
+To know how to contribute and how to setup a working environment, please refer to the [CONTRIBUTING](CONTRIBUTING.md) and [HACKING](HACKING.md) files, respectively.
+
 ### License
 
 Copyright (c) 2013-2016 The Author developers.
