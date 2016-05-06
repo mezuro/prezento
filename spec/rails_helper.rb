@@ -3,17 +3,15 @@ require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 require 'simplecov'
 
-SimpleCov.start do
+SimpleCov.start 'rails' do
+  # Minimum coverage is only desired on CI tools when building the environment. CI is a
+  # default environment variable used by Travis. For reference, see here:
+  # https://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables
+  minimum_coverage 100 if ENV["CI"] == 'true'
   coverage_dir 'coverage/rspec'
-
-  add_group "Models", "app/models"
-  add_group "Controllers", "app/controllers"
-  add_group "Helpers", "app/helpers"
-  add_group "Mailers", "app/mailers"
 
   add_filter "/spec/"
   add_filter "/features/"
-  add_filter "/config/"
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
