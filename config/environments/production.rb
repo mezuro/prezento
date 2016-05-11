@@ -80,7 +80,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Kalibro URL
-  KalibroClient.configure_with(Rails.root.join('config', 'kalibro.yml'))
+  Likeno.configure_with(Rails.root.join('config', 'kalibro.yml'))
 
   # ActionMailer SMTP
   config.action_mailer.delivery_method = :smtp
