@@ -2,7 +2,9 @@
 
 Prezento is the web interface for Mezuro.
 
-## Unreleased
+## v1.0.1 - 11/05/2016
+
+- Fix kalibro services address init under production
 
 ## v1.0.0 - 11/05/2016
 
