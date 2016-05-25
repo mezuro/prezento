@@ -2,6 +2,8 @@
 
 Prezento is the web interface for Mezuro.
 
+The version numbers below try to follow the conventions at http://semver.org/.
+
 ## v1.0.1 - 11/05/2016
 
 - Fix kalibro services address init under production
