@@ -1,0 +1,2 @@
+processor_address: "http://localhost:8082"
+configurations_address: "http://localhost:8083"

@@ -45,4 +45,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Kalibro URL
+  Likeno.configure_with(Rails.root.join('config', 'kalibro.yml'))
 end
