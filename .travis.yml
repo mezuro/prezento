@@ -26,6 +26,7 @@ before_script:
   - bash install.sh
   - popd
   - cp config/database.yml.sample config/database.yml
+  - cp config/kalibro.yml.sample config/kalibro.yml
   # Do not run setup as the Kalibro services are up and this is not even necessary!
   - bundle exec rake db:create
   - bundle exec rake db:migrate
