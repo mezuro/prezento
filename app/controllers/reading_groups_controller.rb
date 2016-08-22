@@ -73,7 +73,7 @@ class ReadingGroupsController < ApplicationController
       format.json { render action: 'show', status: :created, location: @reading_group }
     else
       format.html { render action: 'new' }
-      format.json { render json: @reading_group.kalibro_errors, status: :unprocessable_entity }
+      format.json { render json: @reading_group.likeno_errors, status: :unprocessable_entity }
     end
   end
 end

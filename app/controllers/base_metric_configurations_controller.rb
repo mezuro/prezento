@@ -65,7 +65,7 @@ class BaseMetricConfigurationsController < ApplicationController
   end
 
   def failed_action(format, error = nil)
-    errors = @metric_configuration.kalibro_errors
+    errors = @metric_configuration.likeno_errors
     errors << error unless error.nil?
 
     flash[:notice] = errors.join(', ')
