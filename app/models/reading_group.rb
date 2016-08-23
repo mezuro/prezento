@@ -1,19 +1,8 @@
 class ReadingGroup < KalibroClient::Entities::Configurations::ReadingGroup
   include KalibroRecord
+  include HasOwner
+
   attr_writer :attributes
-
-  def self.public_or_owned_by_user(user=nil)
-    reading_group_attributes = ReadingGroupAttributes.where(public: true)
-    reading_group_attributes += ReadingGroupAttributes.where(user_id: user.id, public: false) if user
-
-    reading_group_attributes.map { |reading_group_attribute|
-      begin
-        self.find(reading_group_attribute.reading_group_id)
-      rescue Likeno::Errors::RecordNotFound
-        nil
-      end
-    }.compact
-  end
 
   def self.public
     self.public_or_owned_by_user
