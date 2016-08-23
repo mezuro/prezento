@@ -6,6 +6,8 @@ The version numbers below try to follow the conventions at http://semver.org/.
 
 ## Unreleased
 
+- Fix warnings about 'prezento_errors'
+
 ## v1.1.0 - 01/06/2016
 
 - Always load Kalibro service addresses from file

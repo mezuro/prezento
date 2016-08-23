@@ -56,7 +56,7 @@ class ReadingsController < ApplicationController
   # Duplicated code on create and update actions extracted here
   def failed_action(format, destiny_action)
     format.html { render action: destiny_action }
-    format.json { render json: @reading.kalibro_errors, status: :unprocessable_entity }
+    format.json { render json: @reading.likeno_errors, status: :unprocessable_entity }
   end
 
   # Code extracted from create action
