@@ -47,16 +47,12 @@
 
     <%= render partial: 'shared/navbar' %>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12 col-md-12">
-          <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp;&nbsp; <%= t('instant_loading_page') %></div>
+    <div class="alert alert-info" id="loader"><i class="fa fa-spinner fa-spin fa-lg"></i>&nbsp;&nbsp; <%= t('instant_loading_page') %></div>
 
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-      </div><!--/row-->
-    </div> <!-- /container -->
+    <%= bootstrap_flash %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
     <%= render partial: 'shared/footer' %>
 
