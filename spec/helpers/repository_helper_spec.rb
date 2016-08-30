@@ -72,7 +72,7 @@ describe RepositoryHelper, :type => :helper do
     end
 
     it 'should return a range of years' do
-      years = (2013..2020).to_a.map {|year| [year, year]}
+      years = (DateTime.now.year..DateTime.now.year + 5).to_a.map {|year| [year, year]}
       expect(helper.year_options).to eq years
     end
   end

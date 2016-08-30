@@ -6,6 +6,8 @@ The version numbers below try to follow the conventions at http://semver.org/.
 
 ## Unreleased
 
+- Fixing hard coded year in form
+- Remove the repository's instance that has remained in the db
 - Fix warnings about 'prezento_errors'
 
 ## v1.1.0 - 01/06/2016
