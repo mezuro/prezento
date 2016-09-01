@@ -295,16 +295,11 @@ Then(/^I should get a not found error$/) do
   expect(page.driver.status_code).to eq(404)
 end
 
+Then(/^I should see a div with class "(.*?)"$/) do |arg1|
+  page.all("div.#{arg1}")
+end
+
 Then(/^I should see the correct notify push url$/) do
   step "I should see \"Notify Push Url for Gitlab\""
   expect(page).to have_selector("input[value=\"#{repository_notify_push_url(host: Capybara.current_session.server.host, port: Capybara.current_session.server.port, locale: :en, id: @repository.id)}\"]")
 end
-
-When(/^I click on the center of the color picker$/) do
-  page.find('div.colorpicker_color').click
-end
-
-Then(/^I should see a div with class "(.*?)"$/) do |arg1|
-    #page.find("div.#{arg1}")
-    expect(page).to have_css(:css, "div.#{arg1}")
-  end
