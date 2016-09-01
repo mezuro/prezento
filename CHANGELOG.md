@@ -7,6 +7,7 @@ The version numbers below try to follow the conventions at http://semver.org/.
 ## Unreleased
 
 - Fix warnings about 'prezento_errors'
+- Creates pattern for creation tooltips in Compound Metric Configuration
 
 ## v1.1.0 - 01/06/2016
 
