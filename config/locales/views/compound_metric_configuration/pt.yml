@@ -14,11 +14,10 @@ pt:
         weight: "Peso"
     hints:
       compound_metric_configuration:
-        name: "Um nome personalizado para sua métrica composta."
-        description: "Uma descrição curta de sua métrica composta."
-        script: "Uma expressão matemática (em JavaScript) para calcular sua métrica composta. Ela precisa de uma cláusula de retorno. O código de suas demais métricas pode ser utilizado dentro deste script."
+        name: "É um nome personalizado para sua métrica composta."
+        description: "É uma descrição curta de sua métrica composta."
+        script: "É uma expressão matemática (em JavaScript) para calcular sua métrica composta. Ela precisa de uma cláusula de retorno. O código de suas demais métricas pode ser utilizado dentro deste script."
         code:
-          description: "Uma variável que contém o valor do cálculo da métrica. Ela pode ser usada no script de outra métrica composa."
+          description: "É uma variável que contém o valor do cálculo da métrica. Ela pode ser usada no script de outra métrica composta."
           example: "Examplo: Código foo := 10"
-        weight: "ele é usado para o cálculo de uma média ponderada de um"
-        scope: "Representa o nível de granularidade do fragmento de código que está sendo medido."
+        scope: "É o que representa o nível de granularidade do fragmento de código que está sendo medido."
