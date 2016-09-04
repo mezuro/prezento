@@ -21,9 +21,15 @@ before_script:
   - export CODECLIMATE_REPO_TOKEN=045c2433d496f108c0c6afa5516a72ddbfb1868fb34bf7a9bd095b7a0ea34a79
 
 env:
-  - TASK=spec
-  - TASK=konacha:run
-  - TASK=cucumber
+  global:
+    - CI_NODE_TOTAL=4
+  matrix:
+    - TASK=spec
+    - TASK=konacha:run
+    - CI_NODE_INDEX=0 TASK=knapsack:cucumber
+    - CI_NODE_INDEX=1 TASK=knapsack:cucumber
+    - CI_NODE_INDEX=2 TASK=knapsack:cucumber
+    - CI_NODE_INDEX=3 TASK=knapsack:cucumber
 
 script:
 # cucumber setup
@@ -34,7 +40,7 @@ script:
 #   * The first issue has been closed and apparently fixed by a PR
 #   * The second one has been closed without a PR and removing the workaround below breaks the build
 #
-  - 'if [ "$TASK" = "cucumber" ];
+  - 'if [ "$TASK" = "knapsack:cucumber" ];
     then
     git clone https://github.com/mezuro/kalibro_install.git -b v4.2 kalibro_install &&
     sudo apt-get remove libzmq3 &&

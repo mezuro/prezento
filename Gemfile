@@ -129,6 +129,9 @@ group :development, :test do
 
   # Automatized gem update
   gem 'gisdatigo'
+
+  # Slice tests across jobs on CI
+  gem 'knapsack'
 end
 
 # Acceptance tests
