@@ -11,41 +11,36 @@ before_install:
   - if ruby --version | cut -d ' ' -f 2 | grep -q 2.1.5p273 ; then gem update --system 2.4.8; fi
 
 before_script:
-  - git clone https://github.com/mezuro/kalibro_install.git -b v4.2 kalibro_install
-  - export KALIBRO_CONFIGURATIONS_START=0
-  - export KALIBRO_PROCESSOR_START=0
-  - pushd kalibro_install
-  #
-  # Remove bugged libzmq3 package, see https://github.com/travis-ci/travis-ci/issues/982 and https://github.com/travis-ci/travis-ci/issues/1715 for details
-  #
-  # In 2016/04/27 the state is:
-  #   * The first issue has been closed and apparently fixed by a PR
-  #   * The second one has been closed without a PR and removing the workaround below breaks the build
-  #
-  - sudo apt-get remove libzmq3
-  - bash install.sh
-  - popd
   - cp config/database.yml.sample config/database.yml
   - cp config/kalibro.yml.sample config/kalibro.yml
   # Do not run setup as the Kalibro services are up and this is not even necessary!
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml
   - export BUNDLE_GEMFILE=$PWD/Gemfile
   - export CODECLIMATE_REPO_TOKEN=045c2433d496f108c0c6afa5516a72ddbfb1868fb34bf7a9bd095b7a0ea34a79
 
+env:
+  - TASK=spec
+  - TASK=konacha:run
+  - TASK=cucumber
+
 script:
-  # Unit tests
-  - bundle exec rake spec
-  - bundle exec rake konacha:run
-  #
-  # Start kalibro for acceptance tests
-  - pushd kalibro_install
-  - bash start_kalibro_services.sh
-  - popd
-  #
-  # Acceptance tests
-  - bundle exec rake cucumber
+# cucumber setup
+#
+# Remove bugged libzmq3 package, see https://github.com/travis-ci/travis-ci/issues/982 and https://github.com/travis-ci/travis-ci/issues/1715 for details
+#
+# In 2016/04/27 the state is:
+#   * The first issue has been closed and apparently fixed by a PR
+#   * The second one has been closed without a PR and removing the workaround below breaks the build
+#
+  - 'if [ "$TASK" = "cucumber" ];
+    then
+    git clone https://github.com/mezuro/kalibro_install.git -b v4.2 kalibro_install &&
+    sudo apt-get remove libzmq3 &&
+    bash kalibro_install/install.sh &&
+    cp features/support/kalibro_cucumber_helpers.yml.sample features/support/kalibro_cucumber_helpers.yml;
+    fi'
+  - bundle exec rake $TASK
 
 notifications:
   email:
