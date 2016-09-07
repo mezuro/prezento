@@ -12,10 +12,10 @@
       <div class="collapse navbar-collapse" id="nav-collapse">
         <ul class="nav navbar-nav">
           <li><%= link_to t('home'), root_path %></li>
-          <li><%= link_to Project.model_name.human.pluralize, projects_path %></li>
-          <li><%= link_to Repository.model_name.human.pluralize, repositories_path %></li>
-          <li><%= link_to KalibroConfiguration.model_name.human.pluralize, kalibro_configurations_path %></li>
-          <li><%= link_to ReadingGroup.model_name.human.pluralize, reading_groups_path %></li>
+          <li><%= link_to Project.model_name.human(count: 2), projects_path %></li>
+          <li><%= link_to Repository.model_name.human(count: 2), repositories_path %></li>
+          <li><%= link_to KalibroConfiguration.model_name.human(count: 2), kalibro_configurations_path %></li>
+          <li><%= link_to ReadingGroup.model_name.human(count: 2), reading_groups_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
