@@ -19,11 +19,10 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    image_url = project_params.delete(:image_url)
+    @image_url = project_params.delete(:image_url)
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
-      @project.attributes.update(image_url: image_url) unless @project.attributes.nil?
     end
   end
 
@@ -76,7 +75,7 @@ class ProjectsController < ApplicationController
   # Extracted code from create action
   def create_and_redir(format)
     if @project.save
-      current_user.project_attributes.create(project_id: @project.id)
+      current_user.project_attributes.create(project_id: @project.id, image_url: @image_url)
       format.html { redirect_to project_path(@project.id), notice: t('successfully_created', :record => t(@project.class.name)) }
       format.json { render action: 'show', status: :created, location: @project }
     else

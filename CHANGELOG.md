@@ -7,6 +7,7 @@ The version numbers below try to follow the conventions at http://semver.org/.
 ## Unreleased
 
 - Remove the repository's instance that has remained in the db
+- Adds repository image on project attribute creation
 - Adding translation of the periodicity options in repository helper
 - Fixing wrong configurations translation in portuguese navbar
 - Fix warnings about 'prezento_errors'
