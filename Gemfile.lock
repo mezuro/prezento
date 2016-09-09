@@ -158,6 +158,9 @@ GEM
       activesupport (>= 2.2.1)
       faraday_middleware (~> 0.9)
       likeno (~> 1.1)
+    knapsack (1.11.1)
+      rake
+      timecop (>= 0.1.0)
     konacha (3.7.0)
       actionpack (>= 3.1, < 5)
       capybara
@@ -306,6 +309,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
+    timecop (0.8.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -361,6 +365,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0.0)
   js-routes (~> 1.1.0)
   kalibro_client (~> 4.0)
+  knapsack
   konacha
   less-rails (~> 2.7.0)
   mocha
