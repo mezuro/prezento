@@ -36,3 +36,10 @@ en:
   compound: "Compound"
 
   unauthenticated: "You must be logged in to %{action}"
+
+  not_periodically: "Not Periodically"
+  one_day: "1 day"
+  two_days: "2 days"
+  weekly: "Weekly"
+  biweekly: "Biweekly"
+  monthly: "Monthly"
