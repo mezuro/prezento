@@ -6,6 +6,7 @@ The version numbers below try to follow the conventions at http://semver.org/.
 
 ## Unreleased
 
+- Adding translation of the periodicity options in repository helper
 - Fixing wrong configurations translation in portuguese navbar
 - Fix warnings about 'prezento_errors'
 - Creates pattern for creation tooltips in Compound Metric Configuration
