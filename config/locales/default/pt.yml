@@ -15,3 +15,10 @@ pt:
   compound: "Composta"
 
   unauthenticated: "Você precisa fazer login para %{action}"
+
+  not_periodically: "Sem Periodicidade"
+  one_day: "1 dia"
+  two_days: "2 dias"
+  weekly: "Semanal"
+  biweekly: "Quinzenal"
+  monthly: "Mensal"

@@ -1,6 +1,6 @@
 module RepositoryHelper
   def periodicity_options
-    [["Not Periodically", 0], ["1 day", 1], ["2 days", 2], ["Weekly", 7], ["Biweekly", 15], ["Monthly", 30]]
+    [[t('not_periodically'), 0], [t('one_day'), 1], [t('two_days'), 2], [t('weekly'), 7], [t('biweekly'), 15], [t('monthly'), 30]]
   end
 
   def license_options
