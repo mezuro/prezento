@@ -40,6 +40,9 @@ Dir.chdir APP_ROOT do
   run 'bin/rake log:clear'
   run 'bin/rake tmp:clear'
 
+  puts "\n== Creating tempfiles  =="
+  run 'bin/rake tmp:create'
+
   puts "\n== Restarting application server ==".green
   run "touch tmp/restart.txt"
 end
