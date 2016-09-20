@@ -4,12 +4,16 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!,
     except: [:index, :show]
   before_action :project_owner?, only: [:edit, :update, :destroy]
+  before_action :fetch_image_url, only: [:create, :update]
 
   # GET /projects/new
   def new
     @project = Project.new
   end
 
+  def fetch_image_url
+    @image_url = project_params.delete(:image_url)
+  end
   # GET /projects
   # GET /projects.json
   def index
@@ -19,7 +23,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @image_url = project_params.delete(:image_url)
     @project = Project.new(project_params)
     respond_to do |format|
       create_and_redir(format)
@@ -41,8 +44,7 @@ class ProjectsController < ApplicationController
 
   def update
     set_project
-    image_url = project_params.delete(:image_url)
-    if @project.update(project_params) && @project.attributes.update(image_url: image_url)
+    if @project.update(project_params) && @project.attributes.update(image_url: @image_url)
       redirect_to(project_path(@project.id))
     else
       render "edit"

@@ -14,7 +14,8 @@ describe ProjectsController, :type => :controller do
 
   describe 'create' do
     before do
-      sign_in FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user)
+      sign_in @user
     end
 
     context 'with valid fields' do
@@ -26,11 +27,15 @@ describe ProjectsController, :type => :controller do
       end
 
       context 'rendering the show' do
-        before :each do
-          post :create, :project => subject_params
-        end
 
+        subject { post :create, :project => subject_params }
+
+        it 'should increase total number of project_attributes' do
+          expect{subject}.to change{@user.project_attributes.count}.by(1)
+        end
+          
         it 'should redirect to the show view' do
+          subject
           expect(response).to redirect_to project_path(project.id)
         end
       end
@@ -56,6 +61,7 @@ describe ProjectsController, :type => :controller do
       end
 
       it { is_expected.to render_template(:new) }
+
     end
   end
 
