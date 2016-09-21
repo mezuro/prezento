@@ -27,6 +27,47 @@ describe Repository do
         end
       end
     end
+
+    describe 'destroy' do
+      let!(:repository) { FactoryGirl.build(:repository) }
+
+      context 'when attributes exist' do
+        let!(:repository_attributes) { FactoryGirl.build(:repository_attributes, repository_id: repository.id) }
+        before :each do
+          KalibroClient::Entities::Processor::Repository.any_instance.expects(:destroy).returns(repository)
+        end
+
+        it 'is expected to be destroyed' do
+          repository.expects(:attributes).twice.returns(repository_attributes)
+          repository_attributes.expects(:destroy)
+          repository.destroy
+        end
+
+        it 'is expected to clean the attributes memoization' do
+          # Call attributes once so it memoizes
+          RepositoryAttributes.expects(:find_by).with(repository_id: repository.id).returns(repository_attributes)
+          expect(repository.attributes).to eq(repository_attributes)
+
+          # Destroying
+          repository.destroy
+
+          # The expectation call will try to find the attributes on the database which should be nil since it was destroyed
+          RepositoryAttributes.expects(:find_by).with(repository_id: repository.id).returns(nil)
+          expect(repository.attributes).to_not eq(repository_attributes)
+        end
+      end
+
+      context 'when attributes is nil' do
+        before do
+          repository.expects(:attributes).returns(nil)
+          KalibroClient::Entities::Processor::Repository.any_instance.expects(:destroy).returns(repository)
+        end
+
+        it 'is expected to not try to destroy the attributes' do
+          repository.destroy
+        end
+      end
+    end
   end
 
   describe 'class method' do
