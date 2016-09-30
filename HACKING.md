@@ -19,7 +19,7 @@
 
 ### Ruby version
 
-  `2.3.0`
+  `2.3.1`
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
