@@ -55,3 +55,30 @@ Feature: Repository Edit
     When I fill the Name field with "MedSquare"
     And I press the Save button
     Then I should see "Name has already been taken"
+
+  @kalibro_configuration_restart @kalibro_processor_restart
+  Scenario: redirecting repository edit page that belongs to a project
+    Given I am a regular user
+    And I am signed in
+    And I own a project named "Calculator Project"
+    And I have a sample configuration with native metrics
+    And I have a sample repository within the sample project named "QtCalculator"
+    And I own that repository
+    And I am at the Sample Project page
+    Then I should see "Calculator Project"
+    And I click the Edit link
+    Then I should see "Edit Repository"
+    And I click the Back link
+    Then I should see "Calculator Project"
+
+  @kalibro_configuration_restart @kalibro_processor_restart
+  Scenario: redirecting repository edit page that doesnt belongs to a project
+    Given I am a regular user
+    And I am signed in
+    And I have a sample configuration with native metrics
+    And I have a sample repository named "Prime finder"
+    And I own that repository
+    And I am at repository edit page
+    Then I should see "Edit Repository"
+    And I click the Back link
+    Then I should see "Repositories"
