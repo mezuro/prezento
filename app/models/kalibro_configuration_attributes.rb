@@ -1,6 +1,6 @@
 class KalibroConfigurationAttributes < ActiveRecord::Base
   belongs_to :user
-  validates :kalibro_configuration_id, presence: true
+  validates :kalibro_configuration_id, presence: true, uniqueness: true
   validates :user, presence: true
 
   def kalibro_configuration
