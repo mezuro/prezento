@@ -1,6 +1,6 @@
 class ProjectAttributes < ActiveRecord::Base
   belongs_to :user
-  validates :project_id, presence: true, uniqueness: { scope: :user_id}
+  validates :project_id, presence: true, uniqueness: true
   validates :user, presence: true
 
   def project

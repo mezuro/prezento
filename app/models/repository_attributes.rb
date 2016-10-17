@@ -1,6 +1,6 @@
 class RepositoryAttributes < ActiveRecord::Base
   belongs_to :user
-  validates :repository_id, presence: true, uniqueness: { scope: :user_id}
+  validates :repository_id, presence: true, uniqueness: true
   validates :user, presence: true
 
   def repository
