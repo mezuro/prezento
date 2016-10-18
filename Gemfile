@@ -79,10 +79,10 @@ group :test do
 
   # Test coverage report
   gem 'codeclimate-test-reporter', require: nil
-
-  # For Konacha
-  gem 'thin'
 end
+
+# Use Pumas as the app server
+gem 'puma'
 
 # Startup script generation (server process manager)
 gem 'foreman', '~>0.78.0'
