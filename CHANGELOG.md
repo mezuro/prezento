@@ -6,6 +6,7 @@ The version numbers below try to follow the conventions at http://semver.org/.
 
 ## Unreleased
 
+- Refactor latest method
 - Remove the repository's instance that has remained in the db
 - Adding translation of the periodicity options in repository helper
 - Fixing wrong configurations translation in portuguese navbar
