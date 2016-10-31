@@ -12,3 +12,4 @@ pt:
     submit:
       kalibro_configuration:
         new: "Nova %{model}"
+  number_of_repositories: "Número de repositórios em que é utilizada"

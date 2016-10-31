@@ -8,3 +8,4 @@ en:
       kalibro_configuration:
         name: "Name"
         description: "Description"
+  number_of_repositories: "Number of repositories used in"
