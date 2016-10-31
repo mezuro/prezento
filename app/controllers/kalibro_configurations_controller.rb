@@ -14,6 +14,11 @@ class KalibroConfigurationsController < ApplicationController
   # GET /kalibro_configurations.json
   def index
     @kalibro_configurations = KalibroConfiguration.public_or_owned_by_user(current_user)
+    @number_of_repositories = {}
+    Repository.all.each do |r|
+      @number_of_repositories[r.kalibro_configuration_id.to_s] ||= 0
+      @number_of_repositories[r.kalibro_configuration_id.to_s] += 1
+    end
   end
 
   # POST /kalibro_configurations
