@@ -12,7 +12,6 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to t('home'), root_path %></li>
             <li><%= link_to Project.model_name.human(count: 2), projects_path %></li>
             <li><%= link_to Repository.model_name.human(count: 2), repositories_path %></li>
             <li><%= link_to KalibroConfiguration.model_name.human(count: 2), kalibro_configurations_path %></li>
@@ -22,7 +21,7 @@
             <% if user_signed_in? %>
               <li class="dropdown">
                 <a class="dropdown-toggle" aria-expanded="true" role="button" data-toggle="dropdown" href="#">
-                  <%= current_user.name %>
+                  <%= image_tag gravatar_url(current_user.email, 20), alt: "" %>
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -38,6 +37,7 @@
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="true" role="button" data-toggle="dropdown" href="#">
                 <%= t('language') %>
+                <if>
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
