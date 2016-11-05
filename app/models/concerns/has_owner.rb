@@ -4,6 +4,13 @@ module HasOwner
   extend ActiveSupport::Concern
 
   class_methods do
+    def latest(count = 1)
+      all.sort { |one, another| another.id <=> one.id }.select { |entity|
+        attributes = entity.attributes
+        attributes && attributes.public
+      }.first(count)
+    end
+  
     def public_or_owned_by_user(user = nil)
       class_name = name+"Attributes"
       collection = class_name.constantize.where(public: true)
