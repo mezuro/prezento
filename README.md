@@ -1,6 +1,6 @@
 ## README - Prezento
 
-[![Code Climate](https://codeclimate.com/github/mezuro/prezento/badges/gpa.svg)](https://codeclimate.com/github/mezuro/prezento) [![Build Status](https://travis-ci.org/mezuro/prezento.svg?branch=master)](https://travis-ci.org/mezuro/prezento) [![Test Coverage](https://codeclimate.com/github/mezuro/prezento/badges/coverage.svg)](https://codeclimate.com/github/mezuro/prezento/coverage)
+[![Code Climate](https://codeclimate.com/github/mezuro/prezento/badges/gpa.svg)](https://codeclimate.com/github/mezuro/prezento) [![Build Status](https://travis-ci.org/mezuro/prezento.svg?branch=master)](https://travis-ci.org/mezuro/prezento) [![Test Coverage](https://codeclimate.com/github/mezuro/prezento/badges/coverage.svg)](https://codeclimate.com/github/mezuro/prezento/coverage) [![Stories in Ready](https://badge.waffle.io/mezuro/prezento.svg?label=ready&title=Ready)](http://waffle.io/mezuro/prezento)
 
 Prezento is the web interface for Mezuro.
 
