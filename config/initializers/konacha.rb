@@ -19,8 +19,9 @@ if defined?(Konacha)
         prev_server = Capybara.server
         begin
           Capybara.server do |app, port|
-            require 'rack/handler/thin'
-            Rack::Handler::Thin.run(app, :Port => port)
+            require 'rack/handler/puma'
+            require 'tilt/coffee'
+            Rack::Handler::Puma.run(app, :Port => port)
           end
           old_run.bind(self).call
         ensure
