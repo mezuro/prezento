@@ -19,8 +19,10 @@ if defined?(Konacha)
         prev_server = Capybara.server
         begin
           Capybara.server do |app, port|
-            require 'rack/handler/thin'
-            Rack::Handler::Thin.run(app, :Port => port)
+            require "puma"
+            server = Puma::Server.new(app)
+            server.add_tcp_listener(Capybara.server_host, port)
+            server.run
           end
           old_run.bind(self).call
         ensure
