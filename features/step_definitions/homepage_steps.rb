@@ -17,3 +17,11 @@ end
 Then(/^I should see "(.*?)" only "(.*?)" times$/) do |text, times|
   expect(page).to have_content(text, count: times.to_i)
 end
+
+Then(/^I should see the "(.*?)" flag$/) do |language|
+	expect("file.#{I18n.locale}.png").to eq("file.#{language}.png")
+end
+
+When(/^I click the "(.*?)" flag$/) do |language|
+	click_link language
+end

@@ -9,14 +9,13 @@ Feature: Homepage
     And there is a public configuration created named "Test Configuration"
     And I have a public repository named "Test Repository"
     Then I am at the homepage
-    And I should see "Home"
     And I should see "Projects"
     And I should see "Repositories"
     And I should see "Configurations"
     And I should see "Reading Groups"
     And I should see "Sign In"
     And I should see "Sign Up"
-    And I should see "Language"
+    And I should see the "en" flag
     And I should see "Latest projects"
     And I should see "Latest repositories"
     And I should see "Latest configurations"
@@ -32,16 +31,14 @@ Feature: Homepage
     And I should see "Sign Out"
     And I should see "Your projects"
 
-  Scenario: Language selection
+  Scenario: Portuguese language selection
     Given I am at the homepage
-    When I click the Language link
-    And I click the pt link
+    When I click the "en" flag
+    And I click the "pt" flag
     Then I should see "Entendendo Métricas de Código"
-    When I click the Idioma link
-    And I click the en link
 
   Scenario: Correct portuguese plural settings option
     Given I am at the homepage
-    When I click the Language link
-    And I click the pt link
+    When I click the "en" flag
+    And I click the "pt" flag
     Then I should see "Configurações"

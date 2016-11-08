@@ -37,13 +37,11 @@
             <li class="dropdown">
               <a class="dropdown-toggle" aria-expanded="true" role="button" data-toggle="dropdown" href="#">
                 <%= image_tag("file.#{locale}.png") %>
-                <if>
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <% I18n.available_locales.each do |locale| %>
                   <li id="locale_image"><%= link_to(image_tag("file.#{locale}.png") + '   ' + locale.to_s, url_for(locale: locale), data: { no_turbolink: true }) %></li>
-                  <!-- <%= image_tag("file.#{locale}.png") %> -->
                 <% end %>
               </ul>
             </li>
