@@ -6,6 +6,7 @@ The version numbers below try to follow the conventions at http://semver.org/.
 
 ## Unreleased
 
+- Remove all the 'back' buttons
 - Refactor latest method
 - Adds validations (presence and uniqueness) of foreign keys attributes
 - Remove the repository's instance that has remained in the db

@@ -36,8 +36,6 @@ Feature: Tree Metric Configuration Creation
     And I click the Add Metric link
     And I click the "Analizo" h3
     And I click the Total Lines of Code link
-    When I click the Back link
-    Then I should be at the choose metric page
 
   @kalibro_configuration_restart @javascript
   Scenario: compound metric configuration creation with same code
