@@ -8,6 +8,7 @@ RSpec.describe ProjectAttributes, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:project_id) }
     it { is_expected.to validate_presence_of(:user) }
+    it { is_expected.to validate_uniqueness_of(:project_id) }
   end
 
   describe 'methods' do

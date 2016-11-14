@@ -4,6 +4,7 @@ RSpec.describe RepositoryAttributes, type: :model do
   context 'validations' do
     it { is_expected.to validate_presence_of(:repository_id) }
     it { is_expected.to validate_presence_of(:user) }
+    it { is_expected.to validate_uniqueness_of(:repository_id) }
   end
 
   describe 'associations' do

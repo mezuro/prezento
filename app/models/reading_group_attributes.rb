@@ -1,6 +1,6 @@
 class ReadingGroupAttributes < ActiveRecord::Base
   belongs_to :user
-  validates :reading_group_id, presence: true
+  validates :reading_group_id, presence: true, uniqueness: true
 
   def reading_group
     @reading_group ||= ReadingGroup.find(reading_group_id)
