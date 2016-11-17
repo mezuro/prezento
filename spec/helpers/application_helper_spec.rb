@@ -40,4 +40,13 @@ describe ApplicationHelper, :type => :helper do
       expect(helper.t_action(action, model)).to eq("Edit Model")
     end
   end
+
+  describe 'gravatar_url' do
+    email = 'test@mezuro.com'
+    test = Digest::MD5::hexdigest(email).downcase
+
+    it "is expected to return correct url" do
+      expect(gravatar_url(email, 16)).to eq("http://gravatar.com/avatar/#{test}.png?s=16")
+    end
+  end
 end
