@@ -31,3 +31,6 @@ describe "MetricCollector", ->
       sinon.assert.calledOnce(@form.submit)
       sinon.assert.calledOnce(@form.attr, 'action', @action_path)
 
+    after ->
+      $.restore()
+
