@@ -12,7 +12,6 @@
         </div>
         <div class="collapse navbar-collapse" id="nav-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to t('home'), root_path %></li>
             <li><%= link_to Project.model_name.human(count: 2), projects_path %></li>
             <li><%= link_to Repository.model_name.human(count: 2), repositories_path %></li>
             <li><%= link_to KalibroConfiguration.model_name.human(count: 2), kalibro_configurations_path %></li>
