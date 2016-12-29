@@ -299,6 +299,10 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    teaspoon (1.1.5)
+      railties (>= 3.2.5, < 6)
+    teaspoon-mocha (2.3.3)
+      teaspoon (>= 1.0.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -383,6 +387,7 @@ DEPENDENCIES
   spring
   sprockets
   sqlite3
+  teaspoon-mocha
   therubyracer
   thin
   turbolinks
@@ -390,4 +395,4 @@ DEPENDENCIES
   web-console (~> 2.0.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

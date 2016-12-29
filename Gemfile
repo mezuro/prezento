@@ -135,6 +135,9 @@ group :development, :test do
 
   # JavaScript server
   gem 'poltergeist', '~> 1.7.0'
+
+  # Javascript test runner for Rails
+  gem 'teaspoon-mocha'
 end
 
 # Acceptance tests
