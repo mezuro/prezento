@@ -25,7 +25,7 @@ env:
     - CI_NODE_TOTAL=4
   matrix:
     - TASK=spec
-    - TASK=konacha:run
+    - TASK=teaspoon
     - CI_NODE_INDEX=0 TASK=knapsack:cucumber
     - CI_NODE_INDEX=1 TASK=knapsack:cucumber
     - CI_NODE_INDEX=2 TASK=knapsack:cucumber

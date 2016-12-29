@@ -93,7 +93,6 @@ GEM
       mime-types (>= 1.16, < 3)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
-    daemons (1.2.3)
     dalli (2.7.4)
     database_cleaner (1.5.0)
     debug_inspector (0.0.2)
@@ -109,7 +108,6 @@ GEM
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
-    eventmachine (1.0.8)
     exception_notification (4.1.1)
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
@@ -161,13 +159,6 @@ GEM
     knapsack (1.11.1)
       rake
       timecop (>= 0.1.0)
-    konacha (3.7.0)
-      actionpack (>= 3.1, < 5)
-      capybara
-      colorize
-      railties (>= 3.1, < 5)
-      sprockets (>= 2, < 4)
-      tilt
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.7.0)
@@ -306,10 +297,6 @@ GEM
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
-    thin (1.6.4)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -370,7 +357,6 @@ DEPENDENCIES
   js-routes (~> 1.1.0)
   kalibro_client (~> 4.0)
   knapsack
-  konacha
   less-rails (~> 2.7.0)
   mocha
   pg (~> 0.18.1)
@@ -389,7 +375,6 @@ DEPENDENCIES
   sqlite3
   teaspoon-mocha
   therubyracer
-  thin
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0.0)
