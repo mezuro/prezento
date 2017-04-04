@@ -78,7 +78,6 @@ class RepositoriesController < ApplicationController
 
   # POST /projects/1/repositories/1/state_with_date
   def state_with_date
-    debugger
     year, month, day = params[:year], params[:month], params[:day]
     begin
       @processing = @repository.processing_with_date("#{year}-#{month}-#{day}")
