@@ -138,12 +138,11 @@ group :development, :test do
 end
 
 # Acceptance tests
-group :cucumber do
+group :cucumber, :test do
   gem 'cucumber-rails', '~> 1.4.0'
   # cleans the database
   gem 'database_cleaner', '~> 1.5.0'
 end
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
