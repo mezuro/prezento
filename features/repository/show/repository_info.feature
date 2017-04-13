@@ -73,6 +73,6 @@ Feature: Show Repository
     Then I should see "Loading data. Please, wait."
     When I click the "Modules Tree" h3
     Then I should see "Loading data. Please, wait."
-    And I wait for "75" seconds or until I see "COLLECTING"
+    And I wait for "300" seconds or until I see "COLLECTING"
     And I wait for "500" seconds or until I see "AGGREGATING"
     And I wait for "400" seconds or until I see "READY"
