@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from Likeno::Errors::RecordNotFound, with: :not_found
+  rescue_from ActionView::MissingTemplate, with: :not_found
 
   class << self
     # This is necessary for correct devise routing with locales: https://github.com/plataformatec/devise/wiki/How-To:--Redirect-with-locale-after-authentication-failure
@@ -38,7 +39,7 @@ class ApplicationController < ActionController::Base
         format.json { head :not_found }
       end
     rescue ActionController::UnknownFormat
-      render status: 404, text: "The page you were looking for doesn't exist (404)"
+      render file: "#{Rails.root}/public/406", layout: false, status: :not_acceptable, formats: :html
     end
   end
 
