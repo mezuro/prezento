@@ -67,10 +67,14 @@ gem 'http_accept_language'
 # Routes for JS files
 gem 'js-routes', '~> 1.1.0'
 
-# Puma server
+# Use Puma webserver for the application.
 gem 'puma'
 
 group :test do
+
+  # Use Thin webserver for konacha tests.
+  gem 'thin'
+
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'
 
