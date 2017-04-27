@@ -14,6 +14,7 @@ Feature: Project Creation
     And I am at the New Project page
     And I fill the Name field with "Kalibro"
     And I fill the Description field with "Web Service to collect metrics"
+    And I insert the url on the image field
     When I press the Save button
     Then I should see "Kalibro"
     And I should see "Web Service to collect metrics"

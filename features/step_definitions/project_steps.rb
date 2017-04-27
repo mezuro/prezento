@@ -81,3 +81,7 @@ end
 Then(/^The field "(.*?)" should be filled with the sample project "(.*?)"$/) do |field, value|
   expect(page.find_field(field).value).to eq(@project.send(value))
 end
+
+Then(/^I insert the url on the image field/) do
+  fill_in "project_image_url", with: "https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/leisa_christmas_false_color.png?itok=Jxf0IlS4"
+end
