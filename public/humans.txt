@@ -114,7 +114,10 @@
       FactoryGirl
       Capybara
       Cucumber
-      Konacha
+      Teaspoon
+        Mocha
+        Sinon
+        Chai
       ShouldaMatchers
       Simplecov
       RCov

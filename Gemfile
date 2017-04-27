@@ -79,9 +79,6 @@ group :test do
 
   # Test coverage report
   gem 'codeclimate-test-reporter', require: nil
-
-  # For Konacha
-  gem 'thin'
 end
 
 # Startup script generation (server process manager)
@@ -109,9 +106,6 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rvm', "~>0.1.0"
 
-  # JavaScript unit tests
-  gem "konacha"
-
   # Better error interface
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -135,6 +129,9 @@ group :development, :test do
 
   # JavaScript server
   gem 'poltergeist', '~> 1.7.0'
+
+  # Javascript test runner for Rails
+  gem 'teaspoon-mocha'
 end
 
 # Acceptance tests
