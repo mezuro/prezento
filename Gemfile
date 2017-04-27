@@ -144,7 +144,6 @@ group :cucumber, :test do
   gem 'database_cleaner', '~> 1.5.0'
 end
 
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
