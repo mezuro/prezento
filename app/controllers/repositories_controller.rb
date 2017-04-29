@@ -15,6 +15,8 @@ class RepositoriesController < ApplicationController
 
   def index
     @repositories = Repository.public_or_owned_by_user(current_user)
+
+    @repositories = @repositories.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /projects/1/repositories/1

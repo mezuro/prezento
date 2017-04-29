@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.0'
 # For user authentication and everything else
 gem 'devise', '~> 3.5.1'
 
+# Gem to paginate results
+gem 'will_paginate', '~> 3.1.0'
+
 # Kalibro integration
 gem 'kalibro_client', '~> 4.0'
 

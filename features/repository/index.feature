@@ -35,3 +35,24 @@ Feature: Repository listing
     And I am at the All Repositories page
     When I click the Show link
     Then the sample repository should be there
+
+  @kalibro_processor_restart @kalibro_configuration_restart
+  Scenario: Should see pagination button and show the results of first page
+    Given I am a regular user
+    And I am signed in
+    And I have a sample configuration
+    And I have a sample repository
+    And I have a public repository named "reposittory 1"
+    And I have a public repository named "reposittory 2"
+    And I have a public repository named "reposittory 3"
+    And I have a public repository named "reposittory 4"
+    And I have a public repository named "reposittory 5"
+    And I have a public repository named "reposittory 6"
+    And I have a public repository named "reposittory 7"
+    And I have a public repository named "reposittory 8"
+    And I have a public repository named "reposittory 9"
+    And I have a public repository named "reposittory 10"
+    And I own that repository
+    And I am at the All Repositories page
+    Then I should see a div with class "pagination"
+
