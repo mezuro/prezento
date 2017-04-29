@@ -6,6 +6,8 @@ The version numbers below try to follow the conventions at http://semver.org/.
 
 ## Unreleased
 
+- Adds nation flags for language choice
+- Adds gravatar support
 - Refactor latest method
 - Adds validations (presence and uniqueness) of foreign keys attributes
 - Remove the repository's instance that has remained in the db

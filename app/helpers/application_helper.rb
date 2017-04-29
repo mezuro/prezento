@@ -11,4 +11,9 @@ module ApplicationHelper
 
     t("helpers.submit.#{model.model_name.i18n_key}.#{action}", options)
   end
+
+  def gravatar_url(email, size)
+    gravatar = Digest::MD5::hexdigest(email).downcase
+    url = "http://gravatar.com/avatar/#{gravatar}.png?s=#{size}"
+  end
 end
