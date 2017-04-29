@@ -28,7 +28,7 @@ require_relative 'tables'
 
 #Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
-Capybara.default_max_wait_time = 20 # default is 2 seconds
+Capybara.default_max_wait_time = 60 # default is 2 seconds
 
 #require 'kalibro_gem/kalibro_cucumber_helpers/hooks'
 

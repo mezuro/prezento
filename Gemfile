@@ -81,7 +81,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
 
   # For Konacha
-  gem 'thin'
+  gem 'puma'
 end
 
 # Startup script generation (server process manager)
@@ -135,6 +135,9 @@ group :development, :test do
 
   # JavaScript server
   gem 'poltergeist', '~> 1.7.0'
+
+  # Use Pumas as the app server
+  gem 'puma'
 end
 
 # Acceptance tests
