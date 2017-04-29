@@ -79,9 +79,12 @@ class RepositoriesController < ApplicationController
   # POST /projects/1/repositories/1/state_with_date
   def state_with_date
     year, month, day = params[:year], params[:month], params[:day]
-    @processing = @repository.processing_with_date("#{year}-#{month}-#{day}")
-
-    respond_to_processing_state
+    begin
+      @processing = @repository.processing_with_date("#{year}-#{month}-#{day}")
+    rescue
+    ensure
+      respond_to_processing_state
+    end
   end
 
   # GET /projects/1/repositories/1/process
@@ -172,7 +175,11 @@ class RepositoriesController < ApplicationController
 
   def respond_to_processing_state
     respond_to do |format|
-      if @processing.state == 'READY'
+      if @processing.nil?
+        @processing = @repository.last_processing
+        @processing.state = 'ERROR'
+        format.js { render action: 'load_error' }
+      elsif @processing.state == 'READY'
         format.js { render action: 'load_ready_processing' }
       elsif @processing.state == 'ERROR'
         format.js { render action: 'load_error' }
