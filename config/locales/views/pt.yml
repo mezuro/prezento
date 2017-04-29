@@ -62,7 +62,6 @@ pt:
   address: "Endereço"
   script: "Script"
   add_range: "Adicionar Intervalo"
-  back: "Voltar"
   destroy: "Destruir"
   save: "Salvar"
   color: "Cor"

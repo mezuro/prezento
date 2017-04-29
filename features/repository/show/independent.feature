@@ -33,6 +33,3 @@ Feature: Date Select
     And I should see "Grade"
     When I click the Reprocess link
     Then I should see "PREPARING"
-    When I click the Back link
-    And I wait for "5" seconds
-    Then I should be at the Repositories index
