@@ -6,6 +6,10 @@ When(/^I press the (.+) button$/) do |text|
   click_button text
 end
 
+When(/^I click the "(.*?)" flag$/) do |text|
+  find(:css, "a[href='/#{text}']").click
+end
+
 When(/^I fill the (.+) field with "(.+)"$/) do |field, text|
   fill_in field, :with => text
 end
