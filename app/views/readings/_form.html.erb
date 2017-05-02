@@ -56,10 +56,8 @@
   <%= f.submit t('save'), class: 'btn btn-primary' %>
   <% if @reading.persisted? %>
     <%= f.hidden_field(:reading_group_id, value: @reading.reading_group_id) %>
-    <%= link_to t('back'), reading_group_path(@reading.reading_group_id), class: 'btn btn-default' %>
   <% else %>
     <%= f.hidden_field(:reading_group_id, value: @reading_group_id) %>
-    <%= link_to t('back'), reading_group_path(@reading_group_id), class: 'btn btn-default' %>
   <% end %>
 </div>
 
