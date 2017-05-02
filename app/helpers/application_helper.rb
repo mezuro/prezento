@@ -11,4 +11,13 @@ module ApplicationHelper
 
     t("helpers.submit.#{model.model_name.i18n_key}.#{action}", options)
   end
+
+  def map_locale(locale)
+    mapped_locales = {
+        "en": "us",
+        "pt": "br"
+    }
+
+    mapped_locales[locale]
+  end
 end
