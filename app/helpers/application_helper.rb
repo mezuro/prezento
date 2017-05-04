@@ -12,6 +12,7 @@ module ApplicationHelper
     t("helpers.submit.#{model.model_name.i18n_key}.#{action}", options)
   end
 
+  # method used to map locale route into flag name
   def map_locale(locale)
     mapped_locales = {
         "en": "us",
