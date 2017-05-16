@@ -8,3 +8,12 @@ en:
       processing:
         state: "State"
         creation_date: "Creation Date"
+        state_names:
+          PREPARING: "Preparing Time"
+          DOWNLOADING: "Downloading Time"
+          COLLECTING: "Collecting Time"
+          CHECKING: "Checking Time"
+          BUILDING: "Building Time"
+          AGGREGATING: "Aggregating Time"
+          CALCULATING: "Calculating Time"
+          INTERPRETING: "Interpreting Time"
