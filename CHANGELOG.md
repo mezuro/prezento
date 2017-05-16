@@ -15,6 +15,7 @@ The version numbers below try to follow the conventions at http://semver.org/.
 - Creates pattern for creation tooltips in Compound Metric Configuration
 - Update development Ruby target to 2.3.1
 - Remove redundant root path link from navbar
+- Adding translation of processing results
 
 ## v1.1.0 - 01/06/2016
 
