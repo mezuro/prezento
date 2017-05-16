@@ -11,7 +11,7 @@
 <% unless @processing.process_times.nil? %>
   <% @processing.process_times.each do |process_time| %>
     <p>
-      <strong><%= process_time.state %> time:</strong>
+      <strong><%= t(process_time.state, :scope => 'activemodel.attributes.processing.state_names') %>:</strong>
       <%= humanize_elapsed_time(process_time.time) %>
     </p>
   <% end %>
