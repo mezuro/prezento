@@ -36,12 +36,12 @@ Feature: Show Repository
     And I should see the correct notify push url
     And I should see "State"
     And I should see "Creation Date"
-    And I should see "PREPARING time"
-    And I should see "COLLECTING time"
-    And I should see "BUILDING time"
-    And I should see "AGGREGATING time"
-    And I should see "CALCULATING time"
-    And I should see "INTERPRETING time"
+    And I should see "Preparing Time"
+    And I should see "Collecting Time"
+    And I should see "Building Time"
+    And I should see "Aggregating Time"
+    And I should see "Calculating Time"
+    And I should see "Interpreting Time"
     When I click the "Tree Metric Results" h3
     And I click the "Modules Tree" h3
     Then I should see "Metric"
