@@ -39,7 +39,8 @@ class ApplicationController < ActionController::Base
         format.json { head :not_found }
       end
     rescue ActionController::UnknownFormat
-      render file: "#{Rails.root}/public/406", layout: false, status: :not_acceptable, formats: :html
+      flash[:error] = "<span style='font-weight: bold'>.#{params[:format]}</span> is not a valid format"
+      redirect_to root_path, status: :not_acceptable
     end
   end
 
