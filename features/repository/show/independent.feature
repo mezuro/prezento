@@ -16,7 +16,6 @@ Feature: Date Select
     Then I should see the sample repository name
     And I should see "State"
     And I should see "Creation Date"
-    And I should see "Creation Date"
     And I should see "Preparing Time"
     And I should see "Collecting Time"
     And I should see "Building Time"
