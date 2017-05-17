@@ -17,3 +17,11 @@ end
 Then(/^I should see "(.*?)" only "(.*?)" times$/) do |text, times|
   expect(page).to have_content(text, count: times.to_i)
 end
+
+When(/^I click the "(.*?)" flag$/) do |text|
+  find(:css, "a[href='/#{text}']").click
+end
+
+Then(/^I should see "(.*?)" flag$/) do |flag|
+  expect(page).to have_css(".flag-icon.flag-icon-#{flag}")
+end

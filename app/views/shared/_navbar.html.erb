@@ -41,7 +41,7 @@
               </a>
               <ul class="dropdown-menu" role="menu">
                 <% I18n.available_locales.each do |locale| %>
-                  <li><%= link_to(locale.to_s, url_for(locale: locale), data: { no_turbolink: true }) %></li>
+                  <li><%= link_to(flag_icon(map_locale(locale)), url_for(locale: locale), data: { no_turbolink: true }) %></li>
                 <% end %>
               </ul>
             </li>

@@ -34,13 +34,20 @@ Feature: Homepage
   Scenario: Language selection
     Given I am at the homepage
     When I click the Language link
-    And I click the pt link
+    And I click the "pt" flag
     Then I should see "Entendendo Métricas de Código"
     When I click the Idioma link
-    And I click the en link
+    And I click the "en" flag
+    Then I should see "Understanding Code Metrics"
 
   Scenario: Correct portuguese plural settings option
     Given I am at the homepage
     When I click the Language link
-    And I click the pt link
+    And I click the "pt" flag
     Then I should see "Configurações"
+
+  Scenario: See flags in language dropdown
+    Given I am at the homepage
+    When I click the Language link
+    Then I should see "us" flag
+    Then I should see "br" flag
