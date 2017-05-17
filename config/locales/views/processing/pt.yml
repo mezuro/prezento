@@ -8,3 +8,12 @@ pt:
       processing:
         state: "Estado"
         creation_date: "Data de Criação"
+        state_names:
+          PREPARING: "Tempo de Preparo"
+          DOWNLOADING: "Tempo de Download"
+          COLLECTING: "Tempo de Coleta"
+          CHECKING: "Tempo de Verificação"   
+          BUILDING: "Tempo de Construção"
+          AGGREGATING: "Tempo de Agregação"
+          CALCULATING: "Tempo de Cálculo"
+          INTERPRETING: "Tempo de Interpretação"
