@@ -89,7 +89,7 @@ describe KalibroConfigurationsController, :type => :controller do
       end
     end
 
-    context 'when an invalid format is requested' do
+    context 'when format requested is not supported' do
       before :each do
         get :show, id: kalibro_configuration.id, format: :txt
       end

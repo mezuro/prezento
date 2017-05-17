@@ -129,14 +129,28 @@ describe MetricConfigurationsController, :type => :controller do
       end
 
       context 'with valid parameters' do
-        before :each do
-          ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
-          metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
+        context 'when format requested is supported' do
+          before :each do
+            ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
+            metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
 
-          get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
+            get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id
+          end
+
+          it { is_expected.to render_template(:show) }
         end
 
-        it { is_expected.to render_template(:show) }
+        context 'when format requested is not supported' do
+          before :each do
+            ReadingGroup.expects(:find).with(metric_configuration.reading_group_id).returns(reading_group)
+            metric_configuration.expects(:kalibro_ranges).returns([kalibro_range])
+
+            get :show, kalibro_configuration_id: metric_configuration.kalibro_configuration_id.to_s, id: metric_configuration.id, format: :txt
+          end
+
+          it { is_expected.to respond_with(:not_acceptable) }
+        end
+
       end
 
       context 'with invalid parameters' do

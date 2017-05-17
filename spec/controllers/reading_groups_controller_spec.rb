@@ -64,13 +64,24 @@ describe ReadingGroupsController, :type => :controller do
 
   describe 'show' do
     let!(:reading_group) { FactoryGirl.build(:reading_group, :with_id) }
-    let(:reading) { FactoryGirl.build(:reading_with_id) }
-    before :each do
-      ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
-      get :show, :id => reading_group.id
+
+    context 'when reading group is valid' do
+      let(:reading) { FactoryGirl.build(:reading_with_id) }
+      before :each do
+        ReadingGroup.expects(:find).with(reading_group.id).returns(reading_group)
+        get :show, :id => reading_group.id
+      end
+
+      it { is_expected.to render_template(:show) }
     end
 
-    it { is_expected.to render_template(:show) }
+    context 'when format requested is not supported' do
+      before :each do
+        get :show, id: reading_group.id, format: :txt
+      end
+
+      it { is_expected.to respond_with(:not_acceptable) }
+    end
   end
 
   describe 'destroy' do

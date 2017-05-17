@@ -75,14 +75,13 @@ describe ProjectsController, :type => :controller do
         it { is_expected.to render_template(:show) }
       end
 
-      context 'when format requested is unknown' do
+      context 'when format requested is not supported' do
         before :each do
           get :show, id: project.id, format: :txt
         end
 
         it { is_expected.to respond_with(:not_acceptable) }
       end
-
     end
 
     context 'when the project does not exists' do
@@ -98,7 +97,7 @@ describe ProjectsController, :type => :controller do
         it { is_expected.to respond_with(:not_found) }
       end
 
-      context 'when the request format is unknown' do
+      context 'when the request format is not supported' do
         before :each do
           get :show, id: project.id, format: :txt
         end
