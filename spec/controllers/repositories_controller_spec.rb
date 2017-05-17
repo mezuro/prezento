@@ -178,6 +178,14 @@ describe RepositoriesController, :type => :controller do
 
       it { is_expected.to render_template(:show) }
     end
+
+    context 'when format requested is not supported' do
+      before :each do
+        get :show, id: repository.id, format: :txt
+      end
+
+      it { is_expected.to respond_with(:not_acceptable) }
+    end
   end
 
   describe 'destroy' do

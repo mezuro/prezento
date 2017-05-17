@@ -70,20 +70,31 @@ describe KalibroConfigurationsController, :type => :controller do
 
   describe 'show' do
     let(:kalibro_configuration) { FactoryGirl.build(:kalibro_configuration, :with_id) }
-    let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
-    before :each do
-      kalibro_configuration.expects(:tree_metric_configurations).returns([metric_configuration])
-      kalibro_configuration.expects(:hotspot_metric_configurations).returns([])
-      KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
+    context 'when kalibro_configuration is valid' do
+      let(:metric_configuration) { FactoryGirl.build(:metric_configuration_with_id) }
 
-      get :show, :id => kalibro_configuration.id
+      before :each do
+        kalibro_configuration.expects(:tree_metric_configurations).returns([metric_configuration])
+        kalibro_configuration.expects(:hotspot_metric_configurations).returns([])
+        KalibroConfiguration.expects(:find).with(kalibro_configuration.id).returns(kalibro_configuration)
+
+        get :show, :id => kalibro_configuration.id
+      end
+
+      it { is_expected.to render_template(:show) }
+
+      after :each do
+        Rails.cache.clear
+      end
     end
 
-    it { is_expected.to render_template(:show) }
+    context 'when format requested is not supported' do
+      before :each do
+        get :show, id: kalibro_configuration.id, format: :txt
+      end
 
-    after :each do
-      Rails.cache.clear
+      it { is_expected.to respond_with(:not_acceptable) }
     end
   end
 

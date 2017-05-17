@@ -64,13 +64,24 @@ describe ProjectsController, :type => :controller do
     let(:repository) { FactoryGirl.build(:repository) }
 
     context 'when the project exists' do
-      before :each do
-        Project.expects(:find).with(project.id).returns(project)
-        project.expects(:repositories).returns(repository)
-        get :show, :id => project.id
+
+      context 'when the project is valid' do
+        before :each do
+          Project.expects(:find).with(project.id).returns(project)
+          project.expects(:repositories).returns(repository)
+          get :show, :id => project.id
+        end
+
+        it { is_expected.to render_template(:show) }
       end
 
-      it { is_expected.to render_template(:show) }
+      context 'when format requested is not supported' do
+        before :each do
+          get :show, id: project.id, format: :txt
+        end
+
+        it { is_expected.to respond_with(:not_acceptable) }
+      end
     end
 
     context 'when the project does not exists' do
@@ -86,7 +97,7 @@ describe ProjectsController, :type => :controller do
         it { is_expected.to respond_with(:not_found) }
       end
 
-      context 'when the request format is unknown' do
+      context 'when the request format is not supported' do
         before :each do
           get :show, id: project.id, format: :txt
         end
