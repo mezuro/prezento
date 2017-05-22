@@ -20,8 +20,10 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li class="dropdown">
-                <a class="dropdown-toggle" aria-expanded="true" role="button" data-toggle="dropdown" href="#">
-                  <%= current_user.name %>
+                <a class="dropdown-toggle gravatar-container" aria-expanded="true" role="button" data-toggle="dropdown" href="#" id="<%= current_user.name %>">
+
+									<%= image_tag current_user.gravatar_url(default: 'mm'), alt: "user-gravatar", class: "user-gravatar" %>
+
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">

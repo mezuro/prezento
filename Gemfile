@@ -67,6 +67,9 @@ gem 'http_accept_language'
 # Routes for JS files
 gem 'js-routes', '~> 1.1.0'
 
+# Gravatar for users
+gem 'gravtastic'
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'
@@ -139,7 +142,7 @@ end
 
 # Acceptance tests
 group :cucumber, :test do
-  gem 'cucumber-rails', '~> 1.4.0'
+  gem 'cucumber-rails', '~> 1.4.0', :require => false
   # cleans the database
   gem 'database_cleaner', '~> 1.5.0'
 end
