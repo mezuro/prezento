@@ -67,6 +67,9 @@ gem 'http_accept_language'
 # Routes for JS files
 gem 'js-routes', '~> 1.1.0'
 
+# RuboCop static code analyzer
+gem 'rubocop', '~> 0.48.1', require: false
+
 group :test do
   # Easier test writing
   gem "shoulda-matchers", '~> 2.8.0'
