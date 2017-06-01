@@ -91,7 +91,7 @@ describe ProjectsController, :type => :controller do
           get :show, id: project.id, format: :txt
         end
 
-        it { is_expected.to respond_with(:not_found) }
+        it { is_expected.to respond_with(:not_acceptable) }
       end
     end
 

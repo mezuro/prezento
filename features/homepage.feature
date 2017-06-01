@@ -9,7 +9,6 @@ Feature: Homepage
     And there is a public configuration created named "Test Configuration"
     And I have a public repository named "Test Repository"
     Then I am at the homepage
-    And I should see "Home"
     And I should see "Projects"
     And I should see "Repositories"
     And I should see "Configurations"
