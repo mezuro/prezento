@@ -21,7 +21,7 @@ class ReadingGroupsController < ApplicationController
   def create
     @reading_group = ReadingGroup.new(reading_group_params)
     respond_to do |format|
-      create_and_redir(format)
+      create_and_redirect_to_reading_group_page(format)
     end
   end
 
@@ -65,15 +65,30 @@ class ReadingGroupsController < ApplicationController
   end
 
   # Extracted code from create action
-  def create_and_redir(format)
+  def create_and_redirect_to_reading_group_page(format)
     if @reading_group.save
-      current_user.reading_group_attributes.create(reading_group_id: @reading_group.id)
-
-      format.html { redirect_to reading_group_path(@reading_group.id), notice: t('successfully_created', :record => t(@reading_group.class)) }
-      format.json { render action: 'show', status: :created, location: @reading_group }
+      create_reading_group()
+      redirect_to_reading_group_page(format)
+      render_json_and_show_reading_group(format)
     else
       format.html { render action: 'new' }
       format.json { render json: @reading_group.likeno_errors, status: :unprocessable_entity }
     end
   end
+
+  private
+
+    def create_reading_group()
+      current_user.reading_group_attributes.create(reading_group_id: @reading_group.id)
+    end
+
+    def redirect_to_reading_group_page(format)
+      format.html { redirect_to reading_group_path(@reading_group.id), notice: t('successfully_created',
+       :record => t(@reading_group.class)) }
+    end
+
+    def render_json_and_show_reading_group(format)
+      format.json { render action: 'show', status: :created, location: @reading_group }
+    end
+    
 end
