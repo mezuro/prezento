@@ -75,11 +75,7 @@
 </table>
 
 <p>
-<% if kalibro_configuration_owner? @metric_configuration.kalibro_configuration_id %>
-      <%= link_to t_action(:destroy, MetricConfiguration), kalibro_configuration_metric_configuration_path(@metric_configuration.kalibro_configuration_id,
-      @metric_configuration.id), method: :delete, data: { confirm: t('want_destroy_metric_configuration') },
-      class: 'btn btn-danger' %>
- <% end %>
+  <%= render 'compound_metric_configurations/check_configuration_owner' %>
 </p>
 
 
