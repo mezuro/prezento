@@ -1,0 +1,7 @@
+<tbody>
+    <% if metric_configuration.empty? %>
+      <%= render partial: 'no_metric_configurations', locals: { message: @message } %>
+    <% else %>
+      <%= render partial: 'metric_configurations', collection: @metric_configuration %>
+    <% end %>
+</tbody>

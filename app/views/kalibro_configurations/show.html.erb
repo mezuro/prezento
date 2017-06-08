@@ -23,13 +23,7 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  <tbody>
-    <% if Rails.cache.read("#{@kalibro_configuration.id}_tree_metric_configurations").empty? %>
-      <%= render partial: 'no_metric_configurations', locals: { message: 'no_tree_metric_configurations' } %>
-    <% else %>
-      <%= render partial: 'metric_configurations', collection: Rails.cache.read("#{@kalibro_configuration.id}_tree_metric_configurations"), as: :metric_configuration %>
-    <% end %>
-  </tbody>
+  <%= render partial: 'show_metric_configutations', locals: { message: 'no_tree_metric_configurations' }, collection: Rails.cache.read("#{@kalibro_configuration.id}_tree_metric_configurations"), as: :metric_configuration %>
 </table>
 </div>
 
@@ -46,13 +40,7 @@
       <th colspan="2"></th>
     </tr>
   </thead>
-  <tbody>
-    <% if Rails.cache.read("#{@kalibro_configuration.id}_hotspot_metric_configurations").empty? %>
-      <%= render partial: 'no_metric_configurations', locals: { message: 'no_hotspot_metric_configurations' } %>
-    <% else %>
-      <%= render partial: 'metric_configurations', collection: Rails.cache.read("#{@kalibro_configuration.id}_hotspot_metric_configurations"), as: :metric_configuration %>
-    <% end %>
-  </tbody>
+  <%= render partial: 'show_metric_configutations', locals: { message: 'no_hotspot_metric_configurations' }, collection: Rails.cache.read("#{@kalibro_configuration.id}_hotspot_metric_configurations"), as: :metric_configuration %>
 </table>
 </div>
 
