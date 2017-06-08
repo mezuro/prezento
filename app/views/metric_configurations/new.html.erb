@@ -26,7 +26,6 @@
 
 <%= form_for(@metric_configuration, :url => kalibro_configuration_metric_configurations_path(@kalibro_configuration.id)) do |f| %>
   <%= render partial: 'form', locals: {f: f} %>
-  <div class="row margin-left-none" style="margin-top: 20px">
-  	<%= f.submit t('save'), class: 'btn btn-primary' %>
-	</div>
+  <%= render partial: 'buttons_new', locals: {f: f, link: 
+    kalibro_configuration_choose_metric_path(@kalibro_configuration.id)} %>
 <% end %>
