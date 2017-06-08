@@ -1,4 +1,4 @@
-if defined?(Konacha)
+def configure_konacha
   Konacha.configure do |config|
     require 'capybara/poltergeist'
 
@@ -7,7 +7,11 @@ if defined?(Konacha)
     config.stylesheets  = %w(application)
     config.driver = :poltergeist
   end
+end
 
+if defined?(Konacha)
+  
+  configure_konacha
   # Use thin to run Konacha tests. This is needed because the tests hang frequently in Travis using the default (WEBRick)
   # We can't just do 'Capybara.server' in the configure block because it will also apply to anything else run by
   # Capybara. So instead, override the Konacha.run method to change the server, and restore it after completion.

@@ -13,12 +13,20 @@ module KalibroModulesHelper
   end
 
   def sort_by_granularity_and_name(module_results)
-    module_results.sort! do |a,b|
-      if (a.kalibro_module.granularity == b.kalibro_module.granularity)
-        a.kalibro_module.name <=> b.kalibro_module.name
+    module_results.sort! do |results_first, results_second|
+      module_first = results_first.kalibro_module
+      module_second = results_second.kalibro_module
+      if (module_first.granularity == module_second.granularity)
+        module_first.name <=> module_second.name
       else
-        (ComparableGranularity.new(b.kalibro_module.granularity.type) <=> ComparableGranularity.new(a.kalibro_module.granularity.type))
+        compare_type_granularity(module_first, module_second)
       end
     end
+  end
+
+  def compare_type_granularity(module_first, module_second)
+    comparable_type_first = ComparableGranularity.new(module_second.granularity.type)
+    comparable_type_second = ComparableGranularity.new(module_first.granularity.type)
+    (comparable_type_first <=> comparable_type_second)
   end
 end

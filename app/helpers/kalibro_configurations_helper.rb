@@ -18,4 +18,8 @@ module KalibroConfigurationsHelper
       link_to(t('show'), kalibro_configuration_metric_configuration_path(kalibro_configuration_id: kalibro_configuration_id, id: metric_configuration.id), class: 'btn btn-info')
     end
   end
+
+  def check_configuration_owner
+      col_number = kalibro_configuration_owner?(@kalibro_configuration.id) ? 5 : 3
+  end
 end
