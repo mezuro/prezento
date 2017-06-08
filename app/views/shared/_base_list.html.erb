@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= klass.human_attribute_name('name') %></th>
+      <th><%= klass.human_attribute_name('description') %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% list.each do |element| %>
+      <tr>
+        <td><%= element.name %></td>
+        <td><%= element.description %></td>
+        <td><%= link_to t('show'), send(show_link, element.id), class: 'btn btn-info' %></td>
+        <!-- FIXME create helper method or metaprogramming -->
+        <td>
+      		<% if send(owner_method, element.id) %>
+            <%= link_to t('edit'), send(edit_link, element.id), class: 'btn btn-info' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

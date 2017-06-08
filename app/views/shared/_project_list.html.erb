@@ -1,24 +1,8 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th><%= Project.human_attribute_name('name') %></th>
-      <th><%= Project.human_attribute_name('description') %></th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to t('show'), project_path(project.id), class: 'btn btn-info' %></td>
-        <td>
-          <% if project_owner? project.id %>
-            <%= link_to t('edit'), edit_project_path(project.id), class: 'btn btn-info' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'shared/base_list',
+    locals: {
+      list: projects,
+      klass: Project,
+      owner_method: "project_owner?",
+      show_link: "project_path",
+      edit_link: "edit_project_path"
+    } %>
