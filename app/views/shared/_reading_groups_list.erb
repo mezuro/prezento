@@ -1,24 +1,8 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th><%= ReadingGroup.human_attribute_name('name') %></th>
-      <th><%= ReadingGroup.human_attribute_name('description') %></th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% reading_groups.each do |reading_group| %>
-      <tr>
-        <td><%= reading_group.name %></td>
-        <td><%= reading_group.description %></td>
-        <td><%= link_to t('show'), reading_group_path(reading_group.id), class: 'btn btn-info' %></td>
-        <td>
-          <% if reading_groups_owner? reading_group.id %>
-            <%= link_to t('edit'), edit_reading_group_path(reading_group.id), class: 'btn btn-info' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: 'shared/base_list',
+    locals: {
+      list: reading_groups,
+      klass: ReadingGroup,
+      owner_method: "reading_groups_owner?",
+      show_link: "reading_group_path",
+      edit_link: "edit_reading_group_path"
+    } %>
