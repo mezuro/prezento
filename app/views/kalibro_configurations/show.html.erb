@@ -46,7 +46,6 @@
 
 <hr>
 <p>
- <%= link_to t('back'), kalibro_configurations_path, class: 'btn btn-default' %>
  <% if kalibro_configuration_owner? @kalibro_configuration.id %>
    <%= link_to t_action(:destroy, KalibroConfiguration), kalibro_configuration_path(@kalibro_configuration.id), method: :delete, data: { confirm: 'Are you sure that you want to destroy this Configuration?' }, class: 'btn btn-danger' %>
  <% end %>
