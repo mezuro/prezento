@@ -23,12 +23,12 @@ class BaseMetricConfigurationsController < ApplicationController
   end
 
   def create
-    respond_to { |format| save_and_redir(format) }
+    respond_to { |format| save(format) }
   end
 
   def update
     respond_to do |format|
-      save_and_redir(format) do |metric_configuration|
+      save(format) do |metric_configuration|
         metric_configuration.update(metric_configuration_params)
       end
     end
@@ -46,12 +46,18 @@ class BaseMetricConfigurationsController < ApplicationController
 
   protected
 
-  def save_and_redir(format)
-    new_record = @metric_configuration.id.nil?
+  def save(format)
     result = block_given? ? (yield @metric_configuration) : @metric_configuration.save
-
     if result
-      clear_caches
+      redir_save_success_html(format)
+    else
+      failed_action(format)
+    end
+  end
+
+  def redir_save_success_html(format)
+    new_record = @metric_configuration.id.nil?
+    clear_caches
 
       format.html do
         redirect_to kalibro_configuration_path(@kalibro_configuration.id),
@@ -59,9 +65,6 @@ class BaseMetricConfigurationsController < ApplicationController
                     record: t(@metric_configuration.class))
       end
       format.json { render json: @metric_configuration, status: new_record ? :created : :ok }
-    else
-      failed_action(format)
-    end
   end
 
   def failed_action(format, error = nil)
