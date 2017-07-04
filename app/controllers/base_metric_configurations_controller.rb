@@ -47,9 +47,9 @@ class BaseMetricConfigurationsController < ApplicationController
   protected
 
   def save(format)
+    new_record = @metric_configuration.id.nil?
     result = block_given? ? (yield @metric_configuration) : @metric_configuration.save
     if result
-      new_record = @metric_configuration.id.nil?
       clear_caches
       redir_save_success_html(format, new_record)
     else
@@ -58,12 +58,12 @@ class BaseMetricConfigurationsController < ApplicationController
   end
 
   def redir_save_success_html(format, new_record)
-      format.html do
-        redirect_to kalibro_configuration_path(@kalibro_configuration.id),
-          notice: t(new_record ? 'successfully_created' : 'successfully_updated',
-                    record: t(@metric_configuration.class))
-      end
-      format.json { render json: @metric_configuration, status: new_record ? :created : :ok }
+    format.html do
+      redirect_to kalibro_configuration_path(@kalibro_configuration.id),
+        notice: t(new_record ? 'successfully_created' : 'successfully_updated',
+                  record: t(@metric_configuration.class))
+    end
+    format.json { render json: @metric_configuration, status: new_record ? :created : :ok }
   end
 
   def failed_action(format, error = nil)
