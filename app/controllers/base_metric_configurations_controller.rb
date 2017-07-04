@@ -49,16 +49,15 @@ class BaseMetricConfigurationsController < ApplicationController
   def save(format)
     result = block_given? ? (yield @metric_configuration) : @metric_configuration.save
     if result
-      redir_save_success_html(format)
+      new_record = @metric_configuration.id.nil?
+      clear_caches
+      redir_save_success_html(format, new_record)
     else
       failed_action(format)
     end
   end
 
-  def redir_save_success_html(format)
-    new_record = @metric_configuration.id.nil?
-    clear_caches
-
+  def redir_save_success_html(format, new_record)
       format.html do
         redirect_to kalibro_configuration_path(@kalibro_configuration.id),
           notice: t(new_record ? 'successfully_created' : 'successfully_updated',
